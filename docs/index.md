@@ -1,0 +1,93 @@
+--- 
+title: "Data Skills"
+author: "Dale J Barr & Lisa M. DeBruine"
+date: "2019-01-19"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data."
+---
+
+# Overview
+
+This course provides an overview of skills needed for reproducible research and 
+open science using the statistical programming language R.  Students will learn 
+about data visualisation, data tidying and wrangling, archiving, iteration and 
+functions, probability and data simulations, general linear models, and 
+reproducible workflows. Learning is reinforced through weekly assignments that 
+involve working with different types of data.
+
+
+
+It is taught by [Dale Barr](http://talklab.psy.gla.ac.uk/) and [Lisa DeBruine](https://debruine.github.io).
+
+
+## Course Aims
+
+This course aims to teach students the basic principles of reproducible research 
+and to provide practical training in data processing and analysis in the 
+statistical programming language R.
+
+
+## Intended Learning Outcomes
+
+By the end of this course students will be able to:
+
+* write scripts in R to organise and transform data sets using best accepted practices;
+* explain basics of probability and its role in statistical inference;
+* analyse data and report descriptive and inferential statistics in a reproducible manner.
+
+## Formative Exercises
+
+Exercises are available at the end of each lesson's webpage. These are not marked 
+or mandatory, but if you can work through each of these (using web resources, of 
+course), you will easily complete the marked assessments. 
+
+
+* [01 Intro](formative_exercises/01_intro_stub.Rmd): Intro to R, functions
+* [02 Intro](formative_exercises/02_intro_stub.Rmd): Vectors, tabular data, data import, pipes
+* [Essential Skills](formative_exercises/essential_skills_stub.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
+* [03 ggplot](formative_exercises/03_ggplot_stub.Rmd): Data visualisation
+* [04 wrangle1](formative_exercises/04_wrangle1_stub.Rmd): Data wrangling (mostly tidyr)
+* [05 wrangle2](formative_exercises/05_wrangle2_stub.Rmd): Data wrangling (mostly dplyr)
+* [06 joins](formative_exercises/06_joins_stub.Rmd): Data relations
+* [07 functions](formative_exercises/07_functions_stub.Rmd): Functions and Iteration
+* [08 simulation](formative_exercises/08_simulations_stub.Rmd): Simulation
+
+## Resources
+
+Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the [Miscellaneous](11_misc.html) section.
+
+<div style="width: 300px; max-width: 100%; float: right;">
+  <img src="images/changing-stuff.jpg" style="width:100%;" />
+</div>
+
+- <a href="http://rstudio1.psy.gla.ac.uk" target="_blank">Glasgow Psychology RStudio</a> 
+- [Learning Statistics with R](https://learningstatisticswithr-bookdown.netlify.com) by Navarro
+- [R for Data Science](http://r4ds.had.co.nz) by Grolemund and Wickham
+
+### Online tutorials
+
+- [swirl](http://swirlstats.com)
+- [R for Reproducible Scientific Analysis](http://swcarpentry.github.io/r-novice-gapminder/)
+- [codeschool.com](http://tryr.codeschool.com)
+- [datacamp](https://www.datacamp.com/courses/free-introduction-to-r)
+- [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera
+
+### Cheat sheets
+  
+- You can access several cheatsheets in RStudio under the `Help` menu
+- Or get the most recent [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) 
+
+### Other
+
+- [Style guide for R programming](http://style.tidyverse.org)
+- type `browseVignettes("name_of_package")` to learn about add-on packages 
+- [#rstats on twitter](https://twitter.com/search?q=%2523rstats) highly recommended!
+
+
+
+
+

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Chapter 14 Probability &amp; Simulation | Data Skills</title>
+  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Chapter 14 Probability &amp; Simulation | Data Skills" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Probability &amp; Simulation | Data Skills" />
+  
+  <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
+  
+
+<meta name="author" content="Dale J Barr &amp; Lisa M. DeBruine">
+
+
+<meta name="date" content="2019-01-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="func.html">
+<link rel="next" href="glm.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>1.1</b> Course Aims</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>1.2</b> Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>1.3</b> Formative Exercises</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>1.4</b> Resources</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>1.4.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>1.4.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>1.4.3</b> Other</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>2.3</b> What is R?</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#interacting-with-r"><i class="fa fa-check"></i><b>2.4</b> Interacting with R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>2.4.1</b> The Base R Console</a></li>
+<li class="chapter" data-level="2.4.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>2.4.2</b> The RStudio Integrated Development Environment (IDE)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>2.5</b> Developing reproducible scripts</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="intro.html"><a href="intro.html#configure-rstudio-for-maximum-reproducibility"><i class="fa fa-check"></i><b>2.5.1</b> Configure RStudio for Maximum Reproducibility</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>2.5.2</b> Reproducible reports with RStudio and RMarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#typing-in-commands"><i class="fa fa-check"></i><b>2.6</b> Typing in commands</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="intro.html"><a href="intro.html#rcalc"><i class="fa fa-check"></i><b>2.6.1</b> Warming up: Use R as a calculator</a></li>
+<li class="chapter" data-level="2.6.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>2.6.2</b> Storing results in a variable</a></li>
+<li class="chapter" data-level="2.6.3" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>2.6.3</b> Whitespace</a></li>
+<li class="chapter" data-level="2.6.4" data-path="intro.html"><a href="intro.html#the-workspace"><i class="fa fa-check"></i><b>2.6.4</b> The workspace</a></li>
+<li class="chapter" data-level="2.6.5" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>2.6.5</b> Vectors</a></li>
+<li class="chapter" data-level="2.6.6" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>2.6.6</b> Function syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#data_types"><i class="fa fa-check"></i><b>2.7</b> Some basic data types</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#add-on-packages"><i class="fa fa-check"></i><b>2.8</b> Add-on packages</a></li>
+<li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#getting-help"><i class="fa fa-check"></i><b>2.9</b> Getting help</a></li>
+<li class="chapter" data-level="2.10" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>2.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro2.html"><a href="intro2.html"><i class="fa fa-check"></i><b>3</b> Introduction 2</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro2.html"><a href="intro2.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="intro2.html"><a href="intro2.html#resources-2"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
+<li class="chapter" data-level="3.3" data-path="intro2.html"><a href="intro2.html#project_org"><i class="fa fa-check"></i><b>3.3</b> Organizing a project</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="intro2.html"><a href="intro2.html#working-directory"><i class="fa fa-check"></i><b>3.3.1</b> Working Directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="intro2.html"><a href="intro2.html#script_struct"><i class="fa fa-check"></i><b>3.4</b> Structuring your script</a></li>
+<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#data_types"><i class="fa fa-check"></i><b>3.5</b> Basic data types</a></li>
+<li class="chapter" data-level="3.6" data-path="intro2.html"><a href="intro2.html#containers"><i class="fa fa-check"></i><b>3.6</b> Basic container types</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>3.6.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.6.2" data-path="intro2.html"><a href="intro2.html#ex_vector"><i class="fa fa-check"></i><b>3.6.2</b> Exercises</a></li>
+<li class="chapter" data-level="3.6.3" data-path="intro2.html"><a href="intro2.html#lists"><i class="fa fa-check"></i><b>3.6.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="intro2.html"><a href="intro2.html#tables"><i class="fa fa-check"></i><b>3.7</b> Tabular data</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="intro2.html"><a href="intro2.html#viewing-your-tibble"><i class="fa fa-check"></i><b>3.7.1</b> Viewing your tibble</a></li>
+<li class="chapter" data-level="3.7.2" data-path="intro2.html"><a href="intro2.html#accessing-rows-and-columns"><i class="fa fa-check"></i><b>3.7.2</b> Accessing rows and columns</a></li>
+<li class="chapter" data-level="3.7.3" data-path="intro2.html"><a href="intro2.html#ex_tibble"><i class="fa fa-check"></i><b>3.7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="intro2.html"><a href="intro2.html#import_data"><i class="fa fa-check"></i><b>3.8</b> Importing data</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="intro2.html"><a href="intro2.html#writing-data"><i class="fa fa-check"></i><b>3.8.1</b> Writing Data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="intro2.html"><a href="intro2.html#ex_import"><i class="fa fa-check"></i><b>3.8.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="intro2.html"><a href="intro2.html#pipes"><i class="fa fa-check"></i><b>3.9</b> Pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>4</b> Data Visualisation</a><ul>
+<li class="chapter" data-level="4.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>4.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>4.1.3</b> Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
+<li class="chapter" data-level="4.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
+<li class="chapter" data-level="4.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>4.4</b> Common Variable Combinations</a></li>
+<li class="chapter" data-level="4.5" data-path="ggplot.html"><a href="ggplot.html#data"><i class="fa fa-check"></i><b>4.5</b> Data</a></li>
+<li class="chapter" data-level="4.6" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>4.6</b> Basic Plots</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>4.6.1</b> Bar plot</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ggplot.html"><a href="ggplot.html#density-plot"><i class="fa fa-check"></i><b>4.6.2</b> Density plot</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ggplot.html"><a href="ggplot.html#geom_freqpoly"><i class="fa fa-check"></i><b>4.6.3</b> Frequency Polygons</a></li>
+<li class="chapter" data-level="4.6.4" data-path="ggplot.html"><a href="ggplot.html#geom_histogram"><i class="fa fa-check"></i><b>4.6.4</b> Histogram</a></li>
+<li class="chapter" data-level="4.6.5" data-path="ggplot.html"><a href="ggplot.html#geom_col"><i class="fa fa-check"></i><b>4.6.5</b> Column plot</a></li>
+<li class="chapter" data-level="4.6.6" data-path="ggplot.html"><a href="ggplot.html#geom_boxplot"><i class="fa fa-check"></i><b>4.6.6</b> Boxplot</a></li>
+<li class="chapter" data-level="4.6.7" data-path="ggplot.html"><a href="ggplot.html#geom_violin"><i class="fa fa-check"></i><b>4.6.7</b> Violin plot</a></li>
+<li class="chapter" data-level="4.6.8" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>4.6.8</b> Scatter plot</a></li>
+<li class="chapter" data-level="4.6.9" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>4.6.9</b> Line graph</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ggplot.html"><a href="ggplot.html#save-as-file"><i class="fa fa-check"></i><b>4.7</b> Save as File</a></li>
+<li class="chapter" data-level="4.8" data-path="ggplot.html"><a href="ggplot.html#combination-plots"><i class="fa fa-check"></i><b>4.8</b> Combination Plots</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>4.8.1</b> Violinbox plot</a></li>
+<li class="chapter" data-level="4.8.2" data-path="ggplot.html"><a href="ggplot.html#violin-jitter-plot"><i class="fa fa-check"></i><b>4.8.2</b> Violin-jitter plot</a></li>
+<li class="chapter" data-level="4.8.3" data-path="ggplot.html"><a href="ggplot.html#scatter-line-graph"><i class="fa fa-check"></i><b>4.8.3</b> Scatter-line graph</a></li>
+<li class="chapter" data-level="4.8.4" data-path="ggplot.html"><a href="ggplot.html#cowplot"><i class="fa fa-check"></i><b>4.8.4</b> Grid of plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>4.9</b> Overlapping Data</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="ggplot.html"><a href="ggplot.html#discrete-data"><i class="fa fa-check"></i><b>4.9.1</b> Discrete Data</a></li>
+<li class="chapter" data-level="4.9.2" data-path="ggplot.html"><a href="ggplot.html#viridis"><i class="fa fa-check"></i><b>4.9.2</b> Colours</a></li>
+<li class="chapter" data-level="4.9.3" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>4.9.3</b> Continuous Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>4.10</b> Heat map</a></li>
+<li class="chapter" data-level="4.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>4.11</b> Interactive Plots</a></li>
+<li class="chapter" data-level="4.12" data-path="ggplot.html"><a href="ggplot.html#exercises-1"><i class="fa fa-check"></i><b>4.12</b> Exercises</a><ul>
+<li class="chapter" data-level="4.12.1" data-path="ggplot.html"><a href="ggplot.html#common-plots"><i class="fa fa-check"></i><b>4.12.1</b> Common Plots</a></li>
+<li class="chapter" data-level="4.12.2" data-path="ggplot.html"><a href="ggplot.html#two-continuous-variables"><i class="fa fa-check"></i><b>4.12.2</b> Two continuous variables</a></li>
+<li class="chapter" data-level="4.12.3" data-path="ggplot.html"><a href="ggplot.html#many-correlated-variables"><i class="fa fa-check"></i><b>4.12.3</b> Many correlated variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> Tidy Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tidyr.html"><a href="tidyr.html#intermediate-1"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="5.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced-1"><i class="fa fa-check"></i><b>5.1.3</b> Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#prep"><i class="fa fa-check"></i><b>5.2</b> Prep</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>5.3</b> Resources</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#formative-exercise"><i class="fa fa-check"></i><b>5.4</b> Formative exercise</a></li>
+<li class="chapter" data-level="5.5" data-path="tidyr.html"><a href="tidyr.html#class-notes"><i class="fa fa-check"></i><b>5.5</b> Class Notes</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>5.5.1</b> Setup</a></li>
+<li class="chapter" data-level="5.5.2" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>5.5.2</b> Load Data</a></li>
+<li class="chapter" data-level="5.5.3" data-path="tidyr.html"><a href="tidyr.html#pipes-1"><i class="fa fa-check"></i><b>5.5.3</b> Pipes</a></li>
+<li class="chapter" data-level="5.5.4" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>5.5.4</b> gather()</a></li>
+<li class="chapter" data-level="5.5.5" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>5.5.5</b> separate()</a></li>
+<li class="chapter" data-level="5.5.6" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>5.5.6</b> spread()</a></li>
+<li class="chapter" data-level="5.5.7" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>5.5.7</b> unite()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="tidyr.html"><a href="tidyr.html#exercises-2"><i class="fa fa-check"></i><b>5.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>6</b> Data Wrangling</a></li>
+<li class="chapter" data-level="7" data-path="learning-objectives-4.html"><a href="learning-objectives-4.html"><i class="fa fa-check"></i><b>7</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="7.1" data-path="learning-objectives-4.html"><a href="learning-objectives-4.html#basic-2"><i class="fa fa-check"></i><b>7.1</b> Basic</a></li>
+<li class="chapter" data-level="7.2" data-path="learning-objectives-4.html"><a href="learning-objectives-4.html#intermediateadvanced"><i class="fa fa-check"></i><b>7.2</b> Intermediate/Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="prep-1.html"><a href="prep-1.html"><i class="fa fa-check"></i><b>8</b> Prep</a></li>
+<li class="chapter" data-level="9" data-path="resources-5.html"><a href="resources-5.html"><i class="fa fa-check"></i><b>9</b> Resources</a></li>
+<li class="chapter" data-level="10" data-path="formative-exercises-1.html"><a href="formative-exercises-1.html"><i class="fa fa-check"></i><b>10</b> Formative exercises</a></li>
+<li class="chapter" data-level="11" data-path="class-notes-1.html"><a href="class-notes-1.html"><i class="fa fa-check"></i><b>11</b> Class notes</a><ul>
+<li class="chapter" data-level="11.1" data-path="class-notes-1.html"><a href="class-notes-1.html#setup-2"><i class="fa fa-check"></i><b>11.1</b> Setup</a></li>
+<li class="chapter" data-level="11.2" data-path="class-notes-1.html"><a href="class-notes-1.html#in-class-tasks"><i class="fa fa-check"></i><b>11.2</b> In-class tasks</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="class-notes-1.html"><a href="class-notes-1.html#easy"><i class="fa fa-check"></i><b>11.2.1</b> Easy</a></li>
+<li class="chapter" data-level="11.2.2" data-path="class-notes-1.html"><a href="class-notes-1.html#intermediate-2"><i class="fa fa-check"></i><b>11.2.2</b> Intermediate</a></li>
+<li class="chapter" data-level="11.2.3" data-path="class-notes-1.html"><a href="class-notes-1.html#advanced-2"><i class="fa fa-check"></i><b>11.2.3</b> Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="class-notes-1.html"><a href="class-notes-1.html#other-things-you-can-try-the-disgust-dataset"><i class="fa fa-check"></i><b>11.3</b> Other things you can try: The <code>disgust</code> dataset</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="class-notes-1.html"><a href="class-notes-1.html#select"><i class="fa fa-check"></i><b>11.3.1</b> select()</a></li>
+<li class="chapter" data-level="11.3.2" data-path="class-notes-1.html"><a href="class-notes-1.html#select-helpers"><i class="fa fa-check"></i><b>11.3.2</b> select() helpers</a></li>
+<li class="chapter" data-level="11.3.3" data-path="class-notes-1.html"><a href="class-notes-1.html#filter"><i class="fa fa-check"></i><b>11.3.3</b> filter()</a></li>
+<li class="chapter" data-level="11.3.4" data-path="class-notes-1.html"><a href="class-notes-1.html#arrange"><i class="fa fa-check"></i><b>11.3.4</b> arrange()</a></li>
+<li class="chapter" data-level="11.3.5" data-path="class-notes-1.html"><a href="class-notes-1.html#mutate"><i class="fa fa-check"></i><b>11.3.5</b> mutate()</a></li>
+<li class="chapter" data-level="11.3.6" data-path="class-notes-1.html"><a href="class-notes-1.html#summarise"><i class="fa fa-check"></i><b>11.3.6</b> summarise()</a></li>
+<li class="chapter" data-level="11.3.7" data-path="class-notes-1.html"><a href="class-notes-1.html#group_by"><i class="fa fa-check"></i><b>11.3.7</b> group_by()</a></li>
+<li class="chapter" data-level="11.3.8" data-path="class-notes-1.html"><a href="class-notes-1.html#all-together"><i class="fa fa-check"></i><b>11.3.8</b> All Together</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>12</b> Data Relations</a><ul>
+<li class="chapter" data-level="12.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="joins.html"><a href="joins.html#prep-2"><i class="fa fa-check"></i><b>12.2</b> Prep</a></li>
+<li class="chapter" data-level="12.3" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>12.3</b> Resources</a></li>
+<li class="chapter" data-level="12.4" data-path="joins.html"><a href="joins.html#formative-exercises-2"><i class="fa fa-check"></i><b>12.4</b> Formative exercises</a></li>
+<li class="chapter" data-level="12.5" data-path="joins.html"><a href="joins.html#class-notes-2"><i class="fa fa-check"></i><b>12.5</b> Class Notes</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="joins.html"><a href="joins.html#setup-3"><i class="fa fa-check"></i><b>12.5.1</b> Setup</a></li>
+<li class="chapter" data-level="12.5.2" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>12.5.2</b> Data</a></li>
+<li class="chapter" data-level="12.5.3" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>12.5.3</b> left_join()</a></li>
+<li class="chapter" data-level="12.5.4" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>12.5.4</b> right_join()</a></li>
+<li class="chapter" data-level="12.5.5" data-path="joins.html"><a href="joins.html#inner_join"><i class="fa fa-check"></i><b>12.5.5</b> inner_join()</a></li>
+<li class="chapter" data-level="12.5.6" data-path="joins.html"><a href="joins.html#full_join"><i class="fa fa-check"></i><b>12.5.6</b> full_join()</a></li>
+<li class="chapter" data-level="12.5.7" data-path="joins.html"><a href="joins.html#semi_join"><i class="fa fa-check"></i><b>12.5.7</b> semi_join()</a></li>
+<li class="chapter" data-level="12.5.8" data-path="joins.html"><a href="joins.html#anti_join"><i class="fa fa-check"></i><b>12.5.8</b> anti_join()</a></li>
+<li class="chapter" data-level="12.5.9" data-path="joins.html"><a href="joins.html#bind_rows"><i class="fa fa-check"></i><b>12.5.9</b> bind_rows()</a></li>
+<li class="chapter" data-level="12.5.10" data-path="joins.html"><a href="joins.html#bind_cols"><i class="fa fa-check"></i><b>12.5.10</b> bind_cols()</a></li>
+<li class="chapter" data-level="12.5.11" data-path="joins.html"><a href="joins.html#intersect"><i class="fa fa-check"></i><b>12.5.11</b> intersect()</a></li>
+<li class="chapter" data-level="12.5.12" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>12.5.12</b> union()</a></li>
+<li class="chapter" data-level="12.5.13" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>12.5.13</b> setdiff()</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="joins.html"><a href="joins.html#exercises-3"><i class="fa fa-check"></i><b>12.6</b> Exercises</a><ul>
+<li class="chapter" data-level="12.6.1" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>12.6.1</b> Mutating joins</a></li>
+<li class="chapter" data-level="12.6.2" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>12.6.2</b> Filtering joins</a></li>
+<li class="chapter" data-level="12.6.3" data-path="joins.html"><a href="joins.html#binding-and-sets"><i class="fa fa-check"></i><b>12.6.3</b> Binding and sets</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>13</b> Iteration &amp; Functions</a><ul>
+<li class="chapter" data-level="13.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>13.1.1</b> Basic</a></li>
+<li class="chapter" data-level="13.1.2" data-path="func.html"><a href="func.html#intermediate-3"><i class="fa fa-check"></i><b>13.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="13.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>13.1.3</b> Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="func.html"><a href="func.html#prep-3"><i class="fa fa-check"></i><b>13.2</b> Prep</a></li>
+<li class="chapter" data-level="13.3" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>13.3</b> Resources</a></li>
+<li class="chapter" data-level="13.4" data-path="func.html"><a href="func.html#formative-exercises-3"><i class="fa fa-check"></i><b>13.4</b> Formative exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="func.html"><a href="func.html#class-notes-3"><i class="fa fa-check"></i><b>13.5</b> Class Notes</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>13.5.1</b> Iteration functions</a></li>
+<li class="chapter" data-level="13.5.2" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>13.5.2</b> Custom functions</a></li>
+<li class="chapter" data-level="13.5.3" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>13.5.3</b> Iterating your own functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>14</b> Probability &amp; Simulation</a><ul>
+<li class="chapter" data-level="14.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>14.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>14.1.1</b> Basic</a></li>
+<li class="chapter" data-level="14.1.2" data-path="sim.html"><a href="sim.html#intermediate-4"><i class="fa fa-check"></i><b>14.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="14.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>14.1.3</b> Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="sim.html"><a href="sim.html#prep-4"><i class="fa fa-check"></i><b>14.2</b> Prep</a></li>
+<li class="chapter" data-level="14.3" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>14.3</b> Resources</a></li>
+<li class="chapter" data-level="14.4" data-path="sim.html"><a href="sim.html#formative-exercises-4"><i class="fa fa-check"></i><b>14.4</b> Formative exercises</a></li>
+<li class="chapter" data-level="14.5" data-path="sim.html"><a href="sim.html#class-notes-4"><i class="fa fa-check"></i><b>14.5</b> Class Notes</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="sim.html"><a href="sim.html#uniform-distribution"><i class="fa fa-check"></i><b>14.5.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="14.5.2" data-path="sim.html"><a href="sim.html#binomial-distribution"><i class="fa fa-check"></i><b>14.5.2</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="14.5.3" data-path="sim.html"><a href="sim.html#normal-distribution"><i class="fa fa-check"></i><b>14.5.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="14.5.4" data-path="sim.html"><a href="sim.html#multivariate-normal"><i class="fa fa-check"></i><b>14.5.4</b> Multivariate Normal</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>14.6</b> Example</a><ul>
+<li class="chapter" data-level="14.6.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>14.6.1</b> Load &amp; wrangle</a></li>
+<li class="chapter" data-level="14.6.2" data-path="sim.html"><a href="sim.html#plot"><i class="fa fa-check"></i><b>14.6.2</b> Plot</a></li>
+<li class="chapter" data-level="14.6.3" data-path="sim.html"><a href="sim.html#get-means-and-sds"><i class="fa fa-check"></i><b>14.6.3</b> Get means and SDs</a></li>
+<li class="chapter" data-level="14.6.4" data-path="sim.html"><a href="sim.html#simulate-a-population"><i class="fa fa-check"></i><b>14.6.4</b> Simulate a population</a></li>
+<li class="chapter" data-level="14.6.5" data-path="sim.html"><a href="sim.html#analyse-simulated-data"><i class="fa fa-check"></i><b>14.6.5</b> Analyse simulated data</a></li>
+<li class="chapter" data-level="14.6.6" data-path="sim.html"><a href="sim.html#replicate-simulation"><i class="fa fa-check"></i><b>14.6.6</b> Replicate simulation</a></li>
+<li class="chapter" data-level="14.6.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>14.6.7</b> One-tailed prediction</a></li>
+<li class="chapter" data-level="14.6.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>14.6.8</b> Range of sample sizes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>15</b> Introduction to GLM</a><ul>
+<li class="chapter" data-level="15.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>15.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>15.1.1</b> Basic</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>15.2</b> Resources</a></li>
+<li class="chapter" data-level="15.3" data-path="glm.html"><a href="glm.html#class-notes-5"><i class="fa fa-check"></i><b>15.3</b> Class Notes</a></li>
+<li class="chapter" data-level="15.4" data-path="glm.html"><a href="glm.html#additional-take-home-formative-exercises"><i class="fa fa-check"></i><b>15.4</b> Additional Take-Home Formative Exercises</a></li>
+<li class="chapter" data-level="15.5" data-path="glm.html"><a href="glm.html#in-class-exercises"><i class="fa fa-check"></i><b>15.5</b> In-Class Exercises</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>15.5.1</b> Relationship between t-test, ANOVA, and linear regression</a></li>
+<li class="chapter" data-level="15.5.2" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>15.5.2</b> Understanding decomposition matrices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>16</b> Reproducible Workflows</a><ul>
+<li class="chapter" data-level="16.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>16.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>16.1.1</b> Basic</a></li>
+<li class="chapter" data-level="16.1.2" data-path="repro.html"><a href="repro.html#intermediate-5"><i class="fa fa-check"></i><b>16.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="16.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>16.1.3</b> Advanced</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="repro.html"><a href="repro.html#prep-5"><i class="fa fa-check"></i><b>16.2</b> Prep</a></li>
+<li class="chapter" data-level="16.3" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>16.3</b> Resources</a></li>
+<li class="chapter" data-level="16.4" data-path="repro.html"><a href="repro.html#class-notes-6"><i class="fa fa-check"></i><b>16.4</b> Class Notes</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>16.4.1</b> R Markdown</a></li>
+<li class="chapter" data-level="16.4.2" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>16.4.2</b> knitr options</a></li>
+<li class="chapter" data-level="16.4.3" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>16.4.3</b> YAML Header</a></li>
+<li class="chapter" data-level="16.4.4" data-path="repro.html"><a href="repro.html#toc-and-document-headers"><i class="fa fa-check"></i><b>16.4.4</b> TOC and Document Headers</a></li>
+<li class="chapter" data-level="16.4.5" data-path="repro.html"><a href="repro.html#code-chunks"><i class="fa fa-check"></i><b>16.4.5</b> Code Chunks</a></li>
+<li class="chapter" data-level="16.4.6" data-path="repro.html"><a href="repro.html#bibliography"><i class="fa fa-check"></i><b>16.4.6</b> Bibliography</a></li>
+<li class="chapter" data-level="16.4.7" data-path="repro.html"><a href="repro.html#output-formats"><i class="fa fa-check"></i><b>16.4.7</b> Output Formats</a></li>
+<li class="chapter" data-level="16.4.8" data-path="repro.html"><a href="repro.html#computational-reproducibility"><i class="fa fa-check"></i><b>16.4.8</b> Computational Reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>16.5</b> References</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Skills</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sim" class="section level1">
+<h1><span class="header-section-number">Chapter 14</span> Probability &amp; Simulation</h1>
+<div id="learning-objectives-7" class="section level2 tabset">
+<h2><span class="header-section-number">14.1</span> Learning Objectives</h2>
+<div id="basic-4" class="section level3">
+<h3><span class="header-section-number">14.1.1</span> Basic</h3>
+<ol style="list-style-type: decimal">
+<li>Understand what types of data are best modeled by different distributions
+<ul>
+<li>uniform</li>
+<li>binomial</li>
+<li>normal</li>
+<li>poisson</li>
+</ul></li>
+<li>Generate and plot data randomly sampled from the above distributions</li>
+<li>Test sampled distributions against a null hypothesis
+<ul>
+<li>exact binomial test</li>
+<li>t-test (1-sample, independent samples, paired samples)</li>
+<li>correlation (pearson, kendall and spearman)</li>
+</ul></li>
+<li>Define the following statistical terms:
+<ul>
+<li>p-value</li>
+<li>alpha</li>
+<li>power</li>
+<li>false positive (type I error)</li>
+<li>false negative (type II error)</li>
+<li>confidence interval</li>
+</ul></li>
+</ol>
+</div>
+<div id="intermediate-4" class="section level3">
+<h3><span class="header-section-number">14.1.2</span> Intermediate</h3>
+<ol start="5" style="list-style-type: decimal">
+<li>Create a function to generate a sample with specific properties and run an inferential test</li>
+<li>Calculate power using <code>replicate</code> and a sampling function</li>
+<li>Calculate the minimum sample size for a specific power level and design</li>
+</ol>
+</div>
+<div id="advanced-4" class="section level3">
+<h3><span class="header-section-number">14.1.3</span> Advanced</h3>
+<ol start="8" style="list-style-type: decimal">
+<li>Generate 3+ variables from a multivariate normal distribution and plot them</li>
+</ol>
+</div>
+</div>
+<div id="prep-4" class="section level2">
+<h2><span class="header-section-number">14.2</span> Prep</h2>
+<ul>
+<li><a href="http://r4ds.had.co.nz/iteration.html">Chapter 21: Iteration</a> of <em>R for Data Science</em></li>
+</ul>
+</div>
+<div id="resources-8" class="section level2">
+<h2><span class="header-section-number">14.3</span> Resources</h2>
+<ul>
+<li><a href="https://www.coursera.org/learn/statistical-inferences/">Improving your statistical inferences</a> on Coursera (week 1)</li>
+</ul>
+</div>
+<div id="formative-exercises-4" class="section level2">
+<h2><span class="header-section-number">14.4</span> Formative exercises</h2>
+<p>Download the <a href="formative_exercises/08_simulations_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/08_simulations_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
+</div>
+<div id="class-notes-4" class="section level2">
+<h2><span class="header-section-number">14.5</span> Class Notes</h2>
+<p>Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use simulations to learn the basics of probability.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed for these examples</span>
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(MASS)</code></pre></div>
+<div id="uniform-distribution" class="section level3">
+<h3><span class="header-section-number">14.5.1</span> Uniform Distribution</h3>
+<p>The uniform distribution is the simplest distribution. All numbers in the range have an equal probability of being sampled.</p>
+<div id="sample-continuous-distribution" class="section level4">
+<h4><span class="header-section-number">14.5.1.1</span> Sample continuous distribution</h4>
+<p><code>runif(n, min=0, max=1)</code></p>
+<p>Use <code>runif()</code> to sample from a continuous uniform distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>##  [1] 0.4385462 0.6849549 0.5008744 0.9106998 0.5040163 0.1870981 0.9105662
+##  [8] 0.2693800 0.2505661 0.3942486</code></pre>
+</div>
+<div id="sample-discrete-distribution" class="section level4">
+<h4><span class="header-section-number">14.5.1.2</span> Sample discrete distribution</h4>
+<p><code>sample(x, size, replace = FALSE, prob = NULL)</code></p>
+<p>Use <code>sample()</code> to sample from a discrete distribution.</p>
+<p>Simulate a single roll of a 6-sided die.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">6</span>, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Simulate 10 rolls of a 6-sided die. Set <code>replace</code> to <code>TRUE</code> so each roll is independent. See what happens if you set <code>replace</code> to <code>FALSE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##  [1] 6 1 5 6 4 1 6 3 1 6</code></pre>
+<p>You can also use sample to sample from a list of named outcomes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pet_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;ferret&quot;</span>, <span class="st">&quot;bird&quot;</span>, <span class="st">&quot;fish&quot;</span>)
+<span class="kw">sample</span>(pet_types, <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##  [1] &quot;fish&quot;   &quot;ferret&quot; &quot;fish&quot;   &quot;bird&quot;   &quot;bird&quot;   &quot;ferret&quot; &quot;ferret&quot;
+##  [8] &quot;bird&quot;   &quot;fish&quot;   &quot;cat&quot;</code></pre>
+<p>Ferrets are a much less common pet than cats and dogs, so our sample isn’t very realistic. You can set the probabilities of each item in the list with the <code>prob</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pet_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;ferret&quot;</span>, <span class="st">&quot;bird&quot;</span>, <span class="st">&quot;fish&quot;</span>)
+pet_prob &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>)
+<span class="kw">sample</span>(pet_types, <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> pet_prob)</code></pre></div>
+<pre><code>##  [1] &quot;cat&quot;  &quot;dog&quot;  &quot;cat&quot;  &quot;dog&quot;  &quot;bird&quot; &quot;dog&quot;  &quot;dog&quot;  &quot;dog&quot;  &quot;dog&quot;  &quot;dog&quot;</code></pre>
+</div>
+</div>
+<div id="binomial-distribution" class="section level3">
+<h3><span class="header-section-number">14.5.2</span> Binomial Distribution</h3>
+<p>The binomial distribution is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails.</p>
+<div id="sample-distribution" class="section level4">
+<h4><span class="header-section-number">14.5.2.1</span> Sample distribution</h4>
+<p><code>rbinom(n, size, prob)</code></p>
+<p>The <code>rbinom</code> function will generate a random binomial distribution.</p>
+<ul>
+<li><code>n</code> = number of observations</li>
+<li><code>size</code> = number of trials</li>
+<li><code>prob</code> = probability of success on each trial</li>
+</ul>
+<p>Coin flips are a typical example of a binomial distribution, where we can assign head to 1 and tails to 0.</p>
+<p>20 individual coin flips of a fair coin</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dv">20</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</code></pre></div>
+<pre><code>##  [1] 0 1 0 1 0 1 0 1 0 1 0 0 1 1 1 1 0 0 1 0</code></pre>
+<p>20 individual coin flips of a baised (0.75) coin</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dv">20</span>, <span class="dv">1</span>, <span class="fl">0.75</span>)</code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 0 0 1 1 1 0 1 1 1 0 0 1 1 1 1</code></pre>
+<p>You can generate the total number of heads in 1 set of 20 coin flips by setting <code>size</code> to 20 and <code>n</code> to 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="fl">0.75</span>)</code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<p>You can generate more sets of 20 coin flips by increasing the <code>n</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbinom</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="fl">0.5</span>)</code></pre></div>
+<pre><code>##  [1] 12 17 11 10 13 10 11 10  6  8</code></pre>
+<p>You should always check your randomly generated data to check that it makes sense. For large samples, it’s easiest to do that graphically. A histogram is usually the best choice for plotting binomial data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flips &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>, <span class="dv">20</span>, <span class="fl">0.5</span>)
+
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(
+    <span class="kw">aes</span>(flips), 
+    <span class="dt">binwidth =</span> <span class="dv">1</span>, 
+    <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, 
+    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>
+  )</code></pre></div>
+<p><img src="08-sim_files/figure-html/sim_flips-1.png" width="672" /></p>
+<p class="alert alert-info">
+Run the simulation above several times, noting how the histogram changes. Try changing the values of <code>n</code>, <code>size</code>, and <code>prob</code>.
+</p>
+</div>
+<div id="exact-binomial-test" class="section level4">
+<h4><span class="header-section-number">14.5.2.2</span> Exact binomial test</h4>
+<p><code>binom.test(x, n, p)</code></p>
+<p>You can test a binomial distribution against a specific probability using the exact binomial test.</p>
+<ul>
+<li><code>x</code> = the number of successes</li>
+<li><code>n</code> = the number of trials</li>
+<li><code>p</code> = hypothesised probability of success</li>
+</ul>
+<p>Here we can test a series of 10 coin flips from a fair coin and a biased coin against the hypothesised probability of 0.5 (even odds).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">10</span>
+fair_coin &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.5</span>)
+biased_coin &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1</span>, n, <span class="fl">0.6</span>)
+
+<span class="kw">binom.test</span>(fair_coin, n, <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  fair_coin and n
+## number of successes = 6, number of trials = 10, p-value = 0.7539
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2623781 0.8784477
+## sample estimates:
+## probability of success 
+##                    0.6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">binom.test</span>(biased_coin, n, <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  biased_coin and n
+## number of successes = 7, number of trials = 10, p-value = 0.3438
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.3475471 0.9332605
+## sample estimates:
+## probability of success 
+##                    0.7</code></pre>
+<div class="alert alert-info">
+<p>Run the code above several times, noting the p-values for the fair and biased coins. Alternatively, you can <a href="https://debruine.shinyapps.io/coinsim/">simulate coin flips</a> online and build up a graph of results and p-values.</p>
+<ul>
+<li>How does the p-value vary for the fair and biased coins?</li>
+<li>What happens to the confidence intervals if you increase n from 10 to 100?</li>
+<li>What criterion would you use to tell if the observed data indicate the coin is fair or biased?</li>
+<li>How often do you conclude the fair coin is biased (false positives)?</li>
+<li>How often do you conclude the biased coin is fair (false negatives)?</li>
+</ul>
+</div>
+</div>
+<div id="false-positives-negatives" class="section level4">
+<h4><span class="header-section-number">14.5.2.3</span> False positives &amp; negatives</h4>
+<p>The probability that a test concludes the fair coin is biased is called the <em>false positive rate</em> (or <em>Type I Error Rate</em>). The <em>alpha</em> is the false positive rate we accept for a test. This is traditionally set at 0.05, but there are good arguments for setting a different criterion in some circumstances.</p>
+<p>The probability that a test concludes the biased coin is fair is called the <em>false negative rate</em> (of <em>Type II Error Rate</em>). The <em>power</em> of a test is 1 minus its false negative rate (i.e., the <em>true positive rate</em>). Power depends on how biased the coin is and how many samples we take.</p>
+</div>
+<div id="sampling-function" class="section level4">
+<h4><span class="header-section-number">14.5.2.4</span> Sampling function</h4>
+<p>To estimate these rates, we need to repeat the sampling above many times. A function is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:</p>
+<ul>
+<li>different sample sizes (<code>n</code>)</li>
+<li>different coin biases (<code>bias</code>)</li>
+<li>different hypothesised probabilities (<code>p</code>, defaults to 0.5)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_binom_test &lt;-<span class="st"> </span><span class="cf">function</span>(n, bias, <span class="dt">p =</span> <span class="fl">0.5</span>) {
+  coin &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1</span>, n, bias)
+  btest &lt;-<span class="st"> </span><span class="kw">binom.test</span>(coin, n, p)
+  
+  btest<span class="op">$</span>p.value
+}</code></pre></div>
+<p>Once you’ve created your function, test it a few times, changing the values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sim_binom_test</span>(<span class="dv">100</span>, <span class="fl">0.6</span>)</code></pre></div>
+<pre><code>## [1] 0.1933479</code></pre>
+</div>
+<div id="calculate-power" class="section level4">
+<h4><span class="header-section-number">14.5.2.5</span> Calculate power</h4>
+<p>Then you can use the <code>replicate()</code> function to run it many times and save all the output values. You can calculate the <em>power</em> of your analysis by checking the proportion of your simulated analyses that have a p-value less than your <em>alpha</em> (the probability of rejecting the null hypothesis when the null hypothesis is true).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e4</span>, <span class="kw">sim_binom_test</span>(<span class="dv">100</span>, <span class="fl">0.6</span>))
+
+<span class="kw">mean</span>(my_reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</code></pre></div>
+<pre><code>## [1] 0.4628</code></pre>
+<p class="alert alert-info">
+<code>1e4</code> is just scientific notation for a 1 followed by 4 zeros (<code>10000</code>). When youre running simulations, you usually want to run a lot of them and it’s a pain to keep track of whether you’ve typed 5 or 6 zeros (100000 vs 1000000) and this will change your running time by an order of magnitude.
+</p>
+</div>
+</div>
+<div id="normal-distribution" class="section level3">
+<h3><span class="header-section-number">14.5.3</span> Normal Distribution</h3>
+<div id="sample-distribution-1" class="section level4">
+<h4><span class="header-section-number">14.5.3.1</span> Sample distribution</h4>
+<p><code>rnorm(n, mean, sd)</code></p>
+<p>We can simulate a normal distribution of size <code>n</code> if we know the <code>mean</code> and standard deviation (<code>sd</code>). A density plot is usually the best way to visualise this type of data if your <code>n</code> is large.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dv &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e5</span>, <span class="dv">10</span>, <span class="dv">2</span>)
+
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(dv), <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(dv), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(dv, .<span class="dv">5</span> <span class="op">-</span><span class="st"> </span>(.<span class="dv">6827</span><span class="op">/</span><span class="dv">2</span>)), <span class="dt">color =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(dv, .<span class="dv">5</span> <span class="op">+</span><span class="st"> </span>(.<span class="dv">6827</span><span class="op">/</span><span class="dv">2</span>)), <span class="dt">color =</span> <span class="st">&quot;darkgreen&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(dv, .<span class="dv">5</span> <span class="op">-</span><span class="st"> </span>(.<span class="dv">9545</span><span class="op">/</span><span class="dv">2</span>)), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(dv, .<span class="dv">5</span> <span class="op">+</span><span class="st"> </span>(.<span class="dv">9545</span><span class="op">/</span><span class="dv">2</span>)), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(dv, .<span class="dv">5</span> <span class="op">-</span><span class="st"> </span>(.<span class="dv">9973</span><span class="op">/</span><span class="dv">2</span>)), <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(dv, .<span class="dv">5</span> <span class="op">+</span><span class="st"> </span>(.<span class="dv">9973</span><span class="op">/</span><span class="dv">2</span>)), <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(
+    <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), 
+    <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>)
+  )</code></pre></div>
+<p><img src="08-sim_files/figure-html/rnorm-1.png" width="672" /></p>
+<p class="alert alert-info">
+Run the simulation above several times, noting how the density plot changes. What do the vertical lines represent? Try changing the values of <code>n</code>, <code>mean</code>, and <code>sd</code>.
+</p>
+</div>
+<div id="t-test" class="section level4">
+<h4><span class="header-section-number">14.5.3.2</span> T-test</h4>
+<p><code>t.test(x, y, alternative, mu, paired)</code></p>
+<p>Use a t-test to compare the mean of one distribution to a null hypothesis (one-sample t-test), compare the means of two samples (independent-samples t-test), or compare pairs of values (paired-samples t-test).</p>
+<p>You can run a one-sample t-test comparing the mean of your data to <code>mu</code>. Here is a simulated distribution with a mean of 0.5 and an SD of 1, creating an effect size of 0.5 SD when tested against a <code>mu</code> of 0. Run the simulation a few times to see how often the t-test returns a significant p-value (or run it in the <a href="http://shiny.psy.gla.ac.uk/debruine/normsim/">shiny app</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_norm &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)
+<span class="kw">t.test</span>(sim_norm, <span class="dt">mu =</span> <span class="dv">0</span>)</code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sim_norm
+## t = 4.6516, df = 99, p-value = 1.021e-05
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.2835165 0.7053189
+## sample estimates:
+## mean of x 
+## 0.4944177</code></pre>
+<p>Run an independent-samples t-test by comparing two lists of values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)
+b &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="fl">0.7</span>, <span class="dv">1</span>)
+t_ind &lt;-<span class="st"> </span><span class="kw">t.test</span>(a, b, <span class="dt">paired =</span> <span class="ot">FALSE</span>)
+t_ind</code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  a and b
+## t = -0.026993, df = 197.98, p-value = 0.9785
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.2991671  0.2910878
+## sample estimates:
+## mean of x mean of y 
+## 0.7097529 0.7137925</code></pre>
+<p class="alert alert-warning">
+The <code>paired</code> argument defaults to <code>FALSE</code>, but it’s good practice to always explicitly set it so you are never confused about what type of test you are performing.
+</p>
+</div>
+<div id="sampling-function-1" class="section level4">
+<h4><span class="header-section-number">14.5.3.3</span> Sampling function</h4>
+<p>We can use the <code>names()</code> function to find out the names of all the t.test parameters and use this to just get one type of data, like the test statistic (e.g., t-value).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(t_ind)</code></pre></div>
+<pre><code>## [1] &quot;statistic&quot;   &quot;parameter&quot;   &quot;p.value&quot;     &quot;conf.int&quot;    &quot;estimate&quot;   
+## [6] &quot;null.value&quot;  &quot;alternative&quot; &quot;method&quot;      &quot;data.name&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_ind<span class="op">$</span>statistic</code></pre></div>
+<pre><code>##           t 
+## -0.02699261</code></pre>
+<p>Alternatively, use <code>broom::tidy()</code> to convert the output into a tidy table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">broom<span class="op">::</span><span class="kw">tidy</span>(t_ind)</code></pre></div>
+<pre><code>## # A tibble: 1 x 10
+##   estimate estimate1 estimate2 statistic p.value parameter conf.low
+##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 -0.00404     0.710     0.714   -0.0270   0.978      198.   -0.299
+## # ... with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
+## #   alternative &lt;chr&gt;</code></pre>
+<p>If you want to run the simulation many times and record information each time, first you need to turn your simulation into a function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_t_ind &lt;-<span class="st"> </span><span class="cf">function</span>(n, m1, sd1, m2, sd2) {
+  v1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)
+  v2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)
+  t_ind &lt;-<span class="st"> </span><span class="kw">t.test</span>(v1, v2, <span class="dt">paired =</span> <span class="ot">FALSE</span>)
+  
+  <span class="kw">return</span>(t_ind<span class="op">$</span>p.value)
+}</code></pre></div>
+<p>Run it a few times to check that it gives you sensible values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sim_t_ind</span>(<span class="dv">100</span>, <span class="fl">0.7</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 0.8309888</code></pre>
+<p>Now replicate the simulation 1000 times.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e4</span>, <span class="kw">sim_t_ind</span>(<span class="dv">100</span>, <span class="fl">0.7</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>))
+
+alpha &lt;-<span class="st"> </span><span class="fl">0.05</span>
+power &lt;-<span class="st"> </span><span class="kw">mean</span>(my_reps <span class="op">&lt;</span><span class="st"> </span>alpha)
+power</code></pre></div>
+<pre><code>## [1] 0.2924</code></pre>
+<p class="alert alert-info">
+Run the code above several times. How much does the power value fluctuate? How many replications do you need to run to get a reliable estimate of power?
+</p>
+<p>Compare your power estimate from simluation to a power calculation using <code>power.t.test()</code>. Here, <code>delta</code> is the difference between <code>m1</code> and <code>m2</code> above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> alpha, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 100
+##           delta = 0.2
+##              sd = 1
+##       sig.level = 0.05
+##           power = 0.2902664
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
+<p>You can plot the distribution of p-values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(
+    <span class="kw">aes</span>(my_reps), 
+    <span class="dt">binwidth =</span> <span class="fl">0.05</span>, 
+    <span class="dt">boundary =</span> <span class="dv">0</span>,
+    <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, 
+    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>
+  )</code></pre></div>
+<p><img src="08-sim_files/figure-html/plot-reps-1.png" width="672" /></p>
+<p class="alert alert-info">
+What do you think the distribution of p-values is when there is no effect (i.e., the means are identical)? Check this yourself.
+</p>
+<p class="alert alert-warning">
+Make sure the <code>boundary</code> argument is set to <code>0</code> for p-value histograms. See what happens with a null effect if <code>boundary</code> is not set.
+</p>
+</div>
+<div id="bivariate-normal" class="section level4">
+<h4><span class="header-section-number">14.5.3.4</span> Bivariate Normal</h4>
+<div id="correlation" class="section level5">
+<h5><span class="header-section-number">14.5.3.4.1</span> Correlation</h5>
+<p>You can test if two continuous variables are related to each other using the <code>cor()</code> function.</p>
+<p>Below is a quick and dirty way to generate two correlated variables. <code>x</code> is drawn from a normal distribution, while <code>y</code> is the sum of <code>x</code> and another value drawn from a random normal distribution. We’ll learn later how to generate specific correlations in simulated data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># number of random samples</span>
+
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)
+y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)
+
+<span class="kw">cor</span>(x, y)</code></pre></div>
+<pre><code>## [1] 0.7542513</code></pre>
+<p><code>cor()</code> defaults to Pearson’s correlations. Set the <code>method</code> argument to use Kendall or Spearman correlations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(x, y, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</code></pre></div>
+<pre><code>## [1] 0.7541674</code></pre>
+</div>
+<div id="sample-distribution-2" class="section level5">
+<h5><span class="header-section-number">14.5.3.4.2</span> Sample distribution</h5>
+<p><a name="bvn"></a></p>
+<p>What if we want to sample from a population with specific relationships between variables? We can sample from a <em>bivariate normal distribution</em> using the <code>MASS</code> package,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">1000</span> <span class="co"># number of random samples</span>
+rho &lt;-<span class="st"> </span><span class="fl">0.5</span> <span class="co"># population correlation between the two variables</span>
+
+mu &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>) <span class="co"># the means of the samples</span>
+stdevs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>) <span class="co"># the SDs of the samples</span>
+
+<span class="co"># correlation matrix</span>
+cor_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(  <span class="dv">1</span>, rho, 
+                    rho,   <span class="dv">1</span>), <span class="dv">2</span>) 
+
+<span class="co"># create the covariance matrix</span>
+sigma &lt;-<span class="st"> </span>(stdevs <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(stdevs)) <span class="op">*</span><span class="st"> </span>cor_mat
+
+<span class="co"># sample from bivariate normal distribution</span>
+bvn &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(n, mu, sigma) 
+
+<span class="kw">cor</span>(bvn) <span class="co"># check correlation matrix</span></code></pre></div>
+<pre><code>##           [,1]      [,2]
+## [1,] 1.0000000 0.5311651
+## [2,] 0.5311651 1.0000000</code></pre>
+<p>Plot your sampled variables to check everything worked like you expect. You need to convert the output of <code>mvnorm</code> into a tibble in order to use it in ggplot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bvn <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(V1, V2)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_density2d</span>()</code></pre></div>
+<p><img src="08-sim_files/figure-html/graph-bvn-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="multivariate-normal" class="section level3">
+<h3><span class="header-section-number">14.5.4</span> Multivariate Normal</h3>
+<div id="sample-distribution-3" class="section level5">
+<h5><span class="header-section-number">14.5.4.0.1</span> Sample distribution</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">200</span> <span class="co"># number of random samples</span>
+rho1_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="fl">0.5</span> <span class="co"># correlation betwen v1 and v2</span>
+rho1_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># correlation betwen v1 and v3</span>
+rho2_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="fl">0.7</span> <span class="co"># correlation betwen v2 and v3</span>
+
+mu &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>) <span class="co"># the means of the samples</span>
+stdevs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>) <span class="co"># the SDs of the samples</span>
+
+<span class="co"># correlation matrix</span>
+cor_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(     <span class="dv">1</span>, rho1_<span class="dv">2</span>, rho1_<span class="dv">3</span>, 
+                    rho1_<span class="dv">2</span>,      <span class="dv">1</span>, rho2_<span class="dv">3</span>,
+                    rho1_<span class="dv">3</span>, rho2_<span class="dv">3</span>,      <span class="dv">1</span>), <span class="dv">3</span>) 
+
+sigma &lt;-<span class="st"> </span>(stdevs <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(stdevs)) <span class="op">*</span><span class="st"> </span>cor_mat
+bvn3 &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(n, mu, sigma)
+
+<span class="kw">cor</span>(bvn3) <span class="co"># check correlation matrix</span></code></pre></div>
+<pre><code>##           [,1]      [,2]      [,3]
+## [1,] 1.0000000 0.4184293 0.0168486
+## [2,] 0.4184293 1.0000000 0.7413358
+## [3,] 0.0168486 0.7413358 1.0000000</code></pre>
+</div>
+<div id="d-plots" class="section level5">
+<h5><span class="header-section-number">14.5.4.0.2</span> 3D Plots</h5>
+<p>You can use the <code>plotly</code> library to make a 3D graph.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(plotly)</code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">marker_style =<span class="st"> </span><span class="kw">list</span>(
+    <span class="dt">color =</span> <span class="st">&quot;#ff0000&quot;</span>, 
+    <span class="dt">line =</span> <span class="kw">list</span>(
+      <span class="dt">color =</span> <span class="st">&quot;#444&quot;</span>, 
+      <span class="dt">width =</span> <span class="dv">1</span>
+    ), 
+    <span class="dt">opacity =</span> <span class="fl">0.5</span>,
+    <span class="dt">size =</span> <span class="dv">5</span>
+  )
+
+bvn3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">plot_ly</span>(<span class="dt">x =</span> <span class="op">~</span>V1, <span class="dt">y =</span> <span class="op">~</span>V2, <span class="dt">z =</span> <span class="op">~</span>V3, <span class="dt">marker =</span> marker_style) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">add_markers</span>()</code></pre></div>
+<div id="htmlwidget-f547d52d06ec9416b6a8" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f547d52d06ec9416b6a8">{"x":{"visdat":{"e0be580c41ba":["function () ","plotlyVisDat"]},"cur_data":"e0be580c41ba","attrs":{"e0be580c41ba":{"x":{},"y":{},"z":{},"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"V1"},"yaxis":{"title":"V2"},"zaxis":{"title":"V3"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[5.00076211603537,7.20064076166339,6.47362167274357,4.99048743791299,24.7316219748225,3.15883589031348,-2.77993950343192,-0.786118935516946,14.3345276723665,12.1326172832469,13.7977950318387,17.8614272741298,19.1491433707039,22.3547620361537,3.86680459739623,24.6380309088524,-6.13744651571298,12.0955374797854,0.738634172497669,25.5808712099266,18.851142359092,9.02436327563387,23.0966975642454,7.03210449540801,14.2510279218501,21.0787395901134,-2.58076692004827,-3.53402974920319,7.82742190613815,15.5758536946358,13.9581212598011,16.2562868539494,-7.93974270126226,12.5283164436027,11.6009530648422,7.52924373044172,14.1951316506543,-3.68367511320349,6.12239446802594,10.7763526344687,5.0530982462755,12.2473511587444,25.0965558542914,11.0924018820233,11.9879195650755,3.66093892325723,1.58571131689677,14.1453351967886,13.1098805557062,7.09598864149387,2.96858617079733,16.3996346284947,4.29300628172021,12.8364024092245,5.53481110647371,10.8647528369752,13.4690421843728,-1.98434345381542,10.7413871537736,12.437085064515,4.6358204903519,3.72826261094187,0.986016910513893,5.09740719883887,14.003780381299,20.9409730626406,24.2897314282817,8.3111139098494,-3.17538622714588,20.4941390896886,17.2182023747083,2.52612024972474,7.3329167400201,6.97688795913247,1.21781433651798,-0.6766399301207,14.9079568495018,7.38206806888076,12.5613695339354,13.5758982794891,4.37659899132879,-8.23917975064787,13.1700974721053,17.1467747066029,15.626174387972,16.3734331092483,12.0540092906017,26.3115229222188,5.24507640415901,11.3076094953739,24.5491495608357,13.1134325848207,21.9727055027801,-0.057769412826369,-0.600537862347888,2.91584059027155,-5.32720819150939,23.7064965631815,5.67781222694912,3.53185722474407,12.5230169060898,4.9709268117433,7.87665367861479,8.50546076758392,8.56417068597692,18.9575238015099,15.2435092921275,18.0452020806081,18.4810888939815,20.7854619375519,11.1008362509945,8.11120541783291,6.8554321230525,26.0914346823448,-2.12983650358383,8.19097787946071,3.1912011712079,15.5827798870727,13.4047177767898,4.95444702438415,9.35722585587269,15.8595997607139,-2.47307087742426,6.25409833339526,16.3668706647265,14.6297195278561,17.3392398668391,3.97593090854122,24.9336329024428,17.3968173446452,12.2494963710463,4.33973145115899,-1.29197056192964,9.91857325896796,12.1627161618377,12.6784412603864,18.6655703662205,16.8705733964458,11.104598853106,15.5246451628474,8.51304041790304,17.5929241163865,15.4718449966184,9.65360257368717,3.61958563999646,19.440998366518,18.1824417780725,6.43801473295843,-1.99076861664901,16.1725739519904,9.73691286867712,14.5905759603068,6.09004133301524,5.020039385588,3.93621111483275,18.716244952074,23.7093674163652,-4.67935722270787,18.0592201207559,-3.9968760599583,13.0612215372685,19.0089174762907,8.26722145062695,4.68945024252863,16.4427649763447,14.1697679237991,13.2452938754899,23.1310208591622,10.4737353090053,19.0778619317117,0.601390571468047,28.4394479481964,8.16810542768638,7.13033834387736,18.5866793640984,1.61796685984737,10.3310220708182,15.8171280262403,18.6045767963861,-3.95637355887041,-15.172734697299,11.3520023764737,2.10217294738925,11.2804685108907,6.89933049859398,10.8221869754759,10.3471295837892,18.0184691168672,19.2530394868936,16.092280368674,8.51476193147081,5.09718578512487,6.46535198230878,11.4013365031648,7.84179234889369,24.7325903285764,25.1320081586792,21.4734282032462,0.00513416666267119,13.9680462448312],"y":[15.4131444545794,18.0502134310569,7.07278834166049,20.2438066230035,31.5877248132485,21.8905525247018,8.29951272007666,12.4155994683679,22.4925950894989,20.7377876432595,26.5842446400175,30.086894902797,24.3219075807377,19.0572552242091,7.3634402493257,29.2366779136182,4.09152444537481,23.8818393226023,16.8797522426997,17.4242010311191,22.6886949230424,29.8562039111329,31.4029489242808,28.4338955246465,5.16515179256894,35.0190549681233,14.5508751995054,9.68065504521645,28.1512222061975,25.8185926042788,15.3644616634482,12.0470897278009,18.2821886923673,33.3921637387797,28.3723286652303,28.3368788169025,17.7510065645926,21.7337995018629,22.6481688188531,14.9593406479355,29.985218314255,6.20911225514752,38.9287312971241,31.6462968876851,28.0175169690213,25.6921920691019,9.9784258984705,13.2371352558412,19.8819624234814,10.8218738358807,20.5400990828453,35.4063410049098,14.7630870465748,12.3531750463229,11.4204489775683,25.7688014758573,25.2848095466791,19.8466414791031,27.2446578211225,15.6658179485107,31.2145615214164,26.0309357206095,18.3531335555989,5.53173881491786,26.7099642587123,32.1297961255859,50.5877708247391,22.3331874118332,24.6445358171915,16.9837090443197,29.9901760372896,24.035722550205,6.48016619132499,17.7408421807563,16.6903391732535,20.991259800291,24.4628219468557,0.949577882069427,7.42710155245084,13.1425911541043,18.849370269093,19.7217217020261,11.6686036721854,32.5879478351211,32.8135219006999,26.4579608529975,23.9314196617008,30.3320948884173,17.1029432488587,15.0159279538,34.574544406286,37.6013263140581,20.587140679858,23.2275976006843,9.54676191483948,14.2185970608549,33.464596558887,32.7165667050628,12.5597521458136,25.555519437727,18.8622669934913,4.42190556952258,19.1954755683028,22.792905881795,14.6253730798447,37.4973789607283,8.64817548417546,26.3274218684032,14.7147712011475,27.6633056654755,26.7284188465829,20.0556656161739,4.27805082254167,30.3891735459593,9.52815781428468,10.2697814867675,15.8791200248908,32.2328941313816,14.0322046778867,31.7168253460469,24.5555687992296,22.0091412557377,5.24768997868045,33.6552251672577,21.8228466332547,18.2251670545341,29.6016511362992,16.5333688367736,24.9523045709651,21.3881483820436,14.8682600944231,21.3240766922498,21.1613912191595,28.4650066514913,8.74758191968992,27.3018488705255,23.8870572527935,30.512420042728,25.7294238903111,15.143543044844,11.6183133478949,26.8804363709917,18.0119692664883,14.9777147560336,22.3503308394063,20.4730140286131,15.4797785346443,21.8823068197293,14.1157187685239,16.5579984287402,8.79733472156036,34.3630721783964,23.8886365467068,27.16503949665,9.98487327359175,4.96196323530172,19.753755076973,14.7411332269436,27.1366370853054,23.3671395956876,19.6460493829354,22.7108801540489,28.1586255563915,11.2179694305095,37.404826688439,3.29919856917017,18.5379688220735,21.7695141265046,32.2944036822616,25.5869224316634,1.39592698388046,43.6082794540437,25.4999534403967,9.81441725147783,22.4304495885342,19.4460930428526,17.7627125566865,32.5203946964441,33.9260566635548,11.4816008805645,14.9846057650071,11.4667705527918,23.8251715237754,6.50100528087349,10.3519133346742,20.9172344578867,17.1109288309188,12.1230173727175,29.9651067803766,29.5636965939394,22.6428030215867,15.5808218043705,16.3573684354163,27.1414489651095,22.9270349910428,20.5427002161559,25.1960886151137,33.9406061063619,10.4635987509677,27.0900438490319],"z":[42.1264816870491,31.1652698466431,15.0306953798882,33.9876411612134,46.127301523343,36.9383289254886,31.594713450297,24.0916600367778,36.5451647759862,29.4049867706396,33.7119920176264,39.6304086489867,29.6577819692853,22.9729051970772,24.417965154479,30.4561003554758,16.4059017428798,33.4782560373449,32.5636877970933,11.7669534543509,33.659547921214,33.7555697473094,39.5851826737598,34.5764782051835,-0.111116286292695,35.323959992121,26.9337121982729,17.1702697758639,33.4756596926731,20.3514210814273,19.011613230706,19.9248562047201,30.8282138092129,35.5935883702075,30.2701928359634,48.2217848421396,19.0695488670961,44.017373022498,39.5449697486977,25.3639022201906,31.2676642031706,21.2389242937925,27.9915402582974,55.8921057020379,41.5568954517885,37.5695299463488,24.0611940978141,27.2576099465567,25.0299631311863,20.9854424775204,36.128465625899,45.3468051268308,23.6321504636683,25.5150929490991,15.957782136054,39.641013475289,23.0758331440104,34.2168292682745,41.9621300013124,14.7994275862343,44.1636466592456,38.5160720757049,28.0480693420541,19.4786565482138,38.5334013681225,45.76158084197,58.5887160239249,26.103783458289,27.6447427613628,9.30675426705285,37.3714094617342,28.8551764128113,14.0496885777514,36.5977821375902,27.0674036370511,41.1546365475647,35.1827208933675,13.3434560693062,13.637031626336,23.7802750804773,24.5410619867819,41.2945612514465,17.7562686700989,42.4610116782346,48.8753389817246,42.251318012325,32.135047098243,35.1363217978603,20.7504220413889,35.2232092610589,26.8296305700894,42.7814073016454,22.1091865262318,41.5656767183139,26.9960059733028,26.607758685866,51.9117345623164,32.6831590385993,25.0035309298205,35.1752622718473,23.7748197339336,19.9826943882287,27.4011775576111,39.4151016663837,21.4153389610542,42.7799949919324,13.5208469923866,43.1702324845549,29.3851192157973,23.0457412833941,35.0115712931588,41.1011452181076,17.3523639788602,36.7132552238023,24.4302962722696,11.2939061575891,30.6732234270883,43.56924624777,24.4874412476533,52.3151085901067,49.8155288884023,23.2494512267696,19.1771152842386,45.7062532183351,34.2279831825332,37.2762070699609,29.9187066945188,28.5337368778139,22.2953051889021,26.4330080036048,25.8260819394722,36.8955689241427,47.2073016119156,48.3862054937957,14.8589812350203,34.0982647768105,19.7331805765612,29.8348505399773,39.4134480158548,27.3945627034121,23.9067724866787,27.2313519442676,24.5689766517263,23.2694748629166,33.628402440954,31.8491904092718,13.4909620896902,25.5514291238316,25.705259935595,22.7757659041978,14.9412652130399,39.7511600650523,38.1264086802467,38.560373764104,17.5711808787522,5.15151985815405,35.0219854797983,30.7110611330189,37.3934381990372,41.4250335949852,31.9062775138791,25.9924950360609,35.3686095015579,25.3670305929344,45.1928318226798,7.581990005095,25.8149076553077,26.9175770197875,52.9798597677683,34.7649506484599,8.40909114797994,47.9089418345242,29.8036165979172,11.1064557596691,33.1853997642527,24.6415810650472,35.2490740876196,44.4906641847249,38.6807352577221,29.6451596994467,36.5873121138872,6.2600938723507,30.9607171096693,26.2359693422248,34.4916923522622,12.584782361585,18.5868494838053,16.104369939705,35.5639260788764,41.7930869105443,33.4603628935481,31.0621617190986,21.8295629488846,41.8993572584011,22.5305225019592,29.6624176550592,24.9218448720583,33.117911062561,19.0406575320997,28.5216409981021],"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"type":"scatter3d","mode":"markers","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="example" class="section level2">
+<h2><span class="header-section-number">14.6</span> Example</h2>
+<p>This example uses the <a href="https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv">Growth Chart Data Tables</a> from the <a href="https://www.cdc.gov/growthcharts/zscore.htm">US CDC</a>.</p>
+<div id="load-wrangle" class="section level3">
+<h3><span class="header-section-number">14.6.1</span> Load &amp; wrangle</h3>
+<p>We have to do a little data wrangling first. Have a look at the data after you import it and relabel <code>Sex</code> to <code>male</code> and <code>female</code> instead of <code>1</code> and <code>2</code>. Also convert <code>Agemos</code> (age in months) to years. Relabel the column <code>0</code> as <code>mean</code> and calculate a new column named <code>sd</code> as the difference between columns <code>1</code> and <code>0</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">height_age &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">sex =</span> <span class="kw">recode</span>(Sex, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;male&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;female&quot;</span>),
+    <span class="dt">age =</span> <span class="kw">as.numeric</span>(Agemos)<span class="op">/</span><span class="dv">12</span>,
+    <span class="dt">sd =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">0</span><span class="st">`</span>
+  ) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(sex, age, <span class="dt">mean =</span> <span class="st">`</span><span class="dt">0</span><span class="st">`</span>, sd)</code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Sex = col_character(),
+##   Agemos = col_character(),
+##   `-2` = col_double(),
+##   `-1.5` = col_double(),
+##   `-1` = col_double(),
+##   `-0.5` = col_double(),
+##   `0` = col_double(),
+##   `0.5` = col_double(),
+##   `1` = col_double(),
+##   `1.5` = col_double(),
+##   `2` = col_double()
+## )</code></pre>
+<p class="alert alert-warning">
+If you run the code above without putting <code>dplyr::</code> before the <code>select()</code> function, you will get an error message. This is because the <code>MASS</code> package also has a function called <code>select()</code> and, since we loaded <code>MASS</code> after <code>tidyverse</code>, the <code>MASS</code> function is the default. When you loaded <code>MASS</code>, you should have seen a warning like “The following object is masked from ‘package:dplyr’: select”. You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.
+</p>
+</div>
+<div id="plot" class="section level3">
+<h3><span class="header-section-number">14.6.2</span> Plot</h3>
+<p>Plot your new data frame to see how mean height changes with age for boys and girls.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(height_age, <span class="kw">aes</span>(age, mean, <span class="dt">color =</span> sex)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> mean <span class="op">-</span><span class="st"> </span>sd, <span class="dt">ymax =</span> mean <span class="op">+</span><span class="st"> </span>sd), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="08-sim_files/figure-html/plot-height-means-1.png" width="672" /></p>
+</div>
+<div id="get-means-and-sds" class="section level3">
+<h3><span class="header-section-number">14.6.3</span> Get means and SDs</h3>
+<p>Create new variables for the means and SDs for 20-year-old men and women.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">height_sub &lt;-<span class="st"> </span>height_age <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(age <span class="op">==</span><span class="st"> </span><span class="dv">20</span>)
+
+m_mean &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(mean)
+m_sd   &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(sd)
+f_mean &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(mean)
+f_sd   &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(sd)
+
+height_sub</code></pre></div>
+<pre><code>## # A tibble: 2 x 4
+##   sex      age  mean    sd
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 male      20  177.  7.12
+## 2 female    20  163.  6.46</code></pre>
+</div>
+<div id="simulate-a-population" class="section level3">
+<h3><span class="header-section-number">14.6.4</span> Simulate a population</h3>
+<p>Simulate 50 random male heights and 50 radom female heights using the <code>rnorm()</code> function and the means and SDs above. Plot the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_height &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">male =</span> <span class="kw">rnorm</span>(<span class="dv">50</span>, m_mean, m_sd),
+  <span class="dt">female =</span> <span class="kw">rnorm</span>(<span class="dv">50</span>, f_mean, f_sd)
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;height&quot;</span>, male<span class="op">:</span>female)
+
+<span class="kw">ggplot</span>(sim_height) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(height, <span class="dt">fill =</span> sex), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="dv">125</span>, <span class="dv">225</span>)</code></pre></div>
+<p><img src="08-sim_files/figure-html/sim-height-20-1.png" width="672" /></p>
+<p class="alert alert-info">
+Run the simulation above several times, noting how the density plot changes. Try changing the age you’re simulating.
+</p>
+</div>
+<div id="analyse-simulated-data" class="section level3">
+<h3><span class="header-section-number">14.6.5</span> Analyse simulated data</h3>
+<p>Use the <code>sim_t_ind(n, m1, sd1, m2, sd2)</code> function we created above to generate one simulation with a sample size of 50 in each group using the means and SDs of male and female 14-year-olds.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">height_sub &lt;-<span class="st"> </span>height_age <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(age <span class="op">==</span><span class="st"> </span><span class="dv">14</span>)
+m_mean &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(mean)
+m_sd   &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(sd)
+f_mean &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(mean)
+f_sd   &lt;-<span class="st"> </span>height_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(sd)
+
+<span class="kw">sim_t_ind</span>(<span class="dv">50</span>, m_mean, m_sd, f_mean, f_sd)</code></pre></div>
+<pre><code>## [1] 0.00789244</code></pre>
+</div>
+<div id="replicate-simulation" class="section level3">
+<h3><span class="header-section-number">14.6.6</span> Replicate simulation</h3>
+<p>Now replicate this 1e4 times using the <code>replicate()</code> function. This function will save the returned p-values in a list (<code>my_reps</code>). We can then check what proportion of those p-values are less than our alpha value. This is the power of our test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e4</span>, <span class="kw">sim_t_ind</span>(<span class="dv">50</span>, m_mean, m_sd, f_mean, f_sd))
+
+alpha &lt;-<span class="st"> </span><span class="fl">0.05</span>
+power &lt;-<span class="st"> </span><span class="kw">mean</span>(my_reps <span class="op">&lt;</span><span class="st"> </span>alpha)
+power</code></pre></div>
+<pre><code>## [1] 0.6507</code></pre>
+</div>
+<div id="one-tailed-prediction" class="section level3">
+<h3><span class="header-section-number">14.6.7</span> One-tailed prediction</h3>
+<p>This design has about 65% power to detect the sex difference in height (with a 2-tailed test). Modify the <code>sim_t_ind</code> function for a 1-tailed prediction.</p>
+<p>You could just set <code>alternative</code> equal to “greater” in the function, but it might be better to add the <code>alternative</code> argument to your function (giving it the same default value as <code>t.test</code>) and change the value of <code>alternative</code> in the function to <code>alternative</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_t_ind &lt;-<span class="st"> </span><span class="cf">function</span>(n, m1, sd1, m2, sd2, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>) {
+  v1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)
+  v2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)
+  t_ind &lt;-<span class="st"> </span><span class="kw">t.test</span>(v1, v2, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">alternative =</span> alternative)
+  
+  <span class="kw">return</span>(t_ind<span class="op">$</span>p.value)
+}
+
+my_reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e4</span>, <span class="kw">sim_t_ind</span>(<span class="dv">50</span>, m_mean, m_sd, f_mean, f_sd, <span class="st">&quot;greater&quot;</span>))
+<span class="kw">mean</span>(my_reps <span class="op">&lt;</span><span class="st"> </span>alpha)</code></pre></div>
+<pre><code>## [1] 0.7606</code></pre>
+</div>
+<div id="range-of-sample-sizes" class="section level3">
+<h3><span class="header-section-number">14.6.8</span> Range of sample sizes</h3>
+<p>What if we want to find out what sample size will give us 80% power? We can try trial and error. We know the number should be slightly larger than 50. But you can search more systematically by repeating your power calculation for a range of sample sizes.</p>
+<p class="alert alert-info">
+This might seem like overkill for a t-test, where you can easily look up sample size calculators online, but it is a valuable skill to learn for when your analyses become more complicated.
+</p>
+<p>Start with a relatively low number of replications and/or more spread-out samples to estimate where you should be looking more specifically. Then you can repeat with a narrower/denser range of sample sizes and more iterations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span>
+power_table &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">n =</span> <span class="kw">seq</span>(<span class="dv">20</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">5</span>)
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">power =</span> <span class="kw">map_dbl</span>(n, <span class="cf">function</span>(n) {
+    ps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">sim_t_ind</span>(n, m_mean, m_sd, f_mean, f_sd, <span class="st">&quot;greater&quot;</span>))
+    <span class="kw">mean</span>(ps <span class="op">&lt;</span><span class="st"> </span>alpha)
+  }))
+
+<span class="kw">ggplot</span>(power_table, <span class="kw">aes</span>(n, power)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.8</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="08-sim_files/figure-html/range-sample-sizes-1.png" width="672" /></p>
+<p>Now we can narrow down our search to values around 55 (plus or minus 5) and increase the number of replications from 1e3 to 1e4.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">power_table &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">n =</span> <span class="kw">seq</span>(<span class="dv">50</span>, <span class="dv">60</span>)
+) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">power =</span> <span class="kw">map_dbl</span>(n, <span class="cf">function</span>(n) {
+    ps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="fl">1e3</span>, <span class="kw">sim_t_ind</span>(n, m_mean, m_sd, f_mean, f_sd, <span class="st">&quot;greater&quot;</span>))
+    <span class="kw">mean</span>(ps <span class="op">&lt;</span><span class="st"> </span>alpha)
+  }))
+
+##ggplot(power_table, aes(n, power)) +
+##  geom_smooth() +
+##  geom_point() +
+##  geom_hline(yintercept = 0.8) +
+##  scale_x_continuous(breaks = sample_size)</code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="func.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="glm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
