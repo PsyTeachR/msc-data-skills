@@ -1,0 +1,138 @@
+---
+title: 'Formative Exercise 02: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+date: "28 September 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Vectors
+
+## Question 1
+
+1. The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
+
+```{r ex_vec_1, eval = FALSE}
+cat <- NULL
+```
+
+## Question 2
+
+2. The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
+
+```{r ex_vec_2, eval = FALSE}
+col_length <- NULL
+```
+
+## Question 3
+
+3. The function call `runif(1000, 0, 1)` will draw 1000 numbers from a uniform distribution from 0 to 1, which simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Store the result of this call in `pvals`. Create a logical vector called `is_sig` that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise (hint: vectorized operations from the last lession), then use this logical vector to pull out those p-values. Finally, calculate the proportion of those p-values that were significant.
+
+```{r ex_vec_3, eval = FALSE}
+pvals <- NULL
+
+is_sig <- NULL
+
+prop_sig <- NULL
+```
+
+# Tabular Data 
+
+## Question 1
+
+1. Create a tibble with the name, age, and sex of 3-5 people whose names, ages, and sex you know.
+
+```{r ex1-tab, eval = FALSE}
+
+family <- NULL
+
+```
+
+## Question 2
+
+2. Convert the built-in base R `iris` dataset to a tibble, and store it in the variable `iris2`.
+
+```{r ex_2_as_tib}
+iris2 <- NULL
+```
+
+## Question 3
+
+3. Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: `rep()`).  Store it in the variable `my_tbl`.
+
+ID |  A | B   | C
+--|-----|-----|---
+1	| A1	| B1	| C1	
+2	| A1	| B2	| C1	
+3	| A1	| B1	| C1	
+4	| A1	| B2	| C1	
+5	| A2	| B1	| C1	
+6	| A2	| B2	| C1	
+7	| A2	| B1	| C1	
+8	| A2	| B2	| C1
+
+```{r ex_3_tib}
+my_tbl <- NULL  
+```
+
+# Data Import
+
+## Question 1
+
+1. Download the dataset [disgust_scores.csv](data/disgust_scores.csv) and read it into a table.
+
+```{r ex2-tab, message = FALSE}
+disgust <- NULL
+```
+
+## Question 2
+
+2. Override the default column specifications to skip the `id` column.
+
+```{r ex3-tab, message = FALSE}
+disgust <- NULL
+```
+
+## Question 3
+  
+3. How many rows and columns are in the dataset from question 3?
+
+```{r ex4-tab}
+
+```
+
+# Pipes
+
+## Question 1
+
+1. Re-write the following sequence of commands into a single 'pipeline'.
+
+```{r ex_pipe1}
+# do not edit this chunk
+x <- 1:20 # integers from 1:20
+y <- rep(x, 2) # then repeat them twice
+z <- sum(y) # and then take the sum
+```
+
+```{r ex_pipe1_ans}
+x <- NULL
+```
+
+2. Deconstruct the pipeline below back into separate commands.
+
+```{r ex_pipe2}
+# do not edit this chunk
+lager <- LETTERS[c(18, 5, 7, 1, 12)] %>%
+  rev() %>%
+  paste(collapse = "")
+```
+
+```{r ex_pipe2_ans}
+regal <- NULL
+reversed <- NULL
+lager <- NULL
+```

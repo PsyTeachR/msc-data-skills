@@ -1,25 +1,18 @@
 --- 
 title: "Data Skills"
 author: "Dale J Barr & Lisa M. DeBruine"
-date: "2019-01-19"
+date: "2019-01-26"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data."
 ---
 
-# Overview
+# Overview {-}
 
-This course provides an overview of skills needed for reproducible research and 
-open science using the statistical programming language R.  Students will learn 
-about data visualisation, data tidying and wrangling, archiving, iteration and 
-functions, probability and data simulations, general linear models, and 
-reproducible workflows. Learning is reinforced through weekly assignments that 
-involve working with different types of data.
-
-
+This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R.  Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.
 
 It is taught by [Dale Barr](http://talklab.psy.gla.ac.uk/) and [Lisa DeBruine](https://debruine.github.io).
 
@@ -50,11 +43,12 @@ course), you will easily complete the marked assessments.
 * [02 Intro](formative_exercises/02_intro_stub.Rmd): Vectors, tabular data, data import, pipes
 * [Essential Skills](formative_exercises/essential_skills_stub.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
 * [03 ggplot](formative_exercises/03_ggplot_stub.Rmd): Data visualisation
-* [04 wrangle1](formative_exercises/04_wrangle1_stub.Rmd): Data wrangling (mostly tidyr)
-* [05 wrangle2](formative_exercises/05_wrangle2_stub.Rmd): Data wrangling (mostly dplyr)
+* [04 tidyr](formative_exercises/04_wrangle1_stub.Rmd): Tidy Data
+* [05 dplyr](formative_exercises/05_wrangle2_stub.Rmd): Data wrangling
 * [06 joins](formative_exercises/06_joins_stub.Rmd): Data relations
 * [07 functions](formative_exercises/07_functions_stub.Rmd): Functions and Iteration
 * [08 simulation](formative_exercises/08_simulations_stub.Rmd): Simulation
+* [09 glm](formative_exercises/09_glm_stub.Rmd): GLM
 
 ## Resources
 

@@ -1,60 +1,41 @@
+
+
 # Data Relations {#joins}
 
-## Learning Objectives {.tabset}
+## Learning Objectives
 
 1. Be able to use the 4 mutating join verbs:
     + [`left_join()`](#left_join)
     + [`right_join()`](#right_join)
     + [`inner_join()`](#inner_join)
     + [`full_join()`](#full_join)
-    
-2. Be able to use the 2 binding join verbs:
-    + [`bind_rows()`](#bind_rows)
-    + [`bind_cols()`](#bind_cols)
 
-3. Be able to use the 2 filtering join verbs:
+2. Be able to use the 2 filtering join verbs:
     + [`semi_join()`](#semi_join)
     + [`anti_join()`](#anti_join)
+    
+3. Be able to use the 2 binding join verbs:
+    + [`bind_rows()`](#bind_rows)
+    + [`bind_cols()`](#bind_cols)
 
 4. Be able to use the 3 set operations:
     + [`intersect()`](#intersect)
     + [`union()`](#union)
     + [`setdiff()`](#setdiff)
-    
-
-## Prep
-
-* Read [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
-
 
 ## Resources
 
+* [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
 * [Cheatsheet for dplyr join functions](http://stat545.com/bit001_dplyr-cheatsheet.html)
-
-## Formative exercises
-
-Download the [formative exercises](formative_exercises/06_joins_stub.Rmd). See the [answers](formative_exercises/06_joins_answers.Rmd) only after you've attempted all the questions.
-
-## Class Notes
-
 * [Lecture slides on dplyr two-table verbs](slides/05_joins_slides.pdf)
 
-### Setup
+## Setup
 
 
 ```r
 # libraries needed for these examples
 library(tidyverse)
 ```
-
-All the joins have this basic syntax:
-
-`****_join(x, y, by = NULL, suffix = c(".x", ".y")`
-
-* `x` = the first (left) table
-* `y` = the second (right) table
-* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
-* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
 
 ### Data
 
@@ -69,20 +50,19 @@ subject <- tibble(
   sex = c("m", "m", NA, "f", "f"),
   age = c(19, 22, NA, 19, 18)
 )
-
-subject
 ```
 
-```
-## # A tibble: 5 x 3
-##      id sex     age
-##   <int> <chr> <dbl>
-## 1     1 m        19
-## 2     2 m        22
-## 3     3 <NA>     NA
-## 4     4 f        19
-## 5     5 f        18
-```
+
+
+ id  sex    age
+---  ----  ----
+  1  m       19
+  2  m       22
+  3  NA      NA
+  4  f       19
+  5  f       18
+
+
 
 `exp` has subject id and the score from an experiment. Some subjects are missing, 
 some completed twice, and some are not in the subject table.
@@ -93,34 +73,45 @@ exp <- tibble(
   id = c(2, 3, 4, 4, 5, 5, 6, 6, 7),
   score = c(10, 18, 21, 23, 9, 11, 11, 12, 3)
 )
-
-exp
-```
-
-```
-## # A tibble: 9 x 2
-##      id score
-##   <dbl> <dbl>
-## 1     2    10
-## 2     3    18
-## 3     4    21
-## 4     4    23
-## 5     5     9
-## 6     5    11
-## 7     6    11
-## 8     6    12
-## 9     7     3
 ```
 
 
-### left_join()
-<a name="left_join"></a>
 
-<img src='images/joins/left_join.png' class='join'>
+ id   score
+---  ------
+  2      10
+  3      18
+  4      21
+  4      23
+  5       9
+  5      11
+  6      11
+  6      12
+  7       3
+
+
+
+
+## Mutating Joins
+
+All the mutating joins have this basic syntax:
+
+`****_join(x, y, by = NULL, suffix = c(".x", ".y")`
+
+* `x` = the first (left) table
+* `y` = the second (right) table
+* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
+* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
+
+### left_join() {#left_join}
+
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/left_join.png" alt="Left Join" width="100%" />
+<p class="caption">(\#fig:img-left-join)Left Join</p>
+</div></div>
+
 A `left_join` keeps all the data from the first (left) table and joins anything 
-that matches from the second (right) table. If the right table has more than one match for 
-a row in the right table, there will be more than one row in the joined table 
-(see ids 4 and 5).
+that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
 
 
 ```r
@@ -144,7 +135,11 @@ You can leave out the `by` argument if you're matching on all of the columns wit
 the same name, but it's good practice to always specify it so your code is robust 
 to changes in the loaded data.
 
-<img src='images/joins/left_join_rev.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/left_join_rev.png" alt="Left Join (reversed)" width="100%" />
+<p class="caption">(\#fig:img-left-join-rev)Left Join (reversed)</p>
+</div></div>
+
 The order of tables is swapped here, so the result is all rows from the `exp` 
 table joined to any matching rows from the `subject` table.
 
@@ -168,10 +163,13 @@ left_join(exp, subject, by = "id")
 ## 9     7     3 <NA>     NA
 ```
 
-### right_join()
-<a name="right_join"></a>
+### right_join() {#right_join}
 
-<img src='images/joins/right_join.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/right_join.png" alt="Right Join" width="100%" />
+<p class="caption">(\#fig:img-right-join)Right Join</p>
+</div></div>
+
 A `right_join` keeps all the data from the second (right) table and joins anything 
 that matches from the first (left) table. 
 
@@ -195,14 +193,17 @@ right_join(subject, exp, by = "id")
 ## 9     7 <NA>     NA     3
 ```
 
-<p class="alert alert-info">This table has the same information as 
-`left_join(exp, subject, by = "id")`, but the columns are in a different order 
-(left table, then right table).</p>
+<div class="info">
+<p>This table has the same information as <code>left_join(exp, subject, by = &quot;id&quot;)</code>, but the columns are in a different order (left table, then right table).</p>
+</div>
 
-### inner_join()
-<a name="inner_join"></a>
+### inner_join() {#inner_join}
 
-<img src='images/joins/inner_join.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/inner_join.png" alt="Inner Join" width="100%" />
+<p class="caption">(\#fig:img-inner-join)Inner Join</p>
+</div></div>
+
 An `inner_join` returns all the rows that have a match in the other table.
 
 
@@ -223,10 +224,13 @@ inner_join(subject, exp, by = "id")
 ```
 
 
-### full_join()
-<a name="full_join"></a>
+### full_join() {#full_join}
 
-<img src='images/joins/full_join.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/full_join.png" alt="Full Join" width="100%" />
+<p class="caption">(\#fig:img-full-join)Full Join</p>
+</div></div>
+
 A `full_join` lets you join up rows in two tables while keeping all of the 
 information from both tables. If a row doesn't have a match in the other table, 
 the other table's column values are set to `NA`.
@@ -252,10 +256,15 @@ full_join(subject, exp, by = "id")
 ## 10     7 <NA>     NA     3
 ```
 
-### semi_join()
-<a name="semi_join"></a>
+## Filtering Joins
 
-<img src='images/joins/semi_join.png' class='join'>
+### semi_join() {#semi_join}
+
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/semi_join.png" alt="Semi Join" width="100%" />
+<p class="caption">(\#fig:img-semi-join)Semi Join</p>
+</div></div>
+
 A `semi_join` returns all rows from the left table where there are matching values 
 in the right table, keeping just columns from the left table.
 
@@ -274,10 +283,15 @@ semi_join(subject, exp, by = "id")
 ## 4     5 f        18
 ```
 
-<p class="alert alert-info">Unlike an inner join, a semi join will never duplicate 
-the rows in the left table if there is more than one maching row in the right table.</p>
+<div class="info">
+<p>Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one maching row in the right table.</p>
+</div>
 
-<img src='images/joins/semi_join_rev.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/semi_join_rev.png" alt="Semi Join (Reversed)" width="100%" />
+<p class="caption">(\#fig:img-semi-join-rev)Semi Join (Reversed)</p>
+</div></div>
+
 Order matters in a semi join.
 
 
@@ -297,10 +311,12 @@ semi_join(exp, subject, by = "id")
 ## 6     5    11
 ```
 
-### anti_join()
-<a name="anti_join"></a>
+### anti_join() {#anti_join}
 
-<img src='images/joins/anti_join.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/anti_join.png" alt="Anti Join" width="100%" />
+<p class="caption">(\#fig:img-anti-join)Anti Join</p>
+</div></div>
 A `anti_join` return all rows from the left table where there are *not* matching 
 values in the right table, keeping just columns from the left table.
 
@@ -316,7 +332,11 @@ anti_join(subject, exp, by = "id")
 ## 1     1 m        19
 ```
 
-<img src='images/joins/anti_join_rev.png' class='join'>
+<div class = 'join'><div class="figure" style="text-align: center">
+<img src="images/joins/anti_join_rev.png" alt="Anti Join (Reversed)" width="100%" />
+<p class="caption">(\#fig:img-anti-join-rev)Anti Join (Reversed)</p>
+</div></div>
+
 Order matters in an anti join.
 
 
@@ -333,8 +353,9 @@ anti_join(exp, subject, by = "id")
 ## 3     7     3
 ```
 
-### bind_rows()
-<a name="bind_rows"></a>
+## Binding Joins
+
+### bind_rows() {#bind_rows}
 
 You can combine the rows of two tables with `bind_rows`.
 
@@ -366,9 +387,7 @@ bind_rows(subject, new_subjects)
 ## 9     9 f        19
 ```
 
-The columns just have to have the same names, they don't have to be in the same order. 
-Any columns that differ between the two tables will just have `NA` values for entries 
-from the other table.
+The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
 
 If a row is duplicated between the two tables (like id 5 below), the row will also
 be duplicated in the resulting table. If your tables have the exact same columns, 
@@ -402,8 +421,7 @@ bind_rows(subject, new_subjects)
 ## 10     9 f        19     5
 ```
 
-### bind_cols()
-<a name="bind_cols"></a>
+### bind_cols() {#bind_cols}
 
 You can merge two tables with the same number of rows using `bind_cols`. This is 
 only useful if the two tables have their rows in the exact same order. The only 
@@ -430,8 +448,9 @@ bind_cols(subject, new_info)
 ## 5     5 f        18 blue
 ```
 
-### intersect()
-<a name="intersect"></a>
+## Set Operations
+
+### intersect() {#intersect}
 
 `intersect()` returns all rows in two tables that match exactly. The columns 
 don't have to be in the same order.
@@ -456,8 +475,7 @@ dplyr::intersect(subject, new_subjects)
 ```
 
 
-### union()
-<a name="union"></a>
+### union() {#union}
 
 `union()` returns all the rows from both tables, removing duplicate rows.
 
@@ -481,8 +499,7 @@ dplyr::union(subject, new_subjects)
 ## 9     1 m        19
 ```
 
-### setdiff()
-<a name="setdiff"></a>
+### setdiff() {#setdiff}
 
 `setdiff` returns rows that are in the first table, but not in the second table.
 
@@ -518,287 +535,9 @@ setdiff(new_subjects, subject)
 ```
 
 
-<!--
-## Example
-
-### Load and process data
-
-These data and cleaning code are from [Data cleaning](03_tidyr.html)
-
-
-```r
-# load country data from a CSV file on the web
-library(readxl)
-ccodes <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   name = col_character(),
-##   `alpha-2` = col_character(),
-##   `alpha-3` = col_character(),
-##   `country-code` = col_character(),
-##   `iso_3166-2` = col_character(),
-##   region = col_character(),
-##   `sub-region` = col_character(),
-##   `intermediate-region` = col_character(),
-##   `region-code` = col_character(),
-##   `sub-region-code` = col_character(),
-##   `intermediate-region-code` = col_character()
-## )
-```
-
-```r
-infmort <- read_csv("data/infmort.csv") %>%  # load infant mortality data from a CSV file
-  separate(                                  # separate the stats column into its 3 parts
-    3, 
-    c("rate", "ci_low", "ci_hi"), 
-    extra = "drop", 
-    sep = "(\\[|-|])", 
-    convert = TRUE
-  )
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   Country = col_character(),
-##   Year = col_double(),
-##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
-## )
-```
-
-```r
-matmort <- read_xls("data/matmort.xls") %>%   # load maternal mortality data from an excel file
-  gather("Year", "stats", `1990`:`2015`) %>%  # convert to long format
-  mutate(stats = gsub(" ", "", stats)) %>%    # get rid of spaces in stats column
-  separate(                                   # separate the stats column into its 3 parts
-    stats, 
-    c("rate", "ci_low", "ci_hi"), 
-    extra = "drop", 
-    convert = TRUE
-  )
-```
-
-```
-## readxl works best with a newer version of the tibble package.
-## You currently have tibble v1.4.2.
-## Falling back to column name repair from tibble <= v1.4.2.
-## Message displays once per session.
-```
-
-### inner_join()
-
-`inner_join(x, y, by = NULL, suffix = c(".x", ".y")`
-
-
-```r
-infmatmort <- inner_join(matmort, infmort, by = c("Country", "Year"))
-```
-
-<pre><code>Error in inner_join_impl(x, y, by$x, by$y, suffix$x, suffix$y, check_na_matches(na_matches)) : 
-  Can't join on 'Year' x 'Year' because of incompatible types (character / integer)</code></pre>
-
-#### Incompatible tpyes
-
-Oops. `Year` is an integer type in `infmort` and a character type in `matmort`. 
-We can fix that by adding `convert = TRUE` to the `gather` function.
-
-
-```r
-matmort <- read_xls("data/matmort.xls") %>%   
-  gather("Year", "stats", `1990`:`2015`, convert = TRUE) %>%
-  mutate(stats = gsub(" ", "", stats)) %>%
-  separate(
-    stats, 
-    c("rate", "ci_low", "ci_hi"), 
-    extra = "drop", 
-    convert = TRUE
-  )
-
-infmatmort <- inner_join(matmort, infmort, by = c("Country", "Year"))
-
-head(infmatmort)
-```
-
-```
-## # A tibble: 6 x 8
-##   Country      Year rate.x ci_low.x ci_hi.x rate.y ci_low.y ci_hi.y
-##   <chr>       <dbl>  <int>    <int>   <int>  <dbl>    <dbl>   <dbl>
-## 1 Afghanistan  1990   1340      878    1950  122.     112.    136. 
-## 2 Albania      1990     71       58      88   35.1     31.3    39.2
-## 3 Algeria      1990    216      141     327   39.7     37.1    42.3
-## 4 Angola       1990   1160      627    2020  134.     120.    151  
-## 5 Argentina    1990     72       64      80   24.4     24      24.9
-## 6 Armenia      1990     58       51      65   42.5     39      46.4
-```
-
-#### Disambiguate duplicate column names with `suffix`
-
-Maybe we shouldn't have given the rates and CIs the same names in the infant and 
-maternal mortality tables if we were going to join them. We could fix that by 
-changing the names in the `separate` functions to be unique. Here, we'll add the 
-suffixes "_mat" and "_inf" to distinguish them.
-
-
-```r
-infmatmort <- inner_join(
-  matmort, 
-  infmort, 
-  by = c("Country", "Year"),
-  suffix = c("_mat", "_inf")
-)
-
-head(infmatmort)
-```
-
-```
-## # A tibble: 6 x 8
-##   Country  Year rate_mat ci_low_mat ci_hi_mat rate_inf ci_low_inf ci_hi_inf
-##   <chr>   <dbl>    <int>      <int>     <int>    <dbl>      <dbl>     <dbl>
-## 1 Afghan…  1990     1340        878      1950    122.       112.      136. 
-## 2 Albania  1990       71         58        88     35.1       31.3      39.2
-## 3 Algeria  1990      216        141       327     39.7       37.1      42.3
-## 4 Angola   1990     1160        627      2020    134.       120.      151  
-## 5 Argent…  1990       72         64        80     24.4       24        24.9
-## 6 Armenia  1990       58         51        65     42.5       39        46.4
-```
-
-### full_join()
-
-`full_join(x, y, by = NULL, suffix = c(".x", ".y")`
-
-A full join lets you join up rows in two tables while keeping all of the 
-information from both tables. If a row doesn't have a match in the other table, 
-the other table's column values are set to `NA`.
-
-
-```r
-infmatmort <- full_join(
-  matmort, 
-  infmort, 
-  by = c("Country", "Year"),
-  suffix = c("_mat", "_inf")
-)
-
-infmatmort %>% filter(Country == "Djibouti", Year < 1993)
-```
-
-```
-## # A tibble: 3 x 8
-##   Country  Year rate_mat ci_low_mat ci_hi_mat rate_inf ci_low_inf ci_hi_inf
-##   <chr>   <dbl>    <int>      <int>     <int>    <dbl>      <dbl>     <dbl>
-## 1 Djibou…  1990      517        291       907     92.7       81.2      106.
-## 2 Djibou…  1992       NA         NA        NA     89.6       79        102.
-## 3 Djibou…  1991       NA         NA        NA     91         80        104.
-```
-
-### left_join()
-
-`left_join(x, y, by = NULL, suffix = c(".x", ".y")`
-
-Use a `left_join()` if you want to keep all the data in the main (x, left) table 
-and join data from another (y, right) table if it exists.
-
-<p class="alert alert-warning">Notice that the `by` argument now needs to specify both the left 
-and right tables' columns (`by = c("Country" = "name")`) because we're joining 
-on columns that have different names.</p>
-
-
-
-```r
-infmatmort_region <- infmatmort %>%
-  left_join(ccodes, by = c("Country" = "name"))
-
-head(infmatmort_region)
-```
-
-```
-## # A tibble: 6 x 18
-##   Country  Year rate_mat ci_low_mat ci_hi_mat rate_inf ci_low_inf ci_hi_inf
-##   <chr>   <dbl>    <int>      <int>     <int>    <dbl>      <dbl>     <dbl>
-## 1 Afghan…  1990     1340        878      1950    122.       112.      136. 
-## 2 Albania  1990       71         58        88     35.1       31.3      39.2
-## 3 Algeria  1990      216        141       327     39.7       37.1      42.3
-## 4 Angola   1990     1160        627      2020    134.       120.      151  
-## 5 Argent…  1990       72         64        80     24.4       24        24.9
-## 6 Armenia  1990       58         51        65     42.5       39        46.4
-## # ... with 10 more variables: `alpha-2` <chr>, `alpha-3` <chr>,
-## #   `country-code` <chr>, `iso_3166-2` <chr>, region <chr>,
-## #   `sub-region` <chr>, `intermediate-region` <chr>, `region-code` <chr>,
-## #   `sub-region-code` <chr>, `intermediate-region-code` <chr>
-```
-
-### right_join()
-
-`right_join(x, y, by = NULL, suffix = c(".x", ".y")`
-
-We really just wanted the region, not all the extra data from the country codes. 
-We can just select the columns we want when we load the country codes data. 
-
-If we start with the `ccodes` table, we can `right_join()` the `infmatmort` table, 
-which is just the opposite of a left join (keeps all the data from the "right" 
-joined table and any data from the "left" table that matches). 
-
-<p class="alert alert-warning">Remember to switch 
-the order of the `by` columns if they have different names in the main and 
-optional data tables.</p>
-
-
-```r
-infmatmort_region <- ccodes %>%
-  select(name, region) %>%
-  right_join(infmatmort, by = c("name" = "Country"))
-
-head(infmatmort_region)
-```
-
-```
-## # A tibble: 6 x 9
-##   name  region  Year rate_mat ci_low_mat ci_hi_mat rate_inf ci_low_inf
-##   <chr> <chr>  <dbl>    <int>      <int>     <int>    <dbl>      <dbl>
-## 1 Afgh… Asia    1990     1340        878      1950    122.       112. 
-## 2 Alba… Europe  1990       71         58        88     35.1       31.3
-## 3 Alge… Africa  1990      216        141       327     39.7       37.1
-## 4 Ango… Africa  1990     1160        627      2020    134.       120. 
-## 5 Arge… Ameri…  1990       72         64        80     24.4       24  
-## 6 Arme… Asia    1990       58         51        65     42.5       39  
-## # ... with 1 more variable: ci_hi_inf <dbl>
-```
-
-
-### Plot maternal vs infant mortality by region
-
-So let's make a graph that we couldn't have easily made with 3 separate data tables
-
-
-```r
-infmatmort_region %>%
-  filter(Year == 1990) %>%
-  group_by(name, region) %>%
-  summarise(
-    matmort = mean(rate_mat),
-    infmort = mean(rate_inf)
-  ) %>%
-  ggplot(aes(infmort, matmort, colour = region)) +
-  geom_smooth(method = "lm") +
-  geom_point() +
-  facet_grid(.~region)
-```
-
-```
-## Warning: Removed 13 rows containing non-finite values (stat_smooth).
-```
-
-```
-## Warning: Removed 13 rows containing missing values (geom_point).
-```
-
-<img src="06-joins_files/figure-html/unnamed-chunk-9-1.png" width="672" />
--->
-
 ## Exercises
+
+Download the [formative exercises](formative_exercises/06_joins_stub.Rmd). See the [answers](formative_exercises/06_joins_answers.Rmd) only after you've attempted all the questions.
 
 ### Mutating joins
 
@@ -926,7 +665,10 @@ Each participant is identified by a unique `user_id`.
       guides(fill = FALSE)
     ```
     
-    <img src="06-joins_files/figure-html/ex-2-a-1.png" width="672" />
+    <div class="figure" style="text-align: center">
+    <img src="06-joins_files/figure-html/ex-2-a-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+    <p class="caption">(\#fig:ex-2-a)**CAPTION THIS FIGURE!!**</p>
+    </div>
     </div>
 
 3. Create a table with only disgust and personality data from the same `user_id` collected on the same `date`.
@@ -948,7 +690,7 @@ Each participant is identified by a unique `user_id`.
     ## 4    18  155571 2008-07-14  2.71     6     4.43   3.71   3.8  4.56  2.25
     ## 5    21  155665 2008-07-15  4.14     4.14  3.43   2.86   1.8  4.67  3.12
     ## 6    22  155682 2008-07-15  2.71     3     0.714  3.43   3    3.56  1.38
-    ## # ... with 1 more variable: Op <dbl>
+    ## # … with 1 more variable: Op <dbl>
     ```
     </div> 
     
@@ -971,7 +713,7 @@ Each participant is identified by a unique `user_id`.
     ## 4    17  155567 2008-07-14  5.57     4.71   2.57 2008-07-14  5.29   5.7
     ## 5    18  155571 2008-07-14  2.71     6      4.43 2008-07-14  3.71   3.8
     ## 6    20  124756 2008-07-14  5.43     5.14   2.71 2008-01-23  4.86   3.8
-    ## # ... with 3 more variables: Ex <dbl>, Ne <dbl>, Op <dbl>
+    ## # … with 3 more variables: Ex <dbl>, Ne <dbl>, Op <dbl>
     ```
     </div> 
     
@@ -995,7 +737,7 @@ Each participant is identified by a unique `user_id`.
     ## 4     5  155370 2008-07-12  5.71     4.86  4.71  NA     NA   NA    NA   
     ## 5     6  155386 2008-07-12  1.43     3.86  3.71   3.14   2.6  4     0.25
     ## 6     7  155409 2008-07-12  4.14     4.14  1.57  NA     NA   NA    NA   
-    ## # ... with 1 more variable: Op <dbl>
+    ## # … with 1 more variable: Op <dbl>
     ```
     </div>
 

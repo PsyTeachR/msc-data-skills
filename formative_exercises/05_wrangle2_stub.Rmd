@@ -1,0 +1,84 @@
+---
+title: 'Formative Exercise 05: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library("ukbabynames")
+library("lubridate")
+library("tidyverse")
+
+## convert to a tibble
+ukb <- as_tibble(ukbabynames)
+```
+
+### Easy
+
+1. How many records are in the dataset?
+
+```{r}
+```
+
+2. Remove the column `rank` from the dataset.
+
+```{r}
+```
+
+3. What is the range of birth years contained in the dataset?
+
+```{r}
+```
+
+4. Pull out the babies named Hermione.
+
+```{r}
+```
+
+5. Sort the dataset by sex and then by year (descending) and then by rank (descending).
+
+```{r}
+```
+
+6. Create a new column, `decade`, that contains the decade of birth (1990, 2000, 2010).  Hint: see `?floor`
+
+```{r}
+```
+
+7. Pull out the male babies named Courtney that were born between 1998 and 2001 (inclusive).
+
+```{r}
+```
+
+
+8. How many distinct names are represented in the dataset?
+
+```{r}
+```
+
+9. Pull out all the female babies named Frankie that were born before 1999 or after 2010
+
+```{r ex1}
+```
+
+10. How many total babies in the dataset were named 'Emily'?
+
+```{r ex2}
+```
+
+11. How many distinct names are there for each sex?
+
+```{r ex3}
+```
+
+12. What is the most popular name in the dataset?
+
+```{r ex4}
+```
+
+13. How many babies were born each year for each sex?  Make a plot.
+
+```{r ex5}
+```
+

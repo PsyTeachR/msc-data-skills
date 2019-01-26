@@ -1,3 +1,5 @@
+
+
 # Reproducible Workflows {#repro}
 
 ## Learning Objectives
@@ -22,13 +24,9 @@
 10. Create a computationally reproducible project in Code Ocean
 
 
-## Prep
-
-[Chapter 27: R Markdown](http://r4ds.had.co.nz/r-markdown.html) in *R for Data Science*
-
-
 ## Resources
 
+* [Chapter 27: R Markdown](http://r4ds.had.co.nz/r-markdown.html) in *R for Data Science*
 * [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 * [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 * [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
@@ -37,12 +35,15 @@
 * [Code Ocean](https://codeocean.com/) for Computational Reproducibility
 
 
-## Class Notes
+## R Markdown
+
+
+```r
+library(tidyverse)
+```
 
 
 
-
-### R Markdown
 
 By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a reproducible manuscript.
 
@@ -52,13 +53,19 @@ First, make a new R Markdown document.
 
 When you create a new R Markdown file in RStudio, a setup chunk is automatically created.
 
-<pre><code>&#96;&#96;&#96;{r setup, include=FALSE}
+<div class='verbatim'><code>&#96;&#96;&#96;{r setup, include=FALSE}</code>
+
+```r
 knitr::opts_chunk$set(echo = TRUE)
-&#96;&#96;&#96;</code></pre>
+```
+
+<code>&#96;&#96;&#96;</code></div>
 
 You can set more default options for code chunks here. See the [knitr options documentation](https://yihui.name/knitr/options/) for explanations of the possible options.
 
-<pre><code>&#96;&#96;&#96;{r setup, include=FALSE}
+<div class='verbatim'><code>&#96;&#96;&#96;{r setup, include=FALSE}</code>
+
+```r
 knitr::opts_chunk$set(
   fig.width  = 8, 
   fig.height = 5, 
@@ -68,7 +75,9 @@ knitr::opts_chunk$set(
   message    = FALSE,
   cache      = FALSE
 )
-&#96;&#96;&#96;</code></pre>
+```
+
+<code>&#96;&#96;&#96;</code></div>
 
 The code above sets the following options:
 
@@ -101,7 +110,7 @@ output:
 ---
 ```
 
-The built-in themes are: “cerulean”, “cosmo”, “flatly”, “journal”, “lumen”, “paper”, “readable”, “sandstone”, “simplex”, “spacelab”, “united”, and “yeti”. You can [view and download more themes](http://www.datadreaming.org/post/r-markdown-theme-gallery/).
+The built-in themes are: "cerulean", "cosmo", "flatly", "journal", "lumen", "paper", "readable", "sandstone", "simplex", "spacelab", "united", and "yeti". You can [view and download more themes](http://www.datadreaming.org/post/r-markdown-theme-gallery/).
 
 <p class="alert alert-info">Try changing the values from `false` to `true` to see what the options do.</p>
 
@@ -175,8 +184,6 @@ Now we can make a separate code chunk to create our simulated dataset `dat`.
 
 
 ```r
-set.seed(90210)
-
 dat <- two_sample(diff = 0.75, n_per_group = 100)
 ```
 
@@ -202,10 +209,10 @@ dat %>%
 
 group   sex        n     Mean      SD
 ------  -------  ---  -------  ------
-a       female    50   -0.268   1.059
-a       male      50   -0.563   1.163
-b       female    50    0.305   1.031
-b       male      50    0.324   1.049
+a       female    50   -0.361   0.796
+a       male      50   -0.284   1.052
+b       female    50    0.335   1.080
+b       male      50    0.313   0.904
 
 <p class="alert alert-info">Notice that the r chunk specifies the option `results='asis'`. This lets you format the table using the `kable()` function from `knitr`. You can also use more specialised functions from [papaja](https://crsh.github.io/papaja_man/reporting.html#tables) or [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) to format your tables.</p>
 
@@ -228,8 +235,8 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
 
 <p class="alert alert-info">The last line changes the default text size and font, which can be useful for generating figures that meet a journal's requirements.</p>
 
-<div class="figure">
-<img src="10-repro_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 1. Scores by group and sex." width="672" />
+<div class="figure" style="text-align: center">
+<img src="10-repro_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 1. Scores by group and sex." width="100%" />
 <p class="caption">(\#fig:unnamed-chunk-5)Figure 1. Scores by group and sex.</p>
 </div>
 
@@ -298,26 +305,14 @@ Add the above code to the end of your analysis.R file. Then you can refer to col
 
 ```r
 grp_stats$p.value
-```
-
-```
-## [1] 0
-```
-
-```r
 sex_stats$statistic
-```
-
-```
-## [1] -0.907
-```
-
-```r
 ixn_stats$estimate
 ```
 
 ```
-## [1] 0.315
+## [1] 0
+## [1] 0.197
+## [1] -0.099
 ```
 
 You can insert these numbers into a paragraph with inline R code that looks like this: 
@@ -338,17 +333,17 @@ p = &#96;r ixn_stats$p.value&#96;).
 
 **Rendered text:**  
 Scores were higher in group B than group A 
-(B = 0.73, 
-t = 4.792, 
+(B = 0.647, 
+t = 4.74, 
 p = 0). 
 There was no significant difference between men and women 
-(B = -0.138, 
-t = -0.907, 
-p = 0.365)
+(B = 0.027, 
+t = 0.197, 
+p = 0.844)
 and the effect of group was not qualified by an interaction with sex 
-(B = 0.315, 
-t = 1.035, 
-p = 0.302).
+(B = -0.099, 
+t = -0.363, 
+p = 0.717).
 
 <p class="alert alert-info">Remember, line breaks are ignored when you render the file (unless you add two spaces at the end of lines), so you can use line breaks to make it easier to read your text with inline R code.</p>
 
@@ -390,17 +385,17 @@ t = &#96;r ixn_stats$statistic&#96;,
 
 **Rendered text:**  
 Scores were higher in group B than group A 
-(B = 0.73, 
-t = 4.792, 
+(B = 0.647, 
+t = 4.74, 
 p < .001). 
 There was no significant difference between men and women 
-(B = -0.138, 
-t = -0.907, 
-p = 0.365) 
+(B = 0.027, 
+t = 0.197, 
+p = 0.844) 
 and the effect of group was not qualified by an interaction with sex 
-(B = 0.315, 
-t = 1.035, 
-p = 0.302).
+(B = -0.099, 
+t = -0.363, 
+p = 0.717).
 
 You might also want to report the statistics for the regression. There are a lot of numbers to format and insert, so it is easier to do this in the analysis script using `sprintf` for formatting.
 
@@ -424,9 +419,9 @@ adj_r <- sprintf(
 )
 ```
 
-Then you can just insert the text in your masnuscript like this: &#96; adj_r&#96;:
+Then you can just insert the text in your manuscript like this: &#96; adj_r&#96;:
 
-The regression equation had an adjusted $R^{2}$ of 0.099 ($F_{(3, 196)}$ = 8.287, p < .001).
+The regression equation had an adjusted $R^{2}$ of 0.090 ($F_{(3, 196)}$ = 7.546, p < .001).
 
 ### Bibliography
 

@@ -1,6 +1,11 @@
+```{r psyteachr-setup, include = FALSE}
+source("R/psyteachr_setup.R") # psyTeachR styles and functions
+source("R/my_setup.R")        # book-specific styles and functions
+```
+
 # Tidy Data {#tidyr}
 
-## Learning Objectives {.tabset}
+## Learning Objectives
 
 ### Basic
 
@@ -21,24 +26,15 @@
 5. Be able to use [regular expressions](#regex) to separate complex columns
 
 
-## Prep
-
-* Read [Tidy Data](http://vita.had.co.nz/papers/tidy-data.html)
-* [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
-* [Chapter 18: Pipes](http://r4ds.had.co.nz/pipes.html) in *R for Data Science*
-
 ## Resources
 
+* [Tidy Data](http://vita.had.co.nz/papers/tidy-data.html)
+* [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
+* [Chapter 18: Pipes](http://r4ds.had.co.nz/pipes.html) in *R for Data Science*
 * [Data wrangling cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
-## Formative exercise
 
-Download the [formative exercises](formative_exercises/04_wrangle1_stub.Rmd). See the [answers](formative_exercises/04_wrangle1_answers.Rmd) only after you've attempted all the questions.
-
-
-## Class Notes
-
-### Setup
+## Setup
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 
@@ -48,7 +44,7 @@ library(readxl)
 
 ```
 
-### Load Data
+## Load Data
 
 Get data on infant mortality rates from the CSV file 
 [`infmort.csv`](data/infmort.csv) in the directory `data`.
@@ -73,13 +69,11 @@ ccodes <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-w
 glimpse(ccodes)
 ```
 
-### Pipes
-<a name="pipes"></a>
+## Pipes {#pipes}
 
 <img src="images/04/pipe_sticker.png" style="width: 200px; float: right;">
 
-Dale introduced pipes in the second lesson, but we will review them here. 
-Pipes are a way to order your code in a more readable format. 
+Pipes were introduced in the second lesson, but we will review them here. Pipes are a way to order your code in a more readable format. 
 
 Let's say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (`id`, `A_mean` and `B_mean`). 
 
@@ -117,13 +111,16 @@ data <- rename(data_spread, A_mean = A, B_mean = B)
 data
 ```
 
-<p class="alert alert-warning">You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep you environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
+```{block, type="warning"}
+You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep you environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+```
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
 
 ```{r ok-chain}
 mean_petal_width <- round(mean(iris$Petal.Width), 2)
 ```
+
 But it gets extremely confusing for long chains:
 
 ```{r no-pipe-example-very-bad}
@@ -186,25 +183,23 @@ You can read this code from top to bottom as follows:
 
 You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
 
-<p class="alert alert-info">You can debug a pipe by running just the first few functions by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?</p>
+```{block type="info"}
+You can debug a pipe by running just the first few functions by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
+```
 
-### gather()
+## gather() {#gather}
 
-<a name="#gather"></a>
 `gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
 
-`matmort` is in wide format, with a separate column for each year. Change it to 
-long format, with a row for each County/Year observation.
+`matmort` is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.
 
 * `key` is what you want to call the row headers; it's "year" in this example. 
 * `value` is what you want to call the values in the gathered columns; they're "stats" in this example.
 * The `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
   
-This example is complicated because the column names to gather _are_ numbers. 
-If the column names are non-standard (e.g., have spaces, start with numbers, or 
-have special characters), you can enclose them in backticks (\`) like the example below.
+This example is complicated because the column names to gather _are_ numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (\`) like the example below.
 
-```{r}
+```{r matmort-long}
 
 matmort_long <- matmort %>%
   gather("Year", "stats", `1990`:`2015`)
@@ -213,20 +208,15 @@ glimpse(matmort_long)
 
 ```
 
-### separate()
+## separate() {#separate}
 
-<a name="#separate"></a>
 `separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
 
-The data in the `stats` column is in a crazy format with some sort of 
-confidence interval in brackets and lots of extra spaces. We don't need 
-any of the spaces, so first we'll remove them with `mutate`. 
+The data in the `stats` column is in a crazy format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with `mutate`. 
 
-The `separate` function will separate your data on anything that is not 
-a number or letter, so try it first without specifying the `sep` argument. 
-The `into` argument is a list of the new column names.
+The `separate` function will separate your data on anything that is not a number or letter, so try it first without specifying the `sep` argument. The `into` argument is a list of the new column names.
 
-```{r}
+```{r matmort-split-separate}
 
 matmort_split <- matmort_long %>%
   mutate(stats = gsub(" ", "", stats)) %>%
@@ -236,31 +226,22 @@ glimpse(matmort_split)
 
 ```
 
-<p class="alert alert-info">The `gsub(pattern, replacement, x)` function is a 
-flexible way to do search and replace. The example above replaces all occurances 
-of the `pattern` " " (a space), with the `replacement` "" (nothing), in the 
-string `x` (the `stats` column). Use `sub()` instead if you only want to replace 
-the first occurance of a pattern. We only used a simple pattern here, but you 
-can use more complicated [regex](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html) 
-patterns to replace, for example, all even numbers 
-(e.g., `gsub("[:02468:]", "*", "id = 123456")`) or all occurances of 
-the word colour in US or UK spelling 
-(e.g., `gsub("colo(u)?r", "***", "replace color, colour, or colours, but not collors")`).</p>
+```{block, type="info"}
+The `gsub(pattern, replacement, x)` function is a 
+flexible way to do search and replace. The example above replaces all occurances of the `pattern` " " (a space), with the `replacement` "" (nothing), in the string `x` (the `stats` column). Use `sub()` instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated [regex](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html) patterns to replace, for example, all even numbers (e.g., `gsub("[:02468:]", "*", "id = 123456")`) or all occurances of the word colour in US or UK spelling 
+(e.g., `gsub("colo(u)?r", "***", "replace color, colour, or colours, but not collors")`).
+```
 
-#### Handle spare columns with `extra`
+### Handle spare columns with `extra` {#extra}
 
-<a name="#extra"></a>
-<p class="alert alert-warning">The previous example should have given you an error warning about 
-"Too many values at 543 locations". This is because `separate` splits the column 
-at the brackets and dashes, so the text "100[90-110]" would split into four values 
-c("100", "90", "110", ""), but we only specified 3 new columns. The fourth value 
-is always empty (just the part after the last bracket), so we are happy to drop 
-it, but `separate` generates a warning so you don't do that accidentally. You can 
-turn off the warning by adding the `extra` argument and setting it to "drop". 
-Look at the help for `??tidyr::separate` to see what the other options do.</p>
+```{block, type="warning"}
+The previous example should have given you an error warning about 
+"Too many values at 543 locations". This is because `separate` splits the column at the brackets and dashes, so the text `100[90-110]` would split into four values `c("100", "90", "110", "")`, but we only specified 3 new columns. The fourth value 
+is always empty (just the part after the last bracket), so we are happy to drop it, but `separate` generates a warning so you don't do that accidentally. You can turn off the warning by adding the `extra` argument and setting it to "drop". Look at the help for `??tidyr::separate` to see what the other options do.
+```
 
 
-```{r}
+```{r matmort-split-extra}
 
 matmort_split <- matmort_long %>%
   mutate(stats = gsub(" ", "", stats)) %>%
@@ -270,14 +251,11 @@ glimpse(matmort_split)
 
 ```
 
-#### Set delimiters with `sep`
+### Set delimiters with `sep` {#sep}
 
-<a name="#sep"></a>
-Now do the same with `infmort`. It's already in long format, so you don't need 
-to use `gather`, but the third column has a crazy long name, so we can just 
-refer to it by its column number (3).
+Now do the same with `infmort`. It's already in long format, so you don't need to use `gather`, but the third column has a crazy long name, so we can just refer to it by its column number (3).
 
-```{r}
+```{r infmort-split-sep}
 
 infmort_split <- infmort %>%
   separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop")
@@ -286,20 +264,15 @@ glimpse(infmort_split)
 
 ```
 
-*Wait, that didn't work at all!* It split the column on spaces, brackets, _and_ 
-full stops. We just want to split on the spaces, brackets and dashes. So we need 
-to manually set `sep` to what the delimiters are. Also, once there are more than 
-a few arguments specified for a function, it's easier to read them if you put 
-one argument on each line.
+*Wait, that didn't work at all!* It split the column on spaces, brackets, _and_ full stops. We just want to split on the spaces, brackets and dashes. So we need to manually set `sep` to what the delimiters are. Also, once there are more than a few arguments specified for a function, it's easier to read them if you put one argument on each line.
 
-<a name="#regex"></a>
-<p class="alert alert-warning">You can use [regular expressions](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html) 
-to separate complex columns. Here, we want to separate on dashes and brackets. 
-You can separate on a list of delimiters by putting them in parentheses, separated 
-by "|". It's a little more complicated because brackets have a special meaning 
-in regex, so you need to "escape" the left one with two backslashes "\\\\".</p>
+{#regex}
+```{block, type="warning"}
+You can use [regular expressions](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html) 
+to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by "|". It's a little more complicated because brackets have a special meaning in regex, so you need to "escape" the left one with two backslashes "\\\\".
+```
 
-```{r}
+```{r infmort-split}
 
 infmort_split <- infmort %>%
   separate(
@@ -313,16 +286,11 @@ glimpse(infmort_split)
 
 ```
 
-#### Fix data types with `convert`
+### Fix data types with `convert` {#convert}
 
-<a name="#convert"></a>
-That's better. Notice the _<chr>_ next to `Year`, `rate`, `ci_low` and `ci_hi`. 
-That means these columns hold characters (like words), not numbers or integers. 
-This can cause problems when you try to do thigs like average the numbers (you 
-can't average words), so we can fix it by adding the argument `convert` and 
-setting it to `TRUE`.
+That's better. Notice the _<chr>_ next to `Year`, `rate`, `ci_low` and `ci_hi`. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can't average words), so we can fix it by adding the argument `convert` and setting it to `TRUE`.
 
-```{r}
+```{r infmort-split-convert}
 
 infmort_split <- infmort %>%
   separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop", sep = "(\\[|-|])", convert = TRUE)
@@ -333,7 +301,7 @@ glimpse(infmort_split)
 
 Do the same for `matmort`.
 
-```{r}
+```{r matmort-split-convert}
 
 matmort_split <- matmort_long %>%
   mutate(stats = gsub(" ", "", stats)) %>%
@@ -343,11 +311,11 @@ glimpse(matmort_split)
 
 ```
 
-#### All in one step
+### All in one step
 
 We can chain all the steps above together, since we don't need those intermediate dataframes.
 
-```{r}
+```{r all-in-1}
 
 infmort <- read_csv("data/infmort.csv") %>%
   separate(
@@ -374,20 +342,18 @@ glimpse(infmort)
 ```
 
 
-### spread()
+## spread() {#spread}
 
-<a name="#spread"></a>
 `spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)`
 
-You can reverse the processes above, as well. For example, you can convert data 
-from long format into wide format.
+You can reverse the processes above, as well. For example, you can convert data from long format into wide format.
 
 * `key` is the column that contains your new column headers
 * `value` is the column that contains the values in the new spread columns
 
 Let's spread out the infant mortality rate by year.
 
-```{r}
+```{r infmort-wide-spread}
 
 infmort_wide <- infmort %>%
   spread(Year, rate)
@@ -396,18 +362,15 @@ glimpse(infmort_wide)
 
 ```
 
-<p class="alert alert-warning">Nope, that didn't work at all, but it's a really common mistake when spreading 
-data. This is because `spread` matches on all the remaining columns, so 
-Afghanistan with `ci_low` of 52.7 is treated as a different observation than 
-Afghanistan with `ci_low` of 55.7. We can fix this by merging the 
-`rate`, `ci_low` and `ci_hi` columns back together.</p>
+```{block, type="warning"}
+Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because `spread` matches on all the remaining columns, so Afghanistan with `ci_low` of 52.7 is treated as a different observation than Afghanistan with `ci_low` of 55.7. We can fix this by merging the `rate`, `ci_low` and `ci_hi` columns back together.
+```
 
-### unite()
+## unite() {#unite}
 
-<a name="#unite"></a>
 `unite(data, col, ..., sep = "_", remove = TRUE)`
 
-```{r}
+```{r infmort-united}
 
 infmort_united <- infmort %>%
   unite(rate_ci, rate, ci_low, ci_hi)
@@ -417,12 +380,12 @@ glimpse(infmort_united)
 ```
 
 
-#### Control separation with `sep`
+### Control separation with `sep`
 
 `unite()` separates merged names with an underscore by default. 
 Set the `sep` argument if you want to change that.
 
-```{r}
+```{r infmort-united-sep}
 
 infmort_united <- infmort %>%
   unite(rate_ci, rate, ci_low, ci_hi, sep = ", ")
@@ -431,12 +394,12 @@ glimpse(infmort_united)
 
 ```
 
-<p class="alert alert-info">What if you want to put it back into the format "rate [ci_low - ci_hi]"? 
-Then, `mutate` and `paste` are a better choice than `unite`, but you have to get 
-rid of the `rate`, `ci_low` and `ci_hi` columns with `select`. You'll learn more 
-about these function in the [Data Manipulation](04_dplyr.html) lesson.</p>
+```{block, type="info"}
+What if you want to put it back into the format "rate [ci_low - ci_hi]"? Then, `mutate` and `paste` are a better choice than `unite`, but you have to get rid of the `rate`, `ci_low` and `ci_hi` columns with `select`. You'll learn more about these function in the [Data Manipulation](04_dplyr.html) lesson.
+```
 
-```{r}
+
+```{r infmort-united-mutate}
 
 infmort_united <- infmort %>%
   mutate(rate_ci = paste0(rate, " [", ci_low, " - ", ci_hi, "]"))
@@ -446,13 +409,9 @@ glimpse(infmort_united)
 ```
 
 
-Now let's try spreading on year again. Notice here we're uniting columns 
-`rate:ci_hi`, instead of `rate, ci_low, ci_hi`. The colon just says to select 
-all the columns between the first and last named ones. Check the help 
-documentation for `??tidyr::unite` and `??tidyr::select` to see other ways to 
-select columns.
+Now let's try spreading on year again. Notice here we're uniting columns `rate:ci_hi`, instead of `rate, ci_low, ci_hi`. The colon just says to select all the columns between the first and last named ones. Check the help documentation for `??tidyr::unite` and `??tidyr::select` to see other ways to select columns.
 
-```{r}
+```{r infmort-wide}
 
 infmort_wide <- infmort %>%
   unite(rate_ci, rate:ci_hi, sep = ", ") %>%
@@ -464,6 +423,8 @@ glimpse(infmort_wide)
 
 
 ## Exercises
+
+Download the [formative exercises](formative_exercises/04_wrangle1_stub.Rmd). See the [answers](formative_exercises/04_wrangle1_answers.Rmd) only after you've attempted all the questions.
 
 Tidy the data from [personality.csv](data/personality.csv).
 

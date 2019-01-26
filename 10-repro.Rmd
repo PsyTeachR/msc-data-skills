@@ -1,3 +1,8 @@
+```{r psyteachr-setup, include = FALSE}
+source("R/psyteachr_setup.R") # psyTeachR styles and functions
+source("R/my_setup.R")        # book-specific styles and functions
+```
+
 # Reproducible Workflows {#repro}
 
 ## Learning Objectives
@@ -22,13 +27,9 @@
 10. Create a computationally reproducible project in Code Ocean
 
 
-## Prep
-
-[Chapter 27: R Markdown](http://r4ds.had.co.nz/r-markdown.html) in *R for Data Science*
-
-
 ## Resources
 
+* [Chapter 27: R Markdown](http://r4ds.had.co.nz/r-markdown.html) in *R for Data Science*
 * [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 * [R Markdown reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 * [R Markdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
@@ -37,14 +38,16 @@
 * [Code Ocean](https://codeocean.com/) for Computational Reproducibility
 
 
-## Class Notes
+## R Markdown
 
-```{r, echo= FALSE, message=FALSE}
+```{r, message=FALSE}
 library(tidyverse)
 ```
 
+```{r set-seed, echo = FALSE}
+set.seed(8675309)
+```
 
-### R Markdown
 
 By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a reproducible manuscript.
 
@@ -54,13 +57,13 @@ First, make a new R Markdown document.
 
 When you create a new R Markdown file in RStudio, a setup chunk is automatically created.
 
-<pre><code>&#96;&#96;&#96;{r setup, include=FALSE}
+```{r knitr-setup, eval=FALSE, verbatim="r setup, include=FALSE"}
 knitr::opts_chunk$set(echo = TRUE)
-&#96;&#96;&#96;</code></pre>
+```
 
 You can set more default options for code chunks here. See the [knitr options documentation](https://yihui.name/knitr/options/) for explanations of the possible options.
 
-<pre><code>&#96;&#96;&#96;{r setup, include=FALSE}
+```{r knitr-setup2, eval=FALSE, verbatim="r setup, include=FALSE"}
 knitr::opts_chunk$set(
   fig.width  = 8, 
   fig.height = 5, 
@@ -70,7 +73,7 @@ knitr::opts_chunk$set(
   message    = FALSE,
   cache      = FALSE
 )
-&#96;&#96;&#96;</code></pre>
+```
 
 The code above sets the following options:
 
@@ -103,7 +106,7 @@ output:
 ---
 ```
 
-The built-in themes are: “cerulean”, “cosmo”, “flatly”, “journal”, “lumen”, “paper”, “readable”, “sandstone”, “simplex”, “spacelab”, “united”, and “yeti”. You can [view and download more themes](http://www.datadreaming.org/post/r-markdown-theme-gallery/).
+The built-in themes are: "cerulean", "cosmo", "flatly", "journal", "lumen", "paper", "readable", "sandstone", "simplex", "spacelab", "united", and "yeti". You can [view and download more themes](http://www.datadreaming.org/post/r-markdown-theme-gallery/).
 
 <p class="alert alert-info">Try changing the values from `false` to `true` to see what the options do.</p>
 
@@ -176,7 +179,6 @@ two_sample <- function(diff = 0.5, n_per_group = 20) {
 Now we can make a separate code chunk to create our simulated dataset `dat`. 
 
 ```{r}
-set.seed(90210)
 
 dat <- two_sample(diff = 0.75, n_per_group = 100)
 
@@ -408,7 +410,7 @@ adj_r <- sprintf(
 )
 ```
 
-Then you can just insert the text in your masnuscript like this: &#96; adj_r&#96;:
+Then you can just insert the text in your manuscript like this: &#96; adj_r&#96;:
 
 `r adj_r`
 

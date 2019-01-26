@@ -1,0 +1,170 @@
+---
+title: 'Formative Exercise 02: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+date: "28 September 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Vectors
+
+## Question 1
+
+1. The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
+
+```{r ex_vec_1, eval = FALSE}
+letters[c(3, 1, 20)]
+```
+
+## Question 2
+
+2. The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
+
+```{r ex_vec_2, eval = FALSE}
+length(colors())
+```
+
+## Question 3
+
+3. The function call `runif(1000, 0, 1)` will draw 1000 numbers from a uniform distribution from 0 to 1, which simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Store the result of this call in `pvals`. Create a logical vector called `is_sig` that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise (hint: vectorized operations from the last lession), then use this logical vector to pull out those p-values. Finally, calculate the proportion of those p-values that were significant.
+
+```{r ex_vec_3, eval = FALSE}
+pvals <- runif(1000, 0, 1)
+
+is_sig <- pvals < .05
+
+sort(pvals[is_sig])
+
+length(pvals[is_sig]) / length(pvals)
+```
+
+# Tabular Data 
+
+## Question 1
+
+1. Create a tibble with the name, age, and sex of 3-5 people whose names, ages, and sex you know.
+
+```{r ex1-tab, eval = FALSE}
+
+# or you can do this with the tibble function
+family <- tibble(name = c("Lisa", "Ben", "Robbie"),
+                 age = c(40, 41, 10),
+                 sex = c("female", "male", "male") )
+
+# also note:
+# you can type this in row by row, rather than column by column,
+# using the 'tribble' function
+family <- tribble(~name,  ~age, ~sex,
+                  "Lisa",   40,  "female",
+                  "Ben",    41,  "male",
+                  "Robbie", 10,  "male")
+
+```
+
+## Question 2
+
+2. Convert the built-in base R `iris` dataset to a tibble, and store it in the variable `iris2`.
+
+```{r ex_2_as_tib}
+iris2 <- as_tibble(iris)
+```
+
+## Question 3
+
+3. Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: `rep()`).  Store it in the variable `my_tbl`.
+
+ID |  A | B   | C
+--|-----|-----|---
+1	| A1	| B1	| C1	
+2	| A1	| B2	| C1	
+3	| A1	| B1	| C1	
+4	| A1	| B2	| C1	
+5	| A2	| B1	| C1	
+6	| A2	| B2	| C1	
+7	| A2	| B1	| C1	
+8	| A2	| B2	| C1
+
+```{r ex_3_tib}
+my_tbl <- tibble(ID = 1:8,
+                 A = rep(c("A1", "A2"), each = 4),
+                 B = rep(c("B1", "B2"), 4),
+                 C = "C1")    
+```
+
+# Data Import
+
+## Question 1
+
+1. Download the dataset [disgust_scores.csv](data/disgust_scores.csv) and read it into a table.
+
+```{r ex2-tab, message = FALSE}
+# change the location to where you put your csv file
+disgust <- read_csv("../data/disgust_scores.csv")
+```
+
+## Question 2
+
+2. Override the default column specifications to skip the `id` column.
+
+```{r ex3-tab, message = FALSE}
+my_cols <- cols(
+  id = col_skip()
+)
+
+disgust <- read_csv("../data/disgust_scores.csv", col_types = my_cols)
+head(disgust)
+```
+
+## Question 3
+  
+3. How many rows and columns are in the dataset from question 3?
+
+```{r ex4-tab}
+## gives rows as "Observations"" and columns as "Variables"
+glimpse(disgust)
+
+## returns a list c(rows, cols)
+dim(disgust)
+
+## returns the number of rows
+nrow(disgust)
+
+## returns the number of columns
+ncol(disgust)
+```
+
+# Pipes
+
+## Question 1
+
+1. Re-write the following sequence of commands into a single 'pipeline'.
+
+```{r ex_pipe1}
+# do not edit this chunk
+x <- 1:20 # integers from 1:20
+y <- rep(x, 2) # then repeat them twice
+z <- sum(y) # and then take the sum
+```
+
+```{r ex_pipe1_ans}
+x <- 1:20 %>% rep(2) %>% sum()
+```
+
+2. Deconstruct the pipeline below back into separate commands.
+
+```{r ex_pipe2}
+# do not edit this chunk
+lager <- LETTERS[c(18, 5, 7, 1, 12)] %>%
+  rev() %>%
+  paste(collapse = "")
+```
+
+```{r ex_pipe2_ans}
+regal <- LETTERS[c(18, 5, 7, 1, 12)]
+reversed <- rev(regal)
+lager <- paste(reversed, collapse = "") # make it into a string
+```

@@ -1,0 +1,60 @@
+---
+title: 'Formative Exercise 01: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+date: "21 September 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# please do not alter this code chunk
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+Create a variable called `my_pals` containing the names of three of your friends. This should be a three-element vector of type `character`.
+
+```{r Q1}
+my_pals <- NULL
+```
+
+## Question 2
+
+The chunk below creates an integer vector `ages` with the ages of five people. (Note: defining a number with the sufficx `L`, e.g., `26L`, defines `26` as type integer rather than type double.)  Calculate how old they will be in ten years using a vectorized operation and store the result in the variable `ages_10`.
+
+```{r Q2}
+ages <- c(26L, 13L, 47L, 62L, 18L)
+```
+
+## Question 3
+
+The code below has an error and won't run, so evaluation of the block has been turned off (`eval = FALSE`). Fix the code and once you've fixed it, turn evaluation back on again (`eval = TRUE`).
+
+```{r Q3, eval = FALSE}
+# I wan't to use the cowsay package to make a cat
+# say meow. Why won't this work? What am I missing?
+
+say("meow")
+```
+
+## Question 4
+
+Call the `rnorm()` function to generate 10 random values from a normal distribution with a mean of 800 and a standard deviation of 20, and store the result in the variable `random_vals`.
+
+```{r Q4}
+random_vals <- NULL
+```
+
+## Question 5
+
+Write code that creates a logical vector `is_sig` that represents whether each of the p values in the vector `pvals` is less than .05. (Hint: type `1:11 < 7` in the console and see what you get).
+
+```{r Q5}
+pvals <- c(.2, .001, .78, .04, .06, 10e-9)
+
+is_sig <- NULL # something with pvals
+```
+
+## All done!
+
+You've made it to the end. Make sure you are able to compile this document to HTML. Upload the RMarkdown file to the Moodle site.

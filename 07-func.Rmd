@@ -1,44 +1,42 @@
+```{r psyteachr-setup, include = FALSE}
+source("R/psyteachr_setup.R") # psyTeachR styles and functions
+source("R/my_setup.R")        # book-specific styles and functions
+```
+
 # Iteration & Functions {#func}
 
-## Learning Objectives {.tabset}
+## Learning Objectives
 
 You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.
 
 ### Basic
 
-* work with iteration functions `rep`, `seq`, and `replicate`
-* use arguments by order or name
-* write your own custom functions with `function()`
-* set default values for the arguments in your functions
+* Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
+* Use [arguments](#arguments) by order or name
+* Write your own [custom functions](#custom-functions) with `function()`
+* Set [default values](#defaults) for the arguments in your functions
 
 ### Intermediate
 
-* understand scope
-* use error handling and warnings in a function
+* Understand [scope](#scope)
+* Use [error handling and warnings](#warnings-errors) in a function
 
 ### Advanced
 
 The topics below are not covered in these materials, but they are directions for independent learning.
 
-* repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
-* repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
-* create *nested data frames* using `dplyr::group_by()` and `tidyr::nest()`
-* work with *nested data frames* in `dplyr`
-* capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
-
-## Prep
-
-* Read Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
+* Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
+* Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
+* Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
+* Work with **nested data frames** in `dplyr`
+* Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
 
 ## Resources
 
+* Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
-## Formative exercises
 
-Download the [formative exercises](formative_exercises/07_functions_stub.Rmd). See the [answers](formative_exercises/07_functions_answers.Rmd) only after you've attempted all the questions.
-
-## Class Notes
 
 In the next two lectures, we are going to learn more about *iteration* (doing the same commands over and over) and *custom functions* through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.
 
@@ -47,11 +45,11 @@ In the next two lectures, we are going to learn more about *iteration* (doing th
 library(tidyverse)  ## contains purrr, tidyr, dplyr
 ```
 
-### Iteration functions
+## Iteration functions {#iteration-functions}
 
-#### `rep()`
+### `rep()`
 
-The function `rep()` lefts you repeat the first argument a number of times.
+The function `rep()` lets you repeat the first argument a number of times.
 
 Use `rep()` to create a vector of alternating `"A"` and `"B"` values of length 24.
 
@@ -71,7 +69,7 @@ Use `rep()` to create a vector of 11 `"A"` values followed by 3 `"B"` values
 rep(c("A", "B"), c(11, 3))
 ```
 
-#### `seq()`
+### `seq()`
 
 The function `seq()` is useful for generating a sequence of numbers with some pattern.
 
@@ -123,15 +121,15 @@ pval
 ```    
 -->
 
-### Custom functions
+## Custom functions {#custom-functions}
 
 <!--
 Now we are going to wrap up the code we created above into two custom functions: `sim_data()`, which will generate a `tibble()` with randomly generated two group data; and `run_anova()` which will run an anova on a data table.  But let's first get some practice creating functions.
 -->
 
-In addition to the built-n functions and functions you can access from packages, you can also write your own functions (and eventually even packages!).
+In addition to the built-in functions and functions you can access from packages, you can also write your own functions (and eventually even packages!).
 
-#### Structuring a function
+### Structuring a function {#structure-function}
 
 The general structure of a function is as follows:
 
@@ -161,7 +159,7 @@ report_p <- function() {
 }
 ```
 
-#### Arguments
+### Arguments {#arguments}
 
 We need to add one *argument*, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses after `function` in the order you want them to default (just like the built-in functions you've used before). 
 
@@ -170,7 +168,7 @@ report_p <- function(p) {
 }
 ```
 
-#### Argument defaults
+### Argument defaults {#defaults}
 
 You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn't make sense to run this function without specifying the p-value, but we can add a second argument called `digits` that defaults to 3, so we can round p-values to 3 digits.
 
@@ -179,7 +177,7 @@ report_p <- function(p, digits = 3) {
 }
 ```
 
-Now we need to write some code inside the function to process the input arguments and turn them into a *return*ed output. Put the output as the last item in function.
+Now we need to write some code inside the function to process the input arguments and turn them into a **return**ed output. Put the output as the last item in function.
 
 ```{r}
 report_p <- function(p, digits = 3) {
@@ -209,14 +207,14 @@ report_p <- function(p, digits = 3) {
 }
 ```
 
-When you run the code defining your function, it doesn't output anything, but makes a new object in the Environment tab under "Functions". Now you can run the function.
+When you run the code defining your function, it doesn't output anything, but makes a new object in the Environment tab under **`Functions`**. Now you can run the function.
 
 ```{r}
 report_p(0.04869)
 report_p(0.0000023)
 ```
 
-#### Scope
+### Scope {#scope}
 
 What happens in a function stays in a function. You can change the value of a variable passed to a function, but that won't change the value of the variable outside of the function, even if that variable has the same name as the one in the function.
 
@@ -234,9 +232,11 @@ list(
 ```
 
 
-#### Warnings and errors
+### Warnings and errors {#warnings-errors}
 
-<p class="alert alert-info">What happens when you omit the argument for `p`? Or if you set `p` to 1.5 or "a"?</p>
+```{block, type="try"}
+What happens when you omit the argument for `p`? Or if you set `p` to 1.5 or "a"?</p>
+```
 
 You might want to add a more specific warning and stop running the function code if someone enters a value that isn't a number. You can do this with the `stop()` function.
 
@@ -266,11 +266,11 @@ report_p(-2)
 report_p(2)
 ```
 
-### Iterating your own functions
+## Iterating your own functions
 
 First, let's build up the code that we want to iterate.
 
-#### `rnorm()`
+### `rnorm()`
 
 Create a vector of 20 random numbers drawn from a normal distribution with a mean of 5 and standard deviation of 1 using the `rnorm()` function and store them in the variable `A`.
 
@@ -278,7 +278,7 @@ Create a vector of 20 random numbers drawn from a normal distribution with a mea
 A <- rnorm(20, mean = 5, sd = 1)
 ```
 
-#### `tibble::tibble()`
+### `tibble::tibble()`
 
 A `tibble` is a type of table or `data.frame`. The function `tibble::tibble()` creates a tibble with a column for each argument. Each argument takes the form `column_name = data_vector`.
 
@@ -291,7 +291,7 @@ dat <- tibble(
 )
 ```
 
-#### `t.test`
+### `t.test`
 
 You can run a Welch two-sample t-test by including the two samples you made as the first two arguments to the function `t.test`. You can reference one column of a table by its names using the format `table_name$column_name`
 
@@ -307,7 +307,7 @@ longdat <- gather(dat, group, score, A:B)
 t.test(score~group, data = longdat) 
 ```
 
-#### `broom::tidy()`
+### `broom::tidy()`
 
 You can use the function `broom::tidy()` to extract the data from a statistical test in a table format. The example below pipes everything together.
 
@@ -334,7 +334,7 @@ tibble(
   pull(p.value)
 ```
 
-#### Turn into a function
+### Turn into a function
 
 First, name your function `t_sim` and wrap the code above in a function with no arguments. 
 
@@ -357,7 +357,7 @@ Run it a few times to see what happens.
 t_sim()
 ```
 
-#### `replicate()`
+### `replicate()`
 
 You can use the `replicate` function to run your function any number of times. Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
 
@@ -368,7 +368,7 @@ power <- mean(reps < alpha)
 power
 ```
 
-#### Add arguments
+### Add arguments
 
 You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine `t_sim`, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.
 
@@ -411,6 +411,10 @@ Calculate power via simulation and `power.t.test` for the following tests:
 * 20 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 40 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 20 subjects/group, A: m = 10, SD = 1; B: m = 12, SD = 1.5
+
+## Exercises
+
+Download the [formative exercises](formative_exercises/07_functions_stub.Rmd). See the [answers](formative_exercises/07_functions_answers.Rmd) only after you've attempted all the questions.
 
 <!--
 ### Custom functions: `sim_data`

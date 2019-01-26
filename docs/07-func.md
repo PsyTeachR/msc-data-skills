@@ -1,44 +1,39 @@
+
+
 # Iteration & Functions {#func}
 
-## Learning Objectives {.tabset}
+## Learning Objectives
 
 You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.
 
 ### Basic
 
-* work with iteration functions `rep`, `seq`, and `replicate`
-* use arguments by order or name
-* write your own custom functions with `function()`
-* set default values for the arguments in your functions
+* Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
+* Use [arguments](#arguments) by order or name
+* Write your own [custom functions](#custom-functions) with `function()`
+* Set [default values](#defaults) for the arguments in your functions
 
 ### Intermediate
 
-* understand scope
-* use error handling and warnings in a function
+* Understand [scope](#scope)
+* Use [error handling and warnings](#warnings-errors) in a function
 
 ### Advanced
 
 The topics below are not covered in these materials, but they are directions for independent learning.
 
-* repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
-* repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
-* create *nested data frames* using `dplyr::group_by()` and `tidyr::nest()`
-* work with *nested data frames* in `dplyr`
-* capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
-
-## Prep
-
-* Read Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
+* Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
+* Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
+* Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
+* Work with **nested data frames** in `dplyr`
+* Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
 
 ## Resources
 
+* Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
-## Formative exercises
 
-Download the [formative exercises](formative_exercises/07_functions_stub.Rmd). See the [answers](formative_exercises/07_functions_answers.Rmd) only after you've attempted all the questions.
-
-## Class Notes
 
 In the next two lectures, we are going to learn more about *iteration* (doing the same commands over and over) and *custom functions* through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.
 
@@ -48,28 +43,11 @@ In the next two lectures, we are going to learn more about *iteration* (doing th
 library(tidyverse)  ## contains purrr, tidyr, dplyr
 ```
 
-```
-## ── Attaching packages ──────────────────────────────────────────────────── tidyverse 1.2.1 ──
-```
+## Iteration functions {#iteration-functions}
 
-```
-## ✔ ggplot2 3.1.0     ✔ purrr   0.2.5
-## ✔ tibble  1.4.2     ✔ dplyr   0.7.8
-## ✔ tidyr   0.8.2     ✔ stringr 1.3.1
-## ✔ readr   1.3.0     ✔ forcats 0.3.0
-```
+### `rep()`
 
-```
-## ── Conflicts ─────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-```
-
-### Iteration functions
-
-#### `rep()`
-
-The function `rep()` lefts you repeat the first argument a number of times.
+The function `rep()` lets you repeat the first argument a number of times.
 
 Use `rep()` to create a vector of alternating `"A"` and `"B"` values of length 24.
 
@@ -106,7 +84,7 @@ rep(c("A", "B"), c(11, 3))
 ##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B" "B"
 ```
 
-#### `seq()`
+### `seq()`
 
 The function `seq()` is useful for generating a sequence of numbers with some pattern.
 
@@ -163,8 +141,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1 116.53  116.53   125.9 3.57e-06 ***
-## Residuals    8   7.41    0.93                     
+## A            1 109.29   109.3   181.6 8.81e-07 ***
+## Residuals    8   4.81     0.6                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -181,19 +159,19 @@ pval
 ```
 
 ```
-## [1] 3.574812e-06
+## [1] 8.809596e-07
 ```
 -->
 
-### Custom functions
+## Custom functions {#custom-functions}
 
 <!--
 Now we are going to wrap up the code we created above into two custom functions: `sim_data()`, which will generate a `tibble()` with randomly generated two group data; and `run_anova()` which will run an anova on a data table.  But let's first get some practice creating functions.
 -->
 
-In addition to the built-n functions and functions you can access from packages, you can also write your own functions (and eventually even packages!).
+In addition to the built-in functions and functions you can access from packages, you can also write your own functions (and eventually even packages!).
 
-#### Structuring a function
+### Structuring a function {#structure-function}
 
 The general structure of a function is as follows:
 
@@ -230,7 +208,7 @@ report_p <- function() {
 }
 ```
 
-#### Arguments
+### Arguments {#arguments}
 
 We need to add one *argument*, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses after `function` in the order you want them to default (just like the built-in functions you've used before). 
 
@@ -240,7 +218,7 @@ report_p <- function(p) {
 }
 ```
 
-#### Argument defaults
+### Argument defaults {#defaults}
 
 You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn't make sense to run this function without specifying the p-value, but we can add a second argument called `digits` that defaults to 3, so we can round p-values to 3 digits.
 
@@ -250,7 +228,7 @@ report_p <- function(p, digits = 3) {
 }
 ```
 
-Now we need to write some code inside the function to process the input arguments and turn them into a *return*ed output. Put the output as the last item in function.
+Now we need to write some code inside the function to process the input arguments and turn them into a **return**ed output. Put the output as the last item in function.
 
 
 ```r
@@ -282,26 +260,20 @@ report_p <- function(p, digits = 3) {
 }
 ```
 
-When you run the code defining your function, it doesn't output anything, but makes a new object in the Environment tab under "Functions". Now you can run the function.
+When you run the code defining your function, it doesn't output anything, but makes a new object in the Environment tab under **`Functions`**. Now you can run the function.
 
 
 ```r
 report_p(0.04869)
-```
-
-```
-## [1] "p = 0.049"
-```
-
-```r
 report_p(0.0000023)
 ```
 
 ```
+## [1] "p = 0.049"
 ## [1] "p < .001"
 ```
 
-#### Scope
+### Scope {#scope}
 
 What happens in a function stays in a function. You can change the value of a variable passed to a function, but that won't change the value of the variable outside of the function, even if that variable has the same name as the one in the function.
 
@@ -328,9 +300,12 @@ list(
 ```
 
 
-#### Warnings and errors
+### Warnings and errors {#warnings-errors}
 
-<p class="alert alert-info">What happens when you omit the argument for `p`? Or if you set `p` to 1.5 or "a"?</p>
+<div class="try">
+What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or &quot;a&quot;?
+</p>
+</div>
 
 You might want to add a more specific warning and stop running the function code if someone enters a value that isn't a number. You can do this with the `stop()` function.
 
@@ -379,10 +354,6 @@ report_p(-2)
 ## Warning in report_p(-2): p-values are normally greater than 0
 ```
 
-```
-## [1] "p < .001"
-```
-
 ```r
 report_p(2)
 ```
@@ -392,14 +363,15 @@ report_p(2)
 ```
 
 ```
+## [1] "p < .001"
 ## [1] "p = 2"
 ```
 
-### Iterating your own functions
+## Iterating your own functions
 
 First, let's build up the code that we want to iterate.
 
-#### `rnorm()`
+### `rnorm()`
 
 Create a vector of 20 random numbers drawn from a normal distribution with a mean of 5 and standard deviation of 1 using the `rnorm()` function and store them in the variable `A`.
 
@@ -408,7 +380,7 @@ Create a vector of 20 random numbers drawn from a normal distribution with a mea
 A <- rnorm(20, mean = 5, sd = 1)
 ```
 
-#### `tibble::tibble()`
+### `tibble::tibble()`
 
 A `tibble` is a type of table or `data.frame`. The function `tibble::tibble()` creates a tibble with a column for each argument. Each argument takes the form `column_name = data_vector`.
 
@@ -422,7 +394,7 @@ dat <- tibble(
 )
 ```
 
-#### `t.test`
+### `t.test`
 
 You can run a Welch two-sample t-test by including the two samples you made as the first two arguments to the function `t.test`. You can reference one column of a table by its names using the format `table_name$column_name`
 
@@ -436,13 +408,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -2.0448, df = 37.784, p-value = 0.04789
+## t = -1.4368, df = 35.131, p-value = 0.1596
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.308466638 -0.006424632
+##  -1.0619293  0.1816701
 ## sample estimates:
 ## mean of x mean of y 
-##  5.261487  5.918932
+##  5.404204  5.844333
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
@@ -459,16 +431,16 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -2.0448, df = 37.784, p-value = 0.04789
+## t = -1.4368, df = 35.131, p-value = 0.1596
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.308466638 -0.006424632
+##  -1.0619293  0.1816701
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.261487        5.918932
+##        5.404204        5.844333
 ```
 
-#### `broom::tidy()`
+### `broom::tidy()`
 
 You can use the function `broom::tidy()` to extract the data from a statistical test in a table format. The example below pipes everything together.
 
@@ -487,8 +459,8 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.603      5.00      5.60     -1.83  0.0750      36.9    -1.27
-## # ... with 3 more variables: conf.high <dbl>, method <chr>,
+## 1   -0.301      5.05      5.35     -1.05   0.299      37.8   -0.878
+## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
 
@@ -507,10 +479,10 @@ tibble(
 ```
 
 ```
-## [1] 0.9353767
+## [1] 0.03498453
 ```
 
-#### Turn into a function
+### Turn into a function
 
 First, name your function `t_sim` and wrap the code above in a function with no arguments. 
 
@@ -536,10 +508,10 @@ t_sim()
 ```
 
 ```
-## [1] 0.219669
+## [1] 0.01302028
 ```
 
-#### `replicate()`
+### `replicate()`
 
 You can use the `replicate` function to run your function any number of times. Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
 
@@ -552,10 +524,10 @@ power
 ```
 
 ```
-## [1] 0.356
+## [1] 0.334
 ```
 
-#### Add arguments
+### Add arguments
 
 You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine `t_sim`, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.
 
@@ -578,18 +550,12 @@ Test your function with some different values to see if the results make sense.
 
 ```r
 t_sim(100)
-```
-
-```
-## [1] 0.4012639
-```
-
-```r
 t_sim(100, 0, 1, 0.5, 1)
 ```
 
 ```
-## [1] 3.092877e-06
+## [1] 0.5269568
+## [1] 0.000680598
 ```
 
 Use `replicate` to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.
@@ -602,7 +568,7 @@ power
 ```
 
 ```
-## [1] 0.302
+## [1] 0.266
 ```
 
 Compare this to power calculated from the `power.t.test` function.
@@ -631,6 +597,10 @@ Calculate power via simulation and `power.t.test` for the following tests:
 * 20 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 40 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 20 subjects/group, A: m = 10, SD = 1; B: m = 12, SD = 1.5
+
+## Exercises
+
+Download the [formative exercises](formative_exercises/07_functions_stub.Rmd). See the [answers](formative_exercises/07_functions_answers.Rmd) only after you've attempted all the questions.
 
 <!--
 ### Custom functions: `sim_data`
@@ -671,16 +641,16 @@ sim_data()
 ## # A tibble: 10 x 5
 ##        Y    mu   eff A         err
 ##    <dbl> <dbl> <dbl> <chr>   <dbl>
-##  1  97.4   100    -3 A1     0.389 
-##  2  96.2   100    -3 A1    -0.802 
-##  3  97.1   100    -3 A1     0.0935
-##  4  97.3   100    -3 A1     0.338 
-##  5  97.9   100    -3 A1     0.890 
-##  6 103.    100     3 A2    -0.339 
-##  7 102.    100     3 A2    -0.509 
-##  8 104.    100     3 A2     0.893 
-##  9 103.    100     3 A2    -0.136 
-## 10 104.    100     3 A2     0.969
+##  1  97.4   100    -3 A1     0.362 
+##  2  96.8   100    -3 A1    -0.156 
+##  3  96.6   100    -3 A1    -0.362 
+##  4  95.8   100    -3 A1    -1.18  
+##  5  97.4   100    -3 A1     0.418 
+##  6 103.    100     3 A2    -0.459 
+##  7 104.    100     3 A2     1.47  
+##  8 102.    100     3 A2    -1.31  
+##  9 103.    100     3 A2    -0.493 
+## 10 103.    100     3 A2    -0.0427
 ```
 
 <p class="alert alert-info">What happens when you call the function with different values?</p>
@@ -699,37 +669,31 @@ sim_data <- function(mu = 100, eff = 3, sd = 1, n_per_group = 5) {
 }
 
 sim_data(n_per_group = 2)
+sim_data(0, 10, 40, 20)
 ```
 
 ```
 ## # A tibble: 4 x 5
 ##       Y    mu   eff A        err
 ##   <dbl> <dbl> <dbl> <fct>  <dbl>
-## 1  96.6   100    -3 A1    -0.376
-## 2  96.0   100    -3 A1    -0.951
-## 3 104.    100     3 A2     1.01 
-## 4 103.    100     3 A2    -0.468
-```
-
-```r
-sim_data(0, 10, 40, 20)
-```
-
-```
+## 1  96.5   100    -3 A1    -0.495
+## 2  97.7   100    -3 A1     0.682
+## 3 104.    100     3 A2     0.716
+## 4 105.    100     3 A2     1.83 
 ## # A tibble: 40 x 5
 ##          Y    mu   eff A        err
 ##      <dbl> <dbl> <dbl> <fct>  <dbl>
-##  1  24.8       0   -10 A1     34.8 
-##  2  53.1       0   -10 A1     63.1 
-##  3  40.3       0   -10 A1     50.3 
-##  4 -34.6       0   -10 A1    -24.6 
-##  5   7.48      0   -10 A1     17.5 
-##  6  -0.912     0   -10 A1      9.09
-##  7 -18.7       0   -10 A1     -8.75
-##  8 -27.7       0   -10 A1    -17.7 
-##  9 -26.1       0   -10 A1    -16.1 
-## 10 -40.8       0   -10 A1    -30.8 
-## # ... with 30 more rows
+##  1 -40.5       0   -10 A1    -30.5 
+##  2   5.79      0   -10 A1     15.8 
+##  3 -40.8       0   -10 A1    -30.8 
+##  4 -27.4       0   -10 A1    -17.4 
+##  5 -19.0       0   -10 A1     -9.03
+##  6  15.2       0   -10 A1     25.2 
+##  7  -0.436     0   -10 A1      9.56
+##  8  -5.81      0   -10 A1      4.19
+##  9 -77.5       0   -10 A1    -67.5 
+## 10  33.9       0   -10 A1     43.9 
+## # … with 30 more rows
 ```
 
 OK now let's wrap the code you created to run an ANOVA and get the p-value in the function `run_anova()`.  It should have one argument, `x`, which is the data on which the anova is to be performed, and it should return a single value: the $p$-value.  Call it a few times with `x` as a simulated dataset to make sure it works as you intended, and that the p-values are changing.
@@ -745,7 +709,7 @@ run_anova(sim_data())
 ```
 
 ```
-## [1] 0.0001247597
+## [1] 1.032694e-05
 ```
 
 Modify `run_anova()` so that it accepts an additional argument `all_stats` (default `FALSE`) which determines whether the whole table from `broom::tidy()` is returned (when `TRUE`), or just the $p$-value (when `FALSE`).
@@ -763,22 +727,16 @@ run_anova <- function(x, all_stats = FALSE) {
 }
 
 run_anova(sim_data())
-```
-
-```
-## [1] 2.217877e-06
-```
-
-```r
 run_anova(sim_data(), TRUE)
 ```
 
 ```
+## [1] 0.0001395893
 ## # A tibble: 2 x 6
-##   term         df sumsq meansq statistic     p.value
-##   <chr>     <dbl> <dbl>  <dbl>     <dbl>       <dbl>
-## 1 A             1 90.2  90.2        115.  0.00000497
-## 2 Residuals     8  6.26  0.782       NA  NA
+##   term         df sumsq meansq statistic    p.value
+##   <chr>     <dbl> <dbl>  <dbl>     <dbl>      <dbl>
+## 1 A             1 80.8   80.8       78.4  0.0000209
+## 2 Residuals     8  8.25   1.03      NA   NA
 ```
 
 ## Iterating
@@ -817,19 +775,19 @@ map(dsets, run_anova)
 
 ```
 ## [[1]]
-## [1] 1.555793e-06
+## [1] 1.060335e-08
 ## 
 ## [[2]]
-## [1] 4.302451e-05
+## [1] 8.363421e-06
 ## 
 ## [[3]]
-## [1] 9.423794e-07
+## [1] 3.202106e-05
 ## 
 ## [[4]]
-## [1] 2.13971e-05
+## [1] 2.409401e-05
 ## 
 ## [[5]]
-## [1] 4.397582e-06
+## [1] 7.72655e-05
 ```
 
 3. Re-write the `map()` command above so that it returns a vector of type `double` instead of a list.  At the same time, re-write it so that it performs steps 1 and 2 in a single line.
@@ -840,7 +798,7 @@ map_dbl(rerun(5, sim_data()), run_anova)
 ```
 
 ```
-## [1] 2.016016e-05 2.098302e-05 1.853666e-05 2.279787e-05 3.642853e-05
+## [1] 5.014850e-05 1.218193e-06 9.929591e-05 9.010769e-05 7.623430e-06
 ```
 
 4. Write code to count the proportion of runs for which the $p$-value is less than .05.  This is your estimate of power, given the effect size.
@@ -871,6 +829,7 @@ my_eff <- 1
 my_sd <- 3
 
 power.t.test(n = 20, delta = my_eff, sd = my_sd)
+sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
 ```
 
 ```
@@ -885,14 +844,8 @@ power.t.test(n = 20, delta = my_eff, sd = my_sd)
 ##     alternative = two.sided
 ## 
 ## NOTE: n is number in *each* group
-```
-
-```r
-sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
-```
-
-```
-## [1] 0.529
+## 
+## [1] 0.527
 ```
 
 -->
