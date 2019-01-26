@@ -1,0 +1,218 @@
+---
+title: 'Formative Exercise 04: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+```
+
+Tidy the data from [personality.csv](https://gupsych.github.io/data_skills/data/personality.csv).
+
+These data are from a 5-factor (OCEAN) personality questionnaire. Each question 
+is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, 
+Ag = agreeableness, and Ne = neuroticism) and the question number.
+
+1. *Basic*: Load the data and convert from wide to long format. 
+
+    The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
+
+    
+```{r Q1}
+ocean <- read_csv("https://gupsych.github.io/data_skills/data/personality.csv") %>%
+  gather("question", "score", Op1:Ex9)
+```
+
+
+2. *Basic*: Split the `question` column into two columns: `domain` and `qnumber`.
+
+    <p class="alert alert-info'>
+    There is no character to split on, here, but you can separate a column after a 
+    specific number of characters by setting `sep` to  an integer. For example, to 
+    split "abcde" after the third character, use `sep = 3`, which results in 
+    c("abc", "de"). You can also use negative number to split before the *n*th 
+    character from the right. For example, to split a column that has words of 
+    various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can 
+    use `sep = -2`.</p>
+
+    
+```{r Q2}
+ocean_sep <- ocean %>%
+  separate(question, c("domain", "qnumber"), sep = 2)
+```
+
+
+3. *Basic*: Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
+
+    
+```{r Q3}
+ocean_unite <- ocean_sep %>%
+  unite("domain_n", domain, qnumber, sep = "_Q")
+```
+
+
+4. *Basic*: Convert back to wide format.
+
+    
+```{r Q4}
+ocean_spread <- ocean_unite %>%
+  spread(domain_n, score)
+```
+
+
+5. *Intermediate*: Chain all the steps above using pipes.
+    
+```{r Q5}
+ocean <- read_csv("https://gupsych.github.io/data_skills/data/personality.csv") %>%
+  gather("question", "score", Op1:Ex9) %>%
+  separate(question, c("domain", "qnumber"), sep = 2) %>%
+  unite("domain_n", domain, qnumber, sep = "_Q") %>%
+  spread(domain_n, score)
+```
+
+
+*Intermediate*: Debug the following code:
+
+6. Load the data from [sensation_seeking.csv](https://gupsych.github.io/data_skills/data/sensation_seeking.csv).
+
+```{r Q6-error, error=TRUE}
+ss <- read_csv(https://gupsych.github.io/data_skills/data/sensation_seeking.csv)
+```
+
+    
+```{r Q6}
+ss <- read_csv("https://gupsych.github.io/data_skills/data/sensation_seeking.csv")
+```
+
+
+7. Convert from wide to long format.
+```{r Q7-error, error=TRUE}
+ss_long <- gather(ss, "question", "score")
+```
+
+    
+```{r Q7}
+ss_long <- gather(ss, "question", "score", sss1:sss14)
+```
+
+    
+8.  Split the `question` column into two columns: `domain` and `qnumber`.
+```{r Q8-error, error = TRUE}
+ss_sep <- ss_long %>%
+  separate(question, domain, qnumber, sep = 3)
+```
+
+
+```{r Q8}
+ss_sep <- ss_long %>%
+  separate(question, c("domain", "qnumber"), sep = 3)
+```
+
+    
+9. Put the `id` and `user_id` columns together into a new column named `super_id`. Make it in a format like "id-user_id".
+```{r Q9-error, error=TRUE}
+ss_unite <- ss_sep %>%
+  unite(id, user_id, "super_id", sep = "-")
+```
+
+
+```{r Q9}
+ss_unite <- ss_sep %>%
+  unite("super_id", id, user_id, sep = "-")
+```
+
+ 
+10.  Convert back to wide format.
+```{r Q10-error, error=TRUE}
+ss_wide <- ss_unite %>%
+  spreadr(qnumber, score)
+```
+
+
+```{r Q10}
+ss_wide <- ss_unite %>%
+  spread(qnumber, score)
+```
+
+    
+*Intermediate*: Load the dataset [family_composition.csv](https://gupsych.github.io/data_skills/data/family_composition.csv).
+
+11. The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis).
+
+    
+```{r}
+
+family <- read_csv("https://gupsych.github.io/data_skills/data/family_composition.csv") %>%
+  gather("sibtype", "n", oldbro:twinsis) %>%
+  separate(sibtype, c("sibage", "sibsex"), sep = -3)
+
+```
+
+    
+*Advanced*: Tidy the data from [eye_descriptions.csv](https://gupsych.github.io/data_skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face, separated by commas, semicolons, or slashes. 
+
+12. Create a dataset with separate columns for face_id, description, and number of description.
+
+    
+```{r Q12}
+
+eyes <- read_csv("https://gupsych.github.io/data_skills/data/eye_descriptions.csv") %>%
+  gather("face_id", "description", t1:t50) %>%
+  separate(description, c("d1", "d2", "d3"), sep = "(,|;|\\/)+", extra = "merge") %>%
+  gather("desc_n", "description", d1:d3) %>%
+  filter(!is.na(description))  # gets rid of rows with no description
+
+```
+
+    
+*I'm bored*
+
+13. Using the family composition dataset from question 11, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
+
+    
+```{r Q13a}
+
+family %>%
+  group_by(user_id, sex, sibsex) %>%
+  summarise(n = sum(n)) %>%
+  group_by(user_id) %>%
+  filter(sex %in% c("male", "female"), sum(n) < 6) %>%
+  ggplot(aes(n, fill = sibsex)) +
+  geom_histogram(binwidth = 1, colour = "black", position = "dodge")
+
+```
+    
+```{r Q13b}
+family %>%
+  group_by(user_id, sex, sibsex) %>%
+  summarise(n = sum(n)) %>%
+  filter(sex %in% c("male", "female")) %>%
+  spread(sibsex, n) %>%
+  filter(bro + sis < 6) %>%
+  ggplot(aes(bro, sis)) +
+  geom_bin2d(binwidth = c(1,1))
+```    
+
+    
+14. Create a list of the 10 most common descriptions from the eye colour dataset in question 12. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to `knitr::kable()`.
+
+    
+```{r Q14}
+
+eyes %>%
+  mutate(
+    description = trimws(description), # get rid of white space around string
+    description = tolower(description) # make all characters lowercase
+  ) %>%
+  group_by(description) %>%
+  summarise(n = n()) %>%               # count occurances of each description
+  arrange(desc(n)) %>%                 # sort by count (descending)
+  filter(nchar(description) > 1) %>%   # get rid of 1-character descriptions
+  filter(row_number() < 11) %>%
+  knitr::kable()
+
+```
+
+

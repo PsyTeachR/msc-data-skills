@@ -1,3 +1,8 @@
+```{r psyteachr-setup, include = FALSE}
+source("R/psyteachr_setup.R") # psyTeachR styles and functions
+source("R/my_setup.R")        # book-specific styles and functions
+```
+
 # Data Visualisation {#ggplot}
 
 ## Learning Objectives
@@ -98,6 +103,9 @@ Here we've created some data frames with different types of data.
 * `overlap` has two correlated ordinal variables and 1000 observations so there is a lot of overlap
 * `overplot` has two correlated continuous variables and 10000 observations
 
+```{r set-seed, echo = FALSE}
+set.seed(8675309)
+```
 
 ```{r}
 

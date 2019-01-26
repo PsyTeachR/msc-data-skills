@@ -1,6 +1,11 @@
+```{r psyteachr-setup, include = FALSE}
+source("R/psyteachr_setup.R") # psyTeachR styles and functions
+source("R/my_setup.R")        # book-specific styles and functions
+```
+
 # Probability & Simulation {#sim}
 
-## Learning Objectives {.tabset}
+## Learning Objectives
 
 ### Basic
 
@@ -32,21 +37,13 @@
 
 8. Generate 3+ variables from a multivariate normal distribution and plot them
 
-## Prep
-
-* [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science* 
-
-
 ## Resources
 
+* [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science*
 * [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera (week 1)
 
-## Formative exercises
 
-Download the [formative exercises](formative_exercises/08_simulations_stub.Rmd). See the [answers](formative_exercises/08_simulations_answers.Rmd) only after you've attempted all the questions.
-
-
-## Class Notes
+## Distributions
 
 Simulating data is a very powerful way to test your understanding of statistical 
 concepts. We are going to use simulations to learn the basics of probability.
@@ -55,6 +52,10 @@ concepts. We are going to use simulations to learn the basics of probability.
 # libraries needed for these examples
 library(tidyverse)
 library(MASS)
+```
+
+```{r set-seed, echo = FALSE}
+set.seed(8675309)
 ```
 
 ### Uniform Distribution
@@ -162,8 +163,9 @@ ggplot() +
   )
 ```
 
-<p class="alert alert-info">Run the simulation above several times, noting how 
-the histogram changes. Try changing the values of `n`, `size`, and `prob`.</p>
+```{block, type="info"}
+Run the simulation above several times, noting how the histogram changes. Try changing the values of `n`, `size`, and `prob`.
+```
 
 #### Exact binomial test
 
@@ -190,7 +192,7 @@ binom.test(biased_coin, n, p = 0.5)
 
 ```
 
-<div class="alert alert-info">
+```{block, type="info"}
 Run the code above several times, noting the p-values for the fair and biased coins. 
 Alternatively, you can [simulate coin flips](https://debruine.shinyapps.io/coinsim/) 
 online and build up a graph of results and p-values. 
@@ -200,7 +202,7 @@ online and build up a graph of results and p-values.
 * What criterion would you use to tell if the observed data indicate the coin is fair or biased?
 * How often do you conclude the fair coin is biased (false positives)? 
 * How often do you conclude the biased coin is fair (false negatives)?
-</div>
+```
 
 #### False positives & negatives
 
@@ -257,11 +259,13 @@ mean(my_reps < 0.05)
 
 ```
 
-<p class="alert alert-info">`1e4` is just scientific notation for a 1 followed 
+```{block, type="info"}
+`1e4` is just scientific notation for a 1 followed 
 by 4 zeros (`10000`). When youre running simulations, you usually want to run a 
 lot of them and it's a pain to keep track of whether you've typed 5 or 6 zeros 
 (100000 vs 1000000) and this will change your running time by an order of 
-magnitude.</p>
+magnitude.
+```
 
 ### Normal Distribution
 
@@ -291,9 +295,11 @@ ggplot() +
   )
 ```
 
-<p class="alert alert-info">Run the simulation above several times, noting how 
+```{block, type="info"}
+Run the simulation above several times, noting how 
 the density plot changes. What do the vertical lines represent? Try changing the 
-values of `n`, `mean`, and `sd`.</p>
+values of `n`, `mean`, and `sd`.
+```
 
 #### T-test
 
@@ -322,9 +328,9 @@ t_ind <- t.test(a, b, paired = FALSE)
 t_ind
 ```
 
-<p class="alert alert-warning">The `paired` argument defaults to `FALSE`, but 
-it's good practice to always explicitly set it so you are never confused about 
-what type of test you are performing.</p>
+```{block, type="warning"}
+The `paired` argument defaults to `FALSE`, but it's good practice to always explicitly set it so you are never confused about what type of test you are performing.
+```
 
 #### Sampling function
 
@@ -371,9 +377,9 @@ power <- mean(my_reps < alpha)
 power
 ```
 
-<p class="alert alert-info">Run the code above several times. How much does the 
-power value fluctuate? How many replications do you need to run to get a reliable 
-estimate of power?</p>
+```{block, type="try"}
+Run the code above several times. How much does the power value fluctuate? How many replications do you need to run to get a reliable estimate of power?
+```
 
 Compare your power estimate from simluation to a power calculation using `power.t.test()`. 
 Here, `delta` is the difference between `m1` and `m2` above.
@@ -396,11 +402,14 @@ ggplot() +
   )
 ```
 
-<p class="alert alert-info">What do you think the distribution of p-values is 
-when there is no effect (i.e., the means are identical)? Check this yourself.</p>
+```{block, type="try"}
+What do you think the distribution of p-values is 
+when there is no effect (i.e., the means are identical)? Check this yourself.
+```
 
-<p class="alert alert-warning">Make sure the `boundary` argument is set to `0` 
-for p-value histograms. See what happens with a null effect if `boundary` is not set.</p>
+```{block, type="warning"}
+Make sure the `boundary` argument is set to `0` for p-value histograms. See what happens with a null effect if `boundary` is not set.
+```
 
 #### Bivariate Normal
 
@@ -538,13 +547,15 @@ height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.cs
   dplyr::select(sex, age, mean = `0`, sd)
 ```
 
-<p class="alert alert-warning">If you run the code above without putting `dplyr::` 
+```{block, type="warning"}
+If you run the code above without putting `dplyr::` 
 before the `select()` function, you will get an error message. This is because 
 the `MASS` package also has a function called `select()` and, since we loaded 
 `MASS` after `tidyverse`, the `MASS` function is the default. When you loaded 
 `MASS`, you should have seen a warning like "The following object is masked from 
 ‘package:dplyr’: select". You can use functions with the same name from different 
-packages by specifying the package before the function name, separated by two colons.</p>
+packages by specifying the package before the function name, separated by two colons.
+```
 
 ### Plot
 
@@ -591,8 +602,9 @@ ggplot(sim_height) +
 
 ```
 
-<p class="alert alert-info">Run the simulation above several times, noting how 
-the density plot changes. Try changing the age you're simulating.</p>
+```{block, type="try"}
+Run the simulation above several times, noting how the density plot changes. Try changing the age you're simulating.
+```
 
 ### Analyse simulated data
 
@@ -656,9 +668,9 @@ trial and error. We know the number should be slightly larger than 50. But you
 can search more systematically by repeating your power calculation for a range 
 of sample sizes. 
 
-<p class="alert alert-info">This might seem like overkill for a t-test, where 
-you can easily look up sample size calculators online, but it is a valuable 
-skill to learn for when your analyses become more complicated.</p>
+```{block, type="info"}
+This might seem like overkill for a t-test, where you can easily look up sample size calculators online, but it is a valuable skill to learn for when your analyses become more complicated.
+```
 
 Start with a relatively low number of replications and/or more spread-out samples 
 to estimate where you should be looking more specifically. Then you can repeat 
@@ -702,4 +714,8 @@ power_table <- tibble(
 ##  scale_x_continuous(breaks = sample_size)
 
 ```
+
+## Formative exercises
+
+Download the [formative exercises](formative_exercises/08_simulations_stub.Rmd). See the [answers](formative_exercises/08_simulations_answers.Rmd) only after you've attempted all the questions.
 

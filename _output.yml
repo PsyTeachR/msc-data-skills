@@ -1,16 +1,20 @@
-bookdown::gitbook:
-  css: style.css
+bookdown::gitbook: 
+  default: true
+  smart: false
+  includes:
+    after_body: include/webex.js
+  css: include/style.css
   config:
     toc:
+      collapse: section
       before: |
         <li><a href="./">Data Skills</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+        <li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+    download: []
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
-bookdown::epub_book: default

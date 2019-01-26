@@ -1,11 +1,13 @@
-# Introduction 2 {#intro2}
+
+
+# Working with Data {#data}
 
 ## Learning Objectives
 
-1. [Organizing a project](#project_org): directory structure and working directory 
-2. Appropriately [structure an R script or RMarkdown file](#script_struct)
-3. Understand the use the [basic data types](#data_types) (integer, double, character, factor)
-4. Understand and use the [basic container types](#containers) (list, vector)
+1. Understand the use the [basic data types](#data_types)
+2. Understand and use the [basic container types](#containers) (list, vector)
+3. [Creating vectors](#vectors) and storing as [variables](#vars)
+4. Understand [vectorized operations](#vectorized_ops)
 5. Create a simple [data table](#tables)
 6. [Import data](#import_data) from a CSV and Excel files
 7. Combining analysis steps using the `magrittr` [pipe `%>%`](#pipes)
@@ -20,100 +22,18 @@
 * [Developing an analysis in R/RStudio: Scottish babynames (2/2)](https://www.youtube.com/watch?v=lzdTHCcClqo)
 
 
-## Organizing a project {#project_org}
-
-### Working Directory
-
-Where should I put all my files?
-
-When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure.  Usually there is a single *working directory* where your data and scripts are stored.   For the purpose of this class, to minimize problems, please store your files on your network drive (usually something like the M: drive or U: drive on a Windows machine.)
-
-Your script should only reference files in three locations, using the appropriate format.
-
-| Where                                      |  Example |
-|--------------------------------------------|-----------------------|
-| on the web  | "https://github.com/gupsych/data_skills/blob/master/02_intro.Rmd" |
-| in the working directory  | "my_file2.csv"  |
-| in a subdirectory | "subdir/my_file2.csv" |
-
-<div class="warning">
-<p>Never set or change your working directory in a script; always store your main script file in the top-level directory and manually set your working directory to that location. This means you'll have to reset the working directory each time you open RStudio, but this is a small price to pay for reproducibility (alternatively, learn about <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R Projects</a>).</p>
-</div>
-
-For instance, if on a Windows machine your data and scripts live in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory to `new_analysis` in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.  If you 'knit' an RMarkdown file, your working directory is automatically set to the same directory where the Rmd file is located during the knitting process. But if you're planning on running the code chunks individually, you'll need to manually set the directory.
-
-<div class="warning">
-<p>It's tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don't do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you). <em>When manually setting the working directory, always do so by using the <code>Session | Set Working Directory</code> pull-down option or by typing <code>setwd()</code> in the console.</em></p>
-</div>
-
-If your script needs a file in a subdirectory of `new_analysis`, say, `analysis2/dat.rds`, load it in using a relative path:
-
-
-```r
-dat <- readRDS("analysis2/dat.rds")  # right way
-```
-
-Do not load it in using an absolute path:
-
-
-```r
-dat <- readRDS("C:/Carla's_files/thesis22/my_thesis/new_analysis/analysis2/dat.rds")   # wrong
-```
-
-<div class="info">
-<p>Also note the convention of using forward slashes, unlike the Windows specific convention of using backward slashes. This is to make references to files platform independent.</p>
-</div>
-
-## Structuring your script {#script_struct}
-
-If you structure your R script or RMarkdown file in a predictable way, it will make your life much easier.  All scripts should have the following structure:
-
-1. Load any add-on packages you will need
-2. Define any custom functions
-3. Import data
-4. Perform the analysis
-
-Consider, for instance, the script that we created in the last session:
-
-
-```r
-# Load the add-on packages
-library("tidyverse")
-library("ukbabynames")
-
-# If we had created any functions (we didn't) we would put them here. We will
-# learn about creating functions later in the course.
-
-# Import the data
-nam0 <- read_csv("PSYCH5077 Grades-20180921_0719-comma_separated.csv") %>%
-  select(name = `First name`) # rename the column
-
-# The rest of the script performs the analysis
-nam1 <- tibble(name = c("Dale", "Lisa", "Rebecca"))
-
-nam_uk <- bind_rows(nam0, nam1) %>%
-  inner_join(ukbabynames, "name") 
-
-ggplot(nam_uk, aes(x = year, y= n,
-                   colour = sex)) +
-  geom_line() +
-  facet_wrap(~name, scales = "free_y")
-```
-
-Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to `library(package_I_need)` way down in the script. Put it in the top, so the user has an overview of what packages are needed.
-
-When structuring an RMarkdown file, it is generally a good idea to have a single code chunk for each output that is produced in the report; for instance, the above code could all be in a single chunk since the only output we care about is the graph at the end. It is also a good idea to suppress any warnings or messages in the report so that they don't confuse the reader. You can suppress messages or warnings by using the code chunk options `message=FALSE` and `warning=FALSE`.
-
 ## Basic data types {#data_types}
 
-There are four main basic data types in R (there are more, but these are the critical ones you need to know about).
+There are five main basic data types in R (there are more, but these are the critical ones you need to know about).
 
-|type         | examples                         |
-|-------------|----------------------------------|
-| `character` | "hello", "ABCDE1", "12 45", "123.45"|
-| `integer`   | 10L, 50L, 1L, -20L                  |
-| `double` aka `numeric`    | 10, 3.1415, -99.7, 0.001, -3.5e6    |
-| `logical`   | `TRUE`, `FALSE`                   |
+| type      | description                | example                  |
+|:----------|:---------------------------|:-------------------------|
+| double    | floating point value       | `.333337`                |
+| integer   | integer                    | `-1, 0, 1`               |
+| numeric   | any real number (int,dbl)  | `1, .5, -.222`           |
+| boolean   | assertion of truth/falsity | `TRUE, FALSE`            |
+| character | text string                | `"hello world", 'howdy'` |
+
 
 There is also a specific data type called a `factor` which will probably give you a headache sooner or later, but we can get by for now without them.
 
@@ -131,52 +51,47 @@ my_string
 
 Note that if you just type a plain number such as `10` it is stored as a double, even if it doesn't have a decimal point. If you want it to be an exact integer, use the `L` suffix (10L).
 
-If you ever want to know the data type of something, use the class function.  There is also the `mode` function which is specifically for vectors.
+If you ever want to know the data type of something, use the `class` function.  There is also the `mode` function which is specifically for vectors.
 
 
 ```r
 class(10) # numeric
-```
-
-```
-## [1] "numeric"
-```
-
-```r
 class(10L) # integer
-```
-
-```
-## [1] "integer"
-```
-
-```r
 class("10") # string
-```
-
-```
-## [1] "character"
-```
-
-```r
 class(10L == 11L) # logical
-```
-
-```
-## [1] "logical"
-```
-
-```r
 mode(TRUE)
 ```
 
 ```
+## [1] "numeric"
+## [1] "integer"
+## [1] "character"
+## [1] "logical"
 ## [1] "logical"
 ```
 
 ## Basic container types {#containers}
 
-### Vectors
+### Vectors {#vectors}
+
+Vectors are one of the key data structures in R.  A vector in R is like a vector in math: a set of ordered elements.  All of the elements in a vector must be of the same *data type* (numeric, character, factor).  You can create a vector by enclosing the elements in `c(...)`, as shown below.
+
+
+```r
+## put information into a vector using c(...)
+c(1, 2, 3)
+
+c("this", "is", "cool")
+
+## what happens when you mix types?
+c(2, "good", 2, "b", "true")
+```
+
+```
+## [1] 1 2 3
+## [1] "this" "is"   "cool"
+## [1] "2"    "good" "2"    "b"    "true"
+```
 
 OK, here's a question. When you type a single number in the console, it spits it back out to you, like this:
 
@@ -232,27 +147,17 @@ And then pull them out using the `[]` operator, which is the *extraction* operat
 
 ```r
 vec[c(1L, 19L, 37L, 55L)]
-```
 
-```
-## [1] 200 218 236 254
-```
-
-```r
 ## note also:
 index <- c(1L, 19L, 37L, 55L)
 vec[index]
-```
 
-```
-## [1] 200 218 236 254
-```
-
-```r
 vec[c(1L, 1L, 19L, 19L, 19L, 19L)]
 ```
 
 ```
+## [1] 200 218 236 254
+## [1] 200 218 236 254
 ## [1] 200 200 218 218 218 218
 ```
 
@@ -290,17 +195,11 @@ Another way to access elements is by using a logical vector within the square br
 
 ```r
 length(vec2)
-```
-
-```
-## [1] 3
-```
-
-```r
 vec2[c(TRUE, FALSE, TRUE)]
 ```
 
 ```
+## [1] 3
 ## first third 
 ##  77.9 100.1
 ```
@@ -313,26 +212,16 @@ What if you want to repeat a vector many times? You could either type it out (pa
 ```r
 # ten zeroes
 rep(0, 10)
-```
 
-```
-##  [1] 0 0 0 0 0 0 0 0 0 0
-```
-
-```r
 # alternating 1 and 3, 7 times
 rep(c(1L, 3L), 7)
-```
 
-```
-##  [1] 1 3 1 3 1 3 1 3 1 3 1 3 1 3
-```
-
-```r
 rep(c(TRUE, FALSE), 2)
 ```
 
 ```
+##  [1] 0 0 0 0 0 0 0 0 0 0
+##  [1] 1 3 1 3 1 3 1 3 1 3 1 3 1 3
 ## [1]  TRUE FALSE  TRUE FALSE
 ```
 
@@ -343,18 +232,16 @@ What if you want to create a sequence but with something other than integer step
 # Repeat a vector
 # See the ?rep function
 rep(c(TRUE, FALSE), 3)
+
+# Get every other (odd) element of vec
+vec[rep(c(TRUE, FALSE), 100)]
+
+# We can also store the logical vector in a variable and use that
+evens <- rep(c(FALSE, TRUE), 100)
 ```
 
 ```
 ## [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE
-```
-
-```r
-# Get every other (odd) element of vec
-vec[rep(c(TRUE, FALSE), 100)]
-```
-
-```
 ##   [1] 200 202 204 206 208 210 212 214 216 218 220 222 224 226 228 230 232
 ##  [18] 234 236 238 240 242 244 246 248 250 252 254 256 258 260 262 264 266
 ##  [35] 268 270 272 274 276 278 280 282 284 286 288 290 292 294 296 298 300
@@ -363,16 +250,54 @@ vec[rep(c(TRUE, FALSE), 100)]
 ##  [86] 370 372 374 376 378 380 382 384 386 388 390 392 394 396 398 400
 ```
 
-```r
-# We can also store the logical vector in a variable and use that
-evens <- rep(c(FALSE, TRUE), 100)
-```
-
 <div class="warning">
 <p>You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will coerce them so that they are all the same.</p>
 </div>
 
-### Exercises {#ex_vector}
+
+#### Vectorized Operations {#vectorized_ops}
+
+R performs calculations on vectors in a special way.  Let's look at an example using $z$-scores.  A $z$-score is a *deviation score* (a score minus a mean) divided by a standard deviation.  Let's say we have a set of four IQ scores.
+
+
+```r
+## example IQ scores: mu = 100, sigma = 15
+iq <- c(86, 101, 127, 99)
+```
+
+If we want to subtract the mean from these four scores, we just use the following code:
+
+
+```r
+iq - 100
+```
+
+```
+## [1] -14   1  27  -1
+```
+
+This subtracts 100 from each element of the vector.  R automatically assumes that this is what you wanted to do; it is called a *vectorized operation* and it makes it possible to express operations more efficiently.
+
+To calculate $z$-scores we use the formula:
+
+$z = \frac{X - \mu}{\sigma}$
+
+where X are the scores, $\mu$ is the mean, and $\sigma$ is the standard deviation.  We can expression this formula in R as follows:
+
+
+```r
+## z-scores
+(iq - 100) / 15
+```
+
+```
+## [1] -0.93333333  0.06666667  1.80000000 -0.06666667
+```
+
+You can see that it computed all four $z$-scores with a single line of code.  Very efficient!
+
+
+#### Exercises {#ex_vector}
 
 1. The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
     
@@ -411,7 +336,7 @@ You can refer to elements of a list by
 <p>Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code> objects, which you will learn about in the next section, are a special type of list. That means you can access the columns of one of these object using <code>tablename$column</code> syntax, which is sometimes useful.</p>
 </div>
 
-## Tabular data {#tables}
+### Tabular data {#tables}
 
 Most of what you will be working with in this course is *tabular data*, data arranged in the form of a table.
 
@@ -447,7 +372,7 @@ nrow(months)
 ncol(months)
 ```
 
-### Viewing your tibble
+#### Viewing your tibble
 
 Always, always, always, look at your data once you've created the table and load it in. Also look at it after each step that transforms your tibble.
 
@@ -476,7 +401,7 @@ starwars
 ##  8 R5-D4     97    32 <NA>       white, red red             NA   <NA>  
 ##  9 Bigg…    183    84 black      light      brown           24   male  
 ## 10 Obi-…    182    77 auburn, w… fair       blue-gray       57   male  
-## # ... with 77 more rows, and 5 more variables: homeworld <chr>,
+## # … with 77 more rows, and 5 more variables: homeworld <chr>,
 ## #   species <chr>, films <list>, vehicles <list>, starships <list>
 ```
 
@@ -499,19 +424,19 @@ glimpse(starwars)
 ```
 ## Observations: 87
 ## Variables: 13
-## $ name       <chr> "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", ...
-## $ height     <int> 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188...
-## $ mass       <dbl> 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 8...
-## $ hair_color <chr> "blond", NA, NA, "none", "brown", "brown, grey", "b...
-## $ skin_color <chr> "fair", "gold", "white, blue", "white", "light", "l...
-## $ eye_color  <chr> "blue", "yellow", "red", "yellow", "brown", "blue",...
-## $ birth_year <dbl> 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0...
-## $ gender     <chr> "male", NA, NA, "male", "female", "male", "female",...
-## $ homeworld  <chr> "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alder...
-## $ species    <chr> "Human", "Droid", "Droid", "Human", "Human", "Human...
-## $ films      <list> [<"Revenge of the Sith", "Return of the Jedi", "Th...
-## $ vehicles   <list> [<"Snowspeeder", "Imperial Speeder Bike">, <>, <>,...
-## $ starships  <list> [<"X-wing", "Imperial shuttle">, <>, <>, "TIE Adva...
+## $ name       <chr> "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "L…
+## $ height     <int> 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, …
+## $ mass       <dbl> 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.…
+## $ hair_color <chr> "blond", NA, NA, "none", "brown", "brown, grey", "bro…
+## $ skin_color <chr> "fair", "gold", "white, blue", "white", "light", "lig…
+## $ eye_color  <chr> "blue", "yellow", "red", "yellow", "brown", "blue", "…
+## $ birth_year <dbl> 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, …
+## $ gender     <chr> "male", NA, NA, "male", "female", "male", "female", N…
+## $ homeworld  <chr> "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaa…
+## $ species    <chr> "Human", "Droid", "Droid", "Human", "Human", "Human",…
+## $ films      <list> [<"Revenge of the Sith", "Return of the Jedi", "The …
+## $ vehicles   <list> [<"Snowspeeder", "Imperial Speeder Bike">, <>, <>, <…
+## $ starships  <list> [<"X-wing", "Imperial shuttle">, <>, <>, "TIE Advanc…
 ```
 
 The other way to look at the table is a more graphical spreadsheet-like version given by `View()` (capital 'V').  It can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user goes to run it.
@@ -526,7 +451,7 @@ as_tibble(mtcars) # much cleaner
 mtcars2 <- as_tibble(mtcars) # store it
 ```
 
-### Accessing rows and columns
+#### Accessing rows and columns
 
 There are various base R ways of accessing specific columns or rows from a table that are useful to know about, but you'll be learning easier (and more readable) ways when we get to the lecture on [data wrangling](04_wrangling.Rmd).  Examples of these base R accessing functions are provided here for reference.
 
@@ -545,7 +470,7 @@ months$month  # by column name
 
 You'll learn about data frame operations in the [tidyr](#tidyr) and [dplyr](#dplyr) lessons.
 
-### Exercises {#ex_tibble}
+#### Exercises {#ex_tibble}
 
 1. Create a tibble with the name, age, and sex of 3-5 people whose names, ages, and sex you know.
 
@@ -619,7 +544,7 @@ If you click on the View icon (![](images/01_walkthrough/table_icon.png)), it wi
 
 ![](images/01_walkthrough/View.png)
 
-This allows you to check that the data have been loaded in properly.  You can close the tab when you&rsquo;re done looking at it&#x2014;it won't remove the object.
+This allows you to check that the data have been loaded in properly.  You can close the tab when you're done looking at it&#x2014;it won't remove the object.
 
 ### Writing Data
 
@@ -644,6 +569,7 @@ This will save the data in CSV format to your working directory.
 ## Pipes
 
 Pipes (`%>%`) are very useful for stringing together a sequence of commands in R. They might be a bit confusing at first but they are worth learning because they will make your code more readable and efficient.
+
 Because pipes are a recent innovation, they are not part of base R. That means you need to load an add-on package to use them. Although the "home" package of the pipe operator is a package called magrittr, more commonly you will gain access to them by loading the tidyverse package (`library("tidyverse")`). If you get either of the following errors in your script:
 
 `Error: unexpected SPECIAL in "%>%"`  
@@ -662,7 +588,7 @@ sort(y, TRUE) # set second argument to 'TRUE' so that sort order is descending
 ```
 
 ```
-## [1] 10  9  8  7
+## [1] 10  7  3  2  1
 ```
 
 While there is nothing wrong with this code, it required us to define variables x and y which we won't ever need again, and which clutter up our environment. To avoid this you could rewrite this code using nested function calls like so:
@@ -677,7 +603,7 @@ sort(
 ```
 
 ```
-## [1] 9 6 1
+## [1] 10  7  6  5
 ```
 
 (If the above call looks confusing, it should!) The call to `sample()` is embedded within a call to `unique()` which in turn is embedded within a call to `sort()`. The functions are executed from most embedded (the "bottom") to least embedded (the "top"), starting with the function `sample()`, whose result is then passed in as the first argument to `unique()`, whose result in turn is passed in as the first argument to `sort()`; notice the second argument of sort (`TRUE`) is all the way at the end of the statement, making it hard to figure out which of the three functions it belongs to. We read from left to right; however, understanding this code requires us to work our way from right to left, and therefore unnatural. Moreover it is simply an ugly line of code.
@@ -691,14 +617,14 @@ sample(1:10, 5, replace = TRUE) %>%
 ```
 
 ```
-## [1] 7 6 4 2 1
+## [1] 9 6 5 1
 ```
 
 R will calculate the result of `sample(1:10, 5, replace = TRUE)` and then pass this result as the first argument of `unique()`; then, the result of `unique()` will in turn be passed along as the first argument of `sort()` with the second argument set to `TRUE`. The thing to note here is that for any function call on the right hand side of a pipe, you should omit the first argument and start with the second, because the pipe automatically places the result of the call on the left as the first argument of the next function call.
 
 #### Exercises {#ex_pipes}
 
-1. Re-write the following sequence of commands into a single 'pipeline'.
+1. Re-write the following sequence of commands into a single **pipeline**.
 
     
     ```r
