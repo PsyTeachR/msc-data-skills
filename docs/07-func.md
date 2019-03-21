@@ -1,5 +1,4 @@
 
-
 # Iteration & Functions {#func}
 
 ## Learning Objectives
@@ -8,25 +7,25 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Basic
 
-* Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
-* Use [arguments](#arguments) by order or name
-* Write your own [custom functions](#custom-functions) with `function()`
-* Set [default values](#defaults) for the arguments in your functions
+1. Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
+2. Use [arguments](#arguments) by order or name
+3. Write your own [custom functions](#custom-functions) with `function()`
+4. Set [default values](#defaults) for the arguments in your functions
 
 ### Intermediate
 
-* Understand [scope](#scope)
-* Use [error handling and warnings](#warnings-errors) in a function
+5. Understand [scope](#scope)
+6. Use [error handling and warnings](#warnings-errors) in a function
 
 ### Advanced
 
-The topics below are not covered in these materials, but they are directions for independent learning.
+The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
-* Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
-* Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
-* Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
-* Work with **nested data frames** in `dplyr`
-* Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
+7. Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
+8. Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
+9. Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
+10. Work with **nested data frames** in `dplyr`
+11. Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
 
 ## Resources
 
@@ -141,8 +140,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1 109.29   109.3   181.6 8.81e-07 ***
-## Residuals    8   4.81     0.6                     
+## A            1  95.01   95.01   35.86 0.000328 ***
+## Residuals    8  21.20    2.65                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -159,7 +158,7 @@ pval
 ```
 
 ```
-## [1] 8.809596e-07
+## [1] 0.0003276165
 ```
 -->
 
@@ -408,13 +407,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -1.4368, df = 35.131, p-value = 0.1596
+## t = -1.0799, df = 35.913, p-value = 0.2874
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.0619293  0.1816701
+##  -1.0611879  0.3237945
 ## sample estimates:
 ## mean of x mean of y 
-##  5.404204  5.844333
+##  5.051795  5.420492
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
@@ -431,13 +430,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -1.4368, df = 35.131, p-value = 0.1596
+## t = -1.0799, df = 35.913, p-value = 0.2874
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.0619293  0.1816701
+##  -1.0611879  0.3237945
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.404204        5.844333
+##        5.051795        5.420492
 ```
 
 ### `broom::tidy()`
@@ -459,7 +458,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.301      5.05      5.35     -1.05   0.299      37.8   -0.878
+## 1   -0.429      5.09      5.52     -1.49   0.143      37.9    -1.01
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
@@ -479,7 +478,7 @@ tibble(
 ```
 
 ```
-## [1] 0.03498453
+## [1] 0.29539
 ```
 
 ### Turn into a function
@@ -508,7 +507,7 @@ t_sim()
 ```
 
 ```
-## [1] 0.01302028
+## [1] 0.04511885
 ```
 
 ### `replicate()`
@@ -524,7 +523,7 @@ power
 ```
 
 ```
-## [1] 0.334
+## [1] 0.341
 ```
 
 ### Add arguments
@@ -554,8 +553,8 @@ t_sim(100, 0, 1, 0.5, 1)
 ```
 
 ```
-## [1] 0.5269568
-## [1] 0.000680598
+## [1] 0.1463723
+## [1] 0.002592571
 ```
 
 Use `replicate` to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.
@@ -568,7 +567,7 @@ power
 ```
 
 ```
-## [1] 0.266
+## [1] 0.295
 ```
 
 Compare this to power calculated from the `power.t.test` function.
@@ -639,18 +638,18 @@ sim_data()
 
 ```
 ## # A tibble: 10 x 5
-##        Y    mu   eff A         err
-##    <dbl> <dbl> <dbl> <chr>   <dbl>
-##  1  97.4   100    -3 A1     0.362 
-##  2  96.8   100    -3 A1    -0.156 
-##  3  96.6   100    -3 A1    -0.362 
-##  4  95.8   100    -3 A1    -1.18  
-##  5  97.4   100    -3 A1     0.418 
-##  6 103.    100     3 A2    -0.459 
-##  7 104.    100     3 A2     1.47  
-##  8 102.    100     3 A2    -1.31  
-##  9 103.    100     3 A2    -0.493 
-## 10 103.    100     3 A2    -0.0427
+##        Y    mu   eff A        err
+##    <dbl> <dbl> <dbl> <chr>  <dbl>
+##  1  98.2   100    -3 A1     1.17 
+##  2  97.7   100    -3 A1     0.712
+##  3  96.0   100    -3 A1    -0.988
+##  4  95.6   100    -3 A1    -1.43 
+##  5  98.7   100    -3 A1     1.71 
+##  6 102.    100     3 A2    -0.970
+##  7 103.    100     3 A2     0.139
+##  8 104.    100     3 A2     1.40 
+##  9 102.    100     3 A2    -0.546
+## 10 104.    100     3 A2     0.759
 ```
 
 <p class="alert alert-info">What happens when you call the function with different values?</p>
@@ -676,23 +675,23 @@ sim_data(0, 10, 40, 20)
 ## # A tibble: 4 x 5
 ##       Y    mu   eff A        err
 ##   <dbl> <dbl> <dbl> <fct>  <dbl>
-## 1  96.5   100    -3 A1    -0.495
-## 2  97.7   100    -3 A1     0.682
-## 3 104.    100     3 A2     0.716
-## 4 105.    100     3 A2     1.83 
+## 1  98.0   100    -3 A1     1.02 
+## 2  98.3   100    -3 A1     1.29 
+## 3 102.    100     3 A2    -0.529
+## 4 102.    100     3 A2    -1.11 
 ## # A tibble: 40 x 5
-##          Y    mu   eff A        err
-##      <dbl> <dbl> <dbl> <fct>  <dbl>
-##  1 -40.5       0   -10 A1    -30.5 
-##  2   5.79      0   -10 A1     15.8 
-##  3 -40.8       0   -10 A1    -30.8 
-##  4 -27.4       0   -10 A1    -17.4 
-##  5 -19.0       0   -10 A1     -9.03
-##  6  15.2       0   -10 A1     25.2 
-##  7  -0.436     0   -10 A1      9.56
-##  8  -5.81      0   -10 A1      4.19
-##  9 -77.5       0   -10 A1    -67.5 
-## 10  33.9       0   -10 A1     43.9 
+##         Y    mu   eff A        err
+##     <dbl> <dbl> <dbl> <fct>  <dbl>
+##  1  -1.18     0   -10 A1      8.82
+##  2  13.3      0   -10 A1     23.3 
+##  3 -42.6      0   -10 A1    -32.6 
+##  4 -67.9      0   -10 A1    -57.9 
+##  5 -15.5      0   -10 A1     -5.53
+##  6 -47.7      0   -10 A1    -37.7 
+##  7 -17.2      0   -10 A1     -7.25
+##  8  27.4      0   -10 A1     37.4 
+##  9 -40.6      0   -10 A1    -30.6 
+## 10  -2.59     0   -10 A1      7.41
 ## # … with 30 more rows
 ```
 
@@ -709,7 +708,7 @@ run_anova(sim_data())
 ```
 
 ```
-## [1] 1.032694e-05
+## [1] 0.0001495005
 ```
 
 Modify `run_anova()` so that it accepts an additional argument `all_stats` (default `FALSE`) which determines whether the whole table from `broom::tidy()` is returned (when `TRUE`), or just the $p$-value (when `FALSE`).
@@ -731,12 +730,12 @@ run_anova(sim_data(), TRUE)
 ```
 
 ```
-## [1] 0.0001395893
+## [1] 2.511411e-06
 ## # A tibble: 2 x 6
 ##   term         df sumsq meansq statistic    p.value
 ##   <chr>     <dbl> <dbl>  <dbl>     <dbl>      <dbl>
-## 1 A             1 80.8   80.8       78.4  0.0000209
-## 2 Residuals     8  8.25   1.03      NA   NA
+## 1 A             1 88.6   88.6       75.3  0.0000242
+## 2 Residuals     8  9.42   1.18      NA   NA
 ```
 
 ## Iterating
@@ -775,19 +774,19 @@ map(dsets, run_anova)
 
 ```
 ## [[1]]
-## [1] 1.060335e-08
+## [1] 8.159647e-05
 ## 
 ## [[2]]
-## [1] 8.363421e-06
+## [1] 0.0002610973
 ## 
 ## [[3]]
-## [1] 3.202106e-05
+## [1] 2.664196e-05
 ## 
 ## [[4]]
-## [1] 2.409401e-05
+## [1] 4.875184e-06
 ## 
 ## [[5]]
-## [1] 7.72655e-05
+## [1] 7.729304e-08
 ```
 
 3. Re-write the `map()` command above so that it returns a vector of type `double` instead of a list.  At the same time, re-write it so that it performs steps 1 and 2 in a single line.
@@ -798,7 +797,7 @@ map_dbl(rerun(5, sim_data()), run_anova)
 ```
 
 ```
-## [1] 5.014850e-05 1.218193e-06 9.929591e-05 9.010769e-05 7.623430e-06
+## [1] 1.467180e-04 1.511314e-06 1.298097e-05 1.300212e-05 7.180691e-07
 ```
 
 4. Write code to count the proportion of runs for which the $p$-value is less than .05.  This is your estimate of power, given the effect size.
@@ -845,7 +844,7 @@ sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
 ## 
 ## NOTE: n is number in *each* group
 ## 
-## [1] 0.527
+## [1] 0.531
 ```
 
 -->

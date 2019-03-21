@@ -1,3 +1,4 @@
+
 # Installing `R` {#installing-r}
 
 It is recommended that you at least attempt to install R and RStudio on your own workstation.  In the long run, it will be better to have it on your own system, and moreover, it won't cost you anything.  However, you don't have to be that ambitious.  There are workstations in the Boyd Orr labs that have R/RStudio installed; additionally, library workstations may also have copies installed. The upside of using these workstations is that everything has been installed and tested.  The downside (apart from the obvious of not being able to take them home with you) is that you will have limited ability to configure it to your needs because you lack access privileges.  There may be some packages that won't install, and those that do install successfully will be wiped away after you logout.  These annoyances can be avoided by having your own version.

@@ -1,17 +1,16 @@
 
-
 # Introduction to GLM {#glm}
 
 ## Learning Objectives
 
 ### Basic
 
-* Prove to yourself the correspondence between two-sample t-test, one-way ANOVA, and linear regression with dummy coding
-* Given data and a GLM, generate a decomposition matrix and calculate sums of squares, mean squares, and F ratios
+1. Prove to yourself the correspondence among two-sample t-test, one-way ANOVA, and linear regression with dummy coding
+2. Given data and a GLM, generate a decomposition matrix and calculate sums of squares, mean squares, and F ratios
 
 ## Resources
 
-* [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook.)](http://www.otago.ac.nz/psychology/otago039309.pdf)
+* [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
 * [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
 * [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)

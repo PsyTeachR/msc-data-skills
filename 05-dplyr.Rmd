@@ -1,27 +1,20 @@
-```{r psyteachr-setup, include = FALSE}
-source("R/psyteachr_setup.R") # psyTeachR styles and functions
-source("R/my_setup.R")        # book-specific styles and functions
-```
-
 # Data Wrangling {#dplyr}
 
 ## Learning Objectives
 
 ### Basic
 
-* Be able to use the 6 main dplyr one-table verbs:
+1. Be able to use the 6 main dplyr one-table verbs:
     + [`select()`](#select)
     + [`filter()`](#filter)
     + [`arrange()`](#arrange)
     + [`mutate()`](#mutate)
     + [`summarise()`](#summarise)
     + [`group_by()`](#group_by)
-    
-* Be able to string together commands using [pipes](#pipes) (`%>%`)
 
 ### Intermediate
 
-* Also know these additional one-table verbs:
+2. Also know these additional one-table verbs:
     + [`rename()`](#rename)
     + [`distinct()`](#distinct)
     + [`count()`](#count)
@@ -30,8 +23,8 @@ source("R/my_setup.R")        # book-specific styles and functions
     
 ### Advanced
 
-* Fine control of [`select()` operations](#select_helpers)
-* Perform 'windowed' operations
+3. Fine control of [`select()` operations](#select_helpers)
+4. Perform 'windowed' operations
     + windowed `mutate()`
     + windowed `slice()`
 
@@ -101,21 +94,21 @@ You can select each column individually, separated by commas (e.g., `col1, col2`
 
 ```{r}
 moral <- disgust %>% select(user_id, moral1:moral7)
-glimpse(moral)
+names(moral)
 ```
 
-You can select colmns by number, which is useful when the column names are long or complicated.
+You can select columns by number, which is useful when the column names are long or complicated.
 
 ```{r}
 sexual <- disgust %>% select(2, 11:17)
-glimpse(sexual)
+names(sexual)
 ```
 
 You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first (e.g., `-(moral1:moral7)`, not `-moral1:moral7`).
 
 ```{r}
 pathogen <- disgust %>% select(-id, -date, -(moral1:sexual7))
-glimpse(pathogen)
+names(pathogen)
 ```
 
 You can select columns based on criteria about the column names.{#select_helpers}
@@ -126,7 +119,7 @@ Select columns that start with a character string.
 
 ```{r}
 u <- disgust %>% select(starts_with("u"))
-glimpse(u)
+names(u)
 ```
 
 #### `ends_with()` {#ends_with}
@@ -135,7 +128,7 @@ Select columns that end with a character string.
 
 ```{r}
 firstq <- disgust %>% select(ends_with("1"))
-glimpse(firstq)
+names(firstq)
 ```
 
 #### `contains()` {#contains}
@@ -144,7 +137,7 @@ Select columns that contain a character string.
 
 ```{r}
 pathogen <- disgust %>% select(contains("pathogen"))
-glimpse(pathogen)
+names(pathogen)
 ```
 
 #### `num_range()` {#num_range}
@@ -153,7 +146,7 @@ Select columns with a name that matches the pattern `prefix`.
 
 ```{r}
 moral2_4 <- disgust %>% select(num_range("moral", 2:4))
-glimpse(moral2_4)
+names(moral2_4)
 ```
 
 ```{block, type="info"}
@@ -595,7 +588,7 @@ last_letter <- ukb %>%
   count(sex, lastchar) %>%
   arrange(lastchar)
 
-ggplot(last_letter, aes(lastchar, nn, fill = sex)) +
+ggplot(last_letter, aes(lastchar, n, fill = sex)) +
   geom_bar(stat = "identity")
 ```
 `r webex::unhide()`

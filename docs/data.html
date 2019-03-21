@@ -22,10 +22,10 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Dale J Barr &amp; Lisa M. DeBruine">
+<meta name="author" content="Lisa DeBruine &amp; Dale Barr">
 
 
-<meta name="date" content="2019-01-26">
+<meta name="date" content="2019-03-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,6 +95,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 </head>
 
@@ -108,17 +109,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Data Skills</a></li>
+<li><a href="./">Data Skills for Reproducible Science</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.3</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.4</b> Resources</a><ul>
-<li class="chapter" data-level="0.4.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.4.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.4.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.4.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.4.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.4.3</b> Other</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -162,7 +164,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
 <li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#pipes"><i class="fa fa-check"></i><b>2.6</b> Pipes</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -214,7 +215,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
 <li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
 <li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
 <li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
 <li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
@@ -260,11 +261,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
-<li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#setup-3"><i class="fa fa-check"></i><b>6.3</b> Setup</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3.1</b> Data</a></li>
+<li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
+<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -293,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
 <li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
@@ -322,7 +324,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-5"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
@@ -357,7 +359,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-6"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-6"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
@@ -378,8 +380,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#additional-tweaks-you-might-want-to-try"><i class="fa fa-check"></i><b>A.3</b> Additional tweaks you might want to try</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="ukbabynames.html"><a href="ukbabynames.html"><i class="fa fa-check"></i><b>B</b> ukbabynames Live Coding</a></li>
+<li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
 <li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
 
 </ul>
@@ -406,11 +412,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li>Understand the use the <a href="data.html#data_types">basic data types</a></li>
 <li>Understand and use the <a href="data.html#containers">basic container types</a> (list, vector)</li>
-<li><a href="data.html#vectors">Creating vectors</a> and storing as <a href="intro.html#vars">variables</a></li>
+<li><a href="data.html#vectors">Create vectors</a> and store them as <a href="intro.html#vars">variables</a></li>
 <li>Understand <a href="data.html#vectorized_ops">vectorized operations</a></li>
-<li>Create a simple <a href="data.html#tables">data table</a></li>
-<li><a href="data.html#import_data">Import data</a> from a CSV and Excel files</li>
-<li>Combining analysis steps using the <code>magrittr</code> <a href="data.html#pipes">pipe <code>%&gt;%</code></a></li>
+<li>Create a <a href="data.html#tables">data table</a></li>
+<li><a href="data.html#import_data">Import data</a> from CSV and Excel files</li>
 </ol>
 </div>
 <div id="resources-2" class="section level2">
@@ -819,52 +824,13 @@ months<span class="op">$</span>month  <span class="co"># by column name</span></
 <li><p>Override the default column specifications to skip the <code>id</code> column.</p></li>
 <li><p>How many rows and columns are in the dataset from question 3?</p></li>
 </ol>
-</div>
-</div>
-<div id="pipes" class="section level2">
-<h2><span class="header-section-number">2.6</span> Pipes</h2>
-<p>Pipes (<code>%&gt;%</code>) are very useful for stringing together a sequence of commands in R. They might be a bit confusing at first but they are worth learning because they will make your code more readable and efficient.</p>
-<p>Because pipes are a recent innovation, they are not part of base R. That means you need to load an add-on package to use them. Although the &quot;home&quot; package of the pipe operator is a package called magrittr, more commonly you will gain access to them by loading the tidyverse package (<code>library(&quot;tidyverse&quot;)</code>). If you get either of the following errors in your script:</p>
-<p><code>Error: unexpected SPECIAL in &quot;%&gt;%&quot;</code><br />
-or<br />
-<code>Error: could not find function &quot;%&gt;%&quot;</code></p>
-<p>you tried to use <code>%&gt;%</code> before doing <code>library(&quot;tidyverse&quot;)</code>.</p>
-<p>It is easiest to understand how to use pipes through an example. Let's say that we want to sample 5 random integers between 1 and 10 (with replacement), figure out which unique numbers were sampled, and then sort them in descending order. We will need to call three functions in a sequence: <code>sample()</code> to generate the integers, <code>unique()</code> to figure out which unique integers were sampled (because the same integer may have been sampled multiple times), and then <code>sort()</code> with <code>decreasing = TRUE</code> to put them in descending order. So we might write code like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-y &lt;-<span class="st"> </span><span class="kw">unique</span>(x)
-<span class="kw">sort</span>(y, <span class="ot">TRUE</span>) <span class="co"># set second argument to &#39;TRUE&#39; so that sort order is descending</span></code></pre></div>
-<pre><code>## [1] 10  7  3  2  1</code></pre>
-<p>While there is nothing wrong with this code, it required us to define variables x and y which we won't ever need again, and which clutter up our environment. To avoid this you could rewrite this code using nested function calls like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(
-  <span class="kw">unique</span>(
-    <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-    )
-  , <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [1] 10  7  6  5</code></pre>
-<p>(If the above call looks confusing, it should!) The call to <code>sample()</code> is embedded within a call to <code>unique()</code> which in turn is embedded within a call to <code>sort()</code>. The functions are executed from most embedded (the &quot;bottom&quot;) to least embedded (the &quot;top&quot;), starting with the function <code>sample()</code>, whose result is then passed in as the first argument to <code>unique()</code>, whose result in turn is passed in as the first argument to <code>sort()</code>; notice the second argument of sort (<code>TRUE</code>) is all the way at the end of the statement, making it hard to figure out which of the three functions it belongs to. We read from left to right; however, understanding this code requires us to work our way from right to left, and therefore unnatural. Moreover it is simply an ugly line of code.</p>
-<p>This is where pipes come in. You can re-write the original code using pipes like so:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sort</span>(<span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [1] 9 6 5 1</code></pre>
-<p>R will calculate the result of <code>sample(1:10, 5, replace = TRUE)</code> and then pass this result as the first argument of <code>unique()</code>; then, the result of <code>unique()</code> will in turn be passed along as the first argument of <code>sort()</code> with the second argument set to <code>TRUE</code>. The thing to note here is that for any function call on the right hand side of a pipe, you should omit the first argument and start with the second, because the pipe automatically places the result of the call on the left as the first argument of the next function call.</p>
-<div id="ex_pipes" class="section level4">
-<h4><span class="header-section-number">2.6.0.1</span> Exercises</h4>
-<ol style="list-style-type: decimal">
-<li><p>Re-write the following sequence of commands into a single <strong>pipeline</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span> <span class="co"># integers from 1:20</span>
-y &lt;-<span class="st"> </span><span class="kw">rep</span>(x, <span class="dv">2</span>) <span class="co"># then repeat them twice</span>
-z &lt;-<span class="st"> </span><span class="kw">sum</span>(y) <span class="co"># and then take the sum</span></code></pre></div></li>
-<li><p>Deconstruct the pipeline below back into separate commands.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">LETTERS[<span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">12</span>)] <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rev</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">paste</span>(<span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
-<pre><code>## [1] &quot;LAGER&quot;</code></pre></li>
-</ol>
 <p><a href="formative_exercises/02_intro_stub.Rmd">Download the formative exercises.</a></p>
 
 </div>
 </div>
+</div>
+<div class="psyteachr_footer">
+  
 </div>
 <script>
 
@@ -993,7 +959,8 @@ gitbook.start({
 },
 "download": {},
 "toc": {
-"collapse": "section"
+"collapse": "section",
+"scroll_highlight": true
 }
 });
 });

@@ -1,5 +1,4 @@
 
-
 # Tidy Data {#tidyr}
 
 ## Learning Objectives
@@ -12,10 +11,10 @@
     + [`separate()`](#separate)
     + [`spread()`](#spread)
     + [`unite()`](#unite)
+3. Be able to chain functions using [pipes](#pipes)
 
 ### Intermediate
 
-3. Be able to chain functions using pipes
 4. Be able to use arguments like [`sep`](#sep), [`extra`](#extra), and [`convert`](#convert) to handle less straightforward data cleaning
 
 ### Advanced
@@ -178,18 +177,18 @@ data
 ```
 ## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id A_mean B_mean
-##    <int>  <dbl>  <dbl>
-##  1     1  0.804   3.08
-##  2     2  0.327   2.40
-##  3     3  0.676   2.84
-##  4     4  1.09    2.72
-##  5     5  0.722   3.47
-##  6     6  1.45    2.73
-##  7     7  0.197   2.57
-##  8     8  0.376   2.00
-##  9     9 -0.132   2.12
-## 10    10 -1.47    2.27
+##       id  A_mean B_mean
+##    <int>   <dbl>  <dbl>
+##  1     1  0.423    1.81
+##  2     2 -0.370    1.84
+##  3     3  0.625    2.61
+##  4     4  0.591    3.35
+##  5     5  0.443    3.15
+##  6     6  1.07     2.67
+##  7     7 -0.0433   1.66
+##  8     8  0.882    2.14
+##  9     9  0.0537   2.70
+## 10    10  0.0555   2.86
 ```
 
 <div class="warning">

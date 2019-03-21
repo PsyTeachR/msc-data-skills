@@ -1,8 +1,3 @@
-```{r psyteachr-setup, include = FALSE}
-source("R/psyteachr_setup.R") # psyTeachR styles and functions
-source("R/my_setup.R")        # book-specific styles and functions
-```
-
 # Iteration & Functions {#func}
 
 ## Learning Objectives
@@ -11,25 +6,25 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Basic
 
-* Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
-* Use [arguments](#arguments) by order or name
-* Write your own [custom functions](#custom-functions) with `function()`
-* Set [default values](#defaults) for the arguments in your functions
+1. Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
+2. Use [arguments](#arguments) by order or name
+3. Write your own [custom functions](#custom-functions) with `function()`
+4. Set [default values](#defaults) for the arguments in your functions
 
 ### Intermediate
 
-* Understand [scope](#scope)
-* Use [error handling and warnings](#warnings-errors) in a function
+5. Understand [scope](#scope)
+6. Use [error handling and warnings](#warnings-errors) in a function
 
 ### Advanced
 
-The topics below are not covered in these materials, but they are directions for independent learning.
+The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
-* Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
-* Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
-* Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
-* Work with **nested data frames** in `dplyr`
-* Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
+7. Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
+8. Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
+9. Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
+10. Work with **nested data frames** in `dplyr`
+11. Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
 
 ## Resources
 
