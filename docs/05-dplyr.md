@@ -1,24 +1,21 @@
 
-
 # Data Wrangling {#dplyr}
 
 ## Learning Objectives
 
 ### Basic
 
-* Be able to use the 6 main dplyr one-table verbs:
+1. Be able to use the 6 main dplyr one-table verbs:
     + [`select()`](#select)
     + [`filter()`](#filter)
     + [`arrange()`](#arrange)
     + [`mutate()`](#mutate)
     + [`summarise()`](#summarise)
     + [`group_by()`](#group_by)
-    
-* Be able to string together commands using [pipes](#pipes) (`%>%`)
 
 ### Intermediate
 
-* Also know these additional one-table verbs:
+2. Also know these additional one-table verbs:
     + [`rename()`](#rename)
     + [`distinct()`](#distinct)
     + [`count()`](#count)
@@ -27,8 +24,8 @@
     
 ### Advanced
 
-* Fine control of [`select()` operations](#select_helpers)
-* Perform 'windowed' operations
+3. Fine control of [`select()` operations](#select_helpers)
+4. Perform 'windowed' operations
     + windowed `mutate()`
     + windowed `slice()`
 
@@ -99,41 +96,25 @@ You can select each column individually, separated by commas (e.g., `col1, col2`
 
 ```r
 moral <- disgust %>% select(user_id, moral1:moral7)
-glimpse(moral)
+names(moral)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 8
-## $ user_id <dbl> 0, 1, 2, 2118, 2311, 3630, 4458, 4651, 4976, 5469, 6066,…
-## $ moral1  <dbl> 5, 2, 1, 0, 4, 1, 3, 2, 6, 0, 4, 1, 1, 4, 2, 1, NA, 3, 1…
-## $ moral2  <dbl> 6, 2, 1, 1, 4, 5, 4, 4, 6, 1, 5, 2, 4, 4, 5, 3, NA, 5, 2…
-## $ moral3  <dbl> 4, 1, 1, 1, 4, NA, 3, 3, 6, 3, 6, 2, 3, 4, 4, 2, NA, 4, …
-## $ moral4  <dbl> 6, 2, 1, 1, 4, 5, 4, 5, 0, 4, 5, 2, 4, 4, 6, 4, NA, 5, 2…
-## $ moral5  <dbl> 5, 1, NA, 1, 4, 5, 4, 5, 6, 1, 5, 1, 3, 3, 5, 5, NA, 3, …
-## $ moral6  <dbl> 5, 1, NA, 2, 4, 5, 3, 5, 0, 0, 4, 2, 4, 3, 4, 4, NA, 4, …
-## $ moral7  <dbl> 6, 1, 1, 1, 4, 1, 3, 3, 0, 1, 4, 1, 3, 2, 5, 4, NA, 3, 4…
+## [1] "user_id" "moral1"  "moral2"  "moral3"  "moral4"  "moral5"  "moral6" 
+## [8] "moral7"
 ```
 
-You can select colmns by number, which is useful when the column names are long or complicated.
+You can select columns by number, which is useful when the column names are long or complicated.
 
 
 ```r
 sexual <- disgust %>% select(2, 11:17)
-glimpse(sexual)
+names(sexual)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 8
-## $ user_id <dbl> 0, 1, 2, 2118, 2311, 3630, 4458, 4651, 4976, 5469, 6066,…
-## $ sexual1 <dbl> 4, 3, 1, 4, 2, 0, 2, 4, 0, 3, 3, 1, 1, 4, 2, 0, NA, 1, 3…
-## $ sexual2 <dbl> 0, 1, NA, 3, 1, 5, 4, 2, 0, 5, 0, 0, 0, 2, 1, 0, NA, 3, …
-## $ sexual3 <dbl> 1, 1, 1, 0, 2, 0, 3, 4, 0, 2, 1, 0, 0, 1, 0, 0, NA, 3, 0…
-## $ sexual4 <dbl> 0, 2, NA, 6, 1, 2, 2, 6, 0, 4, 6, 3, 1, 3, 2, 0, NA, 5, …
-## $ sexual5 <dbl> 1, 1, 1, 0, 1, 0, 1, 6, 0, 6, 3, 0, 0, 2, 1, 0, NA, 5, 0…
-## $ sexual6 <dbl> 4, 2, NA, 3, 1, 1, 5, 6, 0, 6, 5, 4, 2, 3, 4, 0, NA, 3, …
-## $ sexual7 <dbl> 5, 2, NA, 5, 5, 0, 4, 2, 0, 5, 3, 4, 1, 6, 3, 0, NA, 3, …
+## [1] "user_id" "sexual1" "sexual2" "sexual3" "sexual4" "sexual5" "sexual6"
+## [8] "sexual7"
 ```
 
 You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first (e.g., `-(moral1:moral7)`, not `-moral1:moral7`).
@@ -141,20 +122,12 @@ You can use a minus symbol to unselect columns, leaving all of the other columns
 
 ```r
 pathogen <- disgust %>% select(-id, -date, -(moral1:sexual7))
-glimpse(pathogen)
+names(pathogen)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 8
-## $ user_id   <dbl> 0, 1, 2, 2118, 2311, 3630, 4458, 4651, 4976, 5469, 606…
-## $ pathogen1 <dbl> 6, 3, NA, 5, 5, 6, 6, 5, 6, 5, 6, 4, 4, 5, 3, 5, NA, 4…
-## $ pathogen2 <dbl> 1, 2, NA, 6, 5, 3, 4, 6, 6, 2, 5, 3, 4, 2, 3, 4, NA, 5…
-## $ pathogen3 <dbl> 6, 3, 1, 4, 4, 1, 4, 6, 6, 4, 5, 1, 3, 0, 2, 3, NA, 3,…
-## $ pathogen4 <dbl> 5, 3, NA, 6, 4, 1, 3, 4, 6, 4, 5, 1, 4, 4, 4, 1, NA, 5…
-## $ pathogen5 <dbl> 4, 2, NA, 5, 5, 3, 3, 6, 0, 2, 5, 4, 5, 5, 5, 4, NA, 4…
-## $ pathogen6 <dbl> 5, 3, NA, 5, 4, 1, 2, 1, 0, 2, 5, 1, 4, 5, 1, 2, NA, 5…
-## $ pathogen7 <dbl> 6, 3, NA, 4, 3, 0, 3, 6, 6, 6, 5, 3, 5, 4, 5, 3, NA, 5…
+## [1] "user_id"   "pathogen1" "pathogen2" "pathogen3" "pathogen4" "pathogen5"
+## [7] "pathogen6" "pathogen7"
 ```
 
 You can select columns based on criteria about the column names.{#select_helpers}
@@ -166,13 +139,11 @@ Select columns that start with a character string.
 
 ```r
 u <- disgust %>% select(starts_with("u"))
-glimpse(u)
+names(u)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 1
-## $ user_id <dbl> 0, 1, 2, 2118, 2311, 3630, 4458, 4651, 4976, 5469, 6066,…
+## [1] "user_id"
 ```
 
 #### `ends_with()` {#ends_with}
@@ -182,15 +153,11 @@ Select columns that end with a character string.
 
 ```r
 firstq <- disgust %>% select(ends_with("1"))
-glimpse(firstq)
+names(firstq)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 3
-## $ moral1    <dbl> 5, 2, 1, 0, 4, 1, 3, 2, 6, 0, 4, 1, 1, 4, 2, 1, NA, 3,…
-## $ sexual1   <dbl> 4, 3, 1, 4, 2, 0, 2, 4, 0, 3, 3, 1, 1, 4, 2, 0, NA, 1,…
-## $ pathogen1 <dbl> 6, 3, NA, 5, 5, 6, 6, 5, 6, 5, 6, 4, 4, 5, 3, 5, NA, 4…
+## [1] "moral1"    "sexual1"   "pathogen1"
 ```
 
 #### `contains()` {#contains}
@@ -200,19 +167,12 @@ Select columns that contain a character string.
 
 ```r
 pathogen <- disgust %>% select(contains("pathogen"))
-glimpse(pathogen)
+names(pathogen)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 7
-## $ pathogen1 <dbl> 6, 3, NA, 5, 5, 6, 6, 5, 6, 5, 6, 4, 4, 5, 3, 5, NA, 4…
-## $ pathogen2 <dbl> 1, 2, NA, 6, 5, 3, 4, 6, 6, 2, 5, 3, 4, 2, 3, 4, NA, 5…
-## $ pathogen3 <dbl> 6, 3, 1, 4, 4, 1, 4, 6, 6, 4, 5, 1, 3, 0, 2, 3, NA, 3,…
-## $ pathogen4 <dbl> 5, 3, NA, 6, 4, 1, 3, 4, 6, 4, 5, 1, 4, 4, 4, 1, NA, 5…
-## $ pathogen5 <dbl> 4, 2, NA, 5, 5, 3, 3, 6, 0, 2, 5, 4, 5, 5, 5, 4, NA, 4…
-## $ pathogen6 <dbl> 5, 3, NA, 5, 4, 1, 2, 1, 0, 2, 5, 1, 4, 5, 1, 2, NA, 5…
-## $ pathogen7 <dbl> 6, 3, NA, 4, 3, 0, 3, 6, 6, 6, 5, 3, 5, 4, 5, 3, NA, 5…
+## [1] "pathogen1" "pathogen2" "pathogen3" "pathogen4" "pathogen5" "pathogen6"
+## [7] "pathogen7"
 ```
 
 #### `num_range()` {#num_range}
@@ -222,15 +182,11 @@ Select columns with a name that matches the pattern `prefix`.
 
 ```r
 moral2_4 <- disgust %>% select(num_range("moral", 2:4))
-glimpse(moral2_4)
+names(moral2_4)
 ```
 
 ```
-## Observations: 20,000
-## Variables: 3
-## $ moral2 <dbl> 6, 2, 1, 1, 4, 5, 4, 4, 6, 1, 5, 2, 4, 4, 5, 3, NA, 5, 2,…
-## $ moral3 <dbl> 4, 1, 1, 1, 4, NA, 3, 3, 6, 3, 6, 2, 3, 4, 4, 2, NA, 4, 3…
-## $ moral4 <dbl> 6, 2, 1, 1, 4, 5, 4, 5, 0, 4, 5, 2, 4, 4, 6, 4, NA, 5, 2,…
+## [1] "moral2" "moral3" "moral4"
 ```
 
 <div class="info">
@@ -331,7 +287,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2014-01-26"
+## [1] "2008-07-10" "2014-03-11"
 ```
 
 
@@ -625,7 +581,7 @@ count(ukb) ## or: nrow(ukb)
 
 ```
 ## # A tibble: 1 x 1
-##       nn
+##        n
 ##    <int>
 ## 1 227449
 ```
@@ -1015,7 +971,7 @@ last_letter <- ukb %>%
   count(sex, lastchar) %>%
   arrange(lastchar)
 
-ggplot(last_letter, aes(lastchar, nn, fill = sex)) +
+ggplot(last_letter, aes(lastchar, n, fill = sex)) +
   geom_bar(stat = "identity")
 ```
 

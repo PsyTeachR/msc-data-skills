@@ -1,5 +1,4 @@
 
-
 # Getting Started {#intro}
 
 
@@ -295,8 +294,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.58468700 -1.82054669  0.06604857 -1.60674155 -0.95537240
-##  [6] -0.20028465 -1.32258890 -1.81195069 -0.66391741  0.36979245
+##  [1] -1.63161039 -0.23386869  0.53295554 -0.28526299 -0.58899694
+##  [6]  1.32968804 -0.04745514 -1.50732323  0.42577774  1.17717357
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -307,8 +306,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.57104  99.66650  99.40738 102.56367 100.01826 100.40490  99.68326
-##  [8] 101.21080  99.62660 101.53610
+##  [1] 100.98555 101.34982 101.07291 100.64484  99.98851 100.81042  99.88772
+##  [8] 102.09849  98.13032  99.46031
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -319,8 +318,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.43112  99.88163 101.46735  98.79198 100.24482 100.49943 101.18321
-##  [8] 100.72460  99.27367  97.74350
+##  [1] 100.69161 100.62661  99.15994  98.32646  99.69604  98.99141  99.70749
+##  [8]  99.59681 100.19565  99.23538
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call.  However, if we want to change the default for an argument coming later in the list, then we need to name it.  For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -331,8 +330,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   32.72817   47.88074  -46.16737 -161.30981  197.84940   58.24330
-##  [7] -217.85109  -35.45755  -66.09341  -19.63796
+##  [1]  102.103592  -82.425048  106.545657   81.370738   -1.814186
+##  [6]  137.408891  156.659881 -207.648328   42.961779   88.378815
 ```
 
 ### Getting help {#help}
@@ -403,12 +402,13 @@ fortune()
 
 ```
 ## 
-## The problem here is that the $ notation is a magical shortcut and like any
-## other magic if used incorrectly is likely to do the programmatic
-## equivalent of turning yourself into a toad.
-##    -- Greg Snow (in response to a user that wanted to access a column
-##       whose name is stored in y via x$y rather than x[[y]])
-##       R-help (February 2012)
+## Joshua Wiley: ... the advantages of formal classes seem worth at least not
+## entirely dismissing.
+## Jim Lemon: Hmmm, yeah, that's about the grammatical equivalent of S4
+## classes.
+##    -- Joshua Wiley and Jim Lemon (in a discussion about the relative
+##       advantages of S3 and S4 classes)
+##       R-help (May 2011)
 ```
 
 Note that we will use the convention `package::function()` and `package::object` to indicate in which add-on package a function or object resides.  For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.  If you see a function introduced without a package name, that means it is part of the base R system and not an add-on package (depending on the context).  Sometimes I will make this explicit by using `base` in the place of the package name; for instance, I might refer to `rnorm()` in base as `base::rnorm()`.

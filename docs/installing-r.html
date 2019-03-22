@@ -22,10 +22,10 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Dale J Barr &amp; Lisa M. DeBruine">
+<meta name="author" content="Lisa DeBruine &amp; Dale Barr">
 
 
-<meta name="date" content="2019-01-26">
+<meta name="date" content="2019-03-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="repro.html">
-<link rel="next" href="ukbabynames.html">
+<link rel="next" href="symbols.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -95,6 +95,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 </head>
 
@@ -108,17 +109,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Data Skills</a></li>
+<li><a href="./">Data Skills for Reproducible Science</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.3</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.4</b> Resources</a><ul>
-<li class="chapter" data-level="0.4.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.4.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.4.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.4.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.4.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.4.3</b> Other</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -162,7 +164,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
 <li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#pipes"><i class="fa fa-check"></i><b>2.6</b> Pipes</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -214,7 +215,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
 <li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
 <li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
 <li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
 <li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
@@ -260,11 +261,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
-<li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#setup-3"><i class="fa fa-check"></i><b>6.3</b> Setup</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3.1</b> Data</a></li>
+<li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
+<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
+<li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -293,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
 <li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
@@ -322,7 +324,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-5"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
@@ -357,7 +359,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-6"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-6"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
@@ -376,10 +378,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>A</b> Installing <code>R</code></a><ul>
 <li class="chapter" data-level="A.1" data-path="installing-r.html"><a href="installing-r.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
 <li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#additional-tweaks-you-might-want-to-try"><i class="fa fa-check"></i><b>A.3</b> Additional tweaks you might want to try</a></li>
+<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="ukbabynames.html"><a href="ukbabynames.html"><i class="fa fa-check"></i><b>B</b> ukbabynames Live Coding</a></li>
+<li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
 <li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
 
 </ul>
@@ -401,30 +407,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="installing-r" class="section level1">
 <h1><span class="header-section-number">A</span> Installing <code>R</code></h1>
-<p>It is recommended that you at least attempt to install R and RStudio on your own workstation. In the long run, it will be better to have it on your own system, and moreover, it won't cost you anything. However, you don't have to be that ambitious. There are workstations in the Boyd Orr labs that have R/RStudio installed; additionally, library workstations may also have copies installed. The upside of using these workstations is that everything has been installed and tested. The downside (apart from the obvious of not being able to take them home with you) is that you will have limited ability to configure it to your needs because you lack access privileges. There may be some packages that won't install, and those that do install successfully will be wiped away after you logout. These annoyances can be avoided by having your own version.</p>
-<p>Installing R and RStudio is very easy. The sections below explain how, but in case you find it confusing, <a href="https://www.youtube.com/watch?v=lVKMsaWju8w">there is a helpful YouTube video here</a>.</p>
+<p>Installing R and RStudio is usually straightforward. The sections below explain how and <a href="https://www.youtube.com/watch?v=lVKMsaWju8w">there is a helpful YouTube video here</a>.</p>
 <div id="installing-base-r" class="section level2">
 <h2><span class="header-section-number">A.1</span> Installing Base R</h2>
-<p>Install base R from one of the mirrors near you.They are listed at <a href="http://cran.r-project.org/mirrors.html" class="uri">http://cran.r-project.org/mirrors.html</a>. If a particular mirror is down, try another one. Once you have chosen a mirror, choose the download link for your operating system (Linux, Mac OS X, or Windows) and install ‘base’ binaries for distribution. If you are using Linux or Mac OS, you are done; skip to the next section on RStudio. If you are installing the Windows version, after you install R, you should also install RTools. Follow the link below (on the same page on the mirror where you downloaded base R) to RTools, and then click on a ‘frozen’ version nearest to the top of the list (<code>Rtools33.exe</code> at the time of writing, but there might be a later frozen version by the time you are reading this).</p>
+<p>Install base R from <a href="https://cran.rstudio.com/" class="uri">https://cran.rstudio.com/</a>. Choose the download link for your operating system (Linux, Mac OS X, or Windows).</p>
+<p>If you have a Mac, install the latest release from the newest <code>R-x.x.x.pkg</code> link (or a legacy version if you have an older operating system).</p>
+<p>If you are installing the Windows version, choose the &quot;<a href="https://cran.rstudio.com/bin/windows/base/">base</a>&quot; subdirectory and click on the download link at the top of the page. After you install R, you should also install <a href="https://cran.rstudio.com/bin/windows/Rtools/">RTools</a>; use the &quot;recommended&quot; version highlighted near the top of the list.</p>
+<p>If you are using Linux, choose your specific operating system and follow the installation instructions.</p>
 </div>
 <div id="installing-rstudio" class="section level2">
 <h2><span class="header-section-number">A.2</span> Installing RStudio</h2>
-<p>This is very easy: just go to <a href="https://www.rstudio.com/products/rstudio/download3/" class="uri">https://www.rstudio.com/products/rstudio/download3/</a> and download the RStudio Desktop (Free License) version for your operating system.</p>
+<p>Go to <a href="https://www.rstudio.com/products/rstudio/download/#download">rstudio.com</a> and download the RStudio Desktop (Open Source License) version for your operating system under the list titled <strong>Installers for Supported Platforms</strong>.</p>
 </div>
-<div id="additional-tweaks-you-might-want-to-try" class="section level2">
-<h2><span class="header-section-number">A.3</span> Additional tweaks you might want to try</h2>
-<p>Although installing R and RStudio is itself very easy, there is an additional optional tweak that may not be so easy but you might want to try it. This is installing the LaTeX typesetting system so that you can produce PDF reports from RStudio. Without this additional tweak, you will be able to produce reports in HTML but not PDF. To generate PDF reports, you will additionally need:</p>
+<div id="installing-latex" class="section level2">
+<h2><span class="header-section-number">A.3</span> Installing LaTeX</h2>
+<p>You can install the LaTeX typesetting system to produce PDF reports from RStudio. Without this additional installation, you will be able to produce reports in HTML but not PDF. To generate PDF reports, you will additionally need:</p>
 <ol style="list-style-type: decimal">
 <li><a href="http://pandoc.org/installing.html">pandoc</a>, and</li>
-<li>LaTeX, a typesetting language, available through
+<li>LaTeX, a typesetting language, available for
 <ul>
-<li>WINDOWS: <a href="http://miktex.org/" class="uri">http://miktex.org/</a></li>
-<li>Mac OS: <a href="https://tug.org/mactex/downloading.html">MacTex</a> (2.6GB download) or <a href="http://ww.tug.org/mactex/morepackages.html">BasicTeX</a> (100MB download, but should work fine)</li>
+<li>WINDOWS: <a href="http://miktex.org/">MikTeX</a></li>
+<li>Mac OS: <a href="https://tug.org/mactex/downloading.html">MacTex</a> (3.2GB download) or <a href="http://ww.tug.org/mactex/morepackages.html">BasicTeX</a> (78MB download, but should work fine)</li>
+<li>Linux: <a href="https://www.tug.org/texlive/">TeX Live</a></li>
 </ul></li>
 </ol>
-<p>Again, these additional tweaks are optional, and if you have problems installing these, don't get hung up on it; you can just generate HTML reports, and if you want a PDF, just use one of the Boyd Orr computers.</p>
 
 </div>
+</div>
+<div class="psyteachr_footer">
+  
 </div>
 <script>
 
@@ -514,7 +525,7 @@ window.onload = function() {
         </div>
       </div>
 <a href="repro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ukbabynames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="symbols.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -553,7 +564,8 @@ gitbook.start({
 },
 "download": {},
 "toc": {
-"collapse": "section"
+"collapse": "section",
+"scroll_highlight": true
 }
 });
 });

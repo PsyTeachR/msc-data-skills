@@ -1,24 +1,27 @@
 
-
 # Data Relations {#joins}
 
 ## Learning Objectives
+
+### Beginner
 
 1. Be able to use the 4 mutating join verbs:
     + [`left_join()`](#left_join)
     + [`right_join()`](#right_join)
     + [`inner_join()`](#inner_join)
     + [`full_join()`](#full_join)
+2. Use the [`by`](#join-by) argument to set the join columns
 
-2. Be able to use the 2 filtering join verbs:
+### Intermediate
+
+3. Use the [`suffix`](#join-suffix) argument to distinguish columns with the same name
+4. Be able to use the 2 filtering join verbs:
     + [`semi_join()`](#semi_join)
     + [`anti_join()`](#anti_join)
-    
-3. Be able to use the 2 binding join verbs:
+5. Be able to use the 2 binding join verbs:
     + [`bind_rows()`](#bind_rows)
     + [`bind_cols()`](#bind_cols)
-
-4. Be able to use the 3 set operations:
+6. Be able to use the 3 set operations:
     + [`intersect()`](#intersect)
     + [`union()`](#union)
     + [`setdiff()`](#setdiff)
@@ -29,15 +32,7 @@
 * [Cheatsheet for dplyr join functions](http://stat545.com/bit001_dplyr-cheatsheet.html)
 * [Lecture slides on dplyr two-table verbs](slides/05_joins_slides.pdf)
 
-## Setup
-
-
-```r
-# libraries needed for these examples
-library(tidyverse)
-```
-
-### Data
+## Data
 
 First, we'll create two small data tables. 
 
@@ -100,8 +95,12 @@ All the mutating joins have this basic syntax:
 
 * `x` = the first (left) table
 * `y` = the second (right) table
-* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
-* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
+* {#join-by} `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
+* {#join-suffix} `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
+
+<div class="info">
+<p>You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.</p>
+</div>
 
 ### left_join() {#left_join}
 
@@ -110,8 +109,7 @@ All the mutating joins have this basic syntax:
 <p class="caption">(\#fig:img-left-join)Left Join</p>
 </div></div>
 
-A `left_join` keeps all the data from the first (left) table and joins anything 
-that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
+A `left_join` keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).
 
 
 ```r
@@ -131,17 +129,12 @@ left_join(subject, exp, by = "id")
 ## 7     5 f        18    11
 ```
 
-You can leave out the `by` argument if you're matching on all of the columns with 
-the same name, but it's good practice to always specify it so your code is robust 
-to changes in the loaded data.
-
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/left_join_rev.png" alt="Left Join (reversed)" width="100%" />
 <p class="caption">(\#fig:img-left-join-rev)Left Join (reversed)</p>
 </div></div>
 
-The order of tables is swapped here, so the result is all rows from the `exp` 
-table joined to any matching rows from the `subject` table.
+The order of tables is swapped here, so the result is all rows from the `exp` table joined to any matching rows from the `subject` table.
 
 
 ```r
@@ -231,9 +224,7 @@ inner_join(subject, exp, by = "id")
 <p class="caption">(\#fig:img-full-join)Full Join</p>
 </div></div>
 
-A `full_join` lets you join up rows in two tables while keeping all of the 
-information from both tables. If a row doesn't have a match in the other table, 
-the other table's column values are set to `NA`.
+A `full_join` lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to `NA`.
 
 
 ```r
@@ -256,6 +247,7 @@ full_join(subject, exp, by = "id")
 ## 10     7 <NA>     NA     3
 ```
 
+
 ## Filtering Joins
 
 ### semi_join() {#semi_join}
@@ -265,8 +257,7 @@ full_join(subject, exp, by = "id")
 <p class="caption">(\#fig:img-semi-join)Semi Join</p>
 </div></div>
 
-A `semi_join` returns all rows from the left table where there are matching values 
-in the right table, keeping just columns from the left table.
+A `semi_join` returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.
 
 
 ```r
@@ -423,10 +414,7 @@ bind_rows(subject, new_subjects)
 
 ### bind_cols() {#bind_cols}
 
-You can merge two tables with the same number of rows using `bind_cols`. This is 
-only useful if the two tables have their rows in the exact same order. The only 
-advantage over a left join is when the tables don't have any IDs to join by and 
-you have to rely solely on their order.
+You can merge two tables with the same number of rows using `bind_cols`. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.
 
 
 ```r
@@ -488,15 +476,15 @@ dplyr::union(subject, new_subjects)
 ## # A tibble: 9 x 3
 ##      id sex     age
 ##   <int> <chr> <dbl>
-## 1     9 f        19
-## 2     8 f        20
-## 3     7 m        16
-## 4     6 m        19
+## 1     1 m        19
+## 2     2 m        22
+## 3     3 <NA>     NA
+## 4     4 f        19
 ## 5     5 f        18
-## 6     4 f        19
-## 7     3 <NA>     NA
-## 8     2 m        22
-## 9     1 m        19
+## 6     6 m        19
+## 7     7 m        16
+## 8     8 f        20
+## 9     9 f        19
 ```
 
 ### setdiff() {#setdiff}
@@ -640,10 +628,10 @@ Each participant is identified by a unique `user_id`.
     ## # A tibble: 4 x 2
     ##   sex          n
     ##   <chr>    <int>
-    ## 1 female   13886
-    ## 2 intersex     3
-    ## 3 male      6012
-    ## 4 <NA>        99
+    ## 1 <NA>        99
+    ## 2 female   13886
+    ## 3 intersex     3
+    ## 4 male      6012
     ```
     </div>
     

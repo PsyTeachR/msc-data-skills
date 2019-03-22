@@ -1,5 +1,4 @@
 
-
 # Reproducible Workflows {#repro}
 
 ## Learning Objectives
@@ -207,6 +206,13 @@ dat %>%
 &#96;&#96;&#96;</code></pre>
 
 
+```
+## `mutate_if()` ignored the following grouping variables:
+## Column `group`
+```
+
+
+
 group   sex        n     Mean      SD
 ------  -------  ---  -------  ------
 a       female    50   -0.361   0.796
@@ -236,8 +242,8 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
 <p class="alert alert-info">The last line changes the default text size and font, which can be useful for generating figures that meet a journal's requirements.</p>
 
 <div class="figure" style="text-align: center">
-<img src="10-repro_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 1. Scores by group and sex." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Figure 1. Scores by group and sex.</p>
+<img src="10-repro_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1. Scores by group and sex." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Figure 1. Scores by group and sex.</p>
 </div>
 
 

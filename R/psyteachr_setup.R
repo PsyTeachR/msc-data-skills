@@ -15,6 +15,10 @@ knitr::opts_chunk$set(
   fig.cap='**CAPTION THIS FIGURE!!**'
 )
 
+# make docs directory and include .nojekyll file for github
+if (!dir.exists('docs')) dir.create('docs')
+file.create('docs/.nojekyll')
+
 ## set global theme options for figures
 theme_set(theme_bw())
 

@@ -22,10 +22,10 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Dale J Barr &amp; Lisa M. DeBruine">
+<meta name="author" content="Lisa M. DeBruine &amp; Dale J Barr">
 
 
-<meta name="date" content="2019-01-26">
+<meta name="date" content="2019-02-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,6 +95,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 </head>
 
@@ -108,17 +109,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Data Skills</a></li>
+<li><a href="./">Book Template</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.3</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.4</b> Resources</a><ul>
-<li class="chapter" data-level="0.4.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.4.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.4.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.4.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.4.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.4.3</b> Other</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
+<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -162,7 +164,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
 <li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#pipes"><i class="fa fa-check"></i><b>2.6</b> Pipes</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -214,7 +215,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
 <li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="data.html"><a href="data.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
 <li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
 <li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
 <li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
@@ -380,6 +381,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="B" data-path="ukbabynames.html"><a href="ukbabynames.html"><i class="fa fa-check"></i><b>B</b> ukbabynames Live Coding</a></li>
 <li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
 <li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
 
 </ul>
@@ -433,6 +438,9 @@ nam_uk &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(nam0, nam
 <p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
 </div>
 </div>
+</div>
+<div class="psyteachr_footer">
+  
 </div>
 <script>
 
@@ -561,7 +569,8 @@ gitbook.start({
 },
 "download": {},
 "toc": {
-"collapse": "section"
+"collapse": "section",
+"scroll_highlight": true
 }
 });
 });

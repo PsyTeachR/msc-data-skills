@@ -1,8 +1,3 @@
-```{r psyteachr-setup, include = FALSE}
-source("R/psyteachr_setup.R") # psyTeachR styles and functions
-source("R/my_setup.R")        # book-specific styles and functions
-```
-
 # Tidy Data {#tidyr}
 
 ## Learning Objectives
@@ -15,10 +10,10 @@ source("R/my_setup.R")        # book-specific styles and functions
     + [`separate()`](#separate)
     + [`spread()`](#spread)
     + [`unite()`](#unite)
+3. Be able to chain functions using [pipes](#pipes)
 
 ### Intermediate
 
-3. Be able to chain functions using pipes
 4. Be able to use arguments like [`sep`](#sep), [`extra`](#extra), and [`convert`](#convert) to handle less straightforward data cleaning
 
 ### Advanced
