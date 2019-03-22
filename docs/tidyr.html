@@ -378,7 +378,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>A</b> Installing <code>R</code></a><ul>
 <li class="chapter" data-level="A.1" data-path="installing-r.html"><a href="installing-r.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
 <li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#additional-tweaks-you-might-want-to-try"><i class="fa fa-check"></i><b>A.3</b> Additional tweaks you might want to try</a></li>
+<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="divider"></li>
@@ -543,18 +543,18 @@ data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <
 data</code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id  A_mean B_mean
-##    &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  0.423    1.81
-##  2     2 -0.370    1.84
-##  3     3  0.625    2.61
-##  4     4  0.591    3.35
-##  5     5  0.443    3.15
-##  6     6  1.07     2.67
-##  7     7 -0.0433   1.66
-##  8     8  0.882    2.14
-##  9     9  0.0537   2.70
-## 10    10  0.0555   2.86</code></pre>
+##       id A_mean B_mean
+##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1  0.770   2.32
+##  2     2  0.169   2.44
+##  3     3  1.10    2.60
+##  4     4  1.09    3.00
+##  5     5  1.52    3.26
+##  6     6  0.557   1.75
+##  7     7  0.302   3.39
+##  8     8 -1.12    2.14
+##  9     9  1.69    2.98
+## 10    10  1.36    2.08</code></pre>
 <div class="warning">
 <p>
 You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep you environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.

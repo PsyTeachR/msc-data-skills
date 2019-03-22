@@ -378,7 +378,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="A" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>A</b> Installing <code>R</code></a><ul>
 <li class="chapter" data-level="A.1" data-path="installing-r.html"><a href="installing-r.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
 <li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#additional-tweaks-you-might-want-to-try"><i class="fa fa-check"></i><b>A.3</b> Additional tweaks you might want to try</a></li>
+<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="divider"></li>
@@ -581,20 +581,20 @@ boring_calculation &lt;-<span class="st"> </span><span class="dv">2</span> <span
 <p><code>Error in rnorm() : argument &quot;n&quot; is missing, with no default</code></p>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1]  1.32617650  1.05160996 -0.72436585 -1.41947939  1.34221116
-##  [6]  0.64207150 -0.35105069  0.35366525  0.13342266 -0.05871112</code></pre>
+<pre><code>##  [1] -1.63161039 -0.23386869  0.53295554 -0.28526299 -0.58899694
+##  [6]  1.32968804 -0.04745514 -1.50732323  0.42577774  1.17717357</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre></div>
-<pre><code>##  [1] 100.64667  99.39104  99.15952  98.78302 100.45605 101.30376 100.09628
-##  [8]  97.98197 100.40837  98.29243</code></pre>
+<pre><code>##  [1] 100.98555 101.34982 101.07291 100.64484  99.98851 100.81042  99.88772
+##  [8] 102.09849  98.13032  99.46031</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>##  [1] 100.96302 100.75240  99.26723  99.39300 100.00653 101.30788 100.10853
-##  [8]  99.03701 101.84834  98.96369</code></pre>
+<pre><code>##  [1] 100.69161 100.62661  99.15994  98.32646  99.69604  98.99141  99.70749
+##  [8]  99.59681 100.19565  99.23538</code></pre>
 <p>We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre></div>
-<pre><code>##  [1] -242.287319  104.590887  -61.395130   -6.848328   45.449250
-##  [6]  -30.915028  -60.015676   41.704743  -33.098028   23.484652</code></pre>
+<pre><code>##  [1]  102.103592  -82.425048  106.545657   81.370738   -1.814186
+##  [6]  137.408891  156.659881 -207.648328   42.961779   88.378815</code></pre>
 </div>
 <div id="help" class="section level3">
 <h3><span class="header-section-number">1.4.6</span> Getting help</h3>
@@ -640,12 +640,13 @@ You may only be able to permanently install packages if you are using R on your 
 <p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>()</code></pre></div>
 <pre><code>## 
-## This list is impressive. People are knowledgable, opinionated, ready to
-## help and to flame you for asking elementary question or asking how to use
-## type III SSQ. So, speak softly and carry a beagle. Seriously, sometimes it
-## would be quicker just to give an answer, than to flame a poor soul.
-##    -- Milos Zarkovic
-##       R-help (January 2006)</code></pre>
+## Joshua Wiley: ... the advantages of formal classes seem worth at least not
+## entirely dismissing.
+## Jim Lemon: Hmmm, yeah, that&#39;s about the grammatical equivalent of S4
+## classes.
+##    -- Joshua Wiley and Jim Lemon (in a discussion about the relative
+##       advantages of S3 and S4 classes)
+##       R-help (May 2011)</code></pre>
 <p>Note that we will use the convention <code>package::function()</code> and <code>package::object</code> to indicate in which add-on package a function or object resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package. If you see a function introduced without a package name, that means it is part of the base R system and not an add-on package (depending on the context). Sometimes I will make this explicit by using <code>base</code> in the place of the package name; for instance, I might refer to <code>rnorm()</code> in base as <code>base::rnorm()</code>.</p>
 </div>
 </div>
