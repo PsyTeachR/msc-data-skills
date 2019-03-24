@@ -57,43 +57,6 @@
 <script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
@@ -302,6 +265,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
+<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -319,7 +283,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="func.html"><a href="func.html#custom-functions-sim_data"><i class="fa fa-check"></i><b>7.6.1</b> Custom functions: <code>sim_data</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="func.html"><a href="func.html#iterating"><i class="fa fa-check"></i><b>7.7</b> Iterating</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
@@ -411,7 +378,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="installing-base-r" class="section level2">
 <h2><span class="header-section-number">A.1</span> Installing Base R</h2>
 <p>Install base R from <a href="https://cran.rstudio.com/" class="uri">https://cran.rstudio.com/</a>. Choose the download link for your operating system (Linux, Mac OS X, or Windows).</p>
-<p>If you have a Mac, install the latest release from the newest <code>R-x.x.x.pkg</code> link (or a legacy version if you have an older operating system).</p>
+<p>If you have a Mac, install the latest release from the newest <code>R-x.x.x.pkg</code> link (or a legacy version if you have an older operating system). After you install R, you should also install <a href="http://xquartz.macosforge.org/">XQuartz</a> to be able to use some visualisation packages.</p>
 <p>If you are installing the Windows version, choose the &quot;<a href="https://cran.rstudio.com/bin/windows/base/">base</a>&quot; subdirectory and click on the download link at the top of the page. After you install R, you should also install <a href="https://cran.rstudio.com/bin/windows/Rtools/">RTools</a>; use the &quot;recommended&quot; version highlighted near the top of the list.</p>
 <p>If you are using Linux, choose your specific operating system and follow the installation instructions.</p>
 </div>
@@ -571,19 +538,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
