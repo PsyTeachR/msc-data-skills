@@ -1,5 +1,7 @@
 # Data Visualisation {#ggplot}
 
+Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
+
 ## Learning Objectives
 
 ### Basic
@@ -22,20 +24,20 @@
     + [`geom_point()`](#geom_point)
     + [`geom_smooth()`](#geom_smooth)
 3. Set custom labels
-4. [Save plots](#ggsave) as an image file
+4. Represent factorial designs with different colours or facets
+5. [Save plots](#ggsave) as an image file
     
 ### Intermediate
 
-5. Represent factorial designs with different colours or facets
 6. Superimpose different types of graphs
 7. Add lines to graphs
-8. Create less common types of graphs
+8. Deal with [overlapping data](#overlap)
+9. Create less common types of graphs
     + [`geom_tile()`](#geom_tile)
     + [`geom_density2d()`](#geom_density2d)
     + [`geom_bin2d()`](#geom_bin2d)
     + [`geom_hex()`](#geom_hex)
     + [`geom_count()`](#geom_count)
-9. Deal with [overlapping data](#overlap)
 10. Use the [`viridis`](#viridis) package to set colours
 
 ### Advanced
@@ -260,9 +262,7 @@ ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
 
 ### Violin plot {#geom_violin}
 
-Violin pots are like sideways, mirrored density plots. They give even more information 
-than a boxplot about distribution and are especially useful when you have non-normal 
-distributions.
+Violin pots are like sideways, mirrored density plots. They give even more information than a boxplot about distribution and are especially useful when you have non-normal distributions.
 
 ```{r violin, fig.cap="Violin plot"}
 
@@ -279,23 +279,6 @@ ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
 Try changing the numbers in the `draw_quantiles` argument.
 ```
 
-You can use `stat_summary()` to superimpose a point-range plot showning the mean ± 1 SD. You'll learn how to write your own functions in the lesson on [Iteration and Functions](#func).
-
-```{r stat-summary, fig.cap="Point-range plot using stat_summary()"}
-
-ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
-  geom_violin(
-    trim = FALSE,
-    alpha = 0.5
-  ) +
-  stat_summary(
-    fun.y = mean,
-    fun.ymax = function(x) {mean(x) + sd(x)},
-    fun.ymin = function(x) {mean(x) - sd(x)},
-    geom="pointrange"
-  )
-
-```
 
 ### Scatter plot {#geom_point}
 
@@ -368,6 +351,26 @@ pet_happy %>%
 Set the `show.legend` argument to `FALSE` to hide the legend. We do this here because the x-axis already labels the pet types.
 ```
 
+### Violin-point-range plot
+
+You can use `stat_summary()` to superimpose a point-range plot showning the mean ± 1 SD. You'll learn how to write your own functions in the lesson on [Iteration and Functions](#func).
+
+```{r stat-summary, fig.cap="Point-range plot using stat_summary()"}
+
+ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
+  geom_violin(
+    trim = FALSE,
+    alpha = 0.5
+  ) +
+  stat_summary(
+    fun.y = mean,
+    fun.ymax = function(x) {mean(x) + sd(x)},
+    fun.ymin = function(x) {mean(x) - sd(x)},
+    geom="pointrange"
+  )
+
+```
+
 ### Violin-jitter plot
 
 If you don't have a lot of data points, it's good to represent them individually. 
@@ -381,7 +384,7 @@ pet_happy %>%
   geom_violin(
     trim = FALSE,
     draw_quantiles = c(0.25, 0.5, 0.75), 
-    alpha=0.5
+    alpha = 0.5
   ) + 
   geom_point(position = "jitter", alpha = 0.7, size = 3)
 
@@ -402,14 +405,7 @@ ggplot(x_vs_y, aes(x, y)) +
 
 ### Grid of plots {#cowplot}
 
-You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) 
-package to easily make grids of different graphs. First, you have to assign each 
-plot a name. Then you list all the plots as the first arguments of `plot_grid()` 
-and provide a list of labels.
-
-```{block, type="info"}
-{#theme}You can get back the default ggplot theme with `+ theme_set(theme_grey())`.
-```
+You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) package to easily make grids of different graphs. First, you have to assign each plot a name. Then you list all the plots as the first arguments of `plot_grid()` and provide a list of labels.
 
 ```{r cowplot, message = FALSE, fig.cap="Grid of plots using cowplot"}
 
@@ -443,9 +439,9 @@ my_bar <- pet_happy %>%
     mean = mean(happiness),
     sd = sd(happiness)
   ) %>%
-ggplot(aes(pet, mean, fill=pet)) +
-  geom_bar(stat="identity", alpha = 0.5, show.legend = FALSE) +
-  geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25)
+  ggplot(aes(pet, mean, fill=pet)) +
+    geom_bar(stat="identity", alpha = 0.5, show.legend = FALSE) +
+    geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25)
 
 plot_grid(
   my_violin, 
@@ -458,7 +454,8 @@ plot_grid(
 ```
 
 ```{block, type="info"}
-Once you load the cowplot package, your ggplot default theme will change.
+{#theme}
+Once you load the cowplot package, your ggplot default theme will change. You can get back the default ggplot theme with `+ theme_set(theme_grey())`.
 ```
 
 ## Overlapping Data {#overlap}
@@ -475,7 +472,7 @@ ggplot(overlap, aes(x, y)) +
 
 ```
 
-{#geom_coun}
+{#geom_count}
 Or you can set the size of the dot proportional to the number of overlapping 
 observations using `geom_count()`.
 
@@ -625,6 +622,128 @@ ggplotly(demog_plot)
 ```{block, type="info"}
 Hover over the data points above and click on the legend items.
 ```
+
+## Quiz {#ggplot-quiz}
+
+1. Generate a plot like this from the built-in dataset `iris`. Make sure to include the custom axis labels.
+
+    ```{r quiz-boxplot, echo = FALSE, fig.cap = ""}
+    ggplot(iris, aes(Species, Petal.Width, fill = Species)) +
+      geom_boxplot(show.legend = FALSE) +
+      xlab("Flower Species") +
+      ylab("Petal Width (in cm)")
+    ```
+    
+    ```{r quiz-boxplot-answer, eval = FALSE, webex.hide = TRUE}
+    ggplot(iris, aes(Species, Petal.Width, fill = Species)) +
+      geom_boxplot(show.legend = FALSE) +
+      xlab("Flower Species") +
+      ylab("Petal Width (in cm)")
+    
+    # there are many ways to do things, the code below is also correct
+    ggplot(iris) +
+      geom_boxplot(aes(Species, Petal.Width, fill = Species), show.legend = FALSE) +
+      labs(x = "Flower Species",
+           y = "Petal Width (in cm)")
+    ```
+
+
+2. You have just created a plot using the following code. How do you save it?
+    ```{r quiz-save, eval = FALSE}
+    ggplot(cars, aes(speed, dist)) + 
+      geom_point() +
+      geom_smooth(method = lm)
+    ```
+    
+    ```{r quiz-save-answer, echo = FALSE, results = 'asis'}
+    c(
+      "ggsave()",
+      "ggsave(\"figname\")",
+      answer = "ggsave(\"figname.png\")",
+      "ggsave(\"figname.png\", plot = cars)"
+    ) %>%
+      webex::mcq() %>% cat()
+    ```
+
+  
+3. Debug the following code.
+    ```{r quiz-debug, eval = FALSE}
+    ggplot(iris) +
+      geom_point(aes(Petal.Width, Petal.Length, colour = Species)) +
+      geom_smooth(method = lm) +
+      facet_grid(Species)
+    ```
+    
+    ```{r quiz-debug-answer, webex.hide = TRUE, fig.cap = ""}
+    ggplot(iris, aes(Petal.Width, Petal.Length, colour = Species)) +
+      geom_point() +
+      geom_smooth(method = lm) +
+      facet_grid(~Species)
+    ```
+
+
+4. Generate a plot like this from the built-in dataset `ChickWeight`.  
+
+    ```{r, echo = FALSE, fig.cap = ""}
+    ggplot(ChickWeight, aes(weight, Time)) +
+      geom_hex(binwidth = c(10, 1)) +
+      scale_fill_viridis_c()
+    ```
+    
+    ```{r, eval = FALSE, webex.hide = TRUE}
+    ggplot(ChickWeight, aes(weight, Time)) +
+      geom_hex(binwidth = c(10, 1)) +
+      scale_fill_viridis_c()
+    ```
+
+    
+5. Generate a plot like this from the built-in dataset `iris`.
+
+    ```{r quiz-cowplot, echo = FALSE, fig.height = 10, fig.cap = ""}
+    pw <- ggplot(iris, aes(Petal.Width, color = Species)) +
+      geom_density() +
+      xlab("Petal Width (in cm)")
+    
+    pl <- ggplot(iris, aes(Petal.Length, color = Species)) +
+      geom_density() +
+      xlab("Petal Length (in cm)") +
+      coord_flip()
+    
+    pw_pl <- ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
+      geom_point() +
+      geom_smooth(method = lm) +
+      xlab("Petal Width (in cm)") +
+      ylab("Petal Length (in cm)")
+    
+    cowplot::plot_grid(
+      pw, pl, pw_pl, 
+      labels = c("A", "B", "C"),
+      nrow = 3
+    )
+    ```
+    
+    ```{r quiz-cowplot-answer, eval = FALSE, webex.hide = TRUE}
+    pw <- ggplot(iris, aes(Petal.Width, color = Species)) +
+      geom_density() +
+      xlab("Petal Width (in cm)")
+    
+    pl <- ggplot(iris, aes(Petal.Length, color = Species)) +
+      geom_density() +
+      xlab("Petal Length (in cm)") +
+      coord_flip()
+    
+    pw_pl <- ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
+      geom_point() +
+      geom_smooth(method = lm) +
+      xlab("Petal Width (in cm)") +
+      ylab("Petal Length (in cm)")
+    
+    cowplot::plot_grid(
+      pw, pl, pw_pl, 
+      labels = c("A", "B", "C"),
+      nrow = 3
+    )
+    ```
 
 ## Exercises
 
