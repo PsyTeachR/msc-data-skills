@@ -63,7 +63,7 @@
 
 ## Setup
 
-```{r, results = 'hide', warning = FALSE, message = FALSE}
+```{r setup, results = 'hide', warning = FALSE, message = FALSE}
 
 # libraries needed for these graphs
 library(tidyverse)
@@ -93,7 +93,7 @@ Before you read ahead, come up with an example of each type of variable combinat
 Here we've created some data frames with different types of data. 
 
 * `pets` has a column with pet type
-* `demog` has `height` and `age` for 500 men and 500 women.
+* `pet_happy` has `happiness` and `age` for 500 dog owners and 500 cat owners
 * `x_vs_y` has two correlated continuous variables (`x` and `y`)
 * `overlap` has two correlated ordinal variables and 1000 observations so there is a lot of overlap
 * `overplot` has two correlated continuous variables and 10000 observations
@@ -113,9 +113,9 @@ pets <- tibble(
   )
 )
 
-demog <- tibble(
-  sex = rep(c("male", "female"), each = 500),
-  height = c(rnorm(500, 70, 4), rnorm(500, 65, 3.5)),
+pet_happy <- tibble(
+  pet = rep(c("dog", "cat"), each = 500),
+  happiness = c(rnorm(500, 55, 10), rnorm(500, 45, 10)),
   age = rpois(1000, 3) + 20
 )
 
@@ -158,7 +158,7 @@ large number of observations.
 
 ```{r density, fig.cap="Density plot"}
 
-ggplot(demog, aes(height)) +
+ggplot(pet_happy, aes(happiness)) +
   geom_density()
 
 ```
@@ -166,9 +166,9 @@ ggplot(demog, aes(height)) +
 You can represent subsets of a variable by assigning the category variable to 
 the argument `group`, `fill`, or `color`. 
 
-```{r density-sex, fig.cap="Density plot with fill defined by sex"}
+```{r density-grouped, fig.cap="Grouped density plot"}
 
-ggplot(demog, aes(height, fill = sex)) +
+ggplot(pet_happy, aes(happiness, fill = pet)) +
   geom_density(alpha = 0.5)
 
 ```
@@ -183,7 +183,7 @@ If you don't want smoothed distributions, try `geom_freqpoly()`.
 
 ```{r freqpoly, fig.cap="Frequency ploygon plot"}
 
-ggplot(demog, aes(height, color = sex)) +
+ggplot(pet_happy, aes(happiness, color = pet)) +
   geom_freqpoly(binwidth = 1)
   
 ```
@@ -198,7 +198,7 @@ Histograms are also good for one continuous variable, and work well if you don't
 
 ```{r histogram, fig.cap="Histogram"}
 
-ggplot(demog, aes(height)) +
+ggplot(pet_happy, aes(happiness)) +
   geom_histogram(binwidth = 1, fill = "white", color = "black")
   
 ```
@@ -209,9 +209,9 @@ Histograms in ggplot look pretty bad unless you set the `fill` and `color`.
 
 If you show grouped histograms, you also probably want to change the default `position` argument.
 
-```{r histogram-sex}
+```{r histogram-grouped, fig.cap="Grouped Histogram"}
 
-ggplot(demog, aes(height, fill=sex)) +
+ggplot(pet_happy, aes(happiness, fill=pet)) +
   geom_histogram(binwidth = 1, alpha = 0.5, position = "dodge")
   
 ```
@@ -226,16 +226,16 @@ Column plots are the worst way to represent grouped continuous data, but also on
 
 To make column plots with error bars, you first need to calculate the means, error bar uper limits (`ymax`) and error bar lower limits (`ymin`) for each category. You'll learn more about how to use the code below in the next two lessons.
 
-```{r colplot}
+```{r colplot, fig.cap="Column plot"}
 
-# calculate mean and SD for each sex
-demog %>%
-  group_by(sex) %>%
+# calculate mean and SD for each pet
+pet_happy %>%
+  group_by(pet) %>%
   summarise(
-    mean = mean(height),
-    sd = sd(height)
+    mean = mean(happiness),
+    sd = sd(happiness)
   ) %>%
-ggplot(aes(sex, mean, fill=sex)) +
+ggplot(aes(pet, mean, fill=pet)) +
   geom_col(alpha = 0.5) +
   geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25) +
   geom_hline(yintercept = 40)
@@ -251,9 +251,9 @@ What do you think `geom_hline()` does?
 Boxplots are great for representing the distribution of grouped continuous 
 variables. They fix most of the problems with using barplots for continuous data.
 
-```{r boxplot}
+```{r boxplot, fig.cap="Box plot"}
 
-ggplot(demog, aes(sex, height, fill=sex)) +
+ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_boxplot(alpha = 0.5)
 
 ```
@@ -264,9 +264,9 @@ Violin pots are like sideways, mirrored density plots. They give even more infor
 than a boxplot about distribution and are especially useful when you have non-normal 
 distributions.
 
-```{r violin}
+```{r violin, fig.cap="Violin plot"}
 
-ggplot(demog, aes(sex, height, fill=sex)) +
+ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_violin(
     trim = FALSE,
     draw_quantiles = c(0.25, 0.5, 0.75), 
@@ -279,23 +279,21 @@ ggplot(demog, aes(sex, height, fill=sex)) +
 Try changing the numbers in the `draw_quantiles` argument.
 ```
 
-```{r stat-summary}
+You can use `stat_summary()` to superimpose a point-range plot showning the mean ± 1 SD. You'll learn how to write your own functions in the lesson on [Iteration and Functions](#func).
 
-ggplot(demog, aes(sex, height, fill=sex)) +
+```{r stat-summary, fig.cap="Point-range plot using stat_summary()"}
+
+ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_violin(
     trim = FALSE,
     alpha = 0.5
   ) +
   stat_summary(
-    fun.data = function(x) {
-      m <- mean(x)
-      sd <- sd(x)
-      
-      c(y    = m,
-        ymin = m - sd,
-        ymax = m + sd)
-    }, 
-    geom="pointrange")
+    fun.y = mean,
+    fun.ymax = function(x) {mean(x) + sd(x)},
+    fun.ymin = function(x) {mean(x) - sd(x)},
+    geom="pointrange"
+  )
 
 ```
 
@@ -303,7 +301,7 @@ ggplot(demog, aes(sex, height, fill=sex)) +
 
 Scatter plots are a good way to represent the relationship between two continuous variables.
 
-```{r scatter}
+```{r scatter, fig.cap="Scatter plot using geom_point()"}
 
 ggplot(x_vs_y, aes(x, y)) +
   geom_point()
@@ -314,7 +312,7 @@ ggplot(x_vs_y, aes(x, y)) +
 
 You often want to represent the relationship as a single line.
 
-```{r line}
+```{r line, fig.cap="Line plot using geom_smooth()"}
 ggplot(x_vs_y, aes(x, y)) +
   geom_smooth(method="lm")
 ```
@@ -330,17 +328,17 @@ You can set the `width` and `height` of your plot. The default units are inches,
 but you can change the `units` argument to "in", "cm", or "mm".
 
 
-```{r, eval = FALSE}
+```{r ggsave-example, eval = FALSE}
 
-demog_box <- ggplot(demog, aes(sex, height, fill=sex)) +
+box <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_boxplot(alpha = 0.5)
 
-demog_violin <- ggplot(demog, aes(sex, height, fill=sex)) +
+violin <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_violin(alpha = 0.5)
 
 ggsave("demog_violin_plot.png", width = 5, height = 7)
 
-ggsave("demog_box_plot.jpg", plot = demog_box, width = 5, height = 7)
+ggsave("demog_box_plot.jpg", plot = box, width = 5, height = 7)
 
 ```
 
@@ -349,15 +347,16 @@ ggsave("demog_box_plot.jpg", plot = demog_box, width = 5, height = 7)
 
 ### Violinbox plot
 
-To demonstrate the use of `facet_grid()` for factorial designs, I created a new 
+To demonstrate the use of `facet_grid()` for factorial designs, we create a new 
 column called `agegroup` to split the data into participants older than the 
-meadian age or younger than the median age.
+meadian age or younger than the median age. New factors will display in alphabetical order, so we can use the `factor()` function to set the levels in the order we want.
 
-```{r violinbox}
+```{r violinbox, fig.cap="Violin-box plot"}
 
-demog %>%
-  mutate(agegroup = ifelse(age<median(age), "Younger", "Older")) %>%
-  ggplot(aes(sex, height, fill=sex)) +
+pet_happy %>%
+  mutate(agegroup = ifelse(age<median(age), "Younger", "Older"),
+         agegroup = factor(agegroup, levels = c("Younger", "Older"))) %>%
+  ggplot(aes(pet, happiness, fill=pet)) +
     geom_violin(trim = FALSE, alpha=0.5, show.legend = FALSE) +
     geom_boxplot(width = 0.25, fill="white") +
     facet_grid(.~agegroup) +
@@ -366,7 +365,7 @@ demog %>%
 ```
 
 ```{block, type="info"}
-Set the `show.legend` argument to `FALSE` to hide the legend. We do this here because the x-axis already labels the sexes.
+Set the `show.legend` argument to `FALSE` to hide the legend. We do this here because the x-axis already labels the pet types.
 ```
 
 ### Violin-jitter plot
@@ -374,11 +373,11 @@ Set the `show.legend` argument to `FALSE` to hide the legend. We do this here be
 If you don't have a lot of data points, it's good to represent them individually. 
 You can use `geom_point` to do this, setting `position` to "jitter".
 
-```{r violin-jitter}
+```{r violin-jitter, fig.cap="Violin-jitter plot"}
 
-demog %>%
+pet_happy %>%
   sample_n(50) %>%  # choose 50 random observations from the dataset
-  ggplot(aes(sex, height, fill=sex)) +
+  ggplot(aes(pet, happiness, fill=pet)) +
   geom_violin(
     trim = FALSE,
     draw_quantiles = c(0.25, 0.5, 0.75), 
@@ -393,7 +392,7 @@ demog %>%
 If your graph isn't too complicated, it's good to also show the individual data 
 points behind the line.
 
-```{r scatter_line}
+```{r scatter_line, fig.cap="Scatter-line plot"}
 
 ggplot(x_vs_y, aes(x, y)) +
   geom_point(alpha = 0.25) +
@@ -412,11 +411,11 @@ and provide a list of labels.
 {#theme}You can get back the default ggplot theme with `+ theme_set(theme_grey())`.
 ```
 
-```{r cowplot}
+```{r cowplot, message = FALSE, fig.cap="Grid of plots using cowplot"}
 
 library(cowplot)
 
-my_hist <- ggplot(demog, aes(height, fill=sex)) +
+my_hist <- ggplot(pet_happy, aes(happiness, fill=pet)) +
   geom_histogram(
     binwidth = 1, 
     alpha = 0.5, 
@@ -424,7 +423,7 @@ my_hist <- ggplot(demog, aes(height, fill=sex)) +
     show.legend = FALSE
   )
 
-my_violin <- ggplot(demog, aes(sex, height, fill=sex)) +
+my_violin <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_violin(
     trim = FALSE,
     draw_quantiles = c(0.5), 
@@ -432,19 +431,19 @@ my_violin <- ggplot(demog, aes(sex, height, fill=sex)) +
     show.legend = FALSE
   )
 
-my_box <- ggplot(demog, aes(sex, height, fill=sex)) +
+my_box <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_boxplot(alpha=0.5, show.legend = FALSE)
 
-my_density <- ggplot(demog, aes(height, fill=sex)) +
+my_density <- ggplot(pet_happy, aes(happiness, fill=pet)) +
   geom_density(alpha=0.5, show.legend = FALSE)
 
-my_bar <- demog %>%
-  group_by(sex) %>%
+my_bar <- pet_happy %>%
+  group_by(pet) %>%
   summarise(
-    mean = mean(height),
-    sd = sd(height)
+    mean = mean(happiness),
+    sd = sd(happiness)
   ) %>%
-ggplot(aes(sex, mean, fill=sex)) +
+ggplot(aes(pet, mean, fill=pet)) +
   geom_bar(stat="identity", alpha = 0.5, show.legend = FALSE) +
   geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25)
 
@@ -468,7 +467,7 @@ Once you load the cowplot package, your ggplot default theme will change.
 
 You can deal with overlapping data points (very common if you're using Likert scales) by reducing the opacity of the points. You need to use trial and error to adjust these so they look right.
 
-```{r overlap_alpha}
+```{r overlap_alpha, fig.cap="Deal with overlapping data using transparency"}
 
 ggplot(overlap, aes(x, y)) +
   geom_point(size = 5, alpha = .05) +
@@ -480,7 +479,7 @@ ggplot(overlap, aes(x, y)) +
 Or you can set the size of the dot proportional to the number of overlapping 
 observations using `geom_count()`.
 
-```{r overlap_size}
+```{r overlap_size, fig.cap="Deal with overlapping data using geom_count()"}
 
 overlap %>%
   ggplot(aes(x, y)) +
@@ -491,7 +490,7 @@ overlap %>%
 Alternatively, you can transform your data to create a count column and use the 
 count to set the dot colour.
 
-```{r overlap-colour}
+```{r overlap-colour, fig.cap="Deal with overlapping data using dot colour"}
 
 overlap %>%
   group_by(x, y) %>%
@@ -521,7 +520,7 @@ The newest version of `ggplot2` v3.0.0 has viridis built in. It uses `scale_colo
 Even if the variables are continuous, overplotting might obscure any relationships 
 if you have lots of data.
 
-```{r overplot-point}
+```{r overplot-point, fig.cap="Overplotted data"}
 overplot %>%
   ggplot(aes(x, y)) + 
   geom_point()
@@ -530,7 +529,7 @@ overplot %>%
 {#geom_density2d}
 Use `geom_density2d()` to create a contour map.
 
-```{r density2d}
+```{r density2d, fig.cap="Contour map with geom_density2d()"}
 overplot %>%
   ggplot(aes(x, y)) + 
   geom_density2d()
@@ -539,7 +538,7 @@ overplot %>%
 You can use `stat_density_2d(aes(fill = ..level..), geom = "polygon")` to create 
 a heatmap-style density plot. 
 
-```{r density2d-fill}
+```{r density2d-fill, fig.cap="Heatmap-density plot"}
 overplot %>%
   ggplot(aes(x, y)) + 
   stat_density_2d(aes(fill = ..level..), geom = "polygon") +
@@ -551,7 +550,7 @@ overplot %>%
 Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the 
 `binwidth` to the x and y dimensions to capture in each box.
 
-```{r bin2d}
+```{r bin2d, fig.cap="Heatmap of bin counts"}
 overplot %>%
   ggplot(aes(x, y)) + 
   geom_bin2d(binwidth = c(1,1))
@@ -562,7 +561,7 @@ Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the
 `binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons 
 more or less stretched.
 
-```{r overplot-hex, fig.width=6, fig.height=5}
+```{r overplot-hex, fig.width=6, fig.height=5, fig.cap="Hexagonal heatmap of bin counts"}
 overplot %>%
   ggplot(aes(x, y)) + 
   geom_hex(binwidth = c(0.25, 0.25))
@@ -597,7 +596,7 @@ gather("V2", "r", a1:b4) # wide to long (V2)
 Once you have a correlation matrix in the correct (long) format, it's easy to 
 make a heatmap using `geom_tile()`.
 
-```{r heatmap}
+```{r heatmap, fig.cap="Heatmap using geom_tile()"}
 ggplot(heatmap, aes(V1, V2, fill=r)) +
   geom_tile() +
   scale_fill_viridis()
@@ -614,9 +613,9 @@ specifying the argument `device`, which can take the following values:
 You can use the `plotly` package to make interactive graphs. Just assign your 
 ggplot to a variable and use the function `ggplotly()`.
 
-```{r plotly, message = FALSE}
+```{r plotly, message = FALSE, fig.cap="Interactive graph using plotly"}
 
-demog_plot <- ggplot(demog, aes(age, height, fill=sex)) +
+demog_plot <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
   geom_point(position = position_jitter(width= 0.2, height = 0), size = 2)
 
 ggplotly(demog_plot)

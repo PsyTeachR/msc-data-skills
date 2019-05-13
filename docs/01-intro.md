@@ -294,8 +294,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.63161039 -0.23386869  0.53295554 -0.28526299 -0.58899694
-##  [6]  1.32968804 -0.04745514 -1.50732323  0.42577774  1.17717357
+##  [1] -0.35292542 -0.06176216  1.02555618  1.08937343 -1.82351927
+##  [6]  1.85296260  0.23643871  0.11545838 -1.39018631 -0.46743795
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -306,8 +306,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.98555 101.34982 101.07291 100.64484  99.98851 100.81042  99.88772
-##  [8] 102.09849  98.13032  99.46031
+##  [1]  97.57336 102.13995 100.62362 101.24622 100.75942 100.00311  99.44967
+##  [8] 101.14733 100.46691  99.75345
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -318,8 +318,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.69161 100.62661  99.15994  98.32646  99.69604  98.99141  99.70749
-##  [8]  99.59681 100.19565  99.23538
+##  [1]  98.92644 101.52109 100.37794  99.64665 100.19105 100.06335 101.26143
+##  [8]  99.92960  99.99409  99.02683
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call.  However, if we want to change the default for an argument coming later in the list, then we need to name it.  For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -330,8 +330,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  102.103592  -82.425048  106.545657   81.370738   -1.814186
-##  [6]  137.408891  156.659881 -207.648328   42.961779   88.378815
+##  [1]   33.84388   56.30779  170.39674   85.64143   18.34868   30.25626
+##  [7]   41.62574 -139.25489   17.18838   74.95704
 ```
 
 ### Getting help {#help}
@@ -402,13 +402,15 @@ fortune()
 
 ```
 ## 
-## Joshua Wiley: ... the advantages of formal classes seem worth at least not
-## entirely dismissing.
-## Jim Lemon: Hmmm, yeah, that's about the grammatical equivalent of S4
-## classes.
-##    -- Joshua Wiley and Jim Lemon (in a discussion about the relative
-##       advantages of S3 and S4 classes)
-##       R-help (May 2011)
+## Oh, gosh, this is getting whimsical.
+## R, I surmise, is a mutable tool that enables the user to do what they
+## want. Knapped flint for the Stone Age statistical fool, plasma arc for the
+## expert and learned savant.
+## R is a friend to all manner of men. The perfect companion, the servant
+## complete. It gently informeth the clueless and then, reveals the essence
+## unto the esthete.
+##    -- Jim Lemon (in a discussion about the usability of R)
+##       R-help (May 2006)
 ```
 
 Note that we will use the convention `package::function()` and `package::object` to indicate in which add-on package a function or object resides.  For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.  If you see a function introduced without a package name, that means it is part of the base R system and not an add-on package (depending on the context).  Sometimes I will make this explicit by using `base` in the place of the package name; for instance, I might refer to `rnorm()` in base as `base::rnorm()`.
