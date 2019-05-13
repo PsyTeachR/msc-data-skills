@@ -305,7 +305,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
-<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -323,10 +322,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="func.html"><a href="func.html#custom-functions-sim_data"><i class="fa fa-check"></i><b>7.6.1</b> Custom functions: <code>sim_data</code></a></li>
-</ul></li>
-<li class="chapter" data-level="7.7" data-path="func.html"><a href="func.html#iterating"><i class="fa fa-check"></i><b>7.7</b> Iterating</a></li>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
@@ -551,18 +547,18 @@ data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <
 data</code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id  A_mean B_mean
-##    &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  0.413   2.01 
-##  2     2 -0.541   2.96 
-##  3     3  0.0314  1.07 
-##  4     4 -0.0303  3.90 
-##  5     5  0.0292  0.783
-##  6     6  0.964   2.95 
-##  7     7  1.42    1.99 
-##  8     8 -0.477   3.17 
-##  9     9 -0.493   3.59 
-## 10    10  1.25    3.34</code></pre>
+##       id A_mean B_mean
+##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1  0.616   2.40
+##  2     2  0.498   2.92
+##  3     3  1.29    3.34
+##  4     4  1.56    2.93
+##  5     5 -1.05    3.00
+##  6     6  0.412   2.23
+##  7     7  1.16    2.81
+##  8     8  0.671   3.39
+##  9     9  0.968   2.12
+## 10    10  0.908   1.98</code></pre>
 <div class="warning">
 <p>
 You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
@@ -950,56 +946,56 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <td align="left">A</td>
 <td align="right">1</td>
 <td align="left">cat</td>
+<td align="right">-0.682</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">A</td>
+<td align="right">2</td>
+<td align="left">cat</td>
+<td align="right">-0.326</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">B</td>
+<td align="right">1</td>
+<td align="left">cat</td>
+<td align="right">-0.174</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">B</td>
+<td align="right">2</td>
+<td align="left">cat</td>
 <td align="right">0.270</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">A</td>
-<td align="right">2</td>
-<td align="left">cat</td>
-<td align="right">0.700</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">B</td>
-<td align="right">1</td>
-<td align="left">cat</td>
-<td align="right">0.071</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">B</td>
-<td align="right">2</td>
-<td align="left">cat</td>
-<td align="right">-0.434</td>
-</tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">0.149</td>
+<td align="right">-0.983</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">-0.005</td>
+<td align="right">-1.241</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">0.661</td>
+<td align="right">0.365</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">-0.435</td>
+<td align="right">1.020</td>
 </tr>
 </tbody>
 </table>
@@ -1020,29 +1016,29 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">0.2701895</td>
-<td align="right">0.0707570</td>
+<td align="right">-0.6815060</td>
+<td align="right">-0.1741526</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">0.6999757</td>
-<td align="right">-0.4343429</td>
+<td align="right">-0.3261588</td>
+<td align="right">0.2695666</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">0.1489246</td>
-<td align="right">0.6609718</td>
+<td align="right">-0.9826734</td>
+<td align="right">0.3647796</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">-0.0049055</td>
-<td align="right">-0.4352644</td>
+<td align="right">-1.2411648</td>
+<td align="right">1.0202826</td>
 </tr>
 </tbody>
 </table>
@@ -1062,49 +1058,49 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <td align="right">1</td>
 <td align="left">A_1</td>
 <td align="left">cat</td>
-<td align="right">0.2701895</td>
+<td align="right">-0.6815060</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A_2</td>
 <td align="left">cat</td>
-<td align="right">0.6999757</td>
+<td align="right">-0.3261588</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B_1</td>
 <td align="left">cat</td>
-<td align="right">0.0707570</td>
+<td align="right">-0.1741526</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B_2</td>
 <td align="left">cat</td>
-<td align="right">-0.4343429</td>
+<td align="right">0.2695666</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A_1</td>
 <td align="left">dog</td>
-<td align="right">0.1489246</td>
+<td align="right">-0.9826734</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A_2</td>
 <td align="left">dog</td>
-<td align="right">-0.0049055</td>
+<td align="right">-1.2411648</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B_1</td>
 <td align="left">dog</td>
-<td align="right">0.6609718</td>
+<td align="right">0.3647796</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B_2</td>
 <td align="left">dog</td>
-<td align="right">-0.4352644</td>
+<td align="right">1.0202826</td>
 </tr>
 </tbody>
 </table>
@@ -1404,6 +1400,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

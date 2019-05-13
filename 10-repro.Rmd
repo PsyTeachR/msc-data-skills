@@ -8,7 +8,7 @@
 2. Edit the YAML header to add table of contents and other options
 3. Include a table 
 4. Include a figure 
-5. Use `source()` to include code form an external file 
+5. Use `source()` to include code from an external file 
 6. Report the output of an analysis using inline R
 
 ### Intermediate

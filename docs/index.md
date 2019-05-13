@@ -55,7 +55,8 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     1. Understand what types of graphs are best for [different types of data](#vartypes)
     2. Create common types of graphs with ggplot2
     3. Set custom labels
-    4. [Save plots](#ggsave) as an image file
+    4. Represent factorial designs with different colours or facets
+    5. [Save plots](#ggsave) as an image file
 
 4. [Tidy Data](#tidyr)
     1. Understand the concept of "tidy data"
@@ -90,7 +91,7 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     2. Edit the YAML header to add table of contents and other options
     3. Include a table 
     4. Include a figure 
-    5. Use `source()` to include code form an external file 
+    5. Use `source()` to include code from an external file 
     6. Report the output of an analysis using inline R
 
 

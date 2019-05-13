@@ -179,18 +179,18 @@ data
 ```
 ## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id  A_mean B_mean
-##    <int>   <dbl>  <dbl>
-##  1     1  0.413   2.01 
-##  2     2 -0.541   2.96 
-##  3     3  0.0314  1.07 
-##  4     4 -0.0303  3.90 
-##  5     5  0.0292  0.783
-##  6     6  0.964   2.95 
-##  7     7  1.42    1.99 
-##  8     8 -0.477   3.17 
-##  9     9 -0.493   3.59 
-## 10    10  1.25    3.34
+##       id A_mean B_mean
+##    <int>  <dbl>  <dbl>
+##  1     1  0.616   2.40
+##  2     2  0.498   2.92
+##  3     3  1.29    3.34
+##  4     4  1.56    2.93
+##  5     5 -1.05    3.00
+##  6     6  0.412   2.23
+##  7     7  1.16    2.81
+##  8     8  0.671   3.39
+##  9     9  0.968   2.12
+## 10    10  0.908   1.98
 ```
 
 <div class="warning">
@@ -690,24 +690,24 @@ The following data table is called `quiz_data`.
 
  id  condition    version  pet     score
 ---  ----------  --------  ----  -------
-  1  A                  1  cat     0.270
-  1  A                  2  cat     0.700
-  1  B                  1  cat     0.071
-  1  B                  2  cat    -0.434
-  2  A                  1  dog     0.149
-  2  A                  2  dog    -0.005
-  2  B                  1  dog     0.661
-  2  B                  2  dog    -0.435
+  1  A                  1  cat    -0.682
+  1  A                  2  cat    -0.326
+  1  B                  1  cat    -0.174
+  1  B                  2  cat     0.270
+  2  A                  1  dog    -0.983
+  2  A                  2  dog    -1.241
+  2  B                  1  dog     0.365
+  2  B                  2  dog     1.020
 
 
 1. How do you get `quiz_data` into the following format?
     
      id   version  pet             A            B
     ---  --------  ----  -----------  -----------
-      1         1  cat     0.2701895    0.0707570
-      1         2  cat     0.6999757   -0.4343429
-      2         1  dog     0.1489246    0.6609718
-      2         2  dog    -0.0049055   -0.4352644
+      1         1  cat    -0.6815060   -0.1741526
+      1         2  cat    -0.3261588    0.2695666
+      2         1  dog    -0.9826734    0.3647796
+      2         2  dog    -1.2411648    1.0202826
     
     <select class='solveme' data-answer='["spread(quiz_data, condition, score)"]'> <option></option> <option>separate(quiz_data, condition, score)</option> <option>gather(quiz_data, condition:score)</option> <option>spread(quiz_data, condition, score)</option> <option>unite(quiz_data, condition:score)</option></select>
     
@@ -715,14 +715,14 @@ The following data table is called `quiz_data`.
     
      id  cversion   pet         score
     ---  ---------  ----  -----------
-      1  A_1        cat     0.2701895
-      1  A_2        cat     0.6999757
-      1  B_1        cat     0.0707570
-      1  B_2        cat    -0.4343429
-      2  A_1        dog     0.1489246
-      2  A_2        dog    -0.0049055
-      2  B_1        dog     0.6609718
-      2  B_2        dog    -0.4352644
+      1  A_1        cat    -0.6815060
+      1  A_2        cat    -0.3261588
+      1  B_1        cat    -0.1741526
+      1  B_2        cat     0.2695666
+      2  A_1        dog    -0.9826734
+      2  A_2        dog    -1.2411648
+      2  B_1        dog     0.3647796
+      2  B_2        dog     1.0202826
 
     <select class='solveme' data-answer='["unite(quiz_data, cversion, condition, version)"]'> <option></option> <option>separate(quiz_data, cversion, condition, version)</option> <option>spread(quiz_data, condition:version)</option> <option>gather(quiz_data, cversion, condition:version)</option> <option>unite(quiz_data, cversion, condition, version)</option></select>
 
