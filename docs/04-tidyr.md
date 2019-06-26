@@ -1,6 +1,8 @@
 
 # Tidy Data {#tidyr}
 
+Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
+
 ## Learning Objectives
 
 ### Basic
@@ -150,7 +152,7 @@ data_original <- tibble(
   A1 = rnorm(10, 0),
   A2 = rnorm(10, 1),
   B1 = rnorm(10, 2),
-  B2 = rnorm(10,3)
+  B2 = rnorm(10, 3)
 )
 
 # gather columns A1 to B2 into "variable" and "value" columns
@@ -179,20 +181,20 @@ data
 ## # Groups:   id [10]
 ##       id A_mean B_mean
 ##    <int>  <dbl>  <dbl>
-##  1     1  0.770   2.32
-##  2     2  0.169   2.44
-##  3     3  1.10    2.60
-##  4     4  1.09    3.00
-##  5     5  1.52    3.26
-##  6     6  0.557   1.75
-##  7     7  0.302   3.39
-##  8     8 -1.12    2.14
-##  9     9  1.69    2.98
-## 10    10  1.36    2.08
+##  1     1  0.616   2.40
+##  2     2  0.498   2.92
+##  3     3  1.29    3.34
+##  4     4  1.56    2.93
+##  5     5 -1.05    3.00
+##  6     6  0.412   2.23
+##  7     7  1.16    2.81
+##  8     8  0.671   3.39
+##  9     9  0.968   2.12
+## 10    10  0.908   1.98
 ```
 
 <div class="warning">
-<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep you environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
+<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
 </div>
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
@@ -265,7 +267,7 @@ You can read this code from top to bottom as follows:
 You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
 
 <div class="info">
-<p>You can debug a pipe by running just the first few functions by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?</p>
+<p>You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?</p>
 </div>
 
 ## gather() {#gather}
@@ -681,6 +683,115 @@ glimpse(infmort_wide)
 ```
 
 
+## Quiz {#tidyr-quiz}
+
+The following data table is called `quiz_data`.
+
+
+ id  condition    version  pet     score
+---  ----------  --------  ----  -------
+  1  A                  1  cat    -0.682
+  1  A                  2  cat    -0.326
+  1  B                  1  cat    -0.174
+  1  B                  2  cat     0.270
+  2  A                  1  dog    -0.983
+  2  A                  2  dog    -1.241
+  2  B                  1  dog     0.365
+  2  B                  2  dog     1.020
+
+
+1. How do you get `quiz_data` into the following format?
+    
+     id   version  pet             A            B
+    ---  --------  ----  -----------  -----------
+      1         1  cat    -0.6815060   -0.1741526
+      1         2  cat    -0.3261588    0.2695666
+      2         1  dog    -0.9826734    0.3647796
+      2         2  dog    -1.2411648    1.0202826
+    
+    <select class='solveme' data-answer='["spread(quiz_data, condition, score)"]'> <option></option> <option>separate(quiz_data, condition, score)</option> <option>gather(quiz_data, condition:score)</option> <option>spread(quiz_data, condition, score)</option> <option>unite(quiz_data, condition:score)</option></select>
+    
+2. How do you get `quiz_data` into the following format?
+    
+     id  cversion   pet         score
+    ---  ---------  ----  -----------
+      1  A_1        cat    -0.6815060
+      1  A_2        cat    -0.3261588
+      1  B_1        cat    -0.1741526
+      1  B_2        cat     0.2695666
+      2  A_1        dog    -0.9826734
+      2  A_2        dog    -1.2411648
+      2  B_1        dog     0.3647796
+      2  B_2        dog     1.0202826
+
+    <select class='solveme' data-answer='["unite(quiz_data, cversion, condition, version)"]'> <option></option> <option>separate(quiz_data, cversion, condition, version)</option> <option>spread(quiz_data, condition:version)</option> <option>gather(quiz_data, cversion, condition:version)</option> <option>unite(quiz_data, cversion, condition, version)</option></select>
+
+
+3. Put the built-in dataset `iris` into the following format.
+
+    
+    Species   feature   dimension    value
+    --------  --------  ----------  ------
+    setosa    Sepal     Length         5.1
+    setosa    Sepal     Length         4.9
+    setosa    Sepal     Length         4.7
+    setosa    Sepal     Length         4.6
+    setosa    Sepal     Length         5.0
+    setosa    Sepal     Length         5.4
+    
+    
+    <div class='solution'><button>Solution</button>
+    
+    ```r
+    iris %>%
+      gather(var, value, Sepal.Length:Petal.Width) %>%
+      separate(var, into = c("feature", "dimension"))
+    ```
+    
+    
+    </div>
+
+4. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
+
+
+```r
+# make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
+data_original <- tibble(
+  id = c(1:5, 1:5),
+  condition = rep(1:2, each = 5),
+  A = rnorm(10),
+  B = rnorm(10)
+)
+
+# gather columns A and B into "score_type" and "score" columns
+data_gathered <- gather(data_original, score_type, score, A:B)
+
+# unite the score_type and condition columns into a column called "cell"
+data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
+
+# spread the score column into cells
+data_spread <- spread(data_united, cell, score)
+```
+
+
+<div class='solution'><button>Solution</button>
+
+```r
+data <- tibble(
+  id = c(1:5, 1:5),
+  condition = rep(1:2, each = 5),
+  A = rnorm(10),
+  B = rnorm(10)
+) %>%
+  gather(score_type, score, A:B) %>%
+  unite(cell, score_type, condition, sep = "") %>%
+  spread(cell, score)
+```
+
+
+</div>
+
+
 ## Exercises
 
 Download the [formative exercises](formative_exercises/04_wrangle1_stub.Rmd). See the [answers](formative_exercises/04_wrangle1_answers.Rmd) only after you've attempted all the questions.
@@ -695,26 +806,6 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
 
     The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
 
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ocean <- read_csv("data/personality.csv") %>%
-      gather("question", "score", Op1:Ex9)
-    ```
-    
-    ```
-    ## Parsed with column specification:
-    ## cols(
-    ##   .default = col_double(),
-    ##   date = col_date(format = "")
-    ## )
-    ```
-    
-    ```
-    ## See spec(...) for full column specifications.
-    ```
-    </div>
-
 2. *Basic*: Split the `question` column into two columns: `domain` and `qnumber`.
 
     <p class="alert alert-info'>
@@ -726,57 +817,11 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
     various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can 
     use `sep = -2`.</p>
 
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ocean_sep <- ocean %>%
-      separate(question, c("domain", "qnumber"), sep = 2)
-    ```
-    </div>
-
 3. *Basic*: Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ocean_unite <- ocean_sep %>%
-      unite("domain_n", domain, qnumber, sep = "_Q")
-    ```
-    </div>
 
 4. *Basic*: Convert back to wide format.
 
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ocean_spread <- ocean_unite %>%
-      spread(domain_n, score)
-    ```
-    </div>
-
 5. *Intermediate*: Chain all the steps above using pipes.
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ocean <- read_csv("data/personality.csv") %>%
-      gather("question", "score", Op1:Ex9) %>%
-      separate(question, c("domain", "qnumber"), sep = 2) %>%
-      unite("domain_n", domain, qnumber, sep = "_Q") %>%
-      spread(domain_n, score)
-    ```
-    
-    ```
-    ## Parsed with column specification:
-    ## cols(
-    ##   .default = col_double(),
-    ##   date = col_date(format = "")
-    ## )
-    ```
-    
-    ```
-    ## See spec(...) for full column specifications.
-    ```
-    </div>
 
 *Intermediate*: Debug the following code:
 
@@ -786,48 +831,11 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
     ss <- read_csv(data/sensation_seeking.csv)
     ```
 
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ss <- read_csv("data/sensation_seeking.csv")
-    ```
-    
-    ```
-    ## Parsed with column specification:
-    ## cols(
-    ##   id = col_double(),
-    ##   user_id = col_double(),
-    ##   date = col_date(format = ""),
-    ##   sss1 = col_double(),
-    ##   sss2 = col_double(),
-    ##   sss3 = col_double(),
-    ##   sss4 = col_double(),
-    ##   sss5 = col_double(),
-    ##   sss6 = col_double(),
-    ##   sss7 = col_double(),
-    ##   sss8 = col_double(),
-    ##   sss9 = col_double(),
-    ##   sss10 = col_double(),
-    ##   sss11 = col_double(),
-    ##   sss12 = col_double(),
-    ##   sss13 = col_double(),
-    ##   sss14 = col_double()
-    ## )
-    ```
-    </div>
-
 7. Convert from wide to long format.
     
     ```r
     ss_long <- gather(ss, "question", "score")
     ```
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ss_long <- gather(ss, "question", "score", sss1:sss14)
-    ```
-    </div>
     
 8.  Split the `question` column into two columns: `domain` and `qnumber`.
     
@@ -835,14 +843,6 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
     ss_sep <- ss_long %>%
       separate(question, domain, qnumber, sep = 3)
     ```
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ss_sep <- ss_long %>%
-      separate(question, c("domain", "qnumber"), sep = 3)
-    ```
-    </div>
     
 9. Put the `id` and `user_id` columns together into a new column named `super_id`. Make it in a format like "id-user_id".
     
@@ -850,14 +850,6 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
     ss_unite <- ss_sep %>%
       unite(id, user_id, "super_id", sep = "-")
     ```
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ss_unite <- ss_sep %>%
-      unite("super_id", id, user_id, sep = "-")
-    ```
-    </div>
  
 10.  Convert back to wide format.
     
@@ -866,118 +858,17 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
       spreadr(qnumber, score)
     ```
 
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    ss_wide <- ss_unite %>%
-      spread(qnumber, score)
-    ```
-    </div>
     
 *Intermediate*: Load the dataset [family_composition.csv](data/family_composition.csv).
 
 11. The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis).
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    family <- read_csv("data/family_composition.csv") %>%
-      gather("sibtype", "n", oldbro:twinsis) %>%
-      separate(sibtype, c("sibage", "sibsex"), sep = -3)
-    ```
-    </div>
     
 *Advanced*: Tidy the data from [eye_descriptions.csv](data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face, separated by commas, semicolons, or slashes. 
 
 12. Create a dataset with separate columns for face_id, description, and number of description.
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    eyes <- read_csv("data/eye_descriptions.csv") %>%
-      gather("face_id", "description", t1:t50) %>%
-      separate(description, c("d1", "d2", "d3"), sep = "(,|;|\\/)+", extra = "merge") %>%
-      gather("desc_n", "description", d1:d3) %>%
-      filter(!is.na(description))  # gets rid of rows with no description
-    ```
-    
-    ```
-    ## Warning: Expected 3 pieces. Missing pieces filled with `NA` in 10645
-    ## rows [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    ## 20, ...].
-    ```
-    </div>
     
 *I'm bored*
 
 13. Using the family composition dataset from question 11, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    family %>%
-      group_by(user_id, sex, sibsex) %>%
-      summarise(n = sum(n)) %>%
-      group_by(user_id) %>%
-      filter(sex %in% c("male", "female"), sum(n) < 6) %>%
-      ggplot(aes(n, fill = sibsex)) +
-      geom_histogram(binwidth = 1, colour = "black", position = "dodge")
-    ```
-    
-    <div class="figure" style="text-align: center">
-    <img src="04-tidyr_files/figure-html/exercise-sibs1-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-    <p class="caption">(\#fig:exercise-sibs1)**CAPTION THIS FIGURE!!**</p>
-    </div>
-    
-    
-    ```r
-    family %>%
-      group_by(user_id, sex, sibsex) %>%
-      summarise(n = sum(n)) %>%
-      filter(sex %in% c("male", "female")) %>%
-      spread(sibsex, n) %>%
-      filter(bro + sis < 6) %>%
-      ggplot(aes(bro, sis)) +
-      geom_bin2d(binwidth = c(1,1))
-    ```
-    
-    <div class="figure" style="text-align: center">
-    <img src="04-tidyr_files/figure-html/exercise-sibs2-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-    <p class="caption">(\#fig:exercise-sibs2)**CAPTION THIS FIGURE!!**</p>
-    </div>
-    </div>
     
 14. Create a list of the 10 most common descriptions from the eye colour dataset in question 12. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to `knitr::kable()`.
-
-    <div class="solution"><button>Solution</button>
-    
-    ```r
-    eyes %>%
-      mutate(
-        description = trimws(description), # get rid of white space around string
-        description = tolower(description) # make all characters lowercase
-      ) %>%
-      group_by(description) %>%
-      summarise(n = n()) %>%               # count occurances of each description
-      arrange(desc(n)) %>%                 # sort by count (descending)
-      filter(nchar(description) > 1) %>%   # get rid of 1-character descriptions
-      filter(row_number() < 11) %>%
-      knitr::kable()
-    ```
-    
-    
-    
-    description      n
-    ------------  ----
-    brown          364
-    blue           314
-    small          270
-    pretty         259
-    big            239
-    round          229
-    sad            224
-    tired          217
-    dark           190
-    average        174
-    </div>
-

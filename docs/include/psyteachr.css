@@ -16,10 +16,10 @@
 
 
 pre {
-  word-break: normal;
-  word-wrap: normal;
   border: 1px solid grey !important;
   border-radius: 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .book .book-body .page-wrapper .page-inner section.normal code {
@@ -37,6 +37,8 @@ pre {
 .book .book-body .page-wrapper .page-inner section.normal pre > code {
   border: none;
   border-radius: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .book .book-body .page-wrapper .page-inner section.normal strong code {
@@ -189,3 +191,18 @@ a[target="_blank"]::after {
   content: url("../images/icons/link_external2.svg");
 }
 
+a.glossary::after {
+  content: none !important;
+  margin: 0 !important;
+}
+
+a.glossary, a:visited.glossary {
+  color: var(--purple) !important;
+}
+
+
+/* override table striping */
+
+.book .book-body .page-wrapper .page-inner section.normal table tr:nth-child(2n) {
+  background-color: inherit;
+}

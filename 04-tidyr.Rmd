@@ -1,5 +1,7 @@
 # Tidy Data {#tidyr}
 
+Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
+
 ## Learning Objectives
 
 ### Basic
@@ -82,7 +84,7 @@ data_original <- tibble(
   A1 = rnorm(10, 0),
   A2 = rnorm(10, 1),
   B1 = rnorm(10, 2),
-  B2 = rnorm(10,3)
+  B2 = rnorm(10, 3)
 )
 
 # gather columns A1 to B2 into "variable" and "value" columns
@@ -107,7 +109,7 @@ data
 ```
 
 ```{block, type="warning"}
-You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep you environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
 ```
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
@@ -179,7 +181,7 @@ You can read this code from top to bottom as follows:
 You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
 
 ```{block type="info"}
-You can debug a pipe by running just the first few functions by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
+You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
 ```
 
 ## gather() {#gather}
@@ -413,6 +415,110 @@ infmort_wide <- infmort %>%
   spread(Year, rate_ci)
 
 glimpse(infmort_wide)
+```
+
+
+## Quiz {#tidyr-quiz}
+
+The following data table is called `quiz_data`.
+
+```{r, echo = FALSE, results = 'asis'}
+quiz_data <- expand.grid(
+  version = 1:2,
+  condition = c("A", "B"),
+  id = 1:10
+) %>%
+  select(id, condition, version) %>%
+  mutate(
+    pet = ifelse(id%%2, "cat", "dog"),
+    score = rnorm(nrow(.))
+  ) %>% head(n = 8L)
+
+knitr::kable(quiz_data, digits = 3)
+```
+
+
+1. How do you get `quiz_data` into the following format?
+    ```{r, echo = FALSE, results='asis'}
+    spread(quiz_data, condition, score) %>%
+      head(n = 8L) %>%
+      knitr::kable()
+    ```
+    
+    ```{r, echo = FALSE, results='asis'}
+    c("separate(quiz_data, condition, score)",
+      "gather(quiz_data, condition:score)",
+      answer = "spread(quiz_data, condition, score)",
+      "unite(quiz_data, condition:score)"
+    ) %>% webex::mcq() %>% cat()
+    ```
+    
+2. How do you get `quiz_data` into the following format?
+    ```{r, echo = FALSE, results='asis'}
+    unite(quiz_data, cversion, condition, version) %>%
+      head(n = 8L) %>%
+      knitr::kable()
+    ```    
+
+    ```{r, echo = FALSE, results='asis'}
+    c("separate(quiz_data, cversion, condition, version)",
+      "spread(quiz_data, condition:version)",
+      "gather(quiz_data, cversion, condition:version)",
+      answer = "unite(quiz_data, cversion, condition, version)"
+    ) %>% webex::mcq() %>% cat()
+    ```
+
+
+3. Put the built-in dataset `iris` into the following format.
+
+    ```{r, echo = FALSE, results='asis'}
+    iris %>%
+      gather(var, value, Sepal.Length:Petal.Width) %>%
+      separate(var, into = c("feature", "dimension")) %>%
+      head() %>%
+      knitr::kable()
+    ```
+    
+    ```{r, eval = FALSE, webex.hide = TRUE}
+    iris %>%
+      gather(var, value, Sepal.Length:Petal.Width) %>%
+      separate(var, into = c("feature", "dimension"))
+    ```
+
+4. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
+
+```{r, eval = FALSE}
+
+# make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
+data_original <- tibble(
+  id = c(1:5, 1:5),
+  condition = rep(1:2, each = 5),
+  A = rnorm(10),
+  B = rnorm(10)
+)
+
+# gather columns A and B into "score_type" and "score" columns
+data_gathered <- gather(data_original, score_type, score, A:B)
+
+# unite the score_type and condition columns into a column called "cell"
+data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
+
+# spread the score column into cells
+data_spread <- spread(data_united, cell, score)
+
+```
+
+```{r, eval = FALSE, webex.hide = TRUE}
+
+data <- tibble(
+  id = c(1:5, 1:5),
+  condition = rep(1:2, each = 5),
+  A = rnorm(10),
+  B = rnorm(10)
+) %>%
+  gather(score_type, score, A:B) %>%
+  unite(cell, score_type, condition, sep = "") %>%
+  spread(cell, score)
 
 ```
 
@@ -431,13 +537,6 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
 
     The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
 
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ocean <- read_csv("data/personality.csv") %>%
-      gather("question", "score", Op1:Ex9)
-    ```
-    </div>
-
 2. *Basic*: Split the `question` column into two columns: `domain` and `qnumber`.
 
     <p class="alert alert-info'>
@@ -449,41 +548,11 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
     various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can 
     use `sep = -2`.</p>
 
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ocean_sep <- ocean %>%
-      separate(question, c("domain", "qnumber"), sep = 2)
-    ```
-    </div>
-
 3. *Basic*: Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
-
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ocean_unite <- ocean_sep %>%
-      unite("domain_n", domain, qnumber, sep = "_Q")
-    ```
-    </div>
 
 4. *Basic*: Convert back to wide format.
 
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ocean_spread <- ocean_unite %>%
-      spread(domain_n, score)
-    ```
-    </div>
-
 5. *Intermediate*: Chain all the steps above using pipes.
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ocean <- read_csv("data/personality.csv") %>%
-      gather("question", "score", Op1:Ex9) %>%
-      separate(question, c("domain", "qnumber"), sep = 2) %>%
-      unite("domain_n", domain, qnumber, sep = "_Q") %>%
-      spread(domain_n, score)
-    ```
-    </div>
 
 *Intermediate*: Debug the following code:
 
@@ -492,48 +561,22 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
     ss <- read_csv(data/sensation_seeking.csv)
     ```
 
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ss <- read_csv("data/sensation_seeking.csv")
-    ```
-    </div>
-
 7. Convert from wide to long format.
     ```{r, eval = FALSE}
     ss_long <- gather(ss, "question", "score")
     ```
-
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ss_long <- gather(ss, "question", "score", sss1:sss14)
-    ```
-    </div>
     
 8.  Split the `question` column into two columns: `domain` and `qnumber`.
     ```{r, eval = FALSE}
     ss_sep <- ss_long %>%
       separate(question, domain, qnumber, sep = 3)
     ```
-
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ss_sep <- ss_long %>%
-      separate(question, c("domain", "qnumber"), sep = 3)
-    ```
-    </div>
     
 9. Put the `id` and `user_id` columns together into a new column named `super_id`. Make it in a format like "id-user_id".
     ```{r, eval = FALSE}
     ss_unite <- ss_sep %>%
       unite(id, user_id, "super_id", sep = "-")
     ```
-
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ss_unite <- ss_sep %>%
-      unite("super_id", id, user_id, sep = "-")
-    ```
-    </div>
  
 10.  Convert back to wide format.
     ```{r, eval = FALSE}
@@ -541,89 +584,17 @@ Ag = agreeableness, and Ne = neuroticism) and the question number.
       spreadr(qnumber, score)
     ```
 
-    <div class="solution"><button>Solution</button>
-    ```{r}
-    ss_wide <- ss_unite %>%
-      spread(qnumber, score)
-    ```
-    </div>
     
 *Intermediate*: Load the dataset [family_composition.csv](data/family_composition.csv).
 
 11. The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis).
-
-    <div class="solution"><button>Solution</button>
-    ```{r, message = FALSE}
-    
-    family <- read_csv("data/family_composition.csv") %>%
-      gather("sibtype", "n", oldbro:twinsis) %>%
-      separate(sibtype, c("sibage", "sibsex"), sep = -3)
-    
-    ```
-    </div>
     
 *Advanced*: Tidy the data from [eye_descriptions.csv](data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face, separated by commas, semicolons, or slashes. 
 
 12. Create a dataset with separate columns for face_id, description, and number of description.
-
-    <div class="solution"><button>Solution</button>
-    ```{r, message = FALSE}
-    
-    eyes <- read_csv("data/eye_descriptions.csv") %>%
-      gather("face_id", "description", t1:t50) %>%
-      separate(description, c("d1", "d2", "d3"), sep = "(,|;|\\/)+", extra = "merge") %>%
-      gather("desc_n", "description", d1:d3) %>%
-      filter(!is.na(description))  # gets rid of rows with no description
-    
-    ```
-    </div>
     
 *I'm bored*
 
 13. Using the family composition dataset from question 11, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
-
-    <div class="solution"><button>Solution</button>
-    ```{r exercise-sibs1}
-    
-    family %>%
-      group_by(user_id, sex, sibsex) %>%
-      summarise(n = sum(n)) %>%
-      group_by(user_id) %>%
-      filter(sex %in% c("male", "female"), sum(n) < 6) %>%
-      ggplot(aes(n, fill = sibsex)) +
-      geom_histogram(binwidth = 1, colour = "black", position = "dodge")
-    
-    ```
-    
-    ```{r exercise-sibs2}
-    family %>%
-      group_by(user_id, sex, sibsex) %>%
-      summarise(n = sum(n)) %>%
-      filter(sex %in% c("male", "female")) %>%
-      spread(sibsex, n) %>%
-      filter(bro + sis < 6) %>%
-      ggplot(aes(bro, sis)) +
-      geom_bin2d(binwidth = c(1,1))
-    ```    
-    </div>
     
 14. Create a list of the 10 most common descriptions from the eye colour dataset in question 12. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to `knitr::kable()`.
-
-    <div class="solution"><button>Solution</button>
-    ```{r, message = FALSE}
-    
-    eyes %>%
-      mutate(
-        description = trimws(description), # get rid of white space around string
-        description = tolower(description) # make all characters lowercase
-      ) %>%
-      group_by(description) %>%
-      summarise(n = n()) %>%               # count occurances of each description
-      arrange(desc(n)) %>%                 # sort by count (descending)
-      filter(nchar(description) > 1) %>%   # get rid of 1-character descriptions
-      filter(row_number() < 11) %>%
-      knitr::kable()
-    
-    ```
-    </div>
-
