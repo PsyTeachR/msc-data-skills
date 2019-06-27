@@ -250,10 +250,10 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
 
 You can also include images that you did not create in R using the typical markdown syntax for images: 
 ```
-![All the Things](images/x-all-the-things.png)
+![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/x-all-the-things.png)
 ```
 
-![All the Things](images/x-all-the-things.png)
+![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/x-all-the-things.png)
 
 #### In-line R
 
@@ -470,7 +470,7 @@ citation(package="rmarkdown")
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier
 ##   Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and
 ##   Joe Cheng and Winston Chang and Richard Iannone (2019).
-##   rmarkdown: Dynamic Documents for R. R package version 1.12. URL
+##   rmarkdown: Dynamic Documents for R. R package version 1.13. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R

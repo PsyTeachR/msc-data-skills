@@ -246,10 +246,10 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
 
 You can also include images that you did not create in R using the typical markdown syntax for images: 
 ```
-![All the Things](images/x-all-the-things.png)
+![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/x-all-the-things.png)
 ```
 
-![All the Things](images/x-all-the-things.png)
+![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/x-all-the-things.png)
 
 #### In-line R
 

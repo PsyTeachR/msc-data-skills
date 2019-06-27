@@ -297,8 +297,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.2915515  0.1539543  1.4119540 -1.5059221 -1.6337907  0.0714888
-##  [7]  0.7523301  0.6333437 -1.2392548 -0.5612346
+##  [1] -0.43226338  0.37655556  0.94109308  0.20671641 -0.94408232
+##  [6]  0.04963582  0.30305681  0.88000877 -1.30153632 -2.80197643
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -309,8 +309,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.00363 101.06452  99.73068 100.23245 101.24255 100.80573  98.26609
-##  [8]  98.96356  99.15994 101.09850
+##  [1] 100.59340 100.17051  98.39392  99.95829  99.13891  99.70595 100.14951
+##  [8]  99.72617  98.38352  99.28387
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -321,8 +321,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  98.17929 100.01681 101.21347 100.32908  99.81451 100.79386  99.40237
-##  [8] 102.22451  99.77871 100.54291
+##  [1]  98.86919  98.57524 100.13084 100.80513 100.79858  98.18150 100.47150
+##  [8]  98.90105 100.67914  99.26383
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it.  For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -333,8 +333,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   33.573746  137.536732  -58.592957 -179.736816   19.830794
-##  [6]  135.897371   -4.385805 -160.397246  -99.747331   -6.371858
+##  [1]  10.694485   7.653681 -86.337752  41.157896  50.672085  19.078780
+##  [7]   6.549060 -21.092056  89.653632 -24.772286
 ```
 
 Some functions give a list of options after an argument; this means the deafult value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -418,12 +418,13 @@ fortune()
 
 ```
 ## 
-## The urge to imitate other statistical packages that rely on profusion of
-## dummies should be resisted. R repression functions can handle factor
-## variables.
-##    -- David (Muphry) Winsemius (about factors in regressions...and the
-##       dangers of drinking and deriding)
-##       R-help (September 2015)
+## Actually the documentation of sunflowerplot is wrong in botanical sense.
+## Sunflowers have composite flowers in capitula, and the things called
+## 'petals' in documentation are ligulate, sterile ray-florets (each with
+## vestigial petals which are not easily visible in sunflower, but in some
+## other species you may see three (occasionally two) teeth).
+##    -- Jari Oksanen
+##       R-help (December 2007)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -446,7 +447,7 @@ chidi()
 ```
 
 
- Well, I've narrowed it down to two possibilities: yes and no. 
+ I have what doctors call "directional insanity". I once got lost on an escalator. 
 
  ~ Chidi
 
@@ -538,13 +539,13 @@ Your script should only reference files in three locations, using the appropriat
 | in a subdirectory | "subdir/my_file2.csv" |
 
 <div class="warning">
-<p>Never set or change your working directory in a script; always store your main script file in the top-level directory and manually set your working directory to that location. This means you'll have to reset the working directory each time you open RStudio, but this is a small price to pay for reproducibility (alternatively, learn about <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R Projects</a>).</p>
+<p>Never set or change your working directory in a script; always store your main script file in the top-level directory and manually set your working directory to that location. This means you’ll have to reset the working directory each time you open RStudio, but this is a small price to pay for reproducibility (alternatively, learn about <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R Projects</a>).</p>
 </div>
 
 For instance, if on a Windows machine your data and scripts live in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory to `new_analysis` in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.  If you 'knit' an RMarkdown file, your working directory is automatically set to the same directory where the Rmd file is located during the knitting process. But if you're planning on running the code chunks individually, you'll need to manually set the directory.
 
 <div class="danger">
-<p>It's tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don't do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
+<p>It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
 <p>When manually setting the working directory, always do so by using the <strong><code>Session | Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.</p>
 </div>
 

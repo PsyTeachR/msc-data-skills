@@ -250,7 +250,7 @@ evens <- rep(c(FALSE, TRUE), 100)
 ```
 
 <div class="warning">
-<p>You can't mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will coerce them so that they are all the same.</p>
+<p>You can’t mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will coerce them so that they are all the same.</p>
 </div>
 
 

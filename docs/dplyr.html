@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Data Wrangling | Data Skills</title>
-  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Data Wrangling | Data Skills" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Lisa DeBruine &amp; Dale Barr">
+<meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-05-13">
+<meta name="date" content="2019-06-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="tidyr.html">
@@ -49,50 +48,76 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -117,10 +142,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
-<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -128,26 +154,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
-<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> The RStudio Integrated Development Environment (IDE)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#typing-in-commands"><i class="fa fa-check"></i><b>1.4</b> Typing in commands</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#rcalc"><i class="fa fa-check"></i><b>1.4.1</b> Warming up: Use R as a calculator</a></li>
-<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Storing results in a variable</a></li>
-<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.3</b> Whitespace</a></li>
-<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#the-workspace"><i class="fa fa-check"></i><b>1.4.4</b> The workspace</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Variables</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.4</b> Whitespace</a></li>
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#add-on"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#installing-the-fortunes-package"><i class="fa fa-check"></i><b>1.5.3</b> Installing the fortunes package</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#configure-rstudio-for-maximum-reproducibility"><i class="fa fa-check"></i><b>1.6.1</b> Configure RStudio for Maximum Reproducibility</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.3</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.4</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -174,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
-<li class="chapter" data-level="3.5" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.6</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.6.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.6.2" data-path="ggplot.html"><a href="ggplot.html#density-plot"><i class="fa fa-check"></i><b>3.6.2</b> Density plot</a></li>
@@ -269,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -354,7 +380,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
+<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
@@ -443,7 +469,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">5.1.3</span> Advanced</h3>
 <ol start="3" style="list-style-type: decimal">
 <li>Fine control of <a href="#select_helpers"><code>select()</code> operations</a></li>
-<li>Perform 'windowed' operations
+<li>Perform ‘windowed’ operations
 <ul>
 <li>windowed <code>mutate()</code></li>
 <li>windowed <code>slice()</code></li>
@@ -462,21 +488,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="setup-2" class="section level2">
 <h2><span class="header-section-number">5.3</span> Setup</h2>
-<p>You'll need the following packages.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed for these examples</span>
+<p>You’ll need the following packages.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed for these examples</span>
 <span class="kw">library</span>(lubridate)
 <span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(ukbabynames)</code></pre></div>
+<span class="kw">library</span>(ukbabynames)</code></pre>
 </div>
 <div id="the-disgust-dataset" class="section level2">
 <h2><span class="header-section-number">5.4</span> The <code>disgust</code> dataset</h2>
 <p>These examples will use data from <a href="/data/disgust.csv">disgust.csv</a>, which contains data from the <a href="http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&amp;context=psy_etds">Three Domain Disgust Scale</a>. Each participant is identified by a unique <code>user_id</code> and each questionnaire completion has a unique <code>id</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://gupsych.github.io/data_skills/data/disgust.csv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">disgust &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://gupsych.github.io/data_skills/data/disgust.csv&quot;</span>)</code></pre>
 <p><em>Questionnaire Instructions</em>: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.</p>
 <table>
 <colgroup>
-<col width="12%" />
-<col width="87%" />
+<col width="11%" />
+<col width="88%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -503,7 +529,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="odd">
 <td align="right">moral5</td>
-<td align="left">Forging someone's signature on a legal document</td>
+<td align="left">Forging someone’s signature on a legal document</td>
 </tr>
 <tr class="even">
 <td align="right">moral6</td>
@@ -527,7 +553,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="odd">
 <td align="right">sexual4</td>
-<td align="left">Finding out that someone you don't like has sexual fantasies about you</td>
+<td align="left">Finding out that someone you don’t like has sexual fantasies about you</td>
 </tr>
 <tr class="even">
 <td align="right">sexual5</td>
@@ -567,64 +593,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="odd">
 <td align="right">pathogen7</td>
-<td align="left">Accidentally touching a person's bloody cut</td>
+<td align="left">Accidentally touching a person’s bloody cut</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="six-main-dplyr-verbs" class="section level2">
 <h2><span class="header-section-number">5.5</span> Six main dplyr verbs</h2>
-<p>Most of the data wrangling you'll want to do with psychological data will involve the <code>tidyr</code> verbs you learned in <a href="tidyr.html#tidyr">Chapter 3</a> and the six main <code>dplyr</code> verbs: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>.</p>
+<p>Most of the data wrangling you’ll want to do with psychological data will involve the <code>tidyr</code> verbs you learned in <a href="tidyr.html#tidyr">Chapter 3</a> and the six main <code>dplyr</code> verbs: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>.</p>
 <div id="select" class="section level3">
 <h3><span class="header-section-number">5.5.1</span> select()</h3>
 <p>Select columns by name or number.</p>
 <p>You can select each column individually, separated by commas (e.g., <code>col1, col2</code>). You can also select all columns between two columns by separating them with a colon (e.g., <code>start_col:end_col</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">moral &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(user_id, moral1<span class="op">:</span>moral7)
-<span class="kw">names</span>(moral)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">moral &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(user_id, moral1<span class="op">:</span>moral7)
+<span class="kw">names</span>(moral)</code></pre>
 <pre><code>## [1] &quot;user_id&quot; &quot;moral1&quot;  &quot;moral2&quot;  &quot;moral3&quot;  &quot;moral4&quot;  &quot;moral5&quot;  &quot;moral6&quot; 
 ## [8] &quot;moral7&quot;</code></pre>
 <p>You can select columns by number, which is useful when the column names are long or complicated.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sexual &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">2</span>, <span class="dv">11</span><span class="op">:</span><span class="dv">17</span>)
-<span class="kw">names</span>(sexual)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">sexual &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">2</span>, <span class="dv">11</span><span class="op">:</span><span class="dv">17</span>)
+<span class="kw">names</span>(sexual)</code></pre>
 <pre><code>## [1] &quot;user_id&quot; &quot;sexual1&quot; &quot;sexual2&quot; &quot;sexual3&quot; &quot;sexual4&quot; &quot;sexual5&quot; &quot;sexual6&quot;
 ## [8] &quot;sexual7&quot;</code></pre>
 <p>You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first (e.g., <code>-(moral1:moral7)</code>, not <code>-moral1:moral7</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pathogen &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>id, <span class="op">-</span>date, <span class="op">-</span>(moral1<span class="op">:</span>sexual7))
-<span class="kw">names</span>(pathogen)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">pathogen &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>id, <span class="op">-</span>date, <span class="op">-</span>(moral1<span class="op">:</span>sexual7))
+<span class="kw">names</span>(pathogen)</code></pre>
 <pre><code>## [1] &quot;user_id&quot;   &quot;pathogen1&quot; &quot;pathogen2&quot; &quot;pathogen3&quot; &quot;pathogen4&quot; &quot;pathogen5&quot;
 ## [7] &quot;pathogen6&quot; &quot;pathogen7&quot;</code></pre>
 <p>You can select columns based on criteria about the column names.{#select_helpers}</p>
 <div id="starts_with" class="section level4">
 <h4><span class="header-section-number">5.5.1.1</span> <code>starts_with()</code></h4>
 <p>Select columns that start with a character string.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;u&quot;</span>))
-<span class="kw">names</span>(u)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">u &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;u&quot;</span>))
+<span class="kw">names</span>(u)</code></pre>
 <pre><code>## [1] &quot;user_id&quot;</code></pre>
 </div>
 <div id="ends_with" class="section level4">
 <h4><span class="header-section-number">5.5.1.2</span> <code>ends_with()</code></h4>
 <p>Select columns that end with a character string.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">firstq &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;1&quot;</span>))
-<span class="kw">names</span>(firstq)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">firstq &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;1&quot;</span>))
+<span class="kw">names</span>(firstq)</code></pre>
 <pre><code>## [1] &quot;moral1&quot;    &quot;sexual1&quot;   &quot;pathogen1&quot;</code></pre>
 </div>
 <div id="contains" class="section level4">
 <h4><span class="header-section-number">5.5.1.3</span> <code>contains()</code></h4>
 <p>Select columns that contain a character string.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pathogen &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;pathogen&quot;</span>))
-<span class="kw">names</span>(pathogen)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">pathogen &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;pathogen&quot;</span>))
+<span class="kw">names</span>(pathogen)</code></pre>
 <pre><code>## [1] &quot;pathogen1&quot; &quot;pathogen2&quot; &quot;pathogen3&quot; &quot;pathogen4&quot; &quot;pathogen5&quot; &quot;pathogen6&quot;
 ## [7] &quot;pathogen7&quot;</code></pre>
 </div>
 <div id="num_range" class="section level4">
 <h4><span class="header-section-number">5.5.1.4</span> <code>num_range()</code></h4>
 <p>Select columns with a name that matches the pattern <code>prefix</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">moral2_<span class="dv">4</span> &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">num_range</span>(<span class="st">&quot;moral&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>))
-<span class="kw">names</span>(moral2_<span class="dv">4</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">moral2_<span class="dv">4</span> &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">num_range</span>(<span class="st">&quot;moral&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>))
+<span class="kw">names</span>(moral2_<span class="dv">4</span>)</code></pre>
 <pre><code>## [1] &quot;moral2&quot; &quot;moral3&quot; &quot;moral4&quot;</code></pre>
 <div class="info">
 <p>
-Use <code>width</code> to set the number of digits with leading zeros. For example, <code>num_range('var_', 8:10, width=2)</code> selects columns <code>var_08</code>, <code>var_09</code>, and <code>var_10</code>.
+Use <code>width</code> to set the number of digits with leading zeros. For example, <code>num_range(‘var_’, 8:10, width=2)</code> selects columns <code>var_08</code>, <code>var_09</code>, and <code>var_10</code>.
 </p>
 </div>
 </div>
@@ -632,8 +658,8 @@ Use <code>width</code> to set the number of digits with leading zeros. For examp
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">5.5.2</span> filter()</h3>
 <p>Select rows by matching column criteria.</p>
-<p>Select all rows where the user_id is 1 (that's Lisa).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(user_id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre></div>
+<p>Select all rows where the user_id is 1 (that’s Lisa).</p>
+<pre class="sourceCode r"><code class="sourceCode r">disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(user_id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</code></pre>
 <pre><code>## # A tibble: 1 x 24
 ##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
 ##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -648,7 +674,7 @@ Remember to use <code>==</code> and not <code>=</code> to check if two things ar
 </p>
 </div>
 <p>You can select on multiple criteria by separating them with commas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">amoral &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(
+<pre class="sourceCode r"><code class="sourceCode r">amoral &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(
   moral1 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, 
   moral2 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,
   moral3 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, 
@@ -656,9 +682,9 @@ Remember to use <code>==</code> and not <code>=</code> to check if two things ar
   moral5 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,
   moral6 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,
   moral7 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>
-)</code></pre></div>
-<p>You can use the symbols <code>&amp;</code>, <code>|</code>, and <code>!</code> to mean &quot;and&quot;, &quot;or&quot;, and &quot;not&quot;. You can also use other operators to make equations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># everyone who chose either 0 or 7 for question moral1</span>
+)</code></pre>
+<p>You can use the symbols <code>&amp;</code>, <code>|</code>, and <code>!</code> to mean “and”, “or”, and “not”. You can also use other operators to make equations.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># everyone who chose either 0 or 7 for question moral1</span>
 moral_extremes &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(moral1 <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>moral1 <span class="op">==</span><span class="st"> </span><span class="dv">7</span>)
 
@@ -675,30 +701,30 @@ moral_consistent &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</
 
 <span class="co"># everyone who did not answer 7 for all 7 moral questions</span>
 moral_no_ceiling &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(moral1<span class="op">+</span>moral2<span class="op">+</span>moral3<span class="op">+</span>moral4<span class="op">+</span>moral5<span class="op">+</span>moral6<span class="op">+</span>moral7 <span class="op">!=</span><span class="st"> </span><span class="dv">7</span><span class="op">*</span><span class="dv">7</span>)</code></pre></div>
-<p>Sometimes you need to exclude some participant IDs for reasons that can't be described in code. the <code>%in%</code> operator is useful here for testing if a column value is in a list. Surround the equation with parentheses and put <code>!</code> in front to test that a value is not in the list.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">no_researchers &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(user_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</code></pre></div>
+<span class="st">  </span><span class="kw">filter</span>(moral1<span class="op">+</span>moral2<span class="op">+</span>moral3<span class="op">+</span>moral4<span class="op">+</span>moral5<span class="op">+</span>moral6<span class="op">+</span>moral7 <span class="op">!=</span><span class="st"> </span><span class="dv">7</span><span class="op">*</span><span class="dv">7</span>)</code></pre>
+<p>Sometimes you need to exclude some participant IDs for reasons that can’t be described in code. the <code>%in%</code> operator is useful here for testing if a column value is in a list. Surround the equation with parentheses and put <code>!</code> in front to test that a value is not in the list.</p>
+<pre class="sourceCode r"><code class="sourceCode r">no_researchers &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(user_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</code></pre>
 <div id="dates" class="section level4">
 <h4><span class="header-section-number">5.5.2.1</span> Dates</h4>
 <p>You can use the <code>lubridate</code> package to work with dates. For example, you can use the <code>year()</code> function to return just the year from the <code>date</code> column and then select only data collected in 2010.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust2010 &lt;-<span class="st"> </span>disgust  <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">disgust2010 &lt;-<span class="st"> </span>disgust  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>)</code></pre>
 <p>Or select data from at least 5 years ago. You can use the <code>range</code> function to check the minimum and maxiumum dates in the resulting dataset.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_5ago &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_5ago &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&lt;</span><span class="st"> </span><span class="kw">today</span>() <span class="op">-</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">5</span>))
 
-<span class="kw">range</span>(disgust_5ago<span class="op">$</span>date)</code></pre></div>
-<pre><code>## [1] &quot;2008-07-10&quot; &quot;2014-05-04&quot;</code></pre>
+<span class="kw">range</span>(disgust_5ago<span class="op">$</span>date)</code></pre>
+<pre><code>## [1] &quot;2008-07-10&quot; &quot;2014-06-23&quot;</code></pre>
 </div>
 </div>
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">5.5.3</span> arrange()</h3>
 <p>Sort your dataset using <code>arrange()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_order &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_order &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(id)
 
-<span class="kw">head</span>(disgust_order)</code></pre></div>
+<span class="kw">head</span>(disgust_order)</code></pre>
 <pre><code>## # A tibble: 6 x 24
 ##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
 ##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -713,10 +739,10 @@ moral_no_ceiling &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</
 ## #   pathogen1 &lt;dbl&gt;, pathogen2 &lt;dbl&gt;, pathogen3 &lt;dbl&gt;, pathogen4 &lt;dbl&gt;,
 ## #   pathogen5 &lt;dbl&gt;, pathogen6 &lt;dbl&gt;, pathogen7 &lt;dbl&gt;</code></pre>
 <p>Reverse the order using <code>desc()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_order &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_order &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(id))
 
-<span class="kw">head</span>(disgust_order)</code></pre></div>
+<span class="kw">head</span>(disgust_order)</code></pre>
 <pre><code>## # A tibble: 6 x 24
 ##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
 ##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -735,34 +761,34 @@ moral_no_ceiling &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</
 <h3><span class="header-section-number">5.5.4</span> mutate()</h3>
 <p>Add new columns. This is one of the most useful functions in the tidyverse.</p>
 <p>Refer to other columns by their names (unquoted). You can add more than one column, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., <code>total</code> below).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_total &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_total &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">pathogen =</span> pathogen1 <span class="op">+</span><span class="st"> </span>pathogen2 <span class="op">+</span><span class="st"> </span>pathogen3 <span class="op">+</span><span class="st"> </span>pathogen4 <span class="op">+</span><span class="st"> </span>pathogen5 <span class="op">+</span><span class="st"> </span>pathogen6 <span class="op">+</span><span class="st"> </span>pathogen7,
     <span class="dt">moral =</span> moral1 <span class="op">+</span><span class="st"> </span>moral2 <span class="op">+</span><span class="st"> </span>moral3 <span class="op">+</span><span class="st"> </span>moral4 <span class="op">+</span><span class="st"> </span>moral5 <span class="op">+</span><span class="st"> </span>moral6 <span class="op">+</span><span class="st"> </span>moral7,
     <span class="dt">sexual =</span> sexual1 <span class="op">+</span><span class="st"> </span>sexual2 <span class="op">+</span><span class="st"> </span>sexual3 <span class="op">+</span><span class="st"> </span>sexual4 <span class="op">+</span><span class="st"> </span>sexual5 <span class="op">+</span><span class="st"> </span>sexual6 <span class="op">+</span><span class="st"> </span>sexual7,
     <span class="dt">total =</span> pathogen <span class="op">+</span><span class="st"> </span>moral <span class="op">+</span><span class="st"> </span>sexual,
     <span class="dt">user_id =</span> <span class="kw">paste0</span>(<span class="st">&quot;U&quot;</span>, user_id)
-  )</code></pre></div>
+  )</code></pre>
 <div class="warning">
 <p>
-You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
+You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren’t trying to use the old column value after you redefine it.
 </p>
 </div>
 </div>
 <div id="summarise" class="section level3">
 <h3><span class="header-section-number">5.5.5</span> summarise()</h3>
 <p>Create summary statistics for the dataset. Check the <a href="https://www.rstudio.org/links/data_wrangling_cheat_sheet">Data Wrangling Cheat Sheet</a> or the <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code>mean()</code>, <code>sd()</code>, <code>n()</code>, <code>sum()</code>, and <code>quantile()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_total <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_total <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(
     <span class="dt">n =</span> <span class="kw">n</span>(),
-    <span class="dt">q25 =</span> <span class="kw">quantile</span>(total, .<span class="dv">25</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-    <span class="dt">q50 =</span> <span class="kw">quantile</span>(total, .<span class="dv">50</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-    <span class="dt">q75 =</span> <span class="kw">quantile</span>(total, .<span class="dv">75</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">q25 =</span> <span class="kw">quantile</span>(total, <span class="fl">.25</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">q50 =</span> <span class="kw">quantile</span>(total, <span class="fl">.50</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">q75 =</span> <span class="kw">quantile</span>(total, <span class="fl">.75</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
     <span class="dt">avg_total =</span> <span class="kw">mean</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
     <span class="dt">sd_total  =</span> <span class="kw">sd</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
     <span class="dt">min_total =</span> <span class="kw">min</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
     <span class="dt">max_total =</span> <span class="kw">max</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-  )</code></pre></div>
+  )</code></pre>
 <pre><code>## # A tibble: 1 x 8
 ##       n   q25   q50   q75 avg_total sd_total min_total max_total
 ##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -770,9 +796,10 @@ You can overwrite a column by giving a new column the same name as the old colum
 </div>
 <div id="group_by" class="section level3">
 <h3><span class="header-section-number">5.5.6</span> group_by()</h3>
-<p>Create subsets of the data. You can use this to create summaries, like the mean value for all of your experimental groups.</p>
-<p>Here, we'll use <code>mutate</code> to create a new column called <code>year</code>, group by <code>year</code>, and calculate the average scores.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_total <span class="op">%&gt;%</span>
+<p>Create subsets of the data. You can use this to create summaries,
+like the mean value for all of your experimental groups.</p>
+<p>Here, we’ll use <code>mutate</code> to create a new column called <code>year</code>, group by <code>year</code>, and calculate the average scores.</p>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_total <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(date)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(
@@ -781,7 +808,7 @@ You can overwrite a column by giving a new column the same name as the old colum
     <span class="dt">sd_total  =</span> <span class="kw">sd</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
     <span class="dt">min_total =</span> <span class="kw">min</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
     <span class="dt">max_total =</span> <span class="kw">max</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-  )</code></pre></div>
+  )</code></pre>
 <pre><code>## # A tibble: 10 x 6
 ##     year     n avg_total sd_total min_total max_total
 ##    &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -796,12 +823,12 @@ You can overwrite a column by giving a new column the same name as the old colum
 ##  9  2016     8      67.9     32.6         0       110
 ## 10  2017     6      57.2     27.9        21        90</code></pre>
 <p>You can use <code>filter</code> after <code>group_by</code>. The following example returns the lowest total score from each year.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_total <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_total <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(date)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(user_id, year, total) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="kw">rank</span>(total) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(year)</code></pre></div>
+<span class="st">  </span><span class="kw">arrange</span>(year)</code></pre>
 <pre><code>## # A tibble: 7 x 3
 ## # Groups:   year [7]
 ##   user_id  year total
@@ -814,33 +841,33 @@ You can overwrite a column by giving a new column the same name as the old colum
 ## 6 U453237  2016     0
 ## 7 U356866  2017    21</code></pre>
 <p>You can also use <code>mutate</code> after <code>group_by</code>. The following example calculates subject-mean-centered scores by grouping the scores by <code>user_id</code> and then subtracting the group-specific mean from each score. <span class="text-warning">Note the use of <code>gather</code> to tidy the data into a long format first.</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_smc &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_smc &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, moral1<span class="op">:</span>pathogen7) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(user_id) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">score_smc =</span> score <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">score_smc =</span> score <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre>
 </div>
 <div id="all-together" class="section level3">
 <h3><span class="header-section-number">5.5.7</span> All Together</h3>
-<p>A lot of what we did above would be easier if the data were tidy, so let's do that first. Then we can use <code>group_by</code> to calculate the domain scores.</p>
+<p>A lot of what we did above would be easier if the data were tidy, so let’s do that first. Then we can use <code>group_by</code> to calculate the domain scores.</p>
 <div class="warning">
 <p>
-It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won't affect some further processing, but can really mess up other things.
+It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won’t affect some further processing, but can really mess up other things.
 </p>
 </div>
 <p>Then we can spread out the 3 domains, calculate the total score, remove any rows with a missing (<code>NA</code>) total, and calculate mean values by year.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_tidy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/disgust.csv&quot;</span>) <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_tidy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/disgust.csv&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, moral1<span class="op">:</span>pathogen7) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>,<span class="st">&quot;q_num&quot;</span>), <span class="dt">sep =</span> <span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>,<span class="st">&quot;q_num&quot;</span>), <span class="dt">sep =</span> <span class="dv">-1</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(id, user_id, date, domain) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">score =</span> <span class="kw">mean</span>(score)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>() </code></pre></div>
+<span class="st">  </span><span class="kw">ungroup</span>() </code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_double(),
 ##   date = col_date(format = &quot;&quot;)
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">disgust_tidy2 &lt;-<span class="st"> </span>disgust_tidy <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">disgust_tidy2 &lt;-<span class="st"> </span>disgust_tidy <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(domain, score) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">total =</span> moral <span class="op">+</span><span class="st"> </span>sexual <span class="op">+</span><span class="st"> </span>pathogen,
@@ -860,7 +887,7 @@ disgust_tidy3 &lt;-<span class="st"> </span>disgust_tidy2 <span class="op">%&gt;
     <span class="dt">last_user =</span> <span class="kw">last</span>(user_id)
   )
 
-disgust_tidy3</code></pre></div>
+disgust_tidy3</code></pre>
 <pre><code>## # A tibble: 10 x 7
 ##     year     n avg_pathogen avg_moral avg_sexual first_user last_user
 ##    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
@@ -896,10 +923,10 @@ disgust_tidy3</code></pre></div>
 </div>
 <div id="exercises-3" class="section level2">
 <h2><span class="header-section-number">5.7</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/05_wrangle2_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/05_wrangle2_answers.Rmd">answers</a> only after you've attempted all the questions.</p>
+<p>Download the <a href="formative_exercises/05_wrangle2_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/05_wrangle2_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 <p>The following exercises use a dataset included in the <code>ukbabynames</code> package. Might as well convert to a tibble to make printing prettier.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## convert to a tibble
-ukb &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(ukbabynames)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## convert to a tibble</span>
+ukb &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(ukbabynames)</code></pre>
 <div id="easy" class="section level3">
 <h3><span class="header-section-number">5.7.1</span> Easy</h3>
 <ol style="list-style-type: decimal">
@@ -909,7 +936,7 @@ ukb &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(ukbabynames)
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">count</span>(ukb) ## or: nrow(ukb)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">count</span>(ukb) <span class="co">## or: nrow(ukb)</span></code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##        n
 ##    &lt;int&gt;
@@ -922,8 +949,8 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>rank)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>rank)</code></pre>
 <pre><code>## # A tibble: 227,449 x 4
 ##     year sex   name          n
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -946,9 +973,9 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">minyear =</span> <span class="kw">min</span>(year),
-            <span class="dt">maxyear =</span> <span class="kw">max</span>(year))</code></pre></div>
+            <span class="dt">maxyear =</span> <span class="kw">max</span>(year))</code></pre>
 <pre><code>## # A tibble: 1 x 2
 ##   minyear maxyear
 ##     &lt;dbl&gt;   &lt;dbl&gt;
@@ -961,8 +988,8 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Hermione&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Hermione&quot;</span>)</code></pre>
 <pre><code>## # A tibble: 20 x 5
 ##     year sex   name         n  rank
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
@@ -994,8 +1021,8 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(sex, <span class="kw">desc</span>(year), <span class="kw">desc</span>(rank))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(sex, <span class="kw">desc</span>(year), <span class="kw">desc</span>(rank))</code></pre>
 <pre><code>## # A tibble: 227,449 x 5
 ##     year sex   name            n  rank
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
@@ -1018,8 +1045,8 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  ukb <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">floor</span>(year <span class="op">/</span><span class="st"> </span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">  ukb <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">floor</span>(year <span class="op">/</span><span class="st"> </span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span>)</code></pre>
 <pre><code>## # A tibble: 227,449 x 6
 ##     year sex   name          n  rank decade
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -1042,9 +1069,9 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">    ukb <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Courtney&quot;</span>, sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>,
-             year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1998</span>, year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2001</span>)</code></pre></div>
+             year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1998</span>, year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2001</span>)</code></pre>
 <pre><code>## # A tibble: 4 x 5
 ##    year sex   name         n  rank
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
@@ -1060,10 +1087,10 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## how many distinct names are represented in the dataset?
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## how many distinct names are represented in the dataset?</span>
 ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">distinct</span>(name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">count</span>()</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
@@ -1076,9 +1103,9 @@ ukb <span class="op">%&gt;%</span>
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">  ukb <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Frankie&quot;</span>, sex <span class="op">==</span><span class="st"> &quot;F&quot;</span>,
-          (year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1999</span>) <span class="op">|</span><span class="st"> </span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2010</span>))</code></pre></div>
+          (year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1999</span>) <span class="op">|</span><span class="st"> </span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2010</span>))</code></pre>
 <pre><code>## # A tibble: 8 x 5
 ##    year sex   name        n  rank
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1092,17 +1119,17 @@ Solution
 ## 8  2015 F     Frankie   376   147</code></pre>
 </div>
 <ol start="10" style="list-style-type: decimal">
-<li>How many total babies in the dataset were named 'Emily'?</li>
+<li>How many total babies in the dataset were named ‘Emily’?</li>
 </ol>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  ## 
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="co">## </span>
   ukb <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Emily&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">pull</span>(tot)</code></pre></div>
+<span class="st">    </span><span class="kw">pull</span>(tot)</code></pre>
 <pre><code>## [1] 102250</code></pre>
 </div>
 <ol start="11" style="list-style-type: decimal">
@@ -1112,10 +1139,10 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">distinct</span>(name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">count</span>()</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ## # Groups:   sex [2]
 ##   sex       n
@@ -1130,12 +1157,12 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(name)</code></pre></div>
+<span class="st">  </span><span class="kw">pull</span>(name)</code></pre>
 <pre><code>## [1] &quot;Jack&quot;</code></pre>
 </div>
 <ol start="13" style="list-style-type: decimal">
@@ -1145,18 +1172,13 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">babes_per_year &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">babes_per_year &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n))
 
 <span class="kw">ggplot</span>(babes_per_year, <span class="kw">aes</span>(year, tot, <span class="dt">color =</span> sex)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:ex5"></span>
-<img src="05-dplyr_files/figure-html/ex5-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">
-Figure 5.1: <strong>CAPTION THIS FIGURE!!</strong>
-</p>
-</div>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre>
+<p><img src="05-dplyr_files/figure-html/ex5-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="intermediate-3" class="section level3">
@@ -1171,13 +1193,13 @@ Figure 5.1: <strong>CAPTION THIS FIGURE!!</strong>
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb_prop &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">ukb_prop &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>()
 
-## <span class="al">TODO</span> double check that you did it right by making sure the props
-## for each year/sex combo sum to 1</code></pre></div>
+<span class="co">## </span><span class="al">TODO</span><span class="co"> double check that you did it right by making sure the props</span>
+<span class="co">## for each year/sex combo sum to 1</span></code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Use a window function to pull out the top year for each name/sex combination in the table you just created (i.e., the year when the name was given to greatest proportion of babies of a given sex).</li>
@@ -1186,36 +1208,31 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb_top_year &lt;-<span class="st"> </span>ukb_prop <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">ukb_top_year &lt;-<span class="st"> </span>ukb_prop <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(name, sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(p <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(p)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(year)</code></pre></div>
+<span class="st">  </span><span class="kw">arrange</span>(year)</code></pre>
 </div>
 </div>
 <div id="advanced-3" class="section level3">
 <h3><span class="header-section-number">5.7.3</span> Advanced</h3>
 <ol style="list-style-type: decimal">
-<li>Make a frequency histogram for the final letter of each name, broken down by sex. Are certain final letters more &quot;gendered&quot; than others?</li>
+<li>Make a frequency histogram for the final letter of each name, broken down by sex. Are certain final letters more “gendered” than others?</li>
 </ol>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">last_letter &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">last_letter &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lastchar =</span> <span class="kw">substr</span>(name, <span class="kw">nchar</span>(name), <span class="kw">nchar</span>(name))) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(lastchar <span class="op">%in%</span><span class="st"> </span>letters) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">count</span>(sex, lastchar) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(lastchar)
 
 <span class="kw">ggplot</span>(last_letter, <span class="kw">aes</span>(lastchar, n, <span class="dt">fill =</span> sex)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:ex1-adv"></span>
-<img src="05-dplyr_files/figure-html/ex1-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">
-Figure 5.2: <strong>CAPTION THIS FIGURE!!</strong>
-</p>
-</div>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre>
+<p><img src="05-dplyr_files/figure-html/ex1-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="2" style="list-style-type: decimal">
 <li>Calculate the top 5 boys and girls names for each decade and print out the whole table.</li>
@@ -1224,14 +1241,14 @@ Figure 5.2: <strong>CAPTION THIS FIGURE!!</strong>
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">floor</span>(year <span class="op">/</span><span class="st"> </span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(decade, sex, name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot_n =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot_n)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>)</code></pre>
 <pre><code>## # A tibble: 30 x 4
 ##    decade sex   name    tot_n
 ##     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -1273,7 +1290,7 @@ Solution
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top_names &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">top_names &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year), rank <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(sex, name)
 
@@ -1281,22 +1298,17 @@ ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">inner_join</span>(top_names, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;name&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, n, <span class="dt">color =</span> name)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sex)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:ex3-adv"></span>
-<img src="05-dplyr_files/figure-html/ex3-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">
-Figure 5.3: <strong>CAPTION THIS FIGURE!!</strong>
-</p>
-</div>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sex)</code></pre>
+<p><img src="05-dplyr_files/figure-html/ex3-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>What are the 10 most androgynous names in the UK? Discard any names that were given to less than 5000 babies total. Calculate an &quot;androgyny index&quot; for each name as log(F + .5) - log(M + .5) where F is the number of female and M is the number of male babies. This index will be zero for perfect gender balance, positive for skewed female, and negative for skewed male.</li>
+<li>What are the 10 most androgynous names in the UK? Discard any names that were given to less than 5000 babies total. Calculate an “androgyny index” for each name as log(F + .5) - log(M + .5) where F is the number of female and M is the number of male babies. This index will be zero for perfect gender balance, positive for skewed female, and negative for skewed male.</li>
 </ol>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">andro &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">andro &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(sex, name) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
@@ -1305,10 +1317,10 @@ Solution
 
 andro_gbal &lt;-<span class="st"> </span>andro <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(N <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5000</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gbal =</span> <span class="kw">log</span>(F <span class="op">+</span><span class="st"> </span>.<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(M <span class="op">+</span><span class="st"> </span>.<span class="dv">5</span>),
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gbal =</span> <span class="kw">log</span>(F <span class="op">+</span><span class="st"> </span><span class="fl">.5</span>) <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(M <span class="op">+</span><span class="st"> </span><span class="fl">.5</span>),
          <span class="dt">tot =</span> F <span class="op">+</span><span class="st"> </span>M) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">abs</span>(gbal)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
 </div>
 <ol start="5" style="list-style-type: decimal">
 <li>Which girl name has increased the most in popularity, if you directly compare the first year of the dataset to the last year? Which girl name has decreased the most? (Only comare names that were given to at least 500 babies in at least one of the years covered by the dataset.)</li>
@@ -1317,7 +1329,7 @@ andro_gbal &lt;-<span class="st"> </span>andro <span class="op">%&gt;%</span>
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">name_pop &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">name_pop &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;F&quot;</span>, (year <span class="op">==</span><span class="st"> </span><span class="dv">1996</span>) <span class="op">|</span><span class="st"> </span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2015</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(year, n, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">2015</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">500</span> <span class="op">|</span><span class="st"> `</span><span class="dt">1996</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">500</span>) <span class="op">%&gt;%</span>
@@ -1331,7 +1343,7 @@ name_pop <span class="op">%&gt;%</span>
 name_pop <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(chg) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(name)</code></pre></div>
+<span class="st">  </span><span class="kw">pull</span>(name)</code></pre>
 <pre><code>## [1] &quot;Amelia&quot;
 ## [1] &quot;Sophie&quot;</code></pre>
 </div>
@@ -1342,20 +1354,15 @@ name_pop <span class="op">%&gt;%</span>
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p_andro &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">p_andro &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>rank) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(sex, n, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_andro =</span> (F <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(M <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">p =</span> <span class="kw">mean</span>(is_andro))
 
-<span class="kw">ggplot</span>(p_andro, <span class="kw">aes</span>(year, p)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:ex6-adv"></span>
-<img src="05-dplyr_files/figure-html/ex6-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">
-Figure 5.4: <strong>CAPTION THIS FIGURE!!</strong>
-</p>
-</div>
+<span class="kw">ggplot</span>(p_andro, <span class="kw">aes</span>(year, p)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</code></pre>
+<p><img src="05-dplyr_files/figure-html/ex6-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <ol start="7" style="list-style-type: decimal">
 <li><em>Naming diversity trends.</em> Calculate a naming diversity index (number of names divided by number of babies) for each year and sex in the dataset. Plot the historical trend for naming diversity.</li>
@@ -1364,7 +1371,7 @@ Figure 5.4: <strong>CAPTION THIS FIGURE!!</strong>
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ndiversity &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">ndiversity &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_names =</span> <span class="kw">n_distinct</span>(name),
             <span class="dt">n_babies =</span> <span class="kw">sum</span>(n),
@@ -1372,13 +1379,8 @@ Solution
 <span class="st">  </span><span class="kw">ungroup</span>()
 
 <span class="kw">ggplot</span>(ndiversity,
-  <span class="kw">aes</span>(year, d_index, <span class="dt">color =</span> sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:ex7-adv"></span>
-<img src="05-dplyr_files/figure-html/ex7-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">
-Figure 5.5: <strong>CAPTION THIS FIGURE!!</strong>
-</p>
-</div>
+  <span class="kw">aes</span>(year, d_index, <span class="dt">color =</span> sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</code></pre>
+<p><img src="05-dplyr_files/figure-html/ex7-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 
 </div>
@@ -1546,7 +1548,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -181,20 +181,20 @@ data
 ## # Groups:   id [10]
 ##       id A_mean B_mean
 ##    <int>  <dbl>  <dbl>
-##  1     1  0.616   2.40
-##  2     2  0.498   2.92
-##  3     3  1.29    3.34
-##  4     4  1.56    2.93
-##  5     5 -1.05    3.00
-##  6     6  0.412   2.23
-##  7     7  1.16    2.81
-##  8     8  0.671   3.39
-##  9     9  0.968   2.12
-## 10    10  0.908   1.98
+##  1     1  1.07    1.75
+##  2     2  1.49    2.60
+##  3     3  0.721   2.56
+##  4     4  0.967   3.45
+##  5     5 -0.369   2.18
+##  6     6  0.365   2.58
+##  7     7 -0.796   3.57
+##  8     8  0.362   3.28
+##  9     9 -0.872   2.24
+## 10    10  0.766   3.29
 ```
 
 <div class="warning">
-<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
+<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
 </div>
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
@@ -339,7 +339,7 @@ glimpse(matmort_split)
 ### Handle spare columns with `extra` {#extra}
 
 <div class="warning">
-<p>The previous example should have given you an error warning about &quot;Too many values at 543 locations&quot;. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(&quot;100&quot;, &quot;90&quot;, &quot;110&quot;, &quot;&quot;)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don't do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to &quot;drop&quot;. Look at the help for <code>??tidyr::separate</code> to see what the other options do.</p>
+<p>The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(&quot;100&quot;, &quot;90&quot;, &quot;110&quot;, &quot;&quot;)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.</p>
 </div>
 
 
@@ -388,7 +388,7 @@ glimpse(infmort_split)
 
 {#regex}
 <div class="warning">
-<p>You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by &quot;|&quot;. It's a little more complicated because brackets have a special meaning in regex, so you need to &quot;escape&quot; the left one with two backslashes &quot;\\&quot;.</p>
+<p>You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by “|”. It’s a little more complicated because brackets have a special meaning in regex, so you need to “escape” the left one with two backslashes “\\”.</p>
 </div>
 
 
@@ -569,7 +569,7 @@ glimpse(infmort_wide)
 ```
 
 <div class="warning">
-<p>Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.</p>
+<p>Nope, that didn’t work at all, but it’s a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.</p>
 </div>
 
 ## unite() {#unite}
@@ -615,7 +615,7 @@ glimpse(infmort_united)
 ```
 
 <div class="info">
-<p>What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot;? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You'll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.</p>
+<p>What if you want to put it back into the format “rate [ci_low - ci_hi]”? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You’ll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.</p>
 </div>
 
 
@@ -690,24 +690,24 @@ The following data table is called `quiz_data`.
 
  id  condition    version  pet     score
 ---  ----------  --------  ----  -------
-  1  A                  1  cat    -0.682
-  1  A                  2  cat    -0.326
-  1  B                  1  cat    -0.174
-  1  B                  2  cat     0.270
-  2  A                  1  dog    -0.983
-  2  A                  2  dog    -1.241
-  2  B                  1  dog     0.365
-  2  B                  2  dog     1.020
+  1  A                  1  cat     0.793
+  1  A                  2  cat     1.332
+  1  B                  1  cat     0.180
+  1  B                  2  cat    -0.278
+  2  A                  1  dog     0.818
+  2  A                  2  dog    -0.335
+  2  B                  1  dog     1.175
+  2  B                  2  dog    -0.012
 
 
 1. How do you get `quiz_data` into the following format?
     
      id   version  pet             A            B
     ---  --------  ----  -----------  -----------
-      1         1  cat    -0.6815060   -0.1741526
-      1         2  cat    -0.3261588    0.2695666
-      2         1  dog    -0.9826734    0.3647796
-      2         2  dog    -1.2411648    1.0202826
+      1         1  cat     0.7928979    0.1798450
+      1         2  cat     1.3319511   -0.2778590
+      2         1  dog     0.8179771    1.1752244
+      2         2  dog    -0.3349067   -0.0115811
     
     <select class='solveme' data-answer='["spread(quiz_data, condition, score)"]'> <option></option> <option>separate(quiz_data, condition, score)</option> <option>gather(quiz_data, condition:score)</option> <option>spread(quiz_data, condition, score)</option> <option>unite(quiz_data, condition:score)</option></select>
     
@@ -715,14 +715,14 @@ The following data table is called `quiz_data`.
     
      id  cversion   pet         score
     ---  ---------  ----  -----------
-      1  A_1        cat    -0.6815060
-      1  A_2        cat    -0.3261588
-      1  B_1        cat    -0.1741526
-      1  B_2        cat     0.2695666
-      2  A_1        dog    -0.9826734
-      2  A_2        dog    -1.2411648
-      2  B_1        dog     0.3647796
-      2  B_2        dog     1.0202826
+      1  A_1        cat     0.7928979
+      1  A_2        cat     1.3319511
+      1  B_1        cat     0.1798450
+      1  B_2        cat    -0.2778590
+      2  A_1        dog     0.8179771
+      2  A_2        dog    -0.3349067
+      2  B_1        dog     1.1752244
+      2  B_2        dog    -0.0115811
 
     <select class='solveme' data-answer='["unite(quiz_data, cversion, condition, version)"]'> <option></option> <option>separate(quiz_data, cversion, condition, version)</option> <option>spread(quiz_data, condition:version)</option> <option>gather(quiz_data, cversion, condition:version)</option> <option>unite(quiz_data, cversion, condition, version)</option></select>
 

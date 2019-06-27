@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Reproducible Workflows | Data Skills</title>
-  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Reproducible Workflows | Data Skills" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Lisa DeBruine &amp; Dale Barr">
+<meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-05-13">
+<meta name="date" content="2019-06-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="glm.html">
@@ -49,50 +48,76 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -117,10 +142,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
-<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -128,26 +154,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
-<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> The RStudio Integrated Development Environment (IDE)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#typing-in-commands"><i class="fa fa-check"></i><b>1.4</b> Typing in commands</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#rcalc"><i class="fa fa-check"></i><b>1.4.1</b> Warming up: Use R as a calculator</a></li>
-<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Storing results in a variable</a></li>
-<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.3</b> Whitespace</a></li>
-<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#the-workspace"><i class="fa fa-check"></i><b>1.4.4</b> The workspace</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Variables</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.4</b> Whitespace</a></li>
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#add-on"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#installing-the-fortunes-package"><i class="fa fa-check"></i><b>1.5.3</b> Installing the fortunes package</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#configure-rstudio-for-maximum-reproducibility"><i class="fa fa-check"></i><b>1.6.1</b> Configure RStudio for Maximum Reproducibility</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.3</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.4</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -174,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
-<li class="chapter" data-level="3.5" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.6</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.6.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.6.2" data-path="ggplot.html"><a href="ggplot.html#density-plot"><i class="fa fa-check"></i><b>3.6.2</b> Density plot</a></li>
@@ -269,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -354,7 +380,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
+<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
@@ -452,21 +478,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="r-markdown" class="section level2">
 <h2><span class="header-section-number">10.3</span> R Markdown</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
-<p>By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a reproducible manuscript.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<p>By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we’ll explore some of the more advanced options and create an R Markdown document that produces a reproducible manuscript.</p>
 <p>First, make a new R Markdown document.</p>
 <div id="knitr-options" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> knitr options</h3>
 <p>When you create a new R Markdown file in RStudio, a setup chunk is automatically created.</p>
 <div class="verbatim">
 <p><code>```{r setup, include=FALSE}</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</code></pre>
 <code>```</code>
 </div>
 <p>You can set more default options for code chunks here. See the <a href="https://yihui.name/knitr/options/">knitr options documentation</a> for explanations of the possible options.</p>
 <div class="verbatim">
 <p><code>```{r setup, include=FALSE}</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(
   <span class="dt">fig.width  =</span> <span class="dv">8</span>, 
   <span class="dt">fig.height =</span> <span class="dv">5</span>, 
   <span class="dt">fig.path   =</span> <span class="st">&#39;images/&#39;</span>,
@@ -474,14 +500,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="dt">warning    =</span> <span class="ot">TRUE</span>, 
   <span class="dt">message    =</span> <span class="ot">FALSE</span>,
   <span class="dt">cache      =</span> <span class="ot">FALSE</span>
-)</code></pre></div>
+)</code></pre>
 <code>```</code>
 </div>
 <p>The code above sets the following options:</p>
 <ul>
 <li><code>fig.width  = 8</code> : figure width is 8 inches</li>
 <li><code>fig.height = 5</code> : figure height is 5 inches</li>
-<li><code>fig.path   = 'images/'</code> : figures are saved in the directory &quot;images&quot;</li>
+<li><code>fig.path   = 'images/'</code> : figures are saved in the directory “images”</li>
 <li><code>echo       = FALSE</code> : do not show code chunks in the rendered document</li>
 <li><code>warning    = FALSE</code> : do not show any function warnings</li>
 <li><code>message    = FALSE</code> : do not show any function messages</li>
@@ -505,7 +531,7 @@ output:
     toc_depth: 3
     number_sections: false
 ---</code></pre>
-<p>The built-in themes are: &quot;cerulean&quot;, &quot;cosmo&quot;, &quot;flatly&quot;, &quot;journal&quot;, &quot;lumen&quot;, &quot;paper&quot;, &quot;readable&quot;, &quot;sandstone&quot;, &quot;simplex&quot;, &quot;spacelab&quot;, &quot;united&quot;, and &quot;yeti&quot;. You can <a href="http://www.datadreaming.org/post/r-markdown-theme-gallery/">view and download more themes</a>.</p>
+<p>The built-in themes are: “cerulean”, “cosmo”, “flatly”, “journal”, “lumen”, “paper”, “readable”, “sandstone”, “simplex”, “spacelab”, “united”, and “yeti”. You can <a href="http://www.datadreaming.org/post/r-markdown-theme-gallery/">view and download more themes</a>.</p>
 <p class="alert alert-info">
 Try changing the values from <code>false</code> to <code>true</code> to see what the options do.
 </p>
@@ -548,33 +574,33 @@ What does it all mean?
 <div id="code-chunks" class="section level3">
 <h3><span class="header-section-number">10.3.4</span> Code Chunks</h3>
 <p>You can include code chunks that create and display images, tables, or computations to include in your text.</p>
-<p>Let's start by simulating some data.</p>
-<p>First, create a code chunk in your document. You can put this before the abstract, since we won't be showing the code in this document. We'll use a modified version of the <code>two_sample</code> function from the <a href="09_glm.html">GLM lecture</a> to create two groups with a difference of 0.75 and 100 observations per group.</p>
+<p>Let’s start by simulating some data.</p>
+<p>First, create a code chunk in your document. You can put this before the abstract, since we won’t be showing the code in this document. We’ll use a modified version of the <code>two_sample</code> function from the <a href="09_glm.html">GLM lecture</a> to create two groups with a difference of 0.75 and 100 observations per group.</p>
 <p class="alert alert-info">
 This function was modified to add sex and effect-code both sex and group. Using the <code>recode</code> function to set effect or difference coding makes it clearer which value corresponds to which level. There is no effect of sex or interaction with group in these simulated data.
 </p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {
-  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="op">-</span>.<span class="dv">5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),
-               <span class="kw">rnorm</span>(n_per_group, .<span class="dv">5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),
+<pre class="sourceCode r"><code class="sourceCode r">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {
+  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),
+               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),
          <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),
          <span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="dt">times =</span> n_per_group))
   ) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">mutate</span>(
-      <span class="dt">grp_e =</span> <span class="kw">recode</span>(grp, <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="op">-</span><span class="fl">0.5</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>),
-      <span class="dt">sex_e =</span> <span class="kw">recode</span>(sex, <span class="st">&quot;female&quot;</span> =<span class="st"> </span><span class="op">-</span><span class="fl">0.5</span>, <span class="st">&quot;male&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>)
+      <span class="dt">grp_e =</span> <span class="kw">recode</span>(grp, <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>),
+      <span class="dt">sex_e =</span> <span class="kw">recode</span>(sex, <span class="st">&quot;female&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;male&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>)
     )
-}</code></pre></div>
+}</code></pre>
 <p class="alert alert-warning">
 This function requires the <code>tibble</code> and <code>dplyr</code> packages, so remember to load the whole tidyverse package at the top of this script (e.g., in the setup chunk).
 </p>
 <p>Now we can make a separate code chunk to create our simulated dataset <code>dat</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dt">diff =</span> <span class="fl">0.75</span>, <span class="dt">n_per_group =</span> <span class="dv">100</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dt">diff =</span> <span class="fl">0.75</span>, <span class="dt">n_per_group =</span> <span class="dv">100</span>)</code></pre>
 <p class="alert alert-info">
-You can use the <code>set.seed</code> function to make sure that you get the same random data back each time. Make sure you don't ever do this inside of a simulation function, or you will just simulate the exact same data over and over again.
+You can use the <code>set.seed</code> function to make sure that you get the same random data back each time. Make sure you don’t ever do this inside of a simulation function, or you will just simulate the exact same data over and over again.
 </p>
-<div id="tables" class="section level4">
+<div id="tables-1" class="section level4">
 <h4><span class="header-section-number">10.3.4.1</span> Tables</h4>
-<p>Next, create a code chunk where you want to display a table of the descriptives (e.g., Participants section of the Methods). We'll use tidyverse functions you learned in the <a href="04_wrangling.html">data wrangling lectures</a> to create summary statistics for each group.</p>
+<p>Next, create a code chunk where you want to display a table of the descriptives (e.g., Participants section of the Methods). We’ll use tidyverse functions you learned in the <a href="04_wrangling.html">data wrangling lectures</a> to create summary statistics for each group.</p>
 <pre><code>&#96;&#96;&#96;{r, results='asis'}
 
 dat %>%
@@ -636,7 +662,7 @@ Notice that the r chunk specifies the option <code>results='asis'</code>. This l
 </div>
 <div id="images" class="section level4">
 <h4><span class="header-section-number">10.3.4.2</span> Images</h4>
-<p>Next, create a code chunk where you want to display the image in your document. Let's put it in the Results section. Use what you learned in the <a href="03_ggplot.html">data visualisation lecture</a> to show violin-boxplots for the two groups.</p>
+<p>Next, create a code chunk where you want to display the image in your document. Let’s put it in the Results section. Use what you learned in the <a href="03_ggplot.html">data visualisation lecture</a> to show violin-boxplots for the two groups.</p>
 <pre><code>&#96;&#96;&#96;{r, fig1, fig.cap="Figure 1. Scores by group and sex."}
 ggplot(dat, aes(grp, Y, fill = sex)) +
   geom_violin(alpha = 0.5) +
@@ -650,7 +676,7 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
   
 &#96;&#96;&#96;</code></pre>
 <p class="alert alert-info">
-The last line changes the default text size and font, which can be useful for generating figures that meet a journal's requirements.
+The last line changes the default text size and font, which can be useful for generating figures that meet a journal’s requirements.
 </p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
 <img src="10-repro_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1. Scores by group and sex." width="100%" />
@@ -659,43 +685,43 @@ Figure 10.1: Figure 1. Scores by group and sex.
 </p>
 </div>
 <p>You can also include images that you did not create in R using the typical markdown syntax for images:</p>
-<pre><code>![All the Things](images/x-all-the-things.png)</code></pre>
+<pre><code>![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/x-all-the-things.png)</code></pre>
 <div class="figure">
-<img src="images/x-all-the-things.png" alt="All the Things" />
-<p class="caption">All the Things</p>
+<img src="images/x-all-the-things.png" alt="All the Things by Hyperbole and a Half" />
+<p class="caption">All the Things by <a href="http://hyperboleandahalf.blogspot.com/">Hyperbole and a Half</a></p>
 </div>
 </div>
 <div id="in-line-r" class="section level4">
 <h4><span class="header-section-number">10.3.4.3</span> In-line R</h4>
-<p>Now let's use what you learned in the <a href="09_glm.html">GLM lecture</a> to analyse our simulated data. The document is getting a little cluttered, so let's move this code to external scripts.</p>
+<p>Now let’s use what you learned in the <a href="09_glm.html">GLM lecture</a> to analyse our simulated data. The document is getting a little cluttered, so let’s move this code to external scripts.</p>
 <ul>
-<li>Create a new R script called &quot;functions.R&quot;</li>
+<li>Create a new R script called “functions.R”</li>
 <li>Move the <code>library(tidyverse)</code> line and the <code>two_sample()</code> function definition to this file.</li>
-<li>Create a new R script called &quot;analysis.R&quot;</li>
+<li>Create a new R script called “analysis.R”</li>
 <li>Move the code for creating <code>dat</code> to this file.</li>
 <li>Add the following code to the end of the setup chunk:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)
-<span class="kw">source</span>(<span class="st">&quot;analysis.R&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)
+<span class="kw">source</span>(<span class="st">&quot;analysis.R&quot;</span>)</code></pre>
 <p>The <code>source</code> function lets you include code from an external file. This is really useful for making your documents readable. Just make sure you call your source files in the right order (e.g., include function definitions before you use the functions).</p>
-<p>In the &quot;analysis.R&quot; file, we're going to run the analysis code and save any numbers we might want to use in our manuscript to variables.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grp_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>grp_e <span class="op">*</span><span class="st"> </span>sex_e, <span class="dt">data =</span> dat)
+<p>In the “analysis.R” file, we’re going to run the analysis code and save any numbers we might want to use in our manuscript to variables.</p>
+<pre class="sourceCode r"><code class="sourceCode r">grp_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>grp_e <span class="op">*</span><span class="st"> </span>sex_e, <span class="dt">data =</span> dat)
 
 stats &lt;-<span class="st"> </span>grp_lm <span class="op">%&gt;%</span>
 <span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</code></pre>
 <p>The code above runs our analysis predicting <code>Y</code> from the effect-coded group variable <code>grp_e</code>, the effect-coded sex variable <code>sex_e</code> and their intereaction. The <code>tidy</code> function from the <code>broom</code> package turns the output into a tidy table. The <code>mutate_if</code> function uses the function <code>is.numeric</code> to check if each column should be mutated, adn if it is numeric, applies the <code>round</code> function with the digits argument set to 3.</p>
 <p>If you want to report the results of the analysis in a paragraph istead of a table, you need to know how to refer to each number in the table. Like with everything in R, there are many wways to do this. One is by specifying the column and row number like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stats<span class="op">$</span>p.value[<span class="dv">2</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">stats<span class="op">$</span>p.value[<span class="dv">2</span>]</code></pre>
 <pre><code>## [1] 0</code></pre>
 <p>Another way is to create variables for each row like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grp_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">grp_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e&quot;</span>)
 sex_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;sex_e&quot;</span>)
-ixn_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e:sex_e&quot;</span>)</code></pre></div>
+ixn_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e:sex_e&quot;</span>)</code></pre>
 <p>Add the above code to the end of your analysis.R file. Then you can refer to columns by name like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grp_stats<span class="op">$</span>p.value
+<pre class="sourceCode r"><code class="sourceCode r">grp_stats<span class="op">$</span>p.value
 sex_stats<span class="op">$</span>statistic
-ixn_stats<span class="op">$</span>estimate</code></pre></div>
+ixn_stats<span class="op">$</span>estimate</code></pre>
 <pre><code>## [1] 0
 ## [1] 0.197
 ## [1] -0.099</code></pre>
@@ -714,17 +740,28 @@ t = &#96;r ixn_stats$statistic&#96;,
 p = &#96;r ixn_stats$p.value&#96;).
 </code></pre>
 <p><strong>Rendered text:</strong><br />
-Scores were higher in group B than group A (B = 0.647, t = 4.74, p = 0). There was no significant difference between men and women (B = 0.027, t = 0.197, p = 0.844) and the effect of group was not qualified by an interaction with sex (B = -0.099, t = -0.363, p = 0.717).</p>
+Scores were higher in group B than group A
+(B = 0.647,
+t = 4.74,
+p = 0).
+There was no significant difference between men and women
+(B = 0.027,
+t = 0.197,
+p = 0.844)
+and the effect of group was not qualified by an interaction with sex
+(B = -0.099,
+t = -0.363,
+p = 0.717).</p>
 <p class="alert alert-info">
 Remember, line breaks are ignored when you render the file (unless you add two spaces at the end of lines), so you can use line breaks to make it easier to read your text with inline R code.
 </p>
-<p>The p-values aren't formatted in APA style. We wrote a function to deal with this in the <a href="07_functions.html">function lecture</a>. Add this function to the &quot;functions.R&quot; file and change the inline text to use the <code>report_p</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
+<p>The p-values aren’t formatted in APA style. We wrote a function to deal with this in the <a href="07_functions.html">function lecture</a>. Add this function to the “functions.R” file and change the inline text to use the <code>report_p</code> function.</p>
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
   <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)
   <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)
   <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)
   
-  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">001</span>) {
+  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {
     reported =<span class="st"> &quot;p &lt; .001&quot;</span>
   } <span class="cf">else</span> {
     roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)
@@ -733,7 +770,7 @@ Remember, line breaks are ignored when you render the file (unless you add two s
   }
   
   reported
-}</code></pre></div>
+}</code></pre>
 <pre><code>Scores were higher in group B than group A 
 (B = &#96;r grp_stats$estimate&#96;, 
 t = &#96;r grp_stats$statistic&#96;, 
@@ -748,9 +785,20 @@ t = &#96;r ixn_stats$statistic&#96;,
 &#96;r report_p(ixn_stats$p.value, 3)&#96;).
 </code></pre>
 <p><strong>Rendered text:</strong><br />
-Scores were higher in group B than group A (B = 0.647, t = 4.74, p &lt; .001). There was no significant difference between men and women (B = 0.027, t = 0.197, p = 0.844) and the effect of group was not qualified by an interaction with sex (B = -0.099, t = -0.363, p = 0.717).</p>
+Scores were higher in group B than group A
+(B = 0.647,
+t = 4.74,
+p &lt; .001).
+There was no significant difference between men and women
+(B = 0.027,
+t = 0.197,
+p = 0.844)
+and the effect of group was not qualified by an interaction with sex
+(B = -0.099,
+t = -0.363,
+p = 0.717).</p>
 <p>You might also want to report the statistics for the regression. There are a lot of numbers to format and insert, so it is easier to do this in the analysis script using <code>sprintf</code> for formatting.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw">summary</span>(grp_lm)
+<pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw">summary</span>(grp_lm)
 
 <span class="co"># calculate p value from fstatistic</span>
 fstat.p &lt;-<span class="st"> </span><span class="kw">pf</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], 
@@ -765,7 +813,7 @@ adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(
   s<span class="op">$</span>fstatistic[<span class="dv">3</span>],
   <span class="kw">round</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], <span class="dv">3</span>),
   <span class="kw">report_p</span>(fstat.p, <span class="dv">3</span>)
-)</code></pre></div>
+)</code></pre>
 <p>Then you can just insert the text in your manuscript like this: ` adj_r`:</p>
 <p>The regression equation had an adjusted <span class="math inline">\(R^{2}\)</span> of 0.090 (<span class="math inline">\(F_{(3, 196)}\)</span> = 7.546, p &lt; .001).</p>
 </div>
@@ -775,7 +823,7 @@ adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(
 <p>There are several ways to do in-text citations and automatically generate a <a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#bibliographies">bibliography</a> in RMarkdown.</p>
 <div id="create-a-bibtex-file-manually" class="section level4">
 <h4><span class="header-section-number">10.3.5.1</span> Create a BibTeX File Manually</h4>
-<p>You can just make a BibTeX file and add citations manually. Make a new Text File in RStudio called &quot;bibliography.bib&quot;.</p>
+<p>You can just make a BibTeX file and add citations manually. Make a new Text File in RStudio called “bibliography.bib”.</p>
 <p>Next, add the line <code>bibliography: bibliography.bib</code> to your YAML header.</p>
 <p>You can add citations in the following format:</p>
 <pre><code>@article{shortname,
@@ -791,15 +839,15 @@ adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(
 </div>
 <div id="citing-r-packages" class="section level4">
 <h4><span class="header-section-number">10.3.5.2</span> Citing R packages</h4>
-<p>You can get the citation for an R package using the function <code>citation</code>. You can paste the bibtex entry into your bibliography.bib file. Make sure to add a short name (e.g., &quot;rmarkdown&quot;) before the first comma to refer to the reference.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="dt">package=</span><span class="st">&quot;rmarkdown&quot;</span>)</code></pre></div>
+<p>You can get the citation for an R package using the function <code>citation</code>. You can paste the bibtex entry into your bibliography.bib file. Make sure to add a short name (e.g., “rmarkdown”) before the first comma to refer to the reference.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="dt">package=</span><span class="st">&quot;rmarkdown&quot;</span>)</code></pre>
 <pre><code>## 
 ## To cite the &#39;rmarkdown&#39; package in publications, please use:
 ## 
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier
 ##   Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and
 ##   Joe Cheng and Winston Chang and Richard Iannone (2019).
-##   rmarkdown: Dynamic Documents for R. R package version 1.12. URL
+##   rmarkdown: Dynamic Documents for R. R package version 1.13. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R
@@ -812,7 +860,7 @@ adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(
 </div>
 <div id="download-citation-info" class="section level4">
 <h4><span class="header-section-number">10.3.5.3</span> Download Citation Info</h4>
-<p>You can get the BibTeX formatted citation from most publisher websites. For example, go to the publisher's page for <a href="https://journals.sagepub.com/doi/abs/10.1177/2515245918770963">Equivalence Testing for Psychological Research: A Tutorial</a>, click on the Cite button (in the sidebar or under the bottom Explore More menu), choose BibTeX format, and download the citation. You can open up the file in a text editor and copy the text. It should look like this:</p>
+<p>You can get the BibTeX formatted citation from most publisher websites. For example, go to the publisher’s page for <a href="https://journals.sagepub.com/doi/abs/10.1177/2515245918770963">Equivalence Testing for Psychological Research: A Tutorial</a>, click on the Cite button (in the sidebar or under the bottom Explore More menu), choose BibTeX format, and download the citation. You can open up the file in a text editor and copy the text. It should look like this:</p>
 <pre><code>@article{doi:10.1177/2515245918770963,
 author = {Daniël Lakens and Anne M. Scheel and Peder M. Isager},
 title ={Equivalence Testing for Psychological Research: A Tutorial},
@@ -834,7 +882,7 @@ eprint = {
 ,
     abstract = { Psychologists must be able to test both for the presence of an effect and for the absence of an effect. In addition to testing against zero, researchers can use the two one-sided tests (TOST) procedure to test for equivalence and reject the presence of a smallest effect size of interest (SESOI). The TOST procedure can be used to determine if an observed effect is surprisingly small, given that a true effect at least as extreme as the SESOI exists. We explain a range of approaches to determine the SESOI in psychological science and provide detailed examples of how equivalence tests should be performed and reported. Equivalence tests are an important extension of the statistical tools psychologists currently use and enable researchers to falsify predictions about the presence, and declare the absence, of meaningful effects. }
 }</code></pre>
-<p>Paste the reference into your bibliography.bib file. Change <code>doi:10.1177/2515245918770963</code> in the first line of the reference to a short string you will use to cite the reference in your manuscript. We'll use <code>TOSTtutorial</code>.</p>
+<p>Paste the reference into your bibliography.bib file. Change <code>doi:10.1177/2515245918770963</code> in the first line of the reference to a short string you will use to cite the reference in your manuscript. We’ll use <code>TOSTtutorial</code>.</p>
 </div>
 <div id="converting-from-reference-software" class="section level4">
 <h4><span class="header-section-number">10.3.5.4</span> Converting from reference software</h4>
@@ -851,7 +899,7 @@ eprint = {
 </div>
 <div id="citation-styles" class="section level4">
 <h4><span class="header-section-number">10.3.5.6</span> Citation Styles</h4>
-<p>You can search a <a href="https://www.zotero.org/styles">list of style files</a> for various journals and download a file that will format your bibliography for a specific journal's style. You'll need to add the line <code>csl: filename.csl</code> to your YAML header.</p>
+<p>You can search a <a href="https://www.zotero.org/styles">list of style files</a> for various journals and download a file that will format your bibliography for a specific journal’s style. You’ll need to add the line <code>csl: filename.csl</code> to your YAML header.</p>
 <p class="alert alert-info">
 Add some citations to your bibliography.bib file, reference them in your text, and render your manuscript to see the automatically generated reference section. Try a few different citation style files.
 </p>
@@ -878,14 +926,14 @@ Add some citations to your bibliography.bib file, reference them in your text, a
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-tidyverse">
-<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
-</div>
 <div id="ref-rmarkdown">
-<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
 </div>
 <div id="ref-TOSTtutorial">
-<p>Lakens, Daniël, Anne M. Scheel, and Peder M. Isager. 2018. “Equivalence Testing for Psychological Research: A Tutorial.” <em>Advances in Methods and Practices in Psychological Science</em> 1 (2): 259–69. doi:<a href="https://doi.org/10.1177/2515245918770963">10.1177/2515245918770963</a>.</p>
+<p>Lakens, Daniël, Anne M. Scheel, and Peder M. Isager. 2018. “Equivalence Testing for Psychological Research: A Tutorial.” <em>Advances in Methods and Practices in Psychological Science</em> 1 (2): 259–69. <a href="https://doi.org/10.1177/2515245918770963">https://doi.org/10.1177/2515245918770963</a>.</p>
+</div>
+<div id="ref-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -1050,7 +1098,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

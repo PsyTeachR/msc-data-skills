@@ -2,7 +2,7 @@
 --- 
 title: Data Skills
 author: "[Lisa DeBruine](https://debruine.github.io) & [Dale Barr](http://talklab.psy.gla.ac.uk/)"
-date: "2019-05-13"
+date: "2019-06-27"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -12,6 +12,8 @@ description: "This course provides an overview of skills needed for reproducible
 ---
 
 # Overview {-}
+
+<img src="images/data_skills.png" style="width: 200px; float: right;">
 
 This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.
 
@@ -110,6 +112,14 @@ Exercises are available at the end of each lesson's webpage. These are not marke
 * [07 functions](formative_exercises/07_functions_stub.Rmd): Functions and Iteration
 * [08 simulation](formative_exercises/08_simulations_stub.Rmd): Simulation
 * [09 glm](formative_exercises/09_glm_stub.Rmd): GLM
+
+## Packages used in this book
+
+* tidyverse
+* cowsay
+* [goodshirt](https://github.com/adam-gruer/goodshirt)
+* ukbabynames
+* cowplot
 
 ## Resources
 

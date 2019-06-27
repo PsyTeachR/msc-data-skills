@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Tidy Data | Data Skills</title>
-  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Tidy Data | Data Skills" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Lisa DeBruine &amp; Dale Barr">
+<meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-05-13">
+<meta name="date" content="2019-06-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="ggplot.html">
@@ -49,50 +48,76 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -117,10 +142,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
-<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -128,26 +154,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
-<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> The RStudio Integrated Development Environment (IDE)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#typing-in-commands"><i class="fa fa-check"></i><b>1.4</b> Typing in commands</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#rcalc"><i class="fa fa-check"></i><b>1.4.1</b> Warming up: Use R as a calculator</a></li>
-<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Storing results in a variable</a></li>
-<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.3</b> Whitespace</a></li>
-<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#the-workspace"><i class="fa fa-check"></i><b>1.4.4</b> The workspace</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Variables</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.4</b> Whitespace</a></li>
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#add-on"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#installing-the-fortunes-package"><i class="fa fa-check"></i><b>1.5.3</b> Installing the fortunes package</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#configure-rstudio-for-maximum-reproducibility"><i class="fa fa-check"></i><b>1.6.1</b> Configure RStudio for Maximum Reproducibility</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.3</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.4</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -174,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
-<li class="chapter" data-level="3.5" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.6</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.6.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.6.2" data-path="ggplot.html"><a href="ggplot.html#density-plot"><i class="fa fa-check"></i><b>3.6.2</b> Density plot</a></li>
@@ -269,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -354,7 +380,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
+<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
@@ -416,7 +442,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="basic-1" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Basic</h3>
 <ol style="list-style-type: decimal">
-<li>Understand the concept of &quot;tidy data&quot;</li>
+<li>Understand the concept of “tidy data”</li>
 <li>Be able to use the 4 basic <code>tidyr</code> verbs
 <ul>
 <li><a href="tidyr.html#gather"><code>gather()</code></a></li>
@@ -451,37 +477,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="setup-1" class="section level2">
 <h2><span class="header-section-number">4.3</span> Setup</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed</span>
 <span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(readxl)</code></pre></div>
+<span class="kw">library</span>(readxl)</code></pre>
 </div>
 <div id="load-data" class="section level2">
 <h2><span class="header-section-number">4.4</span> Load Data</h2>
-<p>Get data on infant mortality rates from the CSV file <a href="data/infmort.csv"><code>infmort.csv</code></a> in the directory <code>data</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</code></pre></div>
+<p>Get data on infant mortality rates from the CSV file
+<a href="data/infmort.csv"><code>infmort.csv</code></a> in the directory <code>data</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Country = col_character(),
 ##   Year = col_double(),
 ##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
 ## )</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(infmort)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(infmort)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 3
 ## $ Country                                                                                     &lt;chr&gt; …
 ## $ Year                                                                                        &lt;dbl&gt; …
 ## $ `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` &lt;chr&gt; …</code></pre>
-<p>Get data on maternal mortality from from the excel file <a href="data/matmort.xls"><code>matmort.xls</code></a> in the directory <code>data</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)
-<span class="kw">glimpse</span>(matmort)</code></pre></div>
+<p>Get data on maternal mortality from from the excel file
+<a href="data/matmort.xls"><code>matmort.xls</code></a> in the directory <code>data</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)
+<span class="kw">glimpse</span>(matmort)</code></pre>
 <pre><code>## Observations: 181
 ## Variables: 4
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
 ## $ `1990`  &lt;chr&gt; &quot;1 340 [ 878 - 1 950]&quot;, &quot;71 [ 58 -  88]&quot;, &quot;216 [ 141 -  …
 ## $ `2000`  &lt;chr&gt; &quot;1 100 [ 745 - 1 570]&quot;, &quot;43 [ 33 -  56]&quot;, &quot;170 [ 118 -  …
 ## $ `2015`  &lt;chr&gt; &quot;396 [ 253 -  620]&quot;, &quot;29 [ 16 -  46]&quot;, &quot;140 [ 82 -  244]…</code></pre>
-<p>Get data on country codes from <a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv" class="uri">https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</code></pre></div>
+<p>Get data on country codes from <a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv">https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv</a></p>
+<pre class="sourceCode r"><code class="sourceCode r">ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   name = col_character(),
@@ -496,7 +524,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##   `sub-region-code` = col_character(),
 ##   `intermediate-region-code` = col_character()
 ## )</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(ccodes)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(ccodes)</code></pre>
 <pre><code>## Observations: 249
 ## Variables: 11
 ## $ name                       &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Alba…
@@ -515,9 +543,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.5</span> Pipes</h2>
 <p><img src="images/04/pipe_sticker.png" style="width: 200px; float: right;"></p>
 <p>Pipes were introduced in the second lesson, but we will review them here. Pipes are a way to order your code in a more readable format.</p>
-<p>Let's say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (<code>id</code>, <code>A_mean</code> and <code>B_mean</code>).</p>
-<p>One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you've created 6 unnecessary data objects in your environment. This can get confusing in very long scripts.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 10 subjects</span>
+<p>Let’s say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (<code>id</code>, <code>A_mean</code> and <code>B_mean</code>).</p>
+<p>One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you’ve created 6 unnecessary data objects in your environment. This can get confusing in very long scripts.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 10 subjects</span>
 data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
   <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),
@@ -544,30 +572,30 @@ data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_su
 <span class="co"># rename A and B to A_mean and B_mean</span>
 data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)
 
-data</code></pre></div>
+data</code></pre>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
 ##       id A_mean B_mean
 ##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  0.616   2.40
-##  2     2  0.498   2.92
-##  3     3  1.29    3.34
-##  4     4  1.56    2.93
-##  5     5 -1.05    3.00
-##  6     6  0.412   2.23
-##  7     7  1.16    2.81
-##  8     8  0.671   3.39
-##  9     9  0.968   2.12
-## 10    10  0.908   1.98</code></pre>
+##  1     1  1.07    1.75
+##  2     2  1.49    2.60
+##  3     3  0.721   2.56
+##  4     4  0.967   3.45
+##  5     5 -0.369   2.18
+##  6     6  0.365   2.58
+##  7     7 -0.796   3.57
+##  8     8  0.362   3.28
+##  9     9 -0.872   2.24
+## 10    10  0.766   3.29</code></pre>
 <div class="warning">
 <p>
-You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
 </p>
 </div>
 <p>One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_petal_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(iris<span class="op">$</span>Petal.Width), <span class="dv">2</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mean_petal_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(iris<span class="op">$</span>Petal.Width), <span class="dv">2</span>)</code></pre>
 <p>But it gets extremely confusing for long chains:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># do not ever do this!!</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># do not ever do this!!</span>
 data &lt;-<span class="st"> </span><span class="kw">rename</span>(
   <span class="kw">spread</span>(
     <span class="kw">summarise</span>(
@@ -585,9 +613,9 @@ data &lt;-<span class="st"> </span><span class="kw">rename</span>(
         id, var), 
       <span class="dt">mean =</span> <span class="kw">mean</span>(value)), 
     var, mean), 
-  <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</code></pre></div>
-<p>The pipe lets you &quot;pipe&quot; the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate mean of A and B variables for each participant</span>
+  <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</code></pre>
+<p>The pipe lets you “pipe” the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate mean of A and B variables for each participant</span>
 data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
   <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),
@@ -600,7 +628,7 @@ data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
 <span class="st">  </span><span class="kw">group_by</span>(id, var) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(var, mean) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</code></pre></div>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</code></pre>
 <p>You can read this code from top to bottom as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Make a tibble called <code>data</code> with
@@ -618,7 +646,7 @@ data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
 <li>Spread to make new columns with the key names in <code>var</code> and values in <code>mean</code>; and then</li>
 <li>Rename to make columns called <code>A_mean</code> (old <code>A</code>) and <code>B_mean</code> (old <code>B</code>)</li>
 </ol>
-<p>You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.</p>
+<p>You can make intermediate objects whenever you need to break up your code because it’s getting too complicated or you need to debug something.</p>
 <div class="info">
 <p>
 You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?
@@ -630,15 +658,15 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 <p><code>gather(data, key = &quot;key&quot;, value = &quot;value&quot;, ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)</code></p>
 <p><code>matmort</code> is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.</p>
 <ul>
-<li><code>key</code> is what you want to call the row headers; it's &quot;year&quot; in this example.</li>
-<li><code>value</code> is what you want to call the values in the gathered columns; they're &quot;stats&quot; in this example.</li>
+<li><code>key</code> is what you want to call the row headers; it’s “year” in this example.</li>
+<li><code>value</code> is what you want to call the values in the gathered columns; they’re “stats” in this example.</li>
 <li>The <code>...</code> refers to the columns you want to gather. You can refer to them by their names, like <code>col1, col2, col3, col4</code> or <code>col1:col4</code> or by their numbers, like <code>8, 9, 10</code> or <code>8:10</code>.</li>
 </ul>
 <p>This example is complicated because the column names to gather <em>are</em> numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (`) like the example below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>)
 
-<span class="kw">glimpse</span>(matmort_long)</code></pre></div>
+<span class="kw">glimpse</span>(matmort_long)</code></pre>
 <pre><code>## Observations: 543
 ## Variables: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -648,14 +676,14 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 <div id="separate" class="section level2">
 <h2><span class="header-section-number">4.7</span> separate()</h2>
 <p><code>separate(data, col, into, sep = &quot;[^[:alnum:]]+&quot;, remove = TRUE, convert = FALSE, extra = &quot;warn&quot;, fill = &quot;warn&quot;)</code></p>
-<p>The data in the <code>stats</code> column is in a crazy format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with <code>mutate</code>.</p>
+<p>The data in the <code>stats</code> column is in a crazy format with some sort of confidence interval in brackets and lots of extra spaces. We don’t need any of the spaces, so first we’ll remove them with <code>mutate</code>.</p>
 <p>The <code>separate</code> function will separate your data on anything that is not a number or letter, so try it first without specifying the <code>sep</code> argument. The <code>into</code> argument is a list of the new column names.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>))</code></pre>
 <pre><code>## Warning: Expected 3 pieces. Additional pieces discarded in 543 rows [1, 2,
 ## 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(matmort_split)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(matmort_split)</code></pre>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -665,21 +693,21 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 ## $ ci_hi   &lt;chr&gt; &quot;1950&quot;, &quot;88&quot;, &quot;327&quot;, &quot;2020&quot;, &quot;80&quot;, &quot;65&quot;, &quot;9&quot;, &quot;10&quot;, &quot;74&quot;…</code></pre>
 <div class="info">
 <p>
-The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do search and replace. The example above replaces all occurances of the <code>pattern</code> &quot; &quot; (a space), with the <code>replacement</code> &quot;&quot; (nothing), in the string <code>x</code> (the <code>stats</code> column). Use <code>sub()</code> instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regex</a> patterns to replace, for example, all even numbers (e.g., <code>gsub(&quot;[:02468:]&quot;, &quot;<em>&quot;, &quot;id = 123456&quot;)</code>) or all occurances of the word colour in US or UK spelling (e.g., <code>gsub(&quot;colo(u)?r&quot;, &quot;</em>**&quot;, &quot;replace color, colour, or colours, but not collors&quot;)</code>).
+The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do search and replace. The example above replaces all occurances of the <code>pattern</code> &quot; &quot; (a space), with the <code>replacement</code> &quot;&quot; (nothing), in the string <code>x</code> (the <code>stats</code> column). Use <code>sub()</code> instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regex</a> patterns to replace, for example, all even numbers (e.g., <code>gsub(“[:02468:]”, &quot;<em>“,”id = 123456“)</code>) or all occurances of the word colour in US or UK spelling (e.g., <code>gsub(”colo(u)?r“,”</em>**“,”replace color, colour, or colours, but not collors&quot;)</code>).
 </p>
 </div>
 <div id="extra" class="section level3">
 <h3><span class="header-section-number">4.7.1</span> Handle spare columns with <code>extra</code></h3>
 <div class="warning">
 <p>
-The previous example should have given you an error warning about &quot;Too many values at 543 locations&quot;. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(&quot;100&quot;, &quot;90&quot;, &quot;110&quot;, &quot;&quot;)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don't do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to &quot;drop&quot;. Look at the help for <code>??tidyr::separate</code> to see what the other options do.
+The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(“100”, “90”, “110”, &quot;“)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)
 
-<span class="kw">glimpse</span>(matmort_split)</code></pre></div>
+<span class="kw">glimpse</span>(matmort_split)</code></pre>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -690,11 +718,11 @@ The previous example should have given you an error warning about &quot;Too many
 </div>
 <div id="sep" class="section level3">
 <h3><span class="header-section-number">4.7.2</span> Set delimiters with <code>sep</code></h3>
-<p>Now do the same with <code>infmort</code>. It's already in long format, so you don't need to use <code>gather</code>, but the third column has a crazy long name, so we can just refer to it by its column number (3).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<p>Now do the same with <code>infmort</code>. It’s already in long format, so you don’t need to use <code>gather</code>, but the third column has a crazy long name, so we can just refer to it by its column number (3).</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)
 
-<span class="kw">glimpse</span>(infmort_split)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_split)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -702,14 +730,14 @@ The previous example should have given you an error warning about &quot;Too many
 ## $ rate    &lt;chr&gt; &quot;66&quot;, &quot;68&quot;, &quot;69&quot;, &quot;71&quot;, &quot;73&quot;, &quot;75&quot;, &quot;76&quot;, &quot;78&quot;, &quot;80&quot;, &quot;8…
 ## $ ci_low  &lt;chr&gt; &quot;3&quot;, &quot;1&quot;, &quot;9&quot;, &quot;7&quot;, &quot;4&quot;, &quot;1&quot;, &quot;8&quot;, &quot;6&quot;, &quot;4&quot;, &quot;3&quot;, &quot;4&quot;, &quot;…
 ## $ ci_hi   &lt;chr&gt; &quot;52&quot;, &quot;55&quot;, &quot;58&quot;, &quot;61&quot;, &quot;64&quot;, &quot;66&quot;, &quot;69&quot;, &quot;71&quot;, &quot;73&quot;, &quot;7…</code></pre>
-<p><em>Wait, that didn't work at all!</em> It split the column on spaces, brackets, <em>and</em> full stops. We just want to split on the spaces, brackets and dashes. So we need to manually set <code>sep</code> to what the delimiters are. Also, once there are more than a few arguments specified for a function, it's easier to read them if you put one argument on each line.</p>
+<p><em>Wait, that didn’t work at all!</em> It split the column on spaces, brackets, <em>and</em> full stops. We just want to split on the spaces, brackets and dashes. So we need to manually set <code>sep</code> to what the delimiters are. Also, once there are more than a few arguments specified for a function, it’s easier to read them if you put one argument on each line.</p>
 {#regex}
 <div class="warning">
 <p>
-You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by &quot;|&quot;. It's a little more complicated because brackets have a special meaning in regex, so you need to &quot;escape&quot; the left one with two backslashes &quot;\&quot;.
+You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by “|”. It’s a little more complicated because brackets have a special meaning in regex, so you need to “escape” the left one with two backslashes “\”.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(
     <span class="dt">col =</span> <span class="dv">3</span>, 
     <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), 
@@ -717,7 +745,7 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
     <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>
   )
 
-<span class="kw">glimpse</span>(infmort_split)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_split)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -728,11 +756,11 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 </div>
 <div id="convert" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> Fix data types with <code>convert</code></h3>
-<p>That's better. Notice the <em><chr></em> next to <code>Year</code>, <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code>. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can't average words), so we can fix it by adding the argument <code>convert</code> and setting it to <code>TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<p>That’s better. Notice the <em><chr></em> next to <code>Year</code>, <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code>. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can’t average words), so we can fix it by adding the argument <code>convert</code> and setting it to <code>TRUE</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)
 
-<span class="kw">glimpse</span>(infmort_split)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_split)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -741,11 +769,11 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ ci_low  &lt;dbl&gt; 52.7, 55.7, 58.7, 61.6, 64.4, 66.9, 69.0, 71.2, 73.4, 75…
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90…</code></pre>
 <p>Do the same for <code>matmort</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)
 
-<span class="kw">glimpse</span>(matmort_split)</code></pre></div>
+<span class="kw">glimpse</span>(matmort_split)</code></pre>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -756,22 +784,22 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 </div>
 <div id="all-in-one-step" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> All in one step</h3>
-<p>We can chain all the steps above together, since we don't need those intermediate dataframes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>) <span class="op">%&gt;%</span>
+<p>We can chain all the steps above together, since we don’t need those intermediate dataframes.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(
     <span class="dv">3</span>, 
     <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), 
     <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, 
     <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, 
     <span class="dt">convert =</span> <span class="ot">TRUE</span>
-  )</code></pre></div>
+  )</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Country = col_character(),
 ##   Year = col_double(),
 ##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
 ## )</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>) <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(
@@ -782,7 +810,7 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
   )
 
 <span class="kw">glimpse</span>(matmort)
-<span class="kw">glimpse</span>(infmort)</code></pre></div>
+<span class="kw">glimpse</span>(infmort)</code></pre>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -807,11 +835,11 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <li><code>key</code> is the column that contains your new column headers</li>
 <li><code>value</code> is the column that contains the values in the new spread columns</li>
 </ul>
-<p>Let's spread out the infant mortality rate by year.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<p>Let’s spread out the infant mortality rate by year.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(Year, rate)
 
-<span class="kw">glimpse</span>(infmort_wide)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_wide)</code></pre>
 <pre><code>## Observations: 4,934
 ## Variables: 29
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -845,17 +873,17 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ `2015`  &lt;dbl&gt; 66.3, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
 <div class="warning">
 <p>
-Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.
+Nope, that didn’t work at all, but it’s a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.
 </p>
 </div>
 </div>
 <div id="unite" class="section level2">
 <h2><span class="header-section-number">4.9</span> unite()</h2>
 <p><code>unite(data, col, ..., sep = &quot;_&quot;, remove = TRUE)</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi)
 
-<span class="kw">glimpse</span>(infmort_united)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_united)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -863,11 +891,12 @@ Nope, that didn't work at all, but it's a really common mistake when spreading d
 ## $ rate_ci &lt;chr&gt; &quot;66.3_52.7_83.9&quot;, &quot;68.1_55.7_83.6&quot;, &quot;69.9_58.7_83.5&quot;, &quot;7…</code></pre>
 <div id="control-separation-with-sep" class="section level3">
 <h3><span class="header-section-number">4.9.1</span> Control separation with <code>sep</code></h3>
-<p><code>unite()</code> separates merged names with an underscore by default. Set the <code>sep</code> argument if you want to change that.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<p><code>unite()</code> separates merged names with an underscore by default.
+Set the <code>sep</code> argument if you want to change that.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)
 
-<span class="kw">glimpse</span>(infmort_united)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_united)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -875,13 +904,13 @@ Nope, that didn't work at all, but it's a really common mistake when spreading d
 ## $ rate_ci &lt;chr&gt; &quot;66.3, 52.7, 83.9&quot;, &quot;68.1, 55.7, 83.6&quot;, &quot;69.9, 58.7, 83.…</code></pre>
 <div class="info">
 <p>
-What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot;? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You'll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.
+What if you want to put it back into the format “rate [ci_low - ci_hi]”? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You’ll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rate_ci =</span> <span class="kw">paste0</span>(rate, <span class="st">&quot; [&quot;</span>, ci_low, <span class="st">&quot; - &quot;</span>, ci_hi, <span class="st">&quot;]&quot;</span>))
 
-<span class="kw">glimpse</span>(infmort_united)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_united)</code></pre>
 <pre><code>## Observations: 5,044
 ## Variables: 6
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -890,12 +919,12 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 ## $ ci_low  &lt;dbl&gt; 52.7, 55.7, 58.7, 61.6, 64.4, 66.9, 69.0, 71.2, 73.4, 75…
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90…
 ## $ rate_ci &lt;chr&gt; &quot;66.3 [52.7 - 83.9]&quot;, &quot;68.1 [55.7 - 83.6]&quot;, &quot;69.9 [58.7 …</code></pre>
-<p>Now let's try spreading on year again. Notice here we're uniting columns <code>rate:ci_hi</code>, instead of <code>rate, ci_low, ci_hi</code>. The colon just says to select all the columns between the first and last named ones. Check the help documentation for <code>??tidyr::unite</code> and <code>??tidyr::select</code> to see other ways to select columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
+<p>Now let’s try spreading on year again. Notice here we’re uniting columns <code>rate:ci_hi</code>, instead of <code>rate, ci_low, ci_hi</code>. The colon just says to select all the columns between the first and last named ones. Check the help documentation for <code>??tidyr::unite</code> and <code>??tidyr::select</code> to see other ways to select columns.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unite</span>(rate_ci, rate<span class="op">:</span>ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(Year, rate_ci)
 
-<span class="kw">glimpse</span>(infmort_wide)</code></pre></div>
+<span class="kw">glimpse</span>(infmort_wide)</code></pre>
 <pre><code>## Observations: 194
 ## Variables: 27
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Andorra&quot;, &quot;Angola&quot;…
@@ -946,56 +975,56 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <td align="left">A</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">-0.682</td>
+<td align="right">0.793</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">-0.326</td>
+<td align="right">1.332</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">-0.174</td>
+<td align="right">0.180</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">0.270</td>
+<td align="right">-0.278</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">-0.983</td>
+<td align="right">0.818</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">-1.241</td>
+<td align="right">-0.335</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">0.365</td>
+<td align="right">1.175</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">1.020</td>
+<td align="right">-0.012</td>
 </tr>
 </tbody>
 </table>
@@ -1016,29 +1045,29 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">-0.6815060</td>
-<td align="right">-0.1741526</td>
+<td align="right">0.7928979</td>
+<td align="right">0.1798450</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">-0.3261588</td>
-<td align="right">0.2695666</td>
+<td align="right">1.3319511</td>
+<td align="right">-0.2778590</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">-0.9826734</td>
-<td align="right">0.3647796</td>
+<td align="right">0.8179771</td>
+<td align="right">1.1752244</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">-1.2411648</td>
-<td align="right">1.0202826</td>
+<td align="right">-0.3349067</td>
+<td align="right">-0.0115811</td>
 </tr>
 </tbody>
 </table>
@@ -1058,49 +1087,49 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <td align="right">1</td>
 <td align="left">A_1</td>
 <td align="left">cat</td>
-<td align="right">-0.6815060</td>
+<td align="right">0.7928979</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A_2</td>
 <td align="left">cat</td>
-<td align="right">-0.3261588</td>
+<td align="right">1.3319511</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B_1</td>
 <td align="left">cat</td>
-<td align="right">-0.1741526</td>
+<td align="right">0.1798450</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B_2</td>
 <td align="left">cat</td>
-<td align="right">0.2695666</td>
+<td align="right">-0.2778590</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A_1</td>
 <td align="left">dog</td>
-<td align="right">-0.9826734</td>
+<td align="right">0.8179771</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A_2</td>
 <td align="left">dog</td>
-<td align="right">-1.2411648</td>
+<td align="right">-0.3349067</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B_1</td>
 <td align="left">dog</td>
-<td align="right">0.3647796</td>
+<td align="right">1.1752244</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B_2</td>
 <td align="left">dog</td>
-<td align="right">1.0202826</td>
+<td align="right">-0.0115811</td>
 </tr>
 </tbody>
 </table>
@@ -1158,13 +1187,13 @@ What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(var, value, Sepal.Length<span class="op">:</span>Petal.Width) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</code></pre>
 </div></li>
 <li><p>Re-write the following code using pipes. Assign the resulting data table to a variable called <code>data</code>.</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span>
 data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),
   <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),
@@ -1179,12 +1208,12 @@ data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_
 data_united &lt;-<span class="st"> </span><span class="kw">unite</span>(data_gathered, cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
 
 <span class="co"># spread the score column into cells</span>
-data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</code></pre></div>
+data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</code></pre>
 <div class="solution">
 <button>
 Solution
 </button>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+<pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),
   <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),
   <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),
@@ -1192,41 +1221,51 @@ Solution
 ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(score_type, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unite</span>(cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(cell, score)</code></pre></div>
+<span class="st">  </span><span class="kw">spread</span>(cell, score)</code></pre>
 </div>
 </div>
 <div id="exercises-2" class="section level2">
 <h2><span class="header-section-number">4.11</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/04_wrangle1_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/04_wrangle1_answers.Rmd">answers</a> only after you've attempted all the questions.</p>
+<p>Download the <a href="formative_exercises/04_wrangle1_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/04_wrangle1_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 <p>Tidy the data from <a href="data/personality.csv">personality.csv</a>.</p>
-<p>These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.</p>
+<p>These data are from a 5-factor (OCEAN) personality questionnaire. Each question
+is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion,
+Ag = agreeableness, and Ne = neuroticism) and the question number.</p>
 <ol style="list-style-type: decimal">
 <li><p><em>Basic</em>: Load the data and convert from wide to long format.</p>
 <p>The resulting dataframe should have the columns: <code>user_id</code>, <code>date</code>, <code>question</code>, and <code>score</code>.</p></li>
 <li><p><em>Basic</em>: Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
-<p class="alert alert-info'&gt;">
-There is no character to split on, here, but you can separate a column after a specific number of characters by setting <code>sep</code> to an integer. For example, to split &quot;abcde&quot; after the third character, use <code>sep = 3</code>, which results in c(&quot;abc&quot;, &quot;de&quot;). You can also use negative number to split before the <em>n</em>th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like &quot;lisa03&quot;&quot;, &quot;amanda38&quot;), you can use <code>sep = -2</code>.
+&lt;p class=“alert alert-info’&gt;
+There is no character to split on, here, but you can separate a column after a
+specific number of characters by setting <code>sep</code> to an integer. For example, to
+split”abcde&quot; after the third character, use <code>sep = 3</code>, which results in
+c(“abc”, “de”). You can also use negative number to split before the <em>n</em>th
+character from the right. For example, to split a column that has words of
+various lengths and 2-digit suffixes (like “lisa03”“,”amanda38&quot;), you can
+use <code>sep = -2</code>.
 </p></li>
-<li><p><em>Basic</em>: Put the domain and qnumber columns back together into a new column named <code>domain_n</code>. Make it in a format like &quot;Op_Q1&quot;.</p></li>
+<li><p><em>Basic</em>: Put the domain and qnumber columns back together into a new column named <code>domain_n</code>. Make it in a format like “Op_Q1”.</p></li>
 <li><p><em>Basic</em>: Convert back to wide format.</p></li>
 <li><p><em>Intermediate</em>: Chain all the steps above using pipes.</p></li>
 </ol>
 <p><em>Intermediate</em>: Debug the following code:</p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Load the data from <a href="data/sensation_seeking.csv">sensation_seeking.csv</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(data<span class="op">/</span>sensation_seeking.csv)</code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">ss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(data<span class="op">/</span>sensation_seeking.csv)</code></pre></li>
 <li><p>Convert from wide to long format.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ss_long &lt;-<span class="st"> </span><span class="kw">gather</span>(ss, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>)</code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">ss_long &lt;-<span class="st"> </span><span class="kw">gather</span>(ss, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>)</code></pre></li>
 <li><p>Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ss_sep &lt;-<span class="st"> </span>ss_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(question, domain, qnumber, <span class="dt">sep =</span> <span class="dv">3</span>)</code></pre></div></li>
-<li><p>Put the <code>id</code> and <code>user_id</code> columns together into a new column named <code>super_id</code>. Make it in a format like &quot;id-user_id&quot;.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ss_unite &lt;-<span class="st"> </span>ss_sep <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(id, user_id, <span class="st">&quot;super_id&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)</code></pre></div></li>
-<li><p>Convert back to wide format.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ss_wide &lt;-<span class="st"> </span>ss_unite <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spreadr</span>(qnumber, score)</code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">ss_sep &lt;-<span class="st"> </span>ss_long <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(question, domain, qnumber, <span class="dt">sep =</span> <span class="dv">3</span>)</code></pre></li>
+<li><p>Put the <code>id</code> and <code>user_id</code> columns together into a new column named <code>super_id</code>. Make it in a format like “id-user_id”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ss_unite &lt;-<span class="st"> </span>ss_sep <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(id, user_id, <span class="st">&quot;super_id&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)</code></pre></li>
+<li><p>Convert back to wide format.</p></li>
 </ol>
+<pre><code>```r
+ss_wide &lt;- ss_unite %&gt;%
+  spreadr(qnumber, score)
+```</code></pre>
 <p><em>Intermediate</em>: Load the dataset <a href="data/family_composition.csv">family_composition.csv</a>.</p>
 <ol start="11" style="list-style-type: decimal">
 <li>The columns <code>oldbro</code> through <code>twinsis</code> give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis).</li>
@@ -1235,7 +1274,7 @@ There is no character to split on, here, but you can separate a column after a s
 <ol start="12" style="list-style-type: decimal">
 <li>Create a dataset with separate columns for face_id, description, and number of description.</li>
 </ol>
-<p><em>I'm bored</em></p>
+<p><em>I’m bored</em></p>
 <ol start="13" style="list-style-type: decimal">
 <li><p>Using the family composition dataset from question 11, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.</p></li>
 <li><p>Create a list of the 10 most common descriptions from the eye colour dataset in question 12. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to <code>knitr::kable()</code>.</p></li>
@@ -1405,7 +1444,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -287,7 +287,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2014-05-04"
+## [1] "2008-07-10" "2014-06-23"
 ```
 
 
@@ -365,7 +365,7 @@ disgust_total <- disgust %>%
 ```
 
 <div class="warning">
-<p>You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.</p>
+<p>You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren’t trying to use the old column value after you redefine it.</p>
 </div>
 
 ### summarise() {#summarise}
@@ -474,7 +474,7 @@ disgust_smc <- disgust %>%
 A lot of what we did above would be easier if the data were tidy, so let's do that first. Then we can use `group_by` to calculate the domain scores.
 
 <div class="warning">
-<p>It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won't affect some further processing, but can really mess up other things.</p>
+<p>It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won’t affect some further processing, but can really mess up other things.</p>
 </div>
 
 Then we can spread out the 3 domains, calculate the total score, remove any rows with a missing (`NA`) total, and calculate mean values by year.
@@ -907,10 +907,7 @@ ggplot(babes_per_year, aes(year, tot, color = sex)) +
   geom_line()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex5-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex5)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="05-dplyr_files/figure-html/ex5-1.png" width="100%" style="display: block; margin: auto;" />
 
 </div>
 
@@ -975,10 +972,7 @@ ggplot(last_letter, aes(lastchar, n, fill = sex)) +
   geom_bar(stat = "identity")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex1-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex1-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="05-dplyr_files/figure-html/ex1-adv-1.png" width="100%" style="display: block; margin: auto;" />
 
 </div>
 
@@ -1057,10 +1051,7 @@ ukb %>%
     facet_wrap(~sex)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex3-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex3-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="05-dplyr_files/figure-html/ex3-adv-1.png" width="100%" style="display: block; margin: auto;" />
 
 </div>
 
@@ -1139,10 +1130,7 @@ p_andro <- ukb %>%
 ggplot(p_andro, aes(year, p)) + geom_line()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex6-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex6-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="05-dplyr_files/figure-html/ex6-adv-1.png" width="100%" style="display: block; margin: auto;" />
 
 </div>
 
@@ -1165,10 +1153,7 @@ ggplot(ndiversity,
   aes(year, d_index, color = sex)) + geom_line()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex7-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex7-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="05-dplyr_files/figure-html/ex7-adv-1.png" width="100%" style="display: block; margin: auto;" />
 
 </div>
 

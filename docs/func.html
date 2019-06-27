@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Iteration &amp; Functions | Data Skills</title>
-  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Iteration &amp; Functions | Data Skills" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Lisa DeBruine &amp; Dale Barr">
+<meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-05-13">
+<meta name="date" content="2019-06-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="joins.html">
@@ -49,50 +48,76 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -117,10 +142,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.5</b> Resources</a><ul>
-<li class="chapter" data-level="0.5.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.5.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.5.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.5.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.5.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.5.3</b> Other</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
@@ -128,26 +154,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
-<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> The RStudio Integrated Development Environment (IDE)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#typing-in-commands"><i class="fa fa-check"></i><b>1.4</b> Typing in commands</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#rcalc"><i class="fa fa-check"></i><b>1.4.1</b> Warming up: Use R as a calculator</a></li>
-<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Storing results in a variable</a></li>
-<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.3</b> Whitespace</a></li>
-<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#the-workspace"><i class="fa fa-check"></i><b>1.4.4</b> The workspace</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Variables</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
+<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.4</b> Whitespace</a></li>
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#add-on"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#installing-the-fortunes-package"><i class="fa fa-check"></i><b>1.5.3</b> Installing the fortunes package</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#configure-rstudio-for-maximum-reproducibility"><i class="fa fa-check"></i><b>1.6.1</b> Configure RStudio for Maximum Reproducibility</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.3</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.4" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.4</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -174,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
-<li class="chapter" data-level="3.5" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.5</b> Data</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.6</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.6.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.6.2" data-path="ggplot.html"><a href="ggplot.html#density-plot"><i class="fa fa-check"></i><b>3.6.2</b> Density plot</a></li>
@@ -269,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -354,7 +380,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
+<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
@@ -437,7 +463,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Repeat commands having multiple arguments using <code>purrr::map2_*()</code> and <code>purrr::pmap_*()</code></li>
 <li>Create <strong>nested data frames</strong> using <code>dplyr::group_by()</code> and <code>tidyr::nest()</code></li>
 <li>Work with <strong>nested data frames</strong> in <code>dplyr</code></li>
-<li>Capture and deal with errors using 'adverb' functions <code>purrr::safely()</code> and <code>purrr::possibly()</code></li>
+<li>Capture and deal with errors using ‘adverb’ functions <code>purrr::safely()</code> and <code>purrr::possibly()</code></li>
 </ol>
 </div>
 </div>
@@ -448,8 +474,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf">RStudio Apply Functions Cheatsheet</a></li>
 </ul>
 <p>In the next two lectures, we are going to learn more about <em>iteration</em> (doing the same commands over and over) and <em>custom functions</em> through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed for these examples</span>
-<span class="kw">library</span>(tidyverse)  ## contains purrr, tidyr, dplyr</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed for these examples</span>
+<span class="kw">library</span>(tidyverse)  <span class="co">## contains purrr, tidyr, dplyr</span></code></pre>
 </div>
 <div id="iteration-functions" class="section level2">
 <h2><span class="header-section-number">7.3</span> Iteration functions</h2>
@@ -457,25 +483,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">7.3.1</span> <code>rep()</code></h3>
 <p>The function <code>rep()</code> lets you repeat the first argument a number of times.</p>
 <p>Use <code>rep()</code> to create a vector of alternating <code>&quot;A&quot;</code> and <code>&quot;B&quot;</code> values of length 24.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">12</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">12</span>)</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot;
 ## [18] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
 <p>Use <code>rep()</code> to create a vector of 12 <code>&quot;A&quot;</code> values followed by 12 <code>&quot;B&quot;</code> values</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> <span class="dv">12</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> <span class="dv">12</span>)</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;
 ## [18] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 <p>Use <code>rep()</code> to create a vector of 11 <code>&quot;A&quot;</code> values followed by 3 <code>&quot;B&quot;</code> values</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">3</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">3</span>))</code></pre>
 <pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 </div>
 <div id="seq" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> <code>seq()</code></h3>
 <p>The function <code>seq()</code> is useful for generating a sequence of numbers with some pattern.</p>
 <p>Use <code>seq()</code> to create a vector of the numbers 0 to 100 by 10s.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">10</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">10</span>)</code></pre>
 <pre><code>##  [1]   0  10  20  30  40  50  60  70  80  90 100</code></pre>
 <p>The argument <code>length.out</code> is useful if you know how many steps you want to divide something into Use <code>seq()</code> to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 <em>steps</em>?).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">13</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">13</span>)</code></pre>
 <pre><code>##  [1]   0.000000   8.333333  16.666667  25.000000  33.333333  41.666667
 ##  [7]  50.000000  58.333333  66.666667  75.000000  83.333333  91.666667
 ## [13] 100.000000</code></pre>
@@ -507,8 +533,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  68.58   68.58   116.4 4.81e-06 ***
-## Residuals    8   4.72    0.59                     
+## A            1  86.70   86.70   98.25 9.07e-06 ***
+## Residuals    8   7.06    0.88                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -525,7 +551,7 @@ pval
 ```
 
 ```
-## [1] 4.809416e-06
+## [1] 9.06594e-06
 ```
 -->
 </div>
@@ -539,36 +565,36 @@ Now we are going to wrap up the code we created above into two custom functions:
 <div id="structure-function" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Structuring a function</h3>
 <p>The general structure of a function is as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(my_args) {
+<pre class="sourceCode r"><code class="sourceCode r">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(my_args) {
   <span class="co"># process the arguments</span>
   <span class="co"># return some value</span>
-}</code></pre></div>
+}</code></pre>
 <p>Here is a very simple function. Can you guess what it does?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">add1 &lt;-<span class="st"> </span><span class="cf">function</span>(my_number) {
+<pre class="sourceCode r"><code class="sourceCode r">add1 &lt;-<span class="st"> </span><span class="cf">function</span>(my_number) {
   my_number <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 }
 
-<span class="kw">add1</span>(<span class="dv">10</span>)</code></pre></div>
+<span class="kw">add1</span>(<span class="dv">10</span>)</code></pre>
 <pre><code>## [1] 11</code></pre>
-<p>Let's make a function that reports p-values in APA format (with &quot;p = rounded value&quot; when p &gt;= .001 and &quot;p &lt; .001&quot; when p &lt; .001).</p>
-<p>First, we have to name the function. You can name it anything, but try not to duplicate existing functions or you will overwrite them. For example, if you call your function <code>rep</code>, then you will need to use <code>base::rep()</code> to access the normal <code>rep</code> function. Let's call our p-value function <code>report_p</code> and set up the framework of the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>() {
-}</code></pre></div>
+<p>Let’s make a function that reports p-values in APA format (with “p = rounded value” when p &gt;= .001 and “p &lt; .001” when p &lt; .001).</p>
+<p>First, we have to name the function. You can name it anything, but try not to duplicate existing functions or you will overwrite them. For example, if you call your function <code>rep</code>, then you will need to use <code>base::rep()</code> to access the normal <code>rep</code> function. Let’s call our p-value function <code>report_p</code> and set up the framework of the function.</p>
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>() {
+}</code></pre>
 </div>
 <div id="arguments" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Arguments</h3>
-<p>We need to add one <em>argument</em>, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses after <code>function</code> in the order you want them to default (just like the built-in functions you've used before).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p) {
-}</code></pre></div>
+<p>We need to add one <em>argument</em>, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses after <code>function</code> in the order you want them to default (just like the built-in functions you’ve used before).</p>
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p) {
+}</code></pre>
 </div>
 <div id="defaults" class="section level3">
 <h3><span class="header-section-number">7.4.3</span> Argument defaults</h3>
-<p>You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn't make sense to run this function without specifying the p-value, but we can add a second argument called <code>digits</code> that defaults to 3, so we can round p-values to 3 digits.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
-}</code></pre></div>
+<p>You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn’t make sense to run this function without specifying the p-value, but we can add a second argument called <code>digits</code> that defaults to 3, so we can round p-values to 3 digits.</p>
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
+}</code></pre>
 <p>Now we need to write some code inside the function to process the input arguments and turn them into a <strong>return</strong>ed output. Put the output as the last item in function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
-  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">001</span>) {
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
+  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {
     reported =<span class="st"> &quot;p &lt; .001&quot;</span>
   } <span class="cf">else</span> {
     roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)
@@ -576,10 +602,10 @@ Now we are going to wrap up the code we created above into two custom functions:
   }
   
   reported
-}</code></pre></div>
+}</code></pre>
 <p>You might also see the returned output inside of the <code>return()</code> function. This does the same thing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
-  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">001</span>) {
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
+  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {
     reported =<span class="st"> &quot;p &lt; .001&quot;</span>
   } <span class="cf">else</span> {
     roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)
@@ -587,17 +613,17 @@ Now we are going to wrap up the code we created above into two custom functions:
   }
   
   <span class="kw">return</span>(reported)
-}</code></pre></div>
-<p>When you run the code defining your function, it doesn't output anything, but makes a new object in the Environment tab under <strong><code>Functions</code></strong>. Now you can run the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="fl">0.04869</span>)
-<span class="kw">report_p</span>(<span class="fl">0.0000023</span>)</code></pre></div>
+}</code></pre>
+<p>When you run the code defining your function, it doesn’t output anything, but makes a new object in the Environment tab under <strong><code>Functions</code></strong>. Now you can run the function.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="fl">0.04869</span>)
+<span class="kw">report_p</span>(<span class="fl">0.0000023</span>)</code></pre>
 <pre><code>## [1] &quot;p = 0.049&quot;
 ## [1] &quot;p &lt; .001&quot;</code></pre>
 </div>
 <div id="scope" class="section level3">
 <h3><span class="header-section-number">7.4.4</span> Scope</h3>
-<p>What happens in a function stays in a function. You can change the value of a variable passed to a function, but that won't change the value of the variable outside of the function, even if that variable has the same name as the one in the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+<p>What happens in a function stays in a function. You can change the value of a variable passed to a function, but that won’t change the value of the variable outside of the function, even if that variable has the same name as the one in the function.</p>
+<pre class="sourceCode r"><code class="sourceCode r">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
   x &lt;-<span class="st"> </span>x<span class="op">/</span><span class="dv">2</span>
   <span class="kw">return</span>(x)
 }
@@ -606,7 +632,7 @@ x &lt;-<span class="st"> </span><span class="dv">10</span>
 <span class="kw">list</span>(
   <span class="st">&quot;half(x)&quot;</span> =<span class="st"> </span><span class="kw">half</span>(x),
   <span class="st">&quot;x&quot;</span> =<span class="st"> </span>x
-)</code></pre></div>
+)</code></pre>
 <pre><code>## $`half(x)`
 ## [1] 5
 ## 
@@ -616,17 +642,17 @@ x &lt;-<span class="st"> </span><span class="dv">10</span>
 <div id="warnings-errors" class="section level3">
 <h3><span class="header-section-number">7.4.5</span> Warnings and errors</h3>
 <div class="try">
-What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or &quot;a&quot;?
+What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or “a”?
 </p>
 </div>
-<p>You might want to add a more specific warning and stop running the function code if someone enters a value that isn't a number. You can do this with the <code>stop()</code> function.</p>
-<p>If someone enters a number that isn't possible for a p-value (0-1), you might want to warn them that this is probably not what they intended, but still continue with the function. You can do this with <code>warning()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
+<p>You might want to add a more specific warning and stop running the function code if someone enters a value that isn’t a number. You can do this with the <code>stop()</code> function.</p>
+<p>If someone enters a number that isn’t possible for a p-value (0-1), you might want to warn them that this is probably not what they intended, but still continue with the function. You can do this with <code>warning()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {
   <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)
   <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)
   <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)
   
-  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">001</span>) {
+  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {
     reported =<span class="st"> &quot;p &lt; .001&quot;</span>
   } <span class="cf">else</span> {
     roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)
@@ -634,14 +660,14 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
   }
   
   reported
-}</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>()</code></pre></div>
+}</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>()</code></pre>
 <pre><code>## Error in report_p(): argument &quot;p&quot; is missing, with no default</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="st">&quot;a&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="st">&quot;a&quot;</span>)</code></pre>
 <pre><code>## Error in report_p(&quot;a&quot;): p must be a number</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="op">-</span><span class="dv">2</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="op">-</span><span class="dv">2</span>)</code></pre>
 <pre><code>## Warning in report_p(-2): p-values are normally greater than 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="dv">2</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">report_p</span>(<span class="dv">2</span>)</code></pre>
 <pre><code>## Warning in report_p(2): p-values are normally less than 1</code></pre>
 <pre><code>## [1] &quot;p &lt; .001&quot;
 ## [1] &quot;p = 2&quot;</code></pre>
@@ -649,83 +675,83 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 </div>
 <div id="iterating-your-own-functions" class="section level2">
 <h2><span class="header-section-number">7.5</span> Iterating your own functions</h2>
-<p>First, let's build up the code that we want to iterate.</p>
+<p>First, let’s build up the code that we want to iterate.</p>
 <div id="rnorm" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> <code>rnorm()</code></h3>
 <p>Create a vector of 20 random numbers drawn from a normal distribution with a mean of 5 and standard deviation of 1 using the <code>rnorm()</code> function and store them in the variable <code>A</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre>
 </div>
 <div id="tibbletibble" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> <code>tibble::tibble()</code></h3>
 <p>A <code>tibble</code> is a type of table or <code>data.frame</code>. The function <code>tibble::tibble()</code> creates a tibble with a column for each argument. Each argument takes the form <code>column_name = data_vector</code>.</p>
 <p>Create a table called <code>dat</code> including two vectors: <code>A</code> that is a vector of 20 random normally distributed numbers with a mean of 5 and SD of 1, and <code>B</code> that is a vector of 20 random normally distributed numbers with a mean of 5.5 and SD of 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),
   <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)
-)</code></pre></div>
+)</code></pre>
 </div>
 <div id="t.test" class="section level3">
 <h3><span class="header-section-number">7.5.3</span> <code>t.test</code></h3>
 <p>You can run a Welch two-sample t-test by including the two samples you made as the first two arguments to the function <code>t.test</code>. You can reference one column of a table by its names using the format <code>table_name$column_name</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(dat<span class="op">$</span>A, dat<span class="op">$</span>B)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(dat<span class="op">$</span>A, dat<span class="op">$</span>B)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -2.3926, df = 35.796, p-value = 0.0221
+## t = -3.2397, df = 33.799, p-value = 0.002686
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.2414110 -0.1022404
+##  -1.567862 -0.358933
 ## sample estimates:
 ## mean of x mean of y 
-##  5.065830  5.737655</code></pre>
+##  4.851887  5.815284</code></pre>
 <p>You can also convert the table to long format using the <code>gather</code> function and specify the t-test using the format <code>number_column~grouping_column</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)
+<pre class="sourceCode r"><code class="sourceCode r">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)
 
-<span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> longdat) </code></pre></div>
+<span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> longdat) </code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -2.3926, df = 35.796, p-value = 0.0221
+## t = -3.2397, df = 33.799, p-value = 0.002686
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.2414110 -0.1022404
+##  -1.567862 -0.358933
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.065830        5.737655</code></pre>
+##        4.851887        5.815284</code></pre>
 </div>
 <div id="broomtidy" class="section level3">
 <h3><span class="header-section-number">7.5.4</span> <code>broom::tidy()</code></h3>
 <p>You can use the function <code>broom::tidy()</code> to extract the data from a statistical test in a table format. The example below pipes everything together.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(
   <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),
   <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)
 ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
-<span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>()</code></pre></div>
+<span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>()</code></pre>
 <pre><code>## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1   -0.282      5.15      5.43    -0.849   0.402      33.6   -0.958
+## 1   -0.151      5.11      5.26    -0.499   0.621      37.4   -0.764
 ## # … with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 ## #   alternative &lt;chr&gt;</code></pre>
 <p>Finally, we can extract a single value from this results table using <code>pull()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tibble</span>(
   <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),
   <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)
 ) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(p.value)</code></pre></div>
-<pre><code>## [1] 0.05020538</code></pre>
+<span class="st">  </span><span class="kw">pull</span>(p.value)</code></pre>
+<pre><code>## [1] 0.07352519</code></pre>
 </div>
 <div id="turn-into-a-function" class="section level3">
 <h3><span class="header-section-number">7.5.5</span> Turn into a function</h3>
 <p>First, name your function <code>t_sim</code> and wrap the code above in a function with no arguments.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>() {
+<pre class="sourceCode r"><code class="sourceCode r">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>() {
   <span class="kw">tibble</span>(
     <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),
     <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)
@@ -734,24 +760,24 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <span class="st">    </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">    </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">pull</span>(p.value) 
-}</code></pre></div>
+}</code></pre>
 <p>Run it a few times to see what happens.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>()</code></pre></div>
-<pre><code>## [1] 0.2255017</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>()</code></pre>
+<pre><code>## [1] 0.06364008</code></pre>
 </div>
 <div id="replicate" class="section level3">
 <h3><span class="header-section-number">7.5.6</span> <code>replicate()</code></h3>
-<p>You can use the <code>replicate</code> function to run your function any number of times. Let's run the <code>t_sim</code> function 1000 times, assign the resulting p-values to a vector called <code>reps</code>, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>())
-alpha &lt;-<span class="st"> </span>.<span class="dv">05</span>
+<p>You can use the <code>replicate</code> function to run your function any number of times. Let’s run the <code>t_sim</code> function 1000 times, assign the resulting p-values to a vector called <code>reps</code>, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.</p>
+<pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>())
+alpha &lt;-<span class="st"> </span><span class="fl">.05</span>
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>alpha)
-power</code></pre></div>
-<pre><code>## [1] 0.334</code></pre>
+power</code></pre>
+<pre><code>## [1] 0.333</code></pre>
 </div>
 <div id="add-arguments" class="section level3">
 <h3><span class="header-section-number">7.5.7</span> Add arguments</h3>
 <p>You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine <code>t_sim</code>, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1=</span><span class="dv">0</span>, <span class="dt">sd1=</span><span class="dv">1</span>, <span class="dt">m2=</span><span class="dv">0</span>, <span class="dt">sd2=</span><span class="dv">1</span>) {
+<pre class="sourceCode r"><code class="sourceCode r">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1=</span><span class="dv">0</span>, <span class="dt">sd1=</span><span class="dv">1</span>, <span class="dt">m2=</span><span class="dv">0</span>, <span class="dt">sd2=</span><span class="dv">1</span>) {
   <span class="kw">tibble</span>(
     <span class="dt">A =</span> <span class="kw">rnorm</span>(n, m1, sd1),
     <span class="dt">B =</span> <span class="kw">rnorm</span>(n, m2, sd2)
@@ -760,19 +786,19 @@ power</code></pre></div>
 <span class="st">    </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">    </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">pull</span>(p.value) 
-}</code></pre></div>
+}</code></pre>
 <p>Test your function with some different values to see if the results make sense.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>(<span class="dv">100</span>)
-<span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 0.391237
-## [1] 0.001054307</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>(<span class="dv">100</span>)
+<span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</code></pre>
+<pre><code>## [1] 0.6559663
+## [1] 0.0002086047</code></pre>
 <p>Use <code>replicate</code> to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))
-power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>.<span class="dv">05</span>)
-power</code></pre></div>
-<pre><code>## [1] 0.276</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))
+power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>)
+power</code></pre>
+<pre><code>## [1] 0.286</code></pre>
 <p>Compare this to power calculated from the <code>power.t.test</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</code></pre>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -794,7 +820,7 @@ power</code></pre></div>
 </div>
 <div id="exercises-5" class="section level2">
 <h2><span class="header-section-number">7.6</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/07_functions_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/07_functions_answers.Rmd">answers</a> only after you've attempted all the questions.</p>
+<p>Download the <a href="formative_exercises/07_functions_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/07_functions_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 <!--
 ### Custom functions: `sim_data`
 
@@ -832,18 +858,18 @@ sim_data()
 
 ```
 ## # A tibble: 10 x 5
-##        Y    mu   eff A         err
-##    <dbl> <dbl> <dbl> <chr>   <dbl>
-##  1  95.9   100    -3 A1    -1.09  
-##  2  95.7   100    -3 A1    -1.25  
-##  3  97.6   100    -3 A1     0.565 
-##  4  97.6   100    -3 A1     0.639 
-##  5  97.4   100    -3 A1     0.443 
-##  6 103.    100     3 A2    -0.0997
-##  7 104.    100     3 A2     1.15  
-##  8 103.    100     3 A2    -0.267 
-##  9 105.    100     3 A2     2.17  
-## 10 103.    100     3 A2    -0.312
+##        Y    mu   eff A          err
+##    <dbl> <dbl> <dbl> <chr>    <dbl>
+##  1  97.0   100    -3 A1     0.00681
+##  2  97.9   100    -3 A1     0.926  
+##  3  97.3   100    -3 A1     0.340  
+##  4  96.8   100    -3 A1    -0.195  
+##  5  97.2   100    -3 A1     0.152  
+##  6 104.    100     3 A2     1.10   
+##  7 103.    100     3 A2     0.437  
+##  8 103.    100     3 A2    -0.425  
+##  9 103.    100     3 A2     0.396  
+## 10 104.    100     3 A2     0.781
 ```
 
 <p class="alert alert-info">What happens when you call the function with different values?</p>
@@ -867,25 +893,25 @@ sim_data(0, 10, 40, 20)
 
 ```
 ## # A tibble: 4 x 5
-##       Y    mu   eff A        err
-##   <dbl> <dbl> <dbl> <fct>  <dbl>
-## 1  98.5   100    -3 A1     1.47 
-## 2  96.2   100    -3 A1    -0.763
-## 3 103.    100     3 A2     0.401
-## 4 104.    100     3 A2     0.910
+##       Y    mu   eff A         err
+##   <dbl> <dbl> <dbl> <fct>   <dbl>
+## 1  96.9   100    -3 A1    -0.0786
+## 2  97.7   100    -3 A1     0.662 
+## 3 103.    100     3 A2     0.432 
+## 4 103.    100     3 A2    -0.497 
 ## # A tibble: 40 x 5
-##         Y    mu   eff A        err
-##     <dbl> <dbl> <dbl> <fct>  <dbl>
-##  1  19.2      0   -10 A1     29.2 
-##  2 -42.7      0   -10 A1    -32.7 
-##  3  12.5      0   -10 A1     22.5 
-##  4  24.7      0   -10 A1     34.7 
-##  5 -45.7      0   -10 A1    -35.7 
-##  6  33.8      0   -10 A1     43.8 
-##  7 -63.6      0   -10 A1    -53.6 
-##  8 -38.1      0   -10 A1    -28.1 
-##  9  -8.02     0   -10 A1      1.98
-## 10  23.5      0   -10 A1     33.5 
+##          Y    mu   eff A         err
+##      <dbl> <dbl> <dbl> <fct>   <dbl>
+##  1  -48.6      0   -10 A1     -38.6 
+##  2  -31.5      0   -10 A1     -21.5 
+##  3  -31.5      0   -10 A1     -21.5 
+##  4  -13.5      0   -10 A1      -3.46
+##  5    7.38     0   -10 A1      17.4 
+##  6  -68.8      0   -10 A1     -58.8 
+##  7 -124.       0   -10 A1    -114.  
+##  8   32.7      0   -10 A1      42.7 
+##  9  -39.2      0   -10 A1     -29.2 
+## 10  -85.8      0   -10 A1     -75.8 
 ## # … with 30 more rows
 ```
 
@@ -902,7 +928,7 @@ run_anova(sim_data())
 ```
 
 ```
-## [1] 1.104344e-05
+## [1] 1.099885e-06
 ```
 
 Modify `run_anova()` so that it accepts an additional argument `all_stats` (default `FALSE`) which determines whether the whole table from `broom::tidy()` is returned (when `TRUE`), or just the $p$-value (when `FALSE`).
@@ -924,12 +950,12 @@ run_anova(sim_data(), TRUE)
 ```
 
 ```
-## [1] 7.732e-07
+## [1] 9.446602e-07
 ## # A tibble: 2 x 6
-##   term         df sumsq meansq statistic   p.value
-##   <chr>     <dbl> <dbl>  <dbl>     <dbl>     <dbl>
-## 1 A             1 45.3   45.3       43.4  0.000172
-## 2 Residuals     8  8.36   1.05      NA   NA
+##   term         df sumsq meansq statistic     p.value
+##   <chr>     <dbl> <dbl>  <dbl>     <dbl>       <dbl>
+## 1 A             1 88.7  88.7        104.  0.00000742
+## 2 Residuals     8  6.84  0.855       NA  NA
 ```
 
 ## Iterating
@@ -968,19 +994,19 @@ map(dsets, run_anova)
 
 ```
 ## [[1]]
-## [1] 6.634157e-06
+## [1] 1.010332e-06
 ## 
 ## [[2]]
-## [1] 2.573339e-05
+## [1] 8.932128e-06
 ## 
 ## [[3]]
-## [1] 6.357647e-06
+## [1] 2.319243e-05
 ## 
 ## [[4]]
-## [1] 1.458115e-05
+## [1] 0.002814869
 ## 
 ## [[5]]
-## [1] 1.926063e-06
+## [1] 2.129696e-05
 ```
 
 3. Re-write the `map()` command above so that it returns a vector of type `double` instead of a list.  At the same time, re-write it so that it performs steps 1 and 2 in a single line.
@@ -991,7 +1017,7 @@ map_dbl(rerun(5, sim_data()), run_anova)
 ```
 
 ```
-## [1] 4.344398e-05 8.919973e-06 2.437877e-06 1.078055e-07 3.265241e-05
+## [1] 9.129116e-06 2.802027e-05 1.711086e-07 3.212498e-04 6.269093e-05
 ```
 
 4. Write code to count the proportion of runs for which the $p$-value is less than .05.  This is your estimate of power, given the effect size.
@@ -1038,7 +1064,7 @@ sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
 ## 
 ## NOTE: n is number in *each* group
 ## 
-## [1] 0.552
+## [1] 0.545
 ```
 
 -->
@@ -1207,7 +1233,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -6,6 +6,7 @@ library(webex)
 
 # default knitr options
 knitr::opts_chunk$set(
+  cache = TRUE,
   echo       = TRUE,
   results    = "hold",
   out.width = '100%',

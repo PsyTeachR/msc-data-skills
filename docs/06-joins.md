@@ -99,7 +99,7 @@ All the mutating joins have this basic syntax:
 * {#join-suffix} `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
 
 <div class="info">
-<p>You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.</p>
+<p>You can leave out the <code>by</code> argument if you’re matching on all of the columns with the same name, but it’s good practice to always specify it so your code is robust to changes in the loaded data.</p>
 </div>
 
 ### left_join() {#left_join}
@@ -582,7 +582,7 @@ Each participant is identified by a unique `user_id`.
     ```
     ## # A tibble: 6 x 5
     ##   date       birthday   age        age_days age_years
-    ##   <date>     <date>     <time>        <int>     <dbl>
+    ##   <date>     <date>     <drtn>        <int>     <dbl>
     ## 1 2008-07-10 1976-11-18 11557 days    11557      31.6
     ## 2 2008-07-11 1984-09-30  8685 days     8685      23.8
     ## 3 2008-07-12 1982-04-09  9591 days     9591      26.3
@@ -653,10 +653,7 @@ Each participant is identified by a unique `user_id`.
       guides(fill = FALSE)
     ```
     
-    <div class="figure" style="text-align: center">
-    <img src="06-joins_files/figure-html/ex-2-a-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-    <p class="caption">(\#fig:ex-2-a)**CAPTION THIS FIGURE!!**</p>
-    </div>
+    <img src="06-joins_files/figure-html/ex-2-a-1.png" width="100%" style="display: block; margin: auto;" />
     </div>
 
 3. Create a table with only disgust and personality data from the same `user_id` collected on the same `date`.
