@@ -556,14 +556,6 @@ write_csv(dat, "my_data_file2.csv")
 
 This will save the data in CSV format to your working directory.
 
-### Exercises {#ex_import}
+## Exercises
 
-1. Download the dataset [disgust_scores.csv](data/disgust_scores.csv) and read it into a table.
-
-2. Override the default column specifications to skip the `id` column.
-  
-3. How many rows and columns are in the dataset from question 3?
-
-
-
-<a href="formative_exercises/02_intro_stub.Rmd">Download the formative exercises.</a>
+Download the [exercises](exercises/02_data_stub.Rmd). See the [answers](exercises/02_data_answers.Rmd) only after you've attempted all the questions.

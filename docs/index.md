@@ -2,7 +2,7 @@
 --- 
 title: Data Skills
 author: "[Lisa DeBruine](https://debruine.github.io) & [Dale Barr](http://talklab.psy.gla.ac.uk/)"
-date: "2019-06-27"
+date: "2019-06-29"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -38,12 +38,13 @@ By the end of this course students will be able to:
 The overview below lists the beginner learning outcomes only. Some lessons have additional learning outcomes for intermediate or advanced students.
 
 1. [Getting Started](#intro)
-    1. Understand the [R console](#rconsole) and the components of the [RStudio IDE](#rstudio_ide)
-    2. [Organizing a project](#project_org): directory structure and working directory
-    3. Appropriately [structure an R script or RMarkdown file](#script_struct)
-    4. Use R as a [calculator](#rcalc)
-    5. Understand [function syntax](#function_syx)
-    6. Create and compile an [Rmarkdown document](#rmarkdown)
+    1. Understand the components of the [RStudio IDE](#rstudio_ide)
+    2. Type commands into the [console](#console)
+    3. Understand [function syntax](#function_syx)
+    4. Install a [package](#install-package)
+    5. [Organise a project](#projects)
+    6. Appropriately [structure an R script or RMarkdown file](#structure)
+    7. Create and compile an [Rmarkdown document](#rmarkdown)
 
 2. [Working with Data](#data)
     1. Understand the use the [basic data types](#data_types)
@@ -61,7 +62,7 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     5. [Save plots](#ggsave) as an image file
 
 4. [Tidy Data](#tidyr)
-    1. Understand the concept of "tidy data"
+    1. Understand the concept of [tidy data](#tidy-data)
     2. Be able to use the 4 basic `tidyr` verbs: [`gather()`](#gather), [`separate()`](#separate), [`spread()`](#spread), [`unite()`](#unite)
     3. Be able to chain functions using [pipes](#pipes)
 
@@ -101,17 +102,16 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 Exercises are available at the end of each lesson's webpage. These are not marked or mandatory, but if you can work through each of these (using web resources, of course), you will easily complete the marked assessments. 
 
-
-* [01 Intro](formative_exercises/01_intro_stub.Rmd): Intro to R, functions
-* [02 Intro](formative_exercises/02_intro_stub.Rmd): Vectors, tabular data, data import, pipes
-* [Essential Skills](formative_exercises/essential_skills_stub.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
-* [03 ggplot](formative_exercises/03_ggplot_stub.Rmd): Data visualisation
-* [04 tidyr](formative_exercises/04_wrangle1_stub.Rmd): Tidy Data
-* [05 dplyr](formative_exercises/05_wrangle2_stub.Rmd): Data wrangling
-* [06 joins](formative_exercises/06_joins_stub.Rmd): Data relations
-* [07 functions](formative_exercises/07_functions_stub.Rmd): Functions and Iteration
-* [08 simulation](formative_exercises/08_simulations_stub.Rmd): Simulation
-* [09 glm](formative_exercises/09_glm_stub.Rmd): GLM
+* [01 Intro](exercises/01_intro_stub.Rmd): Intro to R, functions, R markdown
+* [02 Intro](exercises/02_data_stub.Rmd): Vectors, tabular data, data import, pipes
+* [Essential Skills](exercises/essential_skills_stub.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
+* [03 ggplot](exercises/03_ggplot_stub.Rmd): Data visualisation
+* [04 tidyr](exercises/04_tidyr_stub.Rmd): Tidy Data
+* [05 dplyr](exercises/05_dplyr_stub.Rmd): Data wrangling
+* [06 joins](exercises/06_joins_stub.Rmd): Data relations
+* [07 functions](exercises/07_func_stub.Rmd): Functions and Iteration
+* [08 simulation](exercises/08_sim_stub.Rmd): Simulation
+* [09 glm](exercises/09_glm_stub.Rmd): GLM
 
 ## Packages used in this book
 

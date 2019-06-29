@@ -1,0 +1,160 @@
+---
+title: 'Formative Exercise 05: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library("ukbabynames")
+library("lubridate")
+library("tidyverse")
+
+## convert to a tibble
+ukb <- as_tibble(ukbabynames)
+```
+
+## UK Baby Names
+
+### Question 1
+
+How many records are in the dataset?
+
+```{r Q1}
+nrecords <- NULL
+```
+
+### Question 2
+
+Remove the column `rank` from the dataset.
+
+```{r Q2}
+norank <- NULL
+```
+
+### Question 3
+
+What is the range of birth years contained in the dataset? Use `summarise` to make a table with two columns: `minyear` and `maxyear`.
+
+```{r Q3}
+birth_range <- NULL
+```
+
+### Question 4
+
+Make a table of only the data from babies named Hermione.
+
+```{r Q4}
+hermiones <- NULL
+```
+
+### Question 5
+
+Sort the dataset by sex and then by year (descending) and then by rank (descending).
+
+```{r Q5}
+sorted_babies <- NULL
+```
+
+### Question 6
+
+Create a new column, `decade`, that contains the decade of birth (1990, 2000, 2010).  Hint: see `?floor`
+
+```{r Q6}
+ukb_decade <- NULL
+```
+
+### Question 7
+
+Make a table of only the data from male babies named Courtney that were born between 1998 and 2001 (inclusive).
+
+```{r Q7}
+courtney_male_1998_2001 <- NULL
+```
+
+
+### Question 8
+
+How many distinct names are represented in the dataset? Make sure `distinct_names` is an integer, not a data table.
+
+```{r Q8}
+distinct_names <- NULL
+```
+
+### Question 9
+
+Make a table of only the data from the female babies named Frankie that were born before 1999 or after 2010.
+
+```{r Q9}
+frankie_f_pre1999_post2010 <- NULL
+```
+
+### Question 10
+
+How many total babies in the dataset were named 'Emily'? Make sure `emily` is an integer, not a data table.
+
+```{r Q10}
+emily <- NULL
+```
+
+### Question 11
+
+How many distinct names are there for each sex?
+
+```{r Q11}
+names_per_sex <- NULL
+```
+
+### Question 12
+
+What is the most popular name in the dataset?
+
+```{r Q12}
+most_popular <- NULL
+```
+
+### Question 13
+
+How many babies were born each year for each sex?  Make a plot.
+
+```{r Q13}
+babies_per_year <- NULL
+
+ggplot(babies_per_year)
+```
+
+## Advanced Questions
+
+### Question 14
+
+Load the dataset [family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv) from last week's exercise.
+
+The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis). 
+
+Then, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
+
+    
+```{r Q14a}
+sib6 <- NULL
+
+ggplot(sib6)
+
+```
+    
+```{r Q14b}
+ggplot(sib6)
+```   
+
+
+### Question 15
+
+Use the data from [eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv) from last week's exercise.
+
+Create a list of the 10 most common descriptions from the eyes dataset. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to `knitr::kable()`.
+    
+```{r Q15}
+
+
+```
+
+

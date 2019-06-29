@@ -8,8 +8,8 @@
 2. Type commands into the [console](#console)
 3. Understand [function syntax](#function_syx)
 4. Install a [package](#install-package)
-5. [Organizing a project](#project_org): directory structure and working directory
-6. Appropriately [structure an R script or RMarkdown file](#script_struct)
+5. [Organise a project](#projects)
+6. Appropriately [structure an R script or RMarkdown file](#structure)
 7. Create and compile an [Rmarkdown document](#rmarkdown)
 
 
@@ -17,6 +17,9 @@
 
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+* [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
+* [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+* [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 
 ## What is R?
@@ -54,7 +57,12 @@ You can close R and never open it again. We'll be working entirely in RStudio in
 <p class="caption">(\#fig:img-rstudio)The RStudio IDE</p>
 </div>
 
-RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes”.' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+
+<video width="640" height="480" controls>
+  <source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### Configure RStudio
 
@@ -67,15 +75,22 @@ There are two tweaks that you should do to your RStudio installation to maximize
 <p class="caption">(\#fig:img-repro)Alter these settings for increased reproducibility.</p>
 </div>
 
+<div class="try">
+Your settings should have:
+
+* Restore .RData into workspace at startup: <select class='solveme' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select>
+* Save workspace to .RData on exit: <select class='solveme' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select>
+</div>
+
 ## Getting Started
 
 ### Console commands {#console}
 
 We are first going to learn about how to interact with the console. In general, you will be developing R scripts or R markdown files, rather than working directly in the console window.  However, you can consider the console a kind of **sandbox** where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
 
-Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter.  The Ctrl+Enter key sequence sends the command in the script to the console.
+Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.
 
-One simple way to learn about the R console is to use it as a calculator.  Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first) :/
+One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first) :/
 
 
 ```r
@@ -86,7 +101,7 @@ One simple way to learn about the R console is to use it as a calculator.  Enter
 ## [1] 2
 ```
 
-The R console remembers a history of the commands you typed in the past.Use the up and down arrow keys on your keyboard to scroll backwards and forwards through your history.It's a lot faster than re-typing.
+The R console remembers a history of the commands you typed in the past. Use the up and down arrow keys on your keyboard to scroll backwards and forwards through your history. It's a lot faster than re-typing.
 
 
 ```r
@@ -123,42 +138,41 @@ Text inside quotes is called a <a class='glossary' target='_blank' title='A piec
 ## [1] "Good afternoon"
 ```
 
-You can break up text over multiple lines; R waits for a close quote before processing it. If you want to include a double quote inside this quoted string, preface it with a backslash.
+You can break up text over multiple lines; R waits for a close quote before processing it. If you want to include a double quote inside this quoted string, <a class='glossary' target='_blank' title='Include special characters like " inside of a string by prefacing them with a backslash.' href='https://psyteachr.github.io/glossary/e#escape'>escape</a> it with a backslash.
 
 
 ```r
-"I hear the drums echoing tonight
-But she hears only whispers of some quiet conversation
-She's coming in, 12:30 flight
-The moonlit wings reflect the stars that guide me towards salvation
-I stopped an old man along the way
-Hoping to find some old forgotten words or ancient melodies
+africa <- "I hear the drums echoing tonight  
+But she hears only whispers of some quiet conversation  
+She's coming in, 12:30 flight  
+The moonlit wings reflect the stars that guide me towards salvation  
+I stopped an old man along the way  
+Hoping to find some old forgotten words or ancient melodies  
 He turned to me as if to say, \"Hurry boy, it's waiting there for you\"
 
 - Toto"
+
+cat(africa) # cat() prints the string
 ```
 
 ```
-## [1] "I hear the drums echoing tonight\nBut she hears only whispers of some quiet conversation\nShe's coming in, 12:30 flight\nThe moonlit wings reflect the stars that guide me towards salvation\nI stopped an old man along the way\nHoping to find some old forgotten words or ancient melodies\nHe turned to me as if to say, \"Hurry boy, it's waiting there for you\"\n\n- Toto"
+## I hear the drums echoing tonight  
+## But she hears only whispers of some quiet conversation  
+## She's coming in, 12:30 flight  
+## The moonlit wings reflect the stars that guide me towards salvation  
+## I stopped an old man along the way  
+## Hoping to find some old forgotten words or ancient melodies  
+## He turned to me as if to say, "Hurry boy, it's waiting there for you"
+## 
+## - Toto
 ```
 
-You can add comments to an R script by with the `#` symbol. The R interpreter will ignore characters from the # symbol to the end of the line.
-
-
-```r
-## comments: any text from '#' on is ignored until end of line
-22 / 7  # approximation to pi
-```
-
-```
-## [1] 3.142857
-```
 
 ### Variables {#vars}
 
 Often you want to store the result of some computation for later use.  You can store it in a <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/v#variable'>variable</a>. A variable in R:
 
-* contains only letters, numbers, fulls stops, and underscores
+* contains only letters, numbers, full stops, and underscores
 * starts with a letter or a full stop and a letter
 * distinguishes uppercase and lowercase letters (`rickastley` is not the same as `RickAstley`)
 
@@ -202,7 +216,7 @@ boring_calculation <- 2 + 2
 ## [1] 10
 ```
 
-Note that it doesn't print the result back at you when it's stored.  To view the result, just type the variable name on a blank line.
+Note that it doesn't print the result back at you when it's stored. To view the result, just type the variable name on a blank line.
 
 
 ```r
@@ -213,12 +227,32 @@ boring_calculation
 ## [1] 4
 ```
 
+Once a variable is assigned a value, its value doesn't change unless you reassign the variable, even if the variables you used to calculate it change. Predict what the code below does and test yourself:
+
+
+```r
+this_year <- 2019
+my_birth_year <- 1976
+my_age <- this_year - my_birth_year
+this_year <- 2020
+```
+
+<div class="try">
+After all the code above is run:
+
+* `this_year` = <select class='solveme' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `my_birth_year` = <select class='solveme' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `my_age` = <select class='solveme' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+
+</div>
+
 
 ### The environment
 
-Anytime you assign something to a new variable, R creates a new object in the **global environment**. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).
+Anytime you assign something to a new variable, R creates a new object in the <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).
 
 Look at the **Environment** tab in the upper right pane. It lists all of the variables you have created. Click the broom icon to clear all of the variables and start fresh. You can also use the following functions in the console to view all variables, remove one variable, or remove all variables. 
+
 
 ```r
 ls()            # print the variables in the global environment
@@ -256,10 +290,12 @@ cat("3, 6, 9, the goose drank wine",
     sep = "  \n")
 ```
 
-3, 6, 9, the goose drank wine  
-The monkey chewed tobacco on the streetcar line  
-The line broke, the monkey got choked  
-And they all went to heaven in a little rowboat
+```
+## 3, 6, 9, the goose drank wine  
+## The monkey chewed tobacco on the streetcar line  
+## The line broke, the monkey got choked  
+## And they all went to heaven in a little rowboat
+```
 
 
 ### Function syntax {#function_syx}
@@ -272,13 +308,13 @@ For example, `sd` is a function that returns the standard deviation of the <a cl
 
 The arguments in parentheses can be named (like, `argument1 = 10`) or you can skip the names if you put them in the exact same order that they're defined in the function. You can check this by typing `?sd` (or whatever function name you're looking up) into the console and the Help pane will show you the default order under **Usage**. You can also skip arguments that have a default value specified.
 
-Most functions return a value, but may also produce &rsquo;side effects&rsquo; like printing to the console.
+Most functions return a value, but may also produce side effects like printing to the console.
 
 To illustrate, the function `rnorm()` generates random numbers from the standard normal distribution.  The help page for `rnorm()` (accessed by typing `?rnorm` in the console) shows that it has the syntax 
 
 `rnorm(n, mean = 0, sd = 1)`
 
-where `n` is the number of randomly generated numbers you want, `mean` is the mean of the distribution, and `sd` is the standard deviation.  The default mean is 0, and the default standard deviation is 1.  There is no default for `n` which means you'll get an error if you don't specify it:
+where `n` is the number of randomly generated numbers you want, `mean` is the mean of the distribution, and `sd` is the standard deviation. The default mean is 0, and the default standard deviation is 1. There is no default for `n`, which means you'll get an error if you don't specify it:
 
 
 ```r
@@ -297,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.43226338  0.37655556  0.94109308  0.20671641 -0.94408232
-##  [6]  0.04963582  0.30305681  0.88000877 -1.30153632 -2.80197643
+##  [1]  1.2185703 -0.7945234 -2.0411111  0.8526768  0.7561582  0.3954730
+##  [7]  0.7779956 -0.9672555 -1.0922037  0.7046855
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -309,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.59340 100.17051  98.39392  99.95829  99.13891  99.70595 100.14951
-##  [8]  99.72617  98.38352  99.28387
+##  [1]  99.42362 101.76563 101.44868 100.61583  98.52184  98.58539 100.86602
+##  [8]  99.00062  99.61445  97.96929
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -321,11 +357,11 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  98.86919  98.57524 100.13084 100.80513 100.79858  98.18150 100.47150
-##  [8]  98.90105 100.67914  99.26383
+##  [1]  98.30672  99.60552  97.31872 100.10172  98.97710  99.95789  98.08728
+##  [8]  99.53248 100.06514  99.92743
 ```
 
-We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it.  For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
+We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
 
 
 ```r
@@ -333,11 +369,11 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  10.694485   7.653681 -86.337752  41.157896  50.672085  19.078780
-##  [7]   6.549060 -21.092056  89.653632 -24.772286
+##  [1]  -14.47463  104.71915   28.81195   33.92953   51.58762  148.20491
+##  [7] -132.55228  135.39972  -98.03586  -28.38229
 ```
 
-Some functions give a list of options after an argument; this means the deafult value is the first option. The usage entry for the `power.t.test()` function looks like this:
+Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
 
 
 ```r
@@ -348,9 +384,11 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
              strict = FALSE, tol = .Machine$double.eps^0.25)
 ```
 
+<div class="try">
 * What is the default value for `sd`? <select class='solveme' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select>
 * What is the default value for `type`? <select class='solveme' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select>
 * Which is equivalent to `power.t.test(100, 0.5)`? <select class='solveme' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select>
+</div>
 
 ### Getting help {#help}
 
@@ -368,8 +406,10 @@ help("rnorm", package="stats")
 
 When the package isn't loaded or you aren't sure what package the function is in, use the shortcut `??function_name`.
 
+<div class="try">
 * What is the first argument to the `mean` function? <select class='solveme' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select>
 * What package is `read_excel` in? <select class='solveme' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select>
+</div>
 
 ## Add-on packages {#install-package}
 
@@ -383,7 +423,7 @@ There is an important distinction between **installing** a package and **loading
 
 ### Installing a package 
 
-This is done using `install.packages()`. This is like installing an app on your smartphone: you only have to do it once and the app will remain installed until you remove it.For instance, if you want to use PokemonGo on your phone you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it.Once you launch the app, it will run in the background until you close it or restart your phone.Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
+This is done using `install.packages()`. This is like installing an app on your smartphone: you only have to do it once and the app will remain installed until you remove it.For instance, if you want to use PokemonGo on your phone you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
 
 <div class="warning">
 <p>You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations because you will lack the appropriate privileges.</p>
@@ -418,20 +458,20 @@ fortune()
 
 ```
 ## 
-## Actually the documentation of sunflowerplot is wrong in botanical sense.
-## Sunflowers have composite flowers in capitula, and the things called
-## 'petals' in documentation are ligulate, sterile ray-florets (each with
-## vestigial petals which are not easily visible in sunflower, but in some
-## other species you may see three (occasionally two) teeth).
-##    -- Jari Oksanen
-##       R-help (December 2007)
+## I think [R] addresses a niche market for high-end data analysts that want
+## free, readily available code. [...] We have customers who build engines
+## for aircraft. I am happy they are not using freeware when I get on a jet.
+##    -- Anne H. Milley (director of technology product marketing at SAS,
+##       quoted in Ashlee Vance's article "Data Analysts Captivated by R's
+##       Power")
+##       The New York Times (January 2009)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
 
 ### Install from GitHub
 
-Many R packages are not yet on CRAN because they are still in development or are too specific. Some datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. 
+Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. 
 
 
 ```r
@@ -444,210 +484,145 @@ devtools::install_github("adam-gruer/goodshirt")
 library(goodshirt)
 # quotes from The Good Place
 chidi()
+eleanor()
+```
+
+```
+## 
+##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
+## 
+##  ~ Chidi
+##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, "Go ahead and cry all you want, but you're gonna have to pay for that toilet plunger." 
+## 
+##  ~ Eleanor
 ```
 
 
- I have what doctors call "directional insanity". I once got lost on an escalator. 
+## Organising a project {#projects}
 
- ~ Chidi
+Projects in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
 
+<div class="try">
+<p>Make a new directory where you will keep all of your materials for this class. If you’re using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.</p>
+<p>Choose <strong><code>New Project...</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.</p>
+</div>
 
-## Developing reproducible scripts
+### Structure {#structure}
 
-Here is what an R script looks like.  Don't worry about the details for now.
+Here is what an R script looks like. Don't worry about the details for now.
 
 
 ```r
 # load add-on packages
 library(tidyverse)
 
-# define custom functions
-cumulativeToTarget <- function(x) {
-    sessID <- x$SessionID[1]
-    # etc... do some other stuff
-    return(res)
-}
+# set variables ----
+n <- 100
 
-## SCRIPT BEGINS HERE
-load(file = "pog.RData")
+# simulate data ----
+data <- data.frame(
+  id = 1:n,
+  dv = c(rnorm(n/2, 0), rnorm(n/2, 1)),
+  condition = rep(c("A", "B"), each = n/2)
+)
 
-pog2 <- pog %>% filter(ms >= -200 & ms <= 1000) %>%
-  filter(FrameID <= 600) %>% 
-  select(-ms) %>%
-  do(cumulativeToTarget(.)) %>% 
-  ungroup %>%
-  mutate(ms = (FrameID-1) * 2 - 200, ID = factor(ID))
+# plot data ----
+ggplot(data, aes(condition, dv)) +
+  geom_violin(trim = FALSE) +
+  geom_boxplot(width = 0.25, 
+               aes(fill = condition),
+               show.legend = FALSE)
 
-save(pog2, file = "pog2.RData")
+# save plot ----
+ggsave("sim_data.png", width = 8, height = 6)
 ```
 
-All scripts will have the following structure: {#structure}
+It's best if you follow the following structure when developing your own scripts: 
 
--   load in any add-on packages you need to use
--   define any custom functions
--   load in the data you will be working with
--   work with the data
--   save anything you need to save
+* load in any add-on packages you need to use
+* define any custom functions
+* load or simulate the data you will be working with
+* work with the data
+* save anything you need to save
 
-Its best if you follow the above convention when developing your own scripts.
+Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to `library(package_I_need)` way down in the script. Put it in the top, so the user has an overview of what packages are needed.
+
+You can add comments to an R script by with the hash symbol (`#`). The R interpreter will ignore characters from the hash to the end of the line.
 
 
+```r
+## comments: any text from '#' on is ignored until end of line
+22 / 7  # approximation to pi
+```
 
-### Reproducible reports with RStudio and RMarkdown {#rmarkdown}
+```
+## [1] 3.142857
+```
 
-We will be working toward producing reproducible reports following the principles of **literate programming**.  The basic idea is to have the text of the report together in a single document along with the R code needed to perform all analyses and generate the tables.  The report is then "compiled" from the original format into some other, more portable format, such as HTML or PDF.  This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.
+### Reproducible reports with R Markdown {#rmarkdown}
 
-We will be using RMarkdown to create reproducible reports, which enables interleaving text with R code blocks.
+We will make reproducible reports following the principles of [literate programming](https://en.wikipedia.org/wiki/Literate_programming). The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then "compiled" from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.
 
-You can read more about Donald Knuth's idea about literate programming at this [Wikipedia page](https://en.wikipedia.org/wiki/Literate_programming), and about the [RMarkdown format](http://rmarkdown.rstudio.com/lesson-1.html).
+We will use [R Markdown](http://rmarkdown.rstudio.com/lesson-1.html) to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with backtick symbols in a row, with some infomation about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
 <div class="figure" style="text-align: center">
 <img src="images/01/reproducibleScript.png" alt="A reproducible script." width="100%" />
 <p class="caption">(\#fig:img-reproducibleScript)A reproducible script.</p>
 </div>
 
+If you open up a new RMarkdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it.  Compiling a document is called <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/k#knitting'>knit</a> in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report. 
 
-A reproducible script will contain sections of code in code blocks.  A code block is delimited using three backtick symbols in a row, like so:
+<div class="try">
+<p>Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Markdown...</code></strong> menu. Change the title and author, then click the knit button to create an html file.</p>
+</div>
 
-    This is just some text before the code block
-    
-    ```{r blockname}
-    # now we are inside the R code block
-    rnorm(10)  # generate some random numbers
-    ```
-    
-    now we're back outside the code block
 
-If you open up a new RMarkdown file from a template, you will see an example document with several code blocks in it.
+### Working Directory
 
-To create an HTML or PDF report from an rmarkdown (rmd) document, you compile it.  Compiling a document is called **knitting** in RStudio.  There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report.  Try it with the template file and see what happens!
-
-### Organizing a project {#project_org}
-
-#### Working Directory
-
-Where should I put all my files?
-
-When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure.  Usually there is a single *working directory* where your data and scripts are stored.   For the purpose of this class, to minimize problems, please store your files on your network drive (usually something like the M: drive or U: drive on a Windows machine.)
+Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single **working directory** where your data and scripts are stored.
 
 Your script should only reference files in three locations, using the appropriate format.
 
-| Where                                      |  Example |
-|--------------------------------------------|-----------------------|
-| on the web  | "https://github.com/gupsych/data_skills/blob/master/02_intro.Rmd" |
-| in the working directory  | "my_file2.csv"  |
-| in a subdirectory | "subdir/my_file2.csv" |
+| Where                    | Example |
+|--------------------------|---------|
+| on the web               | "https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv" |
+| in the working directory | "disgust_scores.csv"  |
+| in a subdirectory        | "data/disgust_scores.csv" |
 
 <div class="warning">
-<p>Never set or change your working directory in a script; always store your main script file in the top-level directory and manually set your working directory to that location. This means you’ll have to reset the working directory each time you open RStudio, but this is a small price to pay for reproducibility (alternatively, learn about <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">R Projects</a>).</p>
+<p>Never set or change your working directory in a script.</p>
 </div>
 
-For instance, if on a Windows machine your data and scripts live in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory to `new_analysis` in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.  If you 'knit' an RMarkdown file, your working directory is automatically set to the same directory where the Rmd file is located during the knitting process. But if you're planning on running the code chunks individually, you'll need to manually set the directory.
+If you are working with an R Markdown file, it will automatically use the same directory the .Rmd file is in as the working directory. 
+
+If you are working with R scripts, store your main script file in the top-level directory and manually set your working directory to that location. You will have to reset the working directory each time you open RStudio, unless you create a <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>project</a> and access the script from the project. 
+
+For instance, if on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
 
 <div class="danger">
 <p>It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
-<p>When manually setting the working directory, always do so by using the <strong><code>Session | Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.</p>
+<p>When manually setting the working directory, always do so by using the <strong><code>Session &gt; Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.</p>
 </div>
 
-If your script needs a file in a subdirectory of `new_analysis`, say, `analysis2/dat.rds`, load it in using a relative path:
+If your script needs a file in a subdirectory of `new_analysis`, say, `data/questionnaire.csv`, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a>:
 
 
 ```r
-dat <- readRDS("analysis2/dat.rds")  # right way
+dat <- read_csv("data/questionnaire.csv")  # right way
 ```
 
 Do not load it in using an absolute path:
 
 
 ```r
-dat <- readRDS("C:/Carla's_files/thesis22/my_thesis/new_analysis/analysis2/dat.rds")   # wrong
+dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv")   # wrong
 ```
 
 <div class="info">
-<p>Also note the convention of using forward slashes, unlike the Windows specific convention of using backward slashes. This is to make references to files platform independent.</p>
+<p>Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.</p>
 </div>
-
-### Structuring your script {#script_struct}
-
-If you structure your R script or RMarkdown file in a predictable way, it will make your life much easier.  All scripts should have the following structure:
-
-1. Load any add-on packages you will need
-2. Define any custom functions
-3. Import data
-4. Perform the analysis
-
-Consider, for instance, the following script:
-
-
-```r
-# Load the add-on packages
-library("tidyverse")
-library("ukbabynames")
-
-# If we had created any functions (we didn't) we would put them here. We will
-# learn about creating functions later in the course.
-
-# Import the data
-nam0 <- read_csv("PSYCH5077 Grades-20180921_0719-comma_separated.csv") %>%
-  select(name = `First name`) # rename the column
-
-# The rest of the script performs the analysis
-nam1 <- tibble(name = c("Dale", "Lisa", "Rebecca"))
-
-nam_uk <- bind_rows(nam0, nam1) %>%
-  inner_join(ukbabynames, "name") 
-
-ggplot(nam_uk, aes(x = year, y= n,
-                   colour = sex)) +
-  geom_line() +
-  facet_wrap(~name, scales = "free_y")
-```
-
-Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to `library(package_I_need)` way down in the script. Put it in the top, so the user has an overview of what packages are needed.
-
-When structuring an RMarkdown file, it is generally a good idea to have a single code chunk for each output that is produced in the report; for instance, the above code could all be in a single chunk since the only output we care about is the graph at the end. It is also a good idea to suppress any warnings or messages in the report so that they don't confuse the reader. You can suppress messages or warnings by using the code chunk options `message=FALSE` and `warning=FALSE`.
 
 
 ## Exercises
 
-Download the first set of [formative exercises](formative_exercises/01_intro_stub.Rmd).
-
-We will be working with the `cowsay` add-on package (`help(package = "cowsay")`)
-
-Check to see if there are any **vignettes** available for this package.
-
-
-```r
-vignette(package = "cowsay")
-```
-
-Load in and read the vignette to get an idea of how the package works.
-
-
-```r
-vignette("cowsay_tutorial", package = "cowsay")
-```
-
-Your first task is to develop a reproducible script that accomplishes the tasks below. Compile the RMarkdown (rmd) document into HTML. Make sure the report includes the code in addition to the output.
-
-Important! Try to perform each task making the shortest function call you can by taking advantage of the function defaults and include the results in an R script.
-
-
-
-1. Make a cat say, “FEED ME”
-
-2. Make a shark say “Hello world!”
-
-3. Make anything produce a famous quote
-
-4. Make a clippy warn the user about the impending apocalypse
-
-5. Make a cat produce a random quote from an R coder. You should get a different quote every time you run the code (hint: read the documentation for `cowsay::say()`).
-
-6. Define a variable creature and assign to it the value of one of the types of creatures accepted by the say() function. Then use the variable to output the current time.
-
-7. Change the value of the variable creature to some other thing, and make it display the time using the `date()` function in base R.
-
-8. Restart R and re-run the script to check whether it is reproducible.
-
-9. **Advanced**: Create an RMarkdown file including each answer below each question heading (question 1-7 only), and compile it to HTML.
+Download the first set of [exercises](exercises/01_intro_stub.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.

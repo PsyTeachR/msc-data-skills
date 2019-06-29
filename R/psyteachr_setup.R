@@ -6,13 +6,13 @@ library(webex)
 
 # default knitr options
 knitr::opts_chunk$set(
-  cache = TRUE,
   echo       = TRUE,
   results    = "hold",
   out.width = '100%',
   fig.width  = 8, 
   fig.height = 5, 
-  fig.align = 'center'
+  fig.align = 'center',
+  fig.cap='**CAPTION THIS FIGURE!!**'
 )
 
 # make docs directory and include .nojekyll file for github
@@ -40,21 +40,10 @@ knitr::knit_hooks$set(verbatim = function(before, options, envir) {
   }
 })
 
-## webex.hide
-knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
-  if (before) {
-    if (is.character(options$webex.hide)) {
-      webex::hide(options$webex.hide)
-    } else {
-      webex::hide()
-    }
-  } else {
-    webex::unhide()
-  }
-})
-
 ## verbatim inline R in backticks
 backtick <- function(code) {
+  # removes inline math coding when you use >1 $ in a line
+  code <- gsub("\\$", "\\\\$", code) 
   paste0("<code>&#096;", code, "&#096;</code>")
 }
 
@@ -69,10 +58,11 @@ glossary <- function(term, display = NULL, shortdef = "", link = TRUE) {
   url <- paste0("https://psyteachr.github.io/glossary/", first_letter)
   if (shortdef == "") {
     hash <- paste0("#", lcterm, " dfn")
-    shortdef <- xml2::read_html(url) %>% 
-      rvest::html_node(hash) %>%
-      rvest::html_text() %>%
-      gsub("\'", "&#39;", .)
+    shortdef <- tryCatch(xml2::read_html(url) %>% 
+                           rvest::html_node(hash) %>%
+                           rvest::html_text() %>%
+                           gsub("\'", "&#39;", .),
+                         error = function(e) { "" })
   }
   
   ## add to global glossary for this book

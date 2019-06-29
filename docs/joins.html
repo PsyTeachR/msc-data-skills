@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-06-27" />
+<meta name="date" content="2019-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,10 +170,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -188,8 +188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.5</b> Importing data</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -228,11 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
 <li class="chapter" data-level="3.12" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>3.12</b> Quiz</a></li>
-<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-1"><i class="fa fa-check"></i><b>3.13</b> Exercises</a><ul>
-<li class="chapter" data-level="3.13.1" data-path="ggplot.html"><a href="ggplot.html#common-plots"><i class="fa fa-check"></i><b>3.13.1</b> Common Plots</a></li>
-<li class="chapter" data-level="3.13.2" data-path="ggplot.html"><a href="ggplot.html#two-continuous-variables"><i class="fa fa-check"></i><b>3.13.2</b> Two continuous variables</a></li>
-<li class="chapter" data-level="3.13.3" data-path="ggplot.html"><a href="ggplot.html#many-correlated-variables"><i class="fa fa-check"></i><b>3.13.3</b> Many correlated variables</a></li>
-</ul></li>
+<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>3.13</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
@@ -242,21 +238,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
-<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#sep"><i class="fa fa-check"></i><b>4.7.2</b> Set delimiters with <code>sep</code></a></li>
-<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#convert"><i class="fa fa-check"></i><b>4.7.3</b> Fix data types with <code>convert</code></a></li>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Three Rules for Tidy Data</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>4.5</b> Tidying Data</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.5.1</b> gather()</a></li>
+<li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.5.2</b> separate()</a></li>
+<li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.5.3</b> unite()</a></li>
+<li class="chapter" data-level="4.5.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.5.4</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a></li>
+<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.7</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.7.1</b> Load Data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.7.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.7.3</b> One Piece of Data per Column</a></li>
 <li class="chapter" data-level="4.7.4" data-path="tidyr.html"><a href="tidyr.html#all-in-one-step"><i class="fa fa-check"></i><b>4.7.4</b> All in one step</a></li>
+<li class="chapter" data-level="4.7.5" data-path="tidyr.html"><a href="tidyr.html#columns-by-year"><i class="fa fa-check"></i><b>4.7.5</b> Columns by Year</a></li>
+<li class="chapter" data-level="4.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>4.7.6</b> Merge Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.8</b> spread()</a></li>
-<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.9</b> unite()</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="tidyr.html"><a href="tidyr.html#control-separation-with-sep"><i class="fa fa-check"></i><b>4.9.1</b> Control separation with <code>sep</code></a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.10</b> Quiz</a></li>
-<li class="chapter" data-level="4.11" data-path="tidyr.html"><a href="tidyr.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.8</b> Quiz</a></li>
+<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
 <li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
@@ -283,16 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slide"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-3"><i class="fa fa-check"></i><b>5.7</b> Exercises</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="dplyr.html"><a href="dplyr.html#easy"><i class="fa fa-check"></i><b>5.7.1</b> Easy</a></li>
-<li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-3"><i class="fa fa-check"></i><b>5.7.2</b> Intermediate</a></li>
-<li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#advanced-3"><i class="fa fa-check"></i><b>5.7.3</b> Advanced</a></li>
-</ul></li>
+<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
-<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
@@ -315,17 +310,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.7.2</b> union()</a></li>
 <li class="chapter" data-level="6.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.7.3</b> setdiff()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-4"><i class="fa fa-check"></i><b>6.8</b> Exercises</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#mutating-joins-1"><i class="fa fa-check"></i><b>6.8.1</b> Mutating joins</a></li>
-<li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#filtering-joins-1"><i class="fa fa-check"></i><b>6.8.2</b> Filtering joins</a></li>
-<li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#binding-and-sets"><i class="fa fa-check"></i><b>6.8.3</b> Binding and sets</a></li>
-</ul></li>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
 <li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
@@ -348,13 +339,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-5"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
@@ -373,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>8.4.7</b> One-tailed prediction</a></li>
 <li class="chapter" data-level="8.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>8.4.8</b> Range of sample sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#formative-exercises-1"><i class="fa fa-check"></i><b>8.5</b> Formative exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
 <li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
@@ -383,13 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-6"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-6"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.3</b> R Markdown</a><ul>
@@ -451,7 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use the <a href="#join-by"><code>by</code></a> argument to set the join columns</li>
 </ol>
 </div>
-<div id="intermediate-4" class="section level3">
+<div id="intermediate-3" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Intermediate</h3>
 <ol start="3" style="list-style-type: decimal">
 <li>Use the <a href="#join-suffix"><code>suffix</code></a> argument to distinguish columns with the same name</li>
@@ -494,36 +485,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">sex</th>
-<th align="right">age</th>
+<th>id s</th>
+<th align="left">ex</th>
+<th align="left">age</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">1</td>
+<td>1</td>
 <td align="left">m</td>
-<td align="right">19</td>
+<td align="left">19</td>
 </tr>
 <tr class="even">
-<td align="right">2</td>
+<td>2</td>
 <td align="left">m</td>
-<td align="right">22</td>
+<td align="left">22</td>
 </tr>
 <tr class="odd">
-<td align="right">3</td>
+<td>3</td>
 <td align="left">NA</td>
-<td align="right">NA</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="right">4</td>
+<td>4</td>
 <td align="left">f</td>
-<td align="right">19</td>
+<td align="left">19</td>
 </tr>
 <tr class="odd">
-<td align="right">5</td>
+<td>5</td>
 <td align="left">f</td>
-<td align="right">18</td>
+<td align="left">18</td>
 </tr>
 </tbody>
 </table>
@@ -536,46 +527,46 @@ some completed twice, and some are not in the subject table.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="right">score</th>
+<th align="left">id</th>
+<th align="left">score</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2</td>
-<td align="right">10</td>
+<td align="left">2</td>
+<td align="left">10</td>
 </tr>
 <tr class="even">
-<td align="right">3</td>
-<td align="right">18</td>
+<td align="left">3</td>
+<td align="left">18</td>
 </tr>
 <tr class="odd">
-<td align="right">4</td>
-<td align="right">21</td>
+<td align="left">4</td>
+<td align="left">21</td>
 </tr>
 <tr class="even">
-<td align="right">4</td>
-<td align="right">23</td>
+<td align="left">4</td>
+<td align="left">23</td>
 </tr>
 <tr class="odd">
-<td align="right">5</td>
-<td align="right">9</td>
+<td align="left">5</td>
+<td align="left">9</td>
 </tr>
 <tr class="even">
-<td align="right">5</td>
-<td align="right">11</td>
+<td align="left">5</td>
+<td align="left">11</td>
 </tr>
 <tr class="odd">
-<td align="right">6</td>
-<td align="right">11</td>
+<td align="left">6</td>
+<td align="left">11</td>
 </tr>
 <tr class="even">
-<td align="right">6</td>
-<td align="right">12</td>
+<td align="left">6</td>
+<td align="left">12</td>
 </tr>
 <tr class="odd">
-<td align="right">7</td>
-<td align="right">3</td>
+<td align="left">7</td>
+<td align="left">3</td>
 </tr>
 </tbody>
 </table>
@@ -927,268 +918,10 @@ dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_su
 ## 4     9 f        19</code></pre>
 </div>
 </div>
-<div id="exercises-4" class="section level2">
+<div id="exercises-5" class="section level2">
 <h2><span class="header-section-number">6.8</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/06_joins_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/06_joins_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<div id="mutating-joins-1" class="section level3">
-<h3><span class="header-section-number">6.8.1</span> Mutating joins</h3>
-<p>Load data from <a href="data/disgust_scores.csv">disgust_scores.csv</a>,
-<a href="data/personality_scores.csv">personality_scores.csv</a> and <a href="data/users.csv">users.csv</a>.
-Each participant is identified by a unique <code>user_id</code>.</p>
-<ol style="list-style-type: decimal">
-<li><p>Add participant data to the disgust table.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">disgust &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/disgust_scores.csv&quot;</span>)
-ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/personality_scores.csv&quot;</span>)
-user &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/users.csv&quot;</span>)
+<p>Download the <a href="exercises/06_joins_stub.Rmd">exercises</a>. See the <a href="exercises/06_joins_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 
-study1 &lt;-<span class="st"> </span><span class="kw">left_join</span>(disgust, user, <span class="dt">by =</span> <span class="st">&quot;user_id&quot;</span>)
-
-<span class="kw">head</span>(study1)</code></pre>
-<pre><code>## # A tibble: 6 x 8
-##      id user_id date       moral pathogen sexual sex    birthday  
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;date&gt;    
-## 1     1       1 2008-07-10  1.43     2.71  1.71  female 1976-11-18
-## 2     3  155324 2008-07-11  3        2.57  1.86  female 1984-09-30
-## 3     4  155366 2008-07-12  5.57     4     0.429 male   1982-04-09
-## 4     5  155370 2008-07-12  5.71     4.86  4.71  female 1968-04-04
-## 5     6  155386 2008-07-12  1.43     3.86  3.71  male   1983-04-22
-## 6     7  155409 2008-07-12  4.14     4.14  1.57  male   1983-03-31</code></pre>
-</div>
-<p><em>Intermediate</em>: Calculate the age of each participant on the date they did the disgust questionnaire. Round to the nearest tenth of a year.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
-
-study1_ages &lt;-<span class="st"> </span>study1 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">age =</span> date <span class="op">-</span><span class="st"> </span>birthday,
-    <span class="dt">age_days =</span> <span class="kw">as.integer</span>(age),
-    <span class="dt">age_years =</span> <span class="kw">round</span>(age_days<span class="op">/</span><span class="fl">365.25</span>, <span class="dv">1</span>)
-  )
-
-study1_ages <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(date, birthday<span class="op">:</span>age_years) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">head</span>()</code></pre>
-<pre><code>## # A tibble: 6 x 5
-##   date       birthday   age        age_days age_years
-##   &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;        &lt;int&gt;     &lt;dbl&gt;
-## 1 2008-07-10 1976-11-18 11557 days    11557      31.6
-## 2 2008-07-11 1984-09-30  8685 days     8685      23.8
-## 3 2008-07-12 1982-04-09  9591 days     9591      26.3
-## 4 2008-07-12 1968-04-04 14709 days    14709      40.3
-## 5 2008-07-12 1983-04-22  9213 days     9213      25.2
-## 6 2008-07-12 1983-03-31  9235 days     9235      25.3</code></pre>
-</div></li>
-<li><p>Add the participant data to the disgust data, but have the columns from the participant table first.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study2 &lt;-<span class="st"> </span><span class="kw">right_join</span>(user, disgust, <span class="dt">by =</span> <span class="st">&quot;user_id&quot;</span>)
-<span class="kw">head</span>(study2)</code></pre>
-<pre><code>## # A tibble: 6 x 8
-##   user_id sex    birthday      id date       moral pathogen sexual
-##     &lt;dbl&gt; &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-## 1       1 female 1976-11-18     1 2008-07-10  1.43     2.71  1.71 
-## 2  155324 female 1984-09-30     3 2008-07-11  3        2.57  1.86 
-## 3  155366 male   1982-04-09     4 2008-07-12  5.57     4     0.429
-## 4  155370 female 1968-04-04     5 2008-07-12  5.71     4.86  4.71 
-## 5  155386 male   1983-04-22     6 2008-07-12  1.43     3.86  3.71 
-## 6  155409 male   1983-03-31     7 2008-07-12  4.14     4.14  1.57</code></pre>
-</div>
-<p><em>Intermediate</em>: How many times was the disgust questionnaire completed by each sex?</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study2 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>())</code></pre>
-<pre><code>## # A tibble: 4 x 2
-##   sex          n
-##   &lt;chr&gt;    &lt;int&gt;
-## 1 &lt;NA&gt;        99
-## 2 female   13886
-## 3 intersex     3
-## 4 male      6012</code></pre>
-</div>
-<p><em>Advanced</em>: Make a graph of how many people completed the questionnaire each year.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study2 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">substr</span>(date, <span class="dv">1</span>, <span class="dv">4</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">times_completed =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(year, times_completed, <span class="dt">fill =</span> year)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(
-    <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,
-    <span class="dt">y =</span> <span class="st">&quot;Times Completed&quot;</span>
-  ) <span class="op">+</span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">fill =</span> <span class="ot">FALSE</span>)</code></pre>
-<img src="06-joins_files/figure-html/ex-2-a-1.png" width="100%" style="display: block; margin: auto;" />
-</div></li>
-<li><p>Create a table with only disgust and personality data from the same <code>user_id</code> collected on the same <code>date</code>.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study3 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(disgust, ocean, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;user_id&quot;</span>, <span class="st">&quot;date&quot;</span>))
-<span class="kw">head</span>(study3)</code></pre>
-<pre><code>## # A tibble: 6 x 11
-##      id user_id date       moral pathogen sexual    Ag    Co    Ex    Ne
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     3  155324 2008-07-11  3        2.57  1.86   4      3.3  4.89  2.38
-## 2     6  155386 2008-07-12  1.43     3.86  3.71   3.14   2.6  4     0.25
-## 3    17  155567 2008-07-14  5.57     4.71  2.57   5.29   5.7  3.89  1.12
-## 4    18  155571 2008-07-14  2.71     6     4.43   3.71   3.8  4.56  2.25
-## 5    21  155665 2008-07-15  4.14     4.14  3.43   2.86   1.8  4.67  3.12
-## 6    22  155682 2008-07-15  2.71     3     0.714  3.43   3    3.56  1.38
-## # … with 1 more variable: Op &lt;dbl&gt;</code></pre>
-</div>
-<p><em>Intermediate</em>: Join data from the same <code>user_id</code>, regardless of <code>date</code>. Does this give you the same data table as above?</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study3_nodate &lt;-<span class="st"> </span><span class="kw">inner_join</span>(disgust, ocean, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;user_id&quot;</span>))
-<span class="kw">head</span>(study3_nodate)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##      id user_id date.x     moral pathogen sexual date.y        Ag    Co
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1       1 2008-07-10  1.43     2.71   1.71 2006-02-08  2.57   3  
-## 2     3  155324 2008-07-11  3        2.57   1.86 2008-07-11  4      3.3
-## 3     6  155386 2008-07-12  1.43     3.86   3.71 2008-07-12  3.14   2.6
-## 4    17  155567 2008-07-14  5.57     4.71   2.57 2008-07-14  5.29   5.7
-## 5    18  155571 2008-07-14  2.71     6      4.43 2008-07-14  3.71   3.8
-## 6    20  124756 2008-07-14  5.43     5.14   2.71 2008-01-23  4.86   3.8
-## # … with 3 more variables: Ex &lt;dbl&gt;, Ne &lt;dbl&gt;, Op &lt;dbl&gt;</code></pre>
-</div></li>
-<li><p>Create a table of the disgust and personality data with each <code>user_id:date</code> on a single row, containing <em>all</em> of the data from both tables.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study4 &lt;-<span class="st"> </span><span class="kw">full_join</span>(disgust, ocean, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;user_id&quot;</span>, <span class="st">&quot;date&quot;</span>))
-<span class="kw">head</span>(study4)</code></pre>
-<pre><code>## # A tibble: 6 x 11
-##      id user_id date       moral pathogen sexual    Ag    Co    Ex    Ne
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1       1 2008-07-10  1.43     2.71  1.71  NA     NA   NA    NA   
-## 2     3  155324 2008-07-11  3        2.57  1.86   4      3.3  4.89  2.38
-## 3     4  155366 2008-07-12  5.57     4     0.429 NA     NA   NA    NA   
-## 4     5  155370 2008-07-12  5.71     4.86  4.71  NA     NA   NA    NA   
-## 5     6  155386 2008-07-12  1.43     3.86  3.71   3.14   2.6  4     0.25
-## 6     7  155409 2008-07-12  4.14     4.14  1.57  NA     NA   NA    NA   
-## # … with 1 more variable: Op &lt;dbl&gt;</code></pre>
-</div></li>
-</ol>
-</div>
-<div id="filtering-joins-1" class="section level3">
-<h3><span class="header-section-number">6.8.2</span> Filtering joins</h3>
-<ol start="5" style="list-style-type: decimal">
-<li><p>Create a table of just the data from the disgust table for users who completed the personality questionnaire that same day.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study5 &lt;-<span class="st"> </span><span class="kw">semi_join</span>(disgust, ocean, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;user_id&quot;</span>, <span class="st">&quot;date&quot;</span>))
-<span class="kw">head</span>(study5)</code></pre>
-<pre><code>## # A tibble: 6 x 6
-##      id user_id date       moral pathogen sexual
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-## 1     3  155324 2008-07-11  3        2.57  1.86 
-## 2     6  155386 2008-07-12  1.43     3.86  3.71 
-## 3    17  155567 2008-07-14  5.57     4.71  2.57 
-## 4    18  155571 2008-07-14  2.71     6     4.43 
-## 5    21  155665 2008-07-15  4.14     4.14  3.43 
-## 6    22  155682 2008-07-15  2.71     3     0.714</code></pre>
-</div></li>
-<li><p>Create a table of data from users who did not complete either the personality questionnaire or the disgust questionnaire. (<em>Hint: this will require two steps; use pipes.</em>)</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">study6 &lt;-<span class="st"> </span>user <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">anti_join</span>(ocean, <span class="dt">by =</span> <span class="st">&quot;user_id&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">anti_join</span>(disgust, <span class="dt">by =</span> <span class="st">&quot;user_id&quot;</span>)
-<span class="kw">head</span>(study6)</code></pre>
-<pre><code>## # A tibble: 6 x 3
-##   user_id sex    birthday  
-##     &lt;dbl&gt; &lt;chr&gt;  &lt;date&gt;    
-## 1       9 male   1972-01-19
-## 2      10 female 1978-06-20
-## 3      17 female 1981-11-21
-## 4      19 female 1980-08-08
-## 5      20 male   1964-08-27
-## 6      21 male   1945-06-13</code></pre>
-</div></li>
-</ol>
-</div>
-<div id="binding-and-sets" class="section level3">
-<h3><span class="header-section-number">6.8.3</span> Binding and sets</h3>
-<ol start="7" style="list-style-type: decimal">
-<li><p>Load new user data from <a href="data/users2.csv">users2.csv</a>. Bind them into a single table.</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">user2 &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/users2.csv&quot;</span>)
-users_all &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(user, user2)
-<span class="kw">head</span>(users_all)</code></pre>
-<pre><code>## # A tibble: 6 x 3
-##   user_id sex    birthday  
-##     &lt;dbl&gt; &lt;chr&gt;  &lt;date&gt;    
-## 1       0 &lt;NA&gt;   NA        
-## 2       1 female 1976-11-18
-## 3       2 male   1985-10-09
-## 4       5 male   1980-06-26
-## 5       8 male   1968-06-21
-## 6       9 male   1972-01-19</code></pre>
-</div></li>
-<li><p>How many users are in both the first and second user table?</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">intersect</span>(user, user2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()</code></pre>
-<pre><code>## [1] 11602</code></pre>
-</div></li>
-<li><p>How many unique users are there in total across the first and second user tables?</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">union</span>(user, user2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()</code></pre>
-<pre><code>## [1] 100441</code></pre>
-</div></li>
-<li><p>How many users are in the first, but not the second, user table?</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">setdiff</span>(user, user2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()</code></pre>
-<pre><code>## [1] 40441</code></pre>
-</div></li>
-<li><p>How many users are in the second, but not the first, user table?</p>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">setdiff</span>(user2, user) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()</code></pre>
-<pre><code>## [1] 48398</code></pre>
-</div></li>
-</ol>
-
-</div>
 </div>
 </div>
 <div class="psyteachr_footer">

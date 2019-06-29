@@ -140,8 +140,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  86.70   86.70   98.25 9.07e-06 ***
-## Residuals    8   7.06    0.88                     
+## A            1 125.29  125.29   115.8 4.89e-06 ***
+## Residuals    8   8.65    1.08                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -158,7 +158,7 @@ pval
 ```
 
 ```
-## [1] 9.06594e-06
+## [1] 4.893825e-06
 ```
 -->
 
@@ -407,13 +407,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -3.2397, df = 33.799, p-value = 0.002686
+## t = -1.8994, df = 37.08, p-value = 0.06531
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.567862 -0.358933
+##  -1.34955196  0.04352644
 ## sample estimates:
 ## mean of x mean of y 
-##  4.851887  5.815284
+##  4.812701  5.465714
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
@@ -430,13 +430,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -3.2397, df = 33.799, p-value = 0.002686
+## t = -1.8994, df = 37.08, p-value = 0.06531
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.567862 -0.358933
+##  -1.34955196  0.04352644
 ## sample estimates:
 ## mean in group A mean in group B 
-##        4.851887        5.815284
+##        4.812701        5.465714
 ```
 
 ### `broom::tidy()`
@@ -458,7 +458,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.151      5.11      5.26    -0.499   0.621      37.4   -0.764
+## 1   -0.380      5.07      5.45     -1.32   0.194      37.4   -0.962
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
@@ -478,7 +478,7 @@ tibble(
 ```
 
 ```
-## [1] 0.07352519
+## [1] 0.1410771
 ```
 
 ### Turn into a function
@@ -507,7 +507,7 @@ t_sim()
 ```
 
 ```
-## [1] 0.06364008
+## [1] 0.1921308
 ```
 
 ### `replicate()`
@@ -523,7 +523,7 @@ power
 ```
 
 ```
-## [1] 0.333
+## [1] 0.318
 ```
 
 ### Add arguments
@@ -553,8 +553,8 @@ t_sim(100, 0, 1, 0.5, 1)
 ```
 
 ```
-## [1] 0.6559663
-## [1] 0.0002086047
+## [1] 0.5621763
+## [1] 0.0001056935
 ```
 
 Use `replicate` to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.
@@ -567,7 +567,7 @@ power
 ```
 
 ```
-## [1] 0.286
+## [1] 0.284
 ```
 
 Compare this to power calculated from the `power.t.test` function.
@@ -599,252 +599,4 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 ## Exercises
 
-Download the [formative exercises](formative_exercises/07_functions_stub.Rmd). See the [answers](formative_exercises/07_functions_answers.Rmd) only after you've attempted all the questions.
-
-<!--
-### Custom functions: `sim_data`
-
-Put the code you used to create `dat` above as the body of a new function `sim_data()` with no arguments.  Call the function twice to make sure it works and that it gives you different data each time.
-
-
-```r
-sim_data <- function() {
-  tibble(
-    mu = 100,
-    eff = rep(c(-3, 3), each = 5),
-    A = rep(c("A1", "A2"), each = 5),
-    err = rnorm(10),
-    Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-```
-
-Now re-write `sim_data()` to allow the user to change the values of `mu`, `eff`, and the standard deviation of `err`.  The use the values you used before as defaults.
-
-
-```r
-sim_data <- function(mu = 100, eff = 3, sd = 1) {
-  tibble(
-    mu = mu,
-    eff = rep(c(-eff, eff), each = 5),
-    A = rep(c("A1", "A2"), each = 5),
-    err = rnorm(10, sd = sd),
-    Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-
-sim_data()
-```
-
-```
-## # A tibble: 10 x 5
-##        Y    mu   eff A          err
-##    <dbl> <dbl> <dbl> <chr>    <dbl>
-##  1  97.0   100    -3 A1     0.00681
-##  2  97.9   100    -3 A1     0.926  
-##  3  97.3   100    -3 A1     0.340  
-##  4  96.8   100    -3 A1    -0.195  
-##  5  97.2   100    -3 A1     0.152  
-##  6 104.    100     3 A2     1.10   
-##  7 103.    100     3 A2     0.437  
-##  8 103.    100     3 A2    -0.425  
-##  9 103.    100     3 A2     0.396  
-## 10 104.    100     3 A2     0.781
-```
-
-<p class="alert alert-info">What happens when you call the function with different values?</p>
-
-Next, re-write it *again* to allow the user to change the number of observations per group through an argument `n_per_group`, which defaults to 5. Run it a few times with varying arguments to check.
-
-
-```r
-sim_data <- function(mu = 100, eff = 3, sd = 1, n_per_group = 5) {
-  tibble(mu = mu,
-     eff = rep(c(-eff, eff), each = n_per_group),
-     A = factor(rep(c("A1", "A2"), each = n_per_group)),
-     err = rnorm(2 * n_per_group, sd = sd),
-     Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-
-sim_data(n_per_group = 2)
-sim_data(0, 10, 40, 20)
-```
-
-```
-## # A tibble: 4 x 5
-##       Y    mu   eff A         err
-##   <dbl> <dbl> <dbl> <fct>   <dbl>
-## 1  96.9   100    -3 A1    -0.0786
-## 2  97.7   100    -3 A1     0.662 
-## 3 103.    100     3 A2     0.432 
-## 4 103.    100     3 A2    -0.497 
-## # A tibble: 40 x 5
-##          Y    mu   eff A         err
-##      <dbl> <dbl> <dbl> <fct>   <dbl>
-##  1  -48.6      0   -10 A1     -38.6 
-##  2  -31.5      0   -10 A1     -21.5 
-##  3  -31.5      0   -10 A1     -21.5 
-##  4  -13.5      0   -10 A1      -3.46
-##  5    7.38     0   -10 A1      17.4 
-##  6  -68.8      0   -10 A1     -58.8 
-##  7 -124.       0   -10 A1    -114.  
-##  8   32.7      0   -10 A1      42.7 
-##  9  -39.2      0   -10 A1     -29.2 
-## 10  -85.8      0   -10 A1     -75.8 
-## # … with 30 more rows
-```
-
-OK now let's wrap the code you created to run an ANOVA and get the p-value in the function `run_anova()`.  It should have one argument, `x`, which is the data on which the anova is to be performed, and it should return a single value: the $p$-value.  Call it a few times with `x` as a simulated dataset to make sure it works as you intended, and that the p-values are changing.
-
-
-```r
-run_anova <- function(x) {
-  mod <- aov(Y ~ A, x)
-  broom::tidy(mod) %>% pull(p.value) %>% pluck(1)
-}
-
-run_anova(sim_data())
-```
-
-```
-## [1] 1.099885e-06
-```
-
-Modify `run_anova()` so that it accepts an additional argument `all_stats` (default `FALSE`) which determines whether the whole table from `broom::tidy()` is returned (when `TRUE`), or just the $p$-value (when `FALSE`).
-
-
-```r
-run_anova <- function(x, all_stats = FALSE) {
-  mod <- aov(Y ~ A, x)
-  stats_tbl <- broom::tidy(mod)
-  if (all_stats) {
-    stats_tbl
-  } else {
-    stats_tbl %>% pull(p.value) %>% pluck(1)
-  }
-}
-
-run_anova(sim_data())
-run_anova(sim_data(), TRUE)
-```
-
-```
-## [1] 9.446602e-07
-## # A tibble: 2 x 6
-##   term         df sumsq meansq statistic     p.value
-##   <chr>     <dbl> <dbl>  <dbl>     <dbl>       <dbl>
-## 1 A             1 88.7  88.7        104.  0.00000742
-## 2 Residuals     8  6.84  0.855       NA  NA
-```
-
-## Iterating
-
-Now we're going to pull together what we've done so far and attempt to perform a power analysis through simulation!
-
-Power is *the probability of rejecting a false null hypothesis*, usually denoted as $1 - \beta$ where $\beta$ is the probability of a Type II error (retaining $H_0$ when it is false).  It relates to the sensitivity of an analysis.
-
-For simple designs, like our two-group situation, power can be calculated analytically.  However, for more complicated designs, it is often necessary to run simulations to estimate power.  So although the approach here is overkill (for a two-group design you could use the function `pow.t.test()`) it more generalizable.
-
-Our simulation-based power estimate will involve three main steps:
-
-1. Generate `nmc` number of datasets, where `nmc` is a large number (typically >1000);
-2. Run the analysis on the datasets and store the results
-3. Analyze the results from step 2
-
-First let's learn about some of the functions used for iteration.  These functions live in the `purrr` package which is part of the tidyverse.
-
-The `purrr::map*` functions are probably the most important.  `purrr::map()` takes a list as its first object and iterates through the elements of the list, passing each element to the function name specified as the second argument and storing the results.  You can choose one of the various `map()` functions depending on how you want the return values stored.  `map_chr()` returns a vector of character strings; `map_dbl()` returns a vector of real numbers; `map_int()` returns a vector of integers.
-
-`map()` is appropriate when you have varying input and want to do something to each element of the input and keep the result.  Sometimes you don't have any input, but just want to do the same thing $X$ times and keep the result.  In this situation, use `purrr::rerun()`.  Other times, you might have varying input, but want to call a function not for the result it will return, but for its side effect (e.g., save a file, or print a message to the user).  In this situation, use `purrr::walk()`.  Take a moment to familiarize yourself with the help pages for these functions.
-
-1. Create a list `dsets` containing 5 datasets using `purrr::rerun()` on your `sim_data()` function.
-
-
-```r
-dsets <- rerun(5, sim_data())
-```
-
-2. Now use `map()` on `dsets` to call `run_anova()` on each of the 5 datasets.
-
-
-```r
-map(dsets, run_anova)
-```
-
-```
-## [[1]]
-## [1] 1.010332e-06
-## 
-## [[2]]
-## [1] 8.932128e-06
-## 
-## [[3]]
-## [1] 2.319243e-05
-## 
-## [[4]]
-## [1] 0.002814869
-## 
-## [[5]]
-## [1] 2.129696e-05
-```
-
-3. Re-write the `map()` command above so that it returns a vector of type `double` instead of a list.  At the same time, re-write it so that it performs steps 1 and 2 in a single line.
-
-
-```r
-map_dbl(rerun(5, sim_data()), run_anova)
-```
-
-```
-## [1] 9.129116e-06 2.802027e-05 1.711086e-07 3.212498e-04 6.269093e-05
-```
-
-4. Write code to count the proportion of runs for which the $p$-value is less than .05.  This is your estimate of power, given the effect size.
-
-
-```r
-n_runs <- 5L
-pvals <- map_dbl(rerun(n_runs, sim_data()), run_anova)
-psig <- sum(pvals < .05) / n_runs
-```
-
-5. Now put all of the code you have created in this section into a new function `sim_power()` which gives the user control over all parameters (`mu`, `eff`, `n_per_group`, `sd`, `n_runs`).  If you need to debug your function, put `browser()` as the first line of the function body and then call it from the console.
-
-
-```r
-sim_power <- function(eff = 0, sd = 6, mu = 0, n_per_group = 10, n_runs = 1000L) {
-  pvals <- map_dbl(rerun(n_runs, sim_data(mu, eff, sd, n_per_group)), 
-                   run_anova)
-  sum(pvals < .05) / n_runs
-}
-```
-
-6. Check your function by running scenarios where the effect takes on various values, including zero.  Compare your results to `power.t.test()`.
-
-
-```r
-my_eff <- 1
-my_sd <- 3
-
-power.t.test(n = 20, delta = my_eff, sd = my_sd)
-sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
-```
-
-```
-## 
-##      Two-sample t test power calculation 
-## 
-##               n = 20
-##           delta = 1
-##              sd = 3
-##       sig.level = 0.05
-##           power = 0.1755768
-##     alternative = two.sided
-## 
-## NOTE: n is number in *each* group
-## 
-## [1] 0.545
-```
-
--->
+Download the [exercises](exercises/07_func_stub.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.

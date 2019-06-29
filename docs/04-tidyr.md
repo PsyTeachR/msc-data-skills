@@ -7,7 +7,7 @@ Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
 
 ### Basic
 
-1. Understand the concept of "tidy data"
+1. Understand the concept of [tidy data](#tidy-data)
 2. Be able to use the 4 basic `tidyr` verbs
     + [`gather()`](#gather)
     + [`separate()`](#separate)
@@ -41,7 +41,297 @@ library(tidyverse)
 library(readxl)
 ```
 
-## Load Data
+## Three Rules for Tidy Data {#tidy-data}
+
+* Each <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/v#variable'>variable</a> must have its own column
+* Each <a class='glossary' target='_blank' title='All of the data about a single trial or question.' href='https://psyteachr.github.io/glossary/o#observation'>observation</a> must have its own row
+* Each <a class='glossary' target='_blank' title='A single number or piece of data.' href='https://psyteachr.github.io/glossary/v#value'>value</a> must have its own cell
+
+
+
+This table has three observations per row and the `total_meanRT` column contains two values.
+
+
+
+ id   score_1   score_2   score_3   rt_1   rt_2   rt_3  total_meanRT 
+---  --------  --------  --------  -----  -----  -----  -------------
+  1         5         7         2    797    772    614  14 (728)     
+  2         4         6         1    907    719    923  11 (850)     
+  3         7         5         6    829   1005    841  18 (892)     
+  4         6         1         3    778    765    837  10 (793)     
+  5         2         3         4    805    712    783  9 (767)      
+
+
+
+This is the tidy version.
+
+
+
+ id  trial      rt   score  total   mean_rt 
+---  ------  -----  ------  ------  --------
+  1  1         797       5  14      728     
+  1  2         772       7  14      728     
+  1  3         614       2  14      728     
+  2  1         907       4  11      850     
+  2  2         719       6  11      850     
+  2  3         923       1  11      850     
+  3  1         829       7  18      892     
+  3  2        1005       5  18      892     
+  3  3         841       6  18      892     
+  4  1         778       6  10      793     
+  4  2         765       1  10      793     
+  4  3         837       3  10      793     
+  5  1         805       2  9       767     
+  5  2         712       3  9       767     
+  5  3         783       4  9       767     
+
+
+
+
+## Tidying Data
+
+Download the data from [personality.csv](https://psyteachr.github.io/msc-data-skills/data/personality.csv). These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.
+
+
+```r
+ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   date = col_date(format = "")
+## )
+```
+
+```
+## See spec(...) for full column specifications.
+```
+
+
+### gather() {#gather}
+
+`gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
+
+`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation.
+
+* `key` is what you want to call the row headers; it's "question" in this example. 
+* `value` is what you want to call the values in the gathered columns; they're "score" in this example.
+* The `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+
+Convert from wide to long format. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
+    
+
+```r
+ocean_gathered <- gather(ocean, "question", "score", Op1:Ex9)
+```
+
+
+### separate() {#separate} 
+
+`separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
+
+Split the `question` column into two columns: `domain` and `qnumber`.
+
+There is no character to split on, here, but you can separate a column after a specific number of characters by setting `sep` to  an integer. For example, to split "abcde" after the third character, use `sep = 3`, which results in `c("abc", "de")`. You can also use negative number to split before the *n*th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can use `sep = -2`.
+    
+
+```r
+ocean_sep <- separate(ocean_gathered, question, c("domain", "qnumber"), sep = 2)
+```
+
+
+### unite() {#unite} 
+
+`unite(data, col, ..., sep = "_", remove = TRUE)`
+
+Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
+    
+
+```r
+ocean_unite <- unite(ocean_sep, "domain_n", domain, qnumber, sep = "_Q")
+```
+
+
+### spread() {#spread} 
+
+`spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)`
+
+You can reverse the processes above, as well. For example, you can convert data from long format into wide format.
+
+* `key` is the column that contains your new column headers
+* `value` is the column that contains the values in the new spread columns
+    
+
+```r
+ocean_spread <- spread(ocean_unite, domain_n, score)
+```
+
+## Pipes {#pipes}
+
+<img src="images/04/pipe_sticker.png" style="width: 200px; float: right;">
+
+Pipes are a way to order your code in a more readable format. 
+
+Let's say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (`id`, `A_mean` and `B_mean`). 
+
+One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you've created 6 unnecessary data objects in your environment. This can get confusing in very long scripts. 
+
+
+```r
+# make a data table with 10 subjects
+data_original <- tibble(
+  id = 1:10,
+  A1 = rnorm(10, 0),
+  A2 = rnorm(10, 1),
+  B1 = rnorm(10, 2),
+  B2 = rnorm(10, 3)
+)
+
+# gather columns A1 to B2 into "variable" and "value" columns
+data_gathered <- gather(data_original, variable, value, A1:B2)
+
+# separate the variable column at the _ into "var" and "var_n" columns
+data_separated <- separate(data_gathered, variable, c("var", "var_n"), sep = 1)
+
+# group the data by id and var
+data_grouped <- group_by(data_separated, id, var)
+
+# calculate the mean value for each id/var 
+data_summarised <- summarise(data_grouped, mean = mean(value))
+
+# spread the mean column into A and B columns
+data_spread <- spread(data_summarised, var, mean)
+
+# rename A and B to A_mean and B_mean
+data <- rename(data_spread, A_mean = A, B_mean = B)
+
+data
+```
+
+```
+## # A tibble: 10 x 3
+## # Groups:   id [10]
+##       id A_mean B_mean
+##    <int>  <dbl>  <dbl>
+##  1     1  1.29    2.78
+##  2     2  0.151   3.95
+##  3     3  0.244   2.15
+##  4     4  1.03    3.19
+##  5     5  0.179   2.44
+##  6     6  1.01    1.57
+##  7     7  0.806   2.81
+##  8     8  0.293   2.12
+##  9     9  1.11    2.35
+## 10    10 -0.310   2.92
+```
+
+<div class="warning">
+<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
+</div>
+
+One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
+
+
+```r
+mean_petal_width <- round(mean(iris$Petal.Width), 2)
+```
+
+But it gets extremely confusing for long chains:
+
+
+```r
+# do not ever do this!!
+data <- rename(
+  spread(
+    summarise(
+      group_by(
+        separate(
+          gather(
+            tibble(
+              id = 1:10,
+              A1 = rnorm(10, 0),
+              A2 = rnorm(10, 1),
+              B1 = rnorm(10, 2),
+              B2 = rnorm(10,3)), 
+            variable, value, A1:B2), 
+          variable, c("var", "var_n"), sep = 1), 
+        id, var), 
+      mean = mean(value)), 
+    var, mean), 
+  A_mean = A, B_mean = B)
+```
+
+The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.
+
+
+```r
+# calculate mean of A and B variables for each participant
+data <- tibble(
+  id = 1:10,
+  A1 = rnorm(10, 0),
+  A2 = rnorm(10, 1),
+  B1 = rnorm(10, 2),
+  B2 = rnorm(10,3)
+) %>%
+  gather(variable, value, A1:B2) %>%
+  separate(variable, c("var", "var_n"), sep=1) %>%
+  group_by(id, var) %>%
+  summarise(mean = mean(value)) %>%
+  spread(var, mean) %>%
+  rename(A_mean = A, B_mean = B)
+```
+
+You can read this code from top to bottom as follows:
+
+1. Make a tibble called `data` with
+    - id of 1 to 10,
+    - A1 of 10 random numbers from a normal distribution,
+    - A2 of 10 random numbers from a normal distribution,
+    - B1 of 10 random numbers from a normal distribution, 
+    - B2 of 10 random numbers from a normal distribution; and then
+2. Gather to create `variable` and `value` column from columns `A_1` to `B_2`; and then
+3. Separate the column `variable` into 2 new columns called `var`and `var_n`, separate at character 1; and then
+4. Group by columns `id` and `var`; and then
+5. Summarise and new column called `mean` as the mean of the `value` column for each group; and then
+6. Spread to make new columns with the key names in `var` and values in `mean`; and then
+7. Rename to make columns called `A_mean` (old `A`) and `B_mean` (old `B`)
+
+You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
+
+<div class="info">
+<p>You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?</p>
+</div>
+
+
+Chain all the steps above using pipes.
+    
+
+```r
+ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv") %>%
+  gather("question", "score", Op1:Ex9) %>%
+  separate(question, c("domain", "qnumber"), sep = 2) %>%
+  unite("domain_n", domain, qnumber, sep = "_Q") %>%
+  spread(domain_n, score)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   date = col_date(format = "")
+## )
+```
+
+```
+## See spec(...) for full column specifications.
+```
+
+
+## More Complex Example
+
+### Load Data
 
 Get data on infant mortality rates from the CSV file 
 [`infmort.csv`](data/infmort.csv) in the directory `data`.
@@ -134,151 +424,9 @@ glimpse(ccodes)
 ## $ `intermediate-region-code` <chr> NA, NA, NA, NA, NA, NA, "017", "029",…
 ```
 
-## Pipes {#pipes}
-
-<img src="images/04/pipe_sticker.png" style="width: 200px; float: right;">
-
-Pipes were introduced in the second lesson, but we will review them here. Pipes are a way to order your code in a more readable format. 
-
-Let's say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (`id`, `A_mean` and `B_mean`). 
-
-One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you've created 6 unnecessary data objects in your environment. This can get confusing in very long scripts. 
-
-
-```r
-# make a data table with 10 subjects
-data_original <- tibble(
-  id = 1:10,
-  A1 = rnorm(10, 0),
-  A2 = rnorm(10, 1),
-  B1 = rnorm(10, 2),
-  B2 = rnorm(10, 3)
-)
-
-# gather columns A1 to B2 into "variable" and "value" columns
-data_gathered <- gather(data_original, variable, value, A1:B2)
-
-# separate the variable column at the _ into "var" and "var_n" columns
-data_separated <- separate(data_gathered, variable, c("var", "var_n"), sep = 1)
-
-# group the data by id and var
-data_grouped <- group_by(data_separated, id, var)
-
-# calculate the mean value for each id/var 
-data_summarised <- summarise(data_grouped, mean = mean(value))
-
-# spread the mean column into A and B columns
-data_spread <- spread(data_summarised, var, mean)
-
-# rename A and B to A_mean and B_mean
-data <- rename(data_spread, A_mean = A, B_mean = B)
-
-data
-```
-
-```
-## # A tibble: 10 x 3
-## # Groups:   id [10]
-##       id A_mean B_mean
-##    <int>  <dbl>  <dbl>
-##  1     1  1.07    1.75
-##  2     2  1.49    2.60
-##  3     3  0.721   2.56
-##  4     4  0.967   3.45
-##  5     5 -0.369   2.18
-##  6     6  0.365   2.58
-##  7     7 -0.796   3.57
-##  8     8  0.362   3.28
-##  9     9 -0.872   2.24
-## 10    10  0.766   3.29
-```
-
-<div class="warning">
-<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
-</div>
-
-One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
-
-
-```r
-mean_petal_width <- round(mean(iris$Petal.Width), 2)
-```
-
-But it gets extremely confusing for long chains:
-
-
-```r
-# do not ever do this!!
-data <- rename(
-  spread(
-    summarise(
-      group_by(
-        separate(
-          gather(
-            tibble(
-              id = 1:10,
-              A1 = rnorm(10, 0),
-              A2 = rnorm(10, 1),
-              B1 = rnorm(10, 2),
-              B2 = rnorm(10,3)), 
-            variable, value, A1:B2), 
-          variable, c("var", "var_n"), sep = 1), 
-        id, var), 
-      mean = mean(value)), 
-    var, mean), 
-  A_mean = A, B_mean = B)
-```
-
-The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.
-
-
-```r
-# calculate mean of A and B variables for each participant
-data <- tibble(
-  id = 1:10,
-  A1 = rnorm(10, 0),
-  A2 = rnorm(10, 1),
-  B1 = rnorm(10, 2),
-  B2 = rnorm(10,3)
-) %>%
-  gather(variable, value, A1:B2) %>%
-  separate(variable, c("var", "var_n"), sep=1) %>%
-  group_by(id, var) %>%
-  summarise(mean = mean(value)) %>%
-  spread(var, mean) %>%
-  rename(A_mean = A, B_mean = B)
-```
-
-You can read this code from top to bottom as follows:
-
-1. Make a tibble called `data` with
-    - id of 1 to 10,
-    - A1 of 10 random numbers from a normal distribution,
-    - A2 of 10 random numbers from a normal distribution,
-    - B1 of 10 random numbers from a normal distribution, 
-    - B2 of 10 random numbers from a normal distribution; and then
-2. Gather to create `variable` and `value` column from columns `A_1` to `B_2`; and then
-3. Separate the column `variable` into 2 new columns called `var`and `var_n`, separate at character 1; and then
-4. Group by columns `id` and `var`; and then
-5. Summarise and new column called `mean` as the mean of the `value` column for each group; and then
-6. Spread to make new columns with the key names in `var` and values in `mean`; and then
-7. Rename to make columns called `A_mean` (old `A`) and `B_mean` (old `B`)
-
-You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
-
-<div class="info">
-<p>You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?</p>
-</div>
-
-## gather() {#gather}
-
-`gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
+### Wide to Long
 
 `matmort` is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.
-
-* `key` is what you want to call the row headers; it's "year" in this example. 
-* `value` is what you want to call the values in the gathered columns; they're "stats" in this example.
-* The `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
   
 This example is complicated because the column names to gather _are_ numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (\`) like the example below.
 
@@ -298,11 +446,9 @@ glimpse(matmort_long)
 ## $ stats   <chr> "1 340 [ 878 - 1 950]", "71 [ 58 -  88]", "216 [ 141 -  …
 ```
 
-## separate() {#separate}
+### One Piece of Data per Column
 
-`separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
-
-The data in the `stats` column is in a crazy format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with `mutate`. 
+The data in the `stats` column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with `mutate`. 
 
 The `separate` function will separate your data on anything that is not a number or letter, so try it first without specifying the `sep` argument. The `into` argument is a list of the new column names.
 
@@ -336,7 +482,7 @@ glimpse(matmort_split)
 <p>The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do search and replace. The example above replaces all occurances of the <code>pattern</code> &quot; &quot; (a space), with the <code>replacement</code> &quot;&quot; (nothing), in the string <code>x</code> (the <code>stats</code> column). Use <code>sub()</code> instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regex</a> patterns to replace, for example, all even numbers (e.g., <code>gsub(&quot;[:02468:]&quot;, &quot;*&quot;, &quot;id = 123456&quot;)</code>) or all occurances of the word colour in US or UK spelling (e.g., <code>gsub(&quot;colo(u)?r&quot;, &quot;***&quot;, &quot;replace color, colour, or colours, but not collors&quot;)</code>).</p>
 </div>
 
-### Handle spare columns with `extra` {#extra}
+#### Handle spare columns with `extra` {#extra}
 
 <div class="warning">
 <p>The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(&quot;100&quot;, &quot;90&quot;, &quot;110&quot;, &quot;&quot;)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.</p>
@@ -362,7 +508,7 @@ glimpse(matmort_split)
 ## $ ci_hi   <chr> "1950", "88", "327", "2020", "80", "65", "9", "10", "74"…
 ```
 
-### Set delimiters with `sep` {#sep}
+#### Set delimiters with `sep` {#sep}
 
 Now do the same with `infmort`. It's already in long format, so you don't need to use `gather`, but the third column has a crazy long name, so we can just refer to it by its column number (3).
 
@@ -414,7 +560,7 @@ glimpse(infmort_split)
 ## $ ci_hi   <chr> "83.9", "83.6", "83.5", "83.7", "84.2", "85.1", "86.1", …
 ```
 
-### Fix data types with `convert` {#convert}
+#### Fix data types with `convert` {#convert}
 
 That's better. Notice the _<chr>_ next to `Year`, `rate`, `ci_low` and `ci_hi`. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can't average words), so we can fix it by adding the argument `convert` and setting it to `TRUE`.
 
@@ -515,16 +661,9 @@ glimpse(infmort)
 ```
 
 
-## spread() {#spread}
+### Columns by Year
 
-`spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)`
-
-You can reverse the processes above, as well. For example, you can convert data from long format into wide format.
-
-* `key` is the column that contains your new column headers
-* `value` is the column that contains the values in the new spread columns
-
-Let's spread out the infant mortality rate by year.
+Spread out the infant mortality rate by year.
 
 
 ```r
@@ -572,9 +711,9 @@ glimpse(infmort_wide)
 <p>Nope, that didn’t work at all, but it’s a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.</p>
 </div>
 
-## unite() {#unite}
+### Merge Columns
 
-`unite(data, col, ..., sep = "_", remove = TRUE)`
+Merge the rate and confidence intervals into one column.
 
 
 ```r
@@ -593,7 +732,7 @@ glimpse(infmort_united)
 ```
 
 
-### Control separation with `sep`
+#### Control separation with `sep`
 
 `unite()` separates merged names with an underscore by default. 
 Set the `sep` argument if you want to change that.
@@ -690,24 +829,24 @@ The following data table is called `quiz_data`.
 
  id  condition    version  pet     score
 ---  ----------  --------  ----  -------
-  1  A                  1  cat     0.793
-  1  A                  2  cat     1.332
-  1  B                  1  cat     0.180
-  1  B                  2  cat    -0.278
-  2  A                  1  dog     0.818
-  2  A                  2  dog    -0.335
-  2  B                  1  dog     1.175
-  2  B                  2  dog    -0.012
+  1  A                  1  cat    -0.809
+  1  A                  2  cat    -2.340
+  1  B                  1  cat    -0.377
+  1  B                  2  cat     0.797
+  2  A                  1  dog    -0.931
+  2  A                  2  dog    -0.862
+  2  B                  1  dog     0.736
+  2  B                  2  dog    -0.930
 
 
 1. How do you get `quiz_data` into the following format?
     
      id   version  pet             A            B
     ---  --------  ----  -----------  -----------
-      1         1  cat     0.7928979    0.1798450
-      1         2  cat     1.3319511   -0.2778590
-      2         1  dog     0.8179771    1.1752244
-      2         2  dog    -0.3349067   -0.0115811
+      1         1  cat    -0.8087557   -0.3770807
+      1         2  cat    -2.3403169    0.7972512
+      2         1  dog    -0.9308426    0.7359610
+      2         2  dog    -0.8619957   -0.9301504
     
     <select class='solveme' data-answer='["spread(quiz_data, condition, score)"]'> <option></option> <option>separate(quiz_data, condition, score)</option> <option>gather(quiz_data, condition:score)</option> <option>spread(quiz_data, condition, score)</option> <option>unite(quiz_data, condition:score)</option></select>
     
@@ -715,14 +854,14 @@ The following data table is called `quiz_data`.
     
      id  cversion   pet         score
     ---  ---------  ----  -----------
-      1  A_1        cat     0.7928979
-      1  A_2        cat     1.3319511
-      1  B_1        cat     0.1798450
-      1  B_2        cat    -0.2778590
-      2  A_1        dog     0.8179771
-      2  A_2        dog    -0.3349067
-      2  B_1        dog     1.1752244
-      2  B_2        dog    -0.0115811
+      1  A_1        cat    -0.8087557
+      1  A_2        cat    -2.3403169
+      1  B_1        cat    -0.3770807
+      1  B_2        cat     0.7972512
+      2  A_1        dog    -0.9308426
+      2  A_2        dog    -0.8619957
+      2  B_1        dog     0.7359610
+      2  B_2        dog    -0.9301504
 
     <select class='solveme' data-answer='["unite(quiz_data, cversion, condition, version)"]'> <option></option> <option>separate(quiz_data, cversion, condition, version)</option> <option>spread(quiz_data, condition:version)</option> <option>gather(quiz_data, cversion, condition:version)</option> <option>unite(quiz_data, cversion, condition, version)</option></select>
 
@@ -740,16 +879,11 @@ The following data table is called `quiz_data`.
     setosa    Sepal     Length         5.4
     
     
-    <div class='solution'><button>Solution</button>
-    
     ```r
     iris %>%
       gather(var, value, Sepal.Length:Petal.Width) %>%
       separate(var, into = c("feature", "dimension"))
     ```
-    
-    
-    </div>
 
 4. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
 
@@ -774,8 +908,6 @@ data_spread <- spread(data_united, cell, score)
 ```
 
 
-<div class='solution'><button>Solution</button>
-
 ```r
 data <- tibble(
   id = c(1:5, 1:5),
@@ -789,86 +921,6 @@ data <- tibble(
 ```
 
 
-</div>
-
-
 ## Exercises
 
-Download the [formative exercises](formative_exercises/04_wrangle1_stub.Rmd). See the [answers](formative_exercises/04_wrangle1_answers.Rmd) only after you've attempted all the questions.
-
-Tidy the data from [personality.csv](data/personality.csv).
-
-These data are from a 5-factor (OCEAN) personality questionnaire. Each question 
-is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, 
-Ag = agreeableness, and Ne = neuroticism) and the question number.
-
-1. *Basic*: Load the data and convert from wide to long format. 
-
-    The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
-
-2. *Basic*: Split the `question` column into two columns: `domain` and `qnumber`.
-
-    <p class="alert alert-info'>
-    There is no character to split on, here, but you can separate a column after a 
-    specific number of characters by setting `sep` to  an integer. For example, to 
-    split "abcde" after the third character, use `sep = 3`, which results in 
-    c("abc", "de"). You can also use negative number to split before the *n*th 
-    character from the right. For example, to split a column that has words of 
-    various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can 
-    use `sep = -2`.</p>
-
-3. *Basic*: Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
-
-4. *Basic*: Convert back to wide format.
-
-5. *Intermediate*: Chain all the steps above using pipes.
-
-*Intermediate*: Debug the following code:
-
-6. Load the data from [sensation_seeking.csv](data/sensation_seeking.csv).
-    
-    ```r
-    ss <- read_csv(data/sensation_seeking.csv)
-    ```
-
-7. Convert from wide to long format.
-    
-    ```r
-    ss_long <- gather(ss, "question", "score")
-    ```
-    
-8.  Split the `question` column into two columns: `domain` and `qnumber`.
-    
-    ```r
-    ss_sep <- ss_long %>%
-      separate(question, domain, qnumber, sep = 3)
-    ```
-    
-9. Put the `id` and `user_id` columns together into a new column named `super_id`. Make it in a format like "id-user_id".
-    
-    ```r
-    ss_unite <- ss_sep %>%
-      unite(id, user_id, "super_id", sep = "-")
-    ```
- 
-10.  Convert back to wide format.
-    
-    ```r
-    ss_wide <- ss_unite %>%
-      spreadr(qnumber, score)
-    ```
-
-    
-*Intermediate*: Load the dataset [family_composition.csv](data/family_composition.csv).
-
-11. The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis).
-    
-*Advanced*: Tidy the data from [eye_descriptions.csv](data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face, separated by commas, semicolons, or slashes. 
-
-12. Create a dataset with separate columns for face_id, description, and number of description.
-    
-*I'm bored*
-
-13. Using the family composition dataset from question 11, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
-    
-14. Create a list of the 10 most common descriptions from the eye colour dataset in question 12. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to `knitr::kable()`.
+Download the [exercises](exercises/04_tidyr_stub.Rmd). See the [answers](exercises/04_tidyr_answers.Rmd) only after you've attempted all the questions.

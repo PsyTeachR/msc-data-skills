@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-06-27" />
+<meta name="date" content="2019-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,10 +170,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -188,8 +188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.5</b> Importing data</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -228,11 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
 <li class="chapter" data-level="3.12" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>3.12</b> Quiz</a></li>
-<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-1"><i class="fa fa-check"></i><b>3.13</b> Exercises</a><ul>
-<li class="chapter" data-level="3.13.1" data-path="ggplot.html"><a href="ggplot.html#common-plots"><i class="fa fa-check"></i><b>3.13.1</b> Common Plots</a></li>
-<li class="chapter" data-level="3.13.2" data-path="ggplot.html"><a href="ggplot.html#two-continuous-variables"><i class="fa fa-check"></i><b>3.13.2</b> Two continuous variables</a></li>
-<li class="chapter" data-level="3.13.3" data-path="ggplot.html"><a href="ggplot.html#many-correlated-variables"><i class="fa fa-check"></i><b>3.13.3</b> Many correlated variables</a></li>
-</ul></li>
+<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>3.13</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
@@ -242,21 +238,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
-<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#sep"><i class="fa fa-check"></i><b>4.7.2</b> Set delimiters with <code>sep</code></a></li>
-<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#convert"><i class="fa fa-check"></i><b>4.7.3</b> Fix data types with <code>convert</code></a></li>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Three Rules for Tidy Data</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>4.5</b> Tidying Data</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.5.1</b> gather()</a></li>
+<li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.5.2</b> separate()</a></li>
+<li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.5.3</b> unite()</a></li>
+<li class="chapter" data-level="4.5.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.5.4</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a></li>
+<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.7</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.7.1</b> Load Data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.7.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.7.3</b> One Piece of Data per Column</a></li>
 <li class="chapter" data-level="4.7.4" data-path="tidyr.html"><a href="tidyr.html#all-in-one-step"><i class="fa fa-check"></i><b>4.7.4</b> All in one step</a></li>
+<li class="chapter" data-level="4.7.5" data-path="tidyr.html"><a href="tidyr.html#columns-by-year"><i class="fa fa-check"></i><b>4.7.5</b> Columns by Year</a></li>
+<li class="chapter" data-level="4.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>4.7.6</b> Merge Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.8</b> spread()</a></li>
-<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.9</b> unite()</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="tidyr.html"><a href="tidyr.html#control-separation-with-sep"><i class="fa fa-check"></i><b>4.9.1</b> Control separation with <code>sep</code></a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.10</b> Quiz</a></li>
-<li class="chapter" data-level="4.11" data-path="tidyr.html"><a href="tidyr.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.8</b> Quiz</a></li>
+<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
 <li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
@@ -283,16 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slide"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-3"><i class="fa fa-check"></i><b>5.7</b> Exercises</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="dplyr.html"><a href="dplyr.html#easy"><i class="fa fa-check"></i><b>5.7.1</b> Easy</a></li>
-<li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-3"><i class="fa fa-check"></i><b>5.7.2</b> Intermediate</a></li>
-<li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#advanced-3"><i class="fa fa-check"></i><b>5.7.3</b> Advanced</a></li>
-</ul></li>
+<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
-<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
@@ -315,17 +310,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.7.2</b> union()</a></li>
 <li class="chapter" data-level="6.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.7.3</b> setdiff()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-4"><i class="fa fa-check"></i><b>6.8</b> Exercises</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#mutating-joins-1"><i class="fa fa-check"></i><b>6.8.1</b> Mutating joins</a></li>
-<li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#filtering-joins-1"><i class="fa fa-check"></i><b>6.8.2</b> Filtering joins</a></li>
-<li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#binding-and-sets"><i class="fa fa-check"></i><b>6.8.3</b> Binding and sets</a></li>
-</ul></li>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
 <li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
@@ -348,13 +339,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-5"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
@@ -373,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>8.4.7</b> One-tailed prediction</a></li>
 <li class="chapter" data-level="8.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>8.4.8</b> Range of sample sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#formative-exercises-1"><i class="fa fa-check"></i><b>8.5</b> Formative exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
 <li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
@@ -383,13 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-6"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-6"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.3</b> R Markdown</a><ul>
@@ -497,7 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-disgust-dataset" class="section level2">
 <h2><span class="header-section-number">5.4</span> The <code>disgust</code> dataset</h2>
 <p>These examples will use data from <a href="/data/disgust.csv">disgust.csv</a>, which contains data from the <a href="http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&amp;context=psy_etds">Three Domain Disgust Scale</a>. Each participant is identified by a unique <code>user_id</code> and each questionnaire completion has a unique <code>id</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">disgust &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://gupsych.github.io/data_skills/data/disgust.csv&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">disgust &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/disgust.csv&quot;</span>)</code></pre>
 <p><em>Questionnaire Instructions</em>: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.</p>
 <table>
 <colgroup>
@@ -921,469 +912,10 @@ disgust_tidy3</code></pre>
 <h3><span class="header-section-number">5.6.5</span> pull()</h3>
 </div>
 </div>
-<div id="exercises-3" class="section level2">
+<div id="exercises-4" class="section level2">
 <h2><span class="header-section-number">5.7</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/05_wrangle2_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/05_wrangle2_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<p>The following exercises use a dataset included in the <code>ukbabynames</code> package. Might as well convert to a tibble to make printing prettier.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## convert to a tibble</span>
-ukb &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(ukbabynames)</code></pre>
-<div id="easy" class="section level3">
-<h3><span class="header-section-number">5.7.1</span> Easy</h3>
-<ol style="list-style-type: decimal">
-<li>How many records are in the dataset?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">count</span>(ukb) <span class="co">## or: nrow(ukb)</span></code></pre>
-<pre><code>## # A tibble: 1 x 1
-##        n
-##    &lt;int&gt;
-## 1 227449</code></pre>
-</div>
-<ol start="2" style="list-style-type: decimal">
-<li>Remove the column <code>rank</code> from the dataset.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>rank)</code></pre>
-<pre><code>## # A tibble: 227,449 x 4
-##     year sex   name          n
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1  1996 F     Sophie     7087
-##  2  1996 F     Chloe      6824
-##  3  1996 F     Jessica    6711
-##  4  1996 F     Emily      6415
-##  5  1996 F     Lauren     6299
-##  6  1996 F     Hannah     5916
-##  7  1996 F     Charlotte  5866
-##  8  1996 F     Rebecca    5828
-##  9  1996 F     Amy        5206
-## 10  1996 F     Megan      4948
-## # … with 227,439 more rows</code></pre>
-</div>
-<ol start="3" style="list-style-type: decimal">
-<li>What is the range of birth years contained in the dataset?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">minyear =</span> <span class="kw">min</span>(year),
-            <span class="dt">maxyear =</span> <span class="kw">max</span>(year))</code></pre>
-<pre><code>## # A tibble: 1 x 2
-##   minyear maxyear
-##     &lt;dbl&gt;   &lt;dbl&gt;
-## 1    1996    2015</code></pre>
-</div>
-<ol start="4" style="list-style-type: decimal">
-<li>Pull out the babies named Hermione.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Hermione&quot;</span>)</code></pre>
-<pre><code>## # A tibble: 20 x 5
-##     year sex   name         n  rank
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-##  1  1996 F     Hermione    21   974
-##  2  1997 F     Hermione    29   789
-##  3  1998 F     Hermione    40   628
-##  4  1999 F     Hermione    35   678
-##  5  2000 F     Hermione    40   637
-##  6  2001 F     Hermione    52   540
-##  7  2002 F     Hermione    84   394
-##  8  2003 F     Hermione   158   265
-##  9  2004 F     Hermione   162   265
-## 10  2005 F     Hermione   122   331
-## 11  2006 F     Hermione   118   359
-## 12  2007 F     Hermione   109   385
-## 13  2008 F     Hermione   129   348
-## 14  2009 F     Hermione   116   370
-## 15  2010 F     Hermione   111   398
-## 16  2011 F     Hermione   118   392
-## 17  2012 F     Hermione    97   465
-## 18  2013 F     Hermione    77   542
-## 19  2014 F     Hermione    85   500
-## 20  2015 F     Hermione    79   549</code></pre>
-</div>
-<ol start="5" style="list-style-type: decimal">
-<li>Sort the dataset by sex and then by year (descending) and then by rank (descending).</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(sex, <span class="kw">desc</span>(year), <span class="kw">desc</span>(rank))</code></pre>
-<pre><code>## # A tibble: 227,449 x 5
-##     year sex   name            n  rank
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
-##  1  2015 F     Aabidah         3  5730
-##  2  2015 F     Aabish          3  5730
-##  3  2015 F     Aaeesha         3  5730
-##  4  2015 F     Aafreen         3  5730
-##  5  2015 F     Aaiza           3  5730
-##  6  2015 F     Aakifa          3  5730
-##  7  2015 F     Aala            3  5730
-##  8  2015 F     Aaliyah-Mai     3  5730
-##  9  2015 F     Aaliyah-may     3  5730
-## 10  2015 F     Aamena          3  5730
-## # … with 227,439 more rows</code></pre>
-</div>
-<ol start="6" style="list-style-type: decimal">
-<li>Create a new column, <code>decade</code>, that contains the decade of birth (1990, 2000, 2010). Hint: see <code>?floor</code></li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">  ukb <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">floor</span>(year <span class="op">/</span><span class="st"> </span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span>)</code></pre>
-<pre><code>## # A tibble: 227,449 x 6
-##     year sex   name          n  rank decade
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-##  1  1996 F     Sophie     7087     1   1990
-##  2  1996 F     Chloe      6824     2   1990
-##  3  1996 F     Jessica    6711     3   1990
-##  4  1996 F     Emily      6415     4   1990
-##  5  1996 F     Lauren     6299     5   1990
-##  6  1996 F     Hannah     5916     6   1990
-##  7  1996 F     Charlotte  5866     7   1990
-##  8  1996 F     Rebecca    5828     8   1990
-##  9  1996 F     Amy        5206     9   1990
-## 10  1996 F     Megan      4948    10   1990
-## # … with 227,439 more rows</code></pre>
-</div>
-<ol start="7" style="list-style-type: decimal">
-<li>Pull out the male babies named Courtney that were born between 1998 and 2001 (inclusive).</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">    ukb <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Courtney&quot;</span>, sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>,
-             year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1998</span>, year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2001</span>)</code></pre>
-<pre><code>## # A tibble: 4 x 5
-##    year sex   name         n  rank
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1  1998 M     Courtney    33   554
-## 2  1999 M     Courtney    15   973
-## 3  2000 M     Courtney    19   848
-## 4  2001 M     Courtney    22   786</code></pre>
-</div>
-<ol start="8" style="list-style-type: decimal">
-<li>How many distinct names are represented in the dataset?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## how many distinct names are represented in the dataset?</span>
-ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">distinct</span>(name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()</code></pre>
-<pre><code>## # A tibble: 1 x 1
-##       n
-##   &lt;int&gt;
-## 1 31272</code></pre>
-</div>
-<ol start="9" style="list-style-type: decimal">
-<li>Pull out all the female babies named Frankie that were born before 1999 or after 2010</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">  ukb <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Frankie&quot;</span>, sex <span class="op">==</span><span class="st"> &quot;F&quot;</span>,
-          (year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1999</span>) <span class="op">|</span><span class="st"> </span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2010</span>))</code></pre>
-<pre><code>## # A tibble: 8 x 5
-##    year sex   name        n  rank
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1  1996 F     Frankie    34   686
-## 2  1997 F     Frankie    48   545
-## 3  1998 F     Frankie    41   619
-## 4  2011 F     Frankie   337   156
-## 5  2012 F     Frankie   298   173
-## 6  2013 F     Frankie   273   195
-## 7  2014 F     Frankie   344   162
-## 8  2015 F     Frankie   376   147</code></pre>
-</div>
-<ol start="10" style="list-style-type: decimal">
-<li>How many total babies in the dataset were named ‘Emily’?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">  <span class="co">## </span>
-  ukb <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;Emily&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">pull</span>(tot)</code></pre>
-<pre><code>## [1] 102250</code></pre>
-</div>
-<ol start="11" style="list-style-type: decimal">
-<li>How many distinct names are there for each sex?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">distinct</span>(name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()</code></pre>
-<pre><code>## # A tibble: 2 x 2
-## # Groups:   sex [2]
-##   sex       n
-##   &lt;chr&gt; &lt;int&gt;
-## 1 F     18823
-## 2 M     14378</code></pre>
-</div>
-<ol start="12" style="list-style-type: decimal">
-<li>What is the most popular name in the dataset?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(name)</code></pre>
-<pre><code>## [1] &quot;Jack&quot;</code></pre>
-</div>
-<ol start="13" style="list-style-type: decimal">
-<li>How many babies were born each year for each sex? Make a plot.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">babes_per_year &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n))
+<p>Download the <a href="exercises/05_dplyr_stub.Rmd">exercises</a>. See the <a href="exercises/05_dplyr_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 
-<span class="kw">ggplot</span>(babes_per_year, <span class="kw">aes</span>(year, tot, <span class="dt">color =</span> sex)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="05-dplyr_files/figure-html/ex5-1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="intermediate-3" class="section level3">
-<h3><span class="header-section-number">5.7.2</span> Intermediate</h3>
-<ul>
-<li>For the next questions, you might first want to read about window functions (<code>group_by()</code> + <code>filter()</code> or <code>mutate()</code> in the dplyr vignette: <code>vignette(&quot;window-functions&quot;)</code>.</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li>Create a column <code>prop</code> that contains the proportion of babies that were given a particular name for a given sex in a given year, then <code>ungroup()</code> the resulting table.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb_prop &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="co">## </span><span class="al">TODO</span><span class="co"> double check that you did it right by making sure the props</span>
-<span class="co">## for each year/sex combo sum to 1</span></code></pre>
-</div>
-<ol start="2" style="list-style-type: decimal">
-<li>Use a window function to pull out the top year for each name/sex combination in the table you just created (i.e., the year when the name was given to greatest proportion of babies of a given sex).</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb_top_year &lt;-<span class="st"> </span>ukb_prop <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(name, sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(p <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(p)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(year)</code></pre>
-</div>
-</div>
-<div id="advanced-3" class="section level3">
-<h3><span class="header-section-number">5.7.3</span> Advanced</h3>
-<ol style="list-style-type: decimal">
-<li>Make a frequency histogram for the final letter of each name, broken down by sex. Are certain final letters more “gendered” than others?</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">last_letter &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lastchar =</span> <span class="kw">substr</span>(name, <span class="kw">nchar</span>(name), <span class="kw">nchar</span>(name))) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(lastchar <span class="op">%in%</span><span class="st"> </span>letters) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(sex, lastchar) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(lastchar)
-
-<span class="kw">ggplot</span>(last_letter, <span class="kw">aes</span>(lastchar, n, <span class="dt">fill =</span> sex)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre>
-<p><img src="05-dplyr_files/figure-html/ex1-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<ol start="2" style="list-style-type: decimal">
-<li>Calculate the top 5 boys and girls names for each decade and print out the whole table.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decade =</span> <span class="kw">floor</span>(year <span class="op">/</span><span class="st"> </span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(decade, sex, name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot_n =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tot_n)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>)</code></pre>
-<pre><code>## # A tibble: 30 x 4
-##    decade sex   name    tot_n
-##     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
-##  1   1990 F     Chloe   33235
-##  2   1990 F     Emily   26341
-##  3   1990 F     Sophie  24111
-##  4   1990 F     Megan   23363
-##  5   1990 F     Jessica 23319
-##  6   1990 M     Jack    40554
-##  7   1990 M     Thomas  38004
-##  8   1990 M     James   37183
-##  9   1990 M     Daniel  34052
-## 10   1990 M     Joshua  30532
-## 11   2000 F     Emily   51663
-## 12   2000 F     Chloe   50965
-## 13   2000 F     Jessica 48023
-## 14   2000 F     Olivia  44937
-## 15   2000 F     Sophie  44885
-## 16   2000 M     Jack    82540
-## 17   2000 M     Thomas  70475
-## 18   2000 M     Joshua  69428
-## 19   2000 M     James   59247
-## 20   2000 M     Oliver  56990
-## 21   2010 F     Amelia  32397
-## 22   2010 F     Olivia  28977
-## 23   2010 F     Emily   24246
-## 24   2010 F     Jessica 21690
-## 25   2010 F     Lily    21379
-## 26   2010 M     Oliver  42642
-## 27   2010 M     Harry   38128
-## 28   2010 M     Jack    37492
-## 29   2010 M     Charlie 31009
-## 30   2010 M     Jacob   29667</code></pre>
-</div>
-<ol start="3" style="list-style-type: decimal">
-<li>Pull out the top 5 boys and girls names for the final year of the dataset, and plot the historical trajectory of their popularity, with separate graphs for boys and girls. (Hint: This might require merging tables, which you will learn about next week.)</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">top_names &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year), rank <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(sex, name)
-
-ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">inner_join</span>(top_names, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;name&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, n, <span class="dt">color =</span> name)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>sex)</code></pre>
-<p><img src="05-dplyr_files/figure-html/ex3-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<ol start="4" style="list-style-type: decimal">
-<li>What are the 10 most androgynous names in the UK? Discard any names that were given to less than 5000 babies total. Calculate an “androgyny index” for each name as log(F + .5) - log(M + .5) where F is the number of female and M is the number of male babies. This index will be zero for perfect gender balance, positive for skewed female, and negative for skewed male.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">andro &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(sex, name) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(sex, tot, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">N =</span> F <span class="op">+</span><span class="st"> </span>M)
-
-andro_gbal &lt;-<span class="st"> </span>andro <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(N <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5000</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">gbal =</span> <span class="kw">log</span>(F <span class="op">+</span><span class="st"> </span><span class="fl">.5</span>) <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(M <span class="op">+</span><span class="st"> </span><span class="fl">.5</span>),
-         <span class="dt">tot =</span> F <span class="op">+</span><span class="st"> </span>M) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">abs</span>(gbal)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
-</div>
-<ol start="5" style="list-style-type: decimal">
-<li>Which girl name has increased the most in popularity, if you directly compare the first year of the dataset to the last year? Which girl name has decreased the most? (Only comare names that were given to at least 500 babies in at least one of the years covered by the dataset.)</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">name_pop &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;F&quot;</span>, (year <span class="op">==</span><span class="st"> </span><span class="dv">1996</span>) <span class="op">|</span><span class="st"> </span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2015</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(year, n, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">2015</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">500</span> <span class="op">|</span><span class="st"> `</span><span class="dt">1996</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">500</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">chg =</span> <span class="st">`</span><span class="dt">2015</span><span class="st">`</span> <span class="op">-</span><span class="st"> `</span><span class="dt">1996</span><span class="st">`</span>)
-
-name_pop <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(chg)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(name)
-
-name_pop <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(chg) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(name)</code></pre>
-<pre><code>## [1] &quot;Amelia&quot;
-## [1] &quot;Sophie&quot;</code></pre>
-</div>
-<ol start="6" style="list-style-type: decimal">
-<li>Calculate the proportion of names that are androgynous for each year in the dataset (were given to both male and female babies) and then plot the historical trend.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">p_andro &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>rank) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(sex, n, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_andro =</span> (F <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(M <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">p =</span> <span class="kw">mean</span>(is_andro))
-
-<span class="kw">ggplot</span>(p_andro, <span class="kw">aes</span>(year, p)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="05-dplyr_files/figure-html/ex6-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-<ol start="7" style="list-style-type: decimal">
-<li><em>Naming diversity trends.</em> Calculate a naming diversity index (number of names divided by number of babies) for each year and sex in the dataset. Plot the historical trend for naming diversity.</li>
-</ol>
-<div class="solution">
-<button>
-Solution
-</button>
-<pre class="sourceCode r"><code class="sourceCode r">ndiversity &lt;-<span class="st"> </span>ukb <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(year, sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_names =</span> <span class="kw">n_distinct</span>(name),
-            <span class="dt">n_babies =</span> <span class="kw">sum</span>(n),
-            <span class="dt">d_index =</span> n_names <span class="op">/</span><span class="st"> </span>n_babies) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="kw">ggplot</span>(ndiversity,
-  <span class="kw">aes</span>(year, d_index, <span class="dt">color =</span> sex)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()</code></pre>
-<p><img src="05-dplyr_files/figure-html/ex7-adv-1.png" width="100%" style="display: block; margin: auto;" /></p>
-</div>
-
-</div>
 </div>
 </div>
 <div class="psyteachr_footer">

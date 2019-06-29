@@ -710,7 +710,7 @@ power_table <- tibble(
 
 ```
 
-## Formative exercises
+## Exercises
 
-Download the [formative exercises](formative_exercises/08_simulations_stub.Rmd). See the [answers](formative_exercises/08_simulations_answers.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/08_sim_stub.Rmd). See the [answers](exercises/08_sim_answers.Rmd) only after you've attempted all the questions.
 

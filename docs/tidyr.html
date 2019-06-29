@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-06-27" />
+<meta name="date" content="2019-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,10 +170,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -188,8 +188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.5</b> Importing data</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -228,11 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
 <li class="chapter" data-level="3.12" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>3.12</b> Quiz</a></li>
-<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-1"><i class="fa fa-check"></i><b>3.13</b> Exercises</a><ul>
-<li class="chapter" data-level="3.13.1" data-path="ggplot.html"><a href="ggplot.html#common-plots"><i class="fa fa-check"></i><b>3.13.1</b> Common Plots</a></li>
-<li class="chapter" data-level="3.13.2" data-path="ggplot.html"><a href="ggplot.html#two-continuous-variables"><i class="fa fa-check"></i><b>3.13.2</b> Two continuous variables</a></li>
-<li class="chapter" data-level="3.13.3" data-path="ggplot.html"><a href="ggplot.html#many-correlated-variables"><i class="fa fa-check"></i><b>3.13.3</b> Many correlated variables</a></li>
-</ul></li>
+<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>3.13</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
@@ -242,21 +238,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
-<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#sep"><i class="fa fa-check"></i><b>4.7.2</b> Set delimiters with <code>sep</code></a></li>
-<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#convert"><i class="fa fa-check"></i><b>4.7.3</b> Fix data types with <code>convert</code></a></li>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Three Rules for Tidy Data</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>4.5</b> Tidying Data</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.5.1</b> gather()</a></li>
+<li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.5.2</b> separate()</a></li>
+<li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.5.3</b> unite()</a></li>
+<li class="chapter" data-level="4.5.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.5.4</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a></li>
+<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.7</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.7.1</b> Load Data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.7.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.7.3</b> One Piece of Data per Column</a></li>
 <li class="chapter" data-level="4.7.4" data-path="tidyr.html"><a href="tidyr.html#all-in-one-step"><i class="fa fa-check"></i><b>4.7.4</b> All in one step</a></li>
+<li class="chapter" data-level="4.7.5" data-path="tidyr.html"><a href="tidyr.html#columns-by-year"><i class="fa fa-check"></i><b>4.7.5</b> Columns by Year</a></li>
+<li class="chapter" data-level="4.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>4.7.6</b> Merge Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.8</b> spread()</a></li>
-<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.9</b> unite()</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="tidyr.html"><a href="tidyr.html#control-separation-with-sep"><i class="fa fa-check"></i><b>4.9.1</b> Control separation with <code>sep</code></a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.10</b> Quiz</a></li>
-<li class="chapter" data-level="4.11" data-path="tidyr.html"><a href="tidyr.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.8</b> Quiz</a></li>
+<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
 <li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
@@ -283,16 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slide"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-3"><i class="fa fa-check"></i><b>5.7</b> Exercises</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="dplyr.html"><a href="dplyr.html#easy"><i class="fa fa-check"></i><b>5.7.1</b> Easy</a></li>
-<li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-3"><i class="fa fa-check"></i><b>5.7.2</b> Intermediate</a></li>
-<li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#advanced-3"><i class="fa fa-check"></i><b>5.7.3</b> Advanced</a></li>
-</ul></li>
+<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
-<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
@@ -315,17 +310,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.7.2</b> union()</a></li>
 <li class="chapter" data-level="6.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.7.3</b> setdiff()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-4"><i class="fa fa-check"></i><b>6.8</b> Exercises</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#mutating-joins-1"><i class="fa fa-check"></i><b>6.8.1</b> Mutating joins</a></li>
-<li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#filtering-joins-1"><i class="fa fa-check"></i><b>6.8.2</b> Filtering joins</a></li>
-<li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#binding-and-sets"><i class="fa fa-check"></i><b>6.8.3</b> Binding and sets</a></li>
-</ul></li>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
 <li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
@@ -348,13 +339,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-5"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
@@ -373,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>8.4.7</b> One-tailed prediction</a></li>
 <li class="chapter" data-level="8.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>8.4.8</b> Range of sample sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#formative-exercises-1"><i class="fa fa-check"></i><b>8.5</b> Formative exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
 <li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
@@ -383,13 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-6"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-6"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.3</b> R Markdown</a><ul>
@@ -442,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="basic-1" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Basic</h3>
 <ol style="list-style-type: decimal">
-<li>Understand the concept of “tidy data”</li>
+<li>Understand the concept of <a href="tidyr.html#tidy-data">tidy data</a></li>
 <li>Be able to use the 4 basic <code>tidyr</code> verbs
 <ul>
 <li><a href="tidyr.html#gather"><code>gather()</code></a></li>
@@ -481,68 +472,266 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(readxl)</code></pre>
 </div>
-<div id="load-data" class="section level2">
-<h2><span class="header-section-number">4.4</span> Load Data</h2>
-<p>Get data on infant mortality rates from the CSV file
-<a href="data/infmort.csv"><code>infmort.csv</code></a> in the directory <code>data</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</code></pre>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">4.4</span> Three Rules for Tidy Data</h2>
+<ul>
+<li>Each <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/v#variable'>variable</a> must have its own column</li>
+<li>Each <a class='glossary' target='_blank' title='All of the data about a single trial or question.' href='https://psyteachr.github.io/glossary/o#observation'>observation</a> must have its own row</li>
+<li>Each <a class='glossary' target='_blank' title='A single number or piece of data.' href='https://psyteachr.github.io/glossary/v#value'>value</a> must have its own cell</li>
+</ul>
+<p>This table has three observations per row and the <code>total_meanRT</code> column contains two values.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">score_1</th>
+<th align="left">score_2</th>
+<th align="left">score_3</th>
+<th align="left">rt_1</th>
+<th align="left">rt_2</th>
+<th>rt_3 t</th>
+<th align="left">otal_meanRT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">5</td>
+<td align="left">7</td>
+<td align="left">2</td>
+<td align="left">797</td>
+<td align="left">772</td>
+<td>614</td>
+<td align="left">14 (728)</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">4</td>
+<td align="left">6</td>
+<td align="left">1</td>
+<td align="left">907</td>
+<td align="left">719</td>
+<td>923</td>
+<td align="left">11 (850)</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">7</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">829</td>
+<td align="left">1005</td>
+<td>841</td>
+<td align="left">18 (892)</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">6</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">778</td>
+<td align="left">765</td>
+<td>837</td>
+<td align="left">10 (793)</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">805</td>
+<td align="left">712</td>
+<td>783</td>
+<td align="left">9 (767)</td>
+</tr>
+</tbody>
+</table>
+<p>This is the tidy version.</p>
+<table>
+<thead>
+<tr class="header">
+<th>id t</th>
+<th align="left">rial</th>
+<th align="center">rt</th>
+<th>score t</th>
+<th>otal m</th>
+<th align="left">ean_rt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="left">1</td>
+<td align="center">797</td>
+<td>5</td>
+<td>14</td>
+<td align="left">728</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td align="left">2</td>
+<td align="center">772</td>
+<td>7</td>
+<td>14</td>
+<td align="left">728</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td align="left">3</td>
+<td align="center">614</td>
+<td>2</td>
+<td>14</td>
+<td align="left">728</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left">1</td>
+<td align="center">907</td>
+<td>4</td>
+<td>11</td>
+<td align="left">850</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td align="left">2</td>
+<td align="center">719</td>
+<td>6</td>
+<td>11</td>
+<td align="left">850</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left">3</td>
+<td align="center">923</td>
+<td>1</td>
+<td>11</td>
+<td align="left">850</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">1</td>
+<td align="center">829</td>
+<td>7</td>
+<td>18</td>
+<td align="left">892</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="left">2</td>
+<td align="center">1005</td>
+<td>5</td>
+<td>18</td>
+<td align="left">892</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">3</td>
+<td align="center">841</td>
+<td>6</td>
+<td>18</td>
+<td align="left">892</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">1</td>
+<td align="center">778</td>
+<td>6</td>
+<td>10</td>
+<td align="left">793</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="left">2</td>
+<td align="center">765</td>
+<td>1</td>
+<td>10</td>
+<td align="left">793</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">3</td>
+<td align="center">837</td>
+<td>3</td>
+<td>10</td>
+<td align="left">793</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="left">1</td>
+<td align="center">805</td>
+<td>2</td>
+<td>9</td>
+<td align="left">767</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td align="left">2</td>
+<td align="center">712</td>
+<td>3</td>
+<td>9</td>
+<td align="left">767</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="left">3</td>
+<td align="center">783</td>
+<td>4</td>
+<td>9</td>
+<td align="left">767</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tidying-data" class="section level2">
+<h2><span class="header-section-number">4.5</span> Tidying Data</h2>
+<p>Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data/personality.csv">personality.csv</a>. These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
-##   Country = col_character(),
-##   Year = col_double(),
-##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
+##   .default = col_double(),
+##   date = col_date(format = &quot;&quot;)
 ## )</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(infmort)</code></pre>
-<pre><code>## Observations: 5,044
-## Variables: 3
-## $ Country                                                                                     &lt;chr&gt; …
-## $ Year                                                                                        &lt;dbl&gt; …
-## $ `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` &lt;chr&gt; …</code></pre>
-<p>Get data on maternal mortality from from the excel file
-<a href="data/matmort.xls"><code>matmort.xls</code></a> in the directory <code>data</code></p>
-<pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)
-<span class="kw">glimpse</span>(matmort)</code></pre>
-<pre><code>## Observations: 181
-## Variables: 4
-## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
-## $ `1990`  &lt;chr&gt; &quot;1 340 [ 878 - 1 950]&quot;, &quot;71 [ 58 -  88]&quot;, &quot;216 [ 141 -  …
-## $ `2000`  &lt;chr&gt; &quot;1 100 [ 745 - 1 570]&quot;, &quot;43 [ 33 -  56]&quot;, &quot;170 [ 118 -  …
-## $ `2015`  &lt;chr&gt; &quot;396 [ 253 -  620]&quot;, &quot;29 [ 16 -  46]&quot;, &quot;140 [ 82 -  244]…</code></pre>
-<p>Get data on country codes from <a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv">https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv</a></p>
-<pre class="sourceCode r"><code class="sourceCode r">ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   name = col_character(),
-##   `alpha-2` = col_character(),
-##   `alpha-3` = col_character(),
-##   `country-code` = col_character(),
-##   `iso_3166-2` = col_character(),
-##   region = col_character(),
-##   `sub-region` = col_character(),
-##   `intermediate-region` = col_character(),
-##   `region-code` = col_character(),
-##   `sub-region-code` = col_character(),
-##   `intermediate-region-code` = col_character()
-## )</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(ccodes)</code></pre>
-<pre><code>## Observations: 249
-## Variables: 11
-## $ name                       &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Alba…
-## $ `alpha-2`                  &lt;chr&gt; &quot;AF&quot;, &quot;AX&quot;, &quot;AL&quot;, &quot;DZ&quot;, &quot;AS&quot;, &quot;AD&quot;, &quot;…
-## $ `alpha-3`                  &lt;chr&gt; &quot;AFG&quot;, &quot;ALA&quot;, &quot;ALB&quot;, &quot;DZA&quot;, &quot;ASM&quot;, &quot;A…
-## $ `country-code`             &lt;chr&gt; &quot;004&quot;, &quot;248&quot;, &quot;008&quot;, &quot;012&quot;, &quot;016&quot;, &quot;0…
-## $ `iso_3166-2`               &lt;chr&gt; &quot;ISO 3166-2:AF&quot;, &quot;ISO 3166-2:AX&quot;, &quot;IS…
-## $ region                     &lt;chr&gt; &quot;Asia&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Africa&quot;,…
-## $ `sub-region`               &lt;chr&gt; &quot;Southern Asia&quot;, &quot;Northern Europe&quot;, &quot;…
-## $ `intermediate-region`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, &quot;Middle Afric…
-## $ `region-code`              &lt;chr&gt; &quot;142&quot;, &quot;150&quot;, &quot;150&quot;, &quot;002&quot;, &quot;009&quot;, &quot;1…
-## $ `sub-region-code`          &lt;chr&gt; &quot;034&quot;, &quot;154&quot;, &quot;039&quot;, &quot;015&quot;, &quot;061&quot;, &quot;0…
-## $ `intermediate-region-code` &lt;chr&gt; NA, NA, NA, NA, NA, NA, &quot;017&quot;, &quot;029&quot;,…</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<div id="gather" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> gather()</h3>
+<p><code>gather(data, key = &quot;key&quot;, value = &quot;value&quot;, ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)</code></p>
+<p><code>ocean</code> is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation.</p>
+<ul>
+<li><code>key</code> is what you want to call the row headers; it’s “question” in this example.</li>
+<li><code>value</code> is what you want to call the values in the gathered columns; they’re “score” in this example.</li>
+<li>The <code>...</code> refers to the columns you want to gather. You can refer to them by their names, like <code>col1, col2, col3, col4</code> or <code>col1:col4</code> or by their numbers, like <code>8, 9, 10</code> or <code>8:10</code>.</li>
+</ul>
+<p>Convert from wide to long format. The resulting dataframe should have the columns: <code>user_id</code>, <code>date</code>, <code>question</code>, and <code>score</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ocean_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(ocean, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9)</code></pre>
+</div>
+<div id="separate" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> separate()</h3>
+<p><code>separate(data, col, into, sep = &quot;[^[:alnum:]]+&quot;, remove = TRUE, convert = FALSE, extra = &quot;warn&quot;, fill = &quot;warn&quot;)</code></p>
+<p>Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
+<p>There is no character to split on, here, but you can separate a column after a specific number of characters by setting <code>sep</code> to an integer. For example, to split “abcde” after the third character, use <code>sep = 3</code>, which results in <code>c(&quot;abc&quot;, &quot;de&quot;)</code>. You can also use negative number to split before the <em>n</em>th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like “lisa03”“,”amanda38&quot;), you can use <code>sep = -2</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ocean_sep &lt;-<span class="st"> </span><span class="kw">separate</span>(ocean_gathered, question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</code></pre>
+</div>
+<div id="unite" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> unite()</h3>
+<p><code>unite(data, col, ..., sep = &quot;_&quot;, remove = TRUE)</code></p>
+<p>Put the domain and qnumber columns back together into a new column named <code>domain_n</code>. Make it in a format like “Op_Q1”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ocean_unite &lt;-<span class="st"> </span><span class="kw">unite</span>(ocean_sep, <span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>)</code></pre>
+</div>
+<div id="spread" class="section level3">
+<h3><span class="header-section-number">4.5.4</span> spread()</h3>
+<p><code>spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)</code></p>
+<p>You can reverse the processes above, as well. For example, you can convert data from long format into wide format.</p>
+<ul>
+<li><code>key</code> is the column that contains your new column headers</li>
+<li><code>value</code> is the column that contains the values in the new spread columns</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">ocean_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(ocean_unite, domain_n, score)</code></pre>
+</div>
 </div>
 <div id="pipes" class="section level2">
-<h2><span class="header-section-number">4.5</span> Pipes</h2>
+<h2><span class="header-section-number">4.6</span> Pipes</h2>
 <p><img src="images/04/pipe_sticker.png" style="width: 200px; float: right;"></p>
-<p>Pipes were introduced in the second lesson, but we will review them here. Pipes are a way to order your code in a more readable format.</p>
+<p>Pipes are a way to order your code in a more readable format.</p>
 <p>Let’s say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (<code>id</code>, <code>A_mean</code> and <code>B_mean</code>).</p>
 <p>One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you’ve created 6 unnecessary data objects in your environment. This can get confusing in very long scripts.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 10 subjects</span>
@@ -577,16 +766,16 @@ data</code></pre>
 ## # Groups:   id [10]
 ##       id A_mean B_mean
 ##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  1.07    1.75
-##  2     2  1.49    2.60
-##  3     3  0.721   2.56
-##  4     4  0.967   3.45
-##  5     5 -0.369   2.18
-##  6     6  0.365   2.58
-##  7     7 -0.796   3.57
-##  8     8  0.362   3.28
-##  9     9 -0.872   2.24
-## 10    10  0.766   3.29</code></pre>
+##  1     1  1.29    2.78
+##  2     2  0.151   3.95
+##  3     3  0.244   2.15
+##  4     4  1.03    3.19
+##  5     5  0.179   2.44
+##  6     6  1.01    1.57
+##  7     7  0.806   2.81
+##  8     8  0.293   2.12
+##  9     9  1.11    2.35
+## 10    10 -0.310   2.92</code></pre>
 <div class="warning">
 <p>
 You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
@@ -652,16 +841,82 @@ data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
 You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from <code>data &lt;-</code> to the end of the <code>separate</code> function and typing cmd-return. What does <code>data</code> look like now?
 </p>
 </div>
+<p>Chain all the steps above using pipes.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">spread</span>(domain_n, score)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   date = col_date(format = &quot;&quot;)
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
 </div>
-<div id="gather" class="section level2">
-<h2><span class="header-section-number">4.6</span> gather()</h2>
-<p><code>gather(data, key = &quot;key&quot;, value = &quot;value&quot;, ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)</code></p>
+<div id="more-complex-example" class="section level2">
+<h2><span class="header-section-number">4.7</span> More Complex Example</h2>
+<div id="load-data" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Load Data</h3>
+<p>Get data on infant mortality rates from the CSV file
+<a href="data/infmort.csv"><code>infmort.csv</code></a> in the directory <code>data</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Country = col_character(),
+##   Year = col_double(),
+##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
+## )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(infmort)</code></pre>
+<pre><code>## Observations: 5,044
+## Variables: 3
+## $ Country                                                                                     &lt;chr&gt; …
+## $ Year                                                                                        &lt;dbl&gt; …
+## $ `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` &lt;chr&gt; …</code></pre>
+<p>Get data on maternal mortality from from the excel file
+<a href="data/matmort.xls"><code>matmort.xls</code></a> in the directory <code>data</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)
+<span class="kw">glimpse</span>(matmort)</code></pre>
+<pre><code>## Observations: 181
+## Variables: 4
+## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
+## $ `1990`  &lt;chr&gt; &quot;1 340 [ 878 - 1 950]&quot;, &quot;71 [ 58 -  88]&quot;, &quot;216 [ 141 -  …
+## $ `2000`  &lt;chr&gt; &quot;1 100 [ 745 - 1 570]&quot;, &quot;43 [ 33 -  56]&quot;, &quot;170 [ 118 -  …
+## $ `2015`  &lt;chr&gt; &quot;396 [ 253 -  620]&quot;, &quot;29 [ 16 -  46]&quot;, &quot;140 [ 82 -  244]…</code></pre>
+<p>Get data on country codes from <a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv">https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv</a></p>
+<pre class="sourceCode r"><code class="sourceCode r">ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   name = col_character(),
+##   `alpha-2` = col_character(),
+##   `alpha-3` = col_character(),
+##   `country-code` = col_character(),
+##   `iso_3166-2` = col_character(),
+##   region = col_character(),
+##   `sub-region` = col_character(),
+##   `intermediate-region` = col_character(),
+##   `region-code` = col_character(),
+##   `sub-region-code` = col_character(),
+##   `intermediate-region-code` = col_character()
+## )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(ccodes)</code></pre>
+<pre><code>## Observations: 249
+## Variables: 11
+## $ name                       &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Alba…
+## $ `alpha-2`                  &lt;chr&gt; &quot;AF&quot;, &quot;AX&quot;, &quot;AL&quot;, &quot;DZ&quot;, &quot;AS&quot;, &quot;AD&quot;, &quot;…
+## $ `alpha-3`                  &lt;chr&gt; &quot;AFG&quot;, &quot;ALA&quot;, &quot;ALB&quot;, &quot;DZA&quot;, &quot;ASM&quot;, &quot;A…
+## $ `country-code`             &lt;chr&gt; &quot;004&quot;, &quot;248&quot;, &quot;008&quot;, &quot;012&quot;, &quot;016&quot;, &quot;0…
+## $ `iso_3166-2`               &lt;chr&gt; &quot;ISO 3166-2:AF&quot;, &quot;ISO 3166-2:AX&quot;, &quot;IS…
+## $ region                     &lt;chr&gt; &quot;Asia&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Africa&quot;,…
+## $ `sub-region`               &lt;chr&gt; &quot;Southern Asia&quot;, &quot;Northern Europe&quot;, &quot;…
+## $ `intermediate-region`      &lt;chr&gt; NA, NA, NA, NA, NA, NA, &quot;Middle Afric…
+## $ `region-code`              &lt;chr&gt; &quot;142&quot;, &quot;150&quot;, &quot;150&quot;, &quot;002&quot;, &quot;009&quot;, &quot;1…
+## $ `sub-region-code`          &lt;chr&gt; &quot;034&quot;, &quot;154&quot;, &quot;039&quot;, &quot;015&quot;, &quot;061&quot;, &quot;0…
+## $ `intermediate-region-code` &lt;chr&gt; NA, NA, NA, NA, NA, NA, &quot;017&quot;, &quot;029&quot;,…</code></pre>
+</div>
+<div id="wide-to-long" class="section level3">
+<h3><span class="header-section-number">4.7.2</span> Wide to Long</h3>
 <p><code>matmort</code> is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.</p>
-<ul>
-<li><code>key</code> is what you want to call the row headers; it’s “year” in this example.</li>
-<li><code>value</code> is what you want to call the values in the gathered columns; they’re “stats” in this example.</li>
-<li>The <code>...</code> refers to the columns you want to gather. You can refer to them by their names, like <code>col1, col2, col3, col4</code> or <code>col1:col4</code> or by their numbers, like <code>8, 9, 10</code> or <code>8:10</code>.</li>
-</ul>
 <p>This example is complicated because the column names to gather <em>are</em> numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (`) like the example below.</p>
 <pre class="sourceCode r"><code class="sourceCode r">matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>)
@@ -673,10 +928,9 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 ## $ Year    &lt;chr&gt; &quot;1990&quot;, &quot;1990&quot;, &quot;1990&quot;, &quot;1990&quot;, &quot;1990&quot;, &quot;1990&quot;, &quot;1990&quot;, …
 ## $ stats   &lt;chr&gt; &quot;1 340 [ 878 - 1 950]&quot;, &quot;71 [ 58 -  88]&quot;, &quot;216 [ 141 -  …</code></pre>
 </div>
-<div id="separate" class="section level2">
-<h2><span class="header-section-number">4.7</span> separate()</h2>
-<p><code>separate(data, col, into, sep = &quot;[^[:alnum:]]+&quot;, remove = TRUE, convert = FALSE, extra = &quot;warn&quot;, fill = &quot;warn&quot;)</code></p>
-<p>The data in the <code>stats</code> column is in a crazy format with some sort of confidence interval in brackets and lots of extra spaces. We don’t need any of the spaces, so first we’ll remove them with <code>mutate</code>.</p>
+<div id="one-piece-of-data-per-column" class="section level3">
+<h3><span class="header-section-number">4.7.3</span> One Piece of Data per Column</h3>
+<p>The data in the <code>stats</code> column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don’t need any of the spaces, so first we’ll remove them with <code>mutate</code>.</p>
 <p>The <code>separate</code> function will separate your data on anything that is not a number or letter, so try it first without specifying the <code>sep</code> argument. The <code>into</code> argument is a list of the new column names.</p>
 <pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
@@ -696,8 +950,8 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do search and replace. The example above replaces all occurances of the <code>pattern</code> &quot; &quot; (a space), with the <code>replacement</code> &quot;&quot; (nothing), in the string <code>x</code> (the <code>stats</code> column). Use <code>sub()</code> instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regex</a> patterns to replace, for example, all even numbers (e.g., <code>gsub(“[:02468:]”, &quot;<em>“,”id = 123456“)</code>) or all occurances of the word colour in US or UK spelling (e.g., <code>gsub(”colo(u)?r“,”</em>**“,”replace color, colour, or colours, but not collors&quot;)</code>).
 </p>
 </div>
-<div id="extra" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Handle spare columns with <code>extra</code></h3>
+<div id="extra" class="section level4">
+<h4><span class="header-section-number">4.7.3.1</span> Handle spare columns with <code>extra</code></h4>
 <div class="warning">
 <p>
 The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(“100”, “90”, “110”, &quot;“)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.
@@ -716,8 +970,8 @@ The previous example should have given you an error warning about “Too many va
 ## $ ci_low  &lt;chr&gt; &quot;878&quot;, &quot;58&quot;, &quot;141&quot;, &quot;627&quot;, &quot;64&quot;, &quot;51&quot;, &quot;7&quot;, &quot;7&quot;, &quot;56&quot;, &quot;…
 ## $ ci_hi   &lt;chr&gt; &quot;1950&quot;, &quot;88&quot;, &quot;327&quot;, &quot;2020&quot;, &quot;80&quot;, &quot;65&quot;, &quot;9&quot;, &quot;10&quot;, &quot;74&quot;…</code></pre>
 </div>
-<div id="sep" class="section level3">
-<h3><span class="header-section-number">4.7.2</span> Set delimiters with <code>sep</code></h3>
+<div id="sep" class="section level4">
+<h4><span class="header-section-number">4.7.3.2</span> Set delimiters with <code>sep</code></h4>
 <p>Now do the same with <code>infmort</code>. It’s already in long format, so you don’t need to use <code>gather</code>, but the third column has a crazy long name, so we can just refer to it by its column number (3).</p>
 <pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)
@@ -754,8 +1008,8 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ ci_low  &lt;chr&gt; &quot;52.7&quot;, &quot;55.7&quot;, &quot;58.7&quot;, &quot;61.6&quot;, &quot;64.4&quot;, &quot;66.9&quot;, &quot;69.0&quot;, …
 ## $ ci_hi   &lt;chr&gt; &quot;83.9&quot;, &quot;83.6&quot;, &quot;83.5&quot;, &quot;83.7&quot;, &quot;84.2&quot;, &quot;85.1&quot;, &quot;86.1&quot;, …</code></pre>
 </div>
-<div id="convert" class="section level3">
-<h3><span class="header-section-number">4.7.3</span> Fix data types with <code>convert</code></h3>
+<div id="convert" class="section level4">
+<h4><span class="header-section-number">4.7.3.3</span> Fix data types with <code>convert</code></h4>
 <p>That’s better. Notice the <em><chr></em> next to <code>Year</code>, <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code>. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can’t average words), so we can fix it by adding the argument <code>convert</code> and setting it to <code>TRUE</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)
@@ -781,6 +1035,7 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ rate    &lt;int&gt; 1340, 71, 216, 1160, 72, 58, 8, 8, 64, 46, 26, 569, 58, …
 ## $ ci_low  &lt;int&gt; 878, 58, 141, 627, 64, 51, 7, 7, 56, 34, 20, 446, 47, 28…
 ## $ ci_hi   &lt;int&gt; 1950, 88, 327, 2020, 80, 65, 9, 10, 74, 61, 33, 715, 72,…</code></pre>
+</div>
 </div>
 <div id="all-in-one-step" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> All in one step</h3>
@@ -826,16 +1081,9 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ ci_low  &lt;dbl&gt; 52.7, 55.7, 58.7, 61.6, 64.4, 66.9, 69.0, 71.2, 73.4, 75…
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90…</code></pre>
 </div>
-</div>
-<div id="spread" class="section level2">
-<h2><span class="header-section-number">4.8</span> spread()</h2>
-<p><code>spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)</code></p>
-<p>You can reverse the processes above, as well. For example, you can convert data from long format into wide format.</p>
-<ul>
-<li><code>key</code> is the column that contains your new column headers</li>
-<li><code>value</code> is the column that contains the values in the new spread columns</li>
-</ul>
-<p>Let’s spread out the infant mortality rate by year.</p>
+<div id="columns-by-year" class="section level3">
+<h3><span class="header-section-number">4.7.5</span> Columns by Year</h3>
+<p>Spread out the infant mortality rate by year.</p>
 <pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(Year, rate)
 
@@ -877,9 +1125,9 @@ Nope, that didn’t work at all, but it’s a really common mistake when spreadi
 </p>
 </div>
 </div>
-<div id="unite" class="section level2">
-<h2><span class="header-section-number">4.9</span> unite()</h2>
-<p><code>unite(data, col, ..., sep = &quot;_&quot;, remove = TRUE)</code></p>
+<div id="merge-columns" class="section level3">
+<h3><span class="header-section-number">4.7.6</span> Merge Columns</h3>
+<p>Merge the rate and confidence intervals into one column.</p>
 <pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi)
 
@@ -889,8 +1137,8 @@ Nope, that didn’t work at all, but it’s a really common mistake when spreadi
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
 ## $ Year    &lt;dbl&gt; 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 20…
 ## $ rate_ci &lt;chr&gt; &quot;66.3_52.7_83.9&quot;, &quot;68.1_55.7_83.6&quot;, &quot;69.9_58.7_83.5&quot;, &quot;7…</code></pre>
-<div id="control-separation-with-sep" class="section level3">
-<h3><span class="header-section-number">4.9.1</span> Control separation with <code>sep</code></h3>
+<div id="control-separation-with-sep" class="section level4">
+<h4><span class="header-section-number">4.7.6.1</span> Control separation with <code>sep</code></h4>
 <p><code>unite()</code> separates merged names with an underscore by default.
 Set the <code>sep</code> argument if you want to change that.</p>
 <pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
@@ -956,75 +1204,76 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 ## $ `2015`  &lt;chr&gt; &quot;66.3, 52.7, 83.9&quot;, &quot;12.5, 7, 22.2&quot;, &quot;21.9, 20.8, 23&quot;, &quot;…</code></pre>
 </div>
 </div>
+</div>
 <div id="tidyr-quiz" class="section level2">
-<h2><span class="header-section-number">4.10</span> Quiz</h2>
+<h2><span class="header-section-number">4.8</span> Quiz</h2>
 <p>The following data table is called <code>quiz_data</code>.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="right">id</th>
-<th align="left">condition</th>
-<th align="right">version</th>
-<th align="left">pet</th>
-<th align="right">score</th>
+<th>id c</th>
+<th align="left">ondition</th>
+<th>version p</th>
+<th align="left">et</th>
+<th align="center">score</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">1</td>
+<td>1</td>
 <td align="left">A</td>
-<td align="right">1</td>
+<td>1</td>
 <td align="left">cat</td>
-<td align="right">0.793</td>
+<td align="center">-0.809</td>
 </tr>
 <tr class="even">
-<td align="right">1</td>
+<td>1</td>
 <td align="left">A</td>
-<td align="right">2</td>
+<td>2</td>
 <td align="left">cat</td>
-<td align="right">1.332</td>
+<td align="center">-2.340</td>
 </tr>
 <tr class="odd">
-<td align="right">1</td>
+<td>1</td>
 <td align="left">B</td>
-<td align="right">1</td>
+<td>1</td>
 <td align="left">cat</td>
-<td align="right">0.180</td>
+<td align="center">-0.377</td>
 </tr>
 <tr class="even">
-<td align="right">1</td>
+<td>1</td>
 <td align="left">B</td>
-<td align="right">2</td>
+<td>2</td>
 <td align="left">cat</td>
-<td align="right">-0.278</td>
+<td align="center">0.797</td>
 </tr>
 <tr class="odd">
-<td align="right">2</td>
+<td>2</td>
 <td align="left">A</td>
-<td align="right">1</td>
+<td>1</td>
 <td align="left">dog</td>
-<td align="right">0.818</td>
+<td align="center">-0.931</td>
 </tr>
 <tr class="even">
-<td align="right">2</td>
+<td>2</td>
 <td align="left">A</td>
-<td align="right">2</td>
+<td>2</td>
 <td align="left">dog</td>
-<td align="right">-0.335</td>
+<td align="center">-0.862</td>
 </tr>
 <tr class="odd">
-<td align="right">2</td>
+<td>2</td>
 <td align="left">B</td>
-<td align="right">1</td>
+<td>1</td>
 <td align="left">dog</td>
-<td align="right">1.175</td>
+<td align="center">0.736</td>
 </tr>
 <tr class="even">
-<td align="right">2</td>
+<td>2</td>
 <td align="left">B</td>
-<td align="right">2</td>
+<td>2</td>
 <td align="left">dog</td>
-<td align="right">-0.012</td>
+<td align="center">-0.930</td>
 </tr>
 </tbody>
 </table>
@@ -1045,29 +1294,29 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">0.7928979</td>
-<td align="right">0.1798450</td>
+<td align="right">-0.8087557</td>
+<td align="right">-0.3770807</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">1.3319511</td>
-<td align="right">-0.2778590</td>
+<td align="right">-2.3403169</td>
+<td align="right">0.7972512</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">0.8179771</td>
-<td align="right">1.1752244</td>
+<td align="right">-0.9308426</td>
+<td align="right">0.7359610</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">-0.3349067</td>
-<td align="right">-0.0115811</td>
+<td align="right">-0.8619957</td>
+<td align="right">-0.9301504</td>
 </tr>
 </tbody>
 </table>
@@ -1087,49 +1336,49 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="left">A_1</td>
 <td align="left">cat</td>
-<td align="right">0.7928979</td>
+<td align="right">-0.8087557</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A_2</td>
 <td align="left">cat</td>
-<td align="right">1.3319511</td>
+<td align="right">-2.3403169</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B_1</td>
 <td align="left">cat</td>
-<td align="right">0.1798450</td>
+<td align="right">-0.3770807</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B_2</td>
 <td align="left">cat</td>
-<td align="right">-0.2778590</td>
+<td align="right">0.7972512</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A_1</td>
 <td align="left">dog</td>
-<td align="right">0.8179771</td>
+<td align="right">-0.9308426</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A_2</td>
 <td align="left">dog</td>
-<td align="right">-0.3349067</td>
+<td align="right">-0.8619957</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B_1</td>
 <td align="left">dog</td>
-<td align="right">1.1752244</td>
+<td align="right">0.7359610</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B_2</td>
 <td align="left">dog</td>
-<td align="right">-0.0115811</td>
+<td align="right">-0.9301504</td>
 </tr>
 </tbody>
 </table>
@@ -1183,14 +1432,9 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 </tr>
 </tbody>
 </table>
-<div class="solution">
-<button>
-Solution
-</button>
 <pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">gather</span>(var, value, Sepal.Length<span class="op">:</span>Petal.Width) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</code></pre>
-</div></li>
+<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</code></pre></li>
 <li><p>Re-write the following code using pipes. Assign the resulting data table to a variable called <code>data</code>.</p></li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span>
@@ -1209,10 +1453,6 @@ data_united &lt;-<span class="st"> </span><span class="kw">unite</span>(data_gat
 
 <span class="co"># spread the score column into cells</span>
 data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</code></pre>
-<div class="solution">
-<button>
-Solution
-</button>
 <pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
   <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),
   <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),
@@ -1223,62 +1463,9 @@ Solution
 <span class="st">  </span><span class="kw">unite</span>(cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">spread</span>(cell, score)</code></pre>
 </div>
-</div>
-<div id="exercises-2" class="section level2">
-<h2><span class="header-section-number">4.11</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/04_wrangle1_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/04_wrangle1_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<p>Tidy the data from <a href="data/personality.csv">personality.csv</a>.</p>
-<p>These data are from a 5-factor (OCEAN) personality questionnaire. Each question
-is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion,
-Ag = agreeableness, and Ne = neuroticism) and the question number.</p>
-<ol style="list-style-type: decimal">
-<li><p><em>Basic</em>: Load the data and convert from wide to long format.</p>
-<p>The resulting dataframe should have the columns: <code>user_id</code>, <code>date</code>, <code>question</code>, and <code>score</code>.</p></li>
-<li><p><em>Basic</em>: Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
-&lt;p class=“alert alert-info’&gt;
-There is no character to split on, here, but you can separate a column after a
-specific number of characters by setting <code>sep</code> to an integer. For example, to
-split”abcde&quot; after the third character, use <code>sep = 3</code>, which results in
-c(“abc”, “de”). You can also use negative number to split before the <em>n</em>th
-character from the right. For example, to split a column that has words of
-various lengths and 2-digit suffixes (like “lisa03”“,”amanda38&quot;), you can
-use <code>sep = -2</code>.
-</p></li>
-<li><p><em>Basic</em>: Put the domain and qnumber columns back together into a new column named <code>domain_n</code>. Make it in a format like “Op_Q1”.</p></li>
-<li><p><em>Basic</em>: Convert back to wide format.</p></li>
-<li><p><em>Intermediate</em>: Chain all the steps above using pipes.</p></li>
-</ol>
-<p><em>Intermediate</em>: Debug the following code:</p>
-<ol start="6" style="list-style-type: decimal">
-<li><p>Load the data from <a href="data/sensation_seeking.csv">sensation_seeking.csv</a>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ss &lt;-<span class="st"> </span><span class="kw">read_csv</span>(data<span class="op">/</span>sensation_seeking.csv)</code></pre></li>
-<li><p>Convert from wide to long format.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ss_long &lt;-<span class="st"> </span><span class="kw">gather</span>(ss, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>)</code></pre></li>
-<li><p>Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ss_sep &lt;-<span class="st"> </span>ss_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(question, domain, qnumber, <span class="dt">sep =</span> <span class="dv">3</span>)</code></pre></li>
-<li><p>Put the <code>id</code> and <code>user_id</code> columns together into a new column named <code>super_id</code>. Make it in a format like “id-user_id”.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ss_unite &lt;-<span class="st"> </span>ss_sep <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(id, user_id, <span class="st">&quot;super_id&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)</code></pre></li>
-<li><p>Convert back to wide format.</p></li>
-</ol>
-<pre><code>```r
-ss_wide &lt;- ss_unite %&gt;%
-  spreadr(qnumber, score)
-```</code></pre>
-<p><em>Intermediate</em>: Load the dataset <a href="data/family_composition.csv">family_composition.csv</a>.</p>
-<ol start="11" style="list-style-type: decimal">
-<li>The columns <code>oldbro</code> through <code>twinsis</code> give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (old, young, twin) and sex (bro, sis).</li>
-</ol>
-<p><em>Advanced</em>: Tidy the data from <a href="data/eye_descriptions.csv">eye_descriptions.csv</a>. This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face, separated by commas, semicolons, or slashes.</p>
-<ol start="12" style="list-style-type: decimal">
-<li>Create a dataset with separate columns for face_id, description, and number of description.</li>
-</ol>
-<p><em>I’m bored</em></p>
-<ol start="13" style="list-style-type: decimal">
-<li><p>Using the family composition dataset from question 11, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.</p></li>
-<li><p>Create a list of the 10 most common descriptions from the eye colour dataset in question 12. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to <code>knitr::kable()</code>.</p></li>
-</ol>
+<div id="exercises-3" class="section level2">
+<h2><span class="header-section-number">4.9</span> Exercises</h2>
+<p>Download the <a href="exercises/04_tidyr_stub.Rmd">exercises</a>. See the <a href="exercises/04_tidyr_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 
 </div>
 </div>

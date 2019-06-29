@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-06-27" />
+<meta name="date" content="2019-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,10 +170,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#developing-reproducible-scripts"><i class="fa fa-check"></i><b>1.6</b> Developing reproducible scripts</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.1</b> Reproducible reports with RStudio and RMarkdown</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#project_org"><i class="fa fa-check"></i><b>1.6.2</b> Organizing a project</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#script_struct"><i class="fa fa-check"></i><b>1.6.3</b> Structuring your script</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
+<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
@@ -188,8 +188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.5</b> Importing data</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#ex_import"><i class="fa fa-check"></i><b>2.5.2</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
@@ -228,11 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
 <li class="chapter" data-level="3.12" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>3.12</b> Quiz</a></li>
-<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-1"><i class="fa fa-check"></i><b>3.13</b> Exercises</a><ul>
-<li class="chapter" data-level="3.13.1" data-path="ggplot.html"><a href="ggplot.html#common-plots"><i class="fa fa-check"></i><b>3.13.1</b> Common Plots</a></li>
-<li class="chapter" data-level="3.13.2" data-path="ggplot.html"><a href="ggplot.html#two-continuous-variables"><i class="fa fa-check"></i><b>3.13.2</b> Two continuous variables</a></li>
-<li class="chapter" data-level="3.13.3" data-path="ggplot.html"><a href="ggplot.html#many-correlated-variables"><i class="fa fa-check"></i><b>3.13.3</b> Many correlated variables</a></li>
-</ul></li>
+<li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>3.13</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
@@ -242,21 +238,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.4</b> Load Data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.5</b> Pipes</a></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6</b> gather()</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.7</b> separate()</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#extra"><i class="fa fa-check"></i><b>4.7.1</b> Handle spare columns with <code>extra</code></a></li>
-<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#sep"><i class="fa fa-check"></i><b>4.7.2</b> Set delimiters with <code>sep</code></a></li>
-<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#convert"><i class="fa fa-check"></i><b>4.7.3</b> Fix data types with <code>convert</code></a></li>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Three Rules for Tidy Data</a></li>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>4.5</b> Tidying Data</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.5.1</b> gather()</a></li>
+<li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.5.2</b> separate()</a></li>
+<li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.5.3</b> unite()</a></li>
+<li class="chapter" data-level="4.5.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.5.4</b> spread()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a></li>
+<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.7</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.7.1</b> Load Data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.7.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.7.3</b> One Piece of Data per Column</a></li>
 <li class="chapter" data-level="4.7.4" data-path="tidyr.html"><a href="tidyr.html#all-in-one-step"><i class="fa fa-check"></i><b>4.7.4</b> All in one step</a></li>
+<li class="chapter" data-level="4.7.5" data-path="tidyr.html"><a href="tidyr.html#columns-by-year"><i class="fa fa-check"></i><b>4.7.5</b> Columns by Year</a></li>
+<li class="chapter" data-level="4.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>4.7.6</b> Merge Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.8</b> spread()</a></li>
-<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.9</b> unite()</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="tidyr.html"><a href="tidyr.html#control-separation-with-sep"><i class="fa fa-check"></i><b>4.9.1</b> Control separation with <code>sep</code></a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.10</b> Quiz</a></li>
-<li class="chapter" data-level="4.11" data-path="tidyr.html"><a href="tidyr.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.8</b> Quiz</a></li>
+<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
 <li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
@@ -283,16 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slide"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-3"><i class="fa fa-check"></i><b>5.7</b> Exercises</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="dplyr.html"><a href="dplyr.html#easy"><i class="fa fa-check"></i><b>5.7.1</b> Easy</a></li>
-<li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-3"><i class="fa fa-check"></i><b>5.7.2</b> Intermediate</a></li>
-<li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#advanced-3"><i class="fa fa-check"></i><b>5.7.3</b> Advanced</a></li>
-</ul></li>
+<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
-<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
@@ -315,17 +310,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.7.2</b> union()</a></li>
 <li class="chapter" data-level="6.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.7.3</b> setdiff()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-4"><i class="fa fa-check"></i><b>6.8</b> Exercises</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#mutating-joins-1"><i class="fa fa-check"></i><b>6.8.1</b> Mutating joins</a></li>
-<li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#filtering-joins-1"><i class="fa fa-check"></i><b>6.8.2</b> Filtering joins</a></li>
-<li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#binding-and-sets"><i class="fa fa-check"></i><b>6.8.3</b> Binding and sets</a></li>
-</ul></li>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
 <li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
@@ -348,13 +339,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-5"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
 <li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-5"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
@@ -373,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>8.4.7</b> One-tailed prediction</a></li>
 <li class="chapter" data-level="8.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>8.4.8</b> Range of sample sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#formative-exercises-1"><i class="fa fa-check"></i><b>8.5</b> Formative exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
 <li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
@@ -383,13 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-6"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-6"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-6"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.3</b> R Markdown</a><ul>
@@ -448,14 +439,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Set <a href="func.html#defaults">default values</a> for the arguments in your functions</li>
 </ol>
 </div>
-<div id="intermediate-5" class="section level3">
+<div id="intermediate-4" class="section level3">
 <h3><span class="header-section-number">7.1.2</span> Intermediate</h3>
 <ol start="5" style="list-style-type: decimal">
 <li>Understand <a href="func.html#scope">scope</a></li>
 <li>Use <a href="func.html#warnings-errors">error handling and warnings</a> in a function</li>
 </ol>
 </div>
-<div id="advanced-4" class="section level3">
+<div id="advanced-3" class="section level3">
 <h3><span class="header-section-number">7.1.3</span> Advanced</h3>
 <p>The topics below are not (yet) covered in these materials, but they are directions for independent learning.</p>
 <ol start="7" style="list-style-type: decimal">
@@ -533,8 +524,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  86.70   86.70   98.25 9.07e-06 ***
-## Residuals    8   7.06    0.88                     
+## A            1 125.29  125.29   115.8 4.89e-06 ***
+## Residuals    8   8.65    1.08                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -551,7 +542,7 @@ pval
 ```
 
 ```
-## [1] 9.06594e-06
+## [1] 4.893825e-06
 ```
 -->
 </div>
@@ -698,13 +689,13 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 ##  Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -3.2397, df = 33.799, p-value = 0.002686
+## t = -1.8994, df = 37.08, p-value = 0.06531
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.567862 -0.358933
+##  -1.34955196  0.04352644
 ## sample estimates:
 ## mean of x mean of y 
-##  4.851887  5.815284</code></pre>
+##  4.812701  5.465714</code></pre>
 <p>You can also convert the table to long format using the <code>gather</code> function and specify the t-test using the format <code>number_column~grouping_column</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)
 
@@ -713,13 +704,13 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 ##  Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -3.2397, df = 33.799, p-value = 0.002686
+## t = -1.8994, df = 37.08, p-value = 0.06531
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.567862 -0.358933
+##  -1.34955196  0.04352644
 ## sample estimates:
 ## mean in group A mean in group B 
-##        4.851887        5.815284</code></pre>
+##        4.812701        5.465714</code></pre>
 </div>
 <div id="broomtidy" class="section level3">
 <h3><span class="header-section-number">7.5.4</span> <code>broom::tidy()</code></h3>
@@ -734,7 +725,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <pre><code>## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1   -0.151      5.11      5.26    -0.499   0.621      37.4   -0.764
+## 1   -0.380      5.07      5.45     -1.32   0.194      37.4   -0.962
 ## # … with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 ## #   alternative &lt;chr&gt;</code></pre>
 <p>Finally, we can extract a single value from this results table using <code>pull()</code>.</p>
@@ -746,7 +737,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>(p.value)</code></pre>
-<pre><code>## [1] 0.07352519</code></pre>
+<pre><code>## [1] 0.1410771</code></pre>
 </div>
 <div id="turn-into-a-function" class="section level3">
 <h3><span class="header-section-number">7.5.5</span> Turn into a function</h3>
@@ -763,7 +754,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 }</code></pre>
 <p>Run it a few times to see what happens.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>()</code></pre>
-<pre><code>## [1] 0.06364008</code></pre>
+<pre><code>## [1] 0.1921308</code></pre>
 </div>
 <div id="replicate" class="section level3">
 <h3><span class="header-section-number">7.5.6</span> <code>replicate()</code></h3>
@@ -772,7 +763,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 alpha &lt;-<span class="st"> </span><span class="fl">.05</span>
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>alpha)
 power</code></pre>
-<pre><code>## [1] 0.333</code></pre>
+<pre><code>## [1] 0.318</code></pre>
 </div>
 <div id="add-arguments" class="section level3">
 <h3><span class="header-section-number">7.5.7</span> Add arguments</h3>
@@ -790,13 +781,13 @@ power</code></pre>
 <p>Test your function with some different values to see if the results make sense.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>(<span class="dv">100</span>)
 <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</code></pre>
-<pre><code>## [1] 0.6559663
-## [1] 0.0002086047</code></pre>
+<pre><code>## [1] 0.5621763
+## [1] 0.0001056935</code></pre>
 <p>Use <code>replicate</code> to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.</p>
 <pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>)
 power</code></pre>
-<pre><code>## [1] 0.286</code></pre>
+<pre><code>## [1] 0.284</code></pre>
 <p>Compare this to power calculated from the <code>power.t.test</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</code></pre>
 <pre><code>## 
@@ -818,256 +809,9 @@ power</code></pre>
 </ul>
 </div>
 </div>
-<div id="exercises-5" class="section level2">
+<div id="exercises-6" class="section level2">
 <h2><span class="header-section-number">7.6</span> Exercises</h2>
-<p>Download the <a href="formative_exercises/07_functions_stub.Rmd">formative exercises</a>. See the <a href="formative_exercises/07_functions_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<!--
-### Custom functions: `sim_data`
-
-Put the code you used to create `dat` above as the body of a new function `sim_data()` with no arguments.  Call the function twice to make sure it works and that it gives you different data each time.
-
-
-```r
-sim_data <- function() {
-  tibble(
-    mu = 100,
-    eff = rep(c(-3, 3), each = 5),
-    A = rep(c("A1", "A2"), each = 5),
-    err = rnorm(10),
-    Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-```
-
-Now re-write `sim_data()` to allow the user to change the values of `mu`, `eff`, and the standard deviation of `err`.  The use the values you used before as defaults.
-
-
-```r
-sim_data <- function(mu = 100, eff = 3, sd = 1) {
-  tibble(
-    mu = mu,
-    eff = rep(c(-eff, eff), each = 5),
-    A = rep(c("A1", "A2"), each = 5),
-    err = rnorm(10, sd = sd),
-    Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-
-sim_data()
-```
-
-```
-## # A tibble: 10 x 5
-##        Y    mu   eff A          err
-##    <dbl> <dbl> <dbl> <chr>    <dbl>
-##  1  97.0   100    -3 A1     0.00681
-##  2  97.9   100    -3 A1     0.926  
-##  3  97.3   100    -3 A1     0.340  
-##  4  96.8   100    -3 A1    -0.195  
-##  5  97.2   100    -3 A1     0.152  
-##  6 104.    100     3 A2     1.10   
-##  7 103.    100     3 A2     0.437  
-##  8 103.    100     3 A2    -0.425  
-##  9 103.    100     3 A2     0.396  
-## 10 104.    100     3 A2     0.781
-```
-
-<p class="alert alert-info">What happens when you call the function with different values?</p>
-
-Next, re-write it *again* to allow the user to change the number of observations per group through an argument `n_per_group`, which defaults to 5. Run it a few times with varying arguments to check.
-
-
-```r
-sim_data <- function(mu = 100, eff = 3, sd = 1, n_per_group = 5) {
-  tibble(mu = mu,
-     eff = rep(c(-eff, eff), each = n_per_group),
-     A = factor(rep(c("A1", "A2"), each = n_per_group)),
-     err = rnorm(2 * n_per_group, sd = sd),
-     Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-
-sim_data(n_per_group = 2)
-sim_data(0, 10, 40, 20)
-```
-
-```
-## # A tibble: 4 x 5
-##       Y    mu   eff A         err
-##   <dbl> <dbl> <dbl> <fct>   <dbl>
-## 1  96.9   100    -3 A1    -0.0786
-## 2  97.7   100    -3 A1     0.662 
-## 3 103.    100     3 A2     0.432 
-## 4 103.    100     3 A2    -0.497 
-## # A tibble: 40 x 5
-##          Y    mu   eff A         err
-##      <dbl> <dbl> <dbl> <fct>   <dbl>
-##  1  -48.6      0   -10 A1     -38.6 
-##  2  -31.5      0   -10 A1     -21.5 
-##  3  -31.5      0   -10 A1     -21.5 
-##  4  -13.5      0   -10 A1      -3.46
-##  5    7.38     0   -10 A1      17.4 
-##  6  -68.8      0   -10 A1     -58.8 
-##  7 -124.       0   -10 A1    -114.  
-##  8   32.7      0   -10 A1      42.7 
-##  9  -39.2      0   -10 A1     -29.2 
-## 10  -85.8      0   -10 A1     -75.8 
-## # … with 30 more rows
-```
-
-OK now let's wrap the code you created to run an ANOVA and get the p-value in the function `run_anova()`.  It should have one argument, `x`, which is the data on which the anova is to be performed, and it should return a single value: the $p$-value.  Call it a few times with `x` as a simulated dataset to make sure it works as you intended, and that the p-values are changing.
-
-
-```r
-run_anova <- function(x) {
-  mod <- aov(Y ~ A, x)
-  broom::tidy(mod) %>% pull(p.value) %>% pluck(1)
-}
-
-run_anova(sim_data())
-```
-
-```
-## [1] 1.099885e-06
-```
-
-Modify `run_anova()` so that it accepts an additional argument `all_stats` (default `FALSE`) which determines whether the whole table from `broom::tidy()` is returned (when `TRUE`), or just the $p$-value (when `FALSE`).
-
-
-```r
-run_anova <- function(x, all_stats = FALSE) {
-  mod <- aov(Y ~ A, x)
-  stats_tbl <- broom::tidy(mod)
-  if (all_stats) {
-    stats_tbl
-  } else {
-    stats_tbl %>% pull(p.value) %>% pluck(1)
-  }
-}
-
-run_anova(sim_data())
-run_anova(sim_data(), TRUE)
-```
-
-```
-## [1] 9.446602e-07
-## # A tibble: 2 x 6
-##   term         df sumsq meansq statistic     p.value
-##   <chr>     <dbl> <dbl>  <dbl>     <dbl>       <dbl>
-## 1 A             1 88.7  88.7        104.  0.00000742
-## 2 Residuals     8  6.84  0.855       NA  NA
-```
-
-## Iterating
-
-Now we're going to pull together what we've done so far and attempt to perform a power analysis through simulation!
-
-Power is *the probability of rejecting a false null hypothesis*, usually denoted as $1 - \beta$ where $\beta$ is the probability of a Type II error (retaining $H_0$ when it is false).  It relates to the sensitivity of an analysis.
-
-For simple designs, like our two-group situation, power can be calculated analytically.  However, for more complicated designs, it is often necessary to run simulations to estimate power.  So although the approach here is overkill (for a two-group design you could use the function `pow.t.test()`) it more generalizable.
-
-Our simulation-based power estimate will involve three main steps:
-
-1. Generate `nmc` number of datasets, where `nmc` is a large number (typically >1000);
-2. Run the analysis on the datasets and store the results
-3. Analyze the results from step 2
-
-First let's learn about some of the functions used for iteration.  These functions live in the `purrr` package which is part of the tidyverse.
-
-The `purrr::map*` functions are probably the most important.  `purrr::map()` takes a list as its first object and iterates through the elements of the list, passing each element to the function name specified as the second argument and storing the results.  You can choose one of the various `map()` functions depending on how you want the return values stored.  `map_chr()` returns a vector of character strings; `map_dbl()` returns a vector of real numbers; `map_int()` returns a vector of integers.
-
-`map()` is appropriate when you have varying input and want to do something to each element of the input and keep the result.  Sometimes you don't have any input, but just want to do the same thing $X$ times and keep the result.  In this situation, use `purrr::rerun()`.  Other times, you might have varying input, but want to call a function not for the result it will return, but for its side effect (e.g., save a file, or print a message to the user).  In this situation, use `purrr::walk()`.  Take a moment to familiarize yourself with the help pages for these functions.
-
-1. Create a list `dsets` containing 5 datasets using `purrr::rerun()` on your `sim_data()` function.
-
-
-```r
-dsets <- rerun(5, sim_data())
-```
-
-2. Now use `map()` on `dsets` to call `run_anova()` on each of the 5 datasets.
-
-
-```r
-map(dsets, run_anova)
-```
-
-```
-## [[1]]
-## [1] 1.010332e-06
-## 
-## [[2]]
-## [1] 8.932128e-06
-## 
-## [[3]]
-## [1] 2.319243e-05
-## 
-## [[4]]
-## [1] 0.002814869
-## 
-## [[5]]
-## [1] 2.129696e-05
-```
-
-3. Re-write the `map()` command above so that it returns a vector of type `double` instead of a list.  At the same time, re-write it so that it performs steps 1 and 2 in a single line.
-
-
-```r
-map_dbl(rerun(5, sim_data()), run_anova)
-```
-
-```
-## [1] 9.129116e-06 2.802027e-05 1.711086e-07 3.212498e-04 6.269093e-05
-```
-
-4. Write code to count the proportion of runs for which the $p$-value is less than .05.  This is your estimate of power, given the effect size.
-
-
-```r
-n_runs <- 5L
-pvals <- map_dbl(rerun(n_runs, sim_data()), run_anova)
-psig <- sum(pvals < .05) / n_runs
-```
-
-5. Now put all of the code you have created in this section into a new function `sim_power()` which gives the user control over all parameters (`mu`, `eff`, `n_per_group`, `sd`, `n_runs`).  If you need to debug your function, put `browser()` as the first line of the function body and then call it from the console.
-
-
-```r
-sim_power <- function(eff = 0, sd = 6, mu = 0, n_per_group = 10, n_runs = 1000L) {
-  pvals <- map_dbl(rerun(n_runs, sim_data(mu, eff, sd, n_per_group)), 
-                   run_anova)
-  sum(pvals < .05) / n_runs
-}
-```
-
-6. Check your function by running scenarios where the effect takes on various values, including zero.  Compare your results to `power.t.test()`.
-
-
-```r
-my_eff <- 1
-my_sd <- 3
-
-power.t.test(n = 20, delta = my_eff, sd = my_sd)
-sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
-```
-
-```
-## 
-##      Two-sample t test power calculation 
-## 
-##               n = 20
-##           delta = 1
-##              sd = 3
-##       sig.level = 0.05
-##           power = 0.1755768
-##     alternative = two.sided
-## 
-## NOTE: n is number in *each* group
-## 
-## [1] 0.545
-```
-
--->
+<p>Download the <a href="exercises/07_func_stub.Rmd">exercises</a>. See the <a href="exercises/07_func_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 
 </div>
 </div>

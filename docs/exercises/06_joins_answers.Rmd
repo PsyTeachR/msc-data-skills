@@ -1,0 +1,254 @@
+---
+title: 'Formative Exercise 06: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library("tidyverse")
+library("lubridate")
+```
+
+This file contains some answer checks after each question. Do not edit this text. When you knit your Rmd file, the checks will give you some information about whether your code created the correct objects.
+
+## Mutating joins
+
+### Question 1A
+
+Load data from [disgust_scores.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv) (`disgust`), [personality_scores.csv](https://psyteachr.github.io/msc-data-skills/data/personality_scores.csv) (`ocean`) and [users.csv](https://psyteachr.github.io/msc-data-skills/data/users.csv) (`user`). Each participant is identified by a unique `user_id`.
+
+```{r ex-1a}
+disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv")
+ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality_scores.csv")
+user <- read_csv("https://psyteachr.github.io/msc-data-skills/data/users.csv")
+```
+
+### Question 1B
+
+Add participant data to the disgust table.
+
+```{r ex-1b}
+study1 <- left_join(disgust, user, by = "user_id")
+```
+
+Answer Checks:
+
+| Table     | correct rows / cols | your rows / cols                         |
+|:----------|--------------------:|-----------------------------------------:|
+| `disgust` | 20000 / 6           |`r nrow(disgust)` / `r ncol(disgust)`     |
+| `ocean`   | 15000 / 7           |`r nrow(ocean)` / `r ncol(ocean)`         |
+| `user`    | 52043 / 3           |`r nrow(user)` / `r ncol(user)`           |
+| `study1`  | 20000 / 8           |`r nrow(study1)` / `r ncol(study1)`       |
+
+### Question 1C
+
+*Intermediate*: Calculate the age of each participant on the date they did the disgust questionnaire and put this in a column called `age_years` in a new table called `study1_ages`. Round to the nearest tenth of a year. 
+
+```{r ex-1-i}
+study1_ages <- study1 %>%
+  mutate(
+    age = date - birthday,
+    age_days = as.integer(age),
+    age_years = round(age_days/365.25, 1)
+  )
+```
+    
+Answer Checks:
+
+* Your table `study1_ages` **`r ifelse("age_years" %in% names(study1_ages), "does", "does not")`** have a column called `age_years`
+* The mean age should be 25.39, your mean age is `r mean(study1_ages$age_years, na.rm = T) %>% round(2)`
+
+
+### Question 2A
+
+Add the participant data to the disgust data, but have the columns from the participant table first.
+
+```{r ex-2}
+study2 <- right_join(user, disgust, by = "user_id")
+```
+
+Answer Checks:
+
+* Your table `study2` has columns in the order: `r paste(names(study2), collapse = ", ")`; this is **`r ifelse(8 == sum(names(study2) == c("user_id", "sex", "birthday", "id", "date", "moral", "pathogen", "sexual")), "correct", "incorrect")`**
+
+### Question 2B
+
+*Intermediate*: How many times was the disgust questionnaire completed by each sex? Create a table called `study2_by_sex` that has two columns: `sex` and `n`.
+
+```{r ex-2-i}
+study2_by_sex <- study2 %>%
+  group_by(sex) %>%
+  summarise(n = n())
+```
+
+Answer Checks:
+
+| sex       | correct n | your n                                        |
+|:----------|----------:|----------------------------------------------:|
+| `female`  | 13886     |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, sex == "female")$n`  |
+| `intersex`| 3         |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, sex == "intersex")$n`|
+| `male`    | 6012      |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, sex == "male")$n`    |
+| NA        | 99        |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, is.na(sex))$n`       |
+
+### Question 2C
+
+*Advanced*: Make a graph of how many people completed the questionnaire each year.
+    
+```{r ex-2-a}
+study2 %>%
+  mutate(year = substr(date, 1, 4)) %>%
+  group_by(year) %>%
+  summarise(times_completed = n()) %>%
+  ggplot() +
+  geom_col(aes(year, times_completed, fill = year)) +
+  labs(
+    x = "Year",
+    y = "Times Completed"
+  ) +
+  guides(fill = FALSE)
+  
+```
+    
+
+### Question 3A
+
+Create a table with only disgust and personality data from the same `user_id` collected on the same `date`.
+
+```{r ex-3}
+study3 <- inner_join(disgust, ocean, by = c("user_id", "date"))
+```
+
+Answer Checks:
+
+| Table     | correct rows / cols | your rows / cols                         |
+|:----------|--------------------:|-----------------------------------------:|
+| `study3`  | 555 / 11            |`r nrow(study3)` / `r ncol(study3)`       |
+
+
+### Question 3B
+
+*Intermediate*: Join data from the same `user_id`, regardless of `date`. Does this give you the same data table as above?
+    
+```{r ex-3-i}
+study3_nodate <- inner_join(disgust, ocean, by = c("user_id"))
+```
+
+Answer Checks:
+
+| Table           | correct rows / cols | your rows / cols                         |
+|:----------------|--------------------:|-----------------------------------------:|
+| `study3_nodate` | 677 / 12            |`r nrow(study3_nodate)` / `r ncol(study3_nodate)` |    
+    
+
+### Question 4
+
+Create a table of the disgust and personality data with each `user_id:date` on a single row, containing _all_ of the data from both tables.
+
+    
+```{r ex-4}
+study4 <- full_join(disgust, ocean, by = c("user_id", "date"))
+```
+
+Answer Checks:
+
+| Table     | correct rows / cols | your rows / cols                         |
+|:----------|--------------------:|-----------------------------------------:|
+| `study4`  | 34445 / 11          |`r nrow(study4)` / `r ncol(study4)`       |
+    
+
+## Filtering joins
+
+### Question 5
+
+Create a table of just the data from the disgust table for users who completed the personality questionnaire that same day.
+    
+```{r ex-5}
+study5 <- semi_join(disgust, ocean, by = c("user_id", "date"))
+```
+
+Answer Checks:
+
+| Table     | correct rows / cols | your rows / cols                         |
+|:----------|--------------------:|-----------------------------------------:|
+| `study5`  | 555 / 6             |`r nrow(study5)` / `r ncol(study5)`       |
+    
+    
+### Question 6
+
+Create a table of data from users who did not complete either the personality questionnaire or the disgust questionnaire. (_Hint: this will require two steps; use pipes._)
+
+    
+```{r ex-6}
+study6 <- user %>%
+  anti_join(ocean, by = "user_id") %>%
+  anti_join(disgust, by = "user_id")
+```
+
+Answer Checks:
+
+| Table     | correct rows / cols | your rows / cols                         |
+|:----------|--------------------:|-----------------------------------------:|
+| `study6`  | 17728 / 3           |`r nrow(study6)` / `r ncol(study6)`       |
+    
+
+## Binding and sets
+
+### Question 7
+
+Load new user data from [users2.csv](https://psyteachr.github.io/msc-data-skills/data/users2.csv). Bind them into a single table called `users_all`.
+
+```{r ex-7}
+user2 <- read_csv("https://psyteachr.github.io/msc-data-skills/data/users2.csv")
+users_all <- bind_rows(user, user2)
+```
+
+Answer Checks:
+
+| Table       | correct rows / cols | your rows / cols                         |
+|:------------|--------------------:|-----------------------------------------:|
+| `users_all` | 112043 / 3          |`r nrow(users_all)` / `r ncol(users_all)` |
+
+### Question 8
+
+How many users are in both the first and second user table?
+    
+```{r ex-8}
+both_n <- dplyr::intersect(user, user2) %>% nrow()
+```
+
+Answer Check: You found that `both_n` == `r both_n` 
+(**`r ifelse(both_n == 11602L, "correct", "incorrect")`**)
+
+### Question 9
+
+How many unique users are there in total across the first and second user tables?
+
+```{r ex-9}
+unique_users <- dplyr::union(user, user2) %>% nrow()
+```
+
+Answer Check: You found that `unique_users` == `r unique_users` 
+(**`r ifelse(unique_users == 100441L, "correct", "incorrect")`**) 
+
+### Question 10
+
+How many users are in the first, but not the second, user table?
+
+```{r ex-10}
+first_users <- dplyr::setdiff(user, user2) %>% nrow()
+```
+
+Answer Check: You found that `first_users` == `r first_users` 
+(**`r ifelse(first_users == 40441L, "correct", "incorrect")`**)
+
+### Question 11
+
+How many users are in the second, but not the first, user table?
+
+```{r ex-11}
+second_users <- dplyr::setdiff(user2, user) %>% nrow()
+```
+
+Answer Check: You found that `second_users` == `r second_users` 
+(**`r ifelse(second_users == 48398L, "correct", "incorrect")`**)  

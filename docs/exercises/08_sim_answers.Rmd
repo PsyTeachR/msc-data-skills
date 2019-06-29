@@ -1,0 +1,226 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library("tidyverse")
+library("MASS")
+```
+
+## Generate and compare random data
+
+Generate 50 data points from a normal distribution with a mean of 0 
+and SD of 1 (variable `a`).
+
+```{r ex-1A}
+n <- 50
+a <- rnorm(n, 0, 1)
+```
+
+Generate another variable (`b`) that is equal to the sum of `a` and another 
+50 data points from a normal distribution with a mean of 0.5 and SD of 1.
+
+```{r ex-1B}
+b <- a + rnorm(n, 0.5, 1)
+```
+
+Run a paired-samples t-test comparing `a` and `b`.
+
+```{r ex-1C}
+t.test(a, b, paired = TRUE)
+```
+
+## Calculate Power
+
+Calculate power for a two-tailed t-test with an alpha of .05 for detecting 
+a difference between two independent samples of 50 with an effect size of 0.3.
+
+Hint: You can use the `sim_t_ind` function from the [T-Test Class Notes](https://psyteachr.github.io/msc-data-skills/08_simulation.html#t-test).
+
+```{r ex-2-sim}
+
+sim_t_ind <- function(n, m1, sd1, m2, sd2) {
+  v1 <- rnorm(n, m1, sd1)
+  v2 <- rnorm(n, m2, sd2)
+  t_ind <- t.test(v1, v2, paired = FALSE)
+  
+  return(t_ind$p.value)
+}
+
+my_reps <- replicate(1e4, sim_t_ind(50, 0, 1, 0.3, 1))
+power <- mean(my_reps < 0.05)
+
+power
+```
+
+Compare this to the result of `power.t.test` for the same design.
+
+```{r ex-2-function}
+power.t.test(n = 50, delta = 0.3, type = "two.sample")
+```
+
+Modify the `sim_t_ind` function to handle different 
+sample sizes. Use it to calculate the power of the following design: 
+20 observations from a normal distribution with mean of 10 and SD of 4 versus
+30 observations from a normal distribution with a mean of 13 and an SD of 4.5.
+
+```{r ex-3}
+sim_t_ind <- function(n1, m1, sd1, n2, m2, sd2, 
+                       alternative = "two.sided") {
+  v1 <- rnorm(n1, m1, sd1)
+  v2 <- rnorm(n2, m2, sd2)
+  t_ind <- t.test(v1, v2, 
+                  alternative = alternative, 
+                  paired = FALSE)
+
+  return(t_ind$p.value)
+}
+
+my_reps <- replicate(1e4, sim_t_ind(20, 10, 4, 30, 13, 4.5))
+power <- mean(my_reps < 0.05)
+
+power
+```
+
+
+Calculate power for a two-tailed t-test with an alpha of .005 for detecting 
+a sex difference in height in a sample of 10 male and 10 female 20-year-olds? 
+Get the data for the height of male and female 20-year-olds from the 
+[US CDC Growth Chart Data Tables](https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv).
+
+```{r ex-4}
+height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv") %>%
+  filter(Sex %in% c(1,2)) %>%
+  mutate(
+    sex = recode(Sex, "1" = "male", "2" = "female"),
+    age = as.numeric(Agemos)/12,
+    sd = `1` - `0`
+  ) %>%
+  dplyr::select(sex, age, mean = `0`, sd)
+
+height_sub <- height_age %>% filter(age == 20)
+m_mean <- height_sub %>% filter(sex == "male") %>% pull(mean)
+m_sd   <- height_sub %>% filter(sex == "male") %>% pull(sd)
+f_mean <- height_sub %>% filter(sex == "female") %>% pull(mean)
+f_sd   <- height_sub %>% filter(sex == "female") %>% pull(sd)
+
+my_reps <- replicate(1e4, sim_t_ind(10, m_mean, m_sd, 10, f_mean, f_sd))
+power <- mean(my_reps < 0.005)
+
+power
+```
+
+## Poisson Distribution
+
+The [poisson distribution(https://en.wikipedia.org/wiki/Poisson_distribution) 
+is good for modeling the rate of something, like the number of texts you 
+receive per day. Then you can test hypotheses like you receive more texts on 
+weekends than weekdays. The poisson distribution gets more like a normal 
+distribution when the rate gets higher, so it's most useful for low-rate events.
+
+Use `ggplot` to create a histogram of 1000 random numbers from a poisson 
+distribution with a `lambda` of 4. 
+
+```{r ex-5}
+lambda <- 4 # lambda sets the mean of the poisson distribution
+tibble (
+  x = rpois(1000, lambda)
+)%>%
+  ggplot(aes(x)) +
+  geom_histogram(fill="white", color="black", binwidth = 1)
+```
+
+## Binomial Distribution
+
+Demonstrate to yourself that the binomial distribution looks like the normal 
+distribution when the number of trials is greater than 10.
+
+Hint: You can calculate the equivalent mean for the normal distribution as the 
+number of trials times the probability of success (`binomial_mean <- trials * prob`) 
+and the equivalent SD as the square root of the mean times one minus probability 
+of success (`binomial_sd <- sqrt(binomial_mean * (1 - prob))`).
+
+```{r ex-6}
+n <- 1e5  # use a large n to get good estimates of the distributions
+trials <- 50
+prob <- 0.8
+binomial_mean <- trials * prob
+binomial_sd <- sqrt(binomial_mean * (1 - prob))
+
+tibble (
+  normal = rnorm(n, binomial_mean, binomial_sd),
+  binomial = rbinom(n, trials, prob)
+) %>%
+  gather("distribution", "value", normal:binomial) %>%
+  ggplot(aes(value, color=distribution)) +
+  geom_freqpoly(binwidth = 1)
+```
+
+## Correlation power simulation
+
+Write a function to create a pair of variables of any size 
+with any specified correlation. 
+
+Hint: modify the code from the 
+[Bivariate Normal](https://psyteachr.github.io/msc-data-skills/08_simulation.html#bvn) 
+section from the class notes.
+
+```{r ex-7A}
+bvn2 <- function(n = 100, rho = 0, m1 = 0, m2 = 0, sd1 = 1, sd2 = 1) {
+  # n = number of random samples
+  # rho = population correlation between the two variables
+  
+  mu <- c(m1, m2) # the means of the samples
+  stdevs <- c(sd1, sd2) # the SDs of the samples
+  
+  # correlation matrix
+  cor_mat <- matrix(c(  1, rho, 
+                      rho,   1), 2) 
+  
+  # create the covariance matrix
+  sigma <- (stdevs %*% t(stdevs)) * cor_mat
+  
+  # sample from bivariate normal distribution
+  # convert to a tibble to make it easier to deal with in further steps
+  mvrnorm(n, mu, sigma) %>% as.tibble() 
+}
+```
+
+Use `cor.test` to test the Pearson's product-moment 
+correlation between two variables generated with your 
+function having an `n` of 50 and a `rho` of 0.45.
+
+
+```{r ex-7B1}
+my_vars <- bvn2(50, 0.45)
+
+cor.test(my_vars$V1, my_vars$V2)
+```
+
+Make a new function that calculates power for `cor.test`. 
+Remember, there are many, many ways to do things in R. 
+The solution below is only one of many. The important thing is to 
+create your function step-by-step, checking the accuracy at each step.
+
+```{r ex-7C}
+power.cor.test <- function(reps = 1000, n = 50, rho = 0.5, alpha = 0.05, method = "pearson"){
+  power <- tibble(
+    data = rerun(reps, bvn2(n, rho))
+  ) %>%
+    mutate(power = map(data, function(data) {
+      cor.test(data$V1, data$V2, method = method) %>%
+        broom::tidy()
+    })) %>%
+    unnest(power) %>%
+    mutate(sig = p.value < alpha)
+  
+  tibble(
+    n = n,
+    rho = rho,
+    alpha = alpha,
+    power = mean(power$sig),
+    method = method,
+    reps = reps
+  )
+}
+
+ power.cor.test(1000, 30, 0.5, method = "spearman")
+```
+
