@@ -5,8 +5,7 @@ author: University of Glasgow, Department of Psychology
 
 ## Loading a Library
 
-Almost every script you write will need to load a library. Do this at the top of the script. 
-In the code chunk below, load the `tidyverse` and `readxl` libraries. You can check if you have a library under the Packages tab in the lower right RStudio pane. You might need to use `install.packages("tidyverse")` to install these libraries on your computer, but **never** put `install.packages()` in a script (just type that command directly into the console window).
+Almost every script you write will need to load a library. Do this at the top of the script. In the code chunk below, load the `tidyverse` and `readxl` libraries. You can check if you have a library under the Packages tab in the lower right RStudio pane. You might need to use `install.packages("tidyverse")` to install these libraries on your computer, but **never** put `install.packages()` in a script (just type that command directly into the console window).
 
 ```{r libraries, echo = TRUE, message = FALSE}
 library(tidyverse)
@@ -19,20 +18,19 @@ The main data types you will use are *numeric* (*integer* or *double*), *charact
 
 You assign data to variables with the *assignment operator* `<-`. Assign the following variables:
 
-
 * set the variable `four` to the integer 4
 * set the variable `one_plus_3` to the sum of the integer 1 and the integer 3
 * set `double_four` to the number four as a *double*
-* set the variable `barr` to Dr Barr's first name in all lowercase letters
-* set the variable `BARR` to Dr Barr's first name in all uppercase letters
+* set the variable `lower` to your first name in all lowercase letters
+* set the variable `UPPER` to your first name in all uppercase letters
 
 
 ```{r variables, echo = TRUE}
 four <- 4L
 one_plus_3 <- 1L + 3L
 double_four <- 4
-barr <- "dale"
-BARR <- "DALE"
+lower <- "lisa"
+UPPER <- "LISA"
 ```
 
 ## Comparison
@@ -111,11 +109,11 @@ The following sections let you check your work. If you did everything right, all
 
 ### Assigning Variables and Data Types
 
-* `barr`: `r check(barr == "dale")`
-* `BARR`: `r check(BARR == "DALE")`
 * `four`: `r check(four == 4L & typeof(four) == "integer")`
 * `one_plus_3`: `r check(one_plus_3 == 4L & typeof(one_plus_3) == "integer")`
 * `double_four`: `r check(double_four == 4.0 & typeof(double_four) == "double")`
+* `lower`: `r check(tolower(lower) == lower)`
+* `UPPER`: `r check(toupper(UPPER) == UPPER)`
 
 ### Comparison
 

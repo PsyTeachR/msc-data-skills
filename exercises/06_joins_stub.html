@@ -394,38 +394,6 @@ user &lt;- NULL</code></pre>
 <h3>Question 1B</h3>
 <p>Add participant data to the disgust table.</p>
 <pre class="r"><code>study1 &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>disgust</code></td>
-<td align="right">20000 / 6</td>
-<td align="right">/</td>
-</tr>
-<tr class="even">
-<td align="left"><code>ocean</code></td>
-<td align="right">15000 / 7</td>
-<td align="right">/</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>user</code></td>
-<td align="right">52043 / 3</td>
-<td align="right">/</td>
-</tr>
-<tr class="even">
-<td align="left"><code>study1</code></td>
-<td align="right">20000 / 8</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="question-1c" class="section level3">
 <h3>Question 1C</h3>
@@ -441,47 +409,11 @@ user &lt;- NULL</code></pre>
 <h3>Question 2A</h3>
 <p>Add the participant data to the disgust data, but have the columns from the participant table first.</p>
 <pre class="r"><code>study2 &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<ul>
-<li>Your table <code>study2</code> has columns in the order: ; this is <strong>incorrect</strong></li>
-</ul>
 </div>
 <div id="question-2b" class="section level3">
 <h3>Question 2B</h3>
 <p><em>Intermediate</em>: How many times was the disgust questionnaire completed by each sex? Create a table called <code>study2_by_sex</code> that has two columns: <code>sex</code> and <code>n</code>.</p>
 <pre class="r"><code>study2_by_sex &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">sex</th>
-<th align="right">correct n</th>
-<th align="right">your n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>female</code></td>
-<td align="right">13886</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="left"><code>intersex</code></td>
-<td align="right">3</td>
-<td align="right"></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>male</code></td>
-<td align="right">6012</td>
-<td align="right"></td>
-</tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="right">99</td>
-<td align="right"></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="question-2c" class="section level3">
 <h3>Question 2C</h3>
@@ -493,67 +425,16 @@ user &lt;- NULL</code></pre>
 <h3>Question 3A</h3>
 <p>Create a table with only disgust and personality data from the same <code>user_id</code> collected on the same <code>date</code>.</p>
 <pre class="r"><code>study3 &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>study3</code></td>
-<td align="right">555 / 11</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="question-3b" class="section level3">
 <h3>Question 3B</h3>
 <p><em>Intermediate</em>: Join data from the same <code>user_id</code>, regardless of <code>date</code>. Does this give you the same data table as above?</p>
 <pre class="r"><code>study3_nodate &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>study3_nodate</code></td>
-<td align="right">677 / 12</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
 <p>Create a table of the disgust and personality data with each <code>user_id:date</code> on a single row, containing <em>all</em> of the data from both tables.</p>
 <pre class="r"><code>study4 &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>study4</code></td>
-<td align="right">34445 / 11</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div id="filtering-joins" class="section level2">
@@ -562,45 +443,11 @@ user &lt;- NULL</code></pre>
 <h3>Question 5</h3>
 <p>Create a table of just the data from the disgust table for users who completed the personality questionnaire that same day.</p>
 <pre class="r"><code>study5 &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>study5</code></td>
-<td align="right">555 / 6</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
 <p>Create a table of data from users who did not complete either the personality questionnaire or the disgust questionnaire. (<em>Hint: this will require two steps; use pipes.</em>)</p>
 <pre class="r"><code>study6 &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>study6</code></td>
-<td align="right">17728 / 3</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div id="binding-and-sets" class="section level2">
@@ -610,52 +457,117 @@ user &lt;- NULL</code></pre>
 <p>Load new user data from <a href="https://psyteachr.github.io/msc-data-skills/data/users2.csv">users2.csv</a>. Bind them into a single table called <code>users_all</code>.</p>
 <pre class="r"><code>user2 &lt;- NULL
 users_all &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Table</th>
-<th align="right">correct rows / cols</th>
-<th align="right">your rows / cols</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>users_all</code></td>
-<td align="right">112043 / 3</td>
-<td align="right">/</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
 <p>How many users are in both the first and second user table?</p>
 <pre class="r"><code>both_n &lt;- NULL</code></pre>
-<p>Answer Check: You found that <code>both_n</code> ==<br />
-(****)</p>
 </div>
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
 <p>How many unique users are there in total across the first and second user tables?</p>
 <pre class="r"><code>unique_users &lt;- NULL</code></pre>
-<p>Answer Check: You found that <code>unique_users</code> ==<br />
-(****)</p>
 </div>
 <div id="question-10" class="section level3">
 <h3>Question 10</h3>
 <p>How many users are in the first, but not the second, user table?</p>
 <pre class="r"><code>first_users &lt;- NULL</code></pre>
-<p>Answer Check: You found that <code>first_users</code> ==<br />
-(****)</p>
 </div>
 <div id="question-11" class="section level3">
 <h3>Question 11</h3>
 <p>How many users are in the second, but not the first, user table?</p>
 <pre class="r"><code>second_users &lt;- NULL</code></pre>
-<p>Answer Check: You found that <code>second_users</code> ==<br />
-(****)</p>
 </div>
+</div>
+<div id="answer-checks" class="section level2">
+<h2>Answer Checks</h2>
+<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">Question</th>
+<th align="left">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1A</td>
+<td align="left"><a href="#question-1A">Question 1A</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>1B</td>
+<td align="left"><a href="#question-1B">Question 1B</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>1C</td>
+<td align="left"><a href="#question-1C">Question 1C</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>2A</td>
+<td align="left"><a href="#question-2A">Question 2A</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>2B</td>
+<td align="left"><a href="#question-2B">Question 2B</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>3A</td>
+<td align="left"><a href="#question-3A">Question 3A</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>3B</td>
+<td align="left"><a href="#question-3B">Question 3B</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left"><a href="#question-4">Question 4</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="left"><a href="#question-5">Question 5</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="left"><a href="#question-6">Question 6</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td align="left"><a href="#question-7">Question 7</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="left"><a href="#question-8">Question 8</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="left"><a href="#question-9">Question 9</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="left"><a href="#question-10">Question 10</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td align="left"><a href="#question-11">Question 11</a></td>
+<td align="left">incorrect</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

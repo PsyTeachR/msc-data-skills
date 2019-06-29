@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  1.2185703 -0.7945234 -2.0411111  0.8526768  0.7561582  0.3954730
-##  [7]  0.7779956 -0.9672555 -1.0922037  0.7046855
+##  [1]  0.37676714 -0.03085756 -1.00517852  0.48092820 -0.46534976
+##  [6] -0.31662663 -0.59087287  1.09112557 -0.66575705  0.53216896
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.42362 101.76563 101.44868 100.61583  98.52184  98.58539 100.86602
-##  [8]  99.00062  99.61445  97.96929
+##  [1] 100.30115  99.43067  97.76691 100.63231  99.99154  98.61985  99.24185
+##  [8]  98.68102 100.68700 100.68325
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  98.30672  99.60552  97.31872 100.10172  98.97710  99.95789  98.08728
-##  [8]  99.53248 100.06514  99.92743
+##  [1]  97.98666 100.99579 100.60132  99.74464 100.79276 100.19771  99.80617
+##  [8] 101.07444 100.68938 101.06261
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -14.47463  104.71915   28.81195   33.92953   51.58762  148.20491
-##  [7] -132.55228  135.39972  -98.03586  -28.38229
+##  [1]  -28.61976 -103.80058  111.22385  -31.09225 -101.01557  132.16431
+##  [7]  118.57161   56.64328   96.47144   59.09259
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,13 +458,10 @@ fortune()
 
 ```
 ## 
-## I think [R] addresses a niche market for high-end data analysts that want
-## free, readily available code. [...] We have customers who build engines
-## for aircraft. I am happy they are not using freeware when I get on a jet.
-##    -- Anne H. Milley (director of technology product marketing at SAS,
-##       quoted in Ashlee Vance's article "Data Analysts Captivated by R's
-##       Power")
-##       The New York Times (January 2009)
+## For recursive objects, search for recursive objects.
+##    -- Barry Rowlingson (in a thread about "Recursive objects" and how to
+##       search for former discussions about the topic)
+##       R-devel (May 2011)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -489,10 +486,10 @@ eleanor()
 
 ```
 ## 
-##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
+##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
 ## 
 ##  ~ Chidi
-##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, "Go ahead and cry all you want, but you're gonna have to pay for that toilet plunger." 
+##  Pobody's nerfect. 
 ## 
 ##  ~ Eleanor
 ```

@@ -650,20 +650,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre>
-<pre><code>##  [1]  1.2185703 -0.7945234 -2.0411111  0.8526768  0.7561582  0.3954730
-##  [7]  0.7779956 -0.9672555 -1.0922037  0.7046855</code></pre>
+<pre><code>##  [1]  0.37676714 -0.03085756 -1.00517852  0.48092820 -0.46534976
+##  [6] -0.31662663 -0.59087287  1.09112557 -0.66575705  0.53216896</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  99.42362 101.76563 101.44868 100.61583  98.52184  98.58539 100.86602
-##  [8]  99.00062  99.61445  97.96929</code></pre>
+<pre><code>##  [1] 100.30115  99.43067  97.76691 100.63231  99.99154  98.61985  99.24185
+##  [8]  98.68102 100.68700 100.68325</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  98.30672  99.60552  97.31872 100.10172  98.97710  99.95789  98.08728
-##  [8]  99.53248 100.06514  99.92743</code></pre>
+<pre><code>##  [1]  97.98666 100.99579 100.60132  99.74464 100.79276 100.19771  99.80617
+##  [8] 101.07444 100.68938 101.06261</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  -14.47463  104.71915   28.81195   33.92953   51.58762  148.20491
-##  [7] -132.55228  135.39972  -98.03586  -28.38229</code></pre>
+<pre><code>##  [1]  -28.61976 -103.80058  111.22385  -31.09225 -101.01557  132.16431
+##  [7]  118.57161   56.64328   96.47144   59.09259</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,
              <span class="dt">power =</span> <span class="ot">NULL</span>,
@@ -721,13 +721,10 @@ You may only be able to permanently install packages if you are using R on your 
 <p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>()</code></pre>
 <pre><code>## 
-## I think [R] addresses a niche market for high-end data analysts that want
-## free, readily available code. [...] We have customers who build engines
-## for aircraft. I am happy they are not using freeware when I get on a jet.
-##    -- Anne H. Milley (director of technology product marketing at SAS,
-##       quoted in Ashlee Vance&#39;s article &quot;Data Analysts Captivated by R&#39;s
-##       Power&quot;)
-##       The New York Times (January 2009)</code></pre>
+## For recursive objects, search for recursive objects.
+##    -- Barry Rowlingson (in a thread about &quot;Recursive objects&quot; and how to
+##       search for former discussions about the topic)
+##       R-devel (May 2011)</code></pre>
 <p>Note that we will use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
 </div>
 <div id="install-from-github" class="section level3">
@@ -740,10 +737,10 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <span class="kw">chidi</span>()
 <span class="kw">eleanor</span>()</code></pre>
 <pre><code>## 
-##  You know, I thought I&#39;d have a stomachache right now, but weirdly... I do. 
+##  There really is an afterlife. I can&#39;t wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
 ## 
 ##  ~ Chidi
-##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, &quot;Go ahead and cry all you want, but you&#39;re gonna have to pay for that toilet plunger.&quot; 
+##  Pobody&#39;s nerfect. 
 ## 
 ##  ~ Eleanor</code></pre>
 </div>

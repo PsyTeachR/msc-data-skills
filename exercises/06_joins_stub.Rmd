@@ -32,14 +32,6 @@ Add participant data to the disgust table.
 study1 <- NULL
 ```
 
-Answer Checks:
-
-| Table     | correct rows / cols | your rows / cols                         |
-|:----------|--------------------:|-----------------------------------------:|
-| `disgust` | 20000 / 6           |`r nrow(disgust)` / `r ncol(disgust)`     |
-| `ocean`   | 15000 / 7           |`r nrow(ocean)` / `r ncol(ocean)`         |
-| `user`    | 52043 / 3           |`r nrow(user)` / `r ncol(user)`           |
-| `study1`  | 20000 / 8           |`r nrow(study1)` / `r ncol(study1)`       |
 
 ### Question 1C
 
@@ -63,9 +55,6 @@ Add the participant data to the disgust data, but have the columns from the part
 study2 <- NULL
 ```
 
-Answer Checks:
-
-* Your table `study2` has columns in the order: `r paste(names(study2), collapse = ", ")`; this is **`r ifelse(8 == sum(names(study2) == c("user_id", "sex", "birthday", "id", "date", "moral", "pathogen", "sexual")), "correct", "incorrect")`**
 
 ### Question 2B
 
@@ -75,23 +64,13 @@ Answer Checks:
 study2_by_sex <- NULL
 ```
 
-Answer Checks:
-
-| sex       | correct n | your n                                        |
-|:----------|----------:|----------------------------------------------:|
-| `female`  | 13886     |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, sex == "female")$n`  |
-| `intersex`| 3         |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, sex == "intersex")$n`|
-| `male`    | 6012      |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, sex == "male")$n`    |
-| NA        | 99        |`r  if (typeof(study2_by_sex) == "list") filter(study2_by_sex, is.na(sex))$n`       |
 
 ### Question 2C
 
 *Advanced*: Make a graph of how many people completed the questionnaire each year.
     
 ```{r ex-2-a}
-
 ggplot()
-  
 ```
     
 
@@ -103,12 +82,6 @@ Create a table with only disgust and personality data from the same `user_id` co
 study3 <- NULL
 ```
 
-Answer Checks:
-
-| Table     | correct rows / cols | your rows / cols                         |
-|:----------|--------------------:|-----------------------------------------:|
-| `study3`  | 555 / 11            |`r nrow(study3)` / `r ncol(study3)`       |
-
 
 ### Question 3B
 
@@ -118,12 +91,6 @@ Answer Checks:
 study3_nodate <- NULL
 ```
 
-Answer Checks:
-
-| Table           | correct rows / cols | your rows / cols                         |
-|:----------------|--------------------:|-----------------------------------------:|
-| `study3_nodate` | 677 / 12            |`r nrow(study3_nodate)` / `r ncol(study3_nodate)` |    
-    
 
 ### Question 4
 
@@ -133,13 +100,6 @@ Create a table of the disgust and personality data with each `user_id:date` on a
 ```{r ex-4}
 study4 <- NULL
 ```
-
-Answer Checks:
-
-| Table     | correct rows / cols | your rows / cols                         |
-|:----------|--------------------:|-----------------------------------------:|
-| `study4`  | 34445 / 11          |`r nrow(study4)` / `r ncol(study4)`       |
-    
 
 ## Filtering joins
 
@@ -151,12 +111,6 @@ Create a table of just the data from the disgust table for users who completed t
 study5 <- NULL
 ```
 
-Answer Checks:
-
-| Table     | correct rows / cols | your rows / cols                         |
-|:----------|--------------------:|-----------------------------------------:|
-| `study5`  | 555 / 6             |`r nrow(study5)` / `r ncol(study5)`       |
-    
     
 ### Question 6
 
@@ -166,13 +120,6 @@ Create a table of data from users who did not complete either the personality qu
 ```{r ex-6}
 study6 <- NULL
 ```
-
-Answer Checks:
-
-| Table     | correct rows / cols | your rows / cols                         |
-|:----------|--------------------:|-----------------------------------------:|
-| `study6`  | 17728 / 3           |`r nrow(study6)` / `r ncol(study6)`       |
-    
 
 ## Binding and sets
 
@@ -185,11 +132,6 @@ user2 <- NULL
 users_all <- NULL
 ```
 
-Answer Checks:
-
-| Table       | correct rows / cols | your rows / cols                         |
-|:------------|--------------------:|-----------------------------------------:|
-| `users_all` | 112043 / 3          |`r nrow(users_all)` / `r ncol(users_all)` |
 
 ### Question 8
 
@@ -199,9 +141,6 @@ How many users are in both the first and second user table?
 both_n <- NULL
 ```
 
-Answer Check: You found that `both_n` == `r both_n` 
-(**`r ifelse(both_n == 11602L, "correct", "incorrect")`**)
-
 ### Question 9
 
 How many unique users are there in total across the first and second user tables?
@@ -209,9 +148,6 @@ How many unique users are there in total across the first and second user tables
 ```{r ex-9}
 unique_users <- NULL
 ```
-
-Answer Check: You found that `unique_users` == `r unique_users` 
-(**`r ifelse(unique_users == 100441L, "correct", "incorrect")`**) 
 
 ### Question 10
 
@@ -221,9 +157,6 @@ How many users are in the first, but not the second, user table?
 first_users <- NULL
 ```
 
-Answer Check: You found that `first_users` == `r first_users` 
-(**`r ifelse(first_users == 40441L, "correct", "incorrect")`**)
-
 ### Question 11
 
 How many users are in the second, but not the first, user table?
@@ -232,5 +165,57 @@ How many users are in the second, but not the first, user table?
 second_users <- NULL
 ```
 
-Answer Check: You found that `second_users` == `r second_users` 
-(**`r ifelse(second_users == 48398L, "correct", "incorrect")`**)  
+## Answer Checks
+
+You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
+
+```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
+# do not edit
+Q <- c()
+Q["1A"] <- c( all.equal(nrow(disgust), 20000L),
+              all.equal(ncol(disgust), 6L),
+              all.equal(nrow(ocean), 15000L),
+              all.equal(ncol(ocean), 7L),
+              all.equal(nrow(user), 52043L),
+              all.equal(ncol(user), 3L))
+Q["1B"] <- c( all.equal(nrow(study1), 20000L),
+              all.equal(ncol(study1), 8L))
+Q["1C"] <- if(is.data.frame(study1_ages)) {
+  c("age_years" %in% names(study1_ages),
+    all.equal(25.39, mean(study1_ages$age_years, na.rm = T) %>% round(2)))
+} else { FALSE }
+Q["2A"] <- if(is.data.frame(study2)) {
+    all.equal(names(study2), c("user_id", "sex", "birthday", "id", "date", "moral", "pathogen", "sexual"))
+} else { FALSE }
+Q["2B"] <- if(is.data.frame(study2_by_sex)) {
+    c(
+      filter(study2_by_sex, is.na(sex)) %>% pull(n) == 99,
+      filter(study2_by_sex, sex == "female") %>% pull(n) == 13886,
+      filter(study2_by_sex, sex == "male") %>% pull(n) == 6012,
+      filter(study2_by_sex, sex == "intersex") %>% pull(n) == 3
+    )
+} else { FALSE }
+Q["3A"] <- c(all.equal(nrow(study3), 555L),
+          all.equal(ncol(study3), 11L))
+Q["3B"] <- c(all.equal(nrow(study3_nodate), 677L),
+          all.equal(ncol(study3_nodate), 12L))
+Q["4"] <- c(all.equal(nrow(study4), 34445L),
+          all.equal(ncol(study4), 11L))
+Q["5"] <- c(all.equal(nrow(study5), 555L),
+          all.equal(ncol(study5), 6L))
+Q["6"] <- c(all.equal(nrow(study6), 17728L),
+          all.equal(ncol(study6), 3L))
+Q["7"] <- c(all.equal(nrow(users_all), 112043L),
+          all.equal(ncol(users_all), 3L))
+Q["8"] <- all.equal(both_n, 11602L)
+Q["9"] <- all.equal(unique_users, 100441L)
+Q["10"] <- all.equal(first_users, 40441L)
+Q["11"] <- all.equal(second_users, 48398L)
+  
+ans <- lapply(Q, function(x) mean(x==TRUE))
+
+knitr::kable(data.frame(
+  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
+  Answer = ifelse(ans==1, "correct", "incorrect")
+))
+```

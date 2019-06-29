@@ -22,16 +22,16 @@ You assign data to variables with the *assignment operator* `<-`. Assign the fol
 * set the variable `four` to the integer 4
 * set the variable `one_plus_3` to the sum of the integer 1 and the integer 3
 * set `double_four` to the number four as a *double*
-* set the variable `barr` to Dr Barr's first name in all lowercase letters
-* set the variable `BARR` to Dr Barr's first name in all uppercase letters
+* set the variable `lower` to your first name in all lowercase letters
+* set the variable `UPPER` to your first name in all uppercase letters
 
 
 ```{r variables, echo = TRUE}
 four <- NULL
 one_plus_3 <- NULL
 double_four <- NULL
-barr <- NULL
-BARR <- NULL
+lower <- NULL
+UPPER <- NULL
 ```
 
 ## Comparison
@@ -107,11 +107,11 @@ check <- function(test) {
 
 ### Assigning Variables and Data Types
 
-* `barr`: `r check(barr == "dale")`
-* `BARR`: `r check(BARR == "DALE")`
 * `four`: `r check(four == 4L & typeof(four) == "integer")`
 * `one_plus_3`: `r check(one_plus_3 == 4L & typeof(one_plus_3) == "integer")`
 * `double_four`: `r check(double_four == 4.0 & typeof(double_four) == "double")`
+* `lower`: `r check(tolower(lower) == lower)`
+* `UPPER`: `r check(toupper(UPPER) == UPPER)`
 
 ### Comparison
 

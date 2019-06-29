@@ -524,8 +524,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1 125.29  125.29   115.8 4.89e-06 ***
-## Residuals    8   8.65    1.08                     
+## A            1  80.01   80.01   98.67 8.92e-06 ***
+## Residuals    8   6.49    0.81                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -542,7 +542,7 @@ pval
 ```
 
 ```
-## [1] 4.893825e-06
+## [1] 8.92486e-06
 ```
 -->
 </div>
@@ -689,13 +689,13 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 ##  Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -1.8994, df = 37.08, p-value = 0.06531
+## t = -0.032452, df = 35.266, p-value = 0.9743
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.34955196  0.04352644
+##  -0.6461840  0.6258445
 ## sample estimates:
 ## mean of x mean of y 
-##  4.812701  5.465714</code></pre>
+##  5.179314  5.189484</code></pre>
 <p>You can also convert the table to long format using the <code>gather</code> function and specify the t-test using the format <code>number_column~grouping_column</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)
 
@@ -704,13 +704,13 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 ##  Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -1.8994, df = 37.08, p-value = 0.06531
+## t = -0.032452, df = 35.266, p-value = 0.9743
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.34955196  0.04352644
+##  -0.6461840  0.6258445
 ## sample estimates:
 ## mean in group A mean in group B 
-##        4.812701        5.465714</code></pre>
+##        5.179314        5.189484</code></pre>
 </div>
 <div id="broomtidy" class="section level3">
 <h3><span class="header-section-number">7.5.4</span> <code>broom::tidy()</code></h3>
@@ -725,7 +725,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <pre><code>## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1   -0.380      5.07      5.45     -1.32   0.194      37.4   -0.962
+## 1   -0.291      5.07      5.36    -0.894   0.377      36.1   -0.952
 ## # … with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 ## #   alternative &lt;chr&gt;</code></pre>
 <p>Finally, we can extract a single value from this results table using <code>pull()</code>.</p>
@@ -737,7 +737,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>(p.value)</code></pre>
-<pre><code>## [1] 0.1410771</code></pre>
+<pre><code>## [1] 0.1018792</code></pre>
 </div>
 <div id="turn-into-a-function" class="section level3">
 <h3><span class="header-section-number">7.5.5</span> Turn into a function</h3>
@@ -754,7 +754,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 }</code></pre>
 <p>Run it a few times to see what happens.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>()</code></pre>
-<pre><code>## [1] 0.1921308</code></pre>
+<pre><code>## [1] 0.5815627</code></pre>
 </div>
 <div id="replicate" class="section level3">
 <h3><span class="header-section-number">7.5.6</span> <code>replicate()</code></h3>
@@ -763,7 +763,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 alpha &lt;-<span class="st"> </span><span class="fl">.05</span>
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>alpha)
 power</code></pre>
-<pre><code>## [1] 0.318</code></pre>
+<pre><code>## [1] 0.345</code></pre>
 </div>
 <div id="add-arguments" class="section level3">
 <h3><span class="header-section-number">7.5.7</span> Add arguments</h3>
@@ -781,13 +781,13 @@ power</code></pre>
 <p>Test your function with some different values to see if the results make sense.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>(<span class="dv">100</span>)
 <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</code></pre>
-<pre><code>## [1] 0.5621763
-## [1] 0.0001056935</code></pre>
+<pre><code>## [1] 0.1861624
+## [1] 0.001704493</code></pre>
 <p>Use <code>replicate</code> to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.</p>
 <pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>)
 power</code></pre>
-<pre><code>## [1] 0.284</code></pre>
+<pre><code>## [1] 0.32</code></pre>
 <p>Compare this to power calculated from the <code>power.t.test</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</code></pre>
 <pre><code>## 
