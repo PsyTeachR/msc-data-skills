@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.3784625 -0.7304108  0.6304100  1.3937263  0.8578117  0.1343608
-##  [7]  0.3975312  2.3840031  0.3065430  1.9535461
+##  [1]  0.9489745  0.7154408 -0.2148223 -1.6312468 -0.4786606  0.5244247
+##  [7]  1.0374653  0.7587586  1.6380220 -0.5269080
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.23978  99.50679  98.92500 100.84961 100.06841 100.63104 101.00444
-##  [8] 100.21986 101.20898 100.63275
+##  [1] 100.84478 100.52628 100.57789  99.35582 100.63824 100.22908  97.99399
+##  [8]  99.51936 100.54162  97.77819
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.56289  98.78989 100.11875 100.12363  99.84983  99.46329 101.10661
-##  [8]  98.99824  98.24225  98.24555
+##  [1] 100.84980  98.28374 102.08869  99.50047  98.09847  99.96623  98.92751
+##  [8]  98.53369  99.09777 101.81117
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  108.776739    7.908826   44.731009   -1.189683 -127.590333
-##  [6]   10.902188   -5.263142 -100.659729   -3.930076  -23.691695
+##  [1]  84.43065  71.01861 -15.02471 -66.96965  85.71117  99.95728  11.31919
+##  [8]  54.44329 -40.23084  70.04952
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,13 +458,9 @@ fortune()
 
 ```
 ## 
-## I suggest that we redefine "+" to be a legal character in the name of an
-## identifier. Sure, if you used to have "a+b" you'll have to rewrite it as
-## "+(a,b)", but think of the benefits!
-## You+can+write+out+long+sentences+and+use+them+as+variable+names!
-##    -- Duncan Murdoch (in a discussion whether to use underscore, dot, or
-##       mixed case in variable names)
-##       R-help (May 2005)
+## Well..... SAS is SAS, but R is FREE...
+##    -- Abhishek Rathore (in a discussion about R vs. SAS)
+##       LinkedIn Group Stat-Math Statistics (July 2011)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -489,10 +485,10 @@ eleanor()
 
 ```
 ## 
-##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
+##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
 ## 
 ##  ~ Chidi
-##  Girl, you are a messy bench who loves drama and I am into it! 
+##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, "Go ahead and cry all you want, but you're gonna have to pay for that toilet plunger." 
 ## 
 ##  ~ Eleanor
 ```

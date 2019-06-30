@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Getting Started | Data Skills</title>
+  <title>D References | Data Skills</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Getting Started | Data Skills" />
+  <meta property="og:title" content="D References | Data Skills" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Getting Started | Data Skills" />
+  <meta name="twitter:title" content="D References | Data Skills" />
   
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="data.html">
+<link rel="prev" href="exercise-answers.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -427,453 +427,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Getting Started</h1>
-<div id="learning-objectives" class="section level2">
-<h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
-<ol style="list-style-type: decimal">
-<li>Understand the components of the <a href="intro.html#rstudio_ide">RStudio IDE</a></li>
-<li>Type commands into the <a href="intro.html#console">console</a></li>
-<li>Understand <a href="intro.html#function_syx">function syntax</a></li>
-<li>Install a <a href="intro.html#install-package">package</a></li>
-<li><a href="intro.html#projects">Organise a project</a></li>
-<li>Appropriately <a href="intro.html#structure">structure an R script or RMarkdown file</a></li>
-<li>Create and compile an <a href="intro.html#rmarkdown">Rmarkdown document</a></li>
-</ol>
-</div>
-<div id="resources-1" class="section level2">
-<h2><span class="header-section-number">1.2</span> Resources</h2>
-<ul>
-<li><a href="http://r4ds.had.co.nz/introduction.html">Chapter 1: Introduction</a> in <em>R for Data Science</em></li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">RStudio IDE Cheatsheet</a></li>
-<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">Introduction to R Markdown</a></li>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheatsheet</a></li>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference</a></li>
-</ul>
-</div>
-<div id="what-is-r" class="section level2">
-<h2><span class="header-section-number">1.3</span> What is R?</h2>
-<p><img src="images/01/new_R_logo.png" style="float: right;"></p>
-<p>R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote <strong>reproducible research</strong>. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.</p>
-<div class="info">
-<p>
-See Appendix <span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(installing-r) for more information on on how to install R and associated programs.
-</p>
-</div>
-<div id="rconsole" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> The Base R Console</h3>
-<p>If you open up the application called R, you will see an “R Console” window that looks something like this.</p>
-<div class="figure" style="text-align: center"><span id="fig:img-repl"></span>
-<img src="images/01/r_console.png" alt="The R Console window." width="100%" />
-<p class="caption">
-Figure 1.1: The R Console window.
-</p>
-</div>
-<p>You can close R and never open it again. We’ll be working entirely in RStudio in this class.</p>
-<div class="warning">
-<p>
-ALWAYS REMEMBER: Launch R though the RStudio IDE<br />
-<img src="images/01/launch.png" />
-</p>
-</div>
-</div>
-<div id="rstudio_ide" class="section level3">
-<h3><span class="header-section-number">1.3.2</span> RStudio</h3>
-<p><a href="http://www.rstudio.com">RStudio</a> is an Integrated Development Environment (IDE). This is a program that serves as a text editor, file manager, and provides many functions to help you read and write R code.</p>
-<div class="figure" style="text-align: center"><span id="fig:img-rstudio"></span>
-<img src="images/01/rstudio.png" alt="The RStudio IDE" width="100%" />
-<p class="caption">
-Figure 1.2: The RStudio IDE
-</p>
-</div>
-<p>RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes”.' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the <strong>source pane</strong>, where you view and edit source code from files. The bottom left pane is usually the <strong>console pane</strong>, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under <strong><code>Preferences &gt; Pane Layout</code></strong>.</p>
-<video width="640" height="480" controls>
-<source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
-<p>Your browser does not support the video tag.
-</video></p>
-</div>
-<div id="configure-rstudio" class="section level3">
-<h3><span class="header-section-number">1.3.3</span> Configure RStudio</h3>
-<p>In this class, you will be learning how to develop <strong>reproducible scripts</strong>. This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the “trust but verify” motto. When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.</p>
-<p>There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says <strong><code>Restore .RData into workspace at startup</code></strong>;. If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to <strong><code>Never</code></strong>. The only thing you want to save are your scripts.</p>
-<div class="figure" style="text-align: center"><span id="fig:img-repro"></span>
-<img src="images/01/repro.png" alt="Alter these settings for increased reproducibility." width="50%" />
-<p class="caption">
-Figure 1.3: Alter these settings for increased reproducibility.
-</p>
-</div>
-<div class="try">
-<p>Your settings should have:</p>
-<ul>
-<li>Restore .RData into workspace at startup: <select class='solveme' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select></li>
-<li>Save workspace to .RData on exit: <select class='solveme' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="getting-started" class="section level2">
-<h2><span class="header-section-number">1.4</span> Getting Started</h2>
-<div id="console" class="section level3">
-<h3><span class="header-section-number">1.4.1</span> Console commands</h3>
-<p>We are first going to learn about how to interact with the console. In general, you will be developing R scripts or R markdown files, rather than working directly in the console window. However, you can consider the console a kind of <strong>sandbox</strong> where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.</p>
-<p>Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.</p>
-<p>One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first) :/</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre>
-<pre><code>## [1] 2</code></pre>
-<p>The R console remembers a history of the commands you typed in the past. Use the up and down arrow keys on your keyboard to scroll backwards and forwards through your history. It’s a lot faster than re-typing.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre>
-<pre><code>## [1] 5</code></pre>
-<p>You can break up math expressions over multiple lines; R waits for a complete expression before processing it.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## here comes a long expression</span>
-<span class="co">## let&#39;s break it over multiple lines</span>
-<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span>
-<span class="st">    </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span> <span class="op">+</span>
-<span class="st">    </span><span class="dv">10</span></code></pre>
-<pre><code>## [1] 55</code></pre>
-<p>Text inside quotes is called a <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>string</a>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Good afternoon&quot;</span></code></pre>
-<pre><code>## [1] &quot;Good afternoon&quot;</code></pre>
-<p>You can break up text over multiple lines; R waits for a close quote before processing it. If you want to include a double quote inside this quoted string, <a class='glossary' target='_blank' title='Include special characters like " inside of a string by prefacing them with a backslash.' href='https://psyteachr.github.io/glossary/e#escape'>escape</a> it with a backslash.</p>
-<pre class="sourceCode r"><code class="sourceCode r">africa &lt;-<span class="st"> &quot;I hear the drums echoing tonight  </span>
-<span class="st">But she hears only whispers of some quiet conversation  </span>
-<span class="st">She&#39;s coming in, 12:30 flight  </span>
-<span class="st">The moonlit wings reflect the stars that guide me towards salvation  </span>
-<span class="st">I stopped an old man along the way  </span>
-<span class="st">Hoping to find some old forgotten words or ancient melodies  </span>
-<span class="st">He turned to me as if to say, </span><span class="ch">\&quot;</span><span class="st">Hurry boy, it&#39;s waiting there for you</span><span class="ch">\&quot;</span>
+<div id="references-1" class="section level1">
+<h1><span class="header-section-number">D</span> References</h1>
 
-<span class="st">- Toto&quot;</span>
-
-<span class="kw">cat</span>(africa) <span class="co"># cat() prints the string</span></code></pre>
-<pre><code>## I hear the drums echoing tonight  
-## But she hears only whispers of some quiet conversation  
-## She&#39;s coming in, 12:30 flight  
-## The moonlit wings reflect the stars that guide me towards salvation  
-## I stopped an old man along the way  
-## Hoping to find some old forgotten words or ancient melodies  
-## He turned to me as if to say, &quot;Hurry boy, it&#39;s waiting there for you&quot;
-## 
-## - Toto</code></pre>
+<div id="refs" class="references">
+<div>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
 </div>
-<div id="vars" class="section level3">
-<h3><span class="header-section-number">1.4.2</span> Variables</h3>
-<p>Often you want to store the result of some computation for later use. You can store it in a <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/v#variable'>variable</a>. A variable in R:</p>
-<ul>
-<li>contains only letters, numbers, full stops, and underscores</li>
-<li>starts with a letter or a full stop and a letter</li>
-<li>distinguishes uppercase and lowercase letters (<code>rickastley</code> is not the same as <code>RickAstley</code>)</li>
-</ul>
-<p>The following are valid and different variables:</p>
-<ul>
-<li>songdata</li>
-<li>SongData</li>
-<li>song_data</li>
-<li>song.data</li>
-<li>.song.data</li>
-<li>never_gonna_give_you_up_never_gonna_let_you_down</li>
-</ul>
-<p>The following are not valid variables:</p>
-<ul>
-<li>_song_data</li>
-<li>1song</li>
-<li>.1song</li>
-<li>song data</li>
-<li>song-data</li>
-</ul>
-<p>Use the assignment operator <code>&lt;-</code> to assign the value on the right to the variable named on the left.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## use the assignment operator &#39;&lt;-&#39;</span>
-<span class="co">## R stores the number in the variable</span>
-x &lt;-<span class="st"> </span><span class="dv">5</span></code></pre>
-<p>Now that we have set <code>x</code> to a value, we can do something with it:</p>
-<pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
-
-<span class="co">## R evaluates the expression and stores the result in the variable</span>
-boring_calculation &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre>
-<pre><code>## [1] 10</code></pre>
-<p>Note that it doesn’t print the result back at you when it’s stored. To view the result, just type the variable name on a blank line.</p>
-<pre class="sourceCode r"><code class="sourceCode r">boring_calculation</code></pre>
-<pre><code>## [1] 4</code></pre>
-<p>Once a variable is assigned a value, its value doesn’t change unless you reassign the variable, even if the variables you used to calculate it change. Predict what the code below does and test yourself:</p>
-<pre class="sourceCode r"><code class="sourceCode r">this_year &lt;-<span class="st"> </span><span class="dv">2019</span>
-my_birth_year &lt;-<span class="st"> </span><span class="dv">1976</span>
-my_age &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>my_birth_year
-this_year &lt;-<span class="st"> </span><span class="dv">2020</span></code></pre>
-<div class="try">
-<p>After all the code above is run:</p>
-<ul>
-<li><code>this_year</code> = <select class='solveme' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
-<li><code>my_birth_year</code> = <select class='solveme' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
-<li><code>my_age</code> = <select class='solveme' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
-</ul>
+<div>
+<p>Lakens, Daniël, Anne M. Scheel, and Peder M. Isager. 2018. “Equivalence Testing for Psychological Research: A Tutorial.” <em>Advances in Methods and Practices in Psychological Science</em> 1 (2): 259–69. <a href="https://doi.org/10.1177/2515245918770963">https://doi.org/10.1177/2515245918770963</a>.</p>
 </div>
+<div>
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
 </div>
-<div id="the-environment" class="section level3">
-<h3><span class="header-section-number">1.4.3</span> The environment</h3>
-<p>Anytime you assign something to a new variable, R creates a new object in the <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).</p>
-<p>Look at the <strong>Environment</strong> tab in the upper right pane. It lists all of the variables you have created. Click the broom icon to clear all of the variables and start fresh. You can also use the following functions in the console to view all variables, remove one variable, or remove all variables.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()            <span class="co"># print the variables in the global environment</span>
-<span class="kw">rm</span>(<span class="st">&quot;x&quot;</span>)         <span class="co"># remove the variable named x from the global environment</span>
-<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>()) <span class="co"># clear out the global environment</span></code></pre>
-<div class="info">
-<p>
-In the upper right corner of the Environment tab, change <strong><code>List</code></strong> to <strong><code>Grid</code></strong>. Now you can see the type, length, and size of your variables, and reorder the list by any of these attributes.
-</p>
-</div>
-</div>
-<div id="whitespace" class="section level3">
-<h3><span class="header-section-number">1.4.4</span> Whitespace</h3>
-<p>When you see <code>&gt;</code> at the beginning of a line, that means R is waiting for you to start a new command. However, if you see a <code>+</code> instead of <code>&gt;</code> at the start of the line, that means R is waiting for you to finish a command you started on a previous line. If you want to cancel whatever command you started, just press the Esc key in the console window and you’ll get back to the <code>&gt;</code> command prompt.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># R waits until next line for evaluation</span>
-(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span>
-<span class="st">     </span><span class="dv">5</span></code></pre>
-<pre><code>## [1] 25</code></pre>
-<p>It is often useful to break up long functions onto several lines.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;3, 6, 9, the goose drank wine&quot;</span>,
-    <span class="st">&quot;The monkey chewed tobacco on the streetcar line&quot;</span>,
-    <span class="st">&quot;The line broke, the monkey got choked&quot;</span>,
-    <span class="st">&quot;And they all went to heaven in a little rowboat&quot;</span>,
-    <span class="dt">sep =</span> <span class="st">&quot;  </span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre>
-<pre><code>## 3, 6, 9, the goose drank wine  
-## The monkey chewed tobacco on the streetcar line  
-## The line broke, the monkey got choked  
-## And they all went to heaven in a little rowboat</code></pre>
-</div>
-<div id="function_syx" class="section level3">
-<h3><span class="header-section-number">1.4.5</span> Function syntax</h3>
-<p>A lot of what you do in R involves calling a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> and storing the results. A function is a named section of code that can be reused.</p>
-<p>For example, <code>sd</code> is a function that returns the standard deviation of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this:</p>
-<p><code>function_name(argument1, argument2 = &quot;value&quot;)</code>.</p>
-<p>The arguments in parentheses can be named (like, <code>argument1 = 10</code>) or you can skip the names if you put them in the exact same order that they’re defined in the function. You can check this by typing <code>?sd</code> (or whatever function name you’re looking up) into the console and the Help pane will show you the default order under <strong>Usage</strong>. You can also skip arguments that have a default value specified.</p>
-<p>Most functions return a value, but may also produce side effects like printing to the console.</p>
-<p>To illustrate, the function <code>rnorm()</code> generates random numbers from the standard normal distribution. The help page for <code>rnorm()</code> (accessed by typing <code>?rnorm</code> in the console) shows that it has the syntax</p>
-<p><code>rnorm(n, mean = 0, sd = 1)</code></p>
-<p>where <code>n</code> is the number of randomly generated numbers you want, <code>mean</code> is the mean of the distribution, and <code>sd</code> is the standard deviation. The default mean is 0, and the default standard deviation is 1. There is no default for <code>n</code>, which means you’ll get an error if you don’t specify it:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>()</code></pre>
-<pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
-<p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre>
-<pre><code>##  [1]  0.9489745  0.7154408 -0.2148223 -1.6312468 -0.4786606  0.5244247
-##  [7]  1.0374653  0.7587586  1.6380220 -0.5269080</code></pre>
-<p>If you want 10 numbers from a distribution with a mean of 100:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1] 100.84478 100.52628 100.57789  99.35582 100.63824 100.22908  97.99399
-##  [8]  99.51936 100.54162  97.77819</code></pre>
-<p>This would be an equivalent but less efficient way of calling the function:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1] 100.84980  98.28374 102.08869  99.50047  98.09847  99.96623  98.92751
-##  [8]  98.53369  99.09777 101.81117</code></pre>
-<p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  84.43065  71.01861 -15.02471 -66.96965  85.71117  99.95728  11.31919
-##  [8]  54.44329 -40.23084  70.04952</code></pre>
-<p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,
-             <span class="dt">power =</span> <span class="ot">NULL</span>,
-             <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;two.sample&quot;</span>, <span class="st">&quot;one.sample&quot;</span>, <span class="st">&quot;paired&quot;</span>),
-             <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;one.sided&quot;</span>),
-             <span class="dt">strict =</span> <span class="ot">FALSE</span>, <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.25</span>)</code></pre>
-<div class="try">
-<ul>
-<li>What is the default value for <code>sd</code>? <select class='solveme' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select></li>
-<li>What is the default value for <code>type</code>? <select class='solveme' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select></li>
-<li>Which is equivalent to <code>power.t.test(100, 0.5)</code>? <select class='solveme' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select></li>
-</ul>
-</div>
-</div>
-<div id="help" class="section level3">
-<h3><span class="header-section-number">1.4.6</span> Getting help</h3>
-<p>Start up help in a browser using the function <code>help.start()</code>.</p>
-<p>If a function is in base R or a loaded package, you can use the <code>help(&quot;function_name&quot;)</code> function or the <code>?function_name</code> shortcut to access the help file. If the package isn’t loaded, specify the package name as the second argument to the help function.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these methods are all equivalent ways of getting help</span>
-<span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>)
-?rnorm
-<span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="dt">package=</span><span class="st">&quot;stats&quot;</span>) </code></pre>
-<p>When the package isn’t loaded or you aren’t sure what package the function is in, use the shortcut <code>??function_name</code>.</p>
-<div class="try">
-<ul>
-<li>What is the first argument to the <code>mean</code> function? <select class='solveme' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select></li>
-<li>What package is <code>read_excel</code> in? <select class='solveme' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="install-package" class="section level2">
-<h2><span class="header-section-number">1.5</span> Add-on packages</h2>
-<p>One of the great things about R is that it is <strong>user extensible</strong>: anyone can create a new add-on software package that extends its functionality. There are currently thousands of add-on packages that R users have created to solve many different kinds of problems, or just simply to have fun. There are packages for data visualisation, machine learning, neuroimaging, eyetracking, web scraping, and playing games such as Sudoku.</p>
-<p>Add-on packages are not distributed with base R, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install a fitness app on your smartphone.</p>
-<p>The main repository where packages reside is called CRAN, the Comprehensive R Archive Network. A package has to pass strict tests devised by the R core team to be allowed to be part of the CRAN archive. You can install from the CRAN archive through R using the <code>install.packages()</code> function.</p>
-<p>There is an important distinction between <strong>installing</strong> a package and <strong>loading</strong> a package.</p>
-<div id="installing-a-package" class="section level3">
-<h3><span class="header-section-number">1.5.1</span> Installing a package</h3>
-<p>This is done using <code>install.packages()</code>. This is like installing an app on your smartphone: you only have to do it once and the app will remain installed until you remove it.For instance, if you want to use PokemonGo on your phone you install it once from the App Store or Play Store, and you don’t have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not <em>loaded</em>) every time you open up R.</p>
-<div class="warning">
-<p>
-You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations because you will lack the appropriate privileges.
-</p>
-</div>
-<p>Install the <code>fortunes</code> package on your system:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;fortunes&quot;</span>)</code></pre>
-<p>If you don’t get an error message, the installation was successful.</p>
-</div>
-<div id="loading-a-package" class="section level3">
-<h3><span class="header-section-number">1.5.2</span> Loading a package</h3>
-<p>This is done using <code>library(packagename)</code>. This is like <strong>launching</strong> an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run <code>library(packagename)</code> within a session, the functionality of the package referred to by <code>packagename</code> will be made available for your R session. The next time you start R, you will need to run the <code>library()</code> function again if you want to access its functionality.</p>
-<p>You can load the functions in <code>fortune</code> for your current R session as follows:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fortunes)</code></pre>
-<p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>()</code></pre>
-<pre><code>## 
-## Well..... SAS is SAS, but R is FREE...
-##    -- Abhishek Rathore (in a discussion about R vs. SAS)
-##       LinkedIn Group Stat-Math Statistics (July 2011)</code></pre>
-<p>Note that we will use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
-</div>
-<div id="install-from-github" class="section level3">
-<h3><span class="header-section-number">1.5.3</span> Install from GitHub</h3>
-<p>Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You’ll need to install the devtools package to be able to install packages from github.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;adam-gruer/goodshirt&quot;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(goodshirt)
-<span class="co"># quotes from The Good Place</span>
-<span class="kw">chidi</span>()
-<span class="kw">eleanor</span>()</code></pre>
-<pre><code>## 
-##  There really is an afterlife. I can&#39;t wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
-## 
-##  ~ Chidi
-##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, &quot;Go ahead and cry all you want, but you&#39;re gonna have to pay for that toilet plunger.&quot; 
-## 
-##  ~ Eleanor</code></pre>
-</div>
-</div>
-<div id="projects" class="section level2">
-<h2><span class="header-section-number">1.6</span> Organising a project</h2>
-<p>Projects in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.</p>
-<div class="try">
-<p>
-Make a new directory where you will keep all of your materials for this class. If you’re using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.
-</p>
-<p>
-Choose <strong><code>New Project…</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.
-</p>
-</div>
-<div id="structure" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> Structure</h3>
-<p>Here is what an R script looks like. Don’t worry about the details for now.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load add-on packages</span>
-<span class="kw">library</span>(tidyverse)
-
-<span class="co"># set variables ----</span>
-n &lt;-<span class="st"> </span><span class="dv">100</span>
-
-<span class="co"># simulate data ----</span>
-data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n,
-  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)),
-  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n<span class="op">/</span><span class="dv">2</span>)
-)
-
-<span class="co"># plot data ----</span>
-<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(condition, dv)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, 
-               <span class="kw">aes</span>(<span class="dt">fill =</span> condition),
-               <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
-
-<span class="co"># save plot ----</span>
-<span class="kw">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">6</span>)</code></pre>
-<p>It’s best if you follow the following structure when developing your own scripts:</p>
-<ul>
-<li>load in any add-on packages you need to use</li>
-<li>define any custom functions</li>
-<li>load or simulate the data you will be working with</li>
-<li>work with the data</li>
-<li>save anything you need to save</li>
-</ul>
-<p>Often when you are working on a script, you will realize that you need to load another add-on package. Don’t bury the call to <code>library(package_I_need)</code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.</p>
-<p>You can add comments to an R script by with the hash symbol (<code>#</code>). The R interpreter will ignore characters from the hash to the end of the line.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## comments: any text from &#39;#&#39; on is ignored until end of line</span>
-<span class="dv">22</span> <span class="op">/</span><span class="st"> </span><span class="dv">7</span>  <span class="co"># approximation to pi</span></code></pre>
-<pre><code>## [1] 3.142857</code></pre>
-</div>
-<div id="rmarkdown" class="section level3">
-<h3><span class="header-section-number">1.6.2</span> Reproducible reports with R Markdown</h3>
-<p>We will make reproducible reports following the principles of <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>. The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then “compiled” from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.</p>
-<p>We will use <a href="http://rmarkdown.rstudio.com/lesson-1.html">R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with backtick symbols in a row, with some infomation about the code between curly brackets, such as <code>{r chunk-name, echo=FALSE}</code> (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
-<div class="figure" style="text-align: center"><span id="fig:img-reproducibleScript"></span>
-<img src="images/01/reproducibleScript.png" alt="A reproducible script." width="100%" />
-<p class="caption">
-Figure 1.4: A reproducible script.
-</p>
-</div>
-<p>If you open up a new RMarkdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it. Compiling a document is called <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/k#knitting'>knit</a> in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report.</p>
-<div class="try">
-<p>
-Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Markdown…</code></strong> menu. Change the title and author, then click the knit button to create an html file.
-</p>
-</div>
-</div>
-<div id="working-directory" class="section level3">
-<h3><span class="header-section-number">1.6.3</span> Working Directory</h3>
-<p>Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer’s directory structure. Usually there is a single <strong>working directory</strong> where your data and scripts are stored.</p>
-<p>Your script should only reference files in three locations, using the appropriate format.</p>
-<table>
-<colgroup>
-<col width="74%" />
-<col width="25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Where</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>on the web</td>
-<td>“<a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv" class="uri">https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv</a>”</td>
-</tr>
-<tr class="even">
-<td>in the working directory</td>
-<td>“disgust_scores.csv”</td>
-</tr>
-<tr class="odd">
-<td>in a subdirectory</td>
-<td>“data/disgust_scores.csv”</td>
-</tr>
-</tbody>
-</table>
-<div class="warning">
-<p>
-Never set or change your working directory in a script.
-</p>
-</div>
-<p>If you are working with an R Markdown file, it will automatically use the same directory the .Rmd file is in as the working directory.</p>
-<p>If you are working with R scripts, store your main script file in the top-level directory and manually set your working directory to that location. You will have to reset the working directory each time you open RStudio, unless you create a <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>project</a> and access the script from the project.</p>
-<p>For instance, if on a Windows machine your data and scripts are in the directory <code>C:\Carla's_files\thesis2\my_thesis\new_analysis</code>, you will set your working directory in one of two ways: (1) by going to the <code>Session</code> pull down menu in RStudio and choosing <code>Set Working Directory</code>, or (2) by typing <code>setwd(&quot;C:\Carla's_files\thesis2\my_thesis\new_analysis&quot;)</code> in the console window.</p>
-<div class="danger">
-<p>
-It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).
-</p>
-<p>
-When manually setting the working directory, always do so by using the <strong><code>Session &gt; Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.
-</p>
-</div>
-<p>If your script needs a file in a subdirectory of <code>new_analysis</code>, say, <code>data/questionnaire.csv</code>, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># right way</span></code></pre>
-<p>Do not load it in using an absolute path:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></code></pre>
-<div class="info">
-<p>
-Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
-</p>
-</div>
-</div>
-</div>
-<div id="exercises" class="section level2">
-<h2><span class="header-section-number">1.7</span> Exercises</h2>
-<p>Download the first set of <a href="exercises/01_intro_exercise.Rmd">exercises</a> and put it in the project directory you created earlier for today’s exercises. See the <a href="exercises/01_intro_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -986,8 +552,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercise-answers.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
