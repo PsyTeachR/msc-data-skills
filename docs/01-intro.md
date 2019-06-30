@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.4537500 -0.4072740  0.4086023 -1.8614607 -1.4072317  0.3145809
-##  [7]  0.6038223  0.4294450 -0.7264456 -0.9203240
+##  [1] -1.3784625 -0.7304108  0.6304100  1.3937263  0.8578117  0.1343608
+##  [7]  0.3975312  2.3840031  0.3065430  1.9535461
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.13293 100.20824  99.66614 100.46111 101.84239 101.27488  99.50306
-##  [8] 100.26277  99.78448 100.14225
+##  [1] 100.23978  99.50679  98.92500 100.84961 100.06841 100.63104 101.00444
+##  [8] 100.21986 101.20898 100.63275
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.33864 101.03749 102.07256  99.74320  99.22534  99.12639  99.36497
-##  [8]  99.07824 101.54131 100.59204
+##  [1] 100.56289  98.78989 100.11875 100.12363  99.84983  99.46329 101.10661
+##  [8]  98.99824  98.24225  98.24555
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -40.11768  24.09049 138.34670  96.35745 155.46105 163.89954 -21.87319
-##  [8] -18.48546 -70.22957 185.16018
+##  [1]  108.776739    7.908826   44.731009   -1.189683 -127.590333
+##  [6]   10.902188   -5.263142 -100.659729   -3.930076  -23.691695
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,10 +458,13 @@ fortune()
 
 ```
 ## 
-## The only people who should use the assign function are those who fully
-## understand why you should never use the assign function.
-##    -- Greg Snow
-##       R-help (July 2009)
+## I suggest that we redefine "+" to be a legal character in the name of an
+## identifier. Sure, if you used to have "a+b" you'll have to rewrite it as
+## "+(a,b)", but think of the benefits!
+## You+can+write+out+long+sentences+and+use+them+as+variable+names!
+##    -- Duncan Murdoch (in a discussion whether to use underscore, dot, or
+##       mixed case in variable names)
+##       R-help (May 2005)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -486,10 +489,10 @@ eleanor()
 
 ```
 ## 
-##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
+##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
 ## 
 ##  ~ Chidi
-##  Holy motherforking shirtballs! 
+##  Girl, you are a messy bench who loves drama and I am into it! 
 ## 
 ##  ~ Eleanor
 ```

@@ -521,37 +521,113 @@ disgust_tidy3 <- disgust_tidy2 %>%
     first_user = first(user_id),
     last_user = last(user_id)
   )
-
-disgust_tidy3
-```
-
-```
-## # A tibble: 10 x 7
-##     year     n avg_pathogen avg_moral avg_sexual first_user last_user
-##    <dbl> <int>        <dbl>     <dbl>      <dbl>      <dbl>     <dbl>
-##  1  2008  2392         3.70      3.81       2.54          0    188708
-##  2  2009  2410         3.67      3.76       2.53       6093    251959
-##  3  2010  1418         3.73      3.84       2.51       5469    319641
-##  4  2011  5586         3.76      3.81       2.63       4458    406569
-##  5  2012  5375         3.74      3.77       2.55       2118    458194
-##  6  2013  1222         3.77      3.91       2.55       7646    462428
-##  7  2014    54         3.76      4          2.31      11090    461307
-##  8  2015    19         3.78      4.45       2.38     102699    460283
-##  9  2016     8         3.70      3.62       2.38       4976    453237
-## 10  2017     6         3.07      3.69       1.40      48303    370464
 ```
 
 ## Additional dplyr one-table verbs
 
+Use the code examples below and the help pages to figure out what the following one-table verbs do. Most have pretty self-explanatory names.
+
 ### rename() {#rename}
+
+
+```r
+iris_underscore <- iris %>%
+  rename(sepal_length = Sepal.Length,
+         sepal_width = Sepal.Width,
+         petal_length = Petal.Length,
+         petal_width = Petal.Width)
+
+names(iris_underscore)
+```
+
+```
+## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width" 
+## [5] "Species"
+```
+
+<div class="try">
+<p>Almost everyone gets confused at some point with <code>rename()</code> and tries to put the original names on the left and the new names on the right. Try it and see what the error message looks like.</p>
+</div>
 
 ### distinct() {#distinct}
 
+
+```r
+# create a data table with duplicated values
+dupes <- tibble(
+  id = rep(1:5, 2),
+  dv = rep(LETTERS[1:5], 2)
+)
+
+distinct(dupes)
+```
+
+```
+## # A tibble: 5 x 2
+##      id dv   
+##   <int> <chr>
+## 1     1 A    
+## 2     2 B    
+## 3     3 C    
+## 4     4 D    
+## 5     5 E
+```
+
 ### count() {#count}
 
-### slice() {#slide}
+
+```r
+# how many observations from each species are in iris?
+count(iris, Species)
+```
+
+```
+## # A tibble: 3 x 2
+##   Species        n
+##   <fct>      <int>
+## 1 setosa        50
+## 2 versicolor    50
+## 3 virginica     50
+```
+
+
+### slice() {#slice}
+
+
+```r
+tibble(
+  id = 1:10,
+  condition = rep(c("A","B"), 5)
+) %>%
+  slice(3:6, 9)
+```
+
+```
+## # A tibble: 5 x 2
+##      id condition
+##   <int> <chr>    
+## 1     3 A        
+## 2     4 B        
+## 3     5 A        
+## 4     6 B        
+## 5     9 A
+```
+
 
 ### pull() {#pull}
+
+
+```r
+iris %>%
+  group_by(Species) %>%
+  summarise_all(mean) %>%
+  pull(Sepal.Length)
+```
+
+```
+## [1] 5.006 5.936 6.588
+```
+
 
 ## Exercises
 

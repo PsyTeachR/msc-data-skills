@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.6.1</b> rename()</a></li>
 <li class="chapter" data-level="5.6.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.6.2</b> distinct()</a></li>
 <li class="chapter" data-level="5.6.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.6.3</b> count()</a></li>
-<li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slide"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
+<li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
@@ -525,8 +525,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  79.96   79.96   53.78 8.12e-05 ***
-## Residuals    8  11.89    1.49                     
+## A            1 111.03  111.03   68.98 3.33e-05 ***
+## Residuals    8  12.88    1.61                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -543,7 +543,7 @@ pval
 ```
 
 ```
-## [1] 8.119733e-05
+## [1] 3.331983e-05
 ```
 -->
 </div>
@@ -690,13 +690,13 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 ##  Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = 0.94889, df = 37.99, p-value = 0.3487
+## t = -1.4327, df = 37.889, p-value = 0.1602
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.3496912  0.9667287
+##  -1.2721742  0.2178105
 ## sample estimates:
 ## mean of x mean of y 
-##  5.278502  4.969983</code></pre>
+##  4.887222  5.414404</code></pre>
 <p>You can also convert the table to long format using the <code>gather</code> function and specify the t-test using the format <code>number_column~grouping_column</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)
 
@@ -705,13 +705,13 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 ##  Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = 0.94889, df = 37.99, p-value = 0.3487
+## t = -1.4327, df = 37.889, p-value = 0.1602
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.3496912  0.9667287
+##  -1.2721742  0.2178105
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.278502        4.969983</code></pre>
+##        4.887222        5.414404</code></pre>
 </div>
 <div id="broomtidy" class="section level3">
 <h3><span class="header-section-number">7.5.4</span> <code>broom::tidy()</code></h3>
@@ -726,7 +726,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <pre><code>## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1    0.148      5.44      5.29     0.378   0.707      36.0   -0.644
+## 1   -0.307      4.99      5.30     -1.18   0.246      34.6   -0.836
 ## # … with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 ## #   alternative &lt;chr&gt;</code></pre>
 <p>Finally, we can extract a single value from this results table using <code>pull()</code>.</p>
@@ -738,7 +738,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span>
 <span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">pull</span>(p.value)</code></pre>
-<pre><code>## [1] 0.06745061</code></pre>
+<pre><code>## [1] 0.1234171</code></pre>
 </div>
 <div id="turn-into-a-function" class="section level3">
 <h3><span class="header-section-number">7.5.5</span> Turn into a function</h3>
@@ -755,7 +755,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 }</code></pre>
 <p>Run it a few times to see what happens.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>()</code></pre>
-<pre><code>## [1] 0.06048001</code></pre>
+<pre><code>## [1] 0.6934229</code></pre>
 </div>
 <div id="replicate" class="section level3">
 <h3><span class="header-section-number">7.5.6</span> <code>replicate()</code></h3>
@@ -764,7 +764,7 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 alpha &lt;-<span class="st"> </span><span class="fl">.05</span>
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>alpha)
 power</code></pre>
-<pre><code>## [1] 0.337</code></pre>
+<pre><code>## [1] 0.341</code></pre>
 </div>
 <div id="add-arguments" class="section level3">
 <h3><span class="header-section-number">7.5.7</span> Add arguments</h3>
@@ -782,13 +782,13 @@ power</code></pre>
 <p>Test your function with some different values to see if the results make sense.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t_sim</span>(<span class="dv">100</span>)
 <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</code></pre>
-<pre><code>## [1] 0.2109471
-## [1] 0.000174816</code></pre>
+<pre><code>## [1] 0.3461128
+## [1] 0.001120331</code></pre>
 <p>Use <code>replicate</code> to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.</p>
 <pre class="sourceCode r"><code class="sourceCode r">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))
 power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>)
 power</code></pre>
-<pre><code>## [1] 0.268</code></pre>
+<pre><code>## [1] 0.318</code></pre>
 <p>Compare this to power calculated from the <code>power.t.test</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</code></pre>
 <pre><code>## 

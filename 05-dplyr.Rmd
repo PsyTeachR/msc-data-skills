@@ -376,20 +376,72 @@ disgust_tidy3 <- disgust_tidy2 %>%
     last_user = last(user_id)
   )
 
-disgust_tidy3
 ```
 
 ## Additional dplyr one-table verbs
 
+Use the code examples below and the help pages to figure out what the following one-table verbs do. Most have pretty self-explanatory names.
+
 ### rename() {#rename}
+
+```{r rename}
+iris_underscore <- iris %>%
+  rename(sepal_length = Sepal.Length,
+         sepal_width = Sepal.Width,
+         petal_length = Petal.Length,
+         petal_width = Petal.Width)
+
+names(iris_underscore)
+```
+
+```{block type="try"}
+Almost everyone gets confused at some point with `rename()` and tries to put the original names on the left and the new names on the right. Try it and see what the error message looks like.
+```
 
 ### distinct() {#distinct}
 
+```{r distinct}
+# create a data table with duplicated values
+dupes <- tibble(
+  id = rep(1:5, 2),
+  dv = rep(LETTERS[1:5], 2)
+)
+
+distinct(dupes)
+```
+
 ### count() {#count}
 
-### slice() {#slide}
+```{r count}
+# how many observations from each species are in iris?
+count(iris, Species)
+```
+
+
+### slice() {#slice}
+
+```{r slice}
+
+tibble(
+  id = 1:10,
+  condition = rep(c("A","B"), 5)
+) %>%
+  slice(3:6, 9)
+
+```
+
 
 ### pull() {#pull}
+
+```{r pull}
+
+iris %>%
+  group_by(Species) %>%
+  summarise_all(mean) %>%
+  pull(Sepal.Length)
+
+```
+
 
 ## Exercises
 

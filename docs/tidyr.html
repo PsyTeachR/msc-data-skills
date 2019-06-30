@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.6.1</b> rename()</a></li>
 <li class="chapter" data-level="5.6.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.6.2</b> distinct()</a></li>
 <li class="chapter" data-level="5.6.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.6.3</b> count()</a></li>
-<li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slide"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
+<li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
@@ -497,53 +497,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">6</td>
-<td align="left">1</td>
-<td align="left">826</td>
-<td align="left">859</td>
-<td>899</td>
-<td align="left">8 (861)</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">3</td>
+<td align="left">872</td>
+<td align="left">653</td>
+<td>924</td>
+<td align="left">10 (816)</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">4</td>
-<td align="left">1</td>
+<td align="left">7</td>
 <td align="left">3</td>
-<td align="left">751</td>
-<td align="left">790</td>
-<td>875</td>
-<td align="left">8 (805)</td>
+<td align="left">5</td>
+<td align="left">808</td>
+<td align="left">808</td>
+<td>754</td>
+<td align="left">15 (790)</td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">7</td>
-<td align="left">7</td>
+<td align="left">4</td>
 <td align="left">2</td>
-<td align="left">859</td>
-<td align="left">553</td>
-<td>865</td>
-<td align="left">16 (759)</td>
+<td align="left">6</td>
+<td align="left">812</td>
+<td align="left">799</td>
+<td>787</td>
+<td align="left">12 (799)</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">7</td>
-<td align="left">902</td>
-<td align="left">783</td>
-<td>727</td>
-<td align="left">11 (804)</td>
+<td align="left">6</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">966</td>
+<td align="left">670</td>
+<td>751</td>
+<td align="left">8 (796)</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">6</td>
-<td align="left">4</td>
-<td align="left">6</td>
-<td align="left">929</td>
-<td align="left">628</td>
-<td>683</td>
-<td align="left">16 (747)</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">2</td>
+<td align="left">834</td>
+<td align="left">718</td>
+<td>724</td>
+<td align="left">12 (759)</td>
 </tr>
 </tbody>
 </table>
@@ -563,122 +563,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td>1</td>
 <td align="left">1</td>
-<td align="center">826</td>
-<td>1</td>
-<td>8</td>
-<td align="left">861</td>
+<td align="center">872</td>
+<td>3</td>
+<td>10</td>
+<td align="left">816</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">2</td>
-<td align="center">859</td>
-<td>6</td>
-<td>8</td>
-<td align="left">861</td>
+<td align="center">653</td>
+<td>4</td>
+<td>10</td>
+<td align="left">816</td>
 </tr>
 <tr class="odd">
 <td>1</td>
 <td align="left">3</td>
-<td align="center">899</td>
-<td>1</td>
-<td>8</td>
-<td align="left">861</td>
+<td align="center">924</td>
+<td>3</td>
+<td>10</td>
+<td align="left">816</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">1</td>
+<td align="center">808</td>
+<td>7</td>
+<td>15</td>
+<td align="left">790</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td align="left">2</td>
+<td align="center">808</td>
+<td>3</td>
+<td>15</td>
+<td align="left">790</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left">3</td>
+<td align="center">754</td>
+<td>5</td>
+<td>15</td>
+<td align="left">790</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">1</td>
+<td align="center">812</td>
+<td>4</td>
+<td>12</td>
+<td align="left">799</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="left">2</td>
+<td align="center">799</td>
+<td>2</td>
+<td>12</td>
+<td align="left">799</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">3</td>
+<td align="center">787</td>
+<td>6</td>
+<td>12</td>
+<td align="left">799</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">1</td>
+<td align="center">966</td>
+<td>6</td>
+<td>8</td>
+<td align="left">796</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="left">2</td>
+<td align="center">670</td>
+<td>1</td>
+<td>8</td>
+<td align="left">796</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">3</td>
 <td align="center">751</td>
-<td>4</td>
-<td>8</td>
-<td align="left">805</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td align="left">2</td>
-<td align="center">790</td>
 <td>1</td>
 <td>8</td>
-<td align="left">805</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td align="left">3</td>
-<td align="center">875</td>
-<td>3</td>
-<td>8</td>
-<td align="left">805</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td align="left">1</td>
-<td align="center">859</td>
-<td>7</td>
-<td>16</td>
-<td align="left">759</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td align="left">2</td>
-<td align="center">553</td>
-<td>7</td>
-<td>16</td>
-<td align="left">759</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td align="left">3</td>
-<td align="center">865</td>
-<td>2</td>
-<td>16</td>
-<td align="left">759</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td align="left">1</td>
-<td align="center">902</td>
-<td>2</td>
-<td>11</td>
-<td align="left">804</td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td align="left">2</td>
-<td align="center">783</td>
-<td>2</td>
-<td>11</td>
-<td align="left">804</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td align="left">3</td>
-<td align="center">727</td>
-<td>7</td>
-<td>11</td>
-<td align="left">804</td>
+<td align="left">796</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td align="left">1</td>
-<td align="center">929</td>
-<td>6</td>
-<td>16</td>
-<td align="left">747</td>
+<td align="center">834</td>
+<td>5</td>
+<td>12</td>
+<td align="left">759</td>
 </tr>
 <tr class="even">
 <td>5</td>
 <td align="left">2</td>
-<td align="center">628</td>
-<td>4</td>
-<td>16</td>
-<td align="left">747</td>
+<td align="center">718</td>
+<td>5</td>
+<td>12</td>
+<td align="left">759</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td align="left">3</td>
-<td align="center">683</td>
-<td>6</td>
-<td>16</td>
-<td align="left">747</td>
+<td align="center">724</td>
+<td>2</td>
+<td>12</td>
+<td align="left">759</td>
 </tr>
 </tbody>
 </table>
@@ -765,18 +765,18 @@ data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <
 data</code></pre>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id  A_mean B_mean
-##    &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  0.494    2.42
-##  2     2 -0.605    2.12
-##  3     3  0.287    2.24
-##  4     4 -0.762    2.62
-##  5     5  0.812    2.54
-##  6     6  0.961    3.60
-##  7     7 -0.263    2.00
-##  8     8 -0.0718   3.47
-##  9     9  0.0311   2.65
-## 10    10  0.245    1.06</code></pre>
+##       id A_mean B_mean
+##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1 -0.896  1.75 
+##  2     2  0.784  0.545
+##  3     3 -0.297  2.30 
+##  4     4  0.668  3.21 
+##  5     5  0.460  2.37 
+##  6     6  0.802  1.49 
+##  7     7 -0.968  3.24 
+##  8     8  0.209  2.07 
+##  9     9 -0.359  2.36 
+## 10    10 -1.22   2.55</code></pre>
 <div class="warning">
 <p>
 You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
@@ -1225,56 +1225,56 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="left">A</td>
 <td>1</td>
 <td align="left">cat</td>
-<td align="center">1.255</td>
+<td align="center">0.597</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">A</td>
 <td>2</td>
 <td align="left">cat</td>
-<td align="center">0.519</td>
+<td align="center">-1.132</td>
 </tr>
 <tr class="odd">
 <td>1</td>
 <td align="left">B</td>
 <td>1</td>
 <td align="left">cat</td>
-<td align="center">0.012</td>
+<td align="center">-0.601</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">B</td>
 <td>2</td>
 <td align="left">cat</td>
-<td align="center">-0.378</td>
+<td align="center">-1.964</td>
 </tr>
 <tr class="odd">
 <td>2</td>
 <td align="left">A</td>
 <td>1</td>
 <td align="left">dog</td>
-<td align="center">-0.337</td>
+<td align="center">0.671</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">A</td>
 <td>2</td>
 <td align="left">dog</td>
-<td align="center">0.436</td>
+<td align="center">-0.866</td>
 </tr>
 <tr class="odd">
 <td>2</td>
 <td align="left">B</td>
 <td>1</td>
 <td align="left">dog</td>
-<td align="center">-1.152</td>
+<td align="center">-0.812</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">B</td>
 <td>2</td>
 <td align="left">dog</td>
-<td align="center">0.418</td>
+<td align="center">0.556</td>
 </tr>
 </tbody>
 </table>
@@ -1295,29 +1295,29 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">1.2551324</td>
-<td align="right">0.0117042</td>
+<td align="right">0.5967176</td>
+<td align="right">-0.6007124</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">0.5189128</td>
-<td align="right">-0.3777690</td>
+<td align="right">-1.1319978</td>
+<td align="right">-1.9644877</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">-0.3369352</td>
-<td align="right">-1.1516842</td>
+<td align="right">0.6710770</td>
+<td align="right">-0.8121630</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">0.4359494</td>
-<td align="right">0.4180789</td>
+<td align="right">-0.8662872</td>
+<td align="right">0.5558864</td>
 </tr>
 </tbody>
 </table>
@@ -1337,49 +1337,49 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="left">A_1</td>
 <td align="left">cat</td>
-<td align="right">1.2551324</td>
+<td align="right">0.5967176</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A_2</td>
 <td align="left">cat</td>
-<td align="right">0.5189128</td>
+<td align="right">-1.1319978</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B_1</td>
 <td align="left">cat</td>
-<td align="right">0.0117042</td>
+<td align="right">-0.6007124</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B_2</td>
 <td align="left">cat</td>
-<td align="right">-0.3777690</td>
+<td align="right">-1.9644877</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A_1</td>
 <td align="left">dog</td>
-<td align="right">-0.3369352</td>
+<td align="right">0.6710770</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A_2</td>
 <td align="left">dog</td>
-<td align="right">0.4359494</td>
+<td align="right">-0.8662872</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B_1</td>
 <td align="left">dog</td>
-<td align="right">-1.1516842</td>
+<td align="right">-0.8121630</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B_2</td>
 <td align="left">dog</td>
-<td align="right">0.4180789</td>
+<td align="right">0.5558864</td>
 </tr>
 </tbody>
 </table>

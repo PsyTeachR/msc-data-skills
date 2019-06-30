@@ -5,11 +5,11 @@ author: University of Glasgow, Department of Psychology
 
 ## Loading a Library
 
-Almost every script you write will need to load a library. Do this at the top of the script. 
-In the code chunk below, load the `tidyverse` and `readxl` libraries. You can check if you have a library under the Packages tab in the lower right RStudio pane. You might need to use `install.packages("tidyverse")` to install these libraries on your computer, but **never** put `install.packages()` in a script (just type that command directly into the console window).
+Almost every script you write will need to load a library. Do this at the top of the script. In the code chunk below, load the `tidyverse` and `readxl` libraries. You can check if you have a library under the Packages tab in the lower right RStudio pane. You might need to use `install.packages("tidyverse")` to install these libraries on your computer, but **never** put `install.packages()` in a script (just type that command directly into the console window).
 
 ```{r libraries, echo = TRUE, message = FALSE}
-# TODO: your code for loading libraries goes here
+library(tidyverse)
+library(readxl)
 ```
 
 ## Assigning Variables and Data Types
@@ -18,20 +18,19 @@ The main data types you will use are *numeric* (*integer* or *double*), *charact
 
 You assign data to variables with the *assignment operator* `<-`. Assign the following variables:
 
-
 * set the variable `four` to the integer 4
 * set the variable `one_plus_3` to the sum of the integer 1 and the integer 3
 * set `double_four` to the number four as a *double*
-* set the variable `barr` to Dr Barr's first name in all lowercase letters
-* set the variable `BARR` to Dr Barr's first name in all uppercase letters
+* set the variable `lower` to your first name in all lowercase letters
+* set the variable `UPPER` to your first name in all uppercase letters
 
 
 ```{r variables, echo = TRUE}
-four <- NULL
-one_plus_3 <- NULL
-double_four <- NULL
-barr <- NULL
-BARR <- NULL
+four <- 4L
+one_plus_3 <- 1L + 3L
+double_four <- 4
+lower <- "lisa"
+UPPER <- "LISA"
 ```
 
 ## Comparison
@@ -46,10 +45,10 @@ If you assign a variable to the outcome of a comparison, such as `is_equal <- 10
 * `comp_four_gte_one_plus_3` is the variable `four` greater than or equal to the variable `one_plus_3`
 
 ```{r comparison, echo = TRUE}
-comp_1_eq_2 <- NULL
-comp_a_eq_A <- NULL
-comp_10_lt_20 <- NULL
-comp_four_gte_one_plus_3 <- NULL
+comp_1_eq_2 <- 1L == 2L
+comp_a_eq_A <- "a" == "A"
+comp_10_lt_20 <- 10 < 20
+comp_four_gte_one_plus_3 <- four >= one_plus_3
 ```
 
 
@@ -63,10 +62,10 @@ A vector is a list of 1 or more items of the same data type. Create the followin
 * `a_to_e`: the first 5 items in the built-in vector `letters`
 
 ```{r vector, echo = TRUE}
-beatles <- NULL
-one_to_ten <- NULL
-evens <- NULL
-a_to_e <- NULL
+beatles <- c("John", "Paul", "George", "Ringo")
+one_to_ten <- 1:10
+evens <- c(2, 4, 6, 8, 10) # seq(2, 10, by = 2)
+a_to_e <- letters[1:5]
 ```
 
 ## Vectorised Operations
@@ -76,21 +75,21 @@ a_to_e <- NULL
 * `a_to_e_1`: use the `paste0` function and the `a_to_e` variable you created above to create a vector that looks like `"a1", "b2", "c3", "d4", "e5"`.
 
 ```{r vectorised, echo = TRUE}
-by_tens <- NULL
-squares <- NULL
-a_to_e_1 <- NULL
+by_tens <- one_to_ten * 10
+squares <- 1:10 * 1:10 # (1:10)^2
+a_to_e_1 <- paste0(a_to_e, 1:5)
 ```
 
 ## Loading Data
 
 You can load data straight from a website using the URL. Use tidyverse functions for reading CSV and Excel files to create the following variables:
 
-* `infmort`: load data in the CSV file "https://gupsych.github.io/data_skills/data/infmort.csv" using the URL
-* `matmort`: download the excel file [matmort.xls](https://gupsych.github.io/data_skills/data/matmort.xls) into the same folder as this file and load the local file using a function from the package `readxl`
+* `infmort`: load data in the CSV file "https://psyteachr.github.io/msc-data-skills/data/infmort.csv" using the URL
+* `matmort`: download the excel file [matmort.xls](https://psyteachr.github.io/msc-data-skills/data/matmort.xls) into a directory called `data` in the same directory as this file and load the local file using a function from the package `readxl`
 
 ```{r loading-data, echo = TRUE}
-infmort <- NULL
-matmort <- NULL
+infmort <- read_csv("https://psyteachr.github.io/msc-data-skills/data/infmort.csv")
+matmort <- read_xls("data/matmort.xls")
 ```
 
 ## Checks
@@ -105,13 +104,16 @@ check <- function(test) {
 }
 ```
 
+
+The following sections let you check your work. If you did everything right, all the answers should be TRUE.
+
 ### Assigning Variables and Data Types
 
-* `barr`: `r check(barr == "dale")`
-* `BARR`: `r check(BARR == "DALE")`
 * `four`: `r check(four == 4L & typeof(four) == "integer")`
 * `one_plus_3`: `r check(one_plus_3 == 4L & typeof(one_plus_3) == "integer")`
 * `double_four`: `r check(double_four == 4.0 & typeof(double_four) == "double")`
+* `lower`: `r check(tolower(lower) == lower)`
+* `UPPER`: `r check(toupper(UPPER) == UPPER)`
 
 ### Comparison
 
@@ -136,12 +138,12 @@ check <- function(test) {
 ### Loading Data
 
 ```{r load-check, include=FALSE, message=FALSE}
-infmort2 <- readr::read_csv("https://gupsych.github.io/data_skills/data/infmort.csv")
-matmort2 <- readxl::read_xls("matmort.xls")
+infmort2 <- readr::read_csv("https://psyteachr.github.io/msc-data-skills/data/infmort.csv")
+matmort2 <- read_xls("data/matmort.xls")
 ```
 
-* `infmort`: `r check(dplyr::all_equal(infmort, infmort2))`
-* `matmort`: `r check(dplyr::all_equal(matmort, matmort2))`
+* `infmort`: `r check(all_equal(infmort, infmort2))`
+* `matmort`: `r check(all_equal(matmort, matmort2))`
 
 
 
