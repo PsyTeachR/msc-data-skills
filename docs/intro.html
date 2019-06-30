@@ -401,6 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
+<li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -650,20 +651,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre>
-<pre><code>##  [1]  0.95489509 -0.12843140 -1.60381857 -0.48798635  0.23267477
-##  [6] -1.17248461  1.16761086 -0.84860495 -0.55266570  0.04529745</code></pre>
+<pre><code>##  [1]  0.4537500 -0.4072740  0.4086023 -1.8614607 -1.4072317  0.3145809
+##  [7]  0.6038223  0.4294450 -0.7264456 -0.9203240</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1] 100.66448 100.92140  99.41955 100.84766  98.59506 100.88282 100.04681
-##  [8]  99.81350 100.46444 100.89298</code></pre>
+<pre><code>##  [1]  99.13293 100.20824  99.66614 100.46111 101.84239 101.27488  99.50306
+##  [8] 100.26277  99.78448 100.14225</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1] 100.70837 101.80893  99.96078 101.00472  98.84852  99.41000 100.62044
-##  [8] 100.14919  97.89703  99.63397</code></pre>
+<pre><code>##  [1] 100.33864 101.03749 102.07256  99.74320  99.22534  99.12639  99.36497
+##  [8]  99.07824 101.54131 100.59204</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  -88.491937  -83.298756   89.565927   76.600684   -5.071035
-##  [6] -150.356969   -2.664209   21.019139  -99.778295  -11.611360</code></pre>
+<pre><code>##  [1] -40.11768  24.09049 138.34670  96.35745 155.46105 163.89954 -21.87319
+##  [8] -18.48546 -70.22957 185.16018</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,
              <span class="dt">power =</span> <span class="ot">NULL</span>,
@@ -721,15 +722,10 @@ You may only be able to permanently install packages if you are using R on your 
 <p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>()</code></pre>
 <pre><code>## 
-## Our great-great grandchildren as yet unborn may read some of the stupid
-## questions and/or answers that I and perhaps others give from time to time.
-## I&#39;d rather get flamed for saying something stupid in public on this list
-## than to continue to provide substandard service to the people with whom I
-## work because I perpetrated the same mistake in an environment in which no
-## one questioned so effectively my errors.
-##    -- Spencer Graves (in a discussion on whether answers on R-help should
-##       be more polite)
-##       R-help (December 2004)</code></pre>
+## The only people who should use the assign function are those who fully
+## understand why you should never use the assign function.
+##    -- Greg Snow
+##       R-help (July 2009)</code></pre>
 <p>Note that we will use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
 </div>
 <div id="install-from-github" class="section level3">
@@ -742,10 +738,10 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <span class="kw">chidi</span>()
 <span class="kw">eleanor</span>()</code></pre>
 <pre><code>## 
-##  Well, I&#39;ve narrowed it down to two possibilities: yes and no. 
+##  You know, I thought I&#39;d have a stomachache right now, but weirdly... I do. 
 ## 
 ##  ~ Chidi
-##  Oh, so now I&#39;m supposed to be nice and make friends and treat her with mutual respect? 
+##  Holy motherforking shirtballs! 
 ## 
 ##  ~ Eleanor</code></pre>
 </div>

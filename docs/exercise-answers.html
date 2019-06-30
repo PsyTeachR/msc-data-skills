@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Working with Data | Data Skills</title>
+  <title>C Exercise Answers | Data Skills</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Working with Data | Data Skills" />
+  <meta property="og:title" content="C Exercise Answers | Data Skills" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Working with Data | Data Skills" />
+  <meta name="twitter:title" content="C Exercise Answers | Data Skills" />
   
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html">
-<link rel="next" href="ggplot.html">
+<link rel="prev" href="symbols.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -426,417 +426,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Working with Data</h1>
-<div id="learning-objectives-1" class="section level2">
-<h2><span class="header-section-number">2.1</span> Learning Objectives</h2>
-<ol style="list-style-type: decimal">
-<li>Understand the use the <a href="data.html#data_types">basic data types</a></li>
-<li>Understand and use the <a href="data.html#containers">basic container types</a> (list, vector)</li>
-<li><a href="data.html#vectors">Create vectors</a> and store them as <a href="intro.html#vars">variables</a></li>
-<li>Understand <a href="data.html#vectorized_ops">vectorized operations</a></li>
-<li>Create a <a href="data.html#tables">data table</a></li>
-<li><a href="data.html#import_data">Import data</a> from CSV and Excel files</li>
-</ol>
-</div>
-<div id="resources-2" class="section level2">
-<h2><span class="header-section-number">2.2</span> Resources</h2>
+<div id="exercise-answers" class="section level1">
+<h1><span class="header-section-number">C</span> Exercise Answers</h1>
+<p>Download all <a href="exercises/msc-data-skills-exercises.zip">exercises and data files</a> below as a ZIP archive. The answers are not included in the zip file.</p>
 <ul>
-<li><a href="http://r4ds.had.co.nz/data-import.html">Chapter 11: Data Import</a> in <em>R for Data Science</em></li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-import-cheatsheet.pdf">RStudio Data Import Cheatsheet</a></li>
-<li><a href="https://www.nrscotland.gov.uk/files//statistics/babies-first-names-full-list/summary-records/babies-names16-all-names-years.csv">Scottish Babynames</a></li>
-<li><a href="https://www.youtube.com/watch?v=lAaVPMcMs1w">Developing an analysis in R/RStudio: Scottish babynames (1/2)</a></li>
-<li><a href="https://www.youtube.com/watch?v=lzdTHCcClqo">Developing an analysis in R/RStudio: Scottish babynames (2/2)</a></li>
+<li><a href="exercises/01_intro_exercise.Rmd">01 intro</a> (<a href="exercises/01_intro_answers.html">answers</a>): Intro to R, functions, R markdown</li>
+<li><a href="exercises/02_data_exercise.Rmd">02 data</a> (<a href="exercises/02_data_answers.html">answers</a>): Vectors, tabular data, data import, pipes</li>
+<li><a href="exercises/essential_skills_exercise.Rmd">Essential Skills</a> (<a href="exercises/essential_skills_answers.html">answers</a>): You must be able to complete these exercises to advance in the class beyond the first two lectures</li>
+<li><a href="exercises/03_ggplot_exercise.Rmd">03 ggplot</a> (<a href="exercises/03_ggplot_answers.html">answers</a>): Data visualisation</li>
+<li><a href="exercises/04_tidyr_exercise.Rmd">04 tidyr</a> (<a href="exercises/04_tidyr_answers.html">answers</a>): Tidy Data</li>
+<li><a href="exercises/05_dplyr_exercise.Rmd">05 dplyr</a> (<a href="exercises/05_dplyr_answers.html">answers</a>): Data wrangling</li>
+<li><a href="exercises/06_joins_exercise.Rmd">06 joins</a> (<a href="exercises/06_joins_answers.html">answers</a>): Data relations</li>
+<li><a href="exercises/07_func_exercise.Rmd">07 functions</a> (<a href="exercises/07_func_answers.html">answers</a>): Functions and iteration</li>
+<li><a href="exercises/08_sim_exercise.Rmd">08 simulation</a> (<a href="exercises/08_sim_answers.html">answers</a>): Simulation</li>
+<li><a href="exercises/09_glm_exercise.Rmd">09 glm</a> (<a href="exercises/09_glm_answers.html">answers</a>): GLM</li>
 </ul>
+
+<div id="refs" class="references">
+<div>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
 </div>
-<div id="data_types" class="section level2">
-<h2><span class="header-section-number">2.3</span> Basic data types</h2>
-<p>There are five main basic data types in R (there are more, but these are the critical ones you need to know about).</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">type</th>
-<th align="left">description</th>
-<th align="left">example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">double</td>
-<td align="left">floating point value</td>
-<td align="left"><code>.333337</code></td>
-</tr>
-<tr class="even">
-<td align="left">integer</td>
-<td align="left">integer</td>
-<td align="left"><code>-1, 0, 1</code></td>
-</tr>
-<tr class="odd">
-<td align="left">numeric</td>
-<td align="left">any real number (int,dbl)</td>
-<td align="left"><code>1, .5, -.222</code></td>
-</tr>
-<tr class="even">
-<td align="left">boolean</td>
-<td align="left">assertion of truth/falsity</td>
-<td align="left"><code>TRUE, FALSE</code></td>
-</tr>
-<tr class="odd">
-<td align="left">character</td>
-<td align="left">text string</td>
-<td align="left"><code>&quot;hello world&quot;, 'howdy'</code></td>
-</tr>
-</tbody>
-</table>
-<p>There is also a specific data type called a <code>factor</code> which will probably give you a headache sooner or later, but we can get by for now without them.</p>
-<p>Character strings can include basically anything, including quotes, but if you want a quote to be included you have to ‘escape’ it using a backslash:</p>
-<pre class="sourceCode r"><code class="sourceCode r">my_string &lt;-<span class="st"> &quot;The instructor said, </span><span class="ch">\&quot;</span><span class="st">R is cool,</span><span class="ch">\&quot;</span><span class="st"> and the class agreed.&quot;</span>
-my_string</code></pre>
-<pre><code>## [1] &quot;The instructor said, \&quot;R is cool,\&quot; and the class agreed.&quot;</code></pre>
-<p>Note that if you just type a plain number such as <code>10</code> it is stored as a double, even if it doesn’t have a decimal point. If you want it to be an exact integer, use the <code>L</code> suffix (10L).</p>
-<p>If you ever want to know the data type of something, use the <code>class</code> function. There is also the <code>mode</code> function which is specifically for vectors.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="dv">10</span>) <span class="co"># numeric</span>
-<span class="kw">class</span>(10L) <span class="co"># integer</span>
-<span class="kw">class</span>(<span class="st">&quot;10&quot;</span>) <span class="co"># string</span>
-<span class="kw">class</span>(10L <span class="op">==</span><span class="st"> </span>11L) <span class="co"># logical</span>
-<span class="kw">mode</span>(<span class="ot">TRUE</span>)</code></pre>
-<pre><code>## [1] &quot;numeric&quot;
-## [1] &quot;integer&quot;
-## [1] &quot;character&quot;
-## [1] &quot;logical&quot;
-## [1] &quot;logical&quot;</code></pre>
+<div>
+<p>Lakens, Daniël, Anne M. Scheel, and Peder M. Isager. 2018. “Equivalence Testing for Psychological Research: A Tutorial.” <em>Advances in Methods and Practices in Psychological Science</em> 1 (2): 259–69. <a href="https://doi.org/10.1177/2515245918770963">https://doi.org/10.1177/2515245918770963</a>.</p>
 </div>
-<div id="containers" class="section level2">
-<h2><span class="header-section-number">2.4</span> Basic container types</h2>
-<div id="vectors" class="section level3">
-<h3><span class="header-section-number">2.4.1</span> Vectors</h3>
-<p>Vectors are one of the key data structures in R. A vector in R is like a vector in math: a set of ordered elements. All of the elements in a vector must be of the same <em>data type</em> (numeric, character, factor). You can create a vector by enclosing the elements in <code>c(...)</code>, as shown below.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## put information into a vector using c(...)</span>
-<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
-
-<span class="kw">c</span>(<span class="st">&quot;this&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;cool&quot;</span>)
-
-<span class="co">## what happens when you mix types?</span>
-<span class="kw">c</span>(<span class="dv">2</span>, <span class="st">&quot;good&quot;</span>, <span class="dv">2</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;true&quot;</span>)</code></pre>
-<pre><code>## [1] 1 2 3
-## [1] &quot;this&quot; &quot;is&quot;   &quot;cool&quot;
-## [1] &quot;2&quot;    &quot;good&quot; &quot;2&quot;    &quot;b&quot;    &quot;true&quot;</code></pre>
-<p>OK, here’s a question. When you type a single number in the console, it spits it back out to you, like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r">3L</code></pre>
-<pre><code>## [1] 3</code></pre>
-<p>Why is there a <code>[1]</code> there? i.e., what does the <code>[1]</code> in the <code>[1] 3</code> refer to?</p>
-<p>We’ll eventually get to the answer, but let’s see if you can discover it yourself through experiment. There is an operator <code>:</code> that, when placed between two integers <code>x</code> and <code>y</code> like so: <code>x:y</code> will yield the sequence of integers from x to y inclusive. Let’s make a big long vector of numbers and print it out.</p>
-<pre class="sourceCode r"><code class="sourceCode r">vec &lt;-<span class="st"> </span><span class="dv">200</span><span class="op">:</span><span class="dv">400</span>
-vec</code></pre>
-<pre><code>##   [1] 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216
-##  [18] 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233
-##  [35] 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250
-##  [52] 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267
-##  [69] 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284
-##  [86] 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301
-## [103] 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318
-## [120] 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335
-## [137] 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352
-## [154] 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369
-## [171] 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386
-## [188] 387 388 389 390 391 392 393 394 395 396 397 398 399 400</code></pre>
-<p>Note the number in square brackets on the left hand side of the output. Note that <code>vec</code> is a vector: an ordered container of 200 elements, in this case, the integers from 200 to 400. The bracked number on the left hand side tells you the numeric index (i.e., element number) corresponding to the first value in that row. So the first value is 200, the 19th value is 218, the 37th value is 236, etc.</p>
-<p>Recall from the last class that another way to create a vector is to use the <code>c()</code> operator. (This is the easiest way, but you can also use the <code>vector()</code> function.) If we wanted to pick specific values out of the vector by position, we can make a vector of numbers like so:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(1L, 19L, 37L, 55L)</code></pre>
-<pre><code>## [1]  1 19 37 55</code></pre>
-<p>And then pull them out using the <code>[]</code> operator, which is the <em>extraction</em> operator, on the variable <code>vec</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">vec[<span class="kw">c</span>(1L, 19L, 37L, 55L)]
-
-<span class="co">## note also:</span>
-index &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 19L, 37L, 55L)
-vec[index]
-
-vec[<span class="kw">c</span>(1L, 1L, 19L, 19L, 19L, 19L)]</code></pre>
-<pre><code>## [1] 200 218 236 254
-## [1] 200 218 236 254
-## [1] 200 200 218 218 218 218</code></pre>
-<p>OK let’s return to our original question: why did we get <code>[1] 3</code> when we just typed <code>3L</code>? The answer should now be clear: when we entered a single number, R created a vector with a single element.</p>
-<p>You can also create ‘named’ vectors, where each elements has a name. For example:</p>
-<pre class="sourceCode r"><code class="sourceCode r">vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">first =</span> <span class="fl">77.9</span>, <span class="dt">second =</span> <span class="fl">-13.2</span>, <span class="dt">third =</span> <span class="fl">100.1</span>)
-vec2</code></pre>
-<pre><code>##  first second  third 
-##   77.9  -13.2  100.1</code></pre>
-<p>We can then access elements by name using a character vector within the square brackets. We can put them in any order we want, and we can repeat elements:</p>
-<pre class="sourceCode r"><code class="sourceCode r">vec2[<span class="kw">c</span>(<span class="st">&quot;third&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;second&quot;</span>)]</code></pre>
-<pre><code>##  third second second 
-##  100.1  -13.2  -13.2</code></pre>
-<p>We can get the vector of names using the <code>names()</code> function, and we can set or change them using something like <code>names(vec2) &lt;- c(&quot;n1&quot;, &quot;n2&quot;, &quot;n3&quot;)</code>.</p>
-<p>Another way to access elements is by using a logical vector within the square brackets. This will pull out the elements of the vector for which the corresponding element of the logical vector is <code>TRUE</code>. The logical vector must have the same length as the original. You can find out how long a vector is using the <code>length()</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(vec2)
-vec2[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</code></pre>
-<pre><code>## [1] 3
-## first third 
-##  77.9 100.1</code></pre>
-<p>Here are some useful tricks to save typing when creating vectors. Recall that in the command <code>x:y</code> the <code>:</code> operator would give you the sequence of integers from <code>x:y</code>.</p>
-<p>What if you want to repeat a vector many times? You could either type it out (painful) or use the <code>rep()</code> function, which can repeat vectors in different ways.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ten zeroes</span>
-<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)
-
-<span class="co"># alternating 1 and 3, 7 times</span>
-<span class="kw">rep</span>(<span class="kw">c</span>(1L, 3L), <span class="dv">7</span>)
-
-<span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dv">2</span>)</code></pre>
-<pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0
-##  [1] 1 3 1 3 1 3 1 3 1 3 1 3 1 3
-## [1]  TRUE FALSE  TRUE FALSE</code></pre>
-<p>What if you want to create a sequence but with something other than integer steps? You can use the <code>seq()</code> function. You can learn about this in the exercises below.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Repeat a vector</span>
-<span class="co"># See the ?rep function</span>
-<span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dv">3</span>)
-
-<span class="co"># Get every other (odd) element of vec</span>
-vec[<span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dv">100</span>)]
-
-<span class="co"># We can also store the logical vector in a variable and use that</span>
-evens &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>), <span class="dv">100</span>)</code></pre>
-<pre><code>## [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE
-##   [1] 200 202 204 206 208 210 212 214 216 218 220 222 224 226 228 230 232
-##  [18] 234 236 238 240 242 244 246 248 250 252 254 256 258 260 262 264 266
-##  [35] 268 270 272 274 276 278 280 282 284 286 288 290 292 294 296 298 300
-##  [52] 302 304 306 308 310 312 314 316 318 320 322 324 326 328 330 332 334
-##  [69] 336 338 340 342 344 346 348 350 352 354 356 358 360 362 364 366 368
-##  [86] 370 372 374 376 378 380 382 384 386 388 390 392 394 396 398 400</code></pre>
-<div class="warning">
-<p>
-You can’t mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will coerce them so that they are all the same.
-</p>
+<div>
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
 </div>
-<div id="vectorized_ops" class="section level4">
-<h4><span class="header-section-number">2.4.1.1</span> Vectorized Operations</h4>
-<p>R performs calculations on vectors in a special way. Let’s look at an example using <span class="math inline">\(z\)</span>-scores. A <span class="math inline">\(z\)</span>-score is a <em>deviation score</em> (a score minus a mean) divided by a standard deviation. Let’s say we have a set of four IQ scores.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## example IQ scores: mu = 100, sigma = 15</span>
-iq &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">86</span>, <span class="dv">101</span>, <span class="dv">127</span>, <span class="dv">99</span>)</code></pre>
-<p>If we want to subtract the mean from these four scores, we just use the following code:</p>
-<pre class="sourceCode r"><code class="sourceCode r">iq <span class="op">-</span><span class="st"> </span><span class="dv">100</span></code></pre>
-<pre><code>## [1] -14   1  27  -1</code></pre>
-<p>This subtracts 100 from each element of the vector. R automatically assumes that this is what you wanted to do; it is called a <em>vectorized operation</em> and it makes it possible to express operations more efficiently.</p>
-<p>To calculate <span class="math inline">\(z\)</span>-scores we use the formula:</p>
-<p><span class="math inline">\(z = \frac{X - \mu}{\sigma}\)</span></p>
-<p>where X are the scores, <span class="math inline">\(\mu\)</span> is the mean, and <span class="math inline">\(\sigma\)</span> is the standard deviation. We can expression this formula in R as follows:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">## z-scores</span>
-(iq <span class="op">-</span><span class="st"> </span><span class="dv">100</span>) <span class="op">/</span><span class="st"> </span><span class="dv">15</span></code></pre>
-<pre><code>## [1] -0.93333333  0.06666667  1.80000000 -0.06666667</code></pre>
-<p>You can see that it computed all four <span class="math inline">\(z\)</span>-scores with a single line of code. Very efficient!</p>
-</div>
-<div id="ex_vector" class="section level4">
-<h4><span class="header-section-number">2.4.1.2</span> Exercises</h4>
-<ol style="list-style-type: decimal">
-<li><p>The built-in vector <code>letters</code> contains the letters of the English alphabet. Use an indexing vector of integers to extract the letters that spell ‘cat’.</p></li>
-<li><p>The function <code>colors()</code> returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)</p></li>
-<li><p>The function call <code>runif(1000, 0, 1)</code> will draw 1000 numbers from a uniform distribution from 0 to 1, which simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Store the result of this call in <code>pvals</code>. Create a logical vector called <code>is_sig</code> that is <code>TRUE</code> if the corresponding element of <code>pvals</code> is less than .05, <code>FALSE</code> otherwise (hint: vectorized operations from the last lession), then use this logical vector to pull out those p-values. Finally, calculate the proportion of those p-values that were significant.</p></li>
-</ol>
-</div>
-</div>
-<div id="lists" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> Lists</h3>
-<p>Recall that vectors can contain data of only one type. What if you want to store a collection of data of different data types? For that purpose you would use a <code>list</code>. Define a list using the <code>list()</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r">albums &lt;-<span class="st"> </span>
-<span class="st">  </span><span class="kw">list</span>(
-    <span class="dt">Michael_Jackson =</span> <span class="kw">c</span>(
-      <span class="st">&quot;Off the Wall&quot;</span>,
-      <span class="st">&quot;Thriller&quot;</span>,
-      <span class="st">&quot;Bad&quot;</span>,
-      <span class="st">&quot;Dangerous&quot;</span>
-    ),
-    <span class="dt">Nirvana =</span> <span class="kw">c</span>(
-      <span class="st">&quot;Bleach&quot;</span>,
-      <span class="st">&quot;Nevermind&quot;</span>,
-      <span class="st">&quot;In Utero&quot;</span>
-    )
-  )  
-
-<span class="kw">names</span>(albums)
-<span class="kw">length</span>(albums)</code></pre>
-<p>You can refer to elements of a list by</p>
-<div class="info">
-<p>
-Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code> objects, which you will learn about in the next section, are a special type of list. That means you can access the columns of one of these object using <code>tablename$column</code> syntax, which is sometimes useful.
-</p>
-</div>
-</div>
-<div id="tables" class="section level3">
-<h3><span class="header-section-number">2.4.3</span> Tabular data</h3>
-<p>Most of what you will be working with in this course is <em>tabular data</em>, data arranged in the form of a table.</p>
-<p>Tabular data structures, like lists, allow for a collection of data of different types (characters, integers, logical, etc.) but subject to the constraint that each “column” of the table (element of the list) must have the same number of elements. The base R version of a table is called a <code>data.frame</code> while the ‘tidyverse’ version is called a <code>tibble</code>. Tibbles are far easier to work with, so we’ll be using those. To learn more about differences between these two data structures, see <code>vignette(&quot;tibble&quot;)</code>.</p>
-<p>Tabular data becomes especially important for when we talk about <em>tidy data</em> in <a href="04_wrangling.Rmd">lesson 4</a>, which consists of a set of simple principles for structuring data.</p>
-<p>If we are creating a tibble from scratch, we can use the <code>tibble()</code> function, and type the data right in. Note that if we want a value to repeat multiple times, we only have to specify a one-element vector; R will expand out the vector to fill out the table. All columns in the tibble must have the same lengths or be of length 1.</p>
-<p>If we want to use the <code>tibble()</code> function, we either need to load the tibble package or the tidyverse package (which will itself load tibble in addition to other packages). Let’s do the latter.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre>
-<p>We can get information about the table dimensions using the functions <code>ncol()</code> (number of columns), <code>nrow()</code> (number of rows), or <code>dim()</code> (a vector with the number of rows and number of columns).</p>
-<pre class="sourceCode r"><code class="sourceCode r">months &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,
-                 <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>,
-                          <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>,
-                          <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>))
-
-<span class="co"># print it</span>
-months
-
-<span class="co"># how many rows?</span>
-<span class="kw">nrow</span>(months)
-
-<span class="co"># how many columns?</span>
-<span class="kw">ncol</span>(months)</code></pre>
-<div id="viewing-your-tibble" class="section level4">
-<h4><span class="header-section-number">2.4.3.1</span> Viewing your tibble</h4>
-<p>Always, always, always, look at your data once you’ve created the table and load it in. Also look at it after each step that transforms your tibble.</p>
-<p>There are three ways to look at your tibble: <code>View()</code> [*NB: capital ‘V’], <code>print()</code>, and <code>glimpse()</code>. Note that it is also rare that you want to print your data in a script; that is something you usually are doing for a sanity check, and you should just do it in the console.</p>
-<p>The <code>print()</code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. Usually we only call <code>print()</code> if we want fine control of how the information is displayed.</p>
-<p>Note that the default is not to print the entire table, but just the first 10 rows. Let’s look at the <code>starwars</code> table that is built into the tidyverse.</p>
-<pre class="sourceCode r"><code class="sourceCode r">starwars</code></pre>
-<pre><code>## # A tibble: 87 x 13
-##    name  height  mass hair_color skin_color eye_color birth_year gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
-##  1 Luke…    172    77 blond      fair       blue            19   male  
-##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
-##  3 R2-D2     96    32 &lt;NA&gt;       white, bl… red             33   &lt;NA&gt;  
-##  4 Dart…    202   136 none       white      yellow          41.9 male  
-##  5 Leia…    150    49 brown      light      brown           19   female
-##  6 Owen…    178   120 brown, gr… light      blue            52   male  
-##  7 Beru…    165    75 brown      light      blue            47   female
-##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
-##  9 Bigg…    183    84 black      light      brown           24   male  
-## 10 Obi-…    182    77 auburn, w… fair       blue-gray       57   male  
-## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;,
-## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
-<p>You can see that this is a 87 rows by 13 column table, and we can only see the first 10 rows and first 8 columns.</p>
-<p>If I want to see all 87 rows for some reason, I would use an explicit call to <code>print()</code>, and set the argument <code>n</code> to the number of rows I want to see. If I want all of them, just use <code>+Inf</code>, the symbol for ‘infinite’ rows.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(starwars, <span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co"># try this in the console</span></code></pre>
-<p>But we still can’t see all the columns. If this is important to us, we can use <code>glimpse()</code>, which gives a sideways version of the tibble.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(starwars)</code></pre>
-<pre><code>## Observations: 87
-## Variables: 13
-## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;L…
-## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, …
-## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.…
-## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;bro…
-## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;lig…
-## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;…
-## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, …
-## $ gender     &lt;chr&gt; &quot;male&quot;, NA, NA, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;, N…
-## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaa…
-## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;,…
-## $ films      &lt;list&gt; [&lt;&quot;Revenge of the Sith&quot;, &quot;Return of the Jedi&quot;, &quot;The …
-## $ vehicles   &lt;list&gt; [&lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;…
-## $ starships  &lt;list&gt; [&lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanc…</code></pre>
-<p>The other way to look at the table is a more graphical spreadsheet-like version given by <code>View()</code> (capital ‘V’). It can be useful in the console, but don’t ever put this one in a script because it will create an annoying pop-up window when the user goes to run it.</p>
-<p>Note that <code>data.frame</code> objects are printed out in different ways from <code>tibble</code> objects. If you print a <code>data.frame</code> object with thousands or millions of rows, you won’t just get a preview… you will spam your console with row upon row of data. If you want to make a data.frame into a tibble so that it prints out nicely, just use the <code>as_tibble()</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="co"># prints out way too many rows; TMI</span>
-
-<span class="kw">as_tibble</span>(mtcars) <span class="co"># much cleaner</span>
-mtcars2 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars) <span class="co"># store it</span></code></pre>
-</div>
-<div id="accessing-rows-and-columns" class="section level4">
-<h4><span class="header-section-number">2.4.3.2</span> Accessing rows and columns</h4>
-<p>There are various base R ways of accessing specific columns or rows from a table that are useful to know about, but you’ll be learning easier (and more readable) ways when we get to the lecture on <a href="04_wrangling.Rmd">data wrangling</a>. Examples of these base R accessing functions are provided here for reference.</p>
-<pre class="sourceCode r"><code class="sourceCode r">months[<span class="dv">1</span>, ] <span class="co"># first row</span>
-
-months[, <span class="dv">2</span>] <span class="co"># second column (position)</span>
-
-months[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ] <span class="co"># first 3 months</span>
-
-months[, <span class="kw">c</span>(<span class="st">&quot;Month&quot;</span>)] <span class="co"># access column by name</span>
-
-months<span class="op">$</span>month  <span class="co"># by column name</span></code></pre>
-<p>You’ll learn about data frame operations in the <a href="tidyr.html#tidyr">tidyr</a> and <a href="dplyr.html#dplyr">dplyr</a> lessons.</p>
-</div>
-<div id="ex_tibble" class="section level4">
-<h4><span class="header-section-number">2.4.3.3</span> Exercises</h4>
-<ol style="list-style-type: decimal">
-<li><p>Create a tibble with the name, age, and sex of 3-5 people whose names, ages, and sex you know.</p></li>
-<li><p>Convert the built-in base R <code>iris</code> dataset to a tibble, and store it in the variable <code>iris2</code>.</p></li>
-<li><p>Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: <code>rep()</code>). Store it in the variable <code>my_tbl</code>.</p>
-<pre><code>## # A tibble: 8 x 4
-##      ID A     B     C    
-##   &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1     1 A1    B1    C1   
-## 2     2 A1    B2    C1   
-## 3     3 A1    B1    C1   
-## 4     4 A1    B2    C1   
-## 5     5 A2    B1    C1   
-## 6     6 A2    B2    C1   
-## 7     7 A2    B1    C1   
-## 8     8 A2    B2    C1</code></pre></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="import_data" class="section level2">
-<h2><span class="header-section-number">2.5</span> Importing data</h2>
-<p>There are many different types of files that you might work with when doing data analysis. These different file types are usually distinguished by the three letter <em>extension</em> following a period at the end of the file name. Here are some examples of different types of files and the functions you would use to read them in or write them out.</p>
-<table>
-<thead>
-<tr class="header">
-<th>Extension</th>
-<th>File Type</th>
-<th>Reading</th>
-<th>Writing</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>.csv</td>
-<td>Comma-separated values</td>
-<td><code>readr::read_csv()</code></td>
-<td><code>readr::write_csv()</code></td>
-</tr>
-<tr class="even">
-<td>.xls, .xlsx</td>
-<td>Excel workbook</td>
-<td><code>readxl::read_excel()</code></td>
-<td>N/A</td>
-</tr>
-<tr class="odd">
-<td>.rds</td>
-<td>R binary file</td>
-<td><code>readRDS()</code></td>
-<td><code>saveRDS()</code></td>
-</tr>
-<tr class="even">
-<td>.RData</td>
-<td>R binary file</td>
-<td><code>load()</code></td>
-<td><code>save()</code></td>
-</tr>
-</tbody>
-</table>
-<p>Note: following the conventions introduced above in the section about add-on packages, <code>readr::read_csv()</code> refers to the <code>read_csv()</code> function in the <code>readr</code> package, and <code>readxl::read_excel()</code> refers to the function <code>read_excel()</code> in the package <code>readxl</code>.</p>
-<p>Probably the most common file type you will encounter is <code>.csv</code> (comma-separated values). As the name suggests, a CSV file distinguishes which values go with which variable by separating them with commas, and text values are sometimes enclosed in double quotes. The first line of a file usually provides the names of the variables. For example, here are the first few lines of a CSV containing Scottish baby names (see <a href="http://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/names/babies-first-names/babies-first-names-summary-records-comma-separated-value-csv-format">the page at National Records Scotland</a>):</p>
-<p>yr,sex,FirstForename,number,rank,position
-1974,B,David,1794,1,1
-1974,B,John,1528,2,2
-1974,B,Paul,1260,3,3
-1974,B,Mark,1234,4,4
-1974,B,James,1202,5,5
-1974,B,Andrew,1067,6,6
-1974,B,Scott,1060,7,7
-1974,B,Steven,1020,8,8
-1974,B,Robert,885,9,9
-1974,B,Stephen,866,10,10</p>
-<p>There are six variables in this dataset, and their names are given in the first line of the file: <code>yr</code>, <code>sex</code>, <code>FirstForename</code>, <code>number</code>, <code>rank</code>, and <code>position</code>. You can see that the values for each of these variables are given in order, separated by commas, on each subsequent line of the file.</p>
-<p>When you read in CSV files, it is best practice to use the <code>readr::read_csv()</code> function. The <code>readr</code> package is automatically loaaded as part of the <code>tidyverse</code> package, which we will be using in almost every script. Note that you would normally want to store the result of the <code>read_csv()</code> function to a variable, as so:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;my_data_file.csv&quot;</span>)</code></pre>
-<p>Once loaded, you can view your data using the data viewer. In the upper right hand window of RStudio, under the Environment tab, you will see the object <code>dat</code> listed.</p>
-<p><img src="images/01_walkthrough/my_data.png" /></p>
-<p>If you click on the View icon (<img src="images/01_walkthrough/table_icon.png" />), it will bring up a table view of the data you loaded in the top left pane of RStudio.</p>
-<p><img src="images/01_walkthrough/View.png" /></p>
-<p>This allows you to check that the data have been loaded in properly. You can close the tab when you’re done looking at it—it won’t remove the object.</p>
-<div id="writing-data" class="section level3">
-<h3><span class="header-section-number">2.5.1</span> Writing Data</h3>
-<p>If you have data that you want to save your data to a CSV file, use <code>readr::write_csv()</code>, as follows.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(dat, <span class="st">&quot;my_data_file2.csv&quot;</span>)</code></pre>
-<p>This will save the data in CSV format to your working directory.</p>
-</div>
-</div>
-<div id="exercises-1" class="section level2">
-<h2><span class="header-section-number">2.6</span> Exercises</h2>
-<p>Download the <a href="exercises/02_data_exercise.Rmd">exercises</a>. See the <a href="exercises/02_data_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -949,8 +564,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="symbols.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
