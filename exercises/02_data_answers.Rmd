@@ -153,7 +153,7 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
-Q <- c()
+Q <- list()
 Q["1"] <- all.equal(cat, c("c", "a", "t"))
 Q["2"] <- all.equal(col_length, 657L)
 Q["3"] <- all.equal(prop_sig, 0.046)

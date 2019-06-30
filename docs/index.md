@@ -102,16 +102,17 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 Exercises are available at the end of each lesson's webpage. These are not marked or mandatory, but if you can work through each of these (using web resources, of course), you will easily complete the marked assessments. 
 
-* [01 intro](exercises/01_intro_stub.Rmd): Intro to R, functions, R markdown
-* [02 data](exercises/02_data_stub.Rmd): Vectors, tabular data, data import, pipes
-* [Essential Skills](exercises/essential_skills_stub.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
-* [03 ggplot](exercises/03_ggplot_stub.Rmd): Data visualisation
-* [04 tidyr](exercises/04_tidyr_stub.Rmd): Tidy Data
-* [05 dplyr](exercises/05_dplyr_stub.Rmd): Data wrangling
-* [06 joins](exercises/06_joins_stub.Rmd): Data relations
-* [07 functions](exercises/07_func_stub.Rmd): Functions and iteration
-* [08 simulation](exercises/08_sim_stub.Rmd): Simulation
-* [09 glm](exercises/09_glm_stub.Rmd): GLM
+* [All Exercises and Data file](exercises/msc-data-skills-exercises.zip): Download all files below as a ZIP archive
+* [01 intro](exercises/01_intro_exercise.Rmd): Intro to R, functions, R markdown
+* [02 data](exercises/02_data_exercise.Rmd): Vectors, tabular data, data import, pipes
+* [Essential Skills](exercises/essential_skills_exercise.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
+* [03 ggplot](exercises/03_ggplot_exercise.Rmd): Data visualisation
+* [04 tidyr](exercises/04_tidyr_exercise.Rmd): Tidy Data
+* [05 dplyr](exercises/05_dplyr_exercise.Rmd): Data wrangling
+* [06 joins](exercises/06_joins_exercise.Rmd): Data relations
+* [07 functions](exercises/07_func_exercise.Rmd): Functions and iteration
+* [08 simulation](exercises/08_sim_exercise.Rmd): Simulation
+* [09 glm](exercises/09_glm_exercise.Rmd): GLM
 
 ## Packages used in this book
 

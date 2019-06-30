@@ -187,7 +187,7 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
-Q <- c()
+Q <- list()
 Q["1A"] <- c( all.equal(nrow(disgust), 20000L),
               all.equal(ncol(disgust), 6L),
               all.equal(nrow(ocean), 15000L),

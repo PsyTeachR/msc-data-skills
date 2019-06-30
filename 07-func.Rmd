@@ -409,4 +409,4 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 ## Exercises
 
-Download the [exercises](exercises/07_func_stub.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/07_func_exercise.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.

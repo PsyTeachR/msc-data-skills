@@ -1,0 +1,631 @@
+# Tidy Data {#tidyr}
+
+Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
+
+## Learning Objectives
+
+### Basic
+
+1. Understand the concept of [tidy data](#tidy-data)
+2. Be able to use the 4 basic `tidyr` verbs
+    + [`gather()`](#gather)
+    + [`separate()`](#separate)
+    + [`spread()`](#spread)
+    + [`unite()`](#unite)
+3. Be able to chain functions using [pipes](#pipes)
+
+### Intermediate
+
+4. Be able to use arguments like [`sep`](#sep), [`extra`](#extra), and [`convert`](#convert) to handle less straightforward data cleaning
+
+### Advanced
+
+5. Be able to use [regular expressions](#regex) to separate complex columns
+
+
+## Resources
+
+* [Tidy Data](http://vita.had.co.nz/papers/tidy-data.html)
+* [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
+* [Chapter 18: Pipes](http://r4ds.had.co.nz/pipes.html) in *R for Data Science*
+* [Data wrangling cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+
+## Setup
+
+```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
+
+# libraries needed
+library(tidyverse)
+library(readxl)
+
+```
+
+## Three Rules for Tidy Data {#tidy-data}
+
+* Each `r glossary("variable")` must have its own column
+* Each `r glossary("observation")` must have its own row
+* Each `r glossary("value")` must have its own cell
+
+```{r, echo = FALSE}
+untidy <- data.frame(
+  id = 1:5,
+  score_1 = sample(1:7, 5),
+  score_2 = sample(1:7, 5),
+  score_3 = sample(1:7, 5),
+  rt_1 = rnorm(5, 800, 100) %>% round(),
+  rt_2 = rnorm(5, 800, 100) %>% round(),
+  rt_3 = rnorm(5, 800, 100) %>% round()
+) %>%
+  mutate(
+    total = score_1 + score_2 + score_3,
+    mean_rt = round((rt_1 + rt_2 + rt_3)/3),
+    total_meanRT = paste0(total, " (", mean_rt, ")")
+  ) %>%
+  select(-total, -mean_rt)
+
+tidy <- untidy %>%
+  gather(var, val, score_1:rt_3) %>%
+  separate(var, c("var", "trial")) %>%
+  spread(var, val) %>%
+  separate(total_meanRT, c("total", "mean_rt"), extra = "drop") %>%
+  select(id, trial:score, total, mean_rt)
+  
+```
+
+This table has three observations per row and the `total_meanRT` column contains two values.
+
+`r knitr::kable(untidy)`
+
+This is the tidy version.
+
+`r knitr::kable(tidy)`
+
+
+## Tidying Data
+
+Download the data from [personality.csv](https://psyteachr.github.io/msc-data-skills/data/personality.csv). These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.
+
+```{r load-ocean}
+ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv")
+```
+
+
+### gather() {#gather}
+
+`gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
+
+`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation.
+
+* `key` is what you want to call the row headers; it's "question" in this example. 
+* `value` is what you want to call the values in the gathered columns; they're "score" in this example.
+* The `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+
+Convert from wide to long format. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
+    
+```{r ocean-gathered}
+ocean_gathered <- gather(ocean, "question", "score", Op1:Ex9)
+```
+
+
+### separate() {#separate} 
+
+`separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
+
+Split the `question` column into two columns: `domain` and `qnumber`.
+
+There is no character to split on, here, but you can separate a column after a specific number of characters by setting `sep` to  an integer. For example, to split "abcde" after the third character, use `sep = 3`, which results in `c("abc", "de")`. You can also use negative number to split before the *n*th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can use `sep = -2`.
+    
+```{r ocean-separate}
+ocean_sep <- separate(ocean_gathered, question, c("domain", "qnumber"), sep = 2)
+```
+
+
+### unite() {#unite} 
+
+`unite(data, col, ..., sep = "_", remove = TRUE)`
+
+Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
+    
+```{r ocean-unite}
+ocean_unite <- unite(ocean_sep, "domain_n", domain, qnumber, sep = "_Q")
+```
+
+
+### spread() {#spread} 
+
+`spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)`
+
+You can reverse the processes above, as well. For example, you can convert data from long format into wide format.
+
+* `key` is the column that contains your new column headers
+* `value` is the column that contains the values in the new spread columns
+    
+```{r ocean-spread}
+ocean_spread <- spread(ocean_unite, domain_n, score)
+```
+
+## Pipes {#pipes}
+
+<img src="images/04/pipe_sticker.png" style="width: 200px; float: right;">
+
+Pipes are a way to order your code in a more readable format. 
+
+Let's say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (`id`, `A_mean` and `B_mean`). 
+
+One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you've created 6 unnecessary data objects in your environment. This can get confusing in very long scripts. 
+
+```{r no-pipe-example}
+
+# make a data table with 10 subjects
+data_original <- tibble(
+  id = 1:10,
+  A1 = rnorm(10, 0),
+  A2 = rnorm(10, 1),
+  B1 = rnorm(10, 2),
+  B2 = rnorm(10, 3)
+)
+
+# gather columns A1 to B2 into "variable" and "value" columns
+data_gathered <- gather(data_original, variable, value, A1:B2)
+
+# separate the variable column at the _ into "var" and "var_n" columns
+data_separated <- separate(data_gathered, variable, c("var", "var_n"), sep = 1)
+
+# group the data by id and var
+data_grouped <- group_by(data_separated, id, var)
+
+# calculate the mean value for each id/var 
+data_summarised <- summarise(data_grouped, mean = mean(value))
+
+# spread the mean column into A and B columns
+data_spread <- spread(data_summarised, var, mean)
+
+# rename A and B to A_mean and B_mean
+data <- rename(data_spread, A_mean = A, B_mean = B)
+
+data
+```
+
+```{block, type="warning"}
+You *can* name each object `data` and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
+```
+
+One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
+
+```{r ok-chain}
+mean_petal_width <- round(mean(iris$Petal.Width), 2)
+```
+
+But it gets extremely confusing for long chains:
+
+```{r no-pipe-example-very-bad}
+# do not ever do this!!
+data <- rename(
+  spread(
+    summarise(
+      group_by(
+        separate(
+          gather(
+            tibble(
+              id = 1:10,
+              A1 = rnorm(10, 0),
+              A2 = rnorm(10, 1),
+              B1 = rnorm(10, 2),
+              B2 = rnorm(10,3)), 
+            variable, value, A1:B2), 
+          variable, c("var", "var_n"), sep = 1), 
+        id, var), 
+      mean = mean(value)), 
+    var, mean), 
+  A_mean = A, B_mean = B)
+
+```
+
+The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.
+
+```{r pipe-example}
+# calculate mean of A and B variables for each participant
+data <- tibble(
+  id = 1:10,
+  A1 = rnorm(10, 0),
+  A2 = rnorm(10, 1),
+  B1 = rnorm(10, 2),
+  B2 = rnorm(10,3)
+) %>%
+  gather(variable, value, A1:B2) %>%
+  separate(variable, c("var", "var_n"), sep=1) %>%
+  group_by(id, var) %>%
+  summarise(mean = mean(value)) %>%
+  spread(var, mean) %>%
+  rename(A_mean = A, B_mean = B)
+  
+```
+
+You can read this code from top to bottom as follows:
+
+1. Make a tibble called `data` with
+    - id of 1 to 10,
+    - A1 of 10 random numbers from a normal distribution,
+    - A2 of 10 random numbers from a normal distribution,
+    - B1 of 10 random numbers from a normal distribution, 
+    - B2 of 10 random numbers from a normal distribution; and then
+2. Gather to create `variable` and `value` column from columns `A_1` to `B_2`; and then
+3. Separate the column `variable` into 2 new columns called `var`and `var_n`, separate at character 1; and then
+4. Group by columns `id` and `var`; and then
+5. Summarise and new column called `mean` as the mean of the `value` column for each group; and then
+6. Spread to make new columns with the key names in `var` and values in `mean`; and then
+7. Rename to make columns called `A_mean` (old `A`) and `B_mean` (old `B`)
+
+You can make intermediate objects whenever you need to break up your code because it's getting too complicated or you need to debug something.
+
+```{block type="info"}
+You can debug a pipe by highlighting from the beginning to just before the pipe you want to stop at. Try this by highlighting from `data <-` to the end of the `separate` function and typing cmd-return. What does `data` look like now?
+```
+
+
+Chain all the steps above using pipes.
+    
+```{r ocean-pipe}
+ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv") %>%
+  gather("question", "score", Op1:Ex9) %>%
+  separate(question, c("domain", "qnumber"), sep = 2) %>%
+  unite("domain_n", domain, qnumber, sep = "_Q") %>%
+  spread(domain_n, score)
+```
+
+
+## More Complex Example
+
+### Load Data
+
+Get data on infant mortality rates from the CSV file 
+[`infmort.csv`](data/infmort.csv) in the directory `data`.
+
+```{r load-infmort}
+infmort <- read_csv("data/infmort.csv")
+glimpse(infmort)
+```
+
+Get data on maternal mortality from from the excel file 
+[`matmort.xls`](data/matmort.xls) in the directory `data`
+
+```{r load-matmort}
+matmort <- read_xls("data/matmort.xls")
+glimpse(matmort)
+```
+
+Get data on country codes from [https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv](https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv)
+
+```{r load-ccodes}
+ccodes <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
+glimpse(ccodes)
+```
+
+### Wide to Long
+
+`matmort` is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.
+  
+This example is complicated because the column names to gather _are_ numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (\`) like the example below.
+
+```{r matmort-long}
+
+matmort_long <- matmort %>%
+  gather("Year", "stats", `1990`:`2015`)
+
+glimpse(matmort_long)
+
+```
+
+### One Piece of Data per Column
+
+The data in the `stats` column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with `mutate`. 
+
+The `separate` function will separate your data on anything that is not a number or letter, so try it first without specifying the `sep` argument. The `into` argument is a list of the new column names.
+
+```{r matmort-split-separate}
+
+matmort_split <- matmort_long %>%
+  mutate(stats = gsub(" ", "", stats)) %>%
+  separate(stats, c("rate", "ci_low", "ci_hi"))
+
+glimpse(matmort_split)
+
+```
+
+```{block, type="info"}
+The `gsub(pattern, replacement, x)` function is a 
+flexible way to do search and replace. The example above replaces all occurances of the `pattern` " " (a space), with the `replacement` "" (nothing), in the string `x` (the `stats` column). Use `sub()` instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated [regex](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html) patterns to replace, for example, all even numbers (e.g., `gsub("[:02468:]", "*", "id = 123456")`) or all occurances of the word colour in US or UK spelling 
+(e.g., `gsub("colo(u)?r", "***", "replace color, colour, or colours, but not collors")`).
+```
+
+#### Handle spare columns with `extra` {#extra}
+
+```{block, type="warning"}
+The previous example should have given you an error warning about 
+"Too many values at 543 locations". This is because `separate` splits the column at the brackets and dashes, so the text `100[90-110]` would split into four values `c("100", "90", "110", "")`, but we only specified 3 new columns. The fourth value 
+is always empty (just the part after the last bracket), so we are happy to drop it, but `separate` generates a warning so you don't do that accidentally. You can turn off the warning by adding the `extra` argument and setting it to "drop". Look at the help for `??tidyr::separate` to see what the other options do.
+```
+
+
+```{r matmort-split-extra}
+
+matmort_split <- matmort_long %>%
+  mutate(stats = gsub(" ", "", stats)) %>%
+  separate(stats, c("rate", "ci_low", "ci_hi"), extra = "drop")
+
+glimpse(matmort_split)
+
+```
+
+#### Set delimiters with `sep` {#sep}
+
+Now do the same with `infmort`. It's already in long format, so you don't need to use `gather`, but the third column has a crazy long name, so we can just refer to it by its column number (3).
+
+```{r infmort-split-sep}
+
+infmort_split <- infmort %>%
+  separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop")
+
+glimpse(infmort_split)
+
+```
+
+*Wait, that didn't work at all!* It split the column on spaces, brackets, _and_ full stops. We just want to split on the spaces, brackets and dashes. So we need to manually set `sep` to what the delimiters are. Also, once there are more than a few arguments specified for a function, it's easier to read them if you put one argument on each line.
+
+{#regex}
+```{block, type="warning"}
+You can use [regular expressions](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html) 
+to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by "|". It's a little more complicated because brackets have a special meaning in regex, so you need to "escape" the left one with two backslashes "\\\\".
+```
+
+```{r infmort-split}
+
+infmort_split <- infmort %>%
+  separate(
+    col = 3, 
+    into = c("rate", "ci_low", "ci_hi"), 
+    extra = "drop", 
+    sep = "(\\[|-|])"
+  )
+
+glimpse(infmort_split)
+
+```
+
+#### Fix data types with `convert` {#convert}
+
+That's better. Notice the _<chr>_ next to `Year`, `rate`, `ci_low` and `ci_hi`. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can't average words), so we can fix it by adding the argument `convert` and setting it to `TRUE`.
+
+```{r infmort-split-convert}
+
+infmort_split <- infmort %>%
+  separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop", sep = "(\\[|-|])", convert = TRUE)
+
+glimpse(infmort_split)
+  
+```
+
+Do the same for `matmort`.
+
+```{r matmort-split-convert}
+
+matmort_split <- matmort_long %>%
+  mutate(stats = gsub(" ", "", stats)) %>%
+  separate(stats, c("rate", "ci_low", "ci_hi"), extra = "drop", convert = TRUE)
+
+glimpse(matmort_split)
+
+```
+
+### All in one step
+
+We can chain all the steps above together, since we don't need those intermediate dataframes.
+
+```{r all-in-1}
+
+infmort <- read_csv("data/infmort.csv") %>%
+  separate(
+    3, 
+    c("rate", "ci_low", "ci_hi"), 
+    extra = "drop", 
+    sep = "(\\[|-|])", 
+    convert = TRUE
+  )
+
+matmort <- read_xls("data/matmort.xls") %>%
+  gather("Year", "stats", `1990`:`2015`) %>%
+  mutate(stats = gsub(" ", "", stats)) %>%
+  separate(
+    stats, 
+    c("rate", "ci_low", "ci_hi"), 
+    extra = "drop", 
+    convert = TRUE
+  )
+
+glimpse(matmort)
+glimpse(infmort)
+
+```
+
+
+### Columns by Year
+
+Spread out the infant mortality rate by year.
+
+```{r infmort-wide-spread}
+
+infmort_wide <- infmort %>%
+  spread(Year, rate)
+
+glimpse(infmort_wide)
+
+```
+
+```{block, type="warning"}
+Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because `spread` matches on all the remaining columns, so Afghanistan with `ci_low` of 52.7 is treated as a different observation than Afghanistan with `ci_low` of 55.7. We can fix this by merging the `rate`, `ci_low` and `ci_hi` columns back together.
+```
+
+### Merge Columns
+
+Merge the rate and confidence intervals into one column.
+
+```{r infmort-united}
+
+infmort_united <- infmort %>%
+  unite(rate_ci, rate, ci_low, ci_hi)
+
+glimpse(infmort_united)
+
+```
+
+
+#### Control separation with `sep`
+
+`unite()` separates merged names with an underscore by default. 
+Set the `sep` argument if you want to change that.
+
+```{r infmort-united-sep}
+
+infmort_united <- infmort %>%
+  unite(rate_ci, rate, ci_low, ci_hi, sep = ", ")
+
+glimpse(infmort_united)
+
+```
+
+```{block, type="info"}
+What if you want to put it back into the format "rate [ci_low - ci_hi]"? Then, `mutate` and `paste` are a better choice than `unite`, but you have to get rid of the `rate`, `ci_low` and `ci_hi` columns with `select`. You'll learn more about these function in the [Data Manipulation](04_dplyr.html) lesson.
+```
+
+
+```{r infmort-united-mutate}
+
+infmort_united <- infmort %>%
+  mutate(rate_ci = paste0(rate, " [", ci_low, " - ", ci_hi, "]"))
+
+glimpse(infmort_united)
+
+```
+
+
+Now let's try spreading on year again. Notice here we're uniting columns `rate:ci_hi`, instead of `rate, ci_low, ci_hi`. The colon just says to select all the columns between the first and last named ones. Check the help documentation for `??tidyr::unite` and `??tidyr::select` to see other ways to select columns.
+
+```{r infmort-wide}
+
+infmort_wide <- infmort %>%
+  unite(rate_ci, rate:ci_hi, sep = ", ") %>%
+  spread(Year, rate_ci)
+
+glimpse(infmort_wide)
+```
+
+
+## Quiz {#tidyr-quiz}
+
+The following data table is called `quiz_data`.
+
+```{r, echo = FALSE, results = 'asis'}
+quiz_data <- expand.grid(
+  version = 1:2,
+  condition = c("A", "B"),
+  id = 1:10
+) %>%
+  select(id, condition, version) %>%
+  mutate(
+    pet = ifelse(id%%2, "cat", "dog"),
+    score = rnorm(nrow(.))
+  ) %>% head(n = 8L)
+
+knitr::kable(quiz_data, digits = 3)
+```
+
+
+1. How do you get `quiz_data` into the following format?
+    ```{r, echo = FALSE, results='asis'}
+    spread(quiz_data, condition, score) %>%
+      head(n = 8L) %>%
+      knitr::kable()
+    ```
+    
+    ```{r, echo = FALSE, results='asis'}
+    c("separate(quiz_data, condition, score)",
+      "gather(quiz_data, condition:score)",
+      answer = "spread(quiz_data, condition, score)",
+      "unite(quiz_data, condition:score)"
+    ) %>% webex::mcq() %>% cat()
+    ```
+    
+2. How do you get `quiz_data` into the following format?
+    ```{r, echo = FALSE, results='asis'}
+    unite(quiz_data, cversion, condition, version) %>%
+      head(n = 8L) %>%
+      knitr::kable()
+    ```    
+
+    ```{r, echo = FALSE, results='asis'}
+    c("separate(quiz_data, cversion, condition, version)",
+      "spread(quiz_data, condition:version)",
+      "gather(quiz_data, cversion, condition:version)",
+      answer = "unite(quiz_data, cversion, condition, version)"
+    ) %>% webex::mcq() %>% cat()
+    ```
+
+
+3. Put the built-in dataset `iris` into the following format.
+
+    ```{r, echo = FALSE, results='asis'}
+    iris %>%
+      gather(var, value, Sepal.Length:Petal.Width) %>%
+      separate(var, into = c("feature", "dimension")) %>%
+      head() %>%
+      knitr::kable()
+    ```
+    
+    ```{r, eval = FALSE, webex.hide = TRUE}
+    iris %>%
+      gather(var, value, Sepal.Length:Petal.Width) %>%
+      separate(var, into = c("feature", "dimension"))
+    ```
+
+4. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
+
+```{r, eval = FALSE}
+
+# make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
+data_original <- tibble(
+  id = c(1:5, 1:5),
+  condition = rep(1:2, each = 5),
+  A = rnorm(10),
+  B = rnorm(10)
+)
+
+# gather columns A and B into "score_type" and "score" columns
+data_gathered <- gather(data_original, score_type, score, A:B)
+
+# unite the score_type and condition columns into a column called "cell"
+data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
+
+# spread the score column into cells
+data_spread <- spread(data_united, cell, score)
+
+```
+
+```{r, eval = FALSE, webex.hide = TRUE}
+
+data <- tibble(
+  id = c(1:5, 1:5),
+  condition = rep(1:2, each = 5),
+  A = rnorm(10),
+  B = rnorm(10)
+) %>%
+  gather(score_type, score, A:B) %>%
+  unite(cell, score_type, condition, sep = "") %>%
+  spread(cell, score)
+
+```
+
+
+## Exercises
+
+Download the [exercises](exercises/04_tidyr_exercise.Rmd). See the [answers](exercises/04_tidyr_answers.Rmd) only after you've attempted all the questions.

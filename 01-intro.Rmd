@@ -499,4 +499,4 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 
 ## Exercises
 
-Download the first set of [exercises](exercises/01_intro_stub.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
+Download the first set of [exercises](exercises/01_intro_exercise.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.

@@ -4,19 +4,14 @@ author: "Psychology, University of Glasgow"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-# please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
-library("ukbabynames")
-library("tidyverse")
-set.seed(777) # makes sure random numbers are reproducible
-```
+
 
 ## UK Baby Names
 
 Here we will convert the data table from the ukbabynames package to a tibble and assign it the variable name `ukb`. Use this data tibble for questions 1-13.
 
-```{r ukb}
+
+```r
 # do not alter this code chunk
 ukb <- as_tibble(ukbabynames) # convert to a tibble
 ```
@@ -26,7 +21,8 @@ ukb <- as_tibble(ukbabynames) # convert to a tibble
 
 How many records are in the dataset?
 
-```{r Q1}
+
+```r
 nrecords <- NULL
 ```
 
@@ -34,7 +30,8 @@ nrecords <- NULL
 
 Remove the column `rank` from the dataset.
 
-```{r Q2}
+
+```r
 norank <- NULL
 ```
 
@@ -42,7 +39,8 @@ norank <- NULL
 
 What is the range of birth years contained in the dataset? Use `summarise` to make a table with two columns: `minyear` and `maxyear`.
 
-```{r Q3}
+
+```r
 birth_range <- NULL
 ```
 
@@ -50,7 +48,8 @@ birth_range <- NULL
 
 Make a table of only the data from babies named Hermione.
 
-```{r Q4}
+
+```r
 hermiones <- NULL
 ```
 
@@ -58,7 +57,8 @@ hermiones <- NULL
 
 Sort the dataset by sex and then by year (descending) and then by rank (descending).
 
-```{r Q5}
+
+```r
 sorted_babies <- NULL
 ```
 
@@ -66,7 +66,8 @@ sorted_babies <- NULL
 
 Create a new column, `decade`, that contains the decade of birth (1990, 2000, 2010).  Hint: see `?floor`
 
-```{r Q6}
+
+```r
 ukb_decade <- NULL
 ```
 
@@ -74,7 +75,8 @@ ukb_decade <- NULL
 
 Make a table of only the data from male babies named Courtney that were born between 1998 and 2001 (inclusive).
 
-```{r Q7}
+
+```r
 courtney <- NULL
 ```
 
@@ -83,7 +85,8 @@ courtney <- NULL
 
 How many distinct names are represented in the dataset? Make sure `distinct_names` is an integer, not a data table.
 
-```{r Q8}
+
+```r
 distinct_names <- NULL
 ```
 
@@ -91,7 +94,8 @@ distinct_names <- NULL
 
 Make a table of only the data from the female babies named Frankie that were born before 1999 or after 2010.
 
-```{r Q9}
+
+```r
 frankie <- NULL
 ```
 
@@ -99,7 +103,8 @@ frankie <- NULL
 
 How many total babies in the dataset were named 'Emily'? Make sure `emily` is an integer, not a data table.
 
-```{r Q10}
+
+```r
 emily <- NULL
 ```
 
@@ -107,7 +112,8 @@ emily <- NULL
 
 How many distinct names are there for each sex?
 
-```{r Q11}
+
+```r
 names_per_sex <- NULL
 ```
 
@@ -115,7 +121,8 @@ names_per_sex <- NULL
 
 What is the most popular name in the dataset?
 
-```{r Q12}
+
+```r
 most_popular <- NULL
 ```
 
@@ -123,11 +130,14 @@ most_popular <- NULL
 
 How many babies were born each year for each sex?  Make a plot.
 
-```{r Q13}
+
+```r
 babies_per_year <- NULL
 
 ggplot(babies_per_year)
 ```
+
+![plot of chunk Q13](figure/Q13-1.png)
 
 ## Advanced Questions
 
@@ -142,16 +152,21 @@ The columns `oldbro` through `twinsis` give the number of siblings of that age a
 Then, calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
 
     
-```{r Q14a}
+
+```r
 sib6 <- NULL
 
 ggplot(sib6)
-
 ```
+
+![plot of chunk Q14a](figure/Q14a-1.png)
     
-```{r Q14b}
+
+```r
 ggplot(sib6)
-```   
+```
+
+![plot of chunk Q14b](figure/Q14b-1.png)
 
 
 ### Question 15
@@ -160,66 +175,45 @@ Use the data from [eye_descriptions.csv](https://psyteachr.github.io/msc-data-sk
 
 Create a list of the 10 most common descriptions from the eyes dataset. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to `knitr::kable()`.
     
-```{r Q15, results = 'asis'}
+
+```r
 eyes <- NULL
 
 knitr::kable(eyes) # displays the table in a nice format
 ```
 
+```
+## Warning in kable_markdown(x = structure(character(0), .Dim = c(0L,
+## 0L), .Dimnames = list(: The table should have a header (column names)
+```
+
+
+
+||
+||
+||
+||
+
 ## Answer Checks
 
 You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
 
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- c()
-Q["1"] <- all.equal(nrecords, 227449)
-Q["2"] <- c(is.data.frame(norank),
-          !(c("rank") %in% names(norank))) %>% all()
-Q["3"] <- c(is.data.frame(birth_range),
-          all.equal(birth_range$minyear, 1996),
-          all.equal(birth_range$maxyear, 2015)) %>% all()
-Q["4"] <- ifelse(is.data.frame(hermiones),
-          c(all.equal(n_distinct(hermiones$name), 1),
-          all.equal(nrow(hermiones), 20L)),
-          FALSE) %>% all()
-Q["5"] <- c(is.data.frame(sorted_babies),
-          all.equal(sorted_babies[[1,1]], 2015),
-          all.equal(sorted_babies[[1,2]], "F"),
-          all.equal(sorted_babies[[1,3]], "Aabidah"),
-          all.equal(sorted_babies[[1,4]], 3),
-          all.equal(sorted_babies[[1,5]], 5730)) %>% all()
-Q["6"] <- c(is.data.frame(ukb_decade),
-          all.equal(ukb_decade$decade[[1]], 1990)) %>% all()
-Q["7"] <- ifelse(is.data.frame(courtney),
-          c(all.equal(n_distinct(courtney$name), 1),
-          all.equal(min(courtney$year), 1998),
-          all.equal(max(courtney$year), 2001),
-          all.equal(nrow(courtney), 4L)),
-          FALSE) %>% all()
-Q["8"] <- all.equal(distinct_names, 31272L)
-Q["9"] <- if(is.data.frame(frankie)) {
-          c(all.equal(n_distinct(frankie$name), 1),
-          all.equal(min(frankie$year), 1996),
-          all.equal(max(frankie$year), 2015),
-          all.equal(nrow(frankie), 8L))
-          } else { FALSE } %>% all()
-Q["10"] <- all.equal(emily, 102250)
-Q["11"] <- if(is.data.frame(names_per_sex)) {
-          c(all.equal(filter(names_per_sex, sex == "F") %>% pull(n), 18823),
-          all.equal(filter(names_per_sex, sex == "M") %>% pull(n), 14378))
-          } else { FALSE } %>% all()
-Q["12"] <- all.equal(most_popular, "Jack")
-Q["13"] <- c(is.data.frame(babies_per_year),
-             all.equal(nrow(babies_per_year), 40)) %>% all()
-  
-ans <- sapply(Q, isTRUE)
 
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
-```
+|Question                               |Answer    |
+|:--------------------------------------|:---------|
+|<a href='#question-1'>Question 1</a>   |incorrect |
+|<a href='#question-2'>Question 2</a>   |incorrect |
+|<a href='#question-3'>Question 3</a>   |incorrect |
+|<a href='#question-4'>Question 4</a>   |incorrect |
+|<a href='#question-5'>Question 5</a>   |incorrect |
+|<a href='#question-6'>Question 6</a>   |incorrect |
+|<a href='#question-7'>Question 7</a>   |incorrect |
+|<a href='#question-8'>Question 8</a>   |incorrect |
+|<a href='#question-9'>Question 9</a>   |incorrect |
+|<a href='#question-10'>Question 10</a> |incorrect |
+|<a href='#question-11'>Question 11</a> |incorrect |
+|<a href='#question-12'>Question 12</a> |incorrect |
+|<a href='#question-13'>Question 13</a> |incorrect |
 
 
 

@@ -166,7 +166,7 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
-Q <- c()
+Q <- list()
 Q["1"] <- c(all.equal(length(v1), 46),
             all.equal(v1[6], 21)) %>% all()
 Q["2"] <- c(all.equal(length(v2), 10),

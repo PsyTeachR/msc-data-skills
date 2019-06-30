@@ -158,7 +158,7 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
-Q <- c()
+Q <- list()
 Q["1"] <- all.equal(x, 420)
 Q["2"] <- c(all.equal(regal, c("R", "E", "G", "A", "L")),
           all.equal(reversed, c("L", "A", "G", "E", "R")),

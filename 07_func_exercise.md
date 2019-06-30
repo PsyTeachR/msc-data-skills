@@ -4,58 +4,50 @@ author: "Psychology, University of Glasgow"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-# please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
-library("tidyverse")
-set.seed(1618034) # makes sure random numbers are reproducible
-```
+
 
 ### Question 1
 
 Set the vector `v1` equal to the following: 11, 13, 15, 17, 19, ..., 99, 101 (use a function; don't just type all the numbers).
 
-```{r Q1}
 
+```r
 v1 <- NULL
-
 ```
 
 ### Question 2
 
 Set the vector `v2` equal to the following: "A" "A" "B" "B" "C" "C" "D" "D" "E" "E" (note the letters are all uppercase).
 
-```{r Q2}
 
+```r
 v2 <- NULL
-
 ```
 
 ### Question 3
 
 Set the vector `v3` equal to the following: "a" "b" "c" "d" "e" "a" "b" "c" "d" "e" (note the letters are all lowercase)
 
-```{r Q3}
 
+```r
 v3 <- NULL
-
 ```
 
 ### Question 4
 
 Set the vector `v4` equal to the words "dog" 10 times, "cat" 9 times, "fish" 6 times, and "ferret" 1 time. 
 
-```{r}
 
+```r
 v4 <- NULL
-
 ```
 
 ### Question 5
 
 Write a function called `my_add` that adds two numbers (`x` and `y`) together and returns the results.
 
-```{r Q5}
+
+```r
 my_add <- NULL
 ```
 
@@ -63,7 +55,8 @@ my_add <- NULL
 
 Copy the function `my_add` above and add an error message that returns "x and y must be numbers" if `x` or `y` are not both numbers.
 
-```{r Q6}
+
+```r
 my_add <- NULL
 ```
 
@@ -71,33 +64,48 @@ my_add <- NULL
 
 Create a tibble called `dat` that contains 20 rows and three columns: `id` (integers 101 through 120), `pre` and `post` (both 20-item vectors of random numbers from a normal distribution with mean = 0 and sd = 1).
 
-```{r Q7}
 
+```r
 dat <- NULL
-
 ```
 
 ### Question 8
 
 Run a two-tailed, *paired-samples* t-test comparing `pre` and `post`. (check the help for `t.test`)
 
-```{r Q8}
 
+```r
 t <- NULL
 
 t # prints results of t-test
+```
 
+```
+## NULL
 ```
 
 ### Question 9
 
 Use `broom::tidy` to save the results of the t-test in question 8 in a table called `stats`.
 
-```{r Q9, results='asis'}
+
+```r
 stats <- NULL
 
 knitr::kable(stats) # display the table
 ```
+
+```
+## Warning in kable_markdown(x = structure(character(0), .Dim = c(0L,
+## 0L), .Dimnames = list(: The table should have a header (column names)
+```
+
+
+
+||
+||
+||
+||
 
 ### Question 10
 
@@ -105,53 +113,28 @@ Create a function called `report_t` that takes a data table as an argument and r
 
 NB: Make sure all numbers are reported to three decimal places (except degrees of freedom).
 
-```{r Q10}
 
+```r
 report_t <- function(x) {}
-
 ```
 
-`r report_t(dat)`
+
 
 ## Answer Checks
 
 You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
 
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- c()
-Q["1"] <- c(all.equal(length(v1), 46),
-            all.equal(v1[6], 21)) %>% all()
-Q["2"] <- c(all.equal(length(v2), 10),
-            all.equal(v2[6], "C")) %>% all()
-Q["3"] <- c(all.equal(length(v3), 10),
-            all.equal(v3[6], "a")) %>% all()
-Q["4"] <- c(all.equal(length(v4), 26),
-            all.equal(sum(v4 == "dog"), 10),
-            all.equal(sum(v4 == "cat"), 9),
-            all.equal(sum(v4 == "fish"), 6),
-            all.equal(sum(v4 == "ferret"), 1)) %>% all()
-Q["5"] <- ifelse(is.function(my_add),
-            all.equal(my_add(10, -3), 7), FALSE)
-Q["6"] <- if (is.function(my_add)) {
-  c(all.equal(tryCatch(my_add("a", 1), error = function(e) {e$message}),"x and y must be numbers"), 
-            all.equal(tryCatch(my_add(1.55, "a"), error = function(e) {e$message}), "x and y must be numbers")) } else { FALSE } %>% all()
-Q["7"] <- c(is.data.frame(dat),
-            all.equal(nrow(dat), 20),
-            all.equal(sum(dat$id), 2210),
-            names(dat) %in% c("id", "pre", "post")) %>% all()
-Q["8"] <- c(is.list(t),
-            all.equal(t$p.value, 0.2045149, tolerance = 1e-6)) %>% all()
-Q["9"] <- c(is.data.frame(stats),
-            all.equal(stats$p.value, 0.2045149, tolerance = 1e-6)) %>% all()
-Q["10"] <- ifelse(is.function(report_t),
-             all.equal(report_t(dat), "The mean increase from pre-test to post-test was 0.415: t(19) = 1.314, p = 0.205, 95% CI = [-0.246, 1.076]."), FALSE)
-  
-ans <- sapply(Q, isTRUE)
 
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
-```
+|Question                               |Answer    |
+|:--------------------------------------|:---------|
+|<a href='#question-1'>Question 1</a>   |incorrect |
+|<a href='#question-2'>Question 2</a>   |incorrect |
+|<a href='#question-3'>Question 3</a>   |incorrect |
+|<a href='#question-4'>Question 4</a>   |incorrect |
+|<a href='#question-5'>Question 5</a>   |incorrect |
+|<a href='#question-6'>Question 6</a>   |incorrect |
+|<a href='#question-7'>Question 7</a>   |incorrect |
+|<a href='#question-8'>Question 8</a>   |incorrect |
+|<a href='#question-9'>Question 9</a>   |incorrect |
+|<a href='#question-10'>Question 10</a> |incorrect |
 

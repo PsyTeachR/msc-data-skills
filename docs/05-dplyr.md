@@ -555,4 +555,4 @@ disgust_tidy3
 
 ## Exercises
 
-Download the [exercises](exercises/05_dplyr_stub.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/05_dplyr_exercise.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.

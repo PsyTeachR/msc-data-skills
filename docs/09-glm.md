@@ -96,4 +96,4 @@ Now run a one-way ANOVA on your results and compare it to what you obtained in y
 
 ## Exercises
 
-Download the [exercises](exercises/09_glm_stub.Rmd). See the [answers](exercises/09_glm_solution.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/09_glm_exercise.Rmd). See the [answers](exercises/09_glm_solution.Rmd) only after you've attempted all the questions.

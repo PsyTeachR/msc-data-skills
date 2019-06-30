@@ -1,0 +1,283 @@
+---
+title: 'Formative Exercise 09: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+output: html_document
+---
+
+
+
+## The `iris` dataset
+
+There is a built-in dataset called `iris` that has measurements of different parts of flowers. (See `?iris` for information about the dataset.)
+
+
+### Question 1
+
+Use ggplot2 to make a scatterplot that visualizes the relationship between sepal length (horizontal axis) and petal width (vertical axis). Watch out for overplotting.
+
+
+```r
+ggplot(iris, aes(Sepal.Length, Petal.Width)) +
+  geom_point(alpha = .25)
+```
+
+![plot of chunk Q1](figure/Q1-1.png)
+
+
+### Question 2
+
+Run a regression model that predicts the petal width from the sepal length, and store the model object in the variable `iris_mod`.  End the block by printing out the summary of the model.
+
+
+```r
+iris_mod <- lm(Petal.Width ~ Sepal.Length, iris)
+
+summary(iris_mod) #print out the model summary
+```
+
+```
+## 
+## Call:
+## lm(formula = Petal.Width ~ Sepal.Length, data = iris)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.96671 -0.35936 -0.01787  0.28388  1.23329 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  -3.20022    0.25689  -12.46   <2e-16 ***
+## Sepal.Length  0.75292    0.04353   17.30   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.44 on 148 degrees of freedom
+## Multiple R-squared:  0.669,	Adjusted R-squared:  0.6668 
+## F-statistic: 299.2 on 1 and 148 DF,  p-value: < 2.2e-16
+```
+
+
+### Question 3
+
+Make a histogram of the residuals of the model using ggplot2.
+
+
+```r
+residuals <- residuals(iris_mod)
+
+ggplot() +
+  geom_histogram(aes(residuals), color = "black")
+```
+
+![plot of chunk Q3](figure/Q3-1.png)
+
+
+### Question 4
+
+Write code to predict the petal width for two plants, the first with a sepal length of 5.25cm, and the second with a sepal length of 6.3cm.  Store the vector of predictions in the variable `iris_pred`.
+
+
+```r
+iris_pred <- predict(iris_mod, tibble(Sepal.Length = c(5.25, 6.3)))
+
+iris_pred # print the predicted values
+```
+
+```
+##         1         2 
+## 0.7526022 1.5431657
+```
+
+
+## Simulating data from the linear model
+
+### Question 5
+
+*NOTE: You can knit this file to html to see formatted versions of the equations below (which are enclosed in `$` characters); alternatively, if you find it easier, you can hover your mouse pointer over the `$` in the code equations to see the formatted versions.* 
+
+Write code to randomly generate 10 Y values from a simple linear regression model with an intercept of 3 and a slope of -7.  Recall the form of the linear model:
+
+$Y_i = \beta_0 + \beta_1 X_i + e_i$
+
+The residuals ($e_i$s) are drawn from a normal distribution with mean 0 and variance $\sigma^2 = 4$, and $X$ is the vector of integer values from 1 to 10. Store the 10 observations in the variable `Yi` below. (NOTE: the standard deviation is the *square root* of the variance, i.e. $\sigma$; `rnorm()` takes the standard deviation, not the variance, as its third argument).
+
+
+```r
+x <- 1:10
+err <- rnorm(10, sd = 2)
+Yi <- 3 - 7 * x + err
+
+Yi # print the values of Yi
+```
+
+```
+##  [1]  -3.535761  -9.007200 -17.938710 -25.647394 -35.984147 -36.451994
+##  [7] -42.896233 -54.699763 -62.737743 -64.578007
+```
+
+## Advanced
+
+### Question 6
+
+Write a function to simulate data with the form.
+
+$Y_i = \beta_0 + \beta_1 X_i + e_i$
+
+The function should take arguments for the number of observations to return (`n`), the intercept (`b0`), the effect (`b1`), the mean and SD of the predictor variable X (`X_mu` and `X_sd`), and the SD of the residual error (`err_sd`). The function should return a tibble with `n` rows and the columns `id`, `X` and `Y`.
+
+
+```r
+sim_lm_data <- function(n = 100, b0 = 0, b1 = 0, 
+                        X_mu = 0, X_sd = 1, err_sd = 1) {
+  tibble(
+    id = 1:n,
+    X = rnorm(n, X_mu, X_sd),
+    err = rnorm(n, 0, err_sd),
+    Y = b0 + b1*X + err
+  ) %>%
+    select(id, X, Y)
+}
+
+dat6 <- sim_lm_data(n = 10) 
+```
+
+```
+## Error in select(., id, X, Y): unused arguments (id, X, Y)
+```
+
+```r
+knitr::kable(dat6) # print table
+```
+
+```
+## Warning in kable_markdown(x = structure(character(0), .Dim = c(0L,
+## 0L), .Dimnames = list(: The table should have a header (column names)
+```
+
+
+
+||
+||
+||
+||
+
+### Question 7
+
+Use the function from Question 6 to generate a data table with 10000 subjects, an intercept of 80, an effect of X of 0.5, where X has a mean of 0 and SD of 1, and residual error SD of 2.
+
+Analyse the data with `lm()`. Find where the analysis summary estimates the values of `b0` and `b1`. What happens if you change the simulation values?
+
+
+```r
+dat <- sim_lm_data(n = 10000, b0 = 80, b1 = 0.5, 
+                   X_mu = 0, X_sd = 1, err_sd = 2)
+```
+
+```
+## Error in select(., id, X, Y): unused arguments (id, X, Y)
+```
+
+```r
+mod <- lm(Y ~ X, data = dat)
+```
+
+```
+## Error in eval(predvars, data, env): object 'Y' not found
+```
+
+```r
+summary(mod) # print summary
+```
+
+```
+## Length  Class   Mode 
+##      0   NULL   NULL
+```
+
+
+### Question 8
+
+Use the function from Question 6 to calculate power by simulation for the effect of X on Y in a design with 50 subjects, an intercept of 80, an effect of X of 0.5, where X has a mean of 0 and SD of 1, residual error SD of 2, and alpha of 0.05.
+
+Hint: use `broom::tidy()` to get the p-value for the effect of X.
+
+
+```r
+# ... lets you include any arguments to send to sim_lm_data()
+sim_lm_power <- function(...) {
+  dat <- sim_lm_data(...)
+  lm(Y~X, dat) %>% 
+    broom::tidy() %>%
+    filter(term == "X") %>%
+    pull(p.value)
+}
+
+p_values <- replicate(1000, sim_lm_power(n = 50, b0 = 80, b1 = 0.5, X_mu = 0, X_sd = 1, err_sd = 2))
+```
+
+```
+## Error in select(., id, X, Y): unused arguments (id, X, Y)
+```
+
+```r
+power <- mean(p_values < .05)
+```
+
+```
+## Error in mean(p_values < 0.05): object 'p_values' not found
+```
+
+```r
+power # print the value
+```
+
+```
+## NULL
+```
+
+### Question 9
+
+Calculate power (i.e., the false positive rate) for the effect of X on Y in a design with 50 subjects where there is no effect and alpha is 0.05.
+
+
+```r
+p_values <- replicate(1000, sim_lm_power(n = 50))
+```
+
+```
+## Error in select(., id, X, Y): unused arguments (id, X, Y)
+```
+
+```r
+false_pos <- mean(p_values < .05)
+```
+
+```
+## Error in mean(p_values < 0.05): object 'p_values' not found
+```
+
+```r
+false_pos # print the value
+```
+
+```
+## NULL
+```
+
+
+
+## Answer Checks
+
+You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
+
+
+|   |Question                             |Answer    |
+|:--|:------------------------------------|:---------|
+|2  |<a href='#question-2'>Question 2</a> |correct   |
+|3  |<a href='#question-3'>Question 3</a> |correct   |
+|4  |<a href='#question-4'>Question 4</a> |correct   |
+|5  |<a href='#question-5'>Question 5</a> |correct   |
+|6  |<a href='#question-6'>Question 6</a> |incorrect |
+|7  |<a href='#question-7'>Question 7</a> |incorrect |
+|8  |<a href='#question-8'>Question 8</a> |incorrect |
+|9  |<a href='#question-9'>Question 9</a> |incorrect |

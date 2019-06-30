@@ -248,7 +248,7 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
-Q <- c()
+Q <- list()
 Q["1"] <- all.equal(nrecords, 227449)
 Q["2"] <- c(is.data.frame(norank),
           !(c("rank") %in% names(norank))) %>% all()

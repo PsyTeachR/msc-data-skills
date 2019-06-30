@@ -4,12 +4,7 @@ author: "Psychology, University of Glasgow"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-# please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-set.seed(90210) # makes sure random numbers are reproducible
-```
+
 
 ## Vectors
 
@@ -17,8 +12,9 @@ set.seed(90210) # makes sure random numbers are reproducible
 
 The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
 
-```{r Q1}
-cat <- NULL
+
+```r
+cat <- letters[c(3, 1, 20)]
 ```
 
 
@@ -26,21 +22,26 @@ cat <- NULL
 
 The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
 
-```{r Q2}
-col_length <- NULL
+
+```r
+col_length <- length(colors())
 ```
 
 ### Question 3
 
 The function call `runif(1000, 0, 1)` will draw 1000 numbers from a uniform distribution from 0 to 1, which simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Store the result of this call in `pvals`. Create a logical vector called `is_sig` that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise (hint: vectorized operations from the last lession), then use this logical vector to pull out those p-values. Finally, calculate the proportion of those p-values that were significant.
 
-```{r Q3}
+
+```r
 pvals <- runif(1000, 0, 1)
 
-is_sig <- NULL
+is_sig <- pvals < .05
 
-prop_sig <- NULL
+prop_sig <- length(pvals[is_sig]) / length(pvals)
 
+# alternatively:
+prop_sig <- mean(is_sig)
+prop_sig <- mean(pvals < .05)
 ```
 
 
@@ -50,10 +51,20 @@ prop_sig <- NULL
 
 Create a tibble with the columns `name`, `age`, and `country` of origin for 3 people you know.
 
-```{r Q4}
 
-people <- NULL
+```r
+# you can do this with the tibble function
+people <- tibble(name = c("Lisa", "Ben", "Robbie"),
+                 age = c(42, 43, 11),
+                 country = c("US", "UK", "UK") )
 
+# also note:
+# you can type this in row by row, rather than column by column,
+# using the 'tribble' function
+people <- tribble(~name,  ~age, ~country,
+                  "Lisa",   42,  "US",
+                  "Ben",    43,  "UK",
+                  "Robbie", 11,  "UK")
 ```
 
 
@@ -61,8 +72,9 @@ people <- NULL
 
 Convert the built-in base R `iris` dataset to a tibble, and store it in the variable `iris2`.
 
-```{r Q5}
-iris2 <- NULL
+
+```r
+iris2 <- as_tibble(iris)
 ```
 
 
@@ -81,8 +93,12 @@ ID |  A | B   | C
 7	| A2	| B1	| C1	
 8	| A2	| B2	| C1
 
-```{r Q6}
-my_tbl <- NULL  
+
+```r
+my_tbl <- tibble(ID = 1:8,
+                 A = rep(c("A1", "A2"), each = 4),
+                 B = rep(c("B1", "B2"), 4),
+                 C = "C1")    
 ```
 
 
@@ -92,8 +108,10 @@ my_tbl <- NULL
 
 Download the dataset [disgust_scores.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv) and read it into a table.
 
-```{r Q7, message = FALSE}
-disgust <- NULL
+
+```r
+# change to the location to where you put your csv file
+disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv")
 ```
 
 
@@ -101,17 +119,31 @@ disgust <- NULL
 
 Override the default column specifications to skip the `id` column.
 
-```{r Q8, message = FALSE}
-disgust_skip <- NULL
+
+```r
+my_cols <- cols(
+  id = col_skip()
+)
+
+disgust_skip <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv", col_types = my_cols)
 ```
 
 ### Question 9
   
 How many rows and columns are in the dataset from question 7?
 
-```{r Q9}
-disgust_rows <- NULL
-disgust_cols <- NULL
+
+```r
+## dim() returns a vector c(rows, cols)
+dimensions <- dim(disgust)
+disgust_rows <- dimensions[1]
+disgust_cols <- dimensions[2]
+
+## nrow() returns the number of rows
+disgust_rows <- nrow(disgust)
+
+## ncol() returns the number of columns
+disgust_cols <- ncol(disgust)
 ```
 
 
@@ -119,28 +151,15 @@ disgust_cols <- NULL
 
 You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
 
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- c()
-Q["1"] <- all.equal(cat, c("c", "a", "t"))
-Q["2"] <- all.equal(col_length, 657L)
-Q["3"] <- all.equal(prop_sig, 0.046)
-Q["4"] <- c(all.equal(names(people), c("name", "age", "country")),
-          nrow(people) == 3L) %>% all()
-Q["5"] <- all.equal(iris, iris2, check.attributes = FALSE)
-Q["6"] <- c(all.equal(names(my_tbl), c("ID", "A", "B", "C")),
-          nrow(my_tbl) == 8L) %>% all()
-Q["7"] <- c(all.equal(names(disgust), c("id", "user_id", "date", "moral", "pathogen", "sexual")), 
-          nrow(disgust) == 20000L) %>% all()
-Q["8"] <- c(all.equal(names(disgust_skip), c("user_id", "date", "moral", "pathogen", "sexual")), 
-          nrow(disgust_skip) == 20000L) %>% all()
-Q["9"] <- c(all.equal(disgust_rows, 20000L),
-          all.equal(disgust_cols, 6)) %>% all()
 
-ans <- sapply(Q, isTRUE)
-
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
-```
+|Question                             |Answer  |
+|:------------------------------------|:-------|
+|<a href='#question-1'>Question 1</a> |correct |
+|<a href='#question-2'>Question 2</a> |correct |
+|<a href='#question-3'>Question 3</a> |correct |
+|<a href='#question-4'>Question 4</a> |correct |
+|<a href='#question-5'>Question 5</a> |correct |
+|<a href='#question-6'>Question 6</a> |correct |
+|<a href='#question-7'>Question 7</a> |correct |
+|<a href='#question-8'>Question 8</a> |correct |
+|<a href='#question-9'>Question 9</a> |correct |

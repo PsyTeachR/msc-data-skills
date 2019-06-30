@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.78388290 -1.16692994 -0.58356951 -1.15549405 -1.98853097
-##  [6]  0.35926622 -1.98264401  1.29309642  0.65504768 -0.08689169
+##  [1] -0.4569209 -0.9236241 -0.3034595  0.7473060 -1.5526820 -1.9534781
+##  [7] -1.2735298 -0.9831329  0.5337601  1.5987770
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  98.10059  99.57959  98.13696 100.65395  99.25197  99.19705 100.15611
-##  [8]  99.04759  99.77266 100.45402
+##  [1] 100.19219  97.98004  99.74520  99.68067 101.17846 100.31274  99.37806
+##  [8]  99.75541 100.36721 101.38966
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.36981 101.85932  98.10672 100.91911 102.67713 100.77014 102.05360
-##  [8] 101.78143  97.85600  99.59732
+##  [1] 100.12948 100.30250  99.67898  99.99378  99.81250 102.26416 102.09499
+##  [8]  98.99078  98.63724  98.58692
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -119.20782   63.03238 -157.94187 -104.83739   42.34801   55.55016
-##  [7]   14.97177   37.19145   34.37412   66.92535
+##  [1]    5.80315   42.03926   73.71712   58.12679   23.44606   28.71774
+##  [7]   31.97566 -191.44843  -15.67004  196.87928
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,9 +458,10 @@ fortune()
 
 ```
 ## 
-## I'm always thrilled when people discover what lexical scoping really means.
-##    -- Robert Gentleman
-##       Statistical Computing 2003, Reisensburg (June 2003)
+## The style for JSS now enforces (via Achimitization) the use of quotes.
+##    -- Michael Friendly (on whether to quote or not to quote arguments like
+##       library("Hmisc") or help("mean"))
+##       R-help (March 2011)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -485,10 +486,10 @@ eleanor()
 
 ```
 ## 
-##  I missed my mom's back surgery because I had already promised my landlord's nephew that I would help him figure out his new phone. 
+##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
 ## 
 ##  ~ Chidi
-##  Why don't I ever listen to people when they talk about themselves? No, it's annoying, and I'm right not to. 
+##   First of all, throwing sand is an excellent way to put out a vodka fire. 
 ## 
 ##  ~ Eleanor
 ```
@@ -621,4 +622,4 @@ dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionn
 
 ## Exercises
 
-Download the first set of [exercises](exercises/01_intro_stub.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
+Download the first set of [exercises](exercises/01_intro_exercise.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
