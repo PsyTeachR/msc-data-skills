@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.37676714 -0.03085756 -1.00517852  0.48092820 -0.46534976
-##  [6] -0.31662663 -0.59087287  1.09112557 -0.66575705  0.53216896
+##  [1] -1.78388290 -1.16692994 -0.58356951 -1.15549405 -1.98853097
+##  [6]  0.35926622 -1.98264401  1.29309642  0.65504768 -0.08689169
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.30115  99.43067  97.76691 100.63231  99.99154  98.61985  99.24185
-##  [8]  98.68102 100.68700 100.68325
+##  [1]  98.10059  99.57959  98.13696 100.65395  99.25197  99.19705 100.15611
+##  [8]  99.04759  99.77266 100.45402
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  97.98666 100.99579 100.60132  99.74464 100.79276 100.19771  99.80617
-##  [8] 101.07444 100.68938 101.06261
+##  [1]  99.36981 101.85932  98.10672 100.91911 102.67713 100.77014 102.05360
+##  [8] 101.78143  97.85600  99.59732
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -28.61976 -103.80058  111.22385  -31.09225 -101.01557  132.16431
-##  [7]  118.57161   56.64328   96.47144   59.09259
+##  [1] -119.20782   63.03238 -157.94187 -104.83739   42.34801   55.55016
+##  [7]   14.97177   37.19145   34.37412   66.92535
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,10 +458,9 @@ fortune()
 
 ```
 ## 
-## For recursive objects, search for recursive objects.
-##    -- Barry Rowlingson (in a thread about "Recursive objects" and how to
-##       search for former discussions about the topic)
-##       R-devel (May 2011)
+## I'm always thrilled when people discover what lexical scoping really means.
+##    -- Robert Gentleman
+##       Statistical Computing 2003, Reisensburg (June 2003)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -486,10 +485,10 @@ eleanor()
 
 ```
 ## 
-##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
+##  I missed my mom's back surgery because I had already promised my landlord's nephew that I would help him figure out his new phone. 
 ## 
 ##  ~ Chidi
-##  Pobody's nerfect. 
+##  Why don't I ever listen to people when they talk about themselves? No, it's annoying, and I'm right not to. 
 ## 
 ##  ~ Eleanor
 ```

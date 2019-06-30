@@ -5,9 +5,10 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+# please do not alter this code chunk
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(tidyverse)
-set.seed(42)
+set.seed(42) # makes sure random numbers are reproducible
 ```
 
 ## Pipes
@@ -158,31 +159,33 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
 Q <- c()
-Q[1] <- all.equal(x, 420)
-Q[2] <- c(all.equal(regal, c("R", "E", "G", "A", "L")),
+Q["1"] <- all.equal(x, 420)
+Q["2"] <- c(all.equal(regal, c("R", "E", "G", "A", "L")),
           all.equal(reversed, c("L", "A", "G", "E", "R")),
-          all.equal(lager, "LAGER"))
-Q[3] <- c(all.equal(nrow(ss), 27021L),
-          all.equal(ncol(ss), 17L))
-Q[4] <- c(all.equal(nrow(ss_long), 378294L),
-          all.equal(ncol(ss_long), 5L))
-Q[5] <- c(all.equal(nrow(ss_sep), 378294L),
+          all.equal(lager, "LAGER")) %>% all()
+Q["3"] <- c(all.equal(nrow(ss), 27021L),
+          all.equal(ncol(ss), 17L)) %>% all()
+Q["4"] <- c(all.equal(nrow(ss_long), 378294L),
+          all.equal(ncol(ss_long), 5L)) %>% all()
+Q["5"] <- c(all.equal(nrow(ss_sep), 378294L),
           all.equal(ncol(ss_sep), 6L),
-          all.equal(names(ss_sep), c("id", "user_id", "date", "domain", "qnumber", "score")))
-Q[6] <- c(all.equal(nrow(ss_unite), 378294L),
+          all.equal(names(ss_sep), c("id", "user_id", "date", "domain", "qnumber", "score"))) %>% all()
+Q["6"] <- c(all.equal(nrow(ss_unite), 378294L),
           all.equal(ncol(ss_unite), 5L),
-          all.equal(names(ss_unite), c("super_id", "date", "domain", "qnumber", "score")))
-Q[7] <- c(all.equal(nrow(ss_wide), 27021L),
-          all.equal(ncol(ss_wide), 17L))
-Q[8] <- c(c("sibage", "sibsex") %in% names(family), nrow(family) == 115014)
-Q[9] <- c(c("face_id", "description") %in% names(eyes),
-          if(is.data.frame(eyes)) count(eyes, description) %>% filter(n == max(n)) %>% pull(description) == "brown" else FALSE)
+          all.equal(names(ss_unite), c("super_id", "date", "domain", "qnumber", "score"))) %>% all()
+Q["7"] <- c(all.equal(nrow(ss_wide), 27021L),
+          all.equal(ncol(ss_wide), 17L)) %>% all()
+Q["8"] <- c(c("sibage", "sibsex") %in% names(family), 
+          nrow(family) == 115014) %>% all()
+Q["9"] <- c(c("face_id", "description") %in% names(eyes),
+          if(is.data.frame(eyes)) count(eyes, description) %>% filter(n == max(n)) %>% pull(description) == "brown" else FALSE) %>% all()
   
-ans <- lapply(Q, function(x) mean(x==TRUE))
+ans <- sapply(Q, isTRUE)
 
 knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", 1:9, "'>Question ", 1:9, "</a>"),
-  Answer = ifelse(ans==1, "correct", "incorrect")
+  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
+  Answer = ifelse(ans, "correct", "incorrect")
 ))
 ```
+
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-06-29" />
+<meta name="date" content="2019-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -650,20 +650,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre>
-<pre><code>##  [1]  0.37676714 -0.03085756 -1.00517852  0.48092820 -0.46534976
-##  [6] -0.31662663 -0.59087287  1.09112557 -0.66575705  0.53216896</code></pre>
+<pre><code>##  [1] -1.78388290 -1.16692994 -0.58356951 -1.15549405 -1.98853097
+##  [6]  0.35926622 -1.98264401  1.29309642  0.65504768 -0.08689169</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1] 100.30115  99.43067  97.76691 100.63231  99.99154  98.61985  99.24185
-##  [8]  98.68102 100.68700 100.68325</code></pre>
+<pre><code>##  [1]  98.10059  99.57959  98.13696 100.65395  99.25197  99.19705 100.15611
+##  [8]  99.04759  99.77266 100.45402</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  97.98666 100.99579 100.60132  99.74464 100.79276 100.19771  99.80617
-##  [8] 101.07444 100.68938 101.06261</code></pre>
+<pre><code>##  [1]  99.36981 101.85932  98.10672 100.91911 102.67713 100.77014 102.05360
+##  [8] 101.78143  97.85600  99.59732</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  -28.61976 -103.80058  111.22385  -31.09225 -101.01557  132.16431
-##  [7]  118.57161   56.64328   96.47144   59.09259</code></pre>
+<pre><code>##  [1] -119.20782   63.03238 -157.94187 -104.83739   42.34801   55.55016
+##  [7]   14.97177   37.19145   34.37412   66.92535</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,
              <span class="dt">power =</span> <span class="ot">NULL</span>,
@@ -721,10 +721,9 @@ You may only be able to permanently install packages if you are using R on your 
 <p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>()</code></pre>
 <pre><code>## 
-## For recursive objects, search for recursive objects.
-##    -- Barry Rowlingson (in a thread about &quot;Recursive objects&quot; and how to
-##       search for former discussions about the topic)
-##       R-devel (May 2011)</code></pre>
+## I&#39;m always thrilled when people discover what lexical scoping really means.
+##    -- Robert Gentleman
+##       Statistical Computing 2003, Reisensburg (June 2003)</code></pre>
 <p>Note that we will use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
 </div>
 <div id="install-from-github" class="section level3">
@@ -737,10 +736,10 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <span class="kw">chidi</span>()
 <span class="kw">eleanor</span>()</code></pre>
 <pre><code>## 
-##  There really is an afterlife. I can&#39;t wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
+##  I missed my mom&#39;s back surgery because I had already promised my landlord&#39;s nephew that I would help him figure out his new phone. 
 ## 
 ##  ~ Chidi
-##  Pobody&#39;s nerfect. 
+##  Why don&#39;t I ever listen to people when they talk about themselves? No, it&#39;s annoying, and I&#39;m right not to. 
 ## 
 ##  ~ Eleanor</code></pre>
 </div>

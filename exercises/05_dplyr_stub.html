@@ -382,6 +382,9 @@ $(document).ready(function () {
 
 <div id="uk-baby-names" class="section level2">
 <h2>UK Baby Names</h2>
+<p>Here we will convert the data table from the ukbabynames package to a tibble and assign it the variable name <code>ukb</code>. Use this data tibble for questions 1-13.</p>
+<pre class="r"><code># do not alter this code chunk
+ukb &lt;- as_tibble(ukbabynames) # convert to a tibble</code></pre>
 <div id="question-1" class="section level3">
 <h3>Question 1</h3>
 <p>How many records are in the dataset?</p>
@@ -415,7 +418,7 @@ $(document).ready(function () {
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
 <p>Make a table of only the data from male babies named Courtney that were born between 1998 and 2001 (inclusive).</p>
-<pre class="r"><code>courtney_male_1998_2001 &lt;- NULL</code></pre>
+<pre class="r"><code>courtney &lt;- NULL</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
@@ -425,7 +428,7 @@ $(document).ready(function () {
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
 <p>Make a table of only the data from the female babies named Frankie that were born before 1999 or after 2010.</p>
-<pre class="r"><code>frankie_f_pre1999_post2010 &lt;- NULL</code></pre>
+<pre class="r"><code>frankie &lt;- NULL</code></pre>
 </div>
 <div id="question-10" class="section level3">
 <h3>Question 10</h3>
@@ -453,6 +456,7 @@ ggplot(babies_per_year)</code></pre>
 </div>
 <div id="advanced-questions" class="section level2">
 <h2>Advanced Questions</h2>
+<p>There are several ways to complete the following two tasks. Different people will solve them different ways, so they cannot be automatically checked, but you should be able to tell if your answers make sense.</p>
 <div id="question-14" class="section level3">
 <h3>Question 14</h3>
 <p>Load the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/family_composition.csv">family_composition.csv</a> from last week’s exercise.</p>
@@ -469,7 +473,79 @@ ggplot(sib6)</code></pre>
 <h3>Question 15</h3>
 <p>Use the data from <a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">eye_descriptions.csv</a> from last week’s exercise.</p>
 <p>Create a list of the 10 most common descriptions from the eyes dataset. Remove useless descriptions and merge redundant descriptions. Display the table by piping the resulting tibble to <code>knitr::kable()</code>.</p>
+<pre class="r"><code>eyes &lt;- NULL
+
+knitr::kable(eyes) # displays the table in a nice format</code></pre>
+<pre><code>## Warning in kable_markdown(x, padding = padding, ...): The table should have
+## a header (column names)</code></pre>
+<p>|| || || ||</p>
 </div>
+</div>
+<div id="answer-checks" class="section level2">
+<h2>Answer Checks</h2>
+<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Question</th>
+<th align="left">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="#question-1">Question 1</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="#question-2">Question 2</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="#question-3">Question 3</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="#question-4">Question 4</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="#question-5">Question 5</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="#question-6">Question 6</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="#question-7">Question 7</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="#question-8">Question 8</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="#question-9">Question 9</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="#question-10">Question 10</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="#question-11">Question 11</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="#question-12">Question 12</a></td>
+<td align="left">incorrect</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="#question-13">Question 13</a></td>
+<td align="left">incorrect</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

@@ -5,10 +5,12 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+# please do not alter this code chunk
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(viridis)
 library(cowplot)
+set.seed(0) # makes sure random numbers are reproducible
 ```
 
 
@@ -38,9 +40,9 @@ Create each plot.
 #### Violin Plot
 ```{r exercise-violin}
 dog_violin <- ggplot(dogs, aes(breed, weight, fill = breed)) +
-  geom_violin(draw_quantiles = c(0.5), show.legend = FALSE)
+  geom_violin(show.legend = FALSE)
 
-dog_violin
+dog_violin # prints the plot below
 ```
 
 
@@ -49,7 +51,7 @@ dog_violin
 dog_boxplot <- ggplot(dogs, aes(breed, weight, fill = breed)) +
   geom_boxplot(show.legend = FALSE)
 
-dog_boxplot
+dog_boxplot # prints the plot below
 ```
 
 
@@ -58,7 +60,7 @@ dog_boxplot
 dog_histogram <- ggplot(dogs, aes(weight, fill = breed)) +
   geom_histogram(binwidth = 3, position = "dodge")
 
-dog_histogram
+dog_histogram # prints the plot below
 ```
 
 
@@ -68,7 +70,7 @@ dog_density <- ggplot(dogs, aes(weight, fill = breed)) +
   geom_density(alpha = 0.5) +
   xlim(0, 110)
 
-dog_density
+dog_density # prints the plot below
 ```
 
 
@@ -84,7 +86,7 @@ ggplot(aes(breed, mean, fill = breed)) +
   geom_col(show.legend = FALSE) +
   geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25)
 
-dog_column
+dog_column # prints the plot below
 ```
 
 ### Intermediate
@@ -128,7 +130,7 @@ dog_grid <- plot_grid(
   labels = c("Violin Plot", "Boxplot", "Histogram", "Density Plot")
 )
 
-dog_grid
+dog_grid # prints the plot below
 ```
 
 
@@ -155,32 +157,34 @@ disgust_scatterplot <- ggplot(disgust, aes(moral, pathogen)) +
   ) +
   xlim(0, 6) + ylim(0, 6)
 
-disgust_scatterplot
+disgust_scatterplot # prints the plot below
 ```
   
 ### Intermediate
 
 Create a 2d density plot of the relationship between pathogen and sexual disgust. 
 
-Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = ?, 
-h = c(?, ?))`, set n and h to values that make the graph look good, and 
+Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = n, 
+h = h)`, set n and h to values that make the graph look good, and 
 figure out what `n` and `h` represent.
 
 ```{r exercise-density2d, warning=FALSE}
 
 # n changes the smoothness of the contours (number of grid points in each direction)
+n <- 100
 # h changes how densely the contours are drawn (bandwidth)
+h <- c(1, 1)
 
 disgust_density <- ggplot(disgust, aes(pathogen, sexual)) +
   stat_density_2d(
     aes(fill = ..level..), 
     geom = "polygon", 
-    n = 100, 
-    h = c(1, 1)
+    n = n, 
+    h = h
   ) +
   scale_fill_viridis()
 
-disgust_density
+disgust_density # prints the plot below
 ```
 
 
@@ -252,16 +256,13 @@ disgust_grid <- plot_grid(
   moral_pathogen, sexual_pathogen, pathogen_pathogen
 )
 
-disgust_grid
-
+disgust_grid # prints the plot below
 ```
 
 
 ## Many correlated variables
 
-*Basic*: Create a heatmap of the relationships among all the questions in 
-[disgust_cors.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv) 
-(the correlations have already been calculated for you). 
+*Basic*: Create a heatmap of the relationships among all the questions in [disgust_cors.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv) (the correlations have already been calculated for you). 
 
 *Intermediate*: Figure out how to rotate the text on the x-axis so it's readable.
 
@@ -274,6 +275,6 @@ disgust_heatmap <- disgust_cors %>%
   scale_fill_viridis() +
   theme(axis.text.x = element_text(angle=90, hjust=1))
 
-disgust_heatmap
+disgust_heatmap # prints the plot below
 ```
 

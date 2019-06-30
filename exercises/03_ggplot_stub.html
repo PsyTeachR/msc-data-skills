@@ -383,27 +383,53 @@ $(document).ready(function () {
 <div id="common-plots" class="section level2">
 <h2>Common Plots</h2>
 <p>Generate a violin plot, boxplot, histogram, density plot, and column plot for the following data.</p>
+<pre class="r"><code># do not edit this chunk
+# dog weights estimated from http://petobesityprevention.org/ideal-weight-ranges/
+
+dogs &lt;- tibble(
+  breed = rep(c(&quot;beagle&quot;, &quot;boxer&quot;, &quot;bulldog&quot;), each = 100),
+  weight = c(
+    rnorm(100, 24, 6),
+    rnorm(100, 62.5, 12.5),
+    rnorm(100, 45, 5)
+  )
+)</code></pre>
 <div id="basic" class="section level3">
 <h3>Basic</h3>
 <p>Create each plot.</p>
 <div id="violin-plot" class="section level4">
 <h4>Violin Plot</h4>
+<pre class="r"><code>dog_violin &lt;- NULL
+
+dog_violin # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="boxplot" class="section level4">
 <h4>Boxplot</h4>
+<pre class="r"><code>dog_boxplot &lt;- NULL
+
+dog_boxplot # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="histogram" class="section level4">
 <h4>Histogram</h4>
+<pre class="r"><code>dog_histogram &lt;- NULL
+
+dog_histogram # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="density-plot" class="section level4">
 <h4>Density plot</h4>
+<pre class="r"><code>dog_density &lt;- NULL
+
+dog_density # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="column-plot" class="section level4">
 <h4>Column Plot</h4>
+<pre class="r"><code>dog_column &lt;- NULL
+
+dog_column # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 </div>
@@ -412,6 +438,12 @@ $(document).ready(function () {
 <p>Change the axis labels so the x-axis reads “Breed of Dog” or “Weight of Dog” (depending on the plot type) and the y-axis reads “Weight of Dog”, “Number of Dogs”, or “Density of Dogs” (depending on the plot type).</p>
 <p>Change the default colours to “orange”, “dodgerblue”, and “hotpink”.</p>
 <p>Save each plot as a PNG file with the names “dog_violin.png”, “dog_boxplot.png”,“dog_histogram.png”, “dog_density.png”, and “dog_column.png” (the names are important so they show up in the code below; remeber to remove the two lines indicated).</p>
+<pre class="r"><code>my_colors &lt;- NULL
+axis_labels &lt;- NULL
+axis_labels_hist &lt;- NULL
+axis_labels_density &lt;- NULL
+
+# put ggsave commands here</code></pre>
 <!-- remove this line after you save the images
 
 ![](dog_violin.png)
@@ -425,21 +457,36 @@ remove this line after you save the images -->
 <div id="advanced" class="section level3">
 <h3>Advanced</h3>
 <p>Create a grid of the first four plot styles (exclude the column plot).</p>
+<pre class="r"><code>dog_grid &lt;- NULL
+
+dog_grid # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 </div>
 <div id="two-continuous-variables" class="section level2">
 <h2>Two continuous variables</h2>
-<p>Represent the relationships among moral, sexual and pathogen disgust scores from the dataset <a href="https://gupsych.github.io/data_skills/data/disgust_scores.csv">disgust_scores.csv</a>. Load the data into the variable <code>disgust</code>.</p>
+<p>Represent the relationships among moral, sexual and pathogen disgust scores from the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv">disgust_scores.csv</a>. Load the data into the variable <code>disgust</code>.</p>
 <div id="basic-1" class="section level3">
 <h3>Basic</h3>
 <p>Graph the linear relationship between moral and pathogen disgust. Make sure the axes run from the minimum to maximum possible scores on both axes. Give the graph an appropriate title and axis lables.</p>
+<pre class="r"><code># load data
+disgust &lt;- NULL
+
+disgust_scatterplot &lt;- NULL
+
+disgust_scatterplot # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="intermediate-1" class="section level3">
 <h3>Intermediate</h3>
 <p>Create a 2d density plot of the relationship between pathogen and sexual disgust.</p>
-<p>Use <code>stat_density_2d(aes(fill = ..level..), geom = &quot;polygon&quot;, n = ?,  h = c(?, ?))</code>, set n and h to values that make the graph look good, and figure out what <code>n</code> and <code>h</code> represent.</p>
+<p>Use <code>stat_density_2d(aes(fill = ..level..), geom = &quot;polygon&quot;, n = n,  h = h)</code>, set n and h to values that make the graph look good, and figure out what <code>n</code> and <code>h</code> represent.</p>
+<pre class="r"><code>n &lt;- NULL
+h &lt;- c(NULL, NULL)
+
+disgust_density &lt;- NULL
+
+disgust_density # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="advanced-1" class="section level3">
@@ -475,13 +522,27 @@ remove this line after you save the images -->
 </tr>
 </tbody>
 </table>
+<pre class="r"><code># create individual plots for each panel and assign them to variables 
+# (you can decide what to call them)
+
+
+# use the variables above to create the grid
+disgust_grid &lt;- NULL
+
+disgust_grid # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 </div>
 <div id="many-correlated-variables" class="section level2">
 <h2>Many correlated variables</h2>
-<p><em>Basic</em>: Create a heatmap of the relationships among all the questions in <a href="https://gupsych.github.io/data_skills/data/disgust_cors.csv">disgust_cors.csv</a> (the correlations have already been calculated for you).</p>
+<p><em>Basic</em>: Create a heatmap of the relationships among all the questions in <a href="https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv">disgust_cors.csv</a> (the correlations have already been calculated for you).</p>
 <p><em>Intermediate</em>: Figure out how to rotate the text on the x-axis so it’s readable.</p>
+<pre class="r"><code># load data
+disgust_cors &lt;- NULL
+
+disgust_heatmap &lt;- NULL
+
+disgust_heatmap # prints the plot below</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
 

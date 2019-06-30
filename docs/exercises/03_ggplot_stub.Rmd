@@ -5,11 +5,12 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+# please do not alter this code chunk
+knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(viridis)
 library(cowplot)
-set.seed(90210)
+set.seed(0) # makes sure random numbers are reproducible
 ```
 
 
@@ -40,7 +41,7 @@ Create each plot.
 ```{r exercise-violin}
 dog_violin <- NULL
 
-dog_violin
+dog_violin # prints the plot below
 ```
 
 
@@ -48,7 +49,7 @@ dog_violin
 ```{r exercise-boxplot}
 dog_boxplot <- NULL
 
-dog_boxplot
+dog_boxplot # prints the plot below
 ```
 
 
@@ -56,7 +57,7 @@ dog_boxplot
 ```{r exercise-histogram}
 dog_histogram <- NULL
 
-dog_histogram
+dog_histogram # prints the plot below
 ```
 
 
@@ -64,7 +65,7 @@ dog_histogram
 ```{r exercise-density}
 dog_density <- NULL
 
-dog_density
+dog_density # prints the plot below
 ```
 
 
@@ -72,7 +73,7 @@ dog_density
 ```{r exercise-colplot}
 dog_column <- NULL
 
-dog_column
+dog_column # prints the plot below
 ```
 
 ### Intermediate
@@ -112,7 +113,7 @@ Create a grid of the first four plot styles (exclude the column plot).
 ```{r exercise-dog-advanced}
 dog_grid <- NULL
 
-dog_grid
+dog_grid # prints the plot below
 ```
 
 
@@ -133,25 +134,24 @@ disgust <- NULL
 
 disgust_scatterplot <- NULL
 
-disgust_scatterplot
+disgust_scatterplot # prints the plot below
 ```
   
 ### Intermediate
 
 Create a 2d density plot of the relationship between pathogen and sexual disgust. 
 
-Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = ?, 
-h = c(?, ?))`, set n and h to values that make the graph look good, and 
+Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = n, 
+h = h)`, set n and h to values that make the graph look good, and 
 figure out what `n` and `h` represent.
 
 ```{r exercise-density2d, warning=FALSE}
-
-# n  = ?
-# h  = ?
+n <- NULL
+h <- c(NULL, NULL)
 
 disgust_density <- NULL
 
-disgust_density
+disgust_density # prints the plot below
 ```
 
 
@@ -179,16 +179,13 @@ in all graphs.
 # use the variables above to create the grid
 disgust_grid <- NULL
 
-disgust_grid
-
+disgust_grid # prints the plot below
 ```
 
 
 ## Many correlated variables
 
-*Basic*: Create a heatmap of the relationships among all the questions in 
-[disgust_cors.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv) 
-(the correlations have already been calculated for you). 
+*Basic*: Create a heatmap of the relationships among all the questions in [disgust_cors.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv) (the correlations have already been calculated for you). 
 
 *Intermediate*: Figure out how to rotate the text on the x-axis so it's readable.
 
@@ -199,6 +196,6 @@ disgust_cors <- NULL
 
 disgust_heatmap <- NULL
 
-disgust_heatmap
+disgust_heatmap # prints the plot below
 ```
 

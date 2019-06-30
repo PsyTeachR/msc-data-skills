@@ -67,16 +67,16 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 ```{r answer-checks, echo = FALSE, results='asis'}
 # do not edit
 Q <- c()
-Q[1] <- length(my_pals) == 3
-Q[2] <- all.equal(ages_10,c(36, 23, 57, 72, 28))
-Q[3] <- if (exists("my_fortune")) is.list(my_fortune) else FALSE
-Q[4] <- all.equal(sum(random_vals), 8054.524090755702)
-Q[5] <- all.equal(is_sig, c(F,T,F,T,F,T))
+Q["1"] <- all.equal(length(my_pals), 3)
+Q["2"] <- all.equal(ages_10,c(36, 23, 57, 72, 28))
+Q["3"] <- if (exists("my_fortune")) is.list(my_fortune) else FALSE
+Q["4"] <- all.equal(sum(random_vals), 8054.524090755702)
+Q["5"] <- all.equal(is_sig, c(F,T,F,T,F,T))
 
-ans <- lapply(Q, function(x) mean(x==TRUE))
+ans <- sapply(Q, isTRUE)
 
 knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", 1:5, "'>Question ", 1:5, "</a>"),
-  Answer = ifelse(ans==1, "correct", "incorrect")
+  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
+  Answer = ifelse(ans, "correct", "incorrect")
 ))
 ```
