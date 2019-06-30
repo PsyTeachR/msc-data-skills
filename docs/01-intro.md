@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.4569209 -0.9236241 -0.3034595  0.7473060 -1.5526820 -1.9534781
-##  [7] -1.2735298 -0.9831329  0.5337601  1.5987770
+##  [1]  0.95489509 -0.12843140 -1.60381857 -0.48798635  0.23267477
+##  [6] -1.17248461  1.16761086 -0.84860495 -0.55266570  0.04529745
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.19219  97.98004  99.74520  99.68067 101.17846 100.31274  99.37806
-##  [8]  99.75541 100.36721 101.38966
+##  [1] 100.66448 100.92140  99.41955 100.84766  98.59506 100.88282 100.04681
+##  [8]  99.81350 100.46444 100.89298
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.12948 100.30250  99.67898  99.99378  99.81250 102.26416 102.09499
-##  [8]  98.99078  98.63724  98.58692
+##  [1] 100.70837 101.80893  99.96078 101.00472  98.84852  99.41000 100.62044
+##  [8] 100.14919  97.89703  99.63397
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]    5.80315   42.03926   73.71712   58.12679   23.44606   28.71774
-##  [7]   31.97566 -191.44843  -15.67004  196.87928
+##  [1]  -88.491937  -83.298756   89.565927   76.600684   -5.071035
+##  [6] -150.356969   -2.664209   21.019139  -99.778295  -11.611360
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,10 +458,15 @@ fortune()
 
 ```
 ## 
-## The style for JSS now enforces (via Achimitization) the use of quotes.
-##    -- Michael Friendly (on whether to quote or not to quote arguments like
-##       library("Hmisc") or help("mean"))
-##       R-help (March 2011)
+## Our great-great grandchildren as yet unborn may read some of the stupid
+## questions and/or answers that I and perhaps others give from time to time.
+## I'd rather get flamed for saying something stupid in public on this list
+## than to continue to provide substandard service to the people with whom I
+## work because I perpetrated the same mistake in an environment in which no
+## one questioned so effectively my errors.
+##    -- Spencer Graves (in a discussion on whether answers on R-help should
+##       be more polite)
+##       R-help (December 2004)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -486,10 +491,10 @@ eleanor()
 
 ```
 ## 
-##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
+##  Well, I've narrowed it down to two possibilities: yes and no. 
 ## 
 ##  ~ Chidi
-##   First of all, throwing sand is an excellent way to put out a vodka fire. 
+##  Oh, so now I'm supposed to be nice and make friends and treat her with mutual respect? 
 ## 
 ##  ~ Eleanor
 ```
