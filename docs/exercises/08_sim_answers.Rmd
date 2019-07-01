@@ -42,9 +42,11 @@ t # prints results of t-test
 
 ## Calculate Power
 
+Use at least 1e4 replications to estimate power accurately.
+
 ### Question 4
 
-Calculate power for a two-tailed t-test with an alpha of .05 for detecting a difference between two independent samples of 50 with an effect size of 0.3.
+Calculate power for a two-tailed t-test with an alpha (sig.level) of .05 for detecting a difference between two independent samples of 50 with an effect size of 0.3.
 
 Hint: You can use the `sim_t_ind` function from the [T-Test Class Notes](https://psyteachr.github.io/msc-data-skills/sim.html#t-test).
 
@@ -59,7 +61,8 @@ sim_t_ind <- function(n, m1, sd1, m2, sd2) {
 }
 
 my_reps <- replicate(1e4, sim_t_ind(50, 0, 1, 0.3, 1))
-power.sim <- mean(my_reps < 0.05)
+alpha <- 0.05
+power.sim <- mean(my_reps < alpha)
 
 power.sim # prints the value
 
@@ -70,7 +73,10 @@ power.sim # prints the value
 Compare this to the result of `power.t.test` for the same design.
 
 ```{r Q5}
-power.analytic <- power.t.test(n = 50, delta = 0.3, type = "two.sample")$power
+power.analytic <- power.t.test(n = 50, 
+                               delta = 0.3, 
+                               sig.level = 0.05,
+                               type = "two.sample")$power
 
 power.analytic  # prints the value
 ```
@@ -81,6 +87,7 @@ Modify the `sim_t_ind` function to handle different sample sizes. Use it to calc
 
 * 20 observations from a normal distribution with mean of 10 and SD of 4 versus
 * 30 observations from a normal distribution with a mean of 13 and SD of 4.5
+* alpha (sig.level) of 0.05
 
 ```{r Q6}
 sim_t_ind <- function(n1, m1, sd1, n2, m2, sd2, 
@@ -102,25 +109,12 @@ power6 # prints the value
 
 ### Question 7
 
-Calculate power for a two-tailed t-test with an alpha of .005 for detecting a sex difference in height in a sample of 10 male and 10 female 20-year-olds? Get the data for the height of male and female 20-year-olds from the [US CDC Growth Chart Data Tables](https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv).
+Do noisy environments slow down reaction times for a dot-probe task? 
+Calculate power for a one-tailed t-test with an alpha  (sig.level) of .005 for detecting a difference of at least 50ms, where participants in the quiet condition have a mean reaction time of 800ms. Assume both groups have 80 participants and both SD = 100.
+
 
 ```{r Q7}
-height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv") %>%
-  filter(Sex %in% c(1,2)) %>%
-  mutate(
-    sex = recode(Sex, "1" = "male", "2" = "female"),
-    age = as.numeric(Agemos)/12,
-    sd = `1` - `0`
-  ) %>%
-  dplyr::select(sex, age, mean = `0`, sd)
-
-height_sub <- height_age %>% filter(age == 20)
-m_mean <- height_sub %>% filter(sex == "male") %>% pull(mean)
-m_sd   <- height_sub %>% filter(sex == "male") %>% pull(sd)
-f_mean <- height_sub %>% filter(sex == "female") %>% pull(mean)
-f_sd   <- height_sub %>% filter(sex == "female") %>% pull(sd)
-
-my_reps <- replicate(1e4, sim_t_ind(10, m_mean, m_sd, 10, f_mean, f_sd))
+my_reps <- replicate(1e4, sim_t_ind(80, 800, 100, 80, 850, 100, "less"))
 power7 <- mean(my_reps < 0.005)
 
 power7 # prints the value
@@ -280,14 +274,20 @@ You've made it to the end. Make sure you are able to knit this document to HTML.
 ```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
 # do not edit
 Q <- list()
-Q["1"] <- all.equal(sum(a), -3.639788, tolerance = 1e-5)
-Q["2"] <- all.equal(sum(b), 26.51942, tolerance = 1e-5)
-Q["3"] <- all.equal(t$p.value, 0.001018044, tolerance = 1e-6)
-Q["4"] <- all.equal(power.sim, 0.3253, tolerance = 1e-4)
+Q["1"] <- c(all.equal(length(a), 50),
+            all.equal(mean(a), 0, tolerance = 0.1),
+            all.equal(sd(a), 1, tolerance = 0.1)) %>% all()
+Q["2"] <- c(all.equal(length(b), 50),
+            all.equal(mean(b), 0.5, tolerance = 0.1)) %>% all()
+Q["3"] <- c(is.list(t),
+            all.equal(t$parameter, c(df=49)),
+            all.equal(t$method, "Paired t-test"),
+            all.equal(t$alternative, "two.sided")) %>% all()
+Q["4"] <- all.equal(power.sim, 0.325, tolerance = 1e-3)
 Q["5"] <- all.equal(power.analytic, 0.3175171, tolerance = 1e-6)
-Q["6"] <- all.equal(power6, 0.6789, tolerance = 1e-4)
-Q["7"] <- all.equal(power7, 0.862, tolerance = 1e-4)
-Q["8"] <- all.equal(sum(pois), 4035)
+Q["6"] <- all.equal(power6, 0.68, tolerance = 0.1)
+Q["7"] <- all.equal(power7, 0.71, tolerance = 0.1)
+Q["8"] <- all.equal(mean(pois), 4, tolerance = 0.1)
   
 ans <- sapply(Q, isTRUE)
 

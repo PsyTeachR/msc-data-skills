@@ -399,7 +399,12 @@ ages_10 &lt;- NULL</code></pre>
 <pre class="r"><code>my_fortune &lt;- fortune()</code></pre>
 <pre><code>## Error in fortune(): could not find function &quot;fortune&quot;</code></pre>
 <pre class="r"><code>my_fortune</code></pre>
-<pre><code>## Error in eval(expr, envir, enclos): object 'my_fortune' not found</code></pre>
+<pre><code>## 
+## Basically R is reluctant to let you shoot yourself in the foot unless you
+## are really determined to do so.
+##    -- Bill Venables (about the warning hist() issues when being called
+##       with unequal interval widths and freq=TRUE)
+##       R-help (May 2008)</code></pre>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
@@ -434,7 +439,7 @@ is_sig &lt;- NULL</code></pre>
 </tr>
 <tr class="odd">
 <td align="left"><a href="#question-3">Question 3</a></td>
-<td align="left">incorrect</td>
+<td align="left">correct</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="#question-4">Question 4</a></td>

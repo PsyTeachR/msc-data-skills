@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.545502747  0.329603409 -0.405545578  0.009080274 -1.737968660
-##  [6] -0.290294395  0.835219101 -1.920712779  0.824969895  0.046599581
+##  [1] -1.06799077  0.21859353  0.02752006  1.06212096  1.19848107
+##  [6]  1.27090533 -0.68834972 -0.07934186  0.34677210 -1.33664813
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.22648 101.06492  99.59065  99.13214 101.25544 100.18065 100.35111
-##  [8]  98.71805  98.87194 100.12843
+##  [1] 100.11765  99.67253 100.98941  99.46105 101.78003 100.97037 101.52439
+##  [8] 100.72061  99.97754 100.44733
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  98.40952  98.90982 100.33589 102.10154  98.80578 101.11482 102.25589
-##  [8]  99.62612 100.17146 100.86245
+##  [1]  99.62188 100.18686 100.68920 101.28491  99.01409 101.06874  99.42712
+##  [8] 100.00873  98.99459 101.25831
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -157.57822   11.50215  -29.27816 -144.03292  -10.79116 -170.67428
-##  [7]   97.05090  -39.52577 -201.25619 -144.20144
+##  [1]   3.7691472  77.5796516 -19.5130400  20.2349009 -96.1679018
+##  [6]   9.2896782 -28.2873658  46.1905871 -21.6780387   0.7609686
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,10 +458,9 @@ fortune()
 
 ```
 ## 
-## I plan to fix this - the report is just in case I forget or get hit by a
-## bus.
-##    -- Ross Ihaka (reporting a bug in persp)
-##       R-help (October 2003)
+## RAM is cheap and thinking hurts.
+##    -- Uwe Ligges (about memory requirements in R)
+##       R-help (June 2007)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -486,10 +485,10 @@ eleanor()
 
 ```
 ## 
-##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
+##  I have what doctors call "directional insanity". I once got lost on an escalator. 
 ## 
 ##  ~ Chidi
-##   First of all, throwing sand is an excellent way to put out a vodka fire. 
+##  Girl, you are a messy bench who loves drama and I am into it! 
 ## 
 ##  ~ Eleanor
 ```
