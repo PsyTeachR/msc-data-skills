@@ -24,7 +24,7 @@
 <meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-06-30" />
+<meta name="date" content="2019-07-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -282,7 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
 <li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.7</b> Window functions</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="dplyr.html"><a href="dplyr.html#ranking-functions"><i class="fa fa-check"></i><b>5.7.1</b> Ranking functions</a></li>
+<li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>5.7.2</b> Offset functions</a></li>
+<li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>5.7.3</b> Cumulative aggregates</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
@@ -498,53 +503,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">2</td>
-<td align="left">6</td>
-<td align="left">5</td>
-<td align="left">891</td>
-<td align="left">865</td>
-<td>810</td>
-<td align="left">13 (855)</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">1</td>
-<td align="left">2</td>
-<td align="left">6</td>
-<td align="left">613</td>
-<td align="left">825</td>
-<td>1021</td>
-<td align="left">9 (820)</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
 <td align="left">7</td>
-<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">766</td>
+<td align="left">721</td>
+<td>1040</td>
+<td align="left">10 (842)</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
 <td align="left">4</td>
-<td align="left">740</td>
-<td align="left">937</td>
-<td>810</td>
-<td align="left">14 (829)</td>
+<td align="left">4</td>
+<td align="left">6</td>
+<td align="left">685</td>
+<td align="left">836</td>
+<td>683</td>
+<td align="left">14 (735)</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">658</td>
+<td align="left">811</td>
+<td>863</td>
+<td align="left">7 (777)</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
 <td align="left">6</td>
-<td align="left">1</td>
-<td align="left">2</td>
-<td align="left">892</td>
-<td align="left">807</td>
-<td>869</td>
-<td align="left">9 (856)</td>
+<td align="left">7</td>
+<td align="left">5</td>
+<td align="left">864</td>
+<td align="left">887</td>
+<td>739</td>
+<td align="left">18 (830)</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">3</td>
+<td align="left">1</td>
 <td align="left">5</td>
-<td align="left">3</td>
-<td align="left">841</td>
-<td align="left">836</td>
-<td>869</td>
-<td align="left">11 (849)</td>
+<td align="left">7</td>
+<td align="left">806</td>
+<td align="left">1005</td>
+<td>691</td>
+<td align="left">13 (834)</td>
 </tr>
 </tbody>
 </table>
@@ -564,122 +569,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td>1</td>
 <td align="left">1</td>
-<td align="center">891</td>
-<td>2</td>
-<td>13</td>
-<td align="left">855</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td align="left">2</td>
-<td align="center">865</td>
-<td>6</td>
-<td>13</td>
-<td align="left">855</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td align="left">3</td>
-<td align="center">810</td>
-<td>5</td>
-<td>13</td>
-<td align="left">855</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td align="left">1</td>
-<td align="center">613</td>
-<td>1</td>
-<td>9</td>
-<td align="left">820</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td align="left">2</td>
-<td align="center">825</td>
-<td>2</td>
-<td>9</td>
-<td align="left">820</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td align="left">3</td>
-<td align="center">1021</td>
-<td>6</td>
-<td>9</td>
-<td align="left">820</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td align="left">1</td>
-<td align="center">740</td>
+<td align="center">766</td>
 <td>7</td>
-<td>14</td>
-<td align="left">829</td>
+<td>10</td>
+<td align="left">842</td>
 </tr>
 <tr class="even">
-<td>3</td>
-<td align="left">2</td>
-<td align="center">937</td>
-<td>3</td>
-<td>14</td>
-<td align="left">829</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td align="left">3</td>
-<td align="center">810</td>
-<td>4</td>
-<td>14</td>
-<td align="left">829</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td align="left">1</td>
-<td align="center">892</td>
-<td>6</td>
-<td>9</td>
-<td align="left">856</td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td align="left">2</td>
-<td align="center">807</td>
 <td>1</td>
-<td>9</td>
-<td align="left">856</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td align="left">3</td>
-<td align="center">869</td>
+<td align="left">2</td>
+<td align="center">721</td>
 <td>2</td>
-<td>9</td>
-<td align="left">856</td>
+<td>10</td>
+<td align="left">842</td>
 </tr>
 <tr class="odd">
-<td>5</td>
-<td align="left">1</td>
-<td align="center">841</td>
-<td>3</td>
-<td>11</td>
-<td align="left">849</td>
+<td>1</td>
+<td align="left">3</td>
+<td align="center">1040</td>
+<td>1</td>
+<td>10</td>
+<td align="left">842</td>
 </tr>
 <tr class="even">
-<td>5</td>
+<td>2</td>
+<td align="left">1</td>
+<td align="center">685</td>
+<td>4</td>
+<td>14</td>
+<td align="left">735</td>
+</tr>
+<tr class="odd">
+<td>2</td>
 <td align="left">2</td>
 <td align="center">836</td>
+<td>4</td>
+<td>14</td>
+<td align="left">735</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left">3</td>
+<td align="center">683</td>
+<td>6</td>
+<td>14</td>
+<td align="left">735</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">1</td>
+<td align="center">658</td>
+<td>3</td>
+<td>7</td>
+<td align="left">777</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="left">2</td>
+<td align="center">811</td>
+<td>1</td>
+<td>7</td>
+<td align="left">777</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">3</td>
+<td align="center">863</td>
+<td>3</td>
+<td>7</td>
+<td align="left">777</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">1</td>
+<td align="center">864</td>
+<td>6</td>
+<td>18</td>
+<td align="left">830</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="left">2</td>
+<td align="center">887</td>
+<td>7</td>
+<td>18</td>
+<td align="left">830</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">3</td>
+<td align="center">739</td>
 <td>5</td>
-<td>11</td>
-<td align="left">849</td>
+<td>18</td>
+<td align="left">830</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="left">1</td>
+<td align="center">806</td>
+<td>1</td>
+<td>13</td>
+<td align="left">834</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td align="left">2</td>
+<td align="center">1005</td>
+<td>5</td>
+<td>13</td>
+<td align="left">834</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td align="left">3</td>
-<td align="center">869</td>
-<td>3</td>
-<td>11</td>
-<td align="left">849</td>
+<td align="center">691</td>
+<td>7</td>
+<td>13</td>
+<td align="left">834</td>
 </tr>
 </tbody>
 </table>
@@ -766,18 +771,18 @@ data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <
 data</code></pre>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id A_mean B_mean
-##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  1.34    2.14
-##  2     2  2.07    3.94
-##  3     3  0.320   1.71
-##  4     4  0.547   2.37
-##  5     5 -0.585   2.08
-##  6     6  0.189   2.32
-##  7     7  0.123   2.90
-##  8     8  0.620   2.22
-##  9     9  0.296   3.28
-## 10    10  0.445   3.50</code></pre>
+##       id   A_mean B_mean
+##    &lt;int&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1  0.509    2.10 
+##  2     2  0.957    1.94 
+##  3     3  1.16     2.41 
+##  4     4  0.138    1.65 
+##  5     5  1.97     3.60 
+##  6     6  1.74     0.781
+##  7     7  0.959    2.01 
+##  8     8  0.383    2.19 
+##  9     9 -0.00146  0.831
+## 10    10 -0.699    2.23</code></pre>
 <div class="warning">
 <p>
 You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
@@ -1226,56 +1231,56 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="left">A</td>
 <td>1</td>
 <td align="left">cat</td>
-<td align="center">0.278</td>
+<td align="center">0.080</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">A</td>
 <td>2</td>
 <td align="left">cat</td>
-<td align="center">1.380</td>
+<td align="center">0.536</td>
 </tr>
 <tr class="odd">
 <td>1</td>
 <td align="left">B</td>
 <td>1</td>
 <td align="left">cat</td>
-<td align="center">-1.261</td>
+<td align="center">2.037</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">B</td>
 <td>2</td>
 <td align="left">cat</td>
-<td align="center">-0.780</td>
+<td align="center">1.464</td>
 </tr>
 <tr class="odd">
 <td>2</td>
 <td align="left">A</td>
 <td>1</td>
 <td align="left">dog</td>
-<td align="center">2.053</td>
+<td align="center">-1.534</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">A</td>
 <td>2</td>
 <td align="left">dog</td>
-<td align="center">0.248</td>
+<td align="center">1.020</td>
 </tr>
 <tr class="odd">
 <td>2</td>
 <td align="left">B</td>
 <td>1</td>
 <td align="left">dog</td>
-<td align="center">0.741</td>
+<td align="center">0.035</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">B</td>
 <td>2</td>
 <td align="left">dog</td>
-<td align="center">0.150</td>
+<td align="center">-0.941</td>
 </tr>
 </tbody>
 </table>
@@ -1296,29 +1301,29 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">0.2784707</td>
-<td align="right">-1.2611823</td>
+<td align="right">0.0800307</td>
+<td align="right">2.0368619</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">1.3800806</td>
-<td align="right">-0.7800992</td>
+<td align="right">0.5357681</td>
+<td align="right">1.4635670</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">2.0533556</td>
-<td align="right">0.7405041</td>
+<td align="right">-1.5336140</td>
+<td align="right">0.0354471</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">0.2481442</td>
-<td align="right">0.1498618</td>
+<td align="right">1.0196759</td>
+<td align="right">-0.9408235</td>
 </tr>
 </tbody>
 </table>
@@ -1338,49 +1343,49 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="left">A_1</td>
 <td align="left">cat</td>
-<td align="right">0.2784707</td>
+<td align="right">0.0800307</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A_2</td>
 <td align="left">cat</td>
-<td align="right">1.3800806</td>
+<td align="right">0.5357681</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B_1</td>
 <td align="left">cat</td>
-<td align="right">-1.2611823</td>
+<td align="right">2.0368619</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B_2</td>
 <td align="left">cat</td>
-<td align="right">-0.7800992</td>
+<td align="right">1.4635670</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A_1</td>
 <td align="left">dog</td>
-<td align="right">2.0533556</td>
+<td align="right">-1.5336140</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A_2</td>
 <td align="left">dog</td>
-<td align="right">0.2481442</td>
+<td align="right">1.0196759</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B_1</td>
 <td align="left">dog</td>
-<td align="right">0.7405041</td>
+<td align="right">0.0354471</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B_2</td>
 <td align="left">dog</td>
-<td align="right">0.1498618</td>
+<td align="right">-0.9408235</td>
 </tr>
 </tbody>
 </table>

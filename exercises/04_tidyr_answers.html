@@ -466,7 +466,7 @@ lager &lt;- paste(reversed, collapse = &quot;&quot;) # make it into a string</co
 <h2>Eye Descriptions</h2>
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
-<p>Tidy the data from <a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">eye_descriptions.csv</a>. This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
+<p>Tidy the data from <a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">eye_descriptions.csv</a>. This dataset contains descriptions of the eyes of 50 people by 220 raters (<code>user_id</code>). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
 <p>Create a dataset with separate columns for <code>face_id</code>, <code>description</code>, and description number (<code>desc_n</code>). Hint: to separate a string by tildes or slashes, you would set the <code>sep</code> argument to <code>&quot;(~|\\/)+&quot;</code>.</p>
 <pre class="r"><code>eyes &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv&quot;) %&gt;%
   gather(&quot;face_id&quot;, &quot;description&quot;, t1:t50) %&gt;%

@@ -46,7 +46,7 @@ t # prints results of t-test
 
 Calculate power for a two-tailed t-test with an alpha of .05 for detecting a difference between two independent samples of 50 with an effect size of 0.3.
 
-Hint: You can use the `sim_t_ind` function from the [T-Test Class Notes](https://psyteachr.github.io/msc-data-skills/08_simulation.html#t-test).
+Hint: You can use the `sim_t_ind` function from the [T-Test Class Notes](https://psyteachr.github.io/msc-data-skills/sim.html#t-test).
 
 ```{r Q4}
 

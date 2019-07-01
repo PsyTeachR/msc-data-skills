@@ -140,8 +140,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  82.46   82.46   52.37 8.92e-05 ***
-## Residuals    8  12.60    1.57                     
+## A            1  69.08   69.08   106.5 6.71e-06 ***
+## Residuals    8   5.19    0.65                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -158,7 +158,7 @@ pval
 ```
 
 ```
-## [1] 8.918322e-05
+## [1] 6.709535e-06
 ```
 -->
 
@@ -407,13 +407,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -1.3988, df = 37.424, p-value = 0.1701
+## t = -2.0648, df = 33.801, p-value = 0.04668
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.3348429  0.2442563
+##  -1.57372899 -0.01234349
 ## sample estimates:
 ## mean of x mean of y 
-##  5.104166  5.649460
+##  4.799335  5.592371
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
@@ -430,13 +430,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -1.3988, df = 37.424, p-value = 0.1701
+## t = -2.0648, df = 33.801, p-value = 0.04668
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -1.3348429  0.2442563
+##  -1.57372899 -0.01234349
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.104166        5.649460
+##        4.799335        5.592371
 ```
 
 ### `broom::tidy()`
@@ -458,7 +458,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   0.0816      5.24      5.16     0.273   0.787      37.6   -0.525
+## 1   -0.748      4.79      5.53     -1.88  0.0678      36.1    -1.55
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
@@ -478,7 +478,7 @@ tibble(
 ```
 
 ```
-## [1] 0.02503479
+## [1] 0.07667759
 ```
 
 ### Turn into a function
@@ -507,7 +507,7 @@ t_sim()
 ```
 
 ```
-## [1] 0.3745077
+## [1] 0.3953448
 ```
 
 ### `replicate()`
@@ -523,7 +523,7 @@ power
 ```
 
 ```
-## [1] 0.369
+## [1] 0.33
 ```
 
 ### Add arguments
@@ -553,8 +553,8 @@ t_sim(100, 0, 1, 0.5, 1)
 ```
 
 ```
-## [1] 0.4046092
-## [1] 1.416714e-05
+## [1] 0.207355
+## [1] 0.0004195097
 ```
 
 Use `replicate` to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.
@@ -567,7 +567,7 @@ power
 ```
 
 ```
-## [1] 0.288
+## [1] 0.284
 ```
 
 Compare this to power calculated from the `power.t.test` function.

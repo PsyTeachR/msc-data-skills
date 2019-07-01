@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.9489745  0.7154408 -0.2148223 -1.6312468 -0.4786606  0.5244247
-##  [7]  1.0374653  0.7587586  1.6380220 -0.5269080
+##  [1] -1.545502747  0.329603409 -0.405545578  0.009080274 -1.737968660
+##  [6] -0.290294395  0.835219101 -1.920712779  0.824969895  0.046599581
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.84478 100.52628 100.57789  99.35582 100.63824 100.22908  97.99399
-##  [8]  99.51936 100.54162  97.77819
+##  [1]  99.22648 101.06492  99.59065  99.13214 101.25544 100.18065 100.35111
+##  [8]  98.71805  98.87194 100.12843
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.84980  98.28374 102.08869  99.50047  98.09847  99.96623  98.92751
-##  [8]  98.53369  99.09777 101.81117
+##  [1]  98.40952  98.90982 100.33589 102.10154  98.80578 101.11482 102.25589
+##  [8]  99.62612 100.17146 100.86245
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  84.43065  71.01861 -15.02471 -66.96965  85.71117  99.95728  11.31919
-##  [8]  54.44329 -40.23084  70.04952
+##  [1] -157.57822   11.50215  -29.27816 -144.03292  -10.79116 -170.67428
+##  [7]   97.05090  -39.52577 -201.25619 -144.20144
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,9 +458,10 @@ fortune()
 
 ```
 ## 
-## Well..... SAS is SAS, but R is FREE...
-##    -- Abhishek Rathore (in a discussion about R vs. SAS)
-##       LinkedIn Group Stat-Math Statistics (July 2011)
+## I plan to fix this - the report is just in case I forget or get hit by a
+## bus.
+##    -- Ross Ihaka (reporting a bug in persp)
+##       R-help (October 2003)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -488,7 +489,7 @@ eleanor()
 ##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
 ## 
 ##  ~ Chidi
-##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, "Go ahead and cry all you want, but you're gonna have to pay for that toilet plunger." 
+##   First of all, throwing sand is an excellent way to put out a vodka fire. 
 ## 
 ##  ~ Eleanor
 ```

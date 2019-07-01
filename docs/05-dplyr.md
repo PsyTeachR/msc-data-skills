@@ -25,9 +25,7 @@
 ### Advanced
 
 3. Fine control of [`select()` operations](#select_helpers)
-4. Perform 'windowed' operations
-    + windowed `mutate()`
-    + windowed `slice()`
+4. Use [window functions](#window)
 
 ## Resources
 
@@ -43,9 +41,8 @@ You'll need the following packages.
 
 ```r
 # libraries needed for these examples
-library(lubridate)
 library(tidyverse)
-library(ukbabynames)
+library(lubridate)
 ```
 
 
@@ -628,6 +625,162 @@ iris %>%
 ## [1] 5.006 5.936 6.588
 ```
 
+
+## Window functions {#window}
+
+Window functions use the order of rows to calculate values. You can use them to do things that require ranking or ordering, like choose the top scores in each class, or acessing the previous and next rows, like calculating cumulative sums or means.
+
+The [dplyr window functions vignette](https://dplyr.tidyverse.org/articles/window-functions.html) has very good detailed explanations of these functions, but we've described a few of the most useful ones below. 
+
+### Ranking functions
+
+
+```r
+tibble(
+  id = 1:5,
+  "Data Skills" = c(16, 17, 17, 19, 20), 
+  "Statistics"  = c(14, 16, 18, 18, 19)
+) %>%
+  gather(class, grade, 2:3) %>%
+  group_by(class) %>%
+  mutate(row_number = row_number(),
+         rank       = rank(grade),
+         min_rank   = min_rank(grade),
+         dense_rank = dense_rank(grade),
+         quartile   = ntile(grade, 4),
+         percentile = ntile(grade, 100))
+```
+
+```
+## # A tibble: 10 x 9
+## # Groups:   class [2]
+##       id class grade row_number  rank min_rank dense_rank quartile
+##    <int> <chr> <dbl>      <int> <dbl>    <int>      <int>    <int>
+##  1     1 Data…    16          1   1          1          1        1
+##  2     2 Data…    17          2   2.5        2          2        1
+##  3     3 Data…    17          3   2.5        2          2        2
+##  4     4 Data…    19          4   4          4          3        3
+##  5     5 Data…    20          5   5          5          4        4
+##  6     1 Stat…    14          1   1          1          1        1
+##  7     2 Stat…    16          2   2          2          2        1
+##  8     3 Stat…    18          3   3.5        3          3        2
+##  9     4 Stat…    18          4   3.5        3          3        3
+## 10     5 Stat…    19          5   5          5          4        4
+## # … with 1 more variable: percentile <int>
+```
+
+<div class="try">
+<ul>
+<li>What are the differences among <code>row_number()</code>, <code>rank()</code>, <code>min_rank()</code>, <code>dense_rank()</code>, and <code>ntile()</code>?</li>
+<li>Why doesn’t <code>row_number()</code> need an argument?</li>
+<li>What would happen if you gave it the argument <code>grade</code> or <code>class</code>?</li>
+<li>What do you think would happen if you removed the <code>group_by(class)</code> line above?</li>
+<li>What if you added <code>id</code> to the grouping?</li>
+<li>What happens if you change the order of the rows?</li>
+<li>What does the second argument in <code>ntile()</code> do?</li>
+</ul>
+</div>
+
+You can use window functions to group your data into quantiles.
+
+
+```r
+iris %>%
+  group_by(tertile = ntile(Sepal.Length, 3)) %>%
+  summarise(mean.Sepal.Length = mean(Sepal.Length))
+```
+
+```
+## # A tibble: 3 x 2
+##   tertile mean.Sepal.Length
+##     <int>             <dbl>
+## 1       1              4.94
+## 2       2              5.81
+## 3       3              6.78
+```
+
+### Offset functions
+
+
+```r
+tibble(
+  trial = 1:10,
+  cond = rep(c("exp", "ctrl"), c(6, 4)),
+  score = rpois(10, 4)
+) %>%
+  mutate(
+    score_change = score - lag(score, order_by = trial),
+    last_cond_trial = cond != lead(cond, default = TRUE)
+  )
+```
+
+```
+## # A tibble: 10 x 5
+##    trial cond  score score_change last_cond_trial
+##    <int> <chr> <int>        <int> <lgl>          
+##  1     1 exp       3           NA FALSE          
+##  2     2 exp       8            5 FALSE          
+##  3     3 exp       4           -4 FALSE          
+##  4     4 exp       1           -3 FALSE          
+##  5     5 exp       6            5 FALSE          
+##  6     6 exp       3           -3 TRUE           
+##  7     7 ctrl      7            4 FALSE          
+##  8     8 ctrl      2           -5 FALSE          
+##  9     9 ctrl      2            0 FALSE          
+## 10    10 ctrl      2            0 TRUE
+```
+
+<div class="try">
+<p>Look at the help pages for <code>lag()</code> and <code>lead()</code>.</p>
+<ul>
+<li>What happens if you remove the <code>order_by</code> argument or change it to <code>cond</code>?</li>
+<li>What does the <code>default</code> argument do?</li>
+<li>Can you think of circumstances in your own data where you might need to use <code>lag()</code> or <code>lead()</code>?</li>
+</ul>
+</div>
+
+### Cumulative aggregates
+
+`cumsum()`, `cummin()`, and `cummax()` are base R functions for calcumaling cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
+
+
+```r
+tibble(
+  time = 1:10,
+  obs = c(1, 0, 1, 2, 4, 3, 1, 0, 3, 5)
+) %>%
+  mutate(
+    cumsum = cumsum(obs),
+    cummin = cummin(obs),
+    cummax = cummax(obs),
+    cumany = cumany(obs == 3),
+    cumall = cumall(obs < 4)
+  )
+```
+
+```
+## # A tibble: 10 x 7
+##     time   obs cumsum cummin cummax cumany cumall
+##    <int> <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl> 
+##  1     1     1      1      1      1 FALSE  TRUE  
+##  2     2     0      1      0      1 FALSE  TRUE  
+##  3     3     1      2      0      1 FALSE  TRUE  
+##  4     4     2      4      0      2 FALSE  TRUE  
+##  5     5     4      8      0      4 FALSE  FALSE 
+##  6     6     3     11      0      4 TRUE   FALSE 
+##  7     7     1     12      0      4 TRUE   FALSE 
+##  8     8     0     12      0      4 TRUE   FALSE 
+##  9     9     3     15      0      4 TRUE   FALSE 
+## 10    10     5     20      0      5 TRUE   FALSE
+```
+
+<div class="try">
+<ul>
+<li>What would happen if you change <code>cumany(obs == 3)</code> to <code>cumany(obs &gt; 2)</code>?</li>
+<li>What would happen if you change <code>cumall(obs &lt; 4)</code> to <code>cumall(obs &lt; 2)</code>?</li>
+<li>Can you think of circumstances in your own data where you might need to use <code>cumany()</code> or <code>cumall()</code>?</li>
+</ul>
+</div>
 
 ## Exercises
 

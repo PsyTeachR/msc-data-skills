@@ -2,7 +2,7 @@
 --- 
 title: Data Skills
 author: "[Lisa DeBruine](https://debruine.github.io) & [Dale Barr](http://talklab.psy.gla.ac.uk/)"
-date: "2019-06-30"
+date: "2019-07-01"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

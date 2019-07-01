@@ -36,27 +36,30 @@
 
 * [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science*
 * [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera (week 1)
+* [Simulation tutorials](https://debruine.github.io/tutorials/sim-data.html)
+* [Faux](https://debruine.github.io/faux/) package for data simulation
+* [Simulation-Based Power-Analysis for Factorial ANOVA Designs](https://psyarxiv.com/baxsf) [@lakens_caldwell_2019]
+* [Understanding mixed effects models through data simulation](https://psyarxiv.com/xp5cy/) [@debruine_barr_2019]
 
 
 ## Distributions
 
-Simulating data is a very powerful way to test your understanding of statistical 
-concepts. We are going to use simulations to learn the basics of probability.
+Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use simulations to learn the basics of probability.
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
 library(tidyverse)
 library(MASS)
-```
-
-```{r set-seed, echo = FALSE}
-set.seed(8675309)
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 ### Uniform Distribution
 
-The uniform distribution is the simplest distribution. All numbers in the range 
-have an equal probability of being sampled. 
+The uniform distribution is the simplest distribution. All numbers in the range have an equal probability of being sampled.
+
+```{block type="try"}
+Take a minute to think of things in your own research that are uniformly distributed.
+```
 
 #### Sample continuous distribution
 
@@ -79,8 +82,8 @@ Simulate a single roll of a 6-sided die.
 sample(6, 1)
 ```
 
-Simulate 10 rolls of a 6-sided die. Set `replace` to `TRUE` so each roll is 
-independent. See what happens if you set `replace` to `FALSE`.
+Simulate 10 rolls of a 6-sided die. Set `replace` to `TRUE` so each roll is independent. See what happens if you set `replace` to `FALSE`.
+
 ```{r sample-replace}
 sample(6, 10, replace = TRUE)
 ```
@@ -92,9 +95,7 @@ pet_types <- c("cat", "dog", "ferret", "bird", "fish")
 sample(pet_types, 10, replace = TRUE)
 ```
 
-Ferrets are a much less common pet than cats and dogs, so our sample isn't very 
-realistic. You can set the probabilities of each item in the list with the `prob` 
-argument.
+Ferrets are a much less common pet than cats and dogs, so our sample isn't very realistic. You can set the probabilities of each item in the list with the `prob` argument.
 
 ```{r sample-prob}
 pet_types <- c("cat", "dog", "ferret", "bird", "fish")
@@ -102,11 +103,10 @@ pet_prob <- c(0.3, 0.4, 0.1, 0.1, 0.1)
 sample(pet_types, 10, replace = TRUE, prob = pet_prob)
 ```
 
+
 ### Binomial Distribution
 
-The binomial distribution is useful for modeling binary data, where each 
-observation can have one of two outcomes, like success/failure, yes/no or 
-head/tails. 
+The binomial distribution is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails. 
 
 #### Sample distribution
 
@@ -118,33 +118,32 @@ The `rbinom` function will generate a random binomial distribution.
 * `size` = number of trials
 * `prob` = probability of success on each trial
 
-Coin flips are a typical example of a binomial distribution, where we can assign 
-head to 1 and tails to 0.
+Coin flips are a typical example of a binomial distribution, where we can assign heads to 1 and tails to 0.
 
-20 individual coin flips of a fair coin
 ```{r rbinom-fair}
+# 20 individual coin flips of a fair coin
 rbinom(20, 1, 0.5)
 ```
 
-20 individual coin flips of a baised (0.75) coin
+
 ```{r rbinom-bias}
+# 20 individual coin flips of a baised (0.75) coin
 rbinom(20, 1, 0.75)
 ```
 
-You can generate the total number of heads in 1 set of 20 coin flips by setting 
-`size` to 20 and `n` to 1.
+You can generate the total number of heads in 1 set of 20 coin flips by setting `size` to 20 and `n` to 1.
+
 ```{r rbinom-size}
 rbinom(1, 20, 0.75)
 ```
 
 You can generate more sets of 20 coin flips by increasing the `n`.
+
 ```{r rbinom-n}
 rbinom(10, 20, 0.5)
 ```
 
-You should always check your randomly generated data to check that it makes sense. 
-For large samples, it's easiest to do that graphically. A histogram is usually 
-the best choice for plotting binomial data.
+You should always check your randomly generated data to check that it makes sense. For large samples, it's easiest to do that graphically. A histogram is usually the best choice for plotting binomial data.
 
 ```{r sim_flips}
 flips <- rbinom(1000, 20, 0.5)
@@ -158,7 +157,7 @@ ggplot() +
   )
 ```
 
-```{block, type="info"}
+```{block, type="try"}
 Run the simulation above several times, noting how the histogram changes. Try changing the values of `n`, `size`, and `prob`.
 ```
 
@@ -166,15 +165,13 @@ Run the simulation above several times, noting how the histogram changes. Try ch
 
 `binom.test(x, n, p)`
 
-You can test a binomial distribution against a specific probability using the 
-exact binomial test.
+You can test a binomial distribution against a specific probability using the exact binomial test.
 
 * `x` = the number of successes
 * `n` = the number of trials
 * `p` = hypothesised probability of success
 
-Here we can test a series of 10 coin flips from a fair coin and a biased coin 
-against the hypothesised probability of 0.5 (even odds).
+Here we can test a series of 10 coin flips from a fair coin and a biased coin against the hypothesised probability of 0.5 (even odds).
 
 ```{r binom-test}
 
@@ -188,9 +185,7 @@ binom.test(biased_coin, n, p = 0.5)
 ```
 
 ```{block, type="info"}
-Run the code above several times, noting the p-values for the fair and biased coins. 
-Alternatively, you can [simulate coin flips](https://debruine.shinyapps.io/coinsim/) 
-online and build up a graph of results and p-values. 
+Run the code above several times, noting the p-values for the fair and biased coins. Alternatively, you can [simulate coin flips](http://shiny.psy.gla.ac.uk/debruine/coinsim/) online and build up a graph of results and p-values. 
 
 * How does the p-value vary for the fair and biased coins?
 * What happens to the confidence intervals if you increase n from 10 to 100?
@@ -201,22 +196,14 @@ online and build up a graph of results and p-values.
 
 #### False positives & negatives
 
-The probability that a test concludes the fair coin is biased is called the 
-*false positive rate* (or _Type I Error Rate_). The *alpha* is the false positive 
-rate we accept for a test. This is traditionally set at 0.05, but there are good 
-arguments for setting a different criterion in some circumstances.
+The probability that a test concludes the fair coin is biased is called the **false positive rate** (or _Type I Error Rate_). The **alpha** is the false positive rate we accept for a test. This is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html).
 
-The probability that a test concludes the biased coin is fair is called the 
-*false negative rate* (of _Type II Error Rate_). The *power* of a test is 1 
-minus its false negative rate (i.e., the *true positive rate*). Power depends 
-on how biased the coin is and how many samples we take. 
+The probability that a test concludes the biased coin is fair is called the **false negative rate** (of _Type II Error Rate_). The **power** of a test is 1 minus its false negative rate (i.e., the **true positive rate**). Power depends on how biased the coin is, how many samples we take, and what we set alpha to. 
 
 #### Sampling function
 
 To estimate these rates, we need to repeat the sampling above many times. 
-A function is ideal for repeating the exact same procedure over and over. Set 
-the arguments of the function to variables that you might want to change. Here, 
-we will want to estimate power for:
+A function is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:
 
 * different sample sizes (`n`)
 * different coin biases (`bias`)
@@ -241,25 +228,20 @@ sim_binom_test(100, 0.6)
 
 #### Calculate power
 
-Then you can use the `replicate()` function to run it many times and save all 
-the output values. You can calculate the *power* of your analysis by checking the 
-proportion of your simulated analyses that have a p-value less than your _alpha_ 
-(the probability of rejecting the null hypothesis when the null hypothesis is true).
+Then you can use the `replicate()` function to run it many times and save all the output values. You can calculate the *power* of your analysis by checking the proportion of your simulated analyses that have a p-value less than your _alpha_ (the probability of rejecting the null hypothesis when the null hypothesis is true).
 
 ```{r replicate}
 
 my_reps <- replicate(1e4, sim_binom_test(100, 0.6))
 
-mean(my_reps < 0.05)
+alpha <- 0.05 # this does not always have to be 0.05
+
+mean(my_reps < alpha)
 
 ```
 
 ```{block, type="info"}
-`1e4` is just scientific notation for a 1 followed 
-by 4 zeros (`10000`). When youre running simulations, you usually want to run a 
-lot of them and it's a pain to keep track of whether you've typed 5 or 6 zeros 
-(100000 vs 1000000) and this will change your running time by an order of 
-magnitude.
+`1e4` is just scientific notation for a 1 followed by 4 zeros (`10000`). When you're running simulations, you usually want to run a lot of them. It's a pain to keep track of whether you've typed 5 or 6 zeros (100000 vs 1000000) and this will change your running time by an order of magnitude.
 ```
 
 ### Normal Distribution
@@ -268,22 +250,26 @@ magnitude.
 
 `rnorm(n, mean, sd)`
 
-We can simulate a normal distribution of size `n` if we know the `mean` and 
-standard deviation (`sd`). A density plot is usually the best way to visualise 
-this type of data if your `n` is large.
+We can simulate a normal distribution of size `n` if we know the `mean` and standard deviation (`sd`). A density plot is usually the best way to visualise this type of data if your `n` is large.
 
 ```{r rnorm}
 dv <- rnorm(1e5, 10, 2)
 
+# proportions of normally-distributed data 
+# within 1, 2, or 3 SD of the mean
+sd1 <- .6827 
+sd2 <- .9545
+sd3 <- .9973
+
 ggplot() +
   geom_density(aes(dv), fill = "white") +
   geom_vline(xintercept = mean(dv), color = "red") +
-  geom_vline(xintercept = quantile(dv, .5 - (.6827/2)), color = "darkgreen") +
-  geom_vline(xintercept = quantile(dv, .5 + (.6827/2)), color = "darkgreen") +
-  geom_vline(xintercept = quantile(dv, .5 - (.9545/2)), color = "blue") +
-  geom_vline(xintercept = quantile(dv, .5 + (.9545/2)), color = "blue") +
-  geom_vline(xintercept = quantile(dv, .5 - (.9973/2)), color = "purple") +
-  geom_vline(xintercept = quantile(dv, .5 + (.9973/2)), color = "purple") +
+  geom_vline(xintercept = quantile(dv, .5 - sd1/2), color = "darkgreen") +
+  geom_vline(xintercept = quantile(dv, .5 + sd1/2), color = "darkgreen") +
+  geom_vline(xintercept = quantile(dv, .5 - sd2/2), color = "blue") +
+  geom_vline(xintercept = quantile(dv, .5 + sd2/2), color = "blue") +
+  geom_vline(xintercept = quantile(dv, .5 - sd3/2), color = "purple") +
+  geom_vline(xintercept = quantile(dv, .5 + sd3/2), color = "purple") +
   scale_x_continuous(
     limits = c(0,20), 
     breaks = seq(0,20)
@@ -291,9 +277,7 @@ ggplot() +
 ```
 
 ```{block, type="info"}
-Run the simulation above several times, noting how 
-the density plot changes. What do the vertical lines represent? Try changing the 
-values of `n`, `mean`, and `sd`.
+Run the simulation above several times, noting how the density plot changes. What do the vertical lines represent? Try changing the values of `n`, `mean`, and `sd`.
 ```
 
 #### T-test

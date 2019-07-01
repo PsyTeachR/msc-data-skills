@@ -133,7 +133,7 @@ family <- NULL
 
 ### Question 9
 
-Tidy the data from [eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people. Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
+Tidy the data from [eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
 
 Create a dataset with separate columns for `face_id`, `description`, and description number (`desc_n`). Hint: to separate a string by tildes or slashes, you would set the `sep` argument to `"(~|\\/)+"`.
     
