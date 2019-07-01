@@ -24,9 +24,7 @@
 ### Advanced
 
 3. Fine control of [`select()` operations](#select_helpers)
-4. Perform 'windowed' operations
-    + windowed `mutate()`
-    + windowed `slice()`
+4. Use [window functions](#window)
 
 ## Resources
 
@@ -41,9 +39,8 @@ You'll need the following packages.
 
 ```{r, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
-library(lubridate)
 library(tidyverse)
-library(ukbabynames)
+library(lubridate)
 ```
 
 
@@ -442,6 +439,95 @@ iris %>%
 
 ```
 
+
+## Window functions {#window}
+
+Window functions use the order of rows to calculate values. You can use them to do things that require ranking or ordering, like choose the top scores in each class, or acessing the previous and next rows, like calculating cumulative sums or means.
+
+The [dplyr window functions vignette](https://dplyr.tidyverse.org/articles/window-functions.html) has very good detailed explanations of these functions, but we've described a few of the most useful ones below. 
+
+### Ranking functions
+
+```{r}
+tibble(
+  id = 1:5,
+  "Data Skills" = c(16, 17, 17, 19, 20), 
+  "Statistics"  = c(14, 16, 18, 18, 19)
+) %>%
+  gather(class, grade, 2:3) %>%
+  group_by(class) %>%
+  mutate(row_number = row_number(),
+         rank       = rank(grade),
+         min_rank   = min_rank(grade),
+         dense_rank = dense_rank(grade),
+         quartile   = ntile(grade, 4),
+         percentile = ntile(grade, 100))
+```
+
+```{block type="try"}
+* What are the differences among `row_number()`, `rank()`, `min_rank()`, `dense_rank()`, and `ntile()`? 
+* Why doesn't `row_number()` need an argument? 
+* What would happen if you gave it the argument `grade` or `class`? 
+* What do you think would happen if you removed the `group_by(class)` line above? 
+* What if you added `id` to the grouping?
+* What happens if you change the order of the rows?
+* What does the second argument in `ntile()` do?
+```
+
+You can use window functions to group your data into quantiles.
+
+```{r}
+iris %>%
+  group_by(tertile = ntile(Sepal.Length, 3)) %>%
+  summarise(mean.Sepal.Length = mean(Sepal.Length))
+
+```
+
+### Offset functions
+
+```{r}
+tibble(
+  trial = 1:10,
+  cond = rep(c("exp", "ctrl"), c(6, 4)),
+  score = rpois(10, 4)
+) %>%
+  mutate(
+    score_change = score - lag(score, order_by = trial),
+    last_cond_trial = cond != lead(cond, default = TRUE)
+  )
+```
+
+```{block type="try"}
+Look at the help pages for `lag()` and `lead()`.
+
+* What happens if you remove the `order_by` argument or change it to `cond`?
+* What does the `default` argument do?
+* Can you think of circumstances in your own data where you might need to use `lag()` or `lead()`?
+```
+
+### Cumulative aggregates
+
+`cumsum()`, `cummin()`, and `cummax()` are base R functions for calcumaling cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
+
+```{r}
+tibble(
+  time = 1:10,
+  obs = c(1, 0, 1, 2, 4, 3, 1, 0, 3, 5)
+) %>%
+  mutate(
+    cumsum = cumsum(obs),
+    cummin = cummin(obs),
+    cummax = cummax(obs),
+    cumany = cumany(obs == 3),
+    cumall = cumall(obs < 4)
+  )
+```
+
+```{block type="try"}
+* What would happen if you change `cumany(obs == 3)` to `cumany(obs > 2)`?
+* What would happen if you change `cumall(obs < 4)` to `cumall(obs < 2)`?
+* Can you think of circumstances in your own data where you might need to use `cumany()` or `cumall()`?
+```
 
 ## Exercises
 
