@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.06799077  0.21859353  0.02752006  1.06212096  1.19848107
-##  [6]  1.27090533 -0.68834972 -0.07934186  0.34677210 -1.33664813
+##  [1]  1.9682970 -1.0261208  0.8564006  1.3246187  0.5008772 -1.0336545
+##  [7] -1.1489191  1.2914371 -0.7655769 -0.5817567
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.11765  99.67253 100.98941  99.46105 101.78003 100.97037 101.52439
-##  [8] 100.72061  99.97754 100.44733
+##  [1] 101.32997 101.48070 101.12760 100.03677  99.49450 100.01216  99.72223
+##  [8]  99.95001 101.82402 100.30865
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.62188 100.18686 100.68920 101.28491  99.01409 101.06874  99.42712
-##  [8] 100.00873  98.99459 101.25831
+##  [1]  99.44477  99.30713  98.64980 101.53481  98.70648 100.64061 100.55691
+##  [8]  99.22780  99.93065 100.41432
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   3.7691472  77.5796516 -19.5130400  20.2349009 -96.1679018
-##  [6]   9.2896782 -28.2873658  46.1905871 -21.6780387   0.7609686
+##  [1]  -86.88039   28.80441 -138.85600  114.86666 -207.02687  117.60899
+##  [7] -128.50383  145.03647  -74.07466  176.91699
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,9 +458,11 @@ fortune()
 
 ```
 ## 
-## RAM is cheap and thinking hurts.
-##    -- Uwe Ligges (about memory requirements in R)
-##       R-help (June 2007)
+## If you don't want informative help files, it's really not much work to
+## make uninformative ones.
+##    -- Duncan Murdoch (in response to a question how to install a package
+##       without editing .Rd files appropriately before)
+##       R-help (May 2010)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -488,7 +490,7 @@ eleanor()
 ##  I have what doctors call "directional insanity". I once got lost on an escalator. 
 ## 
 ##  ~ Chidi
-##  Girl, you are a messy bench who loves drama and I am into it! 
+##  YA BASIC! 
 ## 
 ##  ~ Eleanor
 ```

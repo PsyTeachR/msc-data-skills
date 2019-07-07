@@ -21,10 +21,9 @@
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
-<meta name="author" content="Lisa DeBruine &amp; Dale Barr" />
 
 
-<meta name="date" content="2019-07-01" />
+<meta name="date" content="2019-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -660,20 +659,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre>
-<pre><code>##  [1] -1.06799077  0.21859353  0.02752006  1.06212096  1.19848107
-##  [6]  1.27090533 -0.68834972 -0.07934186  0.34677210 -1.33664813</code></pre>
+<pre><code>##  [1]  1.9682970 -1.0261208  0.8564006  1.3246187  0.5008772 -1.0336545
+##  [7] -1.1489191  1.2914371 -0.7655769 -0.5817567</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1] 100.11765  99.67253 100.98941  99.46105 101.78003 100.97037 101.52439
-##  [8] 100.72061  99.97754 100.44733</code></pre>
+<pre><code>##  [1] 101.32997 101.48070 101.12760 100.03677  99.49450 100.01216  99.72223
+##  [8]  99.95001 101.82402 100.30865</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]  99.62188 100.18686 100.68920 101.28491  99.01409 101.06874  99.42712
-##  [8] 100.00873  98.99459 101.25831</code></pre>
+<pre><code>##  [1]  99.44477  99.30713  98.64980 101.53481  98.70648 100.64061 100.55691
+##  [8]  99.22780  99.93065 100.41432</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>##  [1]   3.7691472  77.5796516 -19.5130400  20.2349009 -96.1679018
-##  [6]   9.2896782 -28.2873658  46.1905871 -21.6780387   0.7609686</code></pre>
+<pre><code>##  [1]  -86.88039   28.80441 -138.85600  114.86666 -207.02687  117.60899
+##  [7] -128.50383  145.03647  -74.07466  176.91699</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,
              <span class="dt">power =</span> <span class="ot">NULL</span>,
@@ -731,9 +730,11 @@ You may only be able to permanently install packages if you are using R on your 
 <p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fortune</span>()</code></pre>
 <pre><code>## 
-## RAM is cheap and thinking hurts.
-##    -- Uwe Ligges (about memory requirements in R)
-##       R-help (June 2007)</code></pre>
+## If you don&#39;t want informative help files, it&#39;s really not much work to
+## make uninformative ones.
+##    -- Duncan Murdoch (in response to a question how to install a package
+##       without editing .Rd files appropriately before)
+##       R-help (May 2010)</code></pre>
 <p>Note that we will use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
 </div>
 <div id="install-from-github" class="section level3">
@@ -749,7 +750,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 ##  I have what doctors call &quot;directional insanity&quot;. I once got lost on an escalator. 
 ## 
 ##  ~ Chidi
-##  Girl, you are a messy bench who loves drama and I am into it! 
+##  YA BASIC! 
 ## 
 ##  ~ Eleanor</code></pre>
 </div>

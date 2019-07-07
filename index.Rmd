@@ -1,6 +1,5 @@
 --- 
 title: Data Skills
-author: "[Lisa DeBruine](https://debruine.github.io) & [Dale Barr](http://talklab.psy.gla.ac.uk/)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book

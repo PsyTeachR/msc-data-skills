@@ -55,11 +55,11 @@ This table has three observations per row and the `total_meanRT` column contains
 
  id   score_1   score_2   score_3   rt_1   rt_2   rt_3  total_meanRT 
 ---  --------  --------  --------  -----  -----  -----  -------------
-  1         1         4         4    846    784    762  9 (797)      
-  2         3         1         2    641    751    837  6 (743)      
-  3         6         2         1    745    897    773  9 (805)      
-  4         2         3         7    824    814    792  12 (810)     
-  5         7         5         6    726    881    759  18 (789)     
+  1         5         4         2    780    971    762  11 (838)     
+  2         3         6         6    726    821    886  15 (811)     
+  3         7         7         4    890    901    750  18 (847)     
+  4         2         3         5    872    784    760  10 (805)     
+  5         1         2         7    717    767    727  10 (737)     
 
 
 
@@ -69,21 +69,21 @@ This is the tidy version.
 
  id  trial     rt   score  total   mean_rt 
 ---  ------  ----  ------  ------  --------
-  1  1        846       1  9       797     
-  1  2        784       4  9       797     
-  1  3        762       4  9       797     
-  2  1        641       3  6       743     
-  2  2        751       1  6       743     
-  2  3        837       2  6       743     
-  3  1        745       6  9       805     
-  3  2        897       2  9       805     
-  3  3        773       1  9       805     
-  4  1        824       2  12      810     
-  4  2        814       3  12      810     
-  4  3        792       7  12      810     
-  5  1        726       7  18      789     
-  5  2        881       5  18      789     
-  5  3        759       6  18      789     
+  1  1        780       5  11      838     
+  1  2        971       4  11      838     
+  1  3        762       2  11      838     
+  2  1        726       3  15      811     
+  2  2        821       6  15      811     
+  2  3        886       6  15      811     
+  3  1        890       7  18      847     
+  3  2        901       7  18      847     
+  3  3        750       4  18      847     
+  4  1        872       2  10      805     
+  4  2        784       3  10      805     
+  4  3        760       5  10      805     
+  5  1        717       1  10      737     
+  5  2        767       2  10      737     
+  5  3        727       7  10      737     
 
 
 
@@ -213,18 +213,18 @@ data
 ```
 ## # A tibble: 10 x 3
 ## # Groups:   id [10]
-##       id  A_mean B_mean
-##    <int>   <dbl>  <dbl>
-##  1     1  0.317    2.11
-##  2     2  0.160    1.89
-##  3     3  1.90     2.32
-##  4     4  1.14     2.34
-##  5     5  0.491    1.77
-##  6     6 -1.52     3.00
-##  7     7 -0.144    2.71
-##  8     8 -0.568    2.30
-##  9     9  0.533    2.58
-## 10    10  0.0620   2.57
+##       id A_mean B_mean
+##    <int>  <dbl>  <dbl>
+##  1     1 0.0790   3.32
+##  2     2 1.05     1.59
+##  3     3 1.09     1.90
+##  4     4 1.14     2.61
+##  5     5 0.260    2.71
+##  6     6 0.633    2.49
+##  7     7 0.640    2.16
+##  8     8 0.514    2.68
+##  9     9 0.262    2.87
+## 10    10 1.16     2.93
 ```
 
 <div class="warning">
@@ -829,24 +829,24 @@ The following data table is called `quiz_data`.
 
  id  condition    version  pet     score
 ---  ----------  --------  ----  -------
-  1  A                  1  cat     0.023
-  1  A                  2  cat     0.637
-  1  B                  1  cat     1.115
-  1  B                  2  cat     1.180
-  2  A                  1  dog    -0.480
-  2  A                  2  dog     0.393
-  2  B                  1  dog     0.426
-  2  B                  2  dog    -0.847
+  1  A                  1  cat    -0.831
+  1  A                  2  cat     0.903
+  1  B                  1  cat     2.143
+  1  B                  2  cat     0.418
+  2  A                  1  dog     0.343
+  2  A                  2  dog    -0.617
+  2  B                  1  dog     1.139
+  2  B                  2  dog    -0.230
 
 
 1. How do you get `quiz_data` into the following format?
     
      id   version  pet             A            B
     ---  --------  ----  -----------  -----------
-      1         1  cat     0.0231929    1.1154481
-      1         2  cat     0.6373390    1.1804001
-      2         1  dog    -0.4801690    0.4256315
-      2         2  dog     0.3930236   -0.8467813
+      1         1  cat    -0.8313938    2.1431407
+      1         2  cat     0.9032278    0.4176629
+      2         1  dog     0.3429549    1.1392366
+      2         2  dog    -0.6174814   -0.2297366
     
     <select class='solveme' data-answer='["spread(quiz_data, condition, score)"]'> <option></option> <option>separate(quiz_data, condition, score)</option> <option>gather(quiz_data, condition:score)</option> <option>spread(quiz_data, condition, score)</option> <option>unite(quiz_data, condition:score)</option></select>
     
@@ -854,14 +854,14 @@ The following data table is called `quiz_data`.
     
      id  cversion   pet         score
     ---  ---------  ----  -----------
-      1  A_1        cat     0.0231929
-      1  A_2        cat     0.6373390
-      1  B_1        cat     1.1154481
-      1  B_2        cat     1.1804001
-      2  A_1        dog    -0.4801690
-      2  A_2        dog     0.3930236
-      2  B_1        dog     0.4256315
-      2  B_2        dog    -0.8467813
+      1  A_1        cat    -0.8313938
+      1  A_2        cat     0.9032278
+      1  B_1        cat     2.1431407
+      1  B_2        cat     0.4176629
+      2  A_1        dog     0.3429549
+      2  A_2        dog    -0.6174814
+      2  B_1        dog     1.1392366
+      2  B_2        dog    -0.2297366
 
     <select class='solveme' data-answer='["unite(quiz_data, cversion, condition, version)"]'> <option></option> <option>separate(quiz_data, cversion, condition, version)</option> <option>spread(quiz_data, condition:version)</option> <option>gather(quiz_data, cversion, condition:version)</option> <option>unite(quiz_data, cversion, condition, version)</option></select>
 
