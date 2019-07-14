@@ -1,5 +1,5 @@
 --- 
-title: Data Skills
+title: Data Skills for Reproducible Science
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book

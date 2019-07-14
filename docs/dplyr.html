@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Data Wrangling | Data Skills</title>
+  <title>Chapter 5 Data Wrangling | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Data Wrangling | Data Skills" />
+  <meta property="og:title" content="Chapter 5 Data Wrangling | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Data Wrangling | Data Skills" />
+  <meta name="twitter:title" content="Chapter 5 Data Wrangling | Data Skills for Reproducible Science" />
   
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
 
 
-<meta name="date" content="2019-07-07" />
+<meta name="date" content="2019-07-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -426,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Skills</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Skills for Reproducible Science</a>
           </h1>
         </div>
 
@@ -710,7 +710,7 @@ moral_no_ceiling &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</
 <span class="st">  </span><span class="kw">filter</span>(date <span class="op">&lt;</span><span class="st"> </span><span class="kw">today</span>() <span class="op">-</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">5</span>))
 
 <span class="kw">range</span>(disgust_5ago<span class="op">$</span>date)</code></pre>
-<pre><code>## [1] &quot;2008-07-10&quot; &quot;2014-06-23&quot;</code></pre>
+<pre><code>## [1] &quot;2008-07-10&quot; &quot;2014-07-13&quot;</code></pre>
 </div>
 </div>
 <div id="arrange" class="section level3">
@@ -1041,16 +1041,16 @@ What does the second argument in <code>ntile()</code> do?
 <pre><code>## # A tibble: 10 x 5
 ##    trial cond  score score_change last_cond_trial
 ##    &lt;int&gt; &lt;chr&gt; &lt;int&gt;        &lt;int&gt; &lt;lgl&gt;          
-##  1     1 exp       3           NA FALSE          
-##  2     2 exp       2           -1 FALSE          
-##  3     3 exp       6            4 FALSE          
-##  4     4 exp       4           -2 FALSE          
-##  5     5 exp       4            0 FALSE          
-##  6     6 exp       5            1 TRUE           
-##  7     7 ctrl      4           -1 FALSE          
-##  8     8 ctrl      5            1 FALSE          
-##  9     9 ctrl      1           -4 FALSE          
-## 10    10 ctrl      2            1 TRUE</code></pre>
+##  1     1 exp       4           NA FALSE          
+##  2     2 exp       4            0 FALSE          
+##  3     3 exp       4            0 FALSE          
+##  4     4 exp       3           -1 FALSE          
+##  5     5 exp       5            2 FALSE          
+##  6     6 exp       4           -1 TRUE           
+##  7     7 ctrl      3           -1 FALSE          
+##  8     8 ctrl      3            0 FALSE          
+##  9     9 ctrl      2           -1 FALSE          
+## 10    10 ctrl      4            2 TRUE</code></pre>
 <div class="try">
 <p>
 Look at the help pages for <code>lag()</code> and <code>lead()</code>.

@@ -333,8 +333,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  1.9682970 -1.0261208  0.8564006  1.3246187  0.5008772 -1.0336545
-##  [7] -1.1489191  1.2914371 -0.7655769 -0.5817567
+##  [1] -0.18925504 -0.21334667 -0.67129373  0.03376792  0.01208763
+##  [6]  1.73952933  0.07406124 -0.22675211  0.20804476 -0.14424423
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +345,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 101.32997 101.48070 101.12760 100.03677  99.49450 100.01216  99.72223
-##  [8]  99.95001 101.82402 100.30865
+##  [1]  99.12512 100.72713 100.45680 101.62546  99.74137 100.00625  99.64667
+##  [8]  99.38604  99.21156  99.59082
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +357,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.44477  99.30713  98.64980 101.53481  98.70648 100.64061 100.55691
-##  [8]  99.22780  99.93065 100.41432
+##  [1] 100.09741  99.26464 100.85816  99.82502  99.80443 101.69113  98.65659
+##  [8] 100.01996 100.73629 101.20640
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +369,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -86.88039   28.80441 -138.85600  114.86666 -207.02687  117.60899
-##  [7] -128.50383  145.03647  -74.07466  176.91699
+##  [1]  -27.69186   49.65628  -47.09565   43.13924  -64.02713 -139.87910
+##  [7]  151.32306   49.04751   83.92059  -18.80797
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -458,11 +458,9 @@ fortune()
 
 ```
 ## 
-## If you don't want informative help files, it's really not much work to
-## make uninformative ones.
-##    -- Duncan Murdoch (in response to a question how to install a package
-##       without editing .Rd files appropriately before)
-##       R-help (May 2010)
+## Readable, obvious, maintainable, 'portable' for some value of 'portable'...
+##    -- Barry Rowlingson (suggesting some function)
+##       R-help (September 2003)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -487,10 +485,10 @@ eleanor()
 
 ```
 ## 
-##  I have what doctors call "directional insanity". I once got lost on an escalator. 
+##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
 ## 
 ##  ~ Chidi
-##  YA BASIC! 
+##  Oh, so now I'm supposed to be nice and make friends and treat her with mutual respect? 
 ## 
 ##  ~ Eleanor
 ```

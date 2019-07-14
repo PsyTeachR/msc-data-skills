@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   fig.width  = 8, 
   fig.height = 5, 
   fig.align = 'center',
-  fig.cap='**CAPTION THIS FIGURE!!**'
+  fig.cap=''
 )
 
 # make docs directory and include .nojekyll file for github
@@ -28,6 +28,19 @@ knitr::knit_hooks$set(class = function(before, options, envir) {
     sprintf("<div class = '%s'>", options$class)
   } else {
     "</div>"
+  }
+})
+
+# webex
+knitr::knit_hooks$set(webex.hide = function(before, options, envir) {
+  if (before) {
+    if (is.character(options$webex.hide)) {
+      hide(options$webex.hide)
+    } else {
+      hide()
+    }
+  } else {
+    unhide()
   }
 })
 

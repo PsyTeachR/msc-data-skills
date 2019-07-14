@@ -284,7 +284,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2014-06-23"
+## [1] "2008-07-10" "2014-07-13"
 ```
 
 
@@ -718,16 +718,16 @@ tibble(
 ## # A tibble: 10 x 5
 ##    trial cond  score score_change last_cond_trial
 ##    <int> <chr> <int>        <int> <lgl>          
-##  1     1 exp       3           NA FALSE          
-##  2     2 exp       2           -1 FALSE          
-##  3     3 exp       6            4 FALSE          
-##  4     4 exp       4           -2 FALSE          
-##  5     5 exp       4            0 FALSE          
-##  6     6 exp       5            1 TRUE           
-##  7     7 ctrl      4           -1 FALSE          
-##  8     8 ctrl      5            1 FALSE          
-##  9     9 ctrl      1           -4 FALSE          
-## 10    10 ctrl      2            1 TRUE
+##  1     1 exp       4           NA FALSE          
+##  2     2 exp       4            0 FALSE          
+##  3     3 exp       4            0 FALSE          
+##  4     4 exp       3           -1 FALSE          
+##  5     5 exp       5            2 FALSE          
+##  6     6 exp       4           -1 TRUE           
+##  7     7 ctrl      3           -1 FALSE          
+##  8     8 ctrl      3            0 FALSE          
+##  9     9 ctrl      2           -1 FALSE          
+## 10    10 ctrl      4            2 TRUE
 ```
 
 <div class="try">
