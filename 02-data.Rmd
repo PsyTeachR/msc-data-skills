@@ -382,11 +382,11 @@ dat <- read_csv("my_data_file.csv")
 
 Once loaded, you can view your data using the data viewer.  In the upper right hand window of RStudio, under the Environment tab, you will see the object `dat` listed.
 
-![](images/01_walkthrough/my_data.png)
+![](images/01/my_data.png)
 
-If you click on the View icon (![](images/01_walkthrough/table_icon.png)), it will bring up a table view of the data you loaded in the top left pane of RStudio.
+If you click on the View icon (![](images/01/table_icon.png)), it will bring up a table view of the data you loaded in the top left pane of RStudio.
 
-![](images/01_walkthrough/View.png)
+![](images/01/View.png)
 
 This allows you to check that the data have been loaded in properly.  You can close the tab when you're done looking at it&#x2014;it won't remove the object.
 
