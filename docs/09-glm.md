@@ -20,6 +20,99 @@
 
 ## GLM
 
+### What is the GLM?
+
+The General Linear Model (GLM) a general mathematical framework for expressing relationships among variables that can express or test linear relationships between a numerical `**dependent variable** and any combination of categorical or continuous **independent variables**.
+
+A very simple linear model is the relationship between height and foot size in adults.
+
+$footsize = avgfootsize + A * height + error$
+
+### Components
+
+There are some mathematical conventions that you need to learn to understand the equations representing linear models. Once you understand those, learning about the GLM will get much easier.
+
+
+| Component of GLM | Notation                      |
+|------------------|-------------------------------|
+| DV               | \( Y \)                       |
+| Grand Average    | \( \mu \) (the Greek letter "mu")   |
+| Main Effects     | \( A, B, C, \ldots \)         |
+| Interactions     | \( AB, AC, BC, ABC, \ldots \) |
+| Random Error     | \( S(Group) \)                |
+
+The linear equation predicts the dependent variable ($Y$) as the sum of the grand average value of $Y$ ($\mu$, also called the intercept), the main effects of all the predictor variables ($A+B+C+ \ldots$), the interactions among all the predictor variables ($AB, AC, BC, ABC, \ldots$), and some random error ($S(Group)$). The equation for a model with two predictor variables ($A$ and $B$) and their interaction ($AB$) is written like this:
+
+$Y$ ~ $\mu+A+B+AB+S(Group)$
+
+### Simulating data from GLM
+
+A good way to learn about linear models is to simulate data where you know exactly how the variables are related, and then analyses this simulated data to see where the parameters show up in the analysis.
+
+We'll start with a very simple linear model that just has a single categorical predictor. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task. Average reaction time (`mu`) is 800ms, and is 50ms faster for congruent than incongruent trials (`effect`). 
+
+People won't always respond exactly the same way. Some people will be naturally faster or slower, and some will respond to trial congruency more or less. And one person might be a little faster one some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an error term to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution. 
+
+Here, we'll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We'll also sample 100 trials of each type, so we can see a range of variation.
+
+
+```r
+n_per_grp <- 100
+mu <- 800
+effect <- 50
+error_sd <- 100
+trial_types <- c("congruent" = 0.5, "incongruent" = -0.5)
+
+dat <- data.frame(
+  trial_type = rep(names(trial_types), each = n_per_grp),
+  trial_type.e = rep(trial_types, each = n_per_grp),
+  error = rnorm(2*n_per_grp, 0, error_sd)
+) %>%
+  mutate(RT = mu + effect*trial_type.e + error)
+
+ggplot(dat, aes(trial_type, RT)) + 
+  geom_violin() +
+  geom_boxplot(aes(fill = trial_type), width = 0.25, show.legend = FALSE)
+```
+
+<img src="09-glm_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" />
+
+Now we can analyse the data we simulated using the function `lm()`. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the `summary()` function to see the statistical summary.
+
+
+```r
+lm(RT ~ trial_type.e, data = dat) %>% summary()
+```
+
+```
+## 
+## Call:
+## lm(formula = RT ~ trial_type.e, data = dat)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -218.975  -51.380   -5.531   54.356  293.942 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   795.885      6.399  124.38  < 2e-16 ***
+## trial_type.e   68.980     12.797    5.39 1.99e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 90.49 on 198 degrees of freedom
+## Multiple R-squared:  0.128,	Adjusted R-squared:  0.1236 
+## F-statistic: 29.05 on 1 and 198 DF,  p-value: 1.991e-07
+```
+
+Notice how the estimate for the `(Intercept)` is close to the value we set for `mu` and the estimate for `trial_type.e` is close to the value we set for `beer_effect`.
+
+<div class="try">
+<p>Change the values of <code>mu</code> and <code>trial_type.e</code>, resimulate the data, and re-run the linear model. What happens to the estimates?</p>
+</div>
+
+## Examples
+
 In the code block below, you are given the `two_sample()` function which you will use to generate random datasets.
 
 
