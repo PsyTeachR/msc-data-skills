@@ -24,12 +24,12 @@
 
 ## What is R?
 
-<img src="images/01/new_R_logo.png" style="float: right;">
+<img src="images/01/new_R_logo.png"  class="right meme">
 
 R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote **reproducible research**. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.
 
-<div class="info">
-<p>See Appendix @ref(installing-r) for more information on on how to install R and associated programs.</p>
+<div class='info'>
+See Appendix \@ref(installingr) for more information on on how to install R and associated programs.
 </div>
 
 ### The Base R Console {#rconsole}
@@ -44,8 +44,8 @@ If you open up the application called R, you will see an "R Console" window that
 You can close R and never open it again. We'll be working entirely in RStudio in this class.
 
 <div class="warning">
-<p>ALWAYS REMEMBER: Launch R though the RStudio IDE<br />
-<img src="images/01/launch.png" /></p>
+<p>ALWAYS REMEMBER: Launch R though the RStudio IDE</p>
+<p>Launch <img src="images/01/rstudio_icon.png" style="height: 2em; vertical-align: middle;" alt="RStudio.app"> (RStudio.app), not <img src="images/01/new_R_logo.png" style="height: 2em; vertical-align: middle;" alt="R.app"> (R.app).</p>
 </div>
 
 ### RStudio {#rstudio_ide}
@@ -66,12 +66,16 @@ RStudio is arranged with four window <a class='glossary' target='_blank' title='
 
 ### Configure RStudio
 
-In this class, you will be learning how to develop **reproducible scripts**.  This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
+In this class, you will be learning how to develop **reproducible scripts**.  This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. 
+
+<img src="images/memes/forgetting.jpg"  class="right meme">
+
+When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
 There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**;.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
 <div class="figure" style="text-align: center">
-<img src="images/01/repro.png" alt="Alter these settings for increased reproducibility." width="50%" />
+<img src="images/01/repro.png" alt="Alter these settings for increased reproducibility." width="66%" />
 <p class="caption">(\#fig:img-repro)Alter these settings for increased reproducibility.</p>
 </div>
 
@@ -90,7 +94,9 @@ We are first going to learn about how to interact with the console. In general, 
 
 Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.
 
-One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first) :/
+<img src="images/memes/typos.jpg" class="right meme">
+
+One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first).
 
 
 ```r
@@ -333,8 +339,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.18925504 -0.21334667 -0.67129373  0.03376792  0.01208763
-##  [6]  1.73952933  0.07406124 -0.22675211  0.20804476 -0.14424423
+##  [1]  0.09856317  0.46276440  1.23685137 -0.81429235  0.46876232
+##  [6] -0.60829129  0.34018525 -0.25363210  0.54101338 -0.87420872
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -345,8 +351,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.12512 100.72713 100.45680 101.62546  99.74137 100.00625  99.64667
-##  [8]  99.38604  99.21156  99.59082
+##  [1] 100.44658 101.00780 100.06904 101.14967 100.32839  99.69402 100.89092
+##  [8]  98.77905 100.17704  99.50036
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -357,8 +363,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.09741  99.26464 100.85816  99.82502  99.80443 101.69113  98.65659
-##  [8] 100.01996 100.73629 101.20640
+##  [1] 100.37865 100.34642 100.79165 100.24353  99.77495 100.34737 100.46393
+##  [8] 101.13825  98.52547  99.32850
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -369,8 +375,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -27.69186   49.65628  -47.09565   43.13924  -64.02713 -139.87910
-##  [7]  151.32306   49.04751   83.92059  -18.80797
+##  [1]   96.58557 -106.34795  156.82321  130.63942   86.48187   27.86526
+##  [7]   99.49575  104.24527  -66.79178  -19.03204
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -423,10 +429,12 @@ There is an important distinction between **installing** a package and **loading
 
 ### Installing a package 
 
-This is done using `install.packages()`. This is like installing an app on your smartphone: you only have to do it once and the app will remain installed until you remove it.For instance, if you want to use PokemonGo on your phone you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
+<img src="images/memes/pokemon.gif" class="meme right">
+
+This is done using `install.packages()`. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
 
 <div class="warning">
-<p>You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations because you will lack the appropriate privileges.</p>
+<p>You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations if you lack the appropriate privileges.</p>
 </div>
 
 Install the `fortunes` package on your system:
@@ -458,16 +466,23 @@ fortune()
 
 ```
 ## 
-## Readable, obvious, maintainable, 'portable' for some value of 'portable'...
-##    -- Barry Rowlingson (suggesting some function)
-##       R-help (September 2003)
+## As for the question of the bug in `is', ... it depends what your
+## definition of `is' is.
+##    -- Douglas Bates (referring to Bill Clinton after a tortuous discussion
+##       of the behavior of is(7, "integer"))
+##       R-help (September 2008)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
 
 ### Install from GitHub
 
-Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. 
+Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don't have devtools installed, `library("devtools")` will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.
+
+<div class="figure" style="text-align: center">
+<img src="images/01/packages.png" alt="Check installed and loaded packages in the packages tab in the lower right pane." width="100%" />
+<p class="caption">(\#fig:img-packages)Check installed and loaded packages in the packages tab in the lower right pane.</p>
+</div>
 
 
 ```r
@@ -475,23 +490,37 @@ install.packages("devtools")
 devtools::install_github("adam-gruer/goodshirt")
 ```
 
+After you install the goodshirt package, load it using the `library()` function and display some quotes using the functions below. 
+
 
 ```r
 library(goodshirt)
 # quotes from The Good Place
 chidi()
 eleanor()
+tahani()
+jason()
 ```
 
 ```
 ## 
-##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
+##  Well, I've narrowed it down to two possibilities: yes and no. 
 ## 
 ##  ~ Chidi
-##  Oh, so now I'm supposed to be nice and make friends and treat her with mutual respect? 
+##  I'll miss you too, you sexy skyscraper. 
 ## 
 ##  ~ Eleanor
+##  I also dabbled in some other professions. I was a model, a museum curator, an "It Girl," and... oh, I was Baz Luhrmann's muse for a while. That was quite fun. 
+## 
+##  ~ Tahani
+##  I always trust dudes in bow ties. Once, this guy in a bow tie came up to me at the gun range in a Jacksonville bus station and said he'd give me $600 if I put these weird turtles in my duffle bag and brought them to Daytona Beach. So I hotwired a swamp boat to Daytona and the guy paid me the $600. My point is, you always trust dudes in bow ties. 
+## 
+##  ~ Jason
 ```
+
+<div class="try">
+<p>How many different ways can you find to discover what functions are available in the goodshirt package?</p>
+</div>
 
 
 ## Organising a project {#projects}

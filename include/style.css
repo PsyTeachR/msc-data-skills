@@ -1,2 +1,11 @@
 /* (edit style.css for your own book styles) */
 
+.meme {
+  max-width: 33% !important;
+  margin: 0.5em;
+}
+
+.right {
+  float: right;
+  margin-right: 0;
+}

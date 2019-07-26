@@ -1,7 +1,7 @@
 
 --- 
 title: Data Skills for Reproducible Science
-date: "2019-07-14"
+date: "2019-07-26"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -128,9 +128,7 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 
 Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the [Miscellaneous](11_misc.html) section.
 
-<div style="width: 300px; max-width: 100%; float: right;">
-  <img src="images/changing-stuff.jpg" style="width:100%;" />
-</div>
+<img src="images/memes/changing-stuff.jpg" class="right meme" />
 
 - <a href="http://rstudio1.psy.gla.ac.uk" target="_blank">Glasgow Psychology RStudio</a> 
 - [Learning Statistics with R](https://learningstatisticswithr-bookdown.netlify.com) by Navarro

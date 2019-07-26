@@ -1,5 +1,5 @@
 
-# Installing `R` {#installing-r}
+# Installing R {#installingr}
 
 Installing R and RStudio is usually straightforward. The sections below explain how and [there is a helpful YouTube video here](https://www.youtube.com/watch?v=lVKMsaWju8w).
 
@@ -23,7 +23,7 @@ You can install the LaTeX typesetting system to produce PDF reports from RStudio
 
 1.  [pandoc](http://pandoc.org/installing.html), and
 2.  LaTeX, a typesetting language, available for
-    -   WINDOWS: [MikTeX](http://miktex.org/)
-    -   Mac OS: [MacTex](https://tug.org/mactex/downloading.html) (3.2GB download) or [BasicTeX](http://ww.tug.org/mactex/morepackages.html) (78MB download, but should work fine)
-    -   Linux: [TeX Live](https://www.tug.org/texlive/)
+    - WINDOWS: [MikTeX](http://miktex.org/)
+    - Mac OS: [MacTex](https://tug.org/mactex/downloading.html) (3.2GB download) or [BasicTeX](http://ww.tug.org/mactex/morepackages.html) (78MB download, but should work fine)
+    - Linux: [TeX Live](https://www.tug.org/texlive/)
 

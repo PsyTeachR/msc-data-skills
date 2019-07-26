@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Tidy Data | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Tidy Data | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-07-14" />
+<meta name="date" content="2019-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,7 +61,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -402,10 +401,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>10.5</b> Contributors</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>A</b> Installing <code>R</code></a><ul>
-<li class="chapter" data-level="A.1" data-path="installing-r.html"><a href="installing-r.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
-<li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
+<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a><ul>
+<li class="chapter" data-level="A.1" data-path="installingr.html"><a href="installingr.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
+<li class="chapter" data-level="A.2" data-path="installingr.html"><a href="installingr.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="A.3" data-path="installingr.html"><a href="installingr.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
@@ -477,9 +476,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="setup-1" class="section level2">
 <h2><span class="header-section-number">4.3</span> Setup</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed</span>
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(readxl)</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="co"># libraries needed</span></a>
+<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb125-3" data-line-number="3"><span class="kw">library</span>(readxl)</a></code></pre></div>
 </div>
 <div id="tidy-data" class="section level2">
 <h2><span class="header-section-number">4.4</span> Three Rules for Tidy Data</h2>
@@ -505,53 +504,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">5</td>
-<td align="left">6</td>
-<td align="left">7</td>
-<td align="left">862</td>
-<td align="left">935</td>
-<td>922</td>
-<td align="left">18 (906)</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">3</td>
-<td align="left">2</td>
-<td align="left">4</td>
-<td align="left">748</td>
-<td align="left">886</td>
-<td>697</td>
-<td align="left">9 (777)</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">2</td>
-<td align="left">5</td>
-<td align="left">2</td>
-<td align="left">771</td>
-<td align="left">973</td>
-<td>968</td>
-<td align="left">9 (904)</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
 <td align="left">1</td>
+<td align="left">2</td>
+<td align="left">6</td>
+<td align="left">734</td>
+<td align="left">749</td>
+<td>750</td>
+<td align="left">9 (744)</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">7</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">743</td>
+<td align="left">820</td>
+<td>598</td>
+<td align="left">9 (720)</td>
+</tr>
+<tr class="odd">
 <td align="left">3</td>
-<td align="left">3</td>
-<td align="left">802</td>
-<td align="left">703</td>
-<td>939</td>
-<td align="left">7 (815)</td>
+<td align="left">2</td>
+<td align="left">7</td>
+<td align="left">7</td>
+<td align="left">752</td>
+<td align="left">739</td>
+<td>823</td>
+<td align="left">16 (771)</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">4</td>
+<td align="left">6</td>
+<td align="left">5</td>
+<td align="left">744</td>
+<td align="left">688</td>
+<td>698</td>
+<td align="left">15 (710)</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">7</td>
-<td align="left">7</td>
-<td align="left">5</td>
-<td align="left">843</td>
-<td align="left">605</td>
-<td>799</td>
-<td align="left">19 (749)</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">608</td>
+<td align="left">850</td>
+<td>900</td>
+<td align="left">9 (786)</td>
 </tr>
 </tbody>
 </table>
@@ -571,122 +570,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td>1</td>
 <td align="left">1</td>
-<td align="center">862</td>
-<td>5</td>
-<td>18</td>
-<td align="left">906</td>
+<td align="center">734</td>
+<td>1</td>
+<td>9</td>
+<td align="left">744</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">2</td>
-<td align="center">935</td>
+<td align="center">749</td>
+<td>2</td>
+<td>9</td>
+<td align="left">744</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td align="left">3</td>
+<td align="center">750</td>
 <td>6</td>
-<td>18</td>
-<td align="left">906</td>
+<td>9</td>
+<td align="left">744</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left">1</td>
+<td align="center">743</td>
+<td>7</td>
+<td>9</td>
+<td align="left">720</td>
 </tr>
 <tr class="odd">
+<td>2</td>
+<td align="left">2</td>
+<td align="center">820</td>
 <td>1</td>
-<td align="left">3</td>
-<td align="center">922</td>
-<td>7</td>
-<td>18</td>
-<td align="left">906</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td align="left">1</td>
-<td align="center">748</td>
-<td>3</td>
 <td>9</td>
-<td align="left">777</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td align="left">2</td>
-<td align="center">886</td>
-<td>2</td>
-<td>9</td>
-<td align="left">777</td>
+<td align="left">720</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">3</td>
-<td align="center">697</td>
-<td>4</td>
-<td>9</td>
-<td align="left">777</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td align="left">1</td>
-<td align="center">771</td>
-<td>2</td>
-<td>9</td>
-<td align="left">904</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td align="left">2</td>
-<td align="center">973</td>
-<td>5</td>
-<td>9</td>
-<td align="left">904</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td align="left">3</td>
-<td align="center">968</td>
-<td>2</td>
-<td>9</td>
-<td align="left">904</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td align="left">1</td>
-<td align="center">802</td>
+<td align="center">598</td>
 <td>1</td>
+<td>9</td>
+<td align="left">720</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">1</td>
+<td align="center">752</td>
+<td>2</td>
+<td>16</td>
+<td align="left">771</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="left">2</td>
+<td align="center">739</td>
 <td>7</td>
-<td align="left">815</td>
+<td>16</td>
+<td align="left">771</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left">3</td>
+<td align="center">823</td>
+<td>7</td>
+<td>16</td>
+<td align="left">771</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="left">1</td>
+<td align="center">744</td>
+<td>4</td>
+<td>15</td>
+<td align="left">710</td>
 </tr>
 <tr class="odd">
 <td>4</td>
 <td align="left">2</td>
-<td align="center">703</td>
-<td>3</td>
-<td>7</td>
-<td align="left">815</td>
+<td align="center">688</td>
+<td>6</td>
+<td>15</td>
+<td align="left">710</td>
 </tr>
 <tr class="even">
 <td>4</td>
 <td align="left">3</td>
-<td align="center">939</td>
-<td>3</td>
-<td>7</td>
-<td align="left">815</td>
+<td align="center">698</td>
+<td>5</td>
+<td>15</td>
+<td align="left">710</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td align="left">1</td>
-<td align="center">843</td>
-<td>7</td>
-<td>19</td>
-<td align="left">749</td>
+<td align="center">608</td>
+<td>3</td>
+<td>9</td>
+<td align="left">786</td>
 </tr>
 <tr class="even">
 <td>5</td>
 <td align="left">2</td>
-<td align="center">605</td>
-<td>7</td>
-<td>19</td>
-<td align="left">749</td>
+<td align="center">850</td>
+<td>3</td>
+<td>9</td>
+<td align="left">786</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td align="left">3</td>
-<td align="center">799</td>
-<td>5</td>
-<td>19</td>
-<td align="left">749</td>
+<td align="center">900</td>
+<td>3</td>
+<td>9</td>
+<td align="left">786</td>
 </tr>
 </tbody>
 </table>
@@ -694,7 +693,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidying-data" class="section level2">
 <h2><span class="header-section-number">4.5</span> Tidying Data</h2>
 <p>Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data/personality.csv">personality.csv</a>. These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_double(),
@@ -711,20 +710,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The <code>...</code> refers to the columns you want to gather. You can refer to them by their names, like <code>col1, col2, col3, col4</code> or <code>col1:col4</code> or by their numbers, like <code>8, 9, 10</code> or <code>8:10</code>.</li>
 </ul>
 <p>Convert from wide to long format. The resulting dataframe should have the columns: <code>user_id</code>, <code>date</code>, <code>question</code>, and <code>score</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ocean_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(ocean, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9)</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">ocean_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(ocean, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9)</a></code></pre></div>
 </div>
 <div id="separate" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> separate()</h3>
 <p><code>separate(data, col, into, sep = &quot;[^[:alnum:]]+&quot;, remove = TRUE, convert = FALSE, extra = &quot;warn&quot;, fill = &quot;warn&quot;)</code></p>
 <p>Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
 <p>There is no character to split on, here, but you can separate a column after a specific number of characters by setting <code>sep</code> to an integer. For example, to split “abcde” after the third character, use <code>sep = 3</code>, which results in <code>c(&quot;abc&quot;, &quot;de&quot;)</code>. You can also use negative number to split before the <em>n</em>th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like “lisa03”“,”amanda38&quot;), you can use <code>sep = -2</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ocean_sep &lt;-<span class="st"> </span><span class="kw">separate</span>(ocean_gathered, question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">ocean_sep &lt;-<span class="st"> </span><span class="kw">separate</span>(ocean_gathered, question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</a></code></pre></div>
 </div>
 <div id="unite" class="section level3">
 <h3><span class="header-section-number">4.5.3</span> unite()</h3>
 <p><code>unite(data, col, ..., sep = &quot;_&quot;, remove = TRUE)</code></p>
 <p>Put the domain and qnumber columns back together into a new column named <code>domain_n</code>. Make it in a format like “Op_Q1”.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ocean_unite &lt;-<span class="st"> </span><span class="kw">unite</span>(ocean_sep, <span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">ocean_unite &lt;-<span class="st"> </span><span class="kw">unite</span>(ocean_sep, <span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>)</a></code></pre></div>
 </div>
 <div id="spread" class="section level3">
 <h3><span class="header-section-number">4.5.4</span> spread()</h3>
@@ -734,7 +733,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>key</code> is the column that contains your new column headers</li>
 <li><code>value</code> is the column that contains the values in the new spread columns</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">ocean_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(ocean_unite, domain_n, score)</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">ocean_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(ocean_unite, domain_n, score)</a></code></pre></div>
 </div>
 </div>
 <div id="pipes" class="section level2">
@@ -743,90 +742,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pipes are a way to order your code in a more readable format.</p>
 <p>Let’s say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (<code>id</code>, <code>A_mean</code> and <code>B_mean</code>).</p>
 <p>One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you’ve created 6 unnecessary data objects in your environment. This can get confusing in very long scripts.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 10 subjects</span>
-data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),
-  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),
-  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),
-  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">3</span>)
-)
-
-<span class="co"># gather columns A1 to B2 into &quot;variable&quot; and &quot;value&quot; columns</span>
-data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, variable, value, A1<span class="op">:</span>B2)
-
-<span class="co"># separate the variable column at the _ into &quot;var&quot; and &quot;var_n&quot; columns</span>
-data_separated &lt;-<span class="st"> </span><span class="kw">separate</span>(data_gathered, variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>)
-
-<span class="co"># group the data by id and var</span>
-data_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(data_separated, id, var)
-
-<span class="co"># calculate the mean value for each id/var </span>
-data_summarised &lt;-<span class="st"> </span><span class="kw">summarise</span>(data_grouped, <span class="dt">mean =</span> <span class="kw">mean</span>(value))
-
-<span class="co"># spread the mean column into A and B columns</span>
-data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_summarised, var, mean)
-
-<span class="co"># rename A and B to A_mean and B_mean</span>
-data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)
-
-data</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="co"># make a data table with 10 subjects</span></a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb133-3" data-line-number="3">  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb133-4" data-line-number="4">  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb133-5" data-line-number="5">  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb133-6" data-line-number="6">  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb133-7" data-line-number="7">  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb133-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb133-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb133-10" data-line-number="10"><span class="co"># gather columns A1 to B2 into &quot;variable&quot; and &quot;value&quot; columns</span></a>
+<a class="sourceLine" id="cb133-11" data-line-number="11">data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, variable, value, A1<span class="op">:</span>B2)</a>
+<a class="sourceLine" id="cb133-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb133-13" data-line-number="13"><span class="co"># separate the variable column at the _ into &quot;var&quot; and &quot;var_n&quot; columns</span></a>
+<a class="sourceLine" id="cb133-14" data-line-number="14">data_separated &lt;-<span class="st"> </span><span class="kw">separate</span>(data_gathered, variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb133-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb133-16" data-line-number="16"><span class="co"># group the data by id and var</span></a>
+<a class="sourceLine" id="cb133-17" data-line-number="17">data_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(data_separated, id, var)</a>
+<a class="sourceLine" id="cb133-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb133-19" data-line-number="19"><span class="co"># calculate the mean value for each id/var </span></a>
+<a class="sourceLine" id="cb133-20" data-line-number="20">data_summarised &lt;-<span class="st"> </span><span class="kw">summarise</span>(data_grouped, <span class="dt">mean =</span> <span class="kw">mean</span>(value))</a>
+<a class="sourceLine" id="cb133-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb133-22" data-line-number="22"><span class="co"># spread the mean column into A and B columns</span></a>
+<a class="sourceLine" id="cb133-23" data-line-number="23">data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_summarised, var, mean)</a>
+<a class="sourceLine" id="cb133-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb133-25" data-line-number="25"><span class="co"># rename A and B to A_mean and B_mean</span></a>
+<a class="sourceLine" id="cb133-26" data-line-number="26">data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</a>
+<a class="sourceLine" id="cb133-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb133-28" data-line-number="28">data</a></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
 ##       id A_mean B_mean
 ##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1     1  0.781   1.56
-##  2     2 -0.175   2.49
-##  3     3  1.75    1.75
-##  4     4  0.113   3.12
-##  5     5  2.20    2.22
-##  6     6  0.616   2.02
-##  7     7  1.07    1.96
-##  8     8  0.637   2.71
-##  9     9  1.07    2.53
-## 10    10  0.616   1.79</code></pre>
+##  1     1  0.783  2.72 
+##  2     2 -0.918  3.06 
+##  3     3  0.429  3.84 
+##  4     4  1.28   2.86 
+##  5     5  1.70   2.96 
+##  6     6  0.516  0.885
+##  7     7  0.336  1.89 
+##  8     8  0.952  3.61 
+##  9     9  0.125  2.21 
+## 10    10 -0.298  2.47</code></pre>
 <div class="warning">
 <p>
 You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.
 </p>
 </div>
 <p>One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.</p>
-<pre class="sourceCode r"><code class="sourceCode r">mean_petal_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(iris<span class="op">$</span>Petal.Width), <span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">mean_petal_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(iris<span class="op">$</span>Petal.Width), <span class="dv">2</span>)</a></code></pre></div>
 <p>But it gets extremely confusing for long chains:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># do not ever do this!!</span>
-data &lt;-<span class="st"> </span><span class="kw">rename</span>(
-  <span class="kw">spread</span>(
-    <span class="kw">summarise</span>(
-      <span class="kw">group_by</span>(
-        <span class="kw">separate</span>(
-          <span class="kw">gather</span>(
-            <span class="kw">tibble</span>(
-              <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-              <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),
-              <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),
-              <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),
-              <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)), 
-            variable, value, A1<span class="op">:</span>B2), 
-          variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>), 
-        id, var), 
-      <span class="dt">mean =</span> <span class="kw">mean</span>(value)), 
-    var, mean), 
-  <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="co"># do not ever do this!!</span></a>
+<a class="sourceLine" id="cb136-2" data-line-number="2">data &lt;-<span class="st"> </span><span class="kw">rename</span>(</a>
+<a class="sourceLine" id="cb136-3" data-line-number="3">  <span class="kw">spread</span>(</a>
+<a class="sourceLine" id="cb136-4" data-line-number="4">    <span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb136-5" data-line-number="5">      <span class="kw">group_by</span>(</a>
+<a class="sourceLine" id="cb136-6" data-line-number="6">        <span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb136-7" data-line-number="7">          <span class="kw">gather</span>(</a>
+<a class="sourceLine" id="cb136-8" data-line-number="8">            <span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb136-9" data-line-number="9">              <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb136-10" data-line-number="10">              <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb136-11" data-line-number="11">              <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb136-12" data-line-number="12">              <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb136-13" data-line-number="13">              <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)), </a>
+<a class="sourceLine" id="cb136-14" data-line-number="14">            variable, value, A1<span class="op">:</span>B2), </a>
+<a class="sourceLine" id="cb136-15" data-line-number="15">          variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb136-16" data-line-number="16">        id, var), </a>
+<a class="sourceLine" id="cb136-17" data-line-number="17">      <span class="dt">mean =</span> <span class="kw">mean</span>(value)), </a>
+<a class="sourceLine" id="cb136-18" data-line-number="18">    var, mean), </a>
+<a class="sourceLine" id="cb136-19" data-line-number="19">  <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</a></code></pre></div>
 <p>The pipe lets you “pipe” the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate mean of A and B variables for each participant</span>
-data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),
-  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),
-  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),
-  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(variable, value, A1<span class="op">:</span>B2) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep=</span><span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(id, var) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(var, mean) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># calculate mean of A and B variables for each participant</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb137-4" data-line-number="4">  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5">  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6">  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb137-7" data-line-number="7">  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb137-8" data-line-number="8">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-9" data-line-number="9"><span class="st">  </span><span class="kw">gather</span>(variable, value, A1<span class="op">:</span>B2) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-10" data-line-number="10"><span class="st">  </span><span class="kw">separate</span>(variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-11" data-line-number="11"><span class="st">  </span><span class="kw">group_by</span>(id, var) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-12" data-line-number="12"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-13" data-line-number="13"><span class="st">  </span><span class="kw">spread</span>(var, mean) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-14" data-line-number="14"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</a></code></pre></div>
 <p>You can read this code from top to bottom as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Make a tibble called <code>data</code> with
@@ -851,11 +850,11 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 </p>
 </div>
 <p>Chain all the steps above using pipes.</p>
-<pre class="sourceCode r"><code class="sourceCode r">ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(domain_n, score)</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="st">  </span><span class="kw">spread</span>(domain_n, score)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_double(),
@@ -869,14 +868,14 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 <h3><span class="header-section-number">4.7.1</span> Load Data</h3>
 <p>Get data on infant mortality rates from the CSV file
 <a href="data/infmort.csv"><code>infmort.csv</code></a> in the directory <code>data</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Country = col_character(),
 ##   Year = col_double(),
 ##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
 ## )</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(infmort)</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">glimpse</span>(infmort)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 3
 ## $ Country                                                                                     &lt;chr&gt; …
@@ -884,8 +883,8 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 ## $ `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` &lt;chr&gt; …</code></pre>
 <p>Get data on maternal mortality from from the excel file
 <a href="data/matmort.xls"><code>matmort.xls</code></a> in the directory <code>data</code></p>
-<pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)
-<span class="kw">glimpse</span>(matmort)</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)</a>
+<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="kw">glimpse</span>(matmort)</a></code></pre></div>
 <pre><code>## Observations: 181
 ## Variables: 4
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -893,7 +892,7 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 ## $ `2000`  &lt;chr&gt; &quot;1 100 [ 745 - 1 570]&quot;, &quot;43 [ 33 -  56]&quot;, &quot;170 [ 118 -  …
 ## $ `2015`  &lt;chr&gt; &quot;396 [ 253 -  620]&quot;, &quot;29 [ 16 -  46]&quot;, &quot;140 [ 82 -  244]…</code></pre>
 <p>Get data on country codes from <a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv">https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv</a></p>
-<pre class="sourceCode r"><code class="sourceCode r">ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   name = col_character(),
@@ -908,7 +907,7 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 ##   `sub-region-code` = col_character(),
 ##   `intermediate-region-code` = col_character()
 ## )</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(ccodes)</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">glimpse</span>(ccodes)</a></code></pre></div>
 <pre><code>## Observations: 249
 ## Variables: 11
 ## $ name                       &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Alba…
@@ -927,10 +926,10 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 <h3><span class="header-section-number">4.7.2</span> Wide to Long</h3>
 <p><code>matmort</code> is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.</p>
 <p>This example is complicated because the column names to gather <em>are</em> numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (`) like the example below.</p>
-<pre class="sourceCode r"><code class="sourceCode r">matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>)
-
-<span class="kw">glimpse</span>(matmort_long)</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="kw">glimpse</span>(matmort_long)</a></code></pre></div>
 <pre><code>## Observations: 543
 ## Variables: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -941,12 +940,12 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 <h3><span class="header-section-number">4.7.3</span> One Piece of Data per Column</h3>
 <p>The data in the <code>stats</code> column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don’t need any of the spaces, so first we’ll remove them with <code>mutate</code>.</p>
 <p>The <code>separate</code> function will separate your data on anything that is not a number or letter, so try it first without specifying the <code>sep</code> argument. The <code>into</code> argument is a list of the new column names.</p>
-<pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>))</a></code></pre></div>
 <pre><code>## Warning: Expected 3 pieces. Additional pieces discarded in 543 rows [1, 2,
 ## 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(matmort_split)</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">glimpse</span>(matmort_split)</a></code></pre></div>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -966,11 +965,11 @@ The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do 
 The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(“100”, “90”, “110”, &quot;“)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)
-
-<span class="kw">glimpse</span>(matmort_split)</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb157-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)</a>
+<a class="sourceLine" id="cb157-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="kw">glimpse</span>(matmort_split)</a></code></pre></div>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -982,10 +981,10 @@ The previous example should have given you an error warning about “Too many va
 <div id="sep" class="section level4">
 <h4><span class="header-section-number">4.7.3.2</span> Set delimiters with <code>sep</code></h4>
 <p>Now do the same with <code>infmort</code>. It’s already in long format, so you don’t need to use <code>gather</code>, but the third column has a crazy long name, so we can just refer to it by its column number (3).</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)
-
-<span class="kw">glimpse</span>(infmort_split)</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)</a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="kw">glimpse</span>(infmort_split)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1000,15 +999,15 @@ The previous example should have given you an error warning about “Too many va
 You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by “|”. It’s a little more complicated because brackets have a special meaning in regex, so you need to “escape” the left one with two backslashes “\”.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(
-    <span class="dt">col =</span> <span class="dv">3</span>, 
-    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), 
-    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, 
-    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>
-  )
-
-<span class="kw">glimpse</span>(infmort_split)</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb161-3" data-line-number="3">    <span class="dt">col =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb161-4" data-line-number="4">    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </a>
+<a class="sourceLine" id="cb161-5" data-line-number="5">    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </a>
+<a class="sourceLine" id="cb161-6" data-line-number="6">    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span></a>
+<a class="sourceLine" id="cb161-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb161-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb161-9" data-line-number="9"><span class="kw">glimpse</span>(infmort_split)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1020,10 +1019,10 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <div id="convert" class="section level4">
 <h4><span class="header-section-number">4.7.3.3</span> Fix data types with <code>convert</code></h4>
 <p>That’s better. Notice the <em><chr></em> next to <code>Year</code>, <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code>. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can’t average words), so we can fix it by adding the argument <code>convert</code> and setting it to <code>TRUE</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">glimpse</span>(infmort_split)</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1">infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb163-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="kw">glimpse</span>(infmort_split)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1032,11 +1031,11 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ ci_low  &lt;dbl&gt; 52.7, 55.7, 58.7, 61.6, 64.4, 66.9, 69.0, 71.2, 73.4, 75…
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90…</code></pre>
 <p>Do the same for <code>matmort</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)
-
-<span class="kw">glimpse</span>(matmort_split)</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1">matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb165-3" data-line-number="3"><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb165-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb165-5" data-line-number="5"><span class="kw">glimpse</span>(matmort_split)</a></code></pre></div>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -1049,32 +1048,32 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <div id="all-in-one-step" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> All in one step</h3>
 <p>We can chain all the steps above together, since we don’t need those intermediate dataframes.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(
-    <span class="dv">3</span>, 
-    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), 
-    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, 
-    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, 
-    <span class="dt">convert =</span> <span class="ot">TRUE</span>
-  )</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb167-3" data-line-number="3">    <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb167-4" data-line-number="4">    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </a>
+<a class="sourceLine" id="cb167-5" data-line-number="5">    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </a>
+<a class="sourceLine" id="cb167-6" data-line-number="6">    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, </a>
+<a class="sourceLine" id="cb167-7" data-line-number="7">    <span class="dt">convert =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb167-8" data-line-number="8">  )</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Country = col_character(),
 ##   Year = col_double(),
 ##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
 ## )</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(
-    stats, 
-    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), 
-    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, 
-    <span class="dt">convert =</span> <span class="ot">TRUE</span>
-  )
-
-<span class="kw">glimpse</span>(matmort)
-<span class="kw">glimpse</span>(infmort)</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-4" data-line-number="4"><span class="st">  </span><span class="kw">separate</span>(</a>
+<a class="sourceLine" id="cb169-5" data-line-number="5">    stats, </a>
+<a class="sourceLine" id="cb169-6" data-line-number="6">    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </a>
+<a class="sourceLine" id="cb169-7" data-line-number="7">    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </a>
+<a class="sourceLine" id="cb169-8" data-line-number="8">    <span class="dt">convert =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb169-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb169-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb169-11" data-line-number="11"><span class="kw">glimpse</span>(matmort)</a>
+<a class="sourceLine" id="cb169-12" data-line-number="12"><span class="kw">glimpse</span>(infmort)</a></code></pre></div>
 <pre><code>## Observations: 543
 ## Variables: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentin…
@@ -1093,10 +1092,10 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <div id="columns-by-year" class="section level3">
 <h3><span class="header-section-number">4.7.5</span> Columns by Year</h3>
 <p>Spread out the infant mortality rate by year.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(Year, rate)
-
-<span class="kw">glimpse</span>(infmort_wide)</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(Year, rate)</a>
+<a class="sourceLine" id="cb171-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="kw">glimpse</span>(infmort_wide)</a></code></pre></div>
 <pre><code>## Observations: 4,934
 ## Variables: 29
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1137,10 +1136,10 @@ Nope, that didn’t work at all, but it’s a really common mistake when spreadi
 <div id="merge-columns" class="section level3">
 <h3><span class="header-section-number">4.7.6</span> Merge Columns</h3>
 <p>Merge the rate and confidence intervals into one column.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi)
-
-<span class="kw">glimpse</span>(infmort_united)</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi)</a>
+<a class="sourceLine" id="cb173-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="kw">glimpse</span>(infmort_united)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1150,10 +1149,10 @@ Nope, that didn’t work at all, but it’s a really common mistake when spreadi
 <h4><span class="header-section-number">4.7.6.1</span> Control separation with <code>sep</code></h4>
 <p><code>unite()</code> separates merged names with an underscore by default.
 Set the <code>sep</code> argument if you want to change that.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)
-
-<span class="kw">glimpse</span>(infmort_united)</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</a>
+<a class="sourceLine" id="cb175-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="kw">glimpse</span>(infmort_united)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1164,10 +1163,10 @@ Set the <code>sep</code> argument if you want to change that.</p>
 What if you want to put it back into the format “rate [ci_low - ci_hi]”? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You’ll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rate_ci =</span> <span class="kw">paste0</span>(rate, <span class="st">&quot; [&quot;</span>, ci_low, <span class="st">&quot; - &quot;</span>, ci_hi, <span class="st">&quot;]&quot;</span>))
-
-<span class="kw">glimpse</span>(infmort_united)</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rate_ci =</span> <span class="kw">paste0</span>(rate, <span class="st">&quot; [&quot;</span>, ci_low, <span class="st">&quot; - &quot;</span>, ci_hi, <span class="st">&quot;]&quot;</span>))</a>
+<a class="sourceLine" id="cb177-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb177-4" data-line-number="4"><span class="kw">glimpse</span>(infmort_united)</a></code></pre></div>
 <pre><code>## Observations: 5,044
 ## Variables: 6
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanista…
@@ -1177,11 +1176,11 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90…
 ## $ rate_ci &lt;chr&gt; &quot;66.3 [52.7 - 83.9]&quot;, &quot;68.1 [55.7 - 83.6]&quot;, &quot;69.9 [58.7 …</code></pre>
 <p>Now let’s try spreading on year again. Notice here we’re uniting columns <code>rate:ci_hi</code>, instead of <code>rate, ci_low, ci_hi</code>. The colon just says to select all the columns between the first and last named ones. Check the help documentation for <code>??tidyr::unite</code> and <code>??tidyr::select</code> to see other ways to select columns.</p>
-<pre class="sourceCode r"><code class="sourceCode r">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(rate_ci, rate<span class="op">:</span>ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(Year, rate_ci)
-
-<span class="kw">glimpse</span>(infmort_wide)</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate<span class="op">:</span>ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb179-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(Year, rate_ci)</a>
+<a class="sourceLine" id="cb179-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb179-5" data-line-number="5"><span class="kw">glimpse</span>(infmort_wide)</a></code></pre></div>
 <pre><code>## Observations: 194
 ## Variables: 27
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Andorra&quot;, &quot;Angola&quot;…
@@ -1233,56 +1232,56 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="left">A</td>
 <td>1</td>
 <td align="left">cat</td>
-<td align="center">0.891</td>
+<td align="center">0.818</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">A</td>
 <td>2</td>
 <td align="left">cat</td>
-<td align="center">0.768</td>
+<td align="center">0.884</td>
 </tr>
 <tr class="odd">
 <td>1</td>
 <td align="left">B</td>
 <td>1</td>
 <td align="left">cat</td>
-<td align="center">0.014</td>
+<td align="center">0.102</td>
 </tr>
 <tr class="even">
 <td>1</td>
 <td align="left">B</td>
 <td>2</td>
 <td align="left">cat</td>
-<td align="center">-0.858</td>
+<td align="center">-1.217</td>
 </tr>
 <tr class="odd">
 <td>2</td>
 <td align="left">A</td>
 <td>1</td>
 <td align="left">dog</td>
-<td align="center">0.271</td>
+<td align="center">0.309</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">A</td>
 <td>2</td>
 <td align="left">dog</td>
-<td align="center">0.292</td>
+<td align="center">0.073</td>
 </tr>
 <tr class="odd">
 <td>2</td>
 <td align="left">B</td>
 <td>1</td>
 <td align="left">dog</td>
-<td align="center">0.981</td>
+<td align="center">-0.025</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td align="left">B</td>
 <td>2</td>
 <td align="left">dog</td>
-<td align="center">0.313</td>
+<td align="center">-0.807</td>
 </tr>
 </tbody>
 </table>
@@ -1303,29 +1302,29 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">cat</td>
-<td align="right">0.8907901</td>
-<td align="right">0.0144896</td>
+<td align="right">0.8183650</td>
+<td align="right">0.1017440</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">cat</td>
-<td align="right">0.7683286</td>
-<td align="right">-0.8578410</td>
+<td align="right">0.8835520</td>
+<td align="right">-1.2172120</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">dog</td>
-<td align="right">0.2714902</td>
-<td align="right">0.9814911</td>
+<td align="right">0.3094945</td>
+<td align="right">-0.0248357</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="left">dog</td>
-<td align="right">0.2923128</td>
-<td align="right">0.3130184</td>
+<td align="right">0.0731384</td>
+<td align="right">-0.8065065</td>
 </tr>
 </tbody>
 </table>
@@ -1345,49 +1344,49 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <td align="right">1</td>
 <td align="left">A_1</td>
 <td align="left">cat</td>
-<td align="right">0.8907901</td>
+<td align="right">0.8183650</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">A_2</td>
 <td align="left">cat</td>
-<td align="right">0.7683286</td>
+<td align="right">0.8835520</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="left">B_1</td>
 <td align="left">cat</td>
-<td align="right">0.0144896</td>
+<td align="right">0.1017440</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="left">B_2</td>
 <td align="left">cat</td>
-<td align="right">-0.8578410</td>
+<td align="right">-1.2172120</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">A_1</td>
 <td align="left">dog</td>
-<td align="right">0.2714902</td>
+<td align="right">0.3094945</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">A_2</td>
 <td align="left">dog</td>
-<td align="right">0.2923128</td>
+<td align="right">0.0731384</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">B_1</td>
 <td align="left">dog</td>
-<td align="right">0.9814911</td>
+<td align="right">-0.0248357</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="left">B_2</td>
 <td align="left">dog</td>
-<td align="right">0.3130184</td>
+<td align="right">-0.8065065</td>
 </tr>
 </tbody>
 </table>
@@ -1445,41 +1444,41 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <button>
 Solution
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(var, value, Sepal.Length<span class="op">:</span>Petal.Width) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">iris <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb181-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(var, value, Sepal.Length<span class="op">:</span>Petal.Width) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb181-3" data-line-number="3"><span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</a></code></pre></div>
 </div></li>
 <li><p>Re-write the following code using pipes. Assign the resulting data table to a variable called <code>data</code>.</p></li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span>
-data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),
-  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),
-  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),
-  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)
-)
-
-<span class="co"># gather columns A and B into &quot;score_type&quot; and &quot;score&quot; columns</span>
-data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, score_type, score, A<span class="op">:</span>B)
-
-<span class="co"># unite the score_type and condition columns into a column called &quot;cell&quot;</span>
-data_united &lt;-<span class="st"> </span><span class="kw">unite</span>(data_gathered, cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-
-<span class="co"># spread the score column into cells</span>
-data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span></a>
+<a class="sourceLine" id="cb182-2" data-line-number="2">data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb182-3" data-line-number="3">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb182-4" data-line-number="4">  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb182-5" data-line-number="5">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb182-6" data-line-number="6">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb182-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb182-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb182-9" data-line-number="9"><span class="co"># gather columns A and B into &quot;score_type&quot; and &quot;score&quot; columns</span></a>
+<a class="sourceLine" id="cb182-10" data-line-number="10">data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, score_type, score, A<span class="op">:</span>B)</a>
+<a class="sourceLine" id="cb182-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb182-12" data-line-number="12"><span class="co"># unite the score_type and condition columns into a column called &quot;cell&quot;</span></a>
+<a class="sourceLine" id="cb182-13" data-line-number="13">data_united &lt;-<span class="st"> </span><span class="kw">unite</span>(data_gathered, cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb182-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb182-15" data-line-number="15"><span class="co"># spread the score column into cells</span></a>
+<a class="sourceLine" id="cb182-16" data-line-number="16">data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</a></code></pre></div>
 <div class="solution">
 <button>
 Solution
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),
-  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),
-  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),
-  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">gather</span>(score_type, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">unite</span>(cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">spread</span>(cell, score)</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb183-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb183-3" data-line-number="3">  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb183-4" data-line-number="4">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb183-5" data-line-number="5">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb183-6" data-line-number="6">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb183-7" data-line-number="7"><span class="st">  </span><span class="kw">gather</span>(score_type, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="st">  </span><span class="kw">unite</span>(cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb183-9" data-line-number="9"><span class="st">  </span><span class="kw">spread</span>(cell, score)</a></code></pre></div>
 </div>
 </div>
 <div id="exercises-3" class="section level2">

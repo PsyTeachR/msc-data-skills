@@ -470,7 +470,7 @@ citation(package="rmarkdown")
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier
 ##   Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and
 ##   Joe Cheng and Winston Chang and Richard Iannone (2019).
-##   rmarkdown: Dynamic Documents for R. R package version 1.13. URL
+##   rmarkdown: Dynamic Documents for R. R package version 1.14. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R

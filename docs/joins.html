@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data Relations | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data Relations | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-07-14" />
+<meta name="date" content="2019-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,7 +61,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -402,10 +401,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>10.5</b> Contributors</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>A</b> Installing <code>R</code></a><ul>
-<li class="chapter" data-level="A.1" data-path="installing-r.html"><a href="installing-r.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
-<li class="chapter" data-level="A.2" data-path="installing-r.html"><a href="installing-r.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="A.3" data-path="installing-r.html"><a href="installing-r.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
+<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a><ul>
+<li class="chapter" data-level="A.1" data-path="installingr.html"><a href="installingr.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
+<li class="chapter" data-level="A.2" data-path="installingr.html"><a href="installingr.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="A.3" data-path="installingr.html"><a href="installingr.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
@@ -486,11 +485,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> Data</h2>
 <p>First, we’ll create two small data tables.</p>
 <p><code>subject</code> has id, sex and age for subjects 1-5. Age and sex are missing for subject 3.</p>
-<pre class="sourceCode r"><code class="sourceCode r">subject &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>),
-  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),
-  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="ot">NA</span>, <span class="dv">19</span>, <span class="dv">18</span>)
-)</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">subject &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb242-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb242-3" data-line-number="3">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</a>
+<a class="sourceLine" id="cb242-4" data-line-number="4">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="ot">NA</span>, <span class="dv">19</span>, <span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb242-5" data-line-number="5">)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -529,10 +528,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p><code>exp</code> has subject id and the score from an experiment. Some subjects are missing,
 some completed twice, and some are not in the subject table.</p>
-<pre class="sourceCode r"><code class="sourceCode r">exp &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),
-  <span class="dt">score =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)
-)</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">exp &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb243-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),</a>
+<a class="sourceLine" id="cb243-3" data-line-number="3">  <span class="dt">score =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb243-4" data-line-number="4">)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -606,7 +605,7 @@ Figure 6.1: Left Join
 </div>
 </div>
 <p>A <code>left_join</code> keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw">left_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 7 x 4
 ##      id sex     age score
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -626,7 +625,7 @@ Figure 6.2: Left Join (reversed)
 </div>
 </div>
 <p>The order of tables is swapped here, so the result is all rows from the <code>exp</code> table joined to any matching rows from the <code>subject</code> table.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="kw">left_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 9 x 4
 ##      id score sex     age
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -652,7 +651,7 @@ Figure 6.3: Right Join
 </div>
 <p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything
 that matches from the first (left) table.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">right_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">right_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 9 x 4
 ##      id sex     age score
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -682,7 +681,7 @@ Figure 6.4: Inner Join
 </div>
 </div>
 <p>An <code>inner_join</code> returns all the rows that have a match in the other table.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">inner_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##      id sex     age score
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -704,7 +703,7 @@ Figure 6.5: Full Join
 </div>
 </div>
 <p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn’t have a match in the other table, the other table’s column values are set to <code>NA</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">full_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 10 x 4
 ##       id sex     age score
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -733,7 +732,7 @@ Figure 6.6: Semi Join
 </div>
 </div>
 <p>A <code>semi_join</code> returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">semi_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">semi_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -755,7 +754,7 @@ Figure 6.7: Semi Join (Reversed)
 </div>
 </div>
 <p>Order matters in a semi join.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">semi_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">semi_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##      id score
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -778,7 +777,7 @@ Figure 6.8: Anti Join
 </div>
 <p>A <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching
 values in the right table, keeping just columns from the left table.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anti_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">anti_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -792,7 +791,7 @@ Figure 6.9: Anti Join (Reversed)
 </div>
 </div>
 <p>Order matters in an anti join.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anti_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">anti_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##      id score
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -807,13 +806,13 @@ Figure 6.9: Anti Join (Reversed)
 <h3><span class="header-section-number">6.6.1</span> bind_rows()</h3>
 <p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
 <p>Here we’ll add subject data for subjects 6-9 and bind that to the original subject table.</p>
-<pre class="sourceCode r"><code class="sourceCode r">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">6</span>, <span class="dv">9</span>),
-  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),
-  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>)
-)
-
-<span class="kw">bind_rows</span>(subject, new_subjects)</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb262-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">6</span>, <span class="dv">9</span>),</a>
+<a class="sourceLine" id="cb262-3" data-line-number="3">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</a>
+<a class="sourceLine" id="cb262-4" data-line-number="4">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>)</a>
+<a class="sourceLine" id="cb262-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb262-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb262-7" data-line-number="7"><span class="kw">bind_rows</span>(subject, new_subjects)</a></code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -830,14 +829,14 @@ Figure 6.9: Anti Join (Reversed)
 <p>If a row is duplicated between the two tables (like id 5 below), the row will also
 be duplicated in the resulting table. If your tables have the exact same columns,
 you can use <code>union()</code> (see below) to avoid duplicates.</p>
-<pre class="sourceCode r"><code class="sourceCode r">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">9</span>),
-  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),
-  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),
-  <span class="dt">new =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)
-)
-
-<span class="kw">bind_rows</span>(subject, new_subjects)</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">9</span>),</a>
+<a class="sourceLine" id="cb264-3" data-line-number="3">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</a>
+<a class="sourceLine" id="cb264-4" data-line-number="4">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</a>
+<a class="sourceLine" id="cb264-5" data-line-number="5">  <span class="dt">new =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb264-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb264-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb264-8" data-line-number="8"><span class="kw">bind_rows</span>(subject, new_subjects)</a></code></pre></div>
 <pre><code>## # A tibble: 10 x 4
 ##       id sex     age   new
 ##    &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -855,11 +854,11 @@ you can use <code>union()</code> (see below) to avoid duplicates.</p>
 <div id="bind_cols" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> bind_cols()</h3>
 <p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don’t have any IDs to join by and you have to rely solely on their order.</p>
-<pre class="sourceCode r"><code class="sourceCode r">new_info &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">colour =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)
-)
-
-<span class="kw">bind_cols</span>(subject, new_info)</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">new_info &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb266-2" data-line-number="2">  <span class="dt">colour =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb266-3" data-line-number="3">)</a>
+<a class="sourceLine" id="cb266-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb266-5" data-line-number="5"><span class="kw">bind_cols</span>(subject, new_info)</a></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##      id sex     age colour
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
@@ -876,13 +875,13 @@ you can use <code>union()</code> (see below) to avoid duplicates.</p>
 <h3><span class="header-section-number">6.7.1</span> intersect()</h3>
 <p><code>intersect()</code> returns all rows in two tables that match exactly. The columns
 don’t have to be in the same order.</p>
-<pre class="sourceCode r"><code class="sourceCode r">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(
-  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="dv">9</span>),
-  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),
-  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)
-)
-
-dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_subjects)</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="dv">9</span>),</a>
+<a class="sourceLine" id="cb268-3" data-line-number="3">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</a>
+<a class="sourceLine" id="cb268-4" data-line-number="4">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)</a>
+<a class="sourceLine" id="cb268-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb268-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb268-7" data-line-number="7">dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_subjects)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -892,7 +891,7 @@ dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_su
 <div id="union" class="section level3">
 <h3><span class="header-section-number">6.7.2</span> union()</h3>
 <p><code>union()</code> returns all the rows from both tables, removing duplicate rows.</p>
-<pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">union</span>(subject, new_subjects)</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">dplyr<span class="op">::</span><span class="kw">union</span>(subject, new_subjects)</a></code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -909,7 +908,7 @@ dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_su
 <div id="setdiff" class="section level3">
 <h3><span class="header-section-number">6.7.3</span> setdiff()</h3>
 <p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setdiff</span>(subject, new_subjects)</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="kw">setdiff</span>(subject, new_subjects)</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##      id   age sex  
 ##   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -917,7 +916,7 @@ dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_su
 ## 2     2    22 m    
 ## 3     3    NA &lt;NA&gt;</code></pre>
 <p>Order matters for <code>setdiff</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setdiff</span>(new_subjects, subject)</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">setdiff</span>(new_subjects, subject)</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;

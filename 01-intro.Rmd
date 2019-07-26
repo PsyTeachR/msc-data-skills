@@ -23,13 +23,13 @@
 
 ## What is R?
 
-<img src="images/01/new_R_logo.png" style="float: right;">
+<img src="images/01/new_R_logo.png"  class="right meme">
 
 R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote **reproducible research**. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.
 
-```{block, type="info"}
-See Appendix \@ref(installing-r) for more information on on how to install R and associated programs.
-```
+<div class='info'>
+See Appendix \@ref(installingr) for more information on on how to install R and associated programs.
+</div>
 
 ### The Base R Console {#rconsole}
 
@@ -42,8 +42,9 @@ knitr::include_graphics("images/01/r_console.png")
 You can close R and never open it again. We'll be working entirely in RStudio in this class.
 
 ```{block, type="warning"}
-ALWAYS REMEMBER: Launch R though the RStudio IDE  
-![](images/01/launch.png)
+ALWAYS REMEMBER: Launch R though the RStudio IDE
+
+Launch <img src="images/01/rstudio_icon.png" style="height: 2em; vertical-align: middle;" alt="RStudio.app"> (RStudio.app), not <img src="images/01/new_R_logo.png" style="height: 2em; vertical-align: middle;" alt="R.app"> (R.app).
 ```
 
 ### RStudio {#rstudio_ide}
@@ -63,11 +64,15 @@ RStudio is arranged with four window `r glossary("panes")`. By default, the uppe
 
 ### Configure RStudio
 
-In this class, you will be learning how to develop **reproducible scripts**.  This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
+In this class, you will be learning how to develop **reproducible scripts**.  This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. 
+
+<img src="images/memes/forgetting.jpg"  class="right meme">
+
+When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
 There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**;.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
-```{r img-repro, echo=FALSE, out.width='50%', fig.cap="Alter these settings for increased reproducibility."}
+```{r img-repro, echo=FALSE, out.width='66%', fig.cap="Alter these settings for increased reproducibility."}
 knitr::include_graphics("images/01/repro.png")
 ```
 
@@ -86,7 +91,9 @@ We are first going to learn about how to interact with the console. In general, 
 
 Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.
 
-One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first) :/
+<img src="images/memes/typos.jpg" class="right meme">
+
+One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first).
 
 ```{r calc1}
 1 + 1
@@ -329,10 +336,12 @@ There is an important distinction between **installing** a package and **loading
 
 ### Installing a package 
 
-This is done using `install.packages()`. This is like installing an app on your smartphone: you only have to do it once and the app will remain installed until you remove it.For instance, if you want to use PokemonGo on your phone you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
+<img src="images/memes/pokemon.gif" class="meme right">
+
+This is done using `install.packages()`. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not *loaded*) every time you open up R.
 
 ```{block, type="warning"}
-You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations because you will lack the appropriate privileges.
+You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations if you lack the appropriate privileges.
 ```
 
 Install the `fortunes` package on your system:
@@ -363,18 +372,30 @@ Note that we will use the convention `package::function()` to indicate in which 
 
 ### Install from GitHub
 
-Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. 
+Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don't have devtools installed, `library("devtools")` will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.
+
+```{r img-packages, echo=FALSE, out.width='100%', fig.cap="Check installed and loaded packages in the packages tab in the lower right pane."}
+knitr::include_graphics("images/01/packages.png")
+```
 
 ```{r, eval = FALSE}
 install.packages("devtools")
 devtools::install_github("adam-gruer/goodshirt")
 ```
 
+After you install the goodshirt package, load it using the `library()` function and display some quotes using the functions below. 
+
 ```{r good-place}
 library(goodshirt)
 # quotes from The Good Place
 chidi()
 eleanor()
+tahani()
+jason()
+```
+
+```{block type="try"}
+How many different ways can you find to discover what functions are available in the goodshirt package?
 ```
 
 
