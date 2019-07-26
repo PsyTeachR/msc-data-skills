@@ -1,6 +1,8 @@
 
 # Iteration & Functions {#func}
 
+<img src="images/memes/functions.jpg" class="meme right">
+
 ## Learning Objectives
 
 You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.
@@ -18,6 +20,8 @@ You will learn about functions and iteration by using simulation to calculate a 
 6. Use [error handling and warnings](#warnings-errors) in a function
 
 ### Advanced
+
+<img src="images/memes/purrr.gif" class="meme right">
 
 The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
@@ -140,8 +144,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  91.22   91.22   219.1 4.27e-07 ***
-## Residuals    8   3.33    0.42                     
+## A            1 110.85  110.85   102.6 7.71e-06 ***
+## Residuals    8   8.64    1.08                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -158,7 +162,7 @@ pval
 ```
 
 ```
-## [1] 4.268264e-07
+## [1] 7.70859e-06
 ```
 -->
 
@@ -407,13 +411,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = 1.7219, df = 34.246, p-value = 0.09412
+## t = -0.95279, df = 34.476, p-value = 0.3473
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.09279714  1.12416235
+##  -0.8730434  0.3155202
 ## sample estimates:
 ## mean of x mean of y 
-##  5.371871  4.856188
+##  5.124420  5.403181
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
@@ -430,13 +434,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = 1.7219, df = 34.246, p-value = 0.09412
+## t = -0.95279, df = 34.476, p-value = 0.3473
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.09279714  1.12416235
+##  -0.8730434  0.3155202
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.371871        4.856188
+##        5.124420        5.403181
 ```
 
 ### `broom::tidy()`
@@ -458,7 +462,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.650      4.89      5.54     -1.79  0.0812      37.9    -1.39
+## 1 -0.00919      5.38      5.38   -0.0248   0.980      37.2   -0.761
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
@@ -478,7 +482,7 @@ tibble(
 ```
 
 ```
-## [1] 0.1722565
+## [1] 0.07077885
 ```
 
 ### Turn into a function
@@ -507,7 +511,7 @@ t_sim()
 ```
 
 ```
-## [1] 0.05258863
+## [1] 0.104432
 ```
 
 ### `replicate()`
@@ -523,12 +527,33 @@ power
 ```
 
 ```
-## [1] 0.334
+## [1] 0.324
 ```
+
+### Set seed {#seed}
+
+You can use the `set.seed` function before you run a function that uses random numbers to make sure that you get the same random data back each time. You can use any integer you like as the seed.
+
+
+```r
+set.seed(90201)
+```
+
+<div class="warning">
+<p>Make sure you don’t ever use <code>set.seed()</code> <strong>inside</strong> of a simulation function, or you will just simulate the exact same data over and over again.</p>
+</div>
+
+<div class="figure" style="text-align: center">
+<img src="images/memes/seed_alignment.png" alt="@KellyBodwin" width="100%" />
+<p class="caption">(\#fig:img-seed-alignment)@KellyBodwin</p>
+</div>
 
 ### Add arguments
 
 You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine `t_sim`, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.
+
+
+
 
 
 ```r
@@ -553,8 +578,8 @@ t_sim(100, 0, 1, 0.5, 1)
 ```
 
 ```
-## [1] 0.5248677
-## [1] 0.0002761368
+## [1] 0.5065619
+## [1] 0.001844064
 ```
 
 Use `replicate` to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.
@@ -567,7 +592,7 @@ power
 ```
 
 ```
-## [1] 0.3
+## [1] 0.268
 ```
 
 Compare this to power calculated from the `power.t.test` function.

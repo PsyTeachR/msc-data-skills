@@ -1,5 +1,7 @@
 # Probability & Simulation {#sim}
 
+<img src="images/memes/sim.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic

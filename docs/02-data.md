@@ -1,6 +1,8 @@
 
 # Working with Data {#data}
 
+<img src="images/memes/read_csv.png" class="meme right">
+
 ## Learning Objectives
 
 1. Understand the use the [basic data types](#data_types)

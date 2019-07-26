@@ -1,6 +1,8 @@
 
 # Data Relations {#joins}
 
+<img src="images/memes/joins.png" class="meme right">
+
 ## Learning Objectives
 
 ### Beginner

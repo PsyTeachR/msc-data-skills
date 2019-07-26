@@ -1,5 +1,7 @@
 # Tidy Data {#tidyr}
 
+<img src="images/memes/messy_data.jpg" class="meme right">
+
 Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
 
 ## Learning Objectives

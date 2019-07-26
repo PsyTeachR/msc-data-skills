@@ -1,5 +1,7 @@
 # Iteration & Functions {#func}
 
+<img src="images/memes/functions.jpg" class="meme right">
+
 ## Learning Objectives
 
 You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.
@@ -17,6 +19,8 @@ You will learn about functions and iteration by using simulation to calculate a 
 6. Use [error handling and warnings](#warnings-errors) in a function
 
 ### Advanced
+
+<img src="images/memes/purrr.gif" class="meme right">
 
 The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
@@ -363,9 +367,29 @@ power <- mean(reps < alpha)
 power
 ```
 
+### Set seed {#seed}
+
+You can use the `set.seed` function before you run a function that uses random numbers to make sure that you get the same random data back each time. You can use any integer you like as the seed.
+
+```{r set-seed-90210}
+set.seed(90201)
+```
+
+```{block type="warning"}
+Make sure you don't ever use `set.seed()` **inside** of a simulation function, or you will just simulate the exact same data over and over again.
+```
+
+```{r img-seed-alignment, echo=FALSE, fig.cap="@KellyBodwin"}
+knitr::include_graphics("images/memes/seed_alignment.png")
+```
+
 ### Add arguments
 
 You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine `t_sim`, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.
+
+```{r}
+```
+
 
 ```{r}
 t_sim <- function(n = 10, m1=0, sd1=1, m2=0, sd2=1) {

@@ -1,6 +1,8 @@
 
 # Introduction to GLM {#glm}
 
+<img src="images/memes/linear_regression.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic

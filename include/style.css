@@ -9,3 +9,9 @@
   float: right;
   margin-right: 0;
 }
+
+.left {
+  float: left;
+  margin-left: 0;
+}
+

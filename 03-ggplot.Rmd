@@ -1,5 +1,7 @@
 # Data Visualisation {#ggplot}
 
+<img src="images/memes/better_graphs.png" class="meme right">
+
 Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 
 ## Learning Objectives
@@ -71,9 +73,7 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 library(tidyverse)
 library(viridis)
 library(plotly)
-
-# cowplot will change the default theme of graphs, so we're loading it later
-# library(cowplot) 
+library(cowplot) 
 
 ```
 
@@ -409,8 +409,6 @@ You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vig
 
 ```{r cowplot, message = FALSE, fig.cap="Grid of plots using cowplot"}
 
-library(cowplot)
-
 my_hist <- ggplot(pet_happy, aes(happiness, fill=pet)) +
   geom_histogram(
     binwidth = 1, 
@@ -453,10 +451,6 @@ plot_grid(
 
 ```
 
-```{block, type="info"}
-{#theme}
-Once you load the cowplot package, your ggplot default theme will change. You can get back the default ggplot theme with `+ theme_set(theme_grey())`.
-```
 
 ## Overlapping Data {#overlap}
 

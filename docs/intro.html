@@ -341,7 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.4" data-path="func.html"><a href="func.html#broomtidy"><i class="fa fa-check"></i><b>7.5.4</b> <code>broom::tidy()</code></a></li>
 <li class="chapter" data-level="7.5.5" data-path="func.html"><a href="func.html#turn-into-a-function"><i class="fa fa-check"></i><b>7.5.5</b> Turn into a function</a></li>
 <li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
-<li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.7</b> Add arguments</a></li>
+<li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#seed"><i class="fa fa-check"></i><b>7.5.7</b> Set seed</a></li>
+<li class="chapter" data-level="7.5.8" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.8</b> Add arguments</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
@@ -436,6 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Getting Started</h1>
+<p><img src="images/memes/rstudio.png" class="meme right"></p>
 <div id="learning-objectives" class="section level2">
 <h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
 <ol style="list-style-type: decimal">
@@ -460,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="what-is-r" class="section level2">
 <h2><span class="header-section-number">1.3</span> What is R?</h2>
-<p><img src="images/01/new_R_logo.png"  class="right meme"></p>
+<p><img src="images/01/new_R_logo.png"  class="left meme"></p>
 <p>R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote <strong>reproducible research</strong>. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.</p>
 <div class="info">
 <p>See Appendix <a href="installingr.html#installingr">A</a> for more information on on how to install R and associated programs.</p>
@@ -662,20 +664,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##  [1]  0.09856317  0.46276440  1.23685137 -0.81429235  0.46876232
-##  [6] -0.60829129  0.34018525 -0.25363210  0.54101338 -0.87420872</code></pre>
+<pre><code>##  [1] -1.251167e-01 -1.665723e+00 -7.714929e-01  1.194614e+00 -1.717075e+00
+##  [6] -3.553334e-01  1.326901e+00 -8.582414e-05 -4.911717e-01  9.367640e-01</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</a></code></pre></div>
-<pre><code>##  [1] 100.44658 101.00780 100.06904 101.14967 100.32839  99.69402 100.89092
-##  [8]  98.77905 100.17704  99.50036</code></pre>
+<pre><code>##  [1]  98.65757  98.45955 101.79009 100.13478 101.40210 100.06986  98.44368
+##  [8] 100.43023  99.52391 100.52424</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</a></code></pre></div>
-<pre><code>##  [1] 100.37865 100.34642 100.79165 100.24353  99.77495 100.34737 100.46393
-##  [8] 101.13825  98.52547  99.32850</code></pre>
+<pre><code>##  [1]  98.80713 100.33620  98.99604  99.66518 100.44964 100.02350 100.23668
+##  [8] 101.16291 100.96318  99.19820</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</a></code></pre></div>
-<pre><code>##  [1]   96.58557 -106.34795  156.82321  130.63942   86.48187   27.86526
-##  [7]   99.49575  104.24527  -66.79178  -19.03204</code></pre>
+<pre><code>##  [1] -108.11861  -71.89488  185.27094   47.31027  207.89062   17.00817
+##  [7] -214.84134   10.97397  -51.86957  -56.24787</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</a>
 <a class="sourceLine" id="cb32-2" data-line-number="2">             <span class="dt">power =</span> <span class="ot">NULL</span>,</a>
@@ -734,11 +736,11 @@ You may only be able to permanently install packages if you are using R on your 
 <p>Once you have typed this, you can run the function <code>fortune()</code>, which spouts random wisdom from one of the R help lists:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">fortune</span>()</a></code></pre></div>
 <pre><code>## 
-## As for the question of the bug in `is&#39;, ... it depends what your
-## definition of `is&#39; is.
-##    -- Douglas Bates (referring to Bill Clinton after a tortuous discussion
-##       of the behavior of is(7, &quot;integer&quot;))
-##       R-help (September 2008)</code></pre>
+## If you aren&#39;t sure of the relative priority of two operators, use
+## parentheses. 1:(nr-1) would work regardless of whether : or - had higher
+## priority. Or, in extreme cases, read the documentation.
+##    -- Duncan Murdoch
+##       R-help (August 2005)</code></pre>
 <p>Note that we will use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
 </div>
 <div id="install-from-github" class="section level3">
@@ -760,16 +762,16 @@ Figure 1.4: Check installed and loaded packages in the packages tab in the lower
 <a class="sourceLine" id="cb39-5" data-line-number="5"><span class="kw">tahani</span>()</a>
 <a class="sourceLine" id="cb39-6" data-line-number="6"><span class="kw">jason</span>()</a></code></pre></div>
 <pre><code>## 
-##  Well, I&#39;ve narrowed it down to two possibilities: yes and no. 
+##  I missed my mom&#39;s back surgery because I had already promised my landlord&#39;s nephew that I would help him figure out his new phone. 
 ## 
 ##  ~ Chidi
-##  I&#39;ll miss you too, you sexy skyscraper. 
+##  YA BASIC! 
 ## 
 ##  ~ Eleanor
-##  I also dabbled in some other professions. I was a model, a museum curator, an &quot;It Girl,&quot; and... oh, I was Baz Luhrmann&#39;s muse for a while. That was quite fun. 
+##  Well, I suppose some part of me possibly has a sense of casual kinship with you, much as one might be fond of a street cat. 
 ## 
 ##  ~ Tahani
-##  I always trust dudes in bow ties. Once, this guy in a bow tie came up to me at the gun range in a Jacksonville bus station and said he&#39;d give me $600 if I put these weird turtles in my duffle bag and brought them to Daytona Beach. So I hotwired a swamp boat to Daytona and the guy paid me the $600. My point is, you always trust dudes in bow ties. 
+##  She&#39;s my everything. She makes the bass drop in my heart. 
 ## 
 ##  ~ Jason</code></pre>
 <div class="try">

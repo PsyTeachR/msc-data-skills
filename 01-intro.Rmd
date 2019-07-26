@@ -1,5 +1,6 @@
 # Getting Started {#intro}
 
+<img src="images/memes/rstudio.png" class="meme right">
 
 ## Learning Objectives
 
@@ -23,7 +24,7 @@
 
 ## What is R?
 
-<img src="images/01/new_R_logo.png"  class="right meme">
+<img src="images/01/new_R_logo.png"  class="left meme">
 
 R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote **reproducible research**. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.
 
@@ -393,6 +394,7 @@ eleanor()
 tahani()
 jason()
 ```
+
 
 ```{block type="try"}
 How many different ways can you find to discover what functions are available in the goodshirt package?

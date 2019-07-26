@@ -1,5 +1,7 @@
 # Data Wrangling {#dplyr}
 
+<img src="images/memes/real_world_data.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic

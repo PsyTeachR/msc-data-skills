@@ -1,6 +1,8 @@
 
 # Data Wrangling {#dplyr}
 
+<img src="images/memes/real_world_data.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic
@@ -718,16 +720,16 @@ tibble(
 ## # A tibble: 10 x 5
 ##    trial cond  score score_change last_cond_trial
 ##    <int> <chr> <int>        <int> <lgl>          
-##  1     1 exp       4           NA FALSE          
-##  2     2 exp       3           -1 FALSE          
-##  3     3 exp       4            1 FALSE          
-##  4     4 exp       4            0 FALSE          
-##  5     5 exp       4            0 FALSE          
-##  6     6 exp       4            0 TRUE           
-##  7     7 ctrl      3           -1 FALSE          
-##  8     8 ctrl      3            0 FALSE          
-##  9     9 ctrl      2           -1 FALSE          
-## 10    10 ctrl      2            0 TRUE
+##  1     1 exp       5           NA FALSE          
+##  2     2 exp       1           -4 FALSE          
+##  3     3 exp       7            6 FALSE          
+##  4     4 exp       2           -5 FALSE          
+##  5     5 exp       7            5 FALSE          
+##  6     6 exp       4           -3 TRUE           
+##  7     7 ctrl      2           -2 FALSE          
+##  8     8 ctrl      4            2 FALSE          
+##  9     9 ctrl      5            1 FALSE          
+## 10    10 ctrl      4           -1 TRUE
 ```
 
 <div class="try">

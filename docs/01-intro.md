@@ -1,6 +1,7 @@
 
 # Getting Started {#intro}
 
+<img src="images/memes/rstudio.png" class="meme right">
 
 ## Learning Objectives
 
@@ -24,7 +25,7 @@
 
 ## What is R?
 
-<img src="images/01/new_R_logo.png"  class="right meme">
+<img src="images/01/new_R_logo.png"  class="left meme">
 
 R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote **reproducible research**. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.
 
@@ -339,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.09856317  0.46276440  1.23685137 -0.81429235  0.46876232
-##  [6] -0.60829129  0.34018525 -0.25363210  0.54101338 -0.87420872
+##  [1] -1.251167e-01 -1.665723e+00 -7.714929e-01  1.194614e+00 -1.717075e+00
+##  [6] -3.553334e-01  1.326901e+00 -8.582414e-05 -4.911717e-01  9.367640e-01
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -351,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.44658 101.00780 100.06904 101.14967 100.32839  99.69402 100.89092
-##  [8]  98.77905 100.17704  99.50036
+##  [1]  98.65757  98.45955 101.79009 100.13478 101.40210 100.06986  98.44368
+##  [8] 100.43023  99.52391 100.52424
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -363,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.37865 100.34642 100.79165 100.24353  99.77495 100.34737 100.46393
-##  [8] 101.13825  98.52547  99.32850
+##  [1]  98.80713 100.33620  98.99604  99.66518 100.44964 100.02350 100.23668
+##  [8] 101.16291 100.96318  99.19820
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -375,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   96.58557 -106.34795  156.82321  130.63942   86.48187   27.86526
-##  [7]   99.49575  104.24527  -66.79178  -19.03204
+##  [1] -108.11861  -71.89488  185.27094   47.31027  207.89062   17.00817
+##  [7] -214.84134   10.97397  -51.86957  -56.24787
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -466,11 +467,11 @@ fortune()
 
 ```
 ## 
-## As for the question of the bug in `is', ... it depends what your
-## definition of `is' is.
-##    -- Douglas Bates (referring to Bill Clinton after a tortuous discussion
-##       of the behavior of is(7, "integer"))
-##       R-help (September 2008)
+## If you aren't sure of the relative priority of two operators, use
+## parentheses. 1:(nr-1) would work regardless of whether : or - had higher
+## priority. Or, in extreme cases, read the documentation.
+##    -- Duncan Murdoch
+##       R-help (August 2005)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -504,19 +505,20 @@ jason()
 
 ```
 ## 
-##  Well, I've narrowed it down to two possibilities: yes and no. 
+##  I missed my mom's back surgery because I had already promised my landlord's nephew that I would help him figure out his new phone. 
 ## 
 ##  ~ Chidi
-##  I'll miss you too, you sexy skyscraper. 
+##  YA BASIC! 
 ## 
 ##  ~ Eleanor
-##  I also dabbled in some other professions. I was a model, a museum curator, an "It Girl," and... oh, I was Baz Luhrmann's muse for a while. That was quite fun. 
+##  Well, I suppose some part of me possibly has a sense of casual kinship with you, much as one might be fond of a street cat. 
 ## 
 ##  ~ Tahani
-##  I always trust dudes in bow ties. Once, this guy in a bow tie came up to me at the gun range in a Jacksonville bus station and said he'd give me $600 if I put these weird turtles in my duffle bag and brought them to Daytona Beach. So I hotwired a swamp boat to Daytona and the guy paid me the $600. My point is, you always trust dudes in bow ties. 
+##  She's my everything. She makes the bass drop in my heart. 
 ## 
 ##  ~ Jason
 ```
+
 
 <div class="try">
 <p>How many different ways can you find to discover what functions are available in the goodshirt package?</p>
