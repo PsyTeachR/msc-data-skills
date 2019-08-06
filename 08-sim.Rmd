@@ -7,19 +7,20 @@
 ### Basic
 
 1. Understand what types of data are best modeled by different distributions
-    + uniform
-    + binomial
-    + normal
-    + poisson
+    + [uniform](#uniform)
+    + [binomial](#binomial)
+    + [normal](#normal)
+    + [poisson](#poisson)
 2. Generate and plot data randomly sampled from the above distributions
 3. Test sampled distributions against a null hypothesis
-    + exact binomial test
-    + t-test (1-sample, independent samples, paired samples)
-    + correlation (pearson, kendall and spearman)
-4. Define the following statistical terms:
+    + [exact binomial test](#exact-binom)
+    + [t-test](#t-test) (1-sample, independent samples, paired samples)
+    + [correlation](#correlation) (pearson, kendall and spearman)
+4. Define the following [statistical terms](#stat-terms):
     + p-value
     + alpha
     + power
+    + smallest effect size of interest (SESOI)
     + false positive (type I error)
     + false negative (type II error)
     + confidence interval
@@ -36,9 +37,10 @@
 
 ## Resources
 
+* [Distribution Shiny App](http://shiny.psy.gla.ac.uk/debruine/simulate/)
+* [Simulation tutorials](https://debruine.github.io/tutorials/sim-data.html)
 * [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science*
 * [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera (week 1)
-* [Simulation tutorials](https://debruine.github.io/tutorials/sim-data.html)
 * [Faux](https://debruine.github.io/faux/) package for data simulation
 * [Simulation-Based Power-Analysis for Factorial ANOVA Designs](https://psyarxiv.com/baxsf) [@lakens_caldwell_2019]
 * [Understanding mixed effects models through data simulation](https://psyarxiv.com/xp5cy/) [@debruine_barr_2019]
@@ -55,7 +57,7 @@ library(MASS)
 set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
-### Uniform Distribution
+### Uniform Distribution {#uniform}
 
 The uniform distribution is the simplest distribution. All numbers in the range have an equal probability of being sampled.
 
@@ -79,15 +81,21 @@ runif(10, min = 0, max = 1)
 
 Use `sample()` to sample from a discrete distribution.
 
-Simulate a single roll of a 6-sided die.
+Simulate the number of feral hogs (30-50) that will run into your yard within 3-5 minutes while your small kids play.
+
 ```{r sample}
-sample(6, 1)
+sample(30:50, 1)
 ```
 
-Simulate 10 rolls of a 6-sided die. Set `replace` to `TRUE` so each roll is independent. See what happens if you set `replace` to `FALSE`.
+Simulate a full year of feral hog attacks (365 events). Set `replace` to `TRUE` so each event is independent. See what happens if you set `replace` to `FALSE`.
 
 ```{r sample-replace}
-sample(6, 10, replace = TRUE)
+feralhogs <- sample(30:50, 365, replace = TRUE)
+
+# plot the results
+ggplot() + 
+  geom_histogram(aes(feralhogs), binwidth = 1, 
+                 fill = "white", color = "black")
 ```
 
 You can also use sample to sample from a list of named outcomes.
@@ -106,7 +114,7 @@ sample(pet_types, 10, replace = TRUE, prob = pet_prob)
 ```
 
 
-### Binomial Distribution
+### Binomial Distribution {#binomial}
 
 The binomial distribution is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails. 
 
@@ -163,7 +171,7 @@ ggplot() +
 Run the simulation above several times, noting how the histogram changes. Try changing the values of `n`, `size`, and `prob`.
 ```
 
-#### Exact binomial test
+#### Exact binomial test {#exact-binom}
 
 `binom.test(x, n, p)`
 
@@ -196,11 +204,40 @@ Run the code above several times, noting the p-values for the fair and biased co
 * How often do you conclude the biased coin is fair (false negatives)?
 ```
 
-#### False positives & negatives
+#### Statistical terms {#stat-terms}
 
-The probability that a test concludes the fair coin is biased is called the **false positive rate** (or _Type I Error Rate_). The **alpha** is the false positive rate we accept for a test. This is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html).
+The **effect** is some measure of your data. This will depend on the type of data you have and the type of statistical test you are using. For example, if you flipped a coin 100 times and it landed heads 66 times, the effect would be 66/100. You can then use the exact binomial test to compare this effect to the **null effect** you would expect from a fair coin (50/100) or to any other effect you choose. The **effect size** refers to the difference between the effect in your data and the null effect (usually a chance value).
 
-The probability that a test concludes the biased coin is fair is called the **false negative rate** (of _Type II Error Rate_). The **power** of a test is 1 minus its false negative rate (i.e., the **true positive rate**). Power depends on how biased the coin is, how many samples we take, and what we set alpha to. 
+The **p-value** of a test is the probability of seeing an effect at least as extreme as what you have, if the real effect was the value you are testing against (e.g., a null effect). So if you used a binomial test to test against a chance probability of 1/6 (e.g., the probability of rolling 1 with a 6-sided die), then a p-value of 0.17 means that you could expect to see effects at least as extreme as your data 17% of the time just by chance alone. 
+
+If you are using null hypothesis significance testing (**NHST**), then you need to decide on a cutoff value (**alpha**) for making a decision to reject the null hypothesis. We call p-values below the alpha cutoff **significant**. In psychology, alpha is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html). 
+
+The probability that a test concludes there is an effect when there is really no effect (e.g., concludes a fair coin is biased) is called the **false positive rate** (or _Type I Error Rate_). The alpha is the false positive rate we accept for a test. The probability that a test concludes there is no effect when there really is one (e.g., concludes a biased coin is fair) is called the **false negative rate** (or _Type II Error Rate_). The **beta** is the false negative rate we accept for a test.
+
+```{block type="info"}
+The false positive rate is not the overall probability of getting a false positive, but the probability of a false positive *under the null hypothesis*. Similarly, the false negative rate is the probability of a false negative *under the alternative hypothesis*. Unless we know the probability that we are testing a null effect, we can't say anything about the overall probability of false positives or negatives. If 100% of the hypotheses we test are false, then all significant effects are false positives, but if all of the hypotheses we test are true, then all of the positives are true positives and the overall false positive rate is 0.
+```
+
+
+**Power** is equal to 1 minus beta (i.e., the **true positive rate**), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last.  The effect size you use in power calculations should be the smallest effect size of interest (**SESOI**). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
+
+<div class="try">
+Let's say you want to be able to detect at least a 15% difference from chance (50%) in a coin's fairness, and you want your test to have a 5% chance of false positives and a 10% chance of false negatives. What are the following values?
+
+* alpha = `r fitb(c("0.05", ".05", "5%"))`
+* beta = `r fitb(c("0.1", "0.10", ".1", ".10", "10%"))`
+* false positive rate = `r fitb(c("0.05", ".05", "5%"))`
+* false negative rate = `r fitb(c("0.1", "0.10", ".1", ".10", "10%"))`
+* power = `r fitb(c("0.9", "0.90", ".9", ".90", "90%"))`
+* SESOI = `r fitb(c("0.15", ".15", "15%"))`
+</div>
+
+The **confidence interval** is a range around some value (such as a mean) that has some probability (usually 95%, but you can calculate CIs for any percentage) of containing the parameter, if you repeated the process many times. 
+
+<div class="info">
+A 95% CI does *not* mean that there is a 95% probability that the true mean lies within this range, but that, if you repeated the study many times and calculated the CI this same way every time, you'd expect the true mean to be inside the CI for 95% of the studies. This seems like a subtle distinction, but can lead to some misunderstandings. See [@Morey2016](https://link.springer.com/article/10.3758/s13423-015-0947-8) for more detailed discussion.
+</div>
+
 
 #### Sampling function
 
@@ -208,7 +245,7 @@ To estimate these rates, we need to repeat the sampling above many times.
 A function is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:
 
 * different sample sizes (`n`)
-* different coin biases (`bias`)
+* different effects (`bias`)
 * different hypothesised probabilities (`p`, defaults to 0.5)
 
 ```{r sim_binom_test}
@@ -246,7 +283,7 @@ mean(my_reps < alpha)
 `1e4` is just scientific notation for a 1 followed by 4 zeros (`10000`). When you're running simulations, you usually want to run a lot of them. It's a pain to keep track of whether you've typed 5 or 6 zeros (100000 vs 1000000) and this will change your running time by an order of magnitude.
 ```
 
-### Normal Distribution
+### Normal Distribution {#normal}
 
 #### Sample distribution
 
@@ -282,7 +319,7 @@ ggplot() +
 Run the simulation above several times, noting how the density plot changes. What do the vertical lines represent? Try changing the values of `n`, `mean`, and `sd`.
 ```
 
-#### T-test
+#### T-test {#t-test}
 
 `t.test(x, y, alternative, mu, paired)`
 
@@ -394,7 +431,7 @@ Make sure the `boundary` argument is set to `0` for p-value histograms. See what
 
 #### Bivariate Normal
 
-##### Correlation 
+##### Correlation {#correlation}
 
 You can test if two continuous variables are related to each other using the `cor()` function.
 
@@ -457,7 +494,7 @@ bvn %>%
     geom_density2d()
 ```
 
-### Multivariate Normal
+### Multivariate Normal {#mvnormal}
 
 ##### Sample distribution
 
