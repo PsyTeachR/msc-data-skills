@@ -72,7 +72,12 @@ Take a minute to think of things in your own research that are uniformly distrib
 Use `runif()` to sample from a continuous uniform distribution.
 
 ```{r runif}
-runif(10, min = 0, max = 1)
+u <- runif(100000, min = 0, max = 1)
+
+# plot to visualise
+ggplot() + 
+  geom_histogram(aes(u), binwidth = 0.05, boundary = 0,
+                 fill = "white", colour = "black")
 ```
 
 #### Sample discrete distribution
@@ -81,15 +86,9 @@ runif(10, min = 0, max = 1)
 
 Use `sample()` to sample from a discrete distribution.
 
-Simulate the number of feral hogs (30-50) that will run into your yard within 3-5 minutes while your small kids play.
+Assume a uniform distribution of 30-50 [feral hogs](https://twitter.com/WillieMcNabb/status/1158045307562856448) that daily run into your yard within 3-5 minutes while your small kids play. Simulate a full year of feral hog attacks (365 events). Set `replace` to `TRUE` so each event is independent. See what happens if you set `replace` to `FALSE`.
 
-```{r sample}
-sample(30:50, 1)
-```
-
-Simulate a full year of feral hog attacks (365 events). Set `replace` to `TRUE` so each event is independent. See what happens if you set `replace` to `FALSE`.
-
-```{r sample-replace}
+```{r sample-replace, fig.cap = "Distribution of feral hogs."}
 feralhogs <- sample(30:50, 365, replace = TRUE)
 
 # plot the results
