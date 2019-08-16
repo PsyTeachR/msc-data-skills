@@ -55,8 +55,8 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
 * [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*
 * [Graphs](http://www.cookbook-r.com/Graphs) in *Cookbook for R*
-* [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
-* [ggplot2 documentation](http://ggplot2.tidyverse.org/reference/)
+* [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+* [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 * [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
 * [Top 50 ggplot2 Visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 * [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/) by Winston Chang
@@ -78,6 +78,13 @@ set.seed(30250) # makes sure random numbers are reproducible
 
 ## Common Variable Combinations {#vartypes}
 
+**Continuous** variables are properties you can measure, like height. **Discrete** (or categorical) variables are things you can count, like the number of pets you have. Categorical variables can be **nominal**, where the categories don't really have an order, like cats, dogs and ferrets (even though ferrets are obviously best). They can also be **ordinal**, where there is a clear order, but the distance between the categories isn't something you could exactly equate, like points on a Likert rating scale.
+
+Different types of visualisations are good for different types of variables. 
+
+```{block, type="try"}
+Before you read ahead, come up with an example of each type of variable combination and sketch the types of graphs that would best display these data.
+
 * 1 discrete
 * 1 continuous
 * 2 discrete
@@ -85,13 +92,11 @@ set.seed(30250) # makes sure random numbers are reproducible
 * 1 discrete, 1 continuous
 * 3 continuous
 
-```{block, type="try"}
-Before you read ahead, come up with an example of each type of variable combination and sketch the types of graphs that would best display these data.
 ```
 
-## Data
+### Data
 
-The code below creates some data frames with different types of data. 
+The code below creates some data frames with different types of data. We'll learn how to simulate data like this in the [Probability & Simulation](#sim) chapter, but for now just run the code chunk below.
 
 * `pets` has a column with pet type
 * `pet_happy` has `happiness` and `age` for 500 dog owners and 500 cat owners
@@ -150,8 +155,8 @@ ggplot(pets, aes(pet)) +
   geom_bar()
 ```
 
-### Density plot
-<a name="geom_density"></a>
+### Density plot {#geom_density}
+
 Density plots are good for one continuous variable, but only if you have a fairly 
 large number of observations.
 
@@ -162,8 +167,7 @@ ggplot(pet_happy, aes(happiness)) +
 
 ```
 
-You can represent subsets of a variable by assigning the category variable to 
-the argument `group`, `fill`, or `color`. 
+You can represent subsets of a variable by assigning the category variable to the argument `group`, `fill`, or `color`. 
 
 ```{r density-grouped, fig.cap="Grouped density plot"}
 
@@ -276,7 +280,6 @@ ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
 ```{block, type="try"}
 Try changing the numbers in the `draw_quantiles` argument.
 ```
-
 
 ### Scatter plot {#geom_point}
 
@@ -482,9 +485,9 @@ plot_grid(
 ```
 
 
-## Overlapping Data {#overlap}
+## Overlapping Discrete Data {#overlap}
 
-### Discrete Data 
+### Reducing Opacity 
 
 You can deal with overlapping data points (very common if you're using Likert scales) by reducing the opacity of the points. You need to use trial and error to adjust these so they look right.
 
@@ -496,7 +499,8 @@ ggplot(overlap, aes(x, y)) +
 
 ```
 
-{#geom_count}
+### Proportional Dot Plots {#geom_count}
+
 Or you can set the size of the dot proportional to the number of overlapping observations using `geom_count()`.
 
 ```{r overlap-size, fig.cap="Deal with overlapping data using geom_count()"}
@@ -525,7 +529,7 @@ overlap %>%
 The [viridis package](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) changes the colour themes to be easier to read by people with colourblindness and to print better in greyscale. Viridis is built into `ggplot2` since v3.0.0. It uses `scale_colour_viridis_c()` and `scale_fill_viridis_c()` for continuous variables and `scale_colour_viridis_d()` and `scale_fill_viridis_d()` for discrete variables.
 ```
 
-## Continuous Data
+## Overlapping Continuous Data
 
 Even if the variables are continuous, overplotting might obscure any relationships if you have lots of data.
 
@@ -555,8 +559,8 @@ overplot %>%
 
 
 ### 2D Histogram {#geom_bin2d}
-Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the 
-`binwidth` to the x and y dimensions to capture in each box.
+
+Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the `binwidth` to the x and y dimensions to capture in each box.
 
 ```{r bin2d, fig.cap="Heatmap of bin counts"}
 overplot %>%
@@ -565,8 +569,8 @@ overplot %>%
 ```
 
 ### Hexagonal Heatmap {#geom_hex}
-Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the 
-`binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons more or less stretched.
+
+Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the `binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons more or less stretched.
 
 ```{r overplot-hex, fig.width=6, fig.height=5, fig.cap="Hexagonal heatmap of bin counts"}
 overplot %>%
@@ -574,7 +578,7 @@ overplot %>%
   geom_hex(binwidth = c(0.25, 0.25))
 ```
 
-### Heat map {#geom_tile}
+### Correlation Heatmap {#geom_tile}
 
 I've included the code for creating a correlation matrix from a table of variables, but you don't need to understand how this is done yet. We'll cover `mutate()` and `gather()` functions in the [dplyr](#dplyr) and [tidyr](#tidyr) lessons.
 
