@@ -15,3 +15,12 @@
   margin-left: 0;
 }
 
+pre.mcq {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: none;
+  display: inline;
+  border: none !important;
+  border-radius: none;
+}
+

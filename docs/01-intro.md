@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.52382923 -1.76776028 -0.09611163 -1.24677948  0.76274724
-##  [6]  0.13102209  0.16767751 -0.56822653  0.94716733  1.61130470
+##  [1] -0.1148093 -1.1818255  1.1022341  0.7891923 -0.6835571  1.0946151
+##  [7]  2.4285974 -2.0662243 -1.3332746  0.5947874
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.58854 101.10565 101.48492  99.95297  99.16684 101.93593  99.62008
-##  [8] 100.04475 100.78417 101.24237
+##  [1]  99.89754  99.38238 101.00037  98.49367  99.97468  99.75632  99.12295
+##  [8] 102.73802  99.09099  99.93376
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.64114  99.11390 100.10040 100.66506 100.45889 100.64646 100.62103
-##  [8]  99.10162 100.16867 100.40071
+##  [1]  99.14946  99.92271  98.58670  98.39998  98.43845 100.81995 100.88500
+##  [8]  99.39095  99.64241  98.79218
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   -3.935046   68.800907   13.044827  167.547209  -83.920865
-##  [6]  -24.705564 -164.866269   -7.365143  -68.175735   17.961633
+##  [1]  -16.08716  -62.95186  -18.00251   80.30310 -131.74656 -138.00908
+##  [7]   75.53863  107.05757  216.54871  103.10228
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -467,9 +467,9 @@ fortune()
 
 ```
 ## 
-## You can be maximally lazy, but still be efficient.
-##    -- Kevin Murphy (describing the implementation of an algorithm)
-##       gR 2003, Aalborg (September 2003)
+## Soon, they'll be speaking R on the subway.
+##    -- Michael Rennie (giving 'Kudos to the R support team')
+##       R-help (July 2004)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -506,13 +506,13 @@ jason()
 ##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
 ## 
 ##  ~ Chidi
-##  Pobody's nerfect. 
+##   First of all, throwing sand is an excellent way to put out a vodka fire. 
 ## 
 ##  ~ Eleanor
-##  What is that? Is that jewelry? Not that it matters. It's just some jewelry I don't have. Can I have it? 
+##  That roast was the meanest thing I've ever seen and I once saw a waiter bring Russell Crowe the wrong tea. 
 ## 
 ##  ~ Tahani
-##  I have no idea what's going on right now but everyone else is talking and I think I should too! 
+##  I'm too young to die and too old to eat off the kids menu! What a stupid age I am. 
 ## 
 ##  ~ Jason
 ```

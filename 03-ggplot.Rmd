@@ -488,7 +488,7 @@ plot_grid(
 
 You can deal with overlapping data points (very common if you're using Likert scales) by reducing the opacity of the points. You need to use trial and error to adjust these so they look right.
 
-```{r overlap_alpha, fig.cap="Deal with overlapping data using transparency"}
+```{r overlap-alpha, fig.cap="Deal with overlapping data using transparency"}
 
 ggplot(overlap, aes(x, y)) +
   geom_point(size = 5, alpha = .05) +
@@ -499,7 +499,7 @@ ggplot(overlap, aes(x, y)) +
 {#geom_count}
 Or you can set the size of the dot proportional to the number of overlapping observations using `geom_count()`.
 
-```{r overlap_size, fig.cap="Deal with overlapping data using geom_count()"}
+```{r overlap-size, fig.cap="Deal with overlapping data using geom_count()"}
 
 overlap %>%
   ggplot(aes(x, y)) +
@@ -520,13 +520,12 @@ overlap %>%
 
 ```
 
-{#viridis}
 
 ```{block, type="info"}
 The [viridis package](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) changes the colour themes to be easier to read by people with colourblindness and to print better in greyscale. Viridis is built into `ggplot2` since v3.0.0. It uses `scale_colour_viridis_c()` and `scale_fill_viridis_c()` for continuous variables and `scale_colour_viridis_d()` and `scale_fill_viridis_d()` for discrete variables.
 ```
 
-### Continuous Data
+## Continuous Data
 
 Even if the variables are continuous, overplotting might obscure any relationships if you have lots of data.
 
@@ -536,7 +535,7 @@ overplot %>%
   geom_point()
 ```
 
-{#geom_density2d}
+### 2D Density Plot {#geom_density2d}
 Use `geom_density2d()` to create a contour map.
 
 ```{r density2d, fig.cap="Contour map with geom_density2d()"}
@@ -555,7 +554,7 @@ overplot %>%
 ```
 
 
-{#geom_bin2d}
+### 2D Histogram {#geom_bin2d}
 Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the 
 `binwidth` to the x and y dimensions to capture in each box.
 
@@ -565,7 +564,7 @@ overplot %>%
   geom_bin2d(binwidth = c(1,1))
 ```
 
-{#geom_hex}
+### Hexagonal Heatmap {#geom_hex}
 Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the 
 `binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons more or less stretched.
 
@@ -575,7 +574,7 @@ overplot %>%
   geom_hex(binwidth = c(0.25, 0.25))
 ```
 
-## Heat map {#geom_tile}
+### Heat map {#geom_tile}
 
 I've included the code for creating a correlation matrix from a table of variables, but you don't need to understand how this is done yet. We'll cover `mutate()` and `gather()` functions in the [dplyr](#dplyr) and [tidyr](#tidyr) lessons.
 
@@ -663,6 +662,7 @@ Hover over the data points above and click on the legend items.
     ```
     
     ```{r quiz-save-answer, echo = FALSE, results = 'asis'}
+    cat("<pre class=\"mcq\">")
     c(
       "ggsave()",
       "ggsave(\"figname\")",
@@ -670,6 +670,7 @@ Hover over the data points above and click on the legend items.
       "ggsave(\"figname.png\", plot = cars)"
     ) %>%
       webex::mcq() %>% cat()
+  cat("</pre>")
     ```
 
   
