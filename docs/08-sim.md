@@ -18,23 +18,23 @@
     + [t-test](#t-test) (1-sample, independent samples, paired samples)
     + [correlation](#correlation) (pearson, kendall and spearman)
 4. Define the following [statistical terms](#stat-terms):
-    + p-value
-    + alpha
-    + power
-    + smallest effect size of interest (SESOI)
-    + false positive (type I error)
-    + false negative (type II error)
-    + confidence interval
+    + [p-value](#p-value)
+    + [alpha](#alpha)
+    + [power](#power)
+    + smallest effect size of interest ([SESOI](#sesoi))
+    + [false positive](#false-pos) (type I error)
+    + [false negative](#false-neg) (type II error)
+    + confidence interval ([CI](#conf-inf))
+5. [Calculate power](#calc-power) using iteration and a sampling function
 
 ### Intermediate
 
-5. Create a function to generate a sample with specific properties and run an inferential test
-6. Calculate power using `replicate` and a sampling function
-7. Calculate the minimum sample size for a specific power level and design
+6. Generate 3+ variables from a [multivariate normal](#mvnorm) distribution and plot them
 
 ### Advanced
 
-8. Generate 3+ variables from a multivariate normal distribution and plot them
+7. Calculate the minimum sample size for a specific power level and design
+
 
 ## Resources
 
@@ -91,21 +91,21 @@ ggplot() +
 
 Use `sample()` to sample from a discrete distribution.
 
-Assume a uniform distribution of 30-50 [feral hogs](https://twitter.com/WillieMcNabb/status/1158045307562856448) that daily run into your yard within 3-5 minutes while your small kids play. Simulate a full year of feral hog attacks (365 events). Set `replace` to `TRUE` so each event is independent. See what happens if you set `replace` to `FALSE`.
+You can use `sample()` to simulate events like rolling dice or choosing from a deck of cards. The code below simulates rolling a 6-sided die 10000 times. We set `replace` to `TRUE` so that each event is independent. See what happens if you set `replace` to `FALSE`.
 
 
 ```r
-feralhogs <- sample(30:50, 365, replace = TRUE)
+rolls <- sample(1:6, 10000, replace = TRUE)
 
 # plot the results
 ggplot() + 
-  geom_histogram(aes(feralhogs), binwidth = 1, 
+  geom_histogram(aes(rolls), binwidth = 1, 
                  fill = "white", color = "black")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/sample-replace-1.png" alt="Distribution of feral hogs." width="100%" />
-<p class="caption">(\#fig:sample-replace)Distribution of feral hogs.</p>
+<img src="08-sim_files/figure-html/sample-replace-1.png" alt="Distribution of dice rolls." width="100%" />
+<p class="caption">(\#fig:sample-replace)Distribution of dice rolls.</p>
 </div>
 
 You can also use sample to sample from a list of named outcomes.
@@ -117,8 +117,8 @@ sample(pet_types, 10, replace = TRUE)
 ```
 
 ```
-##  [1] "fish"   "ferret" "bird"   "fish"   "fish"   "cat"    "fish"  
-##  [8] "cat"    "bird"   "dog"
+##  [1] "cat"    "cat"    "cat"    "cat"    "ferret" "dog"    "bird"  
+##  [8] "cat"    "dog"    "fish"
 ```
 
 Ferrets are a much less common pet than cats and dogs, so our sample isn't very realistic. You can set the probabilities of each item in the list with the `prob` argument.
@@ -131,8 +131,7 @@ sample(pet_types, 10, replace = TRUE, prob = pet_prob)
 ```
 
 ```
-##  [1] "dog"    "cat"    "dog"    "dog"    "ferret" "bird"   "cat"   
-##  [8] "dog"    "dog"    "fish"
+##  [1] "fish" "dog"  "cat"  "dog"  "cat"  "dog"  "fish" "dog"  "cat"  "fish"
 ```
 
 
@@ -159,7 +158,7 @@ rbinom(20, 1, 0.5)
 ```
 
 ```
-##  [1] 1 1 0 1 0 1 1 1 0 1 0 1 1 0 0 0 1 0 1 0
+##  [1] 1 1 1 0 1 1 0 1 0 0 1 1 1 0 0 0 1 0 0 0
 ```
 
 
@@ -170,7 +169,7 @@ rbinom(20, 1, 0.75)
 ```
 
 ```
-##  [1] 1 1 0 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1
+##  [1] 1 1 1 0 1 0 1 1 1 0 1 1 1 0 0 1 1 1 1 1
 ```
 
 You can generate the total number of heads in 1 set of 20 coin flips by setting `size` to 20 and `n` to 1.
@@ -181,7 +180,7 @@ rbinom(1, 20, 0.75)
 ```
 
 ```
-## [1] 16
+## [1] 13
 ```
 
 You can generate more sets of 20 coin flips by increasing the `n`.
@@ -192,7 +191,7 @@ rbinom(10, 20, 0.5)
 ```
 
 ```
-##  [1] 14 10  9 11  8  9 12 12 14  9
+##  [1] 10 14 11  7 11 13  6 10  9  9
 ```
 
 You should always check your randomly generated data to check that it makes sense. For large samples, it's easiest to do that graphically. A histogram is usually the best choice for plotting binomial data.
@@ -243,25 +242,25 @@ binom.test(biased_coin, n, p = 0.5)
 ## 	Exact binomial test
 ## 
 ## data:  fair_coin and n
-## number of successes = 3, number of trials = 10, p-value = 0.3438
+## number of successes = 4, number of trials = 10, p-value = 0.7539
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.06673951 0.65245285
+##  0.1215523 0.7376219
 ## sample estimates:
 ## probability of success 
-##                    0.3 
+##                    0.4 
 ## 
 ## 
 ## 	Exact binomial test
 ## 
 ## data:  biased_coin and n
-## number of successes = 9, number of trials = 10, p-value = 0.02148
+## number of successes = 7, number of trials = 10, p-value = 0.3438
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
-##  0.5549839 0.9974714
+##  0.3475471 0.9332605
 ## sample estimates:
 ## probability of success 
-##                    0.9
+##                    0.7
 ```
 
 <div class="info">
@@ -279,18 +278,23 @@ binom.test(biased_coin, n, p = 0.5)
 
 The **effect** is some measure of your data. This will depend on the type of data you have and the type of statistical test you are using. For example, if you flipped a coin 100 times and it landed heads 66 times, the effect would be 66/100. You can then use the exact binomial test to compare this effect to the **null effect** you would expect from a fair coin (50/100) or to any other effect you choose. The **effect size** refers to the difference between the effect in your data and the null effect (usually a chance value).
 
+<img src="images/memes/p-value.jpg" class="meme right">
+
+{#p-value}
 The **p-value** of a test is the probability of seeing an effect at least as extreme as what you have, if the real effect was the value you are testing against (e.g., a null effect). So if you used a binomial test to test against a chance probability of 1/6 (e.g., the probability of rolling 1 with a 6-sided die), then a p-value of 0.17 means that you could expect to see effects at least as extreme as your data 17% of the time just by chance alone. 
 
+{#alpha}
 If you are using null hypothesis significance testing (**NHST**), then you need to decide on a cutoff value (**alpha**) for making a decision to reject the null hypothesis. We call p-values below the alpha cutoff **significant**. In psychology, alpha is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html). 
 
+{#false-pos}{#false-neg}
 The probability that a test concludes there is an effect when there is really no effect (e.g., concludes a fair coin is biased) is called the **false positive rate** (or _Type I Error Rate_). The alpha is the false positive rate we accept for a test. The probability that a test concludes there is no effect when there really is one (e.g., concludes a biased coin is fair) is called the **false negative rate** (or _Type II Error Rate_). The **beta** is the false negative rate we accept for a test.
 
 <div class="info">
 <p>The false positive rate is not the overall probability of getting a false positive, but the probability of a false positive <em>under the null hypothesis</em>. Similarly, the false negative rate is the probability of a false negative <em>under the alternative hypothesis</em>. Unless we know the probability that we are testing a null effect, we can’t say anything about the overall probability of false positives or negatives. If 100% of the hypotheses we test are false, then all significant effects are false positives, but if all of the hypotheses we test are true, then all of the positives are true positives and the overall false positive rate is 0.</p>
 </div>
 
-
-**Power** is equal to 1 minus beta (i.e., the **true positive rate**), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last.  The effect size you use in power calculations should be the smallest effect size of interest (**SESOI**). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
+{#power}{#sesoi}
+**Power** is equal to 1 minus beta (i.e., the **true positive rate**), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last. The effect size you use in power calculations should be the smallest effect size of interest (**SESOI**). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
 
 <div class="try">
 Let's say you want to be able to detect at least a 15% difference from chance (50%) in a coin's fairness, and you want your test to have a 5% chance of false positives and a 10% chance of false negatives. What are the following values?
@@ -303,10 +307,11 @@ Let's say you want to be able to detect at least a 15% difference from chance (5
 * SESOI = <input class='solveme nospaces' size='4' data-answer='["0.15",".15","15%"]'/>
 </div>
 
+{#conf-int}
 The **confidence interval** is a range around some value (such as a mean) that has some probability (usually 95%, but you can calculate CIs for any percentage) of containing the parameter, if you repeated the process many times. 
 
 <div class="info">
-A 95% CI does *not* mean that there is a 95% probability that the true mean lies within this range, but that, if you repeated the study many times and calculated the CI this same way every time, you'd expect the true mean to be inside the CI for 95% of the studies. This seems like a subtle distinction, but can lead to some misunderstandings. See [@Morey2016](https://link.springer.com/article/10.3758/s13423-015-0947-8) for more detailed discussion.
+A 95% CI does *not* mean that there is a 95% probability that the true mean lies within this range, but that, if you repeated the study many times and calculated the CI this same way every time, you'd expect the true mean to be inside the CI in 95% of the studies. This seems like a subtle distinction, but can lead to some misunderstandings. See [@Morey2016](https://link.springer.com/article/10.3758/s13423-015-0947-8) for more detailed discussion.
 </div>
 
 
@@ -340,7 +345,7 @@ sim_binom_test(100, 0.6)
 ## [1] 0.271253
 ```
 
-#### Calculate power
+#### Calculate power {#calc-power}
 
 Then you can use the `replicate()` function to run it many times and save all the output values. You can calculate the *power* of your analysis by checking the proportion of your simulated analyses that have a p-value less than your _alpha_ (the probability of rejecting the null hypothesis when the null hypothesis is true).
 
@@ -354,7 +359,7 @@ mean(my_reps < alpha)
 ```
 
 ```
-## [1] 0.4621
+## [1] 0.4678
 ```
 
 <div class="info">
@@ -424,13 +429,13 @@ t.test(sim_norm, mu = 0)
 ## 	One Sample t-test
 ## 
 ## data:  sim_norm
-## t = 4.1655, df = 99, p-value = 6.647e-05
+## t = 5.1431, df = 99, p-value = 1.367e-06
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  0.2294637 0.6469259
+##  0.3027835 0.6831659
 ## sample estimates:
 ## mean of x 
-## 0.4381948
+## 0.4929747
 ```
 
 Run an independent-samples t-test by comparing two lists of values.
@@ -448,13 +453,13 @@ t_ind
 ## 	Welch Two Sample t-test
 ## 
 ## data:  a and b
-## t = -0.48867, df = 197.58, p-value = 0.6256
+## t = 0.043602, df = 197.5, p-value = 0.9653
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.3508385  0.2114936
+##  -0.2813281  0.2940499
 ## sample estimates:
 ## mean of x mean of y 
-## 0.3851455 0.4548180
+## 0.5123162 0.5059554
 ```
 
 <div class="warning">
@@ -463,8 +468,8 @@ t_ind
 
 #### Sampling function
 
-We can use the `names()` function to find out the names of all the t.test parameters 
-and use this to just get one type of data, like the test statistic (e.g., t-value).
+We can use the `names()` function to find out the names of all the t.test parameters and use this to just get one type of data, like the test statistic (e.g., t-value).
+
 
 ```r
 names(t_ind)
@@ -475,7 +480,7 @@ t_ind$statistic
 ##  [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   
 ##  [6] "null.value"  "stderr"      "alternative" "method"      "data.name"  
 ##          t 
-## -0.4886689
+## 0.04360244
 ```
 
 Alternatively, use `broom::tidy()` to convert the output into a tidy table.
@@ -489,14 +494,13 @@ broom::tidy(t_ind)
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1  -0.0697     0.385     0.455    -0.489   0.626      198.   -0.351
+## 1  0.00636     0.512     0.506    0.0436   0.965      197.   -0.281
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
 
 
-If you want to run the simulation many times and record information each time, 
-first you need to turn your simulation into a function.
+If you want to run the simulation many times and record information each time, first you need to turn your simulation into a function.
 
 
 ```r
@@ -517,7 +521,7 @@ sim_t_ind(100, 0.7, 1, 0.5, 1)
 ```
 
 ```
-## [1] 0.6831236
+## [1] 0.1002539
 ```
 
 Now replicate the simulation 1000 times.
@@ -532,15 +536,14 @@ power
 ```
 
 ```
-## [1] 0.2881
+## [1] 0.2926
 ```
 
 <div class="try">
 <p>Run the code above several times. How much does the power value fluctuate? How many replications do you need to run to get a reliable estimate of power?</p>
 </div>
 
-Compare your power estimate from simluation to a power calculation using `power.t.test()`. 
-Here, `delta` is the difference between `m1` and `m2` above.
+Compare your power estimate from simluation to a power calculation using `power.t.test()`. Here, `delta` is the difference between `m1` and `m2` above.
 
 
 ```r
@@ -560,7 +563,6 @@ power.t.test(n = 100, delta = 0.2, sd = 1, sig.level = alpha, type = "two.sample
 ## 
 ## NOTE: n is number in *each* group
 ```
-
 
 You can plot the distribution of p-values.
 
@@ -586,33 +588,34 @@ ggplot() +
 <p>Make sure the <code>boundary</code> argument is set to <code>0</code> for p-value histograms. See what happens with a null effect if <code>boundary</code> is not set.</p>
 </div>
 
-#### Bivariate Normal
+### Bivariate Normal
 
-##### Correlation {#correlation}
+#### Correlation {#correlation}
 
 You can test if two continuous variables are related to each other using the `cor()` function.
 
-Below is a quick and dirty way to generate two correlated variables. `x` is drawn 
-from a normal distribution, while `y` is the sum of `x` and another value drawn 
-from a random normal distribution. We'll learn later how to generate specific 
-correlations in simulated data.
+Below is one way to generate two correlated variables: `a` is drawn from a normal distribution, while `x` and `y` the sum of  and another value drawn from a random normal distribution. We'll learn later how to generate specific correlations in simulated data.
 
 
 ```r
 n <- 100 # number of random samples
 
-x <- rnorm(n, 0, 1)
-y <- x + rnorm(n, 0, 1)
+a <- rnorm(n, 0, 1)
+x <- a + rnorm(n, 0, 1)
+y <- a + rnorm(n, 0, 1)
 
 cor(x, y)
 ```
 
 ```
-## [1] 0.7457472
+## [1] 0.5500246
 ```
 
-`cor()` defaults to Pearson's correlations. Set the `method` argument to use 
-Kendall or Spearman correlations.
+<div class="try">
+<p>Set <code>n</code> to a large number like 1e6 so that the correlations are less affected by chance. Change the value of the <strong>mean</strong> for <code>a</code>, <code>x</code>, or <code>y</code>. Does it change the correlation between <code>x</code> and <code>y</code>? What happens when you increase or decrease the <strong>sd</strong> for <code>a</code>? Can you work out any rules here?</p>
+</div>
+
+`cor()` defaults to Pearson's correlations. Set the `method` argument to use Kendall or Spearman correlations.
 
 
 ```r
@@ -620,22 +623,20 @@ cor(x, y, method = "spearman")
 ```
 
 ```
-## [1] 0.6889409
+## [1] 0.529553
 ```
 
-##### Sample distribution
-<a name="bvn"></a>
+#### Sample distribution {#bvn}
 
-What if we want to sample from a population with specific relationships between 
-variables? We can sample from a _bivariate normal distribution_ using the `MASS` package,
+What if we want to sample from a population with specific relationships between variables? We can sample from a **bivariate normal distribution** using `mvrnorm()` from the `MASS` package. 
 
 
 ```r
-n <- 1000 # number of random samples
-rho <- 0.5 # population correlation between the two variables
+n   <- 1000 # number of random samples
+rho <- 0.5  # population correlation between the two variables
 
-mu <- c(10, 20) # the means of the samples
-stdevs <- c(5, 6) # the SDs of the samples
+mu     <- c(10, 20) # the means of the samples
+stdevs <- c(5, 6)   # the SDs of the samples
 
 # correlation matrix
 cor_mat <- matrix(c(  1, rho, 
@@ -645,19 +646,18 @@ cor_mat <- matrix(c(  1, rho,
 sigma <- (stdevs %*% t(stdevs)) * cor_mat
 
 # sample from bivariate normal distribution
-bvn <- mvrnorm(n, mu, sigma) 
+bvn <- MASS::mvrnorm(n, mu, sigma) 
 
 cor(bvn) # check correlation matrix
 ```
 
 ```
 ##           [,1]      [,2]
-## [1,] 1.0000000 0.4869113
-## [2,] 0.4869113 1.0000000
+## [1,] 1.0000000 0.5081377
+## [2,] 0.5081377 1.0000000
 ```
 
-Plot your sampled variables to check everything worked like you expect. You need 
-to convert the output of `mvnorm` into a tibble in order to use it in ggplot.
+Plot your sampled variables to check everything worked like you expect. It's easiest to convert the output of `mvnorm` into a tibble in order to use it in ggplot.
 
 
 ```r
@@ -676,19 +676,21 @@ bvn %>%
 
 <img src="08-sim_files/figure-html/graph-bvn-1.png" width="100%" style="display: block; margin: auto;" />
 
-### Multivariate Normal {#mvnormal}
+### Multivariate Normal {#mvnorm}
 
-##### Sample distribution
+You can generate more than 2 correlated variables, but it gets a little trickier to create the correlation matrix.
+
+#### Sample distribution
 
 
 ```r
-n <- 200 # number of random samples
+n      <- 200 # number of random samples
 rho1_2 <- 0.5 # correlation betwen v1 and v2
-rho1_3 <- 0 # correlation betwen v1 and v3
+rho1_3 <- 0   # correlation betwen v1 and v3
 rho2_3 <- 0.7 # correlation betwen v2 and v3
 
-mu <- c(10, 20, 30) # the means of the samples
-stdevs <- c(8, 9, 10) # the SDs of the samples
+mu     <- c(10, 20, 30) # the means of the samples
+stdevs <- c(8, 9, 10)   # the SDs of the samples
 
 # correlation matrix
 cor_mat <- matrix(c(     1, rho1_2, rho1_3, 
@@ -696,19 +698,59 @@ cor_mat <- matrix(c(     1, rho1_2, rho1_3,
                     rho1_3, rho2_3,      1), 3) 
 
 sigma <- (stdevs %*% t(stdevs)) * cor_mat
-bvn3 <- mvrnorm(n, mu, sigma)
+bvn3 <- MASS::mvrnorm(n, mu, sigma)
 
 cor(bvn3) # check correlation matrix
 ```
 
 ```
-##             [,1]      [,2]        [,3]
-## [1,]  1.00000000 0.4492981 -0.01446969
-## [2,]  0.44929815 1.0000000  0.75307538
-## [3,] -0.01446969 0.7530754  1.00000000
+##           [,1]      [,2]      [,3]
+## [1,] 1.0000000 0.5983590 0.1529026
+## [2,] 0.5983590 1.0000000 0.6891871
+## [3,] 0.1529026 0.6891871 1.0000000
 ```
 
-##### 3D Plots
+Alternatively, you can use the (in-development) package faux to generate any number of correlated variables. It also allows to to easily name the variables and has a function for checking the parameters of your new simulated data (`check_sim_stats()`).
+
+
+```r
+#devtools::install_github("debruine/faux")
+library(faux)
+```
+
+```
+## 
+## ************
+## Welcome to faux. For support and examples visit:
+## http://debruine.github.io/faux/
+## - Get and set global package options with: faux_options()
+## ************
+```
+
+```r
+bvn3 <- faux::rnorm_multi(
+  n = n,
+  vars = 3,
+  mu = mu,
+  sd = stdevs,
+  r = c(rho1_2, rho1_3, rho2_3),
+  varnames = c("A", "B", "C")
+)
+
+faux::check_sim_stats(bvn3)
+```
+
+```
+## # A tibble: 3 x 7
+##       n var       A     B     C  mean    sd
+##   <dbl> <chr> <dbl> <dbl> <dbl> <dbl> <dbl>
+## 1   200 A      1     0.54  0.1   10.5  7.27
+## 2   200 B      0.54  1     0.73  20.6  9.46
+## 3   200 C      0.1   0.73  1     30.7  9.64
+```
+
+
+#### 3D Plots
 
 You can use the `plotly` library to make a 3D graph.
 
@@ -759,12 +801,12 @@ marker_style = list(
 
 bvn3 %>%
   as_tibble() %>%
-  plot_ly(x = ~V1, y = ~V2, z = ~V3, marker = marker_style) %>%
+  plot_ly(x = ~A, y = ~B, z = ~C, marker = marker_style) %>%
   add_markers()
 ```
 
-<!--html_preserve--><div id="htmlwidget-2879447767351803fdc2" style="width:100%;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2879447767351803fdc2">{"x":{"visdat":{"16816c3757bc":["function () ","plotlyVisDat"]},"cur_data":"16816c3757bc","attrs":{"16816c3757bc":{"x":{},"y":{},"z":{},"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"V1"},"yaxis":{"title":"V2"},"zaxis":{"title":"V3"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[4.67907747212413,4.52344023683387,24.8360353963945,17.1048035853032,5.8933758074909,9.08048671427783,2.81190835822941,19.2077942280692,8.99705335874311,13.6936605864359,20.0062505445599,9.14608452368056,-0.487804947849458,10.3692601893058,16.3017261178368,7.7938835592491,12.7461716326392,13.1425290371071,7.35506684140778,15.2933739398867,14.1984160963122,18.284662080053,16.6620626900739,19.1096252658426,5.65359673013781,18.2654847114886,13.1359326935717,10.2184959045632,12.4736042061048,5.80109447068049,25.9085461383484,10.1694336313408,22.3600421257765,14.2083030141002,8.87478932528106,18.7885088901473,13.7136530021823,17.9158398967896,-1.90963889626715,14.2186255362959,12.1962529218378,7.98018675128273,13.1718550461007,10.5397452338159,4.8832446052406,18.2122032539122,0.101705355759254,4.1360379791199,6.54530920595094,-1.90688055489159,1.13660698958688,-8.46813283122039,23.1195483403938,27.7681182315169,-5.04470919877587,14.2234367060931,-3.81483622191691,12.4841395856909,8.7250934579428,25.4538668834754,2.17591099961449,6.59626200022251,23.8017948845289,3.60344929088621,8.85507518567652,8.85300868001983,10.4587989442247,11.6681166647952,7.3078843333226,11.8130466116114,17.6003951563143,4.48416700268444,-6.5531044807034,3.49701788276773,11.7713460784719,12.4040902493741,9.27781896512095,11.001133491063,12.6177184798162,16.5387093693057,8.51362691689422,15.9979492644169,13.6814820561803,5.24014915180584,20.5940713363957,13.5391723366245,13.622621078029,17.0084562190922,6.64662200189418,-3.9194622363975,21.2541024546605,12.009186102903,10.0807130813151,4.97403270872283,15.6243621275023,-0.603534652888351,5.81505372576677,20.9078430301294,0.0271301857759276,4.71476011233484,22.0737534248947,3.81511645808235,0.181070679606268,7.1199298908302,12.3112370412157,1.16147407724969,7.63036752518409,9.67499263037242,7.37236155240397,18.8569401887164,5.78608146637569,17.454414068133,-0.478545627043887,18.1445591711959,2.39246559116837,16.9469429203207,10.374444450976,5.02956093585476,14.4212370844136,3.75266972303642,14.949395549754,28.1565882475054,14.9575037948333,-1.76492436501701,6.01954089976566,12.3589411347197,12.401495050413,3.03477452505842,8.48034339980193,5.46345487729294,15.0817904124614,21.748378165979,13.938762475701,9.79732762181426,-0.0410979334907644,9.29268947037517,5.70187861217585,16.9264980637973,1.74325208337003,13.2897361949414,11.4374737084697,13.8760658980091,5.93623155118456,-4.1681804289078,9.83179248934774,16.9353763288059,-2.47117840926597,19.6043571657963,7.64284027428454,5.66213167330364,0.106573979884795,10.9732450501507,13.5933993558015,6.33047565254052,9.4771305007756,22.2460194556516,1.59751269172772,10.219162366106,-16.7668342278292,5.81041908562038,12.9847388018267,-10.3595805069869,-5.3365443962932,13.0687731922524,32.7679567298188,4.89771622597855,19.7521466734085,-0.945693684205008,13.109773795868,11.6650678399905,3.27270231410645,16.5289034657958,8.75272017233896,2.15750305136579,7.19657553271203,4.77809846088487,14.4095406117066,-0.632314178504087,-11.065544041398,4.24431366435347,7.14132552988117,3.3130561924938,22.8637971872194,6.38446093984693,2.48370073282526,19.7899342364614,3.76239581063113,11.7540268851056,18.9073928694137,4.01669030066735,-1.22473615182239,9.00273999912486,4.1203689629116,15.8196208619067,10.0690216735002,26.2270934419831,6.71837044348172,-2.91625233617052,15.7255210096967,20.9803164920777],"y":[19.5608265678665,14.262167511924,44.1969684823533,7.11508680635299,24.4248764256211,14.5089070603066,17.9150598483397,33.290881505064,25.3636608436326,20.0659309128522,17.8412507907248,22.9941220411588,11.5072765380398,20.6943594732558,25.4542017795886,25.2363695401936,26.1981548177652,18.9605541745476,29.9479135712081,21.4504731821235,23.6351589358638,26.5763634657886,14.1309286797015,19.2159358432547,19.5009695689723,28.7746433374283,15.1249422507125,17.6931209742845,19.8818264640572,20.4995704353599,17.0946704347308,11.911896029455,34.8442293138438,25.8303651241979,16.1831710027331,29.1207105061875,16.4456381724281,23.7290759607772,23.7220773296002,27.0382656065806,21.5208427168341,16.1372512598974,25.9958509003022,2.89778662109439,14.9714194303958,16.574337850378,15.3132057514937,-2.51144818479682,32.7070482299053,15.2346730321471,14.5957962131258,24.8580484833472,33.6120347752591,5.36791206060885,20.6945936704379,24.9748813700184,27.7174663782225,22.3934971292783,18.6338036326404,36.524735918527,15.9952062264372,16.7810532915528,39.6764797913898,21.4939993475879,18.1280107799123,24.7861546069968,16.7025183672831,21.1689589733694,9.46976123452126,22.5792573848954,24.1407393771307,24.9705171874583,13.5836308445169,16.7158944732626,16.7480898604145,22.9051355364896,18.9876906991791,12.872964089534,11.8461219445788,27.685023212378,8.88076583377177,24.324848263004,29.6247907280875,17.6105814981179,37.1352253273874,22.0542209797522,15.2589073750357,29.7819204678686,31.1601645290516,2.66665914011536,29.5230591801513,15.328572896049,20.4147522971488,7.23272855591857,29.4394952754934,21.3220259347071,36.2296521056839,33.2012869715318,32.1853379534354,20.0872011055366,37.9821427630878,11.2599364657747,17.7002102954837,24.1731647077084,16.3652129476104,12.4587517867818,26.5399612471372,37.7378896212642,15.5056607603213,20.7459153534904,10.4098825500851,20.5260902659753,35.2909028924583,22.4034006775107,28.139751618525,29.544555724792,22.3119831909921,33.3557640644305,19.8485318810355,22.7376559925498,38.1546144074388,28.1260608416354,30.657619043642,21.8487413198501,36.2915048716571,17.5878508363633,22.3209683970065,19.0231874822668,28.0208231287878,23.187832448555,18.9454886657451,23.9736311507625,27.4162685694341,6.55906199947339,2.05510247655673,-1.17861462134528,21.5002081753657,30.499145106062,13.4883427483811,16.3844781692406,12.4385599678479,27.060821077247,11.1962680604901,1.25861032362708,38.696019662636,26.6665592186617,9.43258219975647,32.7455049777596,23.5404871780586,21.6516026224971,16.1496519187142,4.09915007463819,14.1998965617315,25.0207149502785,14.9790583634259,31.807368313708,10.4927651707732,14.2942341746191,1.2072415174848,29.4057758544312,16.2010598770884,2.53076704771246,13.3647358683145,31.6298283785638,26.1595045652348,16.4542741420567,25.2148631156298,7.97412542744627,22.626330921776,28.5520864095424,12.3082316871455,21.1262166053203,6.41669127014676,15.9807248248603,13.0149989966323,20.1935821764183,11.3107157750283,2.91027626193888,25.4145882207792,15.2403752508117,6.10622331812739,28.2952914917891,38.616838119925,11.5808514698627,26.6192801964547,21.7047105524567,14.5082113235283,4.15469372699389,40.8828860435029,6.61649302976747,9.20480894555023,15.0108603052807,15.9238468662351,19.9095331766472,18.4710473452149,37.7878349763809,16.6376888752255,11.9261607237891,19.3056580025855,52.748732778801],"z":[39.6706665207903,24.4066745284212,47.2669224805981,14.8496767950106,28.7826012499115,36.3447982812964,40.4865159655292,36.4996868671654,33.9893584376976,24.2025494510405,13.8253583184365,33.8241621954177,25.735429506267,27.1057388364891,35.8552189355118,37.8226818193615,29.5334907656669,24.8031431458807,46.4520295465562,28.2800475505831,36.2148153572162,36.1986450284051,17.3296587342305,20.204890878311,38.3226657520848,33.5189150667645,15.5781151170019,26.2897735994318,38.9529975654038,27.6927079718767,20.2148553118261,21.7760305842258,45.6835170277281,34.4602711266401,32.3727204744422,32.9432875058752,26.7372146008989,44.0028435169545,42.6311126983614,34.8040702566409,33.0997289650796,19.2720846069971,32.8089088233797,2.68011701673587,24.6838555043286,26.6499267974633,35.295817955363,4.32190848715915,37.8053336452794,33.4533218502426,28.2557303962803,47.6734071833513,34.6967589536772,-3.41313110195429,28.7102166425435,29.4413295413546,49.0679084649242,28.8425847823638,39.1304343810162,27.1415001262544,28.7881420791571,35.1146196678529,43.3379801930597,38.6817398912618,34.8739746701553,33.0443468809544,21.6277289828421,23.9642665353345,11.9066284322044,36.494188947021,33.5865700238833,25.5376715638958,40.2474395745834,33.9813449252348,21.0028310574334,39.7803816271853,31.7591674209149,14.1024197955893,20.1890231117663,35.2000967743616,15.6212405230232,34.9646412691843,45.8369984672622,15.1073003168132,35.7137130688383,20.9197907100274,24.6308257347813,43.5525949814169,36.0768935121554,14.8272441507836,32.3816439682322,23.5283152213004,39.0070369053428,24.516317445373,37.6025411347626,43.292683813279,52.7303440827481,46.9739409252814,43.7027976594317,28.5224230208711,47.4116892649407,19.0679210673476,30.0637354786243,28.2957447738785,19.0321718247252,20.6131480154011,32.1891167800781,43.5350594916,32.9109405986874,18.2951597405184,24.4938714266536,27.1280988872255,58.938479086087,21.3563070971627,40.1142703668311,41.6630442216973,35.3952441124581,55.7057148228926,32.8632166642252,51.252411899167,53.2029066073098,25.0588335711889,36.2428989319525,44.5525948574348,44.4798522609116,19.2765528448254,38.9491147936875,37.952587474591,47.0559598684385,32.9235172558355,19.0237748992799,32.8369216681091,39.8678437198108,14.2844578523613,9.1710289113308,7.48023461833557,41.7814966239004,44.5031634366802,24.7507761006853,24.9399015548823,18.191884755275,36.1618262639184,26.5908555377012,16.3803231203185,50.7118643687616,35.8608252057434,34.2001200364532,31.9044378250081,34.8077921162237,23.2078550677111,29.4612418915654,18.59440889965,35.2768626910479,33.9515756255211,23.3126010221282,37.4653000040246,26.2990136573142,20.7589866489522,34.4325371953573,45.071264968852,32.7799549139528,23.6511256237972,27.1375516978006,47.1613310144573,16.2162827487226,34.2502745926094,33.2483353537458,15.1770505026392,26.5528252528019,39.1058883358111,28.650907099739,28.3997933827652,13.1358527624828,33.3432075782472,24.3566476242517,27.1243263101875,26.5730727860122,21.3148620462258,41.2397990331289,34.2437009467794,17.9359490250835,41.5814023478699,44.5468758173188,23.1573508816135,38.1561183286752,28.2712357114411,22.1524455100534,13.6264275709355,43.4042820141001,18.8178888327428,20.9960228854173,26.7357715061526,27.2269213228505,28.5647839099557,26.3180264935283,39.7952050950438,28.5220164930232,27.0506739735047,29.5706668331776,47.9698183352923],"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"type":"scatter3d","mode":"markers","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-b9d6bee1831483fab5b9" style="width:100%;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9d6bee1831483fab5b9">{"x":{"visdat":{"2f0a7b3d4da6":["function () ","plotlyVisDat"]},"cur_data":"2f0a7b3d4da6","attrs":{"2f0a7b3d4da6":{"x":{},"y":{},"z":{},"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"A"},"yaxis":{"title":"B"},"zaxis":{"title":"C"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[8.05260178461991,12.6409744803025,5.22852425524659,-4.51019256097734,10.1240075496456,5.62179221000471,6.703733108707,16.7429377878705,5.38629564393806,17.7597535198822,19.500939003337,-8.23458261934593,13.0013272810702,14.2102544319956,1.78594767692072,23.0783562569781,0.223260938029735,2.88420917038849,9.37323724380929,0.417632808280377,3.330061286557,8.87298412085202,0.474384532715186,15.7214784167375,6.09129463955885,16.9699488815477,3.44859862480671,9.05167920803214,10.8910100361808,10.9249457823209,9.31954905401433,10.4524370859205,10.6253196692898,6.60770227382889,11.3032229822206,7.17023758926682,14.7818564097807,-3.10816282563274,5.50351350054219,20.2319819293687,14.9830634065728,21.1548746484728,18.608534155442,-3.13511370212771,12.6881891522244,13.6808444530875,17.8180463859302,10.4111806373812,17.3716136147879,5.60802916121727,20.6393245731007,12.4325021015441,4.91200523261264,-2.05353936415432,1.43482767507819,23.9844395811584,9.80526687034713,19.2726079203326,33.6520479283846,9.87695240448514,14.2572534600899,13.6180757122369,8.79964551568788,6.69691934325003,7.06426925802404,24.3205885916481,0.691752660010076,10.1429614452639,-4.76180786591051,15.8967007127175,10.5800053453733,10.6664793279097,8.85133070489351,10.9390901174021,26.8574160937528,15.6380802793906,17.5385453768751,9.62010762041131,5.01236916273123,3.31479018819426,5.65869700103937,11.6030548193727,15.3925661426651,7.56489445621015,15.131802304719,11.6762032949346,9.08617049917855,19.0214055206646,-2.43764675085329,20.5308853487242,4.60916530977491,4.77546898965459,16.3886777972681,22.2629830002927,16.9037204192169,16.2506260855869,17.837343921475,20.4916380357862,6.23530986117737,2.60408860177074,11.9072431121696,22.3468602371317,13.515470360676,19.1083751767013,14.4107644653921,1.65847869417667,5.49263302816009,18.2935804859093,3.18189956987114,4.88406609454063,4.47542209307797,13.2438977449397,3.69703559686871,9.03707695753464,26.6309640657555,13.9224236137861,-10.127557514858,8.9801530175563,-3.11019988653403,9.4575893578418,9.33953978801179,0.690724967300024,17.1212412016879,4.69756689010998,17.4050093706534,18.6474677469327,6.21984190589818,19.9710110416358,0.113502458246808,9.67705311577875,16.6588394878378,5.03750825777041,8.02670712837204,5.48458395146666,22.9454878250014,10.4756193186703,6.35834791433064,13.6355018993348,15.7892808864187,6.97274129381272,1.54876924898764,9.11346717242589,-0.571444450611711,10.5708438959623,9.08750962820055,14.9261856584387,10.2407741288251,6.04074921379798,5.86636356877218,11.9903112637286,20.5205561990658,13.4747897293114,15.7506433297305,5.45377793390377,22.4193399254377,9.24845519467151,10.721585213015,5.14372235736719,14.6386971137786,10.5833385893307,30.7270846237492,14.8115742118522,10.2465891549459,15.3522638138235,6.93844260572303,5.30860462185339,-3.52225411307488,13.8359288697872,8.79580721416906,12.9318436531444,22.5126586880278,11.3080282325817,1.46131796313563,9.68921759211661,14.2605377594624,-4.38391384663862,13.2200435088891,20.6480216773541,13.5863218243578,12.8197807194314,10.3118109854968,3.25779095978273,16.1195487322554,7.3427486704747,10.6588047030896,15.4700596647169,12.3934872641105,21.5560275805374,10.3555681175981,2.03447711929959,9.19655009946265,6.13023801390225,4.69819006452276,11.7550409772494,10.9368141804533,7.72230602754449,1.53247223836078,11.6783666784247,16.5485140184628,1.95677256845206],"y":[7.49309252284932,38.3744072236555,23.6830444713541,15.1175351573437,7.50083659755454,8.74880108058903,22.1623475286746,18.3008972199796,27.3239478052324,20.1495062537462,33.9727085537503,-5.20421641229637,30.0804764924525,21.4370504385349,15.5879827528405,23.2428556205303,6.28090636270858,4.07661497235625,7.87159872523645,5.61502855723311,15.8625555295587,7.05915628920522,26.1442974317845,20.6148835601718,9.43329006404486,36.2784267378784,28.025460340802,24.1305193448718,32.0221794341744,20.8327600367718,14.375932201363,15.1309405632704,23.6443870428793,-1.56846915349126,18.9537353739923,34.8344259507176,18.6425015641901,19.4696758327605,18.0911024270963,26.4945204069184,25.9320991021504,34.8607867585986,33.6129448291206,8.89185825299045,15.739343212151,21.5899748941433,39.1242164303555,11.932235729298,20.9307198664292,16.9536584815224,26.2100225930415,29.9486759656676,19.5458393369736,-2.97561270093177,23.8698166843554,12.2031464568592,9.64065830548742,22.7647357672422,35.2408397526034,14.4441773119295,17.4907040528186,21.9255475352842,32.3911357835259,17.6047859770961,18.6730414439095,21.1504365708621,13.3318092652042,17.8030134050476,3.29646132473211,29.3057227340125,17.2717037263272,17.738629866625,19.2639012966883,27.8369153088086,28.8327308404694,24.1667605478278,29.3616134069256,33.0479742353595,18.9127069010295,29.9499567540905,17.9426534747736,28.5782750118561,27.7004172111305,22.5154997602713,15.3599299493365,23.6346798753275,13.287863641043,38.5372708553125,15.9675227841137,37.1106874321745,27.4107044925257,22.183766050733,33.6814600101357,32.5880131206556,24.3779461137659,29.1188772779909,18.4645020403222,16.494000582784,-2.76910625223582,25.2454079324149,24.8878243911322,16.4201544830365,23.7580071405996,28.4833335495285,15.082304163636,8.17092098277091,7.49389101242658,32.7640786720096,12.1183236015722,12.5400017970578,13.4410692384918,17.219643976885,23.6191309351295,11.6436963437839,24.9833922342779,34.0897479022398,12.4434199103748,16.5501926410176,7.39216278083794,28.2989489291922,18.9559240662755,14.5366748921193,32.0502107769019,29.3862857036247,23.3768386192155,28.0728934942523,6.96215488765043,24.1253319162865,9.80207998689376,8.16012921843693,31.0900339378042,14.0280576992563,28.9638809616566,9.54645604454964,18.6538091484605,10.9076038999066,27.7886934470855,39.2214973456283,12.6403857000303,15.2778548061206,9.36374953906034,13.7466711467135,4.83740466297715,34.2151036292234,10.9546526604457,30.0941232481535,34.4231424806161,5.09816730368225,13.9287459169289,29.0807493113936,50.3594674825058,17.908491873209,18.9595961644316,20.9337341296332,30.648813116724,30.4706836991893,27.3078077106506,20.5222264060421,17.7906664070719,22.3981045095665,35.4567632763238,20.833303080849,18.4018073303679,25.4408028544433,30.8550115289002,24.5604559238554,7.44247251593704,21.5405244417825,18.85916941738,25.0049801148774,24.4897582482906,23.8908588096965,-0.624517982931621,11.4990281405891,34.1028757935856,1.90289878071876,20.8089236428506,30.374135742642,31.5933954315946,18.8980063652991,20.0554903618357,20.8501450083726,19.412968309758,18.3731400683361,12.843914238704,26.5511610082155,19.9879169891087,35.9893363912441,10.5498797009483,28.8042136032757,19.7982229099679,31.2593012063887,18.1684864012583,15.8533539302023,19.1776436361002,29.3701159231607,22.0356451359203,16.307771784309,22.4707365839078,9.2023688923422],"z":[28.2105271819406,44.7196600692868,41.7198431727469,35.4071411226047,19.0909179858612,25.5229422643515,32.9121754310205,23.161386645436,41.2125032575862,16.9547270758857,41.3263852598476,12.0735058582994,42.8872140461086,31.0048335155804,26.6050703066575,18.949934592133,17.961233692845,20.6504133248964,29.6617162589208,7.61554554545626,30.9075129862352,25.6974567690628,40.1625218503207,32.9585974162089,22.8292519812426,55.4276053881439,46.9122387375304,29.497497623054,52.8859489747523,35.2885645582873,28.9250002558704,26.5040025744066,31.3010827817971,7.35814094967053,23.7086154168809,41.1117138023383,15.8376200248691,42.3281249964229,35.401665703991,25.308379198092,30.4593551822551,47.4516268695207,40.3423588802598,29.5667908591655,18.5763114925477,28.8918304044751,38.0471110844078,22.7679954492337,15.2352760459201,37.7003359253426,35.5039054211233,31.3853062977266,31.6503594081286,10.5667274250904,29.7274552829499,14.228712463773,23.2689140496318,20.3526545556705,36.1702783019612,17.8758912925117,28.8292514696531,16.8969222978995,47.7153707530193,24.9341294358864,29.425427617434,27.5344845820286,39.509312835722,32.6028039192341,22.7979554271846,40.4531673106592,29.0616373232844,29.7989237759938,22.9384085339916,29.6803761075281,33.866112024433,30.2655083792995,39.0719272080604,40.3164676871107,26.1458187029012,44.9099271438338,30.5799340712067,26.7692968403075,28.8704771325488,30.596596009964,29.2090182724487,26.962753311496,31.1588466822962,35.9899216286233,32.60091899977,37.814851975166,51.7292899663971,40.7146558146037,34.4321104083687,28.3639038874558,38.9420373547319,40.412662690752,27.9051120236487,21.7316209027656,8.58396793107793,36.3303362576227,41.271169722056,20.1820528200221,33.5550387571518,32.0688147486642,17.934281083914,21.6280977200596,20.8820668857129,41.778578912479,27.7315002935297,26.041348294921,30.0077053562111,29.1132043345765,34.9023946315809,18.3205124495274,21.7282015929661,47.9452769887108,31.5871515544239,25.6210118464666,32.3197837261201,41.2384974428266,25.8956853225507,35.4926026166762,36.7216972409528,45.4830772938909,36.3034679712752,30.7985502499533,19.2500401881583,24.5603063999743,26.8237312847177,23.3328671119621,37.0863118319694,23.0699335726846,33.6381371475928,19.655823983345,22.8242644300263,27.5762500757296,41.4602133708625,42.5635642337316,18.9917726024842,29.790520027139,20.3380818518753,28.4896188393926,21.3169210055087,54.5471262273576,12.8007528845916,33.2855148585132,46.1700885413568,17.794824794753,25.4144580108606,47.4292867132257,42.1894441534492,17.1718591639791,28.074394514047,41.075775965319,34.5950456393839,38.5638520730004,40.1516171067391,31.6124553276704,34.361104233816,25.4762745958018,41.1087791987028,27.3470329737966,37.3618794006224,46.5599525874787,40.8903885137512,35.9180494003284,21.0513518184356,28.7477547025912,21.3037816208278,40.5924140093874,21.4322986745938,28.6425199557828,19.721438829599,28.2917267699439,35.5545084770096,20.1636594148328,28.5866151663873,39.3515387941396,46.201257012164,22.8050532805483,32.1861357221949,32.5133387214128,38.9770661138432,27.7605643344127,27.84818156127,31.6169441445139,25.9301464023536,33.9486501683976,11.4113840116673,48.3340169154118,34.7850443630826,54.7996093958882,33.2624573064838,20.7369830405313,26.7390400960118,36.3199582236092,36.9624150152265,19.8154604697627,37.1613091919769,15.4131840207339],"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"type":"scatter3d","mode":"markers","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ## Example
 
@@ -773,10 +815,7 @@ from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm).
 
 ### Load & wrangle
 
-We have to do a little data wrangling first. Have a look at the data after you 
-import it and relabel `Sex` to `male` and `female` instead of `1` and `2`. Also 
-convert `Agemos` (age in months) to years. Relabel the column `0` as `mean` and 
-calculate a new column named `sd` as the difference between columns `1` and `0`. 
+We have to do a little data wrangling first. Have a look at the data after you import it and relabel `Sex` to `male` and `female` instead of `1` and `2`. Also convert `Agemos` (age in months) to years. Relabel the column `0` as `mean` and calculate a new column named `sd` as the difference between columns `1` and `0`. 
 
 
 ```r
@@ -808,7 +847,7 @@ height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.cs
 ```
 
 <div class="warning">
-<p>If you run the code above without putting <code>dplyr::</code> before the <code>select()</code> function, you will get an error message. This is because the <code>MASS</code> package also has a function called <code>select()</code> and, since we loaded <code>MASS</code> after <code>tidyverse</code>, the <code>MASS</code> function is the default. When you loaded <code>MASS</code>, you should have seen a warning like “The following object is masked from ‘package:dplyr’: select”. You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.</p>
+<p>If you run the code above without putting <code>dplyr::</code> before the <code>select()</code> function, you might get an error message. This is because the <code>MASS</code> package also has a function called <code>select()</code> and, since we loaded <code>MASS</code> after <code>tidyverse</code>, the <code>MASS</code> function becomes the default. When you loaded <code>MASS</code>, you should have seen a warning like “The following object is masked from ‘package:dplyr’: select”. You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.</p>
 </div>
 
 ### Plot
@@ -849,8 +888,7 @@ height_sub
 
 ### Simulate a population
 
-Simulate 50 random male heights and 50 radom female heights using the `rnorm()` 
-function and the means and SDs above. Plot the data.
+Simulate 50 random male heights and 50 radom female heights using the `rnorm()` function and the means and SDs above. Plot the data.
 
 
 ```r
@@ -873,9 +911,7 @@ ggplot(sim_height) +
 
 ### Analyse simulated data
 
-Use the `sim_t_ind(n, m1, sd1, m2, sd2)` function we created above to generate 
-one simulation with a sample size of 50 in each group using the means and SDs 
-of male and female 14-year-olds.
+Use the `sim_t_ind(n, m1, sd1, m2, sd2)` function we created above to generate one simulation with a sample size of 50 in each group using the means and SDs of male and female 14-year-olds.
 
 
 ```r
@@ -889,15 +925,12 @@ sim_t_ind(50, m_mean, m_sd, f_mean, f_sd)
 ```
 
 ```
-## [1] 0.05057527
+## [1] 0.002962042
 ```
 
 ### Replicate simulation
 
-Now replicate this 1e4 times using the `replicate()` function. This function 
-will save the returned p-values in a list (`my_reps`). We can then check what 
-proportion of those p-values are less than our alpha value. This is the power of 
-our test.
+Now replicate this 1e4 times using the `replicate()` function. This function will save the returned p-values in a list (`my_reps`). We can then check what proportion of those p-values are less than our alpha value. This is the power of our test.
 
 
 ```r
@@ -909,17 +942,14 @@ power
 ```
 
 ```
-## [1] 0.6437
+## [1] 0.6428
 ```
 
 ### One-tailed prediction
 
-This design has about 65% power to detect the sex difference in height (with a 
-2-tailed test). Modify the `sim_t_ind` function for a 1-tailed prediction.
+This design has about 65% power to detect the sex difference in height (with a 2-tailed test). Modify the `sim_t_ind` function for a 1-tailed prediction.
 
-You could just set `alternative` equal to "greater" in the function, but it might be 
-better to add the `alternative` argument to your function (giving it the same default 
-value as `t.test`) and change the value of `alternative` in the function to `alternative`.
+You could just set `alternative` equal to "greater" in the function, but it might be better to add the `alternative` argument to your function (giving it the same default value as `t.test`) and change the value of `alternative` in the function to `alternative`.
 
 
 ```r
@@ -936,23 +966,18 @@ mean(my_reps < alpha)
 ```
 
 ```
-## [1] 0.762
+## [1] 0.761
 ```
 
 ### Range of sample sizes
 
-What if we want to find out what sample size will give us 80% power? We can try 
-trial and error. We know the number should be slightly larger than 50. But you 
-can search more systematically by repeating your power calculation for a range 
-of sample sizes. 
+What if we want to find out what sample size will give us 80% power? We can try trial and error. We know the number should be slightly larger than 50. But you can search more systematically by repeating your power calculation for a range of sample sizes. 
 
 <div class="info">
 <p>This might seem like overkill for a t-test, where you can easily look up sample size calculators online, but it is a valuable skill to learn for when your analyses become more complicated.</p>
 </div>
 
-Start with a relatively low number of replications and/or more spread-out samples 
-to estimate where you should be looking more specifically. Then you can repeat 
-with a narrower/denser range of sample sizes and more iterations.
+Start with a relatively low number of replications and/or more spread-out samples to estimate where you should be looking more specifically. Then you can repeat with a narrower/denser range of sample sizes and more iterations.
 
 
 ```r
@@ -977,8 +1002,7 @@ ggplot(power_table, aes(n, power)) +
 
 <img src="08-sim_files/figure-html/range-sample-sizes-1.png" width="100%" style="display: block; margin: auto;" />
 
-Now we can narrow down our search to values around 55 (plus or minus 5) and 
-increase the number of replications from 1e3 to 1e4.
+Now we can narrow down our search to values around 55 (plus or minus 5) and increase the number of replications from 1e3 to 1e4.
 
 
 ```r

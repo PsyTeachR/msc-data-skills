@@ -91,18 +91,18 @@ lm(RT ~ trial_type.e, data = dat) %>% summary()
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -218.975  -51.380   -5.531   54.356  293.942 
+## -308.586  -67.040   -1.844   67.406  254.470 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   795.885      6.399  124.38  < 2e-16 ***
-## trial_type.e   68.980     12.797    5.39 1.99e-07 ***
+## (Intercept)   804.533      6.991 115.078  < 2e-16 ***
+## trial_type.e   40.050     13.982   2.864  0.00463 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 90.49 on 198 degrees of freedom
-## Multiple R-squared:  0.128,	Adjusted R-squared:  0.1236 
-## F-statistic: 29.05 on 1 and 198 DF,  p-value: 1.991e-07
+## Residual standard error: 98.87 on 198 degrees of freedom
+## Multiple R-squared:  0.03979,	Adjusted R-squared:  0.03494 
+## F-statistic: 8.204 on 1 and 198 DF,  p-value: 0.00463
 ```
 
 Notice how the estimate for the `(Intercept)` is close to the value we set for `mu` and the estimate for `trial_type.e` is close to the value we set for `beer_effect`.

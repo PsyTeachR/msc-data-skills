@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-07-26" />
+<meta name="date" content="2019-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.8" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.6.8</b> Scatter plot</a></li>
 <li class="chapter" data-level="3.6.9" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.6.9</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#save-as-file"><i class="fa fa-check"></i><b>3.7</b> Save as File</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.7</b> Customisation</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.7.1</b> Labels</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.7.2</b> Colours</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.7.3</b> Save as File</a></li>
+</ul></li>
 <li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#combination-plots"><i class="fa fa-check"></i><b>3.8</b> Combination Plots</a><ul>
 <li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.8.1</b> Violinbox plot</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.8.2</b> Violin-point-range plot</a></li>
@@ -220,8 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.9</b> Overlapping Data</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#discrete-data"><i class="fa fa-check"></i><b>3.9.1</b> Discrete Data</a></li>
-<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#viridis"><i class="fa fa-check"></i><b>3.9.2</b> Colours</a></li>
-<li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>3.9.3</b> Continuous Data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>3.9.2</b> Continuous Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
@@ -325,7 +328,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
-<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -354,10 +356,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform-distribution"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
-<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial-distribution"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal-distribution"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
-<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#multivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Normal</a></li>
+<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#bivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Bivariate Normal</a></li>
+<li class="chapter" data-level="8.3.5" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.3.5</b> Multivariate Normal</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.4</b> Example</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.4.1</b> Load &amp; wrangle</a></li>
@@ -376,10 +379,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
-<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.3.1</b> What is the GLM?</a></li>
+<li class="chapter" data-level="9.3.2" data-path="glm.html"><a href="glm.html#components"><i class="fa fa-check"></i><b>9.3.2</b> Components</a></li>
+<li class="chapter" data-level="9.3.3" data-path="glm.html"><a href="glm.html#simulating-data-from-glm"><i class="fa fa-check"></i><b>9.3.3</b> Simulating data from GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#examples"><i class="fa fa-check"></i><b>9.4</b> Examples</a></li>
+<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.5</b> Relationship between t-test, ANOVA, and linear regression</a></li>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.6</b> Understanding decomposition matrices</a></li>
+<li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
@@ -480,7 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="r-markdown" class="section level2">
 <h2><span class="header-section-number">10.3</span> R Markdown</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 <p>By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we’ll explore some of the more advanced options and create an R Markdown document that produces a reproducible manuscript.</p>
 <p>First, make a new R Markdown document.</p>
 <div id="knitr-options" class="section level3">
@@ -488,21 +496,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When you create a new R Markdown file in RStudio, a setup chunk is automatically created.</p>
 <div class="verbatim">
 <p><code>```{r setup, include=FALSE}</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <code>```</code>
 </div>
 <p>You can set more default options for code chunks here. See the <a href="https://yihui.name/knitr/options/">knitr options documentation</a> for explanations of the possible options.</p>
 <div class="verbatim">
 <p><code>```{r setup, include=FALSE}</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">fig.width  =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">fig.height =</span> <span class="dv">5</span>, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">fig.path   =</span> <span class="st">&#39;images/&#39;</span>,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">echo       =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">warning    =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">message    =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">cache      =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</a>
+<a class="sourceLine" id="cb421-2" data-line-number="2">  <span class="dt">fig.width  =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb421-3" data-line-number="3">  <span class="dt">fig.height =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb421-4" data-line-number="4">  <span class="dt">fig.path   =</span> <span class="st">&#39;images/&#39;</span>,</a>
+<a class="sourceLine" id="cb421-5" data-line-number="5">  <span class="dt">echo       =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb421-6" data-line-number="6">  <span class="dt">warning    =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb421-7" data-line-number="7">  <span class="dt">message    =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb421-8" data-line-number="8">  <span class="dt">cache      =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb421-9" data-line-number="9">)</a></code></pre></div>
 <code>```</code>
 </div>
 <p>The code above sets the following options:</p>
@@ -581,22 +589,22 @@ What does it all mean?
 <p class="alert alert-info">
 This function was modified to add sex and effect-code both sex and group. Using the <code>recode</code> function to set effect or difference coding makes it clearer which value corresponds to which level. There is no effect of sex or interaction with group in these simulated data.
 </p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">         <span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="dt">times =</span> n_per_group))</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="st">    </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">      <span class="dt">grp_e =</span> <span class="kw">recode</span>(grp, <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>),</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">      <span class="dt">sex_e =</span> <span class="kw">recode</span>(sex, <span class="st">&quot;female&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;male&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">    )</a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {</a>
+<a class="sourceLine" id="cb424-2" data-line-number="2">  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb424-3" data-line-number="3">               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),</a>
+<a class="sourceLine" id="cb424-4" data-line-number="4">         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),</a>
+<a class="sourceLine" id="cb424-5" data-line-number="5">         <span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="dt">times =</span> n_per_group))</a>
+<a class="sourceLine" id="cb424-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb424-7" data-line-number="7"><span class="st">    </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb424-8" data-line-number="8">      <span class="dt">grp_e =</span> <span class="kw">recode</span>(grp, <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>),</a>
+<a class="sourceLine" id="cb424-9" data-line-number="9">      <span class="dt">sex_e =</span> <span class="kw">recode</span>(sex, <span class="st">&quot;female&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;male&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb424-10" data-line-number="10">    )</a>
+<a class="sourceLine" id="cb424-11" data-line-number="11">}</a></code></pre></div>
 <p class="alert alert-warning">
 This function requires the <code>tibble</code> and <code>dplyr</code> packages, so remember to load the whole tidyverse package at the top of this script (e.g., in the setup chunk).
 </p>
 <p>Now we can make a separate code chunk to create our simulated dataset <code>dat</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dt">diff =</span> <span class="fl">0.75</span>, <span class="dt">n_per_group =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dt">diff =</span> <span class="fl">0.75</span>, <span class="dt">n_per_group =</span> <span class="dv">100</span>)</a></code></pre></div>
 <div id="tables-1" class="section level4">
 <h4><span class="header-section-number">10.3.4.1</span> Tables</h4>
 <p>Next, create a code chunk where you want to display a table of the descriptives (e.g., Participants section of the Methods). We’ll use tidyverse functions you learned in the <a href="04_wrangling.html">data wrangling lectures</a> to create summary statistics for each group.</p>
@@ -700,27 +708,27 @@ Figure 10.1: Figure 1. Scores by group and sex.
 <li>Move the code for creating <code>dat</code> to this file.</li>
 <li>Add the following code to the end of the setup chunk:</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">source</span>(<span class="st">&quot;analysis.R&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</a>
+<a class="sourceLine" id="cb428-2" data-line-number="2"><span class="kw">source</span>(<span class="st">&quot;analysis.R&quot;</span>)</a></code></pre></div>
 <p>The <code>source</code> function lets you include code from an external file. This is really useful for making your documents readable. Just make sure you call your source files in the right order (e.g., include function definitions before you use the functions).</p>
 <p>In the “analysis.R” file, we’re going to run the analysis code and save any numbers we might want to use in our manuscript to variables.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">grp_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>grp_e <span class="op">*</span><span class="st"> </span>sex_e, <span class="dt">data =</span> dat)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">stats &lt;-<span class="st"> </span>grp_lm <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">grp_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>grp_e <span class="op">*</span><span class="st"> </span>sex_e, <span class="dt">data =</span> dat)</a>
+<a class="sourceLine" id="cb429-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb429-3" data-line-number="3">stats &lt;-<span class="st"> </span>grp_lm <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb429-4" data-line-number="4"><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb429-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</a></code></pre></div>
 <p>The code above runs our analysis predicting <code>Y</code> from the effect-coded group variable <code>grp_e</code>, the effect-coded sex variable <code>sex_e</code> and their intereaction. The <code>tidy</code> function from the <code>broom</code> package turns the output into a tidy table. The <code>mutate_if</code> function uses the function <code>is.numeric</code> to check if each column should be mutated, adn if it is numeric, applies the <code>round</code> function with the digits argument set to 3.</p>
 <p>If you want to report the results of the analysis in a paragraph istead of a table, you need to know how to refer to each number in the table. Like with everything in R, there are many wways to do this. One is by specifying the column and row number like this:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">stats<span class="op">$</span>p.value[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">stats<span class="op">$</span>p.value[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>Another way is to create variables for each row like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">grp_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e&quot;</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">sex_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;sex_e&quot;</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">ixn_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e:sex_e&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1">grp_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e&quot;</span>)</a>
+<a class="sourceLine" id="cb432-2" data-line-number="2">sex_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;sex_e&quot;</span>)</a>
+<a class="sourceLine" id="cb432-3" data-line-number="3">ixn_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e:sex_e&quot;</span>)</a></code></pre></div>
 <p>Add the above code to the end of your analysis.R file. Then you can refer to columns by name like this:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">grp_stats<span class="op">$</span>p.value</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">sex_stats<span class="op">$</span>statistic</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">ixn_stats<span class="op">$</span>estimate</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" data-line-number="1">grp_stats<span class="op">$</span>p.value</a>
+<a class="sourceLine" id="cb433-2" data-line-number="2">sex_stats<span class="op">$</span>statistic</a>
+<a class="sourceLine" id="cb433-3" data-line-number="3">ixn_stats<span class="op">$</span>estimate</a></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 0.197
 ## [1] -0.099</code></pre>
@@ -755,21 +763,21 @@ p = 0.717).</p>
 Remember, line breaks are ignored when you render the file (unless you add two spaces at the end of lines), so you can use line breaks to make it easier to read your text with inline R code.
 </p>
 <p>The p-values aren’t formatted in APA style. We wrote a function to deal with this in the <a href="07_functions.html">function lecture</a>. Add this function to the “functions.R” file and change the inline text to use the <code>report_p</code> function.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">  <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">  <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">  </a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
-<a class="sourceLine" id="cb17-7" data-line-number="7">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb17-9" data-line-number="9">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
-<a class="sourceLine" id="cb17-10" data-line-number="10">    fmt &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;p = %.&quot;</span>, digits, <span class="st">&quot;f&quot;</span>)</a>
-<a class="sourceLine" id="cb17-11" data-line-number="11">    reported =<span class="st"> </span><span class="kw">sprintf</span>(fmt, roundp)</a>
-<a class="sourceLine" id="cb17-12" data-line-number="12">  }</a>
-<a class="sourceLine" id="cb17-13" data-line-number="13">  </a>
-<a class="sourceLine" id="cb17-14" data-line-number="14">  reported</a>
-<a class="sourceLine" id="cb17-15" data-line-number="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb435-2" data-line-number="2">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)</a>
+<a class="sourceLine" id="cb435-3" data-line-number="3">  <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)</a>
+<a class="sourceLine" id="cb435-4" data-line-number="4">  <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)</a>
+<a class="sourceLine" id="cb435-5" data-line-number="5">  </a>
+<a class="sourceLine" id="cb435-6" data-line-number="6">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
+<a class="sourceLine" id="cb435-7" data-line-number="7">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
+<a class="sourceLine" id="cb435-8" data-line-number="8">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb435-9" data-line-number="9">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
+<a class="sourceLine" id="cb435-10" data-line-number="10">    fmt &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;p = %.&quot;</span>, digits, <span class="st">&quot;f&quot;</span>)</a>
+<a class="sourceLine" id="cb435-11" data-line-number="11">    reported =<span class="st"> </span><span class="kw">sprintf</span>(fmt, roundp)</a>
+<a class="sourceLine" id="cb435-12" data-line-number="12">  }</a>
+<a class="sourceLine" id="cb435-13" data-line-number="13">  </a>
+<a class="sourceLine" id="cb435-14" data-line-number="14">  reported</a>
+<a class="sourceLine" id="cb435-15" data-line-number="15">}</a></code></pre></div>
 <pre><code>Scores were higher in group B than group A 
 (B = &#96;r grp_stats$estimate&#96;, 
 t = &#96;r grp_stats$statistic&#96;, 
@@ -797,22 +805,22 @@ and the effect of group was not qualified by an interaction with sex
 t = -0.363,
 p = 0.717).</p>
 <p>You might also want to report the statistics for the regression. There are a lot of numbers to format and insert, so it is easier to do this in the analysis script using <code>sprintf</code> for formatting.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">s &lt;-<span class="st"> </span><span class="kw">summary</span>(grp_lm)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co"># calculate p value from fstatistic</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">fstat.p &lt;-<span class="st"> </span><span class="kw">pf</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], </a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">              s<span class="op">$</span>fstatistic[<span class="dv">2</span>], </a>
-<a class="sourceLine" id="cb18-6" data-line-number="6">              s<span class="op">$</span>fstatistic[<span class="dv">3</span>], </a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">              <span class="dt">lower=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9">adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(</a>
-<a class="sourceLine" id="cb18-10" data-line-number="10">  <span class="st">&quot;The regression equation had an adjusted $R^{2}$ of %.3f ($F_{(%i, %i)}$ = %.3f, %s).&quot;</span>,</a>
-<a class="sourceLine" id="cb18-11" data-line-number="11">  <span class="kw">round</span>(s<span class="op">$</span>adj.r.squared, <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb18-12" data-line-number="12">  s<span class="op">$</span>fstatistic[<span class="dv">2</span>],</a>
-<a class="sourceLine" id="cb18-13" data-line-number="13">  s<span class="op">$</span>fstatistic[<span class="dv">3</span>],</a>
-<a class="sourceLine" id="cb18-14" data-line-number="14">  <span class="kw">round</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb18-15" data-line-number="15">  <span class="kw">report_p</span>(fstat.p, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb18-16" data-line-number="16">)</a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1">s &lt;-<span class="st"> </span><span class="kw">summary</span>(grp_lm)</a>
+<a class="sourceLine" id="cb436-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb436-3" data-line-number="3"><span class="co"># calculate p value from fstatistic</span></a>
+<a class="sourceLine" id="cb436-4" data-line-number="4">fstat.p &lt;-<span class="st"> </span><span class="kw">pf</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], </a>
+<a class="sourceLine" id="cb436-5" data-line-number="5">              s<span class="op">$</span>fstatistic[<span class="dv">2</span>], </a>
+<a class="sourceLine" id="cb436-6" data-line-number="6">              s<span class="op">$</span>fstatistic[<span class="dv">3</span>], </a>
+<a class="sourceLine" id="cb436-7" data-line-number="7">              <span class="dt">lower=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb436-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb436-9" data-line-number="9">adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(</a>
+<a class="sourceLine" id="cb436-10" data-line-number="10">  <span class="st">&quot;The regression equation had an adjusted $R^{2}$ of %.3f ($F_{(%i, %i)}$ = %.3f, %s).&quot;</span>,</a>
+<a class="sourceLine" id="cb436-11" data-line-number="11">  <span class="kw">round</span>(s<span class="op">$</span>adj.r.squared, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb436-12" data-line-number="12">  s<span class="op">$</span>fstatistic[<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb436-13" data-line-number="13">  s<span class="op">$</span>fstatistic[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb436-14" data-line-number="14">  <span class="kw">round</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb436-15" data-line-number="15">  <span class="kw">report_p</span>(fstat.p, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb436-16" data-line-number="16">)</a></code></pre></div>
 <p>Then you can just insert the text in your manuscript like this: ` adj_r`:</p>
 <p>The regression equation had an adjusted <span class="math inline">\(R^{2}\)</span> of 0.090 (<span class="math inline">\(F_{(3, 196)}\)</span> = 7.546, p &lt; .001).</p>
 </div>
@@ -839,7 +847,7 @@ p = 0.717).</p>
 <div id="citing-r-packages" class="section level4">
 <h4><span class="header-section-number">10.3.5.2</span> Citing R packages</h4>
 <p>You can get the citation for an R package using the function <code>citation</code>. You can paste the bibtex entry into your bibliography.bib file. Make sure to add a short name (e.g., “rmarkdown”) before the first comma to refer to the reference.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">citation</span>(<span class="dt">package=</span><span class="st">&quot;rmarkdown&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1"><span class="kw">citation</span>(<span class="dt">package=</span><span class="st">&quot;rmarkdown&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## To cite the &#39;rmarkdown&#39; package in publications, please use:
 ## 

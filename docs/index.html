@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-07-26" />
+<meta name="date" content="2019-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.8" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.6.8</b> Scatter plot</a></li>
 <li class="chapter" data-level="3.6.9" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.6.9</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#save-as-file"><i class="fa fa-check"></i><b>3.7</b> Save as File</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.7</b> Customisation</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.7.1</b> Labels</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.7.2</b> Colours</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.7.3</b> Save as File</a></li>
+</ul></li>
 <li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#combination-plots"><i class="fa fa-check"></i><b>3.8</b> Combination Plots</a><ul>
 <li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.8.1</b> Violinbox plot</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.8.2</b> Violin-point-range plot</a></li>
@@ -220,8 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.9</b> Overlapping Data</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#discrete-data"><i class="fa fa-check"></i><b>3.9.1</b> Discrete Data</a></li>
-<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#viridis"><i class="fa fa-check"></i><b>3.9.2</b> Colours</a></li>
-<li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>3.9.3</b> Continuous Data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>3.9.2</b> Continuous Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
@@ -353,10 +356,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform-distribution"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
-<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial-distribution"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal-distribution"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
-<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#multivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Normal</a></li>
+<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#bivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Bivariate Normal</a></li>
+<li class="chapter" data-level="8.3.5" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.3.5</b> Multivariate Normal</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.4</b> Example</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.4.1</b> Load &amp; wrangle</a></li>
@@ -375,10 +379,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.4</b> Relationship between t-test, ANOVA, and linear regression</a></li>
-<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.5</b> Understanding decomposition matrices</a></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.3</b> GLM</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.3.1</b> What is the GLM?</a></li>
+<li class="chapter" data-level="9.3.2" data-path="glm.html"><a href="glm.html#components"><i class="fa fa-check"></i><b>9.3.2</b> Components</a></li>
+<li class="chapter" data-level="9.3.3" data-path="glm.html"><a href="glm.html#simulating-data-from-glm"><i class="fa fa-check"></i><b>9.3.3</b> Simulating data from GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#examples"><i class="fa fa-check"></i><b>9.4</b> Examples</a></li>
+<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#relationship-between-t-test-anova-and-linear-regression"><i class="fa fa-check"></i><b>9.5</b> Relationship between t-test, ANOVA, and linear regression</a></li>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-decomposition-matrices"><i class="fa fa-check"></i><b>9.6</b> Understanding decomposition matrices</a></li>
+<li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
 <li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
@@ -436,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Data Skills for Reproducible Science</h1>
-<p class="date"><em>2019-07-26</em></p>
+<p class="date"><em>2019-08-16</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered">
 <h1>Overview</h1>
@@ -482,10 +491,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="ggplot.html#ggplot">Data Visualisation</a>
 <ol style="list-style-type: decimal">
 <li>Understand what types of graphs are best for <a href="ggplot.html#vartypes">different types of data</a></li>
-<li>Create common types of graphs with ggplot2</li>
-<li>Set custom labels</li>
+<li>Create common types of graphs with ggplot2: <a href="ggplot.html#geom_bar"><code>geom_bar()</code></a>, <a href="#geom_density"><code>geom_density()</code></a>, <a href="ggplot.html#geom_freqpoly"><code>geom_freqpoly()</code></a>, <a href="ggplot.html#geom_histogram"><code>geom_histogram()</code></a>, <a href="ggplot.html#geom_violin"><code>geom_violin()</code></a>, <a href="ggplot.html#geom_boxplot"><code>geom_boxplot()</code></a>, <a href="ggplot.html#geom_col"><code>geom_col()</code></a>, <a href="ggplot.html#geom_point"><code>geom_point()</code></a>, <a href="ggplot.html#geom_smooth"><code>geom_smooth()</code></a></li>
+<li>Set custom <a href="ggplot.html#custom-labels">labels</a> and <a href="ggplot.html#custom-colours">colours</a></li>
 <li>Represent factorial designs with different colours or facets</li>
-<li><a href="#ggsave">Save plots</a> as an image file</li>
+<li><a href="ggplot.html#ggsave">Save plots</a> as an image file</li>
 </ol></li>
 <li><a href="tidyr.html#tidyr">Tidy Data</a>
 <ol style="list-style-type: decimal">
@@ -514,7 +523,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Understand what types of data are best modeled by different distributions: uniform, binomial, normal, poisson</li>
 <li>Generate and plot data randomly sampled from the above distributions</li>
 <li>Test sampled distributions against a null hypothesis using: exact binomial test, t-test (1-sample, independent samples, paired samples), correlation (pearson, kendall and spearman)</li>
-<li>Define the following statistical terms: p-value, alpha, power, false positive (type I error), false negative (type II error), confidence interval</li>
+<li>Define the following statistical terms: <a href="#p-value">p-value</a>, <a href="#alpha">alpha</a>, <a href="#power">power</a>, smallest effect size of interest (<a href="#sesoi">SESOI</a>), <a href="#false-pos">false positive</a> (type I error), <a href="#false-neg">false negative</a> (type II error), confidence interval (<a href="#conf-inf">CI</a>)</li>
+<li><a href="sim.html#calc-power">Calculate power</a> using iteration and a sampling function</li>
 </ol></li>
 <li><a href="glm.html#glm">Introduction to GLM</a>
 <ol style="list-style-type: decimal">
@@ -559,11 +569,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>cowplot</li>
 <li>plotly</li>
 <li>MASS</li>
+<li><a href="https://github.com/debruine/faux">faux</a></li>
 </ul>
 </div>
 <div id="resources" class="section level2">
 <h2><span class="header-section-number">0.6</span> Resources</h2>
-<p>Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the <a href="11_misc.html">Miscellaneous</a> section.</p>
+<p>Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the Appendices.</p>
 <p><img src="images/memes/changing-stuff.jpg" class="right meme" /></p>
 <ul>
 <li><a href="http://rstudio1.psy.gla.ac.uk" target="_blank">Glasgow Psychology RStudio</a></li>

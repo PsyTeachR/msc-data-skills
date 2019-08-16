@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.251167e-01 -1.665723e+00 -7.714929e-01  1.194614e+00 -1.717075e+00
-##  [6] -3.553334e-01  1.326901e+00 -8.582414e-05 -4.911717e-01  9.367640e-01
+##  [1]  0.52382923 -1.76776028 -0.09611163 -1.24677948  0.76274724
+##  [6]  0.13102209  0.16767751 -0.56822653  0.94716733  1.61130470
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  98.65757  98.45955 101.79009 100.13478 101.40210 100.06986  98.44368
-##  [8] 100.43023  99.52391 100.52424
+##  [1] 100.58854 101.10565 101.48492  99.95297  99.16684 101.93593  99.62008
+##  [8] 100.04475 100.78417 101.24237
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  98.80713 100.33620  98.99604  99.66518 100.44964 100.02350 100.23668
-##  [8] 101.16291 100.96318  99.19820
+##  [1] 100.64114  99.11390 100.10040 100.66506 100.45889 100.64646 100.62103
+##  [8]  99.10162 100.16867 100.40071
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -108.11861  -71.89488  185.27094   47.31027  207.89062   17.00817
-##  [7] -214.84134   10.97397  -51.86957  -56.24787
+##  [1]   -3.935046   68.800907   13.044827  167.547209  -83.920865
+##  [6]  -24.705564 -164.866269   -7.365143  -68.175735   17.961633
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -467,11 +467,9 @@ fortune()
 
 ```
 ## 
-## If you aren't sure of the relative priority of two operators, use
-## parentheses. 1:(nr-1) would work regardless of whether : or - had higher
-## priority. Or, in extreme cases, read the documentation.
-##    -- Duncan Murdoch
-##       R-help (August 2005)
+## You can be maximally lazy, but still be efficient.
+##    -- Kevin Murphy (describing the implementation of an algorithm)
+##       gR 2003, Aalborg (September 2003)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -505,16 +503,16 @@ jason()
 
 ```
 ## 
-##  I missed my mom's back surgery because I had already promised my landlord's nephew that I would help him figure out his new phone. 
+##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
 ## 
 ##  ~ Chidi
-##  YA BASIC! 
+##  Pobody's nerfect. 
 ## 
 ##  ~ Eleanor
-##  Well, I suppose some part of me possibly has a sense of casual kinship with you, much as one might be fond of a street cat. 
+##  What is that? Is that jewelry? Not that it matters. It's just some jewelry I don't have. Can I have it? 
 ## 
 ##  ~ Tahani
-##  She's my everything. She makes the bass drop in my heart. 
+##  I have no idea what's going on right now but everyone else is talking and I think I should too! 
 ## 
 ##  ~ Jason
 ```

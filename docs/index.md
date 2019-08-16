@@ -1,7 +1,7 @@
 
 --- 
 title: Data Skills for Reproducible Science
-date: "2019-07-26"
+date: "2019-08-16"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -55,8 +55,8 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 3. [Data Visualisation](#ggplot)
     1. Understand what types of graphs are best for [different types of data](#vartypes)
-    2. Create common types of graphs with ggplot2
-    3. Set custom labels
+    2. Create common types of graphs with ggplot2: [`geom_bar()`](#geom_bar), [`geom_density()`](#geom_density), [`geom_freqpoly()`](#geom_freqpoly), [`geom_histogram()`](#geom_histogram), [`geom_violin()`](#geom_violin), [`geom_boxplot()`](#geom_boxplot), [`geom_col()`](#geom_col), [`geom_point()`](#geom_point), [`geom_smooth()`](#geom_smooth)
+    3. Set custom [labels](#custom-labels) and [colours](#custom-colours)
     4. Represent factorial designs with different colours or facets
     5. [Save plots](#ggsave) as an image file
 
@@ -82,7 +82,8 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     1. Understand what types of data are best modeled by different distributions: uniform, binomial, normal, poisson
     2. Generate and plot data randomly sampled from the above distributions
     3. Test sampled distributions against a null hypothesis using: exact binomial test, t-test (1-sample, independent samples, paired samples), correlation (pearson, kendall and spearman)
-    4. Define the following statistical terms: p-value, alpha, power, false positive (type I error), false negative (type II error), confidence interval
+    4. Define the following statistical terms: [p-value](#p-value), [alpha](#alpha), [power](#power), smallest effect size of interest ([SESOI](#sesoi)), [false positive](#false-pos) (type I error), [false negative](#false-neg) (type II error), confidence interval ([CI](#conf-inf))
+    5. [Calculate power](#calc-power) using iteration and a sampling function
 
 9. [Introduction to GLM](#glm)
     1. Prove to yourself the correspondence among two-sample t-test, one-way ANOVA, and linear regression with dummy coding
@@ -123,10 +124,11 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 * cowplot
 * plotly
 * MASS
+* [faux](https://github.com/debruine/faux)
 
 ## Resources
 
-Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the [Miscellaneous](11_misc.html) section.
+Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the Appendices.
 
 <img src="images/memes/changing-stuff.jpg" class="right meme" />
 

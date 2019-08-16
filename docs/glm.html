@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-07-26" />
+<meta name="date" content="2019-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.8" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.6.8</b> Scatter plot</a></li>
 <li class="chapter" data-level="3.6.9" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.6.9</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#save-as-file"><i class="fa fa-check"></i><b>3.7</b> Save as File</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.7</b> Customisation</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.7.1</b> Labels</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.7.2</b> Colours</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.7.3</b> Save as File</a></li>
+</ul></li>
 <li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#combination-plots"><i class="fa fa-check"></i><b>3.8</b> Combination Plots</a><ul>
 <li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.8.1</b> Violinbox plot</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.8.2</b> Violin-point-range plot</a></li>
@@ -220,8 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.9</b> Overlapping Data</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#discrete-data"><i class="fa fa-check"></i><b>3.9.1</b> Discrete Data</a></li>
-<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#viridis"><i class="fa fa-check"></i><b>3.9.2</b> Colours</a></li>
-<li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>3.9.3</b> Continuous Data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#continuous-data"><i class="fa fa-check"></i><b>3.9.2</b> Continuous Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.10</b> Heat map</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.11</b> Interactive Plots</a></li>
@@ -325,7 +328,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
-<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -354,10 +356,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform-distribution"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
-<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial-distribution"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal-distribution"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
-<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#multivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Multivariate Normal</a></li>
+<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#bivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Bivariate Normal</a></li>
+<li class="chapter" data-level="8.3.5" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.3.5</b> Multivariate Normal</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.4</b> Example</a><ul>
 <li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.4.1</b> Load &amp; wrangle</a></li>
@@ -512,43 +515,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’ll start with a very simple linear model that just has a single categorical predictor. Let’s say we’re predicting reaction times for congruent and incongruent trials in a Stroop task. Average reaction time (<code>mu</code>) is 800ms, and is 50ms faster for congruent than incongruent trials (<code>effect</code>).</p>
 <p>People won’t always respond exactly the same way. Some people will be naturally faster or slower, and some will respond to trial congruency more or less. And one person might be a little faster one some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an error term to each trial. We can’t know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
 <p>Here, we’ll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">mu &lt;-<span class="st"> </span><span class="dv">800</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">effect &lt;-<span class="st"> </span><span class="dv">50</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">error_sd &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp),</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="dt">trial_type.e =</span> <span class="kw">rep</span>(trial_types, <span class="dt">each =</span> n_per_grp),</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="dv">2</span><span class="op">*</span>n_per_grp, <span class="dv">0</span>, error_sd)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error)</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1">n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb411-2" data-line-number="2">mu &lt;-<span class="st"> </span><span class="dv">800</span></a>
+<a class="sourceLine" id="cb411-3" data-line-number="3">effect &lt;-<span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb411-4" data-line-number="4">error_sd &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb411-5" data-line-number="5">trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>)</a>
+<a class="sourceLine" id="cb411-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb411-7" data-line-number="7">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb411-8" data-line-number="8">  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp),</a>
+<a class="sourceLine" id="cb411-9" data-line-number="9">  <span class="dt">trial_type.e =</span> <span class="kw">rep</span>(trial_types, <span class="dt">each =</span> n_per_grp),</a>
+<a class="sourceLine" id="cb411-10" data-line-number="10">  <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="dv">2</span><span class="op">*</span>n_per_grp, <span class="dv">0</span>, error_sd)</a>
+<a class="sourceLine" id="cb411-11" data-line-number="11">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb411-12" data-line-number="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error)</a>
+<a class="sourceLine" id="cb411-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb411-14" data-line-number="14"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb411-15" data-line-number="15"><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb411-16" data-line-number="16"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="09-glm_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Now we can analyse the data we simulated using the function <code>lm()</code>. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the <code>summary()</code> function to see the statistical summary.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = RT ~ trial_type.e, data = dat)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -218.975  -51.380   -5.531   54.356  293.942 
+## -308.586  -67.040   -1.844   67.406  254.470 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   795.885      6.399  124.38  &lt; 2e-16 ***
-## trial_type.e   68.980     12.797    5.39 1.99e-07 ***
+## (Intercept)   804.533      6.991 115.078  &lt; 2e-16 ***
+## trial_type.e   40.050     13.982   2.864  0.00463 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 90.49 on 198 degrees of freedom
-## Multiple R-squared:  0.128,  Adjusted R-squared:  0.1236 
-## F-statistic: 29.05 on 1 and 198 DF,  p-value: 1.991e-07</code></pre>
+## Residual standard error: 98.87 on 198 degrees of freedom
+## Multiple R-squared:  0.03979,    Adjusted R-squared:  0.03494 
+## F-statistic: 8.204 on 1 and 198 DF,  p-value: 0.00463</code></pre>
 <p>Notice how the estimate for the <code>(Intercept)</code> is close to the value we set for <code>mu</code> and the estimate for <code>trial_type.e</code> is close to the value we set for <code>beer_effect</code>.</p>
 <div class="try">
 <p>
@@ -560,15 +563,15 @@ Change the values of <code>mu</code> and <code>trial_type.e</code>, resimulate t
 <div id="examples" class="section level2">
 <h2><span class="header-section-number">9.4</span> Examples</h2>
 <p>In the code block below, you are given the <code>two_sample()</code> function which you will use to generate random datasets.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># libraries needed for these examples</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">         <span class="dt">grp_d =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">each =</span> n_per_group))</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="co"># libraries needed for these examples</span></a>
+<a class="sourceLine" id="cb414-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb414-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb414-4" data-line-number="4">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {</a>
+<a class="sourceLine" id="cb414-5" data-line-number="5">  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb414-6" data-line-number="6">               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),</a>
+<a class="sourceLine" id="cb414-7" data-line-number="7">         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),</a>
+<a class="sourceLine" id="cb414-8" data-line-number="8">         <span class="dt">grp_d =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">each =</span> n_per_group))</a>
+<a class="sourceLine" id="cb414-9" data-line-number="9">}</a></code></pre></div>
 </div>
 <div id="relationship-between-t-test-anova-and-linear-regression" class="section level2">
 <h2><span class="header-section-number">9.5</span> Relationship between t-test, ANOVA, and linear regression</h2>
@@ -582,9 +585,11 @@ Change the values of <code>mu</code> and <code>trial_type.e</code>, resimulate t
 <div id="understanding-decomposition-matrices" class="section level2">
 <h2><span class="header-section-number">9.6</span> Understanding decomposition matrices</h2>
 <p>Now use <code>two_sample()</code> to create a dataset <code>dat</code> with N=5 per group. Then use the estimation equations for a one-factor ANOVA to calculate the model components <code>mu_hat</code> (<span class="math inline">\(\hat{\mu}\)</span>), and <code>a_hat</code> (<span class="math inline">\(\hat{A_i}\)</span>). ’mu_hat&quot; should be a single value and <code>a_hat</code> should be a table with two rows and columns <code>grp</code> and <code>a</code> (the estimated effect for that group).</p>
-<pre><code>&lt;div class=&quot;solution&quot;&gt;&lt;button&gt;Hint&lt;/button&gt;
-
-```r
+<div class="solution">
+<button>
+Hint
+</button>
+<pre><code>```r
 mu_hat &lt;- dat %&gt;%
   summarise(????) %&gt;%
   pull(????)
