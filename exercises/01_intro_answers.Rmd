@@ -52,12 +52,11 @@ random_vals <- rnorm(10, 800, 20)
 
 ## Question 5
 
-Write code that creates a logical vector `is_sig` that represents whether each of the p values in the vector `pvals` is less than .05. (Hint: type `1:11 < 7` in the console and see what you get).
+Use the help function to figure out what argument you need to set to ignore `NA` values when calculating the mean of `the_values`. Change the function below to store the mean of `the_values` in the variable `the_mean`.
 
 ```{r Q5}
-pvals <- c(.2, .001, .78, .04, .06, 10e-9)
-
-is_sig <- pvals < .05
+the_values <- c(1,1,1,2,3,4,6,8,9,9, NA) # do not alter this line
+the_mean <- mean(the_values, na.rm = TRUE)
 ```
 
 ## Answer Checks
@@ -71,7 +70,7 @@ Q["1"] <- all.equal(length(my_pals), 3)
 Q["2"] <- all.equal(ages_10,c(36, 23, 57, 72, 28))
 Q["3"] <- if (exists("my_fortune")) is.list(my_fortune) else FALSE
 Q["4"] <- all.equal(sum(random_vals), 8054.524090755702)
-Q["5"] <- all.equal(is_sig, c(F,T,F,T,F,T))
+Q["5"] <- all.equal(the_mean, 4.4)
 
 ans <- sapply(Q, isTRUE)
 

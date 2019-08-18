@@ -41,6 +41,8 @@ Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
 # libraries needed
 library(tidyverse)
 library(readxl)
+
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 ## Three Rules for Tidy Data {#tidy-data}
@@ -57,11 +59,11 @@ This table has three observations per row and the `total_meanRT` column contains
 
  id   score_1   score_2   score_3   rt_1   rt_2   rt_3  total_meanRT 
 ---  --------  --------  --------  -----  -----  -----  -------------
-  1         6         1         5    769    836    806  12 (804)     
-  2         3         7         1    831    888    995  11 (905)     
-  3         2         2         6    655    749    585  10 (663)     
-  4         5         4         2    741    658    861  11 (753)     
-  5         4         3         7    678    722    700  14 (700)     
+  1         4         3         7    857    890    859  14 (869)     
+  2         3         1         1    902    900    959  5 (920)      
+  3         2         5         4    757    823    901  11 (827)     
+  4         6         2         6    844    788    624  14 (752)     
+  5         1         7         2    659    764    690  10 (704)     
 
 
 
@@ -71,21 +73,21 @@ This is the tidy version.
 
  id  trial     rt   score  total   mean_rt 
 ---  ------  ----  ------  ------  --------
-  1  1        769       6  12      804     
-  1  2        836       1  12      804     
-  1  3        806       5  12      804     
-  2  1        831       3  11      905     
-  2  2        888       7  11      905     
-  2  3        995       1  11      905     
-  3  1        655       2  10      663     
-  3  2        749       2  10      663     
-  3  3        585       6  10      663     
-  4  1        741       5  11      753     
-  4  2        658       4  11      753     
-  4  3        861       2  11      753     
-  5  1        678       4  14      700     
-  5  2        722       3  14      700     
-  5  3        700       7  14      700     
+  1  1        857       4  14      869     
+  1  2        890       3  14      869     
+  1  3        859       7  14      869     
+  2  1        902       3  5       920     
+  2  2        900       1  5       920     
+  2  3        959       1  5       920     
+  3  1        757       2  11      827     
+  3  2        823       5  11      827     
+  3  3        901       4  11      827     
+  4  1        844       6  14      752     
+  4  2        788       2  14      752     
+  4  3        624       6  14      752     
+  5  1        659       1  10      704     
+  5  2        764       7  10      704     
+  5  3        690       2  10      704     
 
 
 
@@ -99,30 +101,32 @@ Download the data from [personality.csv](https://psyteachr.github.io/msc-data-sk
 ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv")
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   date = col_date(format = "")
-## )
-```
 
-```
-## See spec(...) for full column specifications.
-```
+
+ user_id  date          Op1   Ne1   Ne2   Op2   Ex1   Ex2   Co1   Co2   Ne3   Ag1   Ag2   Ne4   Ex3   Co3   Op3   Ex4   Op4   Ex5   Ag3   Co4   Co5   Ne5   Op5   Ag4   Op6   Co6   Ex6   Ne6   Co7   Ag5   Co8   Ex7   Ne7   Co9   Op7   Ne8   Ag6   Ag7   Co10   Ex8   Ex9
+--------  -----------  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -----  ----  ----
+       0  2006-03-23      3     4     0     6     3     3     3     3     0     2     1     3     3     2     2     1     3     3     1     3     0     3     6     1     0     6     3     1     3     3     3     3    NA     3     0     2    NA     3      1     2     4
+       1  2006-02-08      6     0     6     0     0     0     0     0     0     0     6     6     6     0     6     0     0     0     0     6     6     0     6     0     6     0     6     6     6     6     0     6     0     6     6     0     6     0      6     0     6
+       2  2005-10-24      6     0     6     0     0     0     0     0     0     0     6     6     5     1     5     1     1     1     1     5     5     1     5     1     5     1     5     5     5     5     1     5     1     5     5     1     5     1      5     1     5
+       5  2005-12-07      6     4     4     4     2     3     3     3     1     4     0     2     5     3     5     3     6     6     1     5     5     4     2     4     1     4     3     1     1     0     1     4     2     4     5     1     2     1      5     4     5
+       8  2006-07-27      6     1     2     6     2     3     5     4     0     6     5     3     3     4     5     3     6     3     0     5     5     1     5     6     6     6     0     0     3     2     3     1     0     3     5     1     3     1      3     3     5
+     108  2006-02-28      3     2     1     4     4     4     4     3     1     5     4     2     3     4     4     3     3     3     4     3     3     1     4     5     4     5     4     1     4     5     4     2     2     4     4     1     4     3      5     4     2
+
+
 
 
 ### gather() {#gather}
 
 `gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
 
-`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation.
-
 * `key` is what you want to call the row headers; it's "question" in this example. 
 * `value` is what you want to call the values in the gathered columns; they're "score" in this example.
-* The `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+* `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+* `na.rm` determines whether rows with `NA` values should be removed
+* `convert` whether to automatically convert the results to another data type
+* `factor_key` whether to store the key values as a factor (with the same order as in the table) or character vector
 
-Convert from wide to long format. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
+`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
     
 
 ```r
@@ -130,9 +134,29 @@ ocean_gathered <- gather(ocean, "question", "score", Op1:Ex9)
 ```
 
 
+
+ user_id  date         question    score
+--------  -----------  ---------  ------
+       0  2006-03-23   Op1             3
+       1  2006-02-08   Op1             6
+       2  2005-10-24   Op1             6
+       5  2005-12-07   Op1             6
+       8  2006-07-27   Op1             6
+     108  2006-02-28   Op1             3
+
+
+
 ### separate() {#separate} 
 
 `separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
+
+* `col` is the column you want to separate
+* `into` is a vector of new column names
+* `sep` is the character(s) that separate your new columns. This defaults to anything that isn't alphanumeric, like .`,_-/:`
+* `remove` determines whether the separated column (`col`) will be removed from the new data table. The default is to remove it.
+* `convert` whether to automatically convert the results to another data type
+* `extra` controls what happens when there are too many pieces
+* `fill` controls what happens when there are not enough pieces
 
 Split the `question` column into two columns: `domain` and `qnumber`.
 
@@ -144,9 +168,30 @@ ocean_sep <- separate(ocean_gathered, question, c("domain", "qnumber"), sep = 2)
 ```
 
 
+
+ user_id  date         domain   qnumber    score
+--------  -----------  -------  --------  ------
+       0  2006-03-23   Op       1              3
+       1  2006-02-08   Op       1              6
+       2  2005-10-24   Op       1              6
+       5  2005-12-07   Op       1              6
+       8  2006-07-27   Op       1              6
+     108  2006-02-28   Op       1              3
+
+
+
+<div class="warning">
+If you want to separate just at full stops, you need to use `sep = "\\."`, not `sep = "."`. The two slashes **escape** the full stop, making it interpreted as a literal full stop and not the regular expression for any character.
+</div>
+
 ### unite() {#unite} 
 
 `unite(data, col, ..., sep = "_", remove = TRUE)`
+
+* `col` is your new united column
+* `...` refers to the columns you want to unite
+* `sep` is the character(s) that will separate your united columns
+* `remove` determines whether the united columns (`...`) will be removed from the new data table. The default is to remove them.
 
 Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
     
@@ -154,6 +199,18 @@ Put the domain and qnumber columns back together into a new column named `domain
 ```r
 ocean_unite <- unite(ocean_sep, "domain_n", domain, qnumber, sep = "_Q")
 ```
+
+
+
+ user_id  date         domain_n    score
+--------  -----------  ---------  ------
+       0  2006-03-23   Op_Q1           3
+       1  2006-02-08   Op_Q1           6
+       2  2005-10-24   Op_Q1           6
+       5  2005-12-07   Op_Q1           6
+       8  2006-07-27   Op_Q1           6
+     108  2006-02-28   Op_Q1           3
+
 
 
 ### spread() {#spread} 
@@ -169,6 +226,20 @@ You can reverse the processes above, as well. For example, you can convert data 
 ```r
 ocean_spread <- spread(ocean_unite, domain_n, score)
 ```
+
+
+
+ user_id  date          Ag_Q1   Ag_Q2   Ag_Q3   Ag_Q4   Ag_Q5   Ag_Q6   Ag_Q7   Co_Q1   Co_Q10   Co_Q2   Co_Q3   Co_Q4   Co_Q5   Co_Q6   Co_Q7   Co_Q8   Co_Q9   Ex_Q1   Ex_Q2   Ex_Q3   Ex_Q4   Ex_Q5   Ex_Q6   Ex_Q7   Ex_Q8   Ex_Q9   Ne_Q1   Ne_Q2   Ne_Q3   Ne_Q4   Ne_Q5   Ne_Q6   Ne_Q7   Ne_Q8   Op_Q1   Op_Q2   Op_Q3   Op_Q4   Op_Q5   Op_Q6   Op_Q7
+--------  -----------  ------  ------  ------  ------  ------  ------  ------  ------  -------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------
+       0  2006-03-23        2       1       1       1       3      NA       3       3        1       3       2       3       0       6       3       3       3       3       3       3       1       3       3       3       2       4       4       0       0       3       3       1      NA       2       3       6       2       3       6       0       0
+       1  2006-02-08        0       6       0       0       6       6       0       0        6       0       0       6       6       0       6       0       6       0       0       6       0       0       6       6       0       6       0       6       0       6       0       6       0       0       6       0       6       0       6       6       6
+       2  2005-10-24        0       6       1       1       5       5       1       0        5       0       1       5       5       1       5       1       5       0       0       5       1       1       5       5       1       5       0       6       0       6       1       5       1       1       6       0       5       1       5       5       5
+       5  2005-12-07        4       0       1       4       0       2       1       3        5       3       3       5       5       4       1       1       4       2       3       5       3       6       3       4       4       5       4       4       1       2       4       1       2       1       6       4       5       6       2       1       5
+       8  2006-07-27        6       5       0       6       2       3       1       5        3       4       4       5       5       6       3       3       3       2       3       3       3       3       0       1       3       5       1       2       0       3       1       0       0       1       6       6       5       6       5       6       5
+     108  2006-02-28        5       4       4       5       5       4       3       4        5       3       4       3       3       5       4       4       4       4       4       3       3       3       4       2       4       2       2       1       1       2       1       1       2       1       3       4       4       3       4       4       4
+
+
+
 
 ## Pipes {#pipes}
 
@@ -217,16 +288,16 @@ data
 ## # Groups:   id [10]
 ##       id  A_mean B_mean
 ##    <int>   <dbl>  <dbl>
-##  1     1 -0.0227   3.20
-##  2     2  1.02     1.81
-##  3     3  0.590    2.48
-##  4     4 -0.0231   3.65
-##  5     5  0.817    2.62
-##  6     6  0.0658   2.75
-##  7     7  1.13     2.53
-##  8     8  0.766    1.58
-##  9     9 -0.119    2.85
-## 10    10  1.52     2.42
+##  1     1 -0.594   1.02 
+##  2     2  0.744   2.72 
+##  3     3  0.931   3.93 
+##  4     4  0.720   1.97 
+##  5     5 -0.0281  1.95 
+##  6     6 -0.0983  3.21 
+##  7     7  0.126   0.926
+##  8     8  1.45    2.38 
+##  9     9  0.298   1.66 
+## 10    10  0.559   2.10
 ```
 
 <div class="warning">
@@ -826,50 +897,115 @@ glimpse(infmort_wide)
 
 ## Quiz {#tidyr-quiz}
 
-The following data table is called `quiz_data`.
+For questions 1-4, choose how to turn table A into table B. There may be more than one right answer.
 
-
- id  condition    version  pet     score
----  ----------  --------  ----  -------
-  1  A                  1  cat    -0.069
-  1  A                  2  cat    -0.683
-  1  B                  1  cat    -0.460
-  1  B                  2  cat    -0.576
-  2  A                  1  dog    -1.016
-  2  A                  2  dog     2.691
-  2  B                  1  dog     0.740
-  2  B                  2  dog    -0.083
-
-
-1. How do you get `quiz_data` into the following format?
+1. <pre class="mcq"><select class='solveme' data-answer='["gather(A, \"time\", \"score\", morning:night)","gather(A, \"time\", \"score\", morning, noon, night)"]'> <option></option> <option>gather(A, "time", "score", morning:night)</option> <option>gather(A, "pet", "time", morning, noon, night)</option> <option>gather(A, "time", morning, noon, night)</option> <option>gather(A, "time", "score", morning, noon, night)</option> <option>gather(A, "pet", "score", dog:cat)</option></select></pre>
     
-     id   version  pet             A            B
-    ---  --------  ----  -----------  -----------
-      1         1  cat    -0.0686605   -0.4600005
-      1         2  cat    -0.6834133   -0.5756807
-      2         1  dog    -1.0164144    0.7396929
-      2         2  dog     2.6913536   -0.0832694
     
-    <select class='solveme' data-answer='["spread(quiz_data, condition, score)"]'> <option></option> <option>separate(quiz_data, condition, score)</option> <option>gather(quiz_data, condition:score)</option> <option>spread(quiz_data, condition, score)</option> <option>unite(quiz_data, condition:score)</option></select>
+    Table: (\#tab:unnamed-chunk-11)Table A (source)
     
-2. How do you get `quiz_data` into the following format?
+    id   pet       morning         noon        night
+    ---  ----  -----------  -----------  -----------
+    S1   dog    -1.4964122   -0.6278186    0.6267951
+    S2   dog    -1.0112066   -0.5090254    1.0724757
+    S3   cat     0.6669006    0.4264954   -0.0924112
+    S4   cat     1.2740238   -0.2021898    0.7707817
     
-     id  cversion   pet         score
-    ---  ---------  ----  -----------
-      1  A_1        cat    -0.0686605
-      1  A_2        cat    -0.6834133
-      1  B_1        cat    -0.4600005
-      1  B_2        cat    -0.5756807
-      2  A_1        dog    -1.0164144
-      2  A_2        dog     2.6913536
-      2  B_1        dog     0.7396929
-      2  B_2        dog    -0.0832694
+    
+    
+    Table: (\#tab:unnamed-chunk-11)Table B (goal)
+    
+    id   pet   time            score
+    ---  ----  --------  -----------
+    S1   dog   morning    -1.4964122
+    S2   dog   morning    -1.0112066
+    S3   cat   morning     0.6669006
+    S4   cat   morning     1.2740238
+    S1   dog   noon       -0.6278186
+    S2   dog   noon       -0.5090254
+    S3   cat   noon        0.4264954
+    S4   cat   noon       -0.2021898
+    S1   dog   night       0.6267951
+    S2   dog   night       1.0724757
+    S3   cat   night      -0.0924112
+    S4   cat   night       0.7707817
 
-    <select class='solveme' data-answer='["unite(quiz_data, cversion, condition, version)"]'> <option></option> <option>separate(quiz_data, cversion, condition, version)</option> <option>spread(quiz_data, condition:version)</option> <option>gather(quiz_data, cversion, condition:version)</option> <option>unite(quiz_data, cversion, condition, version)</option></select>
 
 
-3. Put the built-in dataset `iris` into the following format.
+2. <pre class="mcq"><select class='solveme' data-answer='["separate(A, pet_number, c(\"pet\", \"number\"))","separate(A, pet_number, c(\"pet\", \"number\"), sep = \"\\\\.\")"]'> <option></option> <option>separate(A, "pet", "number")</option> <option>separate(A, "pet", "number", pet_number)</option> <option>separate(A, pet_number, c("pet", "number"), sep = ".")</option> <option>separate(A, pet_number, c("pet", "number"))</option> <option>separate(A, pet_number, c("pet", "number"), sep = "\\.")</option> <option>separate(A, pet_number, "pet", "number")</option> <option>separate(A, c("pet", "number"))</option></select></pre>
+    
+    
+    Table: (\#tab:unnamed-chunk-13)Table A (source)
+    
+    id   pet_number         score
+    ---  -----------  -----------
+    S1   dog.1         -0.3984966
+    S2   cat.1          0.9157141
+    S3   dog.2          0.7292385
+    S4   cat.2         -0.4399254
+    
+    
+    
+    Table: (\#tab:unnamed-chunk-13)Table B (goal)
+    
+    id   pet   number         score
+    ---  ----  -------  -----------
+    S1   dog   1         -0.3984966
+    S2   cat   1          0.9157141
+    S3   dog   2          0.7292385
+    S4   cat   2         -0.4399254
 
+3. <pre class="mcq"><select class='solveme' data-answer='["unite(A, pet_pref, pet, pref, remove = FALSE)","unite(A, \"pet_pref\", pet, pref, remove = FALSE)"]'> <option></option> <option>unite(A, pet_pref, pet, pref, remove = FALSE)</option> <option>unite(A, pet_pref, pet, pref)</option> <option>unite(A, "pet_pref", pet, pref, remove = FALSE)</option> <option>unite(A, pet, pref, pet_pref, remove = FALSE)</option> <option>unite(A, "pet_pref", pet, pref)</option> <option>unite(A, pet, pref, "pet_pref", remove = FALSE)</option></select></pre>
+    
+    
+    Table: (\#tab:unnamed-chunk-15)Table A (source)
+    
+    id   pet   pref          score
+    ---  ----  ------  -----------
+    S1   dog   lover     0.0933798
+    S2   dog   hater    -0.6841774
+    S3   cat   lover     1.3188061
+    S4   cat   hater     0.9196899
+    
+    
+    
+    Table: (\#tab:unnamed-chunk-15)Table B (goal)
+    
+    id   pet_pref    pet   pref          score
+    ---  ----------  ----  ------  -----------
+    S1   dog_lover   dog   lover     0.0933798
+    S2   dog_hater   dog   hater    -0.6841774
+    S3   cat_lover   cat   lover     1.3188061
+    S4   cat_hater   cat   hater     0.9196899
+
+
+4. <pre class="mcq"><select class='solveme' data-answer='["spread(A, time, score, sep = \"_\")","spread(A, 3, 4, sep = \"_\")"]'> <option></option> <option>spread(A, time, score, sep = "_")</option> <option>spread(A, 3, 4, sep = "_")</option> <option>spread(A, time, score, fill = 0)</option> <option>spread(A, time, score, drop = FALSE)</option> <option>spread(A, time, score)</option></select></pre>
+    
+    
+    Table: (\#tab:unnamed-chunk-17)Table A (source)
+    
+    id   pet   time            score
+    ---  ----  --------  -----------
+    S1   dog   morning     0.5455656
+    S2   dog   morning    -0.4298306
+    S3   cat   morning    -1.9146288
+    S4   cat   morning    -1.4403162
+    S1   dog   night       1.4924050
+    S2   dog   night       0.4096266
+    S3   cat   night      -0.9108425
+    
+    
+    
+    Table: (\#tab:unnamed-chunk-17)Table B (goal)
+    
+    id   pet    time_morning   time_night
+    ---  ----  -------------  -----------
+    S1   dog       0.5455656    1.4924050
+    S2   dog      -0.4298306    0.4096266
+    S3   cat      -1.9146288   -0.9108425
+    S4   cat      -1.4403162           NA
+
+5. Put the built-in dataset `iris` into the following format.
     
     Species   feature   dimension    value
     --------  --------  ----------  ------
@@ -892,45 +1028,45 @@ The following data table is called `quiz_data`.
     
     </div>
 
-4. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
+6. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
 
+    
+    ```r
+    # make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
+    data_original <- tibble(
+      id = c(1:5, 1:5),
+      condition = rep(1:2, each = 5),
+      A = rnorm(10),
+      B = rnorm(10)
+    )
+    
+    # gather columns A and B into "score_type" and "score" columns
+    data_gathered <- gather(data_original, score_type, score, A:B)
+    
+    # unite the score_type and condition columns into a column called "cell"
+    data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
+    
+    # spread the score column into cells
+    data_spread <- spread(data_united, cell, score)
+    ```
 
-```r
-# make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
-data_original <- tibble(
-  id = c(1:5, 1:5),
-  condition = rep(1:2, each = 5),
-  A = rnorm(10),
-  B = rnorm(10)
-)
-
-# gather columns A and B into "score_type" and "score" columns
-data_gathered <- gather(data_original, score_type, score, A:B)
-
-# unite the score_type and condition columns into a column called "cell"
-data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
-
-# spread the score column into cells
-data_spread <- spread(data_united, cell, score)
-```
-
-
-<div class='solution'><button>Solution</button>
-
-```r
-data <- tibble(
-  id = c(1:5, 1:5),
-  condition = rep(1:2, each = 5),
-  A = rnorm(10),
-  B = rnorm(10)
-) %>%
-  gather(score_type, score, A:B) %>%
-  unite(cell, score_type, condition, sep = "") %>%
-  spread(cell, score)
-```
-
-
-</div>
+    
+    <div class='solution'><button>Solution</button>
+    
+    ```r
+    data <- tibble(
+      id = c(1:5, 1:5),
+      condition = rep(1:2, each = 5),
+      A = rnorm(10),
+      B = rnorm(10)
+    ) %>%
+      gather(score_type, score, A:B) %>%
+      unite(cell, score_type, condition, sep = "") %>%
+      spread(cell, score)
+    ```
+    
+    
+    </div>
 
 
 ## Exercises

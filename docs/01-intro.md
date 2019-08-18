@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.1148093 -1.1818255  1.1022341  0.7891923 -0.6835571  1.0946151
-##  [7]  2.4285974 -2.0662243 -1.3332746  0.5947874
+##  [1]  0.1735422 -1.1606949  1.5332971  0.1278727  1.1587802 -0.7594982
+##  [7] -0.6510469 -0.3798053 -0.7392681 -0.6849961
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.89754  99.38238 101.00037  98.49367  99.97468  99.75632  99.12295
-##  [8] 102.73802  99.09099  99.93376
+##  [1] 100.28038  99.57804  99.20215  98.96318  99.98883  99.44057 100.53167
+##  [8] 102.26696  99.91923  98.76144
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.14946  99.92271  98.58670  98.39998  98.43845 100.81995 100.88500
-##  [8]  99.39095  99.64241  98.79218
+##  [1] 101.12943 100.06570 100.43516  99.80494 100.36378  99.08615 100.03963
+##  [8] 101.98702  99.93537 100.06178
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -16.08716  -62.95186  -18.00251   80.30310 -131.74656 -138.00908
-##  [7]   75.53863  107.05757  216.54871  103.10228
+##  [1]  -30.40840  114.55327   33.05050 -191.08314  -28.13697  100.71867
+##  [7] -341.73138  163.48295   33.39088  -30.67453
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -467,9 +467,11 @@ fortune()
 
 ```
 ## 
-## Soon, they'll be speaking R on the subway.
-##    -- Michael Rennie (giving 'Kudos to the R support team')
-##       R-help (July 2004)
+## You say yourself it wasn't reproducible. So it could have been anything
+## that "crashed" your R, cosmic radiation, a bolt of lightning reversing a
+## bit in your computer memory, ... :-)
+##    -- Martin Maechler (replying to a bug report)
+##       R-devel (July 2005)
 ```
 
 Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
@@ -503,16 +505,16 @@ jason()
 
 ```
 ## 
-##  You know, I thought I'd have a stomachache right now, but weirdly... I do. 
+##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
 ## 
 ##  ~ Chidi
-##   First of all, throwing sand is an excellent way to put out a vodka fire. 
+##  Okay, bud, whatever's going on right now, just shove your feelings way down deep, plaster on a fake smile, and pretend like you're having fun. Okay? Just like I used to do when someone started talking about their kids. 
 ## 
 ##  ~ Eleanor
-##  That roast was the meanest thing I've ever seen and I once saw a waiter bring Russell Crowe the wrong tea. 
+##  What is that? Is that jewelry? Not that it matters. It's just some jewelry I don't have. Can I have it? 
 ## 
 ##  ~ Tahani
-##  I'm too young to die and too old to eat off the kids menu! What a stupid age I am. 
+##  I wasn't a failed DJ. I was pre-successful. 
 ## 
 ##  ~ Jason
 ```
@@ -629,11 +631,11 @@ For instance, if on a Windows machine your data and scripts are in the directory
 <p>When manually setting the working directory, always do so by using the <strong><code>Session &gt; Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.</p>
 </div>
 
-If your script needs a file in a subdirectory of `new_analysis`, say, `data/questionnaire.csv`, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a>:
+If your script needs a file in a subdirectory of `new_analysis`, say, `data/questionnaire.csv`, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a> so that it is accessible if you move the folder `new_analysis` to another location or computer:
 
 
 ```r
-dat <- read_csv("data/questionnaire.csv")  # right way
+dat <- read_csv("data/questionnaire.csv")  # correct
 ```
 
 Do not load it in using an absolute path:

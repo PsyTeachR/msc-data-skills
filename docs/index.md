@@ -1,7 +1,7 @@
 
 --- 
 title: Data Skills for Reproducible Science
-date: "2019-08-16"
+date: "2019-08-19"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -86,8 +86,10 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     5. [Calculate power](#calc-power) using iteration and a sampling function
 
 9. [Introduction to GLM](#glm)
-    1. Prove to yourself the correspondence among two-sample t-test, one-way ANOVA, and linear regression with dummy coding
-    2. Given data and a GLM, generate a decomposition matrix and calculate sums of squares, mean squares, and F ratios
+    1. Define the [components](#glm-components) of the GLM
+    2. [Analyse simulated data with `lm()`](#sim-glm) and identify the test parameters that correspond to the data-generation parameters
+    3. Explain the differences among [coding schemes](#coding-schemes) 
+    4. Demonstrate the [relationships](#test-rels) among two-sample t-test, one-way ANOVA, and linear regression
 
 10. [Reproducible Workflows](#repro)
     1. Create a reproducible script in R Markdown

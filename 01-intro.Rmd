@@ -503,10 +503,10 @@ It's tempting to make your life simple by putting the `setwd()` command in your 
 When manually setting the working directory, always do so by using the **`Session > Set Working Directory`** pull-down option or by typing `setwd()` in the console.
 ```
 
-If your script needs a file in a subdirectory of `new_analysis`, say, `data/questionnaire.csv`, load it in using a `r glossary("relative path")`:
+If your script needs a file in a subdirectory of `new_analysis`, say, `data/questionnaire.csv`, load it in using a `r glossary("relative path")` so that it is accessible if you move the folder `new_analysis` to another location or computer:
 
 ```{r read-csv, eval = FALSE}
-dat <- read_csv("data/questionnaire.csv")  # right way
+dat <- read_csv("data/questionnaire.csv")  # correct
 ```
 
 Do not load it in using an absolute path:

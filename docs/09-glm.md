@@ -7,8 +7,14 @@
 
 ### Basic
 
-1. Prove to yourself the correspondence among two-sample t-test, one-way ANOVA, and linear regression with dummy coding
-2. Given data and a GLM, generate a decomposition matrix and calculate sums of squares, mean squares, and F ratios
+1. Define the [components](#glm-components) of the GLM
+2. [Analyse simulated data with `lm()`](#sim-glm) and identify the test parameters that correspond to the data-generation parameters
+3. Explain the differences among [coding schemes](#coding-schemes) 
+4. Demonstrate the [relationships](#test-rels) among two-sample t-test, one-way ANOVA, and linear regression
+
+### Intermediate
+
+5. Given data and a GLM, [generate a decomposition matrix](#decomp) and calculate sums of squares, mean squares, and F ratios
 
 ## Resources
 
@@ -17,65 +23,101 @@
 * [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
 * [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)
 
+## Setup
+
+You'll need the following packages. 
+
+
+```r
+# libraries needed for these examples
+library(tidyverse)
+library(broom)
+
+set.seed(30250) # makes sure random numbers are reproducible
+```
+
 
 ## GLM
 
 ### What is the GLM?
 
-The General Linear Model (GLM) a general mathematical framework for expressing relationships among variables that can express or test linear relationships between a numerical `**dependent variable** and any combination of categorical or continuous **independent variables**.
+The General Linear Model (GLM) a general mathematical framework for expressing relationships among variables that can express or test linear relationships between a numerical **dependent variable** and any combination of categorical or continuous **independent variables**.
 
-A very simple linear model is the relationship between height and foot size in adults.
-
-$footsize = avgfootsize + A * height + error$
-
-### Components
+### Components {#glm-components}
 
 There are some mathematical conventions that you need to learn to understand the equations representing linear models. Once you understand those, learning about the GLM will get much easier.
 
 
 | Component of GLM | Notation                      |
 |------------------|-------------------------------|
-| DV               | \( Y \)                       |
+| Dependent Variable (DV) | \( Y \)               |
 | Grand Average    | \( \mu \) (the Greek letter "mu")   |
 | Main Effects     | \( A, B, C, \ldots \)         |
 | Interactions     | \( AB, AC, BC, ABC, \ldots \) |
 | Random Error     | \( S(Group) \)                |
 
+<img src="images/memes/confused-math-lady.png" class="meme right">
+
 The linear equation predicts the dependent variable ($Y$) as the sum of the grand average value of $Y$ ($\mu$, also called the intercept), the main effects of all the predictor variables ($A+B+C+ \ldots$), the interactions among all the predictor variables ($AB, AC, BC, ABC, \ldots$), and some random error ($S(Group)$). The equation for a model with two predictor variables ($A$ and $B$) and their interaction ($AB$) is written like this:
 
 $Y$ ~ $\mu+A+B+AB+S(Group)$
 
-### Simulating data from GLM
+Don't worry if this doesn't make sense until we walk through a concrete example.
 
-A good way to learn about linear models is to simulate data where you know exactly how the variables are related, and then analyses this simulated data to see where the parameters show up in the analysis.
+### Simulating data from GLM {#sim-glm}
 
-We'll start with a very simple linear model that just has a single categorical predictor. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task. Average reaction time (`mu`) is 800ms, and is 50ms faster for congruent than incongruent trials (`effect`). 
+A good way to learn about linear models is to simulate data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.
 
-People won't always respond exactly the same way. Some people will be naturally faster or slower, and some will respond to trial congruency more or less. And one person might be a little faster one some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an error term to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution. 
+We'll start with a very simple linear model that just has a single categorical factor with two levels. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (`mu`) is 800ms, and is 50ms faster for congruent than incongruent trials (`effect`). 
+
+<div class="warning">
+A **factor** is a categorical variable that is used to divide subjects into groups, usually to draw some comparison. Factors are composed of different **levels**. Do not confuse factors with levels!
+
+In the example above, trial type is a <select class='solveme' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.
+</div>
+
+You need to represent categorical factors with numbers. The numbers, or **coding** you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will **effect code** the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
+
+A person won't always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an **error term** to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution. 
 
 Here, we'll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We'll also sample 100 trials of each type, so we can see a range of variation.
+
+So first create variables for all of the parameters that describe your data.
 
 
 ```r
 n_per_grp <- 100
-mu <- 800
-effect <- 50
-error_sd <- 100
-trial_types <- c("congruent" = 0.5, "incongruent" = -0.5)
+mu <- 800 # average RT
+effect <- 50 # average different between congruent and incongruent trials
+error_sd <- 100 # standard deviation of the error term
+trial_types <- c("congruent" = 0.5, "incongruent" = -0.5) # effect code
+```
 
+Then simulate the data by creating a data table with a row for each trial and columns for the trial type and the error term (random numbers samples from a normal distribution with the SD specified by `error_sd`). For categorical variables, include both a column with the text labels (`trial_type`) and another column with the coded version (`trial_type.e`) to make it easier to check what the codings mean and to use for graphing. Calculate the dependent variable (`RT`) as the sum of the grand mean (`mu`), the coefficient (`effect`) multiplied by the effect-coded predictor variable (`trial_type.e`), and the error term.
+
+
+```r
 dat <- data.frame(
   trial_type = rep(names(trial_types), each = n_per_grp),
   trial_type.e = rep(trial_types, each = n_per_grp),
   error = rnorm(2*n_per_grp, 0, error_sd)
 ) %>%
   mutate(RT = mu + effect*trial_type.e + error)
+```
 
+Last but not least, always plot simulated data to make sure it looks like you expect.
+
+
+```r
 ggplot(dat, aes(trial_type, RT)) + 
   geom_violin() +
   geom_boxplot(aes(fill = trial_type), width = 0.25, show.legend = FALSE)
 ```
 
-<img src="09-glm_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+<img src="09-glm_files/figure-html/plot-sim-1.png" alt="Simulated Data" width="100%" />
+<p class="caption">(\#fig:plot-sim)Simulated Data</p>
+</div>
 
 Now we can analyse the data we simulated using the function `lm()`. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the `summary()` function to see the statistical summary.
 
@@ -91,102 +133,321 @@ lm(RT ~ trial_type.e, data = dat) %>% summary()
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -308.586  -67.040   -1.844   67.406  254.470 
+## -302.110  -70.052    0.948   68.262  246.220 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   804.533      6.991 115.078  < 2e-16 ***
-## trial_type.e   40.050     13.982   2.864  0.00463 ** 
+## (Intercept)   788.192      7.206 109.376  < 2e-16 ***
+## trial_type.e   61.938     14.413   4.297 2.71e-05 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 98.87 on 198 degrees of freedom
-## Multiple R-squared:  0.03979,	Adjusted R-squared:  0.03494 
-## F-statistic: 8.204 on 1 and 198 DF,  p-value: 0.00463
+## Residual standard error: 101.9 on 198 degrees of freedom
+## Multiple R-squared:  0.08532,	Adjusted R-squared:  0.0807 
+## F-statistic: 18.47 on 1 and 198 DF,  p-value: 2.707e-05
 ```
 
-Notice how the estimate for the `(Intercept)` is close to the value we set for `mu` and the estimate for `trial_type.e` is close to the value we set for `beer_effect`.
+Notice how the **estimate** for the `(Intercept)` is close to the value we set for `mu` and the estimate for `trial_type.e` is close to the value we set for `effect`.
 
 <div class="try">
-<p>Change the values of <code>mu</code> and <code>trial_type.e</code>, resimulate the data, and re-run the linear model. What happens to the estimates?</p>
+<p>Change the values of <code>mu</code> and <code>effect</code>, resimulate the data, and re-run the linear model. What happens to the estimates?</p>
 </div>
 
-## Examples
+### Coding Categorical Variables {#coding-schemes}
 
-In the code block below, you are given the `two_sample()` function which you will use to generate random datasets.
+In the example above, we used **effect coding** for trial type. You can also use **sum coding**, which assigns +1 and  -1 to the levels instead of +0.5 and -0.5.  More commonly, you might want to use **treatment coding**, which assigns 0 to one level (usually a baseline or control condition) and 1 to the other level (usually a treatment or experimental condition).
+
+Here we will add sum-coded and treatment-coded versions of `trial_type` to the dataset.
 
 
 ```r
-# libraries needed for these examples
-library(tidyverse)
+dat <- dat %>% mutate(
+  trial_type.sum = rep(c(+1, -1), each = n_per_grp),
+  trial_type.tr = rep(c(1, 0), each = n_per_grp)
+)
+```
 
-two_sample <- function(diff = 0.5, n_per_group = 20) {
-  tibble(Y = c(rnorm(n_per_group, -.5 * diff, sd = 1),
-               rnorm(n_per_group, .5 * diff, sd = 1)),
-         grp = factor(rep(c("a", "b"), each = n_per_group)),
-         grp_d = rep(c(0, 1), each = n_per_group))
+Here are the coefficients for the effect-coded version. They should be the same as those from the last analysis.
+
+
+```r
+lm(RT ~ trial_type.e, data = dat)$coefficients
+```
+
+```
+##  (Intercept) trial_type.e 
+##    788.19166     61.93773
+```
+
+Here are the coefficients for the sum-coded version. This give the same results as effect coding, except the estimate for the categorical factor will be exactly half as large, as it represents the difference between each trial type and the hypothetical condition of 0 (the overall mean RT), rather than the difference between the two trial types.
+
+
+```r
+lm(RT ~ trial_type.sum, data = dat)$coefficients
+```
+
+```
+##    (Intercept) trial_type.sum 
+##      788.19166       30.96887
+```
+
+Here are the coefficients for the treatment-coded version. The estimate for the categorical factor will be the same as in the effect-coded version, but the intercept will decrease. It will be equal to the intercept minus the estimate for trial type from the sum-coded version.
+
+
+```r
+lm(RT ~ trial_type.tr, data = dat)$coefficients
+```
+
+```
+##   (Intercept) trial_type.tr 
+##     757.22279      61.93773
+```
+
+
+## Relationships among tests {#test-rels}
+
+### T-test
+
+The t-test is just a special, limited example of a general linear model.
+
+
+```r
+t.test(RT ~ trial_type.e, data = dat, var.equal = TRUE)
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  RT by trial_type.e
+## t = -4.2975, df = 198, p-value = 2.707e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -90.35945 -33.51601
+## sample estimates:
+## mean in group -0.5  mean in group 0.5 
+##           757.2228           819.1605
+```
+
+<div class="try">
+<p>What happens when you use other codings for trial type in the t-test above? Which coding maps onto the results of the t-test best?</p>
+</div>
+
+### ANOVA
+
+ANOVA is also a special, limited version of the linear model.
+
+
+```r
+my_aov <- aov(RT ~ trial_type.e, data = dat)
+
+summary(my_aov, intercept = TRUE)
+```
+
+```
+##               Df    Sum Sq   Mean Sq  F value   Pr(>F)    
+## (Intercept)    1 124249219 124249219 11963.12  < 2e-16 ***
+## trial_type.e   1    191814    191814    18.47 2.71e-05 ***
+## Residuals    198   2056432     10386                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+The easiest way to get parameters out of an analysis is to use the `broom::tidy()` function. This returns a tidy table that you can extract numbers of interest from. Here, we just want to get the F-value for the effect of trial_type. Compare the square root of this value to the t-value from the t-tests above.
+
+
+```r
+f <- broom::tidy(my_aov)$statistic[1]
+sqrt(f)
+```
+
+```
+## [1] 4.297498
+```
+
+## Understanding ANOVA
+
+We'll walk through an example of a one-way ANOVA with the following equation:
+
+$Y_{ij} = \mu + A_i + S(A)_{ij}$
+
+This means that each data point ($Y_{ij}$) is predicted to be the sum of the grand mean ($\mu$), plus the effect of factor A ($A_i$), plus some residual error ($S(A)_{ij}$).
+
+### Means, Variability, and Deviation Scores
+
+Let's create a simple simulation function so you can quickly create a two-sample dataset with specified Ns, means, and SDs.
+
+
+```r
+two_sample <- function(n = 10, m1 = 0, m2 = 0, sd1 = 1, sd2 = 1) {
+  s1 <- rnorm(n, m1, sd1)
+  s2 <- rnorm(n, m2, sd2)
+  
+  data.frame(
+    Y = c(s1, s2),
+    grp = rep(c("A", "B"), each = n)
+  )
 }
 ```
 
-## Relationship between t-test, ANOVA, and linear regression
-
-Generate a single random dataset using `two_sample()`.  Then compare and contrast the results from:
-
-1. A t-test (with `var.equal = TRUE`)
-2. An ANOVA (using `aov()`)
-3. Linear regression (using `lm()`) on the data
+Now we will use `two_sample()` to create a dataset `dat` with N=5 per group, means of -2 and +2, and SDs of 1 and 1 (yes, this is an effect size of d = 4).
 
 
-## Understanding decomposition matrices
+```r
+dat <- two_sample(5, -2, +2, 1, 1)
+```
 
-Now use `two_sample()` to create a dataset `dat` with N=5 per group.  Then use the estimation equations for a one-factor ANOVA to calculate the model components `mu_hat` ($\hat{\mu}$), and `a_hat` ($\hat{A_i}$).  'mu_hat" should be a single value and `a_hat` should be a table with two rows and columns `grp` and `a` (the estimated effect for that group).
+You can calculate how each data point (`Y`) deviates from the overall sample mean ($\hat{\mu}$), which is represented by the horizontal grey line below and the deviations are the vertical grey lines. You can also calculate how different each point is from its group-specific mean ($\hat{A_i}$), which are represented by the horizontal coloured lines below and the deviations are the coloured vertical lines.
 
-    <div class="solution"><button>Hint</button>
-    
-    ```r
-    mu_hat <- dat %>%
-      summarise(????) %>%
-      pull(????)
-    
-    a_hat <- dat %>%
-      group_by(???) %>% 
-      summarise(????)
-    ```
-    </div>
+<div class="figure" style="text-align: center">
+<img src="09-glm_files/figure-html/deviation-1.png" alt="Deviations of each data point (Y) from the overall and group means" width="100%" />
+<p class="caption">(\#fig:deviation)Deviations of each data point (Y) from the overall and group means</p>
+</div>
 
-Calculate residuals (`err` or $\widehat{S(A)_{ij}}$) and generate a *decomposition matrix* of `Y` in `dat`, such as seen slides 10-12 from the lecture.  (Despite being called a matrix, your decomposition matrix should be a `tibble` not a matrix, and you don't need to include the last line with SS yet.) 
+You can use these deviations to calculate variability between groups and within groups. ANOVA tests whether the variability between groups is larger than that within groups, accounting for the number of groups and observations.
 
-    <div class="solution"><button>Hint</button>
-    It might be easier to calculate the residuals *after* you get everything else in the table.
-    </div>
+### Decomposition matrices {#decomp}
 
-    <div class="solution"><button>Another Hint</button>
-    Use `select()` on dat to get `Y` and `grp`, and `inner_join()` to add in the $A_i$s.
-    </div>
+We can use the estimation equations for a one-factor ANOVA to calculate the model components.
 
-    <div class="solution"><button>Yet Another Hint</button>
-    
-    ```r
-    decomp <- dat %>% 
-      select(Y, grp) %>%
-      mutate(mu = mu_hat) %>%
-      inner_join(a_hat, "grp") # %>% ...etc
-    ```
-    </div>
+* `mu` is the overall mean 
+* `a` is how different each group mean is from the overall mean
+* `err` is residual error, calculated by subtracting `mu` and `a` from `Y`
 
-Calculate sums of squares for `Y`, `a`, and `err`.  The resulting table should be called `all_ss` with columns `SS_Y`, `SS_a`, and `SS_err` respectively.
+This produces a *decomposition matrix*, a table with columns for `Y`, `mu`, `a`, and `err`.
 
-    <div class="solution"><button>Hint</button>
-    Use the `summarise()` function.  You can declare more than one summary values as separate arguments to the function.
-    </div>
 
-Divide each sum of squares by its corresponding df to calculate mean squares.  The calculate an F-ratio, and get the p-value using the `pf()` function.
+```r
+decomp <- dat %>% 
+  select(Y, grp) %>%
+  mutate(mu = mean(Y)) %>%     # calculate mu_hat
+  group_by(grp) %>%
+  mutate(a = mean(Y) - mu) %>% # calculate a_hat for each grp
+  ungroup() %>%
+  mutate(err = Y - mu - a)     # calculate residual error
+```
 
-    <div class="solution"><button>Hint</button>
-    Use `lower.tail = FALSE` with `pf()`.  See `?pf`
-    </div>
+
+
+          Y  grp           mu           a          err
+-----------  ----  ----------  ----------  -----------
+ -1.4770938  A      0.1207513   -1.533501   -0.0643443
+ -2.9508741  A      0.1207513   -1.533501   -1.5381246
+ -0.6376736  A      0.1207513   -1.533501    0.7750759
+ -1.7579084  A      0.1207513   -1.533501   -0.3451589
+ -0.2401977  A      0.1207513   -1.533501    1.1725518
+  0.1968155  B      0.1207513    1.533501   -1.4574367
+  2.6308008  B      0.1207513    1.533501    0.9765486
+  2.0293297  B      0.1207513    1.533501    0.3750775
+  2.1629037  B      0.1207513    1.533501    0.5086516
+  1.2514112  B      0.1207513    1.533501   -0.4028410
+
+
+
+Calculate sums of squares for `mu`, `a`, and `err`.
+
+
+```r
+SS <- decomp %>%
+  summarise(mu = sum(mu*mu),
+            a = sum(a*a),
+            err = sum(err*err))
+```
+
+
+
+        mu          a        err
+----------  ---------  ---------
+ 0.1458088   23.51625   8.104182
+
+
+
+If you've done everything right, `SS$mu + SS$a + SS$err` should equal the sum of squares for Y.
+
+
+```r
+SS_Y <- sum(decomp$Y^2)
+SS_Y == SS$mu + SS$a + SS$err
+```
+
+```
+## [1] TRUE
+```
+
+Divide each sum of squares by its corresponding degrees of freedom (df) to calculate mean squares. The df for `mu` is 1, the df for factor `a` is `K-1` (K is the number of groups), and the df for `err` is `N - K` (N is the number of observations).
+
+
+```r
+K <- n_distinct(dat$grp)
+N <- nrow(dat)
+df <- c(mu = 1, a = K - 1, err = N - K)
+MS <- SS / df
+```
+
+
+
+        mu          a        err
+----------  ---------  ---------
+ 0.1458088   23.51625   1.013023
+
+
+
+Then calculate an F-ratio for `mu` and `a` by dividing their mean squares by the error term mean square. Get the p-values that correspond to these F-values using the `pf()` function.
+
+
+```r
+F_mu <- MS$mu / MS$err
+F_a  <- MS$a  / MS$err
+p_mu <- pf(F_mu, df1 = df['mu'], df2 = df['err'], lower.tail = FALSE)
+p_a  <- pf(F_a,  df1 = df['a'],  df2 = df['err'], lower.tail = FALSE)
+```
+
+Put everything into a data frame to display it in the same way as the ANOVA summary function.
+
+
+```r
+my_calcs <- data.frame(
+  term = c("Intercept", "grp", "Residuals"),
+  Df = df,
+  SS = c(SS$mu, SS$a, SS$err),
+  MS = c(MS$mu, MS$a, MS$err),
+  F = c(F_mu, F_a, NA),
+  p = c(p_mu, p_a, NA)
+)
+```
+
+
+
+      term         Df       SS       MS        F       p
+----  ----------  ---  -------  -------  -------  ------
+mu    Intercept     1    0.146    0.146    0.144   0.714
+a     grp           1   23.516   23.516   23.214   0.001
+err   Residuals     8    8.104    1.013       NA      NA
+
+
 
 Now run a one-way ANOVA on your results and compare it to what you obtained in your calculations.
+
+
+```r
+aov(Y ~ grp, data = dat) %>% summary(intercept = TRUE)
+```
+
+```
+##             Df Sum Sq Mean Sq F value  Pr(>F)   
+## (Intercept)  1  0.146   0.146   0.144 0.71427   
+## grp          1 23.516  23.516  23.214 0.00132 **
+## Residuals    8  8.104   1.013                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+
+
+<div class="try">
+<p>Using the code above, write your own function that takes a table of data and returns the ANOVA results table like above.</p>
+</div>
+
 
 
 ## Exercises

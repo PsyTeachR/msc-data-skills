@@ -41,6 +41,7 @@ Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
 library(tidyverse)
 library(readxl)
 
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 ## Three Rules for Tidy Data {#tidy-data}
@@ -88,31 +89,43 @@ This is the tidy version.
 
 Download the data from [personality.csv](https://psyteachr.github.io/msc-data-skills/data/personality.csv). These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.
 
-```{r load-ocean}
+```{r load-ocean, message=FALSE}
 ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv")
 ```
+
+`r head(ocean) %>% knitr::kable()`
 
 
 ### gather() {#gather}
 
 `gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
 
-`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation.
-
 * `key` is what you want to call the row headers; it's "question" in this example. 
 * `value` is what you want to call the values in the gathered columns; they're "score" in this example.
-* The `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+* `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+* `na.rm` determines whether rows with `NA` values should be removed
+* `convert` whether to automatically convert the results to another data type
+* `factor_key` whether to store the key values as a factor (with the same order as in the table) or character vector
 
-Convert from wide to long format. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
+`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
     
 ```{r ocean-gathered}
 ocean_gathered <- gather(ocean, "question", "score", Op1:Ex9)
 ```
 
+`r head(ocean_gathered) %>% knitr::kable()`
 
 ### separate() {#separate} 
 
 `separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
+
+* `col` is the column you want to separate
+* `into` is a vector of new column names
+* `sep` is the character(s) that separate your new columns. This defaults to anything that isn't alphanumeric, like .`,_-/:`
+* `remove` determines whether the separated column (`col`) will be removed from the new data table. The default is to remove it.
+* `convert` whether to automatically convert the results to another data type
+* `extra` controls what happens when there are too many pieces
+* `fill` controls what happens when there are not enough pieces
 
 Split the `question` column into two columns: `domain` and `qnumber`.
 
@@ -122,10 +135,20 @@ There is no character to split on, here, but you can separate a column after a s
 ocean_sep <- separate(ocean_gathered, question, c("domain", "qnumber"), sep = 2)
 ```
 
+`r head(ocean_sep) %>% knitr::kable()`
+
+<div class="warning">
+If you want to separate just at full stops, you need to use `sep = "\\."`, not `sep = "."`. The two slashes **escape** the full stop, making it interpreted as a literal full stop and not the regular expression for any character.
+</div>
 
 ### unite() {#unite} 
 
 `unite(data, col, ..., sep = "_", remove = TRUE)`
+
+* `col` is your new united column
+* `...` refers to the columns you want to unite
+* `sep` is the character(s) that will separate your united columns
+* `remove` determines whether the united columns (`...`) will be removed from the new data table. The default is to remove them.
 
 Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
     
@@ -133,6 +156,7 @@ Put the domain and qnumber columns back together into a new column named `domain
 ocean_unite <- unite(ocean_sep, "domain_n", domain, qnumber, sep = "_Q")
 ```
 
+`r head(ocean_unite) %>% knitr::kable()`
 
 ### spread() {#spread} 
 
@@ -146,6 +170,9 @@ You can reverse the processes above, as well. For example, you can convert data 
 ```{r ocean-spread}
 ocean_spread <- spread(ocean_unite, domain_n, score)
 ```
+
+`r head(ocean_spread) %>% knitr::kable()`
+
 
 ## Pipes {#pipes}
 
@@ -525,57 +552,113 @@ glimpse(infmort_wide)
 
 ## Quiz {#tidyr-quiz}
 
-The following data table is called `quiz_data`.
+For questions 1-4, choose how to turn table A into table B. There may be more than one right answer.
 
-```{r, echo = FALSE, results = 'asis'}
-quiz_data <- expand.grid(
-  version = 1:2,
-  condition = c("A", "B"),
-  id = 1:10
-) %>%
-  select(id, condition, version) %>%
-  mutate(
-    pet = ifelse(id%%2, "cat", "dog"),
-    score = rnorm(nrow(.))
-  ) %>% head(n = 8L)
+```{r, echo = FALSE, results='asis'}
+A <- faux::sim_design(
+  within = list(time = c("morning", "noon", "night")),
+  between = list(pet = c("dog", "cat")),
+  n = 2, plot = FALSE
+)
 
-knitr::kable(quiz_data, digits = 3)
+B <- gather(A, time, score, morning:night)
+
+cat("1. <pre class=\"mcq\">")
+c("gather(A, \"pet\", \"score\", dog:cat)",
+  "gather(A, \"pet\", \"time\", morning, noon, night)",
+  "gather(A, \"time\", morning, noon, night)",
+  answer = "gather(A, \"time\", \"score\", morning:night)",
+  answer = "gather(A, \"time\", \"score\", morning, noon, night)"
+) %>% sample() %>% webex::mcq() %>% cat()
+cat("</pre>")
 ```
-
-
-1. How do you get `quiz_data` into the following format?
-    ```{r, echo = FALSE, results='asis'}
-    spread(quiz_data, condition, score) %>%
-      head(n = 8L) %>%
-      knitr::kable()
-    ```
     
     ```{r, echo = FALSE, results='asis'}
-    c("separate(quiz_data, condition, score)",
-      "gather(quiz_data, condition:score)",
-      answer = "spread(quiz_data, condition, score)",
-      "unite(quiz_data, condition:score)"
-    ) %>% webex::mcq() %>% cat()
+    knitr::kable(A, caption = "Table A (source)")
+    knitr::kable(B, caption = "Table B (goal)")
     ```
+
+
+
+```{r, echo = FALSE, results='asis'}
+A <- faux::sim_design(
+  between = list(pet_number = c("dog_1", "cat_1", "dog_2", "cat_2")),
+  dv = "score",
+  n = 1, plot = FALSE
+)
+
+B <- separate(A, pet_number, c("pet", "number"), sep = "\\.")
+
+cat("2. <pre class=\"mcq\">")
+c(answer = "separate(A, pet_number, c(\"pet\", \"number\"))",
+  answer = "separate(A, pet_number, c(\"pet\", \"number\"), sep = \"\\\\.\")",
+  "separate(A, pet_number, c(\"pet\", \"number\"), sep = \".\")",
+  "separate(A, \"pet\", \"number\")",
+  "separate(A, c(\"pet\", \"number\"))",
+  "separate(A, \"pet\", \"number\", pet_number)",
+  "separate(A, pet_number, \"pet\", \"number\")"
+) %>% sample() %>% webex::mcq() %>% cat()
+cat("</pre>")
+```
     
-2. How do you get `quiz_data` into the following format?
     ```{r, echo = FALSE, results='asis'}
-    unite(quiz_data, cversion, condition, version) %>%
-      head(n = 8L) %>%
-      knitr::kable()
-    ```    
+    knitr::kable(A, caption = "Table A (source)")
+    knitr::kable(B, caption = "Table B (goal)")
+    ```
 
+```{r, echo = FALSE, results='asis'}
+A <- faux::sim_design(
+  between = list(pet = c("dog", "cat"),
+                 pref = c("lover", "hater")),
+  dv = "score",
+  n = 1, plot = FALSE
+)
+
+B <- unite(A, pet_pref, pet, pref, remove = FALSE)
+
+cat("3. <pre class=\"mcq\">")
+c(answer = "unite(A, pet_pref, pet, pref, remove = FALSE)",
+  answer = "unite(A, \"pet_pref\", pet, pref, remove = FALSE)",
+  "unite(A, pet_pref, pet, pref)",
+  "unite(A, \"pet_pref\", pet, pref)",
+  "unite(A, pet, pref, \"pet_pref\", remove = FALSE)",
+  "unite(A, pet, pref, pet_pref, remove = FALSE)"
+) %>% sample() %>% webex::mcq() %>% cat()
+cat("</pre>")
+```
+    
     ```{r, echo = FALSE, results='asis'}
-    c("separate(quiz_data, cversion, condition, version)",
-      "spread(quiz_data, condition:version)",
-      "gather(quiz_data, cversion, condition:version)",
-      answer = "unite(quiz_data, cversion, condition, version)"
-    ) %>% webex::mcq() %>% cat()
+    knitr::kable(A, caption = "Table A (source)")
+    knitr::kable(B, caption = "Table B (goal)")
     ```
 
 
-3. Put the built-in dataset `iris` into the following format.
+```{r, echo = FALSE, results='asis'}
+A <- faux::sim_design(
+  within = list(time = c("morning", "night")),
+  between = list(pet = c("dog", "cat")),
+  dv = "score", n = 2, plot = FALSE, long = TRUE
+) %>%
+  filter(row_number() != 8)
 
+B <- spread(A, time, score, sep = "_")
+
+cat("4. <pre class=\"mcq\">")
+c(answer = "spread(A, time, score, sep = \"_\")",
+  answer = "spread(A, 3, 4, sep = \"_\")",
+  "spread(A, time, score, drop = FALSE)",
+  "spread(A, time, score)",
+  "spread(A, time, score, fill = 0)"
+) %>% sample() %>% webex::mcq() %>% cat()
+cat("</pre>")
+```
+    
+    ```{r, echo = FALSE, results='asis'}
+    knitr::kable(A, caption = "Table A (source)")
+    knitr::kable(B, caption = "Table B (goal)")
+    ```
+
+5. Put the built-in dataset `iris` into the following format.
     ```{r, echo = FALSE, results='asis'}
     iris %>%
       gather(var, value, Sepal.Length:Petal.Width) %>%
@@ -590,42 +673,42 @@ knitr::kable(quiz_data, digits = 3)
       separate(var, into = c("feature", "dimension"))
     ```
 
-4. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
+6. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
 
-```{r, eval = FALSE}
+    ```{r, eval = FALSE}
+    
+    # make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
+    data_original <- tibble(
+      id = c(1:5, 1:5),
+      condition = rep(1:2, each = 5),
+      A = rnorm(10),
+      B = rnorm(10)
+    )
+    
+    # gather columns A and B into "score_type" and "score" columns
+    data_gathered <- gather(data_original, score_type, score, A:B)
+    
+    # unite the score_type and condition columns into a column called "cell"
+    data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
+    
+    # spread the score column into cells
+    data_spread <- spread(data_united, cell, score)
+    
+    ```
 
-# make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
-data_original <- tibble(
-  id = c(1:5, 1:5),
-  condition = rep(1:2, each = 5),
-  A = rnorm(10),
-  B = rnorm(10)
-)
-
-# gather columns A and B into "score_type" and "score" columns
-data_gathered <- gather(data_original, score_type, score, A:B)
-
-# unite the score_type and condition columns into a column called "cell"
-data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
-
-# spread the score column into cells
-data_spread <- spread(data_united, cell, score)
-
-```
-
-```{r, eval = FALSE, webex.hide = TRUE}
-
-data <- tibble(
-  id = c(1:5, 1:5),
-  condition = rep(1:2, each = 5),
-  A = rnorm(10),
-  B = rnorm(10)
-) %>%
-  gather(score_type, score, A:B) %>%
-  unite(cell, score_type, condition, sep = "") %>%
-  spread(cell, score)
-
-```
+    ```{r, eval = FALSE, webex.hide = TRUE}
+    
+    data <- tibble(
+      id = c(1:5, 1:5),
+      condition = rep(1:2, each = 5),
+      A = rnorm(10),
+      B = rnorm(10)
+    ) %>%
+      gather(score_type, score, A:B) %>%
+      unite(cell, score_type, condition, sep = "") %>%
+      spread(cell, score)
+    
+    ```
 
 
 ## Exercises

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Psychology, University of Glasgow" />
@@ -343,18 +344,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -415,10 +404,9 @@ my_fortune</code></pre>
 </div>
 <div id="question-5" class="section level2">
 <h2>Question 5</h2>
-<p>Write code that creates a logical vector <code>is_sig</code> that represents whether each of the p values in the vector <code>pvals</code> is less than .05. (Hint: type <code>1:11 &lt; 7</code> in the console and see what you get).</p>
-<pre class="r"><code>pvals &lt;- c(.2, .001, .78, .04, .06, 10e-9)
-
-is_sig &lt;- pvals &lt; .05</code></pre>
+<p>Use the help function to figure out what argument you need to set to ignore <code>NA</code> values when calculating the mean of <code>the_values</code>. Change the function below to store the mean of <code>the_values</code> in the variable <code>the_mean</code>.</p>
+<pre class="r"><code>the_values &lt;- c(1,1,1,2,3,4,6,8,9,9, NA) # do not alter this line
+the_mean &lt;- mean(the_values, na.rm = TRUE)</code></pre>
 </div>
 <div id="answer-checks" class="section level2">
 <h2>Answer Checks</h2>
@@ -472,6 +460,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

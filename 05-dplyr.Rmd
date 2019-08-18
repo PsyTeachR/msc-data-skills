@@ -43,6 +43,7 @@ You'll need the following packages.
 # libraries needed for these examples
 library(tidyverse)
 library(lubridate)
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 
