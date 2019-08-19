@@ -93,7 +93,7 @@ c("this", "is", "cool")
 What happens when you mix types? What class is the variable `mixed`?
 
 ```r
-mixed <- c(2, "good", 2, "b", "true")
+mixed <- c(2, "good", 2L, "b", TRUE)
 ```
 </div>
 
