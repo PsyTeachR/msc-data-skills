@@ -73,7 +73,7 @@ In this class, you will be learning how to develop **reproducible scripts**.  Th
 
 When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
-There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**;.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
+There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
 <div class="figure" style="text-align: center">
 <img src="images/01/repro.png" alt="Alter these settings for increased reproducibility." width="66%" />
@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.1735422 -1.1606949  1.5332971  0.1278727  1.1587802 -0.7594982
-##  [7] -0.6510469 -0.3798053 -0.7392681 -0.6849961
+##  [1]  1.15186804 -0.33024283 -0.24991448 -0.50668069 -0.02495801
+##  [6] -0.27710230  1.47781088 -0.21063169  1.67800038 -0.31944619
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.28038  99.57804  99.20215  98.96318  99.98883  99.44057 100.53167
-##  [8] 102.26696  99.91923  98.76144
+##  [1]  98.48191 100.43418  99.62359 100.29270 100.50828  98.70452 101.75982
+##  [8]  99.46557  99.03663  99.94638
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 101.12943 100.06570 100.43516  99.80494 100.36378  99.08615 100.03963
-##  [8] 101.98702  99.93537 100.06178
+##  [1]  99.61621  99.73038 100.34224  98.61603 100.85594 101.29661  98.97355
+##  [8]  99.65776  98.99585 100.61711
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -30.40840  114.55327   33.05050 -191.08314  -28.13697  100.71867
-##  [7] -341.73138  163.48295   33.39088  -30.67453
+##  [1]  -81.60272   71.40418  -73.48568   28.09207  116.85255 -242.48229
+##  [7]  141.17281   16.89854   14.01350  -51.97355
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -438,43 +438,40 @@ This is done using `install.packages()`. This is like installing an app on your 
 <p>You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations if you lack the appropriate privileges.</p>
 </div>
 
-Install the `fortunes` package on your system:
+Install the `ggExtra` package on your system. This package lets you create plots with marginal histograms.
 
 
 ```r
-install.packages("fortunes")
+install.packages("ggExtra")
 ```
 
-If you don't get an error message, the installation was successful. 
+If you don't already have packages like ggplot2 and shiny installed, it will also install these **dependencies** for you. If you don't get an error message at the end, the installation was successful. 
 
 ### Loading a package
 
 This is done using `library(packagename)`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run `library(packagename)` within a session, the functionality of the package referred to by `packagename` will be made available for your R session. The next time you start R, you will need to run the `library()` function again if you want to access its functionality.
 
-You can load the functions in `fortune` for your current R session as follows:
+You can load the functions in `ggExtra` for your current R session as follows:
 
 
 ```r
-library(fortunes)
+library(ggExtra)
 ```
 
-Once you have typed this, you can run the function `fortune()`, which spouts random wisdom from one of the R help lists:
+You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
+
+<div class="info">
+<p>You can use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
+</div>
+
+Now can run the function `ggExtra::runExample()`, which runs an interactive example of marginal plots using shiny.
 
 
 ```r
-fortune()
+ggExtra::runExample()
 ```
 
-```
-## 
-## You say yourself it wasn't reproducible. So it could have been anything
-## that "crashed" your R, cosmic radiation, a bolt of lightning reversing a
-## bit in your computer memory, ... :-)
-##    -- Martin Maechler (replying to a bug report)
-##       R-devel (July 2005)
-```
 
-Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
 
 ### Install from GitHub
 
@@ -505,16 +502,16 @@ jason()
 
 ```
 ## 
-##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
+##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
 ## 
 ##  ~ Chidi
-##  Okay, bud, whatever's going on right now, just shove your feelings way down deep, plaster on a fake smile, and pretend like you're having fun. Okay? Just like I used to do when someone started talking about their kids. 
+##  Oh, so now I'm supposed to be nice and make friends and treat her with mutual respect? 
 ## 
 ##  ~ Eleanor
-##  What is that? Is that jewelry? Not that it matters. It's just some jewelry I don't have. Can I have it? 
+##  That was my first time as a fashion "don't," and I did not care for it. 
 ## 
 ##  ~ Tahani
-##  I wasn't a failed DJ. I was pre-successful. 
+##  I was just about to tell an awesome story about a wing-eating contest that I lost, and a barfing contest that I won, but then a hole opened up in the ground. 
 ## 
 ##  ~ Jason
 ```

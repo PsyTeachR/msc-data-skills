@@ -8,13 +8,16 @@
 ### Basic
 
 1. Define the [components](#glm-components) of the GLM
-2. [Analyse simulated data with `lm()`](#sim-glm) and identify the test parameters that correspond to the data-generation parameters
-3. Explain the differences among [coding schemes](#coding-schemes) 
-4. Demonstrate the [relationships](#test-rels) among two-sample t-test, one-way ANOVA, and linear regression
+2. [Simulate data](#sim-glm) using GLM equations
+3. Identify the model parameters that correspond to the data-generation parameters
+4. Understand and plot [residuals](#residuals)
+5. [Predict new values](#predict) using the model
+6. Explain the differences among [coding schemes](#coding-schemes) 
 
 ### Intermediate
 
-5. Given data and a GLM, [generate a decomposition matrix](#decomp) and calculate sums of squares, mean squares, and F ratios
+7. Demonstrate the [relationships](#test-rels) among two-sample t-test, one-way ANOVA, and linear regression
+8. Given data and a GLM, [generate a decomposition matrix](#decomp) and calculate sums of squares, mean squares, and F ratios for a one-way ANOVA
 
 ## Resources
 
@@ -119,11 +122,15 @@ ggplot(dat, aes(trial_type, RT)) +
 <p class="caption">(\#fig:plot-sim)Simulated Data</p>
 </div>
 
+### Linear Regression
+
 Now we can analyse the data we simulated using the function `lm()`. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the `summary()` function to see the statistical summary.
 
 
 ```r
-lm(RT ~ trial_type.e, data = dat) %>% summary()
+my_lm <- lm(RT ~ trial_type.e, data = dat)
+
+summary(my_lm)
 ```
 
 ```
@@ -152,6 +159,81 @@ Notice how the **estimate** for the `(Intercept)` is close to the value we set f
 <div class="try">
 <p>Change the values of <code>mu</code> and <code>effect</code>, resimulate the data, and re-run the linear model. What happens to the estimates?</p>
 </div>
+
+### Residuals {#residuals}
+
+You can use the `residuals()` function to extract the error term for each each data point. This is the Y values, minus the estimates for the intercept and trial type. We'll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.
+
+
+```r
+res <- residuals(my_lm)
+
+ggplot(dat) + 
+  stat_function(aes(0), color = "grey40",
+                fun = dnorm, n = 101, 
+                args = list(mean = 0, sd = error_sd)) +
+  geom_density(aes(res, color = trial_type))
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-glm_files/figure-html/res-density-plot-1.png" alt="Model residuals should be approximately normally distributed for each group" width="100%" />
+<p class="caption">(\#fig:res-density-plot)Model residuals should be approximately normally distributed for each group</p>
+</div>
+
+You can also compare the model residuals to the simulated error values. If the model is accurate, they should be almost identical. If the intercept estimate is slightly off, the points will be slightly above or below the black line. If the estimate for the effect of trial type is slightly off, there will be a small, systematic difference between residuals for congruent and incongruent trials.
+
+
+```r
+ggplot(dat) +
+  geom_abline(slope = 1) +
+  geom_point(aes(error, res,color = trial_type)) +
+  ylab("Model Residuals") +
+  xlab("Simulated Error")
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-glm_files/figure-html/res-err-plot-1.png" alt="Model residuals should be very similar to the simulated error" width="100%" />
+<p class="caption">(\#fig:res-err-plot)Model residuals should be very similar to the simulated error</p>
+</div>
+
+<div class="try">
+<p>What happens to the residuals if you fit a model that ignores trial type (e.g., <code>lm(Y ~ 1, data = dat)</code>)?</p>
+</div>
+
+### Predict New Values {#predict}
+
+You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to now the trial type to make a prediction.
+
+For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).
+
+
+```r
+int_est <- my_lm$coefficients[["(Intercept)"]]
+tt_est  <- my_lm$coefficients[["trial_type.e"]]
+tt_code <- trial_types[["congruent"]]
+
+new_congruent_RT <- int_est + tt_est * tt_code
+
+new_congruent_RT
+```
+
+```
+## [1] 819.1605
+```
+
+You can also use the `predict()` function to do this more easily.
+
+
+```r
+predict(my_lm, tibble(trial_type.e = 0.5))
+```
+
+```
+##        1 
+## 819.1605
+```
+
+
 
 ### Coding Categorical Variables {#coding-schemes}
 

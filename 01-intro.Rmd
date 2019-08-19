@@ -71,7 +71,7 @@ In this class, you will be learning how to develop **reproducible scripts**.  Th
 
 When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
-There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**;.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
+There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
 ```{r img-repro, echo=FALSE, out.width='66%', fig.cap="Alter these settings for increased reproducibility."}
 knitr::include_graphics("images/01/repro.png")
@@ -345,31 +345,37 @@ This is done using `install.packages()`. This is like installing an app on your 
 You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations if you lack the appropriate privileges.
 ```
 
-Install the `fortunes` package on your system:
+Install the `ggExtra` package on your system. This package lets you create plots with marginal histograms.
 
-```{r install-fortunes, eval = FALSE}
-install.packages("fortunes")
+```{r install-pckg, eval = FALSE}
+install.packages("ggExtra")
 ```
 
-If you don't get an error message, the installation was successful. 
+If you don't already have packages like ggplot2 and shiny installed, it will also install these **dependencies** for you. If you don't get an error message at the end, the installation was successful. 
 
 ### Loading a package
 
 This is done using `library(packagename)`. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run `library(packagename)` within a session, the functionality of the package referred to by `packagename` will be made available for your R session. The next time you start R, you will need to run the `library()` function again if you want to access its functionality.
 
-You can load the functions in `fortune` for your current R session as follows:
+You can load the functions in `ggExtra` for your current R session as follows:
 
-```{r library-fortunes}
-library(fortunes)
+```{r library-pckg}
+library(ggExtra)
 ```
 
-Once you have typed this, you can run the function `fortune()`, which spouts random wisdom from one of the R help lists:
+You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.
 
-```{r fortune-demo}
-fortune()
+```{block, type = "info"}
+You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
 ```
 
-Note that we will use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
+Now can run the function `ggExtra::runExample()`, which runs an interactive example of marginal plots using shiny.
+
+```{r ggExtra-demo, eval = FALSE}
+ggExtra::runExample()
+```
+
+
 
 ### Install from GitHub
 

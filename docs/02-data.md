@@ -30,10 +30,10 @@ There are five main basic data types in R (there are more, but these are the cri
 | type      | description                | example                  |
 |:----------|:---------------------------|:-------------------------|
 | double    | floating point value       | `.333337`                |
-| integer   | integer                    | `-1, 0, 1`               |
-| numeric   | any real number (int,dbl)  | `1, .5, -.222`           |
-| boolean   | assertion of truth/falsity | `TRUE, FALSE`            |
-| character | text string                | `"hello world", 'howdy'` |
+| integer   | integer                    | `-1`, `0`, `1`           |
+| numeric   | any real number (int,dbl)  | `1`, `.5`, `-.222`       |
+| boolean   | assertion of truth/falsity | `TRUE`, `FALSE`          |
+| character | text string                | `"hello world"`, `'howdy'` |
 
 
 There is also a specific data type called a `factor` which will probably give you a headache sooner or later, but we can get by for now without them.
@@ -43,16 +43,16 @@ Character strings can include basically anything, including quotes, but if you w
 
 ```r
 my_string <- "The instructor said, \"R is cool,\" and the class agreed."
-my_string
+cat(my_string) # cat() prints the arguments
 ```
 
 ```
-## [1] "The instructor said, \"R is cool,\" and the class agreed."
+## The instructor said, "R is cool," and the class agreed.
 ```
 
 Note that if you just type a plain number such as `10` it is stored as a double, even if it doesn't have a decimal point. If you want it to be an exact integer, use the `L` suffix (10L).
 
-If you ever want to know the data type of something, use the `class` function.  There is also the `mode` function which is specifically for vectors.
+If you ever want to know the data type of something, use the `class` function.
 
 
 ```r
@@ -60,14 +60,12 @@ class(10) # numeric
 class(10L) # integer
 class("10") # string
 class(10L == 11L) # logical
-mode(TRUE)
 ```
 
 ```
 ## [1] "numeric"
 ## [1] "integer"
 ## [1] "character"
-## [1] "logical"
 ## [1] "logical"
 ```
 
@@ -80,96 +78,64 @@ Vectors are one of the key data structures in R.  A vector in R is like a vector
 
 ```r
 ## put information into a vector using c(...)
-c(1, 2, 3)
-
+c(1, 2, 3, 4)
 c("this", "is", "cool")
-
-## what happens when you mix types?
-c(2, "good", 2, "b", "true")
+1:6 # shortcut to make a vector of all integers x:y
 ```
 
 ```
-## [1] 1 2 3
+## [1] 1 2 3 4
 ## [1] "this" "is"   "cool"
-## [1] "2"    "good" "2"    "b"    "true"
+## [1] 1 2 3 4 5 6
 ```
 
-OK, here's a question. When you type a single number in the console, it spits it back out to you, like this:
+<div class="try">
+What happens when you mix types? What class is the variable `mixed`?
+
+```r
+mixed <- c(2, "good", 2, "b", "true")
+```
+</div>
+
+<div class="warning">
+<p>You can’t mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will coerce them so that they are all the same.</p>
+</div>
+
+#### Selecting values from a vector
+
+Recall from the last class that another way to create a vector is to use the `c()` operator. (This is the easiest way, but you can also use the `vector()` function.) If we wanted to pick specific values out of a vector by position, we can make a vector of numbers like so:
 
 
 ```r
-3L
+word <- c(18, 19, 20, 21, 4, 9, 15)
 ```
 
-```
-## [1] 3
-```
-
-Why is there a `[1]` there? i.e., what does the `[1]` in the `[1] 3` refer to?
-
-We'll eventually get to the answer, but let's see if you can discover it yourself through experiment. There is an operator `:` that, when placed between two integers `x` and `y` like so: `x:y` will yield the sequence of integers from x to y inclusive. Let's make a big long vector of numbers and print it out.
+And then pull them out using the `[]` operator, which is the *extraction* operator, on the built-in vector `LETTERS`.
 
 
 ```r
-vec <- 200:400
-vec
+LETTERS[word]
 ```
 
 ```
-##   [1] 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216
-##  [18] 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233
-##  [35] 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250
-##  [52] 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267
-##  [69] 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284
-##  [86] 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301
-## [103] 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318
-## [120] 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335
-## [137] 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352
-## [154] 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369
-## [171] 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386
-## [188] 387 388 389 390 391 392 393 394 395 396 397 398 399 400
+## [1] "R" "S" "T" "U" "D" "I" "O"
 ```
 
-Note the number in square brackets on the left hand side of the output. Note that `vec` is a vector: an ordered container of 200 elements, in this case, the integers from 200 to 400. The bracked number on the left hand side tells you the numeric index (i.e., element number) corresponding to the first value in that row. So the first value is 200, the 19th value is 218, the 37th value is 236, etc.
-
-Recall from the last class that another way to create a vector is to use the `c()` operator. (This is the easiest way, but you can also use the `vector()` function.) If we wanted to pick specific values out of the vector by position, we can make a vector of numbers like so:
-
+<div class="try">
+Can you decode the secret message?
 
 ```r
-c(1L, 19L, 37L, 55L)
+secret <- c(14, 5, 22, 5, 18, 7, 15, 14, 14, 1, 7, 9, 22, 5, 25, 15, 21, 21, 16)
 ```
 
-```
-## [1]  1 19 37 55
-```
-
-And then pull them out using the `[]` operator, which is the *extraction* operator, on the variable `vec`.
-
-
-```r
-vec[c(1L, 19L, 37L, 55L)]
-
-## note also:
-index <- c(1L, 19L, 37L, 55L)
-vec[index]
-
-vec[c(1L, 1L, 19L, 19L, 19L, 19L)]
-```
-
-```
-## [1] 200 218 236 254
-## [1] 200 218 236 254
-## [1] 200 200 218 218 218 218
-```
-
-OK let's return to our original question: why did we get `[1] 3` when we just typed `3L`?  The answer should now be clear: when we entered a single number, R created a vector with a single element.
+</div>
 
 You can also create 'named' vectors, where each elements has a name. For example:
 
 
 ```r
-vec2 <- c(first = 77.9, second = -13.2, third = 100.1)
-vec2
+vec <- c(first = 77.9, second = -13.2, third = 100.1)
+vec
 ```
 
 ```
@@ -181,7 +147,7 @@ We can then access elements by name using a character vector within the square b
 
 
 ```r
-vec2[c("third", "second", "second")]
+vec[c("third", "second", "second")]
 ```
 
 ```
@@ -191,19 +157,20 @@ vec2[c("third", "second", "second")]
 
 We can get the vector of names using the `names()` function, and we can set or change them using something like `names(vec2) <- c("n1", "n2", "n3")`.
 
-Another way to access elements is by using a logical vector within the square brackets. This will pull out the elements of the vector for which the corresponding element of the logical vector is `TRUE`. The logical vector must have the same length as the original. You can find out how long a vector is using the `length()` function.
+Another way to access elements is by using a logical vector within the square brackets. This will pull out the elements of the vector for which the corresponding element of the logical vector is `TRUE`. If the logical vector doesn't have the same length as the original, it will repeat. You can find out how long a vector is using the `length()` function.
 
 
 ```r
-length(vec2)
-vec2[c(TRUE, FALSE, TRUE)]
+length(LETTERS)
+LETTERS[c(TRUE, FALSE)]
 ```
 
 ```
-## [1] 3
-## first third 
-##  77.9 100.1
+## [1] 26
+##  [1] "A" "C" "E" "G" "I" "K" "M" "O" "Q" "S" "U" "W" "Y"
 ```
+
+#### Repeating Sequences
 
 Here are some useful tricks to save typing when creating vectors. Recall that in the command `x:y` the `:` operator would give you the sequence of integers from `x:y`. 
 
@@ -211,50 +178,47 @@ What if you want to repeat a vector many times? You could either type it out (pa
 
 
 ```r
-# ten zeroes
-rep(0, 10)
-
-# alternating 1 and 3, 7 times
-rep(c(1L, 3L), 7)
-
-rep(c(TRUE, FALSE), 2)
+rep(0, 10)                      # ten zeroes
+rep(c(1L, 3L), times = 7)       # alternating 1 and 3, 7 times
+rep(c("A", "B", "C"), each = 2) # A to C, 2 times each
 ```
 
 ```
 ##  [1] 0 0 0 0 0 0 0 0 0 0
 ##  [1] 1 3 1 3 1 3 1 3 1 3 1 3 1 3
-## [1]  TRUE FALSE  TRUE FALSE
+## [1] "A" "A" "B" "B" "C" "C"
 ```
 
-What if you want to create a sequence but with something other than integer steps? You can use the `seq()` function. You can learn about this in the exercises below.
+The `rep()` function is useful to create a vector of logical values (`TRUE`/`FALSE` or `1`/`0`) to select values from another vector.
 
 
 ```r
-# Repeat a vector
-# See the ?rep function
-rep(c(TRUE, FALSE), 3)
-
-# Get every other (odd) element of vec
-vec[rep(c(TRUE, FALSE), 100)]
-
-# We can also store the logical vector in a variable and use that
-evens <- rep(c(FALSE, TRUE), 100)
+# Get subject IDs in the pattern Y Y N N ...
+subject_ids <- 1:40
+yynn <- rep(c(TRUE, FALSE), each = 2, 
+            length.out = length(subject_ids))
+subject_ids[yynn]
 ```
 
 ```
-## [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE
-##   [1] 200 202 204 206 208 210 212 214 216 218 220 222 224 226 228 230 232
-##  [18] 234 236 238 240 242 244 246 248 250 252 254 256 258 260 262 264 266
-##  [35] 268 270 272 274 276 278 280 282 284 286 288 290 292 294 296 298 300
-##  [52] 302 304 306 308 310 312 314 316 318 320 322 324 326 328 330 332 334
-##  [69] 336 338 340 342 344 346 348 350 352 354 356 358 360 362 364 366 368
-##  [86] 370 372 374 376 378 380 382 384 386 388 390 392 394 396 398 400
+##  [1]  1  2  5  6  9 10 13 14 17 18 21 22 25 26 29 30 33 34 37 38
 ```
 
-<div class="warning">
-<p>You can’t mix data types in a vector; all elements of the vector must be the same data type. If you mix them, R will coerce them so that they are all the same.</p>
-</div>
+What if you want to create a sequence but with something other than integer steps? You can use the `seq()` function. Look at the examples below and work out what the arguments do.
 
+
+```r
+seq(from = -1, to = 1, by = 0.2)
+seq(0, 100, length.out = 11)
+seq(0, 10, along.with = LETTERS)
+```
+
+```
+##  [1] -1.0 -0.8 -0.6 -0.4 -0.2  0.0  0.2  0.4  0.6  0.8  1.0
+##  [1]   0  10  20  30  40  50  60  70  80  90 100
+##  [1]  0.0  0.4  0.8  1.2  1.6  2.0  2.4  2.8  3.2  3.6  4.0  4.4  4.8  5.2
+## [15]  5.6  6.0  6.4  6.8  7.2  7.6  8.0  8.4  8.8  9.2  9.6 10.0
+```
 
 #### Vectorized Operations {#vectorized_ops}
 

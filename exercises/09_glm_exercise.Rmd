@@ -73,7 +73,7 @@ $Y_i = \beta_0 + \beta_1 X_i + e_i$
 The residuals ($e_i$s) are drawn from a normal distribution with mean 0 and variance $\sigma^2 = 4$, and $X$ is the vector of integer values from 1 to 10. Store the 10 observations in the variable `Yi` below. (NOTE: the standard deviation is the *square root* of the variance, i.e. $\sigma$; `rnorm()` takes the standard deviation, not the variance, as its third argument).
 
 ```{r Q5}
-x   <- NULL
+X   <- NULL
 err <- NULL
 Yi  <- NULL
 
@@ -92,9 +92,12 @@ The function should take arguments for the number of observations to return (`n`
 
 ```{r Q6}
 
-sim_lm_data <- function(n){}
+sim_lm_data <- function(n){
+  #edit this function
+}
 
-dat6 <- sim_lm_data(n = 10) 
+
+dat6 <- sim_lm_data(n = 10) # do not edit 
 
 knitr::kable(dat6) # print table
 ```
@@ -107,11 +110,11 @@ Analyse the data with `lm()`. Find where the analysis summary estimates the valu
 
 ```{r Q7}
 
-dat <- NULL
+dat7 <- NULL
 
-mod <- NULL
+mod7 <- NULL
 
-summary(mod) # print summary
+summary(mod7) # print summary
 
 ```
 
@@ -151,8 +154,8 @@ Q["2"] <- all.equal(sum(iris_mod$coefficients), -2.447297, tolerance = 1e-5)
 Q["3"] <- all.equal(ifelse(length(residuals), sum(abs(residuals)), FALSE), 53.91187, tolerance = 1e-5)
 Q["4"] <- all.equal(iris_pred, c("1" = 0.7526022, "2" = 1.5431657), tolerance = 1e-6)
 Q["5"] <- all.equal(sum(Yi), -353.477, tolerance = 1e-3)
-Q["6"] <- all.equal(nrow(dat6), 10)
-Q["7"] <- all.equal(mod$coefficients[[1]], 80, tolerance = 1)
+Q["6"] <- all(c("b0", "n", "b1", "X_mu", "X_sd", "err_sd") %in% (formals(sim_lm_data) %>% names()))
+Q["7"] <- all.equal(mod7$coefficients[[1]], 80, tolerance = 0.1)
 Q["8"] <- all.equal(power, .4, tolerance = 0.1)
 Q["9"] <- all.equal(false_pos, .05, tolerance = 0.1)
   

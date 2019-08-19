@@ -144,8 +144,8 @@ summary(mod)
 
 ```
 ##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1 100.10  100.10   134.9 2.75e-06 ***
-## Residuals    8   5.93    0.74                     
+## A            1 102.18  102.18   158.8 1.48e-06 ***
+## Residuals    8   5.15    0.64                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -162,7 +162,7 @@ pval
 ```
 
 ```
-## [1] 2.745193e-06
+## [1] 1.475726e-06
 ```
 -->
 
@@ -411,13 +411,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -0.46735, df = 36.807, p-value = 0.643
+## t = 1.0054, df = 37.839, p-value = 0.3211
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7696174  0.4811710
+##  -0.3284888  0.9764799
 ## sample estimates:
 ## mean of x mean of y 
-##  5.333822  5.478045
+##  5.434636  5.110640
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
@@ -434,13 +434,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -0.46735, df = 36.807, p-value = 0.643
+## t = 1.0054, df = 37.839, p-value = 0.3211
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7696174  0.4811710
+##  -0.3284888  0.9764799
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.333822        5.478045
+##        5.434636        5.110640
 ```
 
 ### `broom::tidy()`
@@ -462,7 +462,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.431      5.10      5.54     -1.28   0.208      36.9    -1.11
+## 1   -0.481      5.09      5.57     -1.66   0.106      33.2    -1.07
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
@@ -482,7 +482,7 @@ tibble(
 ```
 
 ```
-## [1] 0.615246
+## [1] 0.09077454
 ```
 
 ### Turn into a function
@@ -511,7 +511,7 @@ t_sim()
 ```
 
 ```
-## [1] 0.5711318
+## [1] 0.3408596
 ```
 
 ### `replicate()`
@@ -527,7 +527,7 @@ power
 ```
 
 ```
-## [1] 0.338
+## [1] 0.321
 ```
 
 ### Set seed {#seed}

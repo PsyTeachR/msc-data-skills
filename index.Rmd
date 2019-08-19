@@ -86,9 +86,11 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 9. [Introduction to GLM](#glm)
     1. Define the [components](#glm-components) of the GLM
-    2. [Analyse simulated data with `lm()`](#sim-glm) and identify the test parameters that correspond to the data-generation parameters
-    3. Explain the differences among [coding schemes](#coding-schemes) 
-    4. Demonstrate the [relationships](#test-rels) among two-sample t-test, one-way ANOVA, and linear regression
+    2. [Simulate data](#sim-glm) using GLM equations
+    3. Identify the model parameters that correspond to the data-generation parameters
+    4. Understand and plot [residuals](#residuals)
+    5. [Predict new values](#predict) using the model
+    6. Explain the differences among [coding schemes](#coding-schemes) 
 
 10. [Reproducible Workflows](#repro)
     1. Create a reproducible script in R Markdown
