@@ -534,4 +534,4 @@ aov(Y ~ grp, data = dat) %>% summary(intercept = TRUE)
 
 ## Exercises
 
-Download the [exercises](exercises/09_glm_exercise.Rmd). See the [answers](exercises/09_glm_solution.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/09_glm_exercise.Rmd). See the [answers](exercises/09_glm_answers.Rmd) only after you've attempted all the questions.
