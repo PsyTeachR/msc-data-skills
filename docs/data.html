@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Working with Data | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Working with Data | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-08-19" />
+<meta name="date" content="2019-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html">
-<link rel="next" href="ggplot.html">
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="ggplot.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -334,7 +334,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
-<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -526,15 +525,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>There is also a specific data type called a <code>factor</code> which will probably give you a headache sooner or later, but we can get by for now without them.</p>
 <p>Character strings can include basically anything, including quotes, but if you want a quote to be included you have to ‘escape’ it using a backslash:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">my_string &lt;-<span class="st"> &quot;The instructor said, </span><span class="ch">\&quot;</span><span class="st">R is cool,</span><span class="ch">\&quot;</span><span class="st"> and the class agreed.&quot;</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">cat</span>(my_string) <span class="co"># cat() prints the arguments</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">my_string &lt;-<span class="st"> &quot;The instructor said, </span><span class="ch">\&quot;</span><span class="st">R is cool,</span><span class="ch">\&quot;</span><span class="st"> and the class agreed.&quot;</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">cat</span>(my_string) <span class="co"># cat() prints the arguments</span></a></code></pre></div>
 <pre><code>## The instructor said, &quot;R is cool,&quot; and the class agreed.</code></pre>
 <p>Note that if you just type a plain number such as <code>10</code> it is stored as a double, even if it doesn’t have a decimal point. If you want it to be an exact integer, use the <code>L</code> suffix (10L).</p>
 <p>If you ever want to know the data type of something, use the <code>class</code> function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">class</span>(<span class="dv">10</span>) <span class="co"># numeric</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">class</span>(10L) <span class="co"># integer</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">class</span>(<span class="st">&quot;10&quot;</span>) <span class="co"># string</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">class</span>(10L <span class="op">==</span><span class="st"> </span>11L) <span class="co"># logical</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">class</span>(<span class="dv">10</span>) <span class="co"># numeric</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">class</span>(10L) <span class="co"># integer</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="kw">class</span>(<span class="st">&quot;10&quot;</span>) <span class="co"># string</span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="kw">class</span>(10L <span class="op">==</span><span class="st"> </span>11L) <span class="co"># logical</span></a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;
 ## [1] &quot;integer&quot;
 ## [1] &quot;character&quot;
@@ -545,16 +544,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="vectors" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Vectors</h3>
 <p>Vectors are one of the key data structures in R. A vector in R is like a vector in math: a set of ordered elements. All of the elements in a vector must be of the same <em>data type</em> (numeric, character, factor). You can create a vector by enclosing the elements in <code>c(...)</code>, as shown below.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">## put information into a vector using c(...)</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">c</span>(<span class="st">&quot;this&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;cool&quot;</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="dv">1</span><span class="op">:</span><span class="dv">6</span> <span class="co"># shortcut to make a vector of all integers x:y</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co">## put information into a vector using c(...)</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="kw">c</span>(<span class="st">&quot;this&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;cool&quot;</span>)</a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="dv">1</span><span class="op">:</span><span class="dv">6</span> <span class="co"># shortcut to make a vector of all integers x:y</span></a></code></pre></div>
 <pre><code>## [1] 1 2 3 4
 ## [1] &quot;this&quot; &quot;is&quot;   &quot;cool&quot;
 ## [1] 1 2 3 4 5 6</code></pre>
 <div class="try">
 <p>What happens when you mix types? What class is the variable <code>mixed</code>?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">mixed &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="st">&quot;good&quot;</span>, 2L, <span class="st">&quot;b&quot;</span>, <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">mixed &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="st">&quot;good&quot;</span>, 2L, <span class="st">&quot;b&quot;</span>, <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div class="warning">
 <p>
@@ -564,27 +563,27 @@ You can’t mix data types in a vector; all elements of the vector must be the s
 <div id="selecting-values-from-a-vector" class="section level4">
 <h4><span class="header-section-number">2.4.1.1</span> Selecting values from a vector</h4>
 <p>Recall from the last class that another way to create a vector is to use the <code>c()</code> operator. (This is the easiest way, but you can also use the <code>vector()</code> function.) If we wanted to pick specific values out of a vector by position, we can make a vector of numbers like so:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">word &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">word &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">15</span>)</a></code></pre></div>
 <p>And then pull them out using the <code>[]</code> operator, which is the <em>extraction</em> operator, on the built-in vector <code>LETTERS</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">LETTERS[word]</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">LETTERS[word]</a></code></pre></div>
 <pre><code>## [1] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;D&quot; &quot;I&quot; &quot;O&quot;</code></pre>
 <div class="try">
 <p>Can you decode the secret message?</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">secret &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">14</span>, <span class="dv">5</span>, <span class="dv">22</span>, <span class="dv">5</span>, <span class="dv">18</span>, <span class="dv">7</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">22</span>, <span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">21</span>, <span class="dv">21</span>, <span class="dv">16</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">secret &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">14</span>, <span class="dv">5</span>, <span class="dv">22</span>, <span class="dv">5</span>, <span class="dv">18</span>, <span class="dv">7</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">22</span>, <span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">21</span>, <span class="dv">21</span>, <span class="dv">16</span>)</a></code></pre></div>
 </div>
 <p>You can also create ‘named’ vectors, where each elements has a name. For example:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">first =</span> <span class="fl">77.9</span>, <span class="dt">second =</span> <span class="fl">-13.2</span>, <span class="dt">third =</span> <span class="fl">100.1</span>)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">vec</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">first =</span> <span class="fl">77.9</span>, <span class="dt">second =</span> <span class="fl">-13.2</span>, <span class="dt">third =</span> <span class="fl">100.1</span>)</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">vec</a></code></pre></div>
 <pre><code>##  first second  third 
 ##   77.9  -13.2  100.1</code></pre>
 <p>We can then access elements by name using a character vector within the square brackets. We can put them in any order we want, and we can repeat elements:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">vec[<span class="kw">c</span>(<span class="st">&quot;third&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;second&quot;</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">vec[<span class="kw">c</span>(<span class="st">&quot;third&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;second&quot;</span>)]</a></code></pre></div>
 <pre><code>##  third second second 
 ##  100.1  -13.2  -13.2</code></pre>
 <p>We can get the vector of names using the <code>names()</code> function, and we can set or change them using something like <code>names(vec2) &lt;- c(&quot;n1&quot;, &quot;n2&quot;, &quot;n3&quot;)</code>.</p>
 <p>Another way to access elements is by using a logical vector within the square brackets. This will pull out the elements of the vector for which the corresponding element of the logical vector is <code>TRUE</code>. If the logical vector doesn’t have the same length as the original, it will repeat. You can find out how long a vector is using the <code>length()</code> function.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">length</span>(LETTERS)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">LETTERS[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">length</span>(LETTERS)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">LETTERS[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</a></code></pre></div>
 <pre><code>## [1] 26
 ##  [1] &quot;A&quot; &quot;C&quot; &quot;E&quot; &quot;G&quot; &quot;I&quot; &quot;K&quot; &quot;M&quot; &quot;O&quot; &quot;Q&quot; &quot;S&quot; &quot;U&quot; &quot;W&quot; &quot;Y&quot;</code></pre>
 </div>
@@ -592,23 +591,23 @@ You can’t mix data types in a vector; all elements of the vector must be the s
 <h4><span class="header-section-number">2.4.1.2</span> Repeating Sequences</h4>
 <p>Here are some useful tricks to save typing when creating vectors. Recall that in the command <code>x:y</code> the <code>:</code> operator would give you the sequence of integers from <code>x:y</code>.</p>
 <p>What if you want to repeat a vector many times? You could either type it out (painful) or use the <code>rep()</code> function, which can repeat vectors in different ways.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)                      <span class="co"># ten zeroes</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">rep</span>(<span class="kw">c</span>(1L, 3L), <span class="dt">times =</span> <span class="dv">7</span>)       <span class="co"># alternating 1 and 3, 7 times</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">each =</span> <span class="dv">2</span>) <span class="co"># A to C, 2 times each</span></a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">10</span>)                      <span class="co"># ten zeroes</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="kw">rep</span>(<span class="kw">c</span>(1L, 3L), <span class="dt">times =</span> <span class="dv">7</span>)       <span class="co"># alternating 1 and 3, 7 times</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">each =</span> <span class="dv">2</span>) <span class="co"># A to C, 2 times each</span></a></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0
 ##  [1] 1 3 1 3 1 3 1 3 1 3 1 3 1 3
 ## [1] &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;C&quot; &quot;C&quot;</code></pre>
 <p>The <code>rep()</code> function is useful to create a vector of logical values (<code>TRUE</code>/<code>FALSE</code> or <code>1</code>/<code>0</code>) to select values from another vector.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Get subject IDs in the pattern Y Y N N ...</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">subject_ids &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">yynn &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dt">each =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">            <span class="dt">length.out =</span> <span class="kw">length</span>(subject_ids))</a>
-<a class="sourceLine" id="cb20-5" data-line-number="5">subject_ids[yynn]</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co"># Get subject IDs in the pattern Y Y N N ...</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">subject_ids &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">yynn &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), <span class="dt">each =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb64-4" data-line-number="4">            <span class="dt">length.out =</span> <span class="kw">length</span>(subject_ids))</a>
+<a class="sourceLine" id="cb64-5" data-line-number="5">subject_ids[yynn]</a></code></pre></div>
 <pre><code>##  [1]  1  2  5  6  9 10 13 14 17 18 21 22 25 26 29 30 33 34 37 38</code></pre>
 <p>What if you want to create a sequence but with something other than integer steps? You can use the <code>seq()</code> function. Look at the examples below and work out what the arguments do.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-1</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.2</span>)</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">11</span>)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">along.with =</span> LETTERS)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-1</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">along.with =</span> LETTERS)</a></code></pre></div>
 <pre><code>##  [1] -1.0 -0.8 -0.6 -0.4 -0.2  0.0  0.2  0.4  0.6  0.8  1.0
 ##  [1]   0  10  20  30  40  50  60  70  80  90 100
 ##  [1]  0.0  0.4  0.8  1.2  1.6  2.0  2.4  2.8  3.2  3.6  4.0  4.4  4.8  5.2
@@ -617,17 +616,17 @@ You can’t mix data types in a vector; all elements of the vector must be the s
 <div id="vectorized_ops" class="section level4">
 <h4><span class="header-section-number">2.4.1.3</span> Vectorized Operations</h4>
 <p>R performs calculations on vectors in a special way. Let’s look at an example using <span class="math inline">\(z\)</span>-scores. A <span class="math inline">\(z\)</span>-score is a <em>deviation score</em> (a score minus a mean) divided by a standard deviation. Let’s say we have a set of four IQ scores.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co">## example IQ scores: mu = 100, sigma = 15</span></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">iq &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">86</span>, <span class="dv">101</span>, <span class="dv">127</span>, <span class="dv">99</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co">## example IQ scores: mu = 100, sigma = 15</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">iq &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">86</span>, <span class="dv">101</span>, <span class="dv">127</span>, <span class="dv">99</span>)</a></code></pre></div>
 <p>If we want to subtract the mean from these four scores, we just use the following code:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">iq <span class="op">-</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">iq <span class="op">-</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>## [1] -14   1  27  -1</code></pre>
 <p>This subtracts 100 from each element of the vector. R automatically assumes that this is what you wanted to do; it is called a <em>vectorized operation</em> and it makes it possible to express operations more efficiently.</p>
 <p>To calculate <span class="math inline">\(z\)</span>-scores we use the formula:</p>
 <p><span class="math inline">\(z = \frac{X - \mu}{\sigma}\)</span></p>
 <p>where X are the scores, <span class="math inline">\(\mu\)</span> is the mean, and <span class="math inline">\(\sigma\)</span> is the standard deviation. We can expression this formula in R as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co">## z-scores</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">(iq <span class="op">-</span><span class="st"> </span><span class="dv">100</span>) <span class="op">/</span><span class="st"> </span><span class="dv">15</span></a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co">## z-scores</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">(iq <span class="op">-</span><span class="st"> </span><span class="dv">100</span>) <span class="op">/</span><span class="st"> </span><span class="dv">15</span></a></code></pre></div>
 <pre><code>## [1] -0.93333333  0.06666667  1.80000000 -0.06666667</code></pre>
 <p>You can see that it computed all four <span class="math inline">\(z\)</span>-scores with a single line of code. Very efficient!</p>
 </div>
@@ -643,23 +642,23 @@ You can’t mix data types in a vector; all elements of the vector must be the s
 <div id="lists" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Lists</h3>
 <p>Recall that vectors can contain data of only one type. What if you want to store a collection of data of different data types? For that purpose you would use a <code>list</code>. Define a list using the <code>list()</code> function.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">albums &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">    <span class="dt">Michael_Jackson =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">      <span class="st">&quot;Off the Wall&quot;</span>,</a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">      <span class="st">&quot;Thriller&quot;</span>,</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">      <span class="st">&quot;Bad&quot;</span>,</a>
-<a class="sourceLine" id="cb29-7" data-line-number="7">      <span class="st">&quot;Dangerous&quot;</span></a>
-<a class="sourceLine" id="cb29-8" data-line-number="8">    ),</a>
-<a class="sourceLine" id="cb29-9" data-line-number="9">    <span class="dt">Nirvana =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb29-10" data-line-number="10">      <span class="st">&quot;Bleach&quot;</span>,</a>
-<a class="sourceLine" id="cb29-11" data-line-number="11">      <span class="st">&quot;Nevermind&quot;</span>,</a>
-<a class="sourceLine" id="cb29-12" data-line-number="12">      <span class="st">&quot;In Utero&quot;</span></a>
-<a class="sourceLine" id="cb29-13" data-line-number="13">    )</a>
-<a class="sourceLine" id="cb29-14" data-line-number="14">  )  </a>
-<a class="sourceLine" id="cb29-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb29-16" data-line-number="16"><span class="kw">names</span>(albums)</a>
-<a class="sourceLine" id="cb29-17" data-line-number="17"><span class="kw">length</span>(albums)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">albums &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="st">  </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb73-3" data-line-number="3">    <span class="dt">Michael_Jackson =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb73-4" data-line-number="4">      <span class="st">&quot;Off the Wall&quot;</span>,</a>
+<a class="sourceLine" id="cb73-5" data-line-number="5">      <span class="st">&quot;Thriller&quot;</span>,</a>
+<a class="sourceLine" id="cb73-6" data-line-number="6">      <span class="st">&quot;Bad&quot;</span>,</a>
+<a class="sourceLine" id="cb73-7" data-line-number="7">      <span class="st">&quot;Dangerous&quot;</span></a>
+<a class="sourceLine" id="cb73-8" data-line-number="8">    ),</a>
+<a class="sourceLine" id="cb73-9" data-line-number="9">    <span class="dt">Nirvana =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb73-10" data-line-number="10">      <span class="st">&quot;Bleach&quot;</span>,</a>
+<a class="sourceLine" id="cb73-11" data-line-number="11">      <span class="st">&quot;Nevermind&quot;</span>,</a>
+<a class="sourceLine" id="cb73-12" data-line-number="12">      <span class="st">&quot;In Utero&quot;</span></a>
+<a class="sourceLine" id="cb73-13" data-line-number="13">    )</a>
+<a class="sourceLine" id="cb73-14" data-line-number="14">  )  </a>
+<a class="sourceLine" id="cb73-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb73-16" data-line-number="16"><span class="kw">names</span>(albums)</a>
+<a class="sourceLine" id="cb73-17" data-line-number="17"><span class="kw">length</span>(albums)</a></code></pre></div>
 <p>You can refer to elements of a list by</p>
 <div class="info">
 <p>
@@ -674,28 +673,28 @@ Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code>
 <p>Tabular data becomes especially important for when we talk about <em>tidy data</em> in <a href="04_wrangling.Rmd">lesson 4</a>, which consists of a set of simple principles for structuring data.</p>
 <p>If we are creating a tibble from scratch, we can use the <code>tibble()</code> function, and type the data right in. Note that if we want a value to repeat multiple times, we only have to specify a one-element vector; R will expand out the vector to fill out the table. All columns in the tibble must have the same lengths or be of length 1.</p>
 <p>If we want to use the <code>tibble()</code> function, we either need to load the tibble package or the tidyverse package (which will itself load tibble in addition to other packages). Let’s do the latter.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <p>We can get information about the table dimensions using the functions <code>ncol()</code> (number of columns), <code>nrow()</code> (number of rows), or <code>dim()</code> (a vector with the number of rows and number of columns).</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">months &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">                 <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>,</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">                          <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>,</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4">                          <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>))</a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="co"># print it</span></a>
-<a class="sourceLine" id="cb31-7" data-line-number="7">months</a>
-<a class="sourceLine" id="cb31-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="co"># how many rows?</span></a>
-<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="kw">nrow</span>(months)</a>
-<a class="sourceLine" id="cb31-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="co"># how many columns?</span></a>
-<a class="sourceLine" id="cb31-13" data-line-number="13"><span class="kw">ncol</span>(months)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">months &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">                 <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Jan&quot;</span>, <span class="st">&quot;Feb&quot;</span>, <span class="st">&quot;Mar&quot;</span>, <span class="st">&quot;Apr&quot;</span>,</a>
+<a class="sourceLine" id="cb75-3" data-line-number="3">                          <span class="st">&quot;May&quot;</span>, <span class="st">&quot;Jun&quot;</span>, <span class="st">&quot;Jul&quot;</span>, <span class="st">&quot;Aug&quot;</span>,</a>
+<a class="sourceLine" id="cb75-4" data-line-number="4">                          <span class="st">&quot;Sep&quot;</span>, <span class="st">&quot;Oct&quot;</span>, <span class="st">&quot;Nov&quot;</span>, <span class="st">&quot;Dec&quot;</span>))</a>
+<a class="sourceLine" id="cb75-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6"><span class="co"># print it</span></a>
+<a class="sourceLine" id="cb75-7" data-line-number="7">months</a>
+<a class="sourceLine" id="cb75-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb75-9" data-line-number="9"><span class="co"># how many rows?</span></a>
+<a class="sourceLine" id="cb75-10" data-line-number="10"><span class="kw">nrow</span>(months)</a>
+<a class="sourceLine" id="cb75-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb75-12" data-line-number="12"><span class="co"># how many columns?</span></a>
+<a class="sourceLine" id="cb75-13" data-line-number="13"><span class="kw">ncol</span>(months)</a></code></pre></div>
 <div id="viewing-your-tibble" class="section level4">
 <h4><span class="header-section-number">2.4.3.1</span> Viewing your tibble</h4>
 <p>Always, always, always, look at your data once you’ve created the table and load it in. Also look at it after each step that transforms your tibble.</p>
 <p>There are three ways to look at your tibble: <code>View()</code> [*NB: capital ‘V’], <code>print()</code>, and <code>glimpse()</code>. Note that it is also rare that you want to print your data in a script; that is something you usually are doing for a sanity check, and you should just do it in the console.</p>
 <p>The <code>print()</code> method can be run explicitly, but is more commonly called by just typing the variable name on the blank line. Usually we only call <code>print()</code> if we want fine control of how the information is displayed.</p>
 <p>Note that the default is not to print the entire table, but just the first 10 rows. Let’s look at the <code>starwars</code> table that is built into the tidyverse.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">starwars</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">starwars</a></code></pre></div>
 <pre><code>## # A tibble: 87 x 13
 ##    name  height  mass hair_color skin_color eye_color birth_year gender
 ##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
@@ -713,9 +712,9 @@ Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code>
 ## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>You can see that this is a 87 rows by 13 column table, and we can only see the first 10 rows and first 8 columns.</p>
 <p>If I want to see all 87 rows for some reason, I would use an explicit call to <code>print()</code>, and set the argument <code>n</code> to the number of rows I want to see. If I want all of them, just use <code>+Inf</code>, the symbol for ‘infinite’ rows.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">print</span>(starwars, <span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co"># try this in the console</span></a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">print</span>(starwars, <span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co"># try this in the console</span></a></code></pre></div>
 <p>But we still can’t see all the columns. If this is important to us, we can use <code>glimpse()</code>, which gives a sideways version of the tibble.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">glimpse</span>(starwars)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">glimpse</span>(starwars)</a></code></pre></div>
 <pre><code>## Observations: 87
 ## Variables: 13
 ## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;L…
@@ -733,23 +732,23 @@ Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code>
 ## $ starships  &lt;list&gt; [&lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanc…</code></pre>
 <p>The other way to look at the table is a more graphical spreadsheet-like version given by <code>View()</code> (capital ‘V’). It can be useful in the console, but don’t ever put this one in a script because it will create an annoying pop-up window when the user goes to run it.</p>
 <p>Note that <code>data.frame</code> objects are printed out in different ways from <code>tibble</code> objects. If you print a <code>data.frame</code> object with thousands or millions of rows, you won’t just get a preview… you will spam your console with row upon row of data. If you want to make a data.frame into a tibble so that it prints out nicely, just use the <code>as_tibble()</code> function.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">mtcars <span class="co"># prints out way too many rows; TMI</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="kw">as_tibble</span>(mtcars) <span class="co"># much cleaner</span></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4">mtcars2 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars) <span class="co"># store it</span></a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">mtcars <span class="co"># prints out way too many rows; TMI</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="kw">as_tibble</span>(mtcars) <span class="co"># much cleaner</span></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4">mtcars2 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars) <span class="co"># store it</span></a></code></pre></div>
 </div>
 <div id="accessing-rows-and-columns" class="section level4">
 <h4><span class="header-section-number">2.4.3.2</span> Accessing rows and columns</h4>
 <p>There are various base R ways of accessing specific columns or rows from a table that are useful to know about, but you’ll be learning easier (and more readable) ways when we get to the lecture on <a href="04_wrangling.Rmd">data wrangling</a>. Examples of these base R accessing functions are provided here for reference.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">months[<span class="dv">1</span>, ] <span class="co"># first row</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3">months[, <span class="dv">2</span>] <span class="co"># second column (position)</span></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5">months[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ] <span class="co"># first 3 months</span></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7">months[, <span class="kw">c</span>(<span class="st">&quot;Month&quot;</span>)] <span class="co"># access column by name</span></a>
-<a class="sourceLine" id="cb38-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb38-9" data-line-number="9">months<span class="op">$</span>month  <span class="co"># by column name</span></a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">months[<span class="dv">1</span>, ] <span class="co"># first row</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3">months[, <span class="dv">2</span>] <span class="co"># second column (position)</span></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb82-5" data-line-number="5">months[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, ] <span class="co"># first 3 months</span></a>
+<a class="sourceLine" id="cb82-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb82-7" data-line-number="7">months[, <span class="kw">c</span>(<span class="st">&quot;Month&quot;</span>)] <span class="co"># access column by name</span></a>
+<a class="sourceLine" id="cb82-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb82-9" data-line-number="9">months<span class="op">$</span>month  <span class="co"># by column name</span></a></code></pre></div>
 <p>You’ll learn about data frame operations in the <a href="tidyr.html#tidyr">tidyr</a> and <a href="dplyr.html#dplyr">dplyr</a> lessons.</p>
 </div>
 <div id="ex_tibble" class="section level4">
@@ -814,7 +813,7 @@ Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code>
 </table>
 <p>Note: following the conventions introduced above in the section about add-on packages, <code>readr::read_csv()</code> refers to the <code>read_csv()</code> function in the <code>readr</code> package, and <code>readxl::read_excel()</code> refers to the function <code>read_excel()</code> in the package <code>readxl</code>.</p>
 <p>Probably the most common file type you will encounter is <code>.csv</code> (comma-separated values). As the name suggests, a CSV file distinguishes which values go with which variable by separating them with commas, and text values are sometimes enclosed in double quotes. The first line of a file usually provides the names of the variables. For example, here are the first few lines of a CSV containing Scottish baby names (see <a href="http://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/names/babies-first-names/babies-first-names-summary-records-comma-separated-value-csv-format">the page at National Records Scotland</a>):</p>
-<pre><code>yr,sex,FirstForename,number,rank,position
+<p>yr,sex,FirstForename,number,rank,position
 1974,B,David,1794,1,1
 1974,B,John,1528,2,2
 1974,B,Paul,1260,3,3
@@ -824,11 +823,11 @@ Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code>
 1974,B,Scott,1060,7,7
 1974,B,Steven,1020,8,8
 1974,B,Robert,885,9,9
-1974,B,Stephen,866,10,10</code></pre>
+1974,B,Stephen,866,10,10</p>
 <p>There are six variables in this dataset, and their names are given in the first line of the file: <code>yr</code>, <code>sex</code>, <code>FirstForename</code>, <code>number</code>, <code>rank</code>, and <code>position</code>. You can see that the values for each of these variables are given in order, separated by commas, on each subsequent line of the file.</p>
 <p>When you read in CSV files, it is best practice to use the <code>readr::read_csv()</code> function. The <code>readr</code> package is automatically loaaded as part of the <code>tidyverse</code> package, which we will be using in almost every script. Note that you would normally want to store the result of the <code>read_csv()</code> function to a variable, as so:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;my_data_file.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;my_data_file.csv&quot;</span>)</a></code></pre></div>
 <p>Once loaded, you can view your data using the data viewer. In the upper right hand window of RStudio, under the Environment tab, you will see the object <code>dat</code> listed.</p>
 <p><img src="images/01/my_data.png" /></p>
 <p>If you click on the View icon (<img src="images/01/table_icon.png" />), it will bring up a table view of the data you loaded in the top left pane of RStudio.</p>
@@ -837,7 +836,7 @@ Fun fact: tabular data, stored in <code>data.frame</code> or <code>tibble</code>
 <div id="writing-data" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> Writing Data</h3>
 <p>If you have data that you want to save your data to a CSV file, use <code>readr::write_csv()</code>, as follows.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">write_csv</span>(dat, <span class="st">&quot;my_data_file2.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">write_csv</span>(dat, <span class="st">&quot;my_data_file2.csv&quot;</span>)</a></code></pre></div>
 <p>This will save the data in CSV format to your working directory.</p>
 </div>
 </div>
@@ -1011,8 +1010,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

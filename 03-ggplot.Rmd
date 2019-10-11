@@ -64,6 +64,7 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 * [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
 
 
+[Stub for this lesson](stubs/3_viz.Rmd)
 ## Setup
 
 ```{r setup, results = 'hide', warning = FALSE, message = FALSE}

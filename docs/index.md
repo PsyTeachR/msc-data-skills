@@ -1,7 +1,7 @@
 
 --- 
 title: Data Skills for Reproducible Science
-date: "2019-08-19"
+date: "2019-09-26"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

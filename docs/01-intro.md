@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  1.15186804 -0.33024283 -0.24991448 -0.50668069 -0.02495801
-##  [6] -0.27710230  1.47781088 -0.21063169  1.67800038 -0.31944619
+##  [1] -0.05511896  0.87252252  0.82307770 -0.46609333 -0.12642648
+##  [6]  1.20797031  1.67671736 -1.87642043 -0.45202949 -0.60816802
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  98.48191 100.43418  99.62359 100.29270 100.50828  98.70452 101.75982
-##  [8]  99.46557  99.03663  99.94638
+##  [1]  97.65696  99.35218  99.11358  98.59506  99.48569 101.05307 100.42048
+##  [8] 100.81752 101.76668 100.53960
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.61621  99.73038 100.34224  98.61603 100.85594 101.29661  98.97355
-##  [8]  99.65776  98.99585 100.61711
+##  [1]  99.68801 100.48899 100.38205 101.06090  99.98390  98.62639 100.30004
+##  [8] 101.05193 101.47237 102.73664
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  -81.60272   71.40418  -73.48568   28.09207  116.85255 -242.48229
-##  [7]  141.17281   16.89854   14.01350  -51.97355
+##  [1] -129.97940   68.12656 -143.11548   53.27806   80.91555  -10.69488
+##  [7]  -11.09132 -106.00615   12.99392   64.70920
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -505,13 +505,13 @@ jason()
 ##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
 ## 
 ##  ~ Chidi
-##  Oh, so now I'm supposed to be nice and make friends and treat her with mutual respect? 
+##  People are like nature's apps! 
 ## 
 ##  ~ Eleanor
-##  That was my first time as a fashion "don't," and I did not care for it. 
+##  I am an expert at mediating conflict. Like when my friends Scary, Sporty, Posh, and Baby had an issue with my other friend Archbishop Desmond Tutu. 
 ## 
 ##  ~ Tahani
-##  I was just about to tell an awesome story about a wing-eating contest that I lost, and a barfing contest that I won, but then a hole opened up in the ground. 
+##  I miss being myself. Myself was the best. 
 ## 
 ##  ~ Jason
 ```
