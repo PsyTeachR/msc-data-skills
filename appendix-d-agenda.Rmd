@@ -40,6 +40,11 @@
 
 ## 2019-10-11 Class 3
 
+1. Set up for set exercises by 10:05
+2. Complete set exercises and upload to moodle by 10:25 (or 10:30 if you have arranged extra time)
+3. Set up a project and Rmd file for Chapter 3
+4. Be back by 10:30 ready to start Chapter 3
+
 | time | activity |
 |-----:|:---------|
 | 10:00-10:05 | Setup |
@@ -47,6 +52,11 @@
 | 10:30-11:55 | [Chapter 3](#ggplot) |
 
 ## 2019-10-18 Class 4
+
+1. Set up for set exercises by 10:05
+2. Complete set exercises and upload to moodle by 10:25 (or 10:30 if you have arranged extra time)
+3. Set up a project and Rmd file for Chapter 4
+4. Be back by 10:30 ready to start Chapter 4
 
 | time | activity |
 |-----:|:---------|
