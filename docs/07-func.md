@@ -36,7 +36,7 @@ The topics below are not (yet) covered in these materials, but they are directio
 * Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
-
+[Stub for this lesson](stubs/7_func.Rmd)
 
 In the next two lectures, we are going to learn more about *iteration* (doing the same commands over and over) and *custom functions* through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.
 
@@ -44,6 +44,7 @@ In the next two lectures, we are going to learn more about *iteration* (doing th
 ```r
 # libraries needed for these examples
 library(tidyverse)  ## contains purrr, tidyr, dplyr
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 ## Iteration functions {#iteration-functions}
@@ -64,7 +65,30 @@ rep(c("A", "B"), 12)
 ## [18] "B" "A" "B" "A" "B" "A" "B"
 ```
 
-Use `rep()` to create a vector of 12 `"A"` values followed by 12 `"B"` values
+If you don't specify what the second argument is, it defaults to `times`, repeating the vector in the first argument that many times. Make the same vector as above, setting the second argument explicitly.
+
+
+```r
+rep(c("A", "B"), times = 12)
+```
+
+```
+##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
+## [18] "B" "A" "B" "A" "B" "A" "B"
+```
+
+If the second argument is a vector that is the same length as the first argument, each element in the first vector is repeated than many times. Use `rep()` to create a vector of 11 `"A"` values followed by 3 `"B"` values.
+
+
+```r
+rep(c("A", "B"), c(11, 3))
+```
+
+```
+##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B" "B"
+```
+
+You can repeat each element of the vector a sepcified number of times using the `each` argument, Use `rep()` to create a vector of 12 `"A"` values followed by 12 `"B"` values.
 
 
 ```r
@@ -76,22 +100,34 @@ rep(c("A", "B"), each = 12)
 ## [18] "B" "B" "B" "B" "B" "B" "B"
 ```
 
-Use `rep()` to create a vector of 11 `"A"` values followed by 3 `"B"` values
+What do you think will happen if you set both `times` to 3 and `each` to 2?
 
 
 ```r
-rep(c("A", "B"), c(11, 3))
+rep(c("A", "B"), times = 3, each = 2)
 ```
 
 ```
-##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B" "B"
+##  [1] "A" "A" "B" "B" "A" "A" "B" "B" "A" "A" "B" "B"
 ```
+
 
 ### `seq()`
 
 The function `seq()` is useful for generating a sequence of numbers with some pattern.
 
-Use `seq()` to create a vector of the numbers 0 to 100 by 10s.
+Use `seq()` to create a vector of the integers 0 to 10.
+
+
+```r
+seq(0, 10)
+```
+
+```
+##  [1]  0  1  2  3  4  5  6  7  8  9 10
+```
+
+You can set the `by` argument to count by numbers other than 1 (the default). Use `seq()` to create a vector of the numbers 0 to 100 by 10s.
 
 
 ```r
@@ -102,7 +138,7 @@ seq(0, 100, by = 10)
 ##  [1]   0  10  20  30  40  50  60  70  80  90 100
 ```
 
-The argument `length.out` is useful if you know how many steps you want to divide something into Use `seq()` to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 *steps*?).
+The argument `length.out` is useful if you know how many steps you want to divide something into. Use `seq()` to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 *steps*?).
 
 
 ```r
@@ -143,9 +179,9 @@ summary(mod)
 ```
 
 ```
-##             Df Sum Sq Mean Sq F value  Pr(>F)    
-## A            1  83.73   83.73   97.29 9.4e-06 ***
-## Residuals    8   6.89    0.86                    
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## A            1  95.85   95.85   113.6 5.26e-06 ***
+## Residuals    8   6.75    0.84                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -162,7 +198,7 @@ pval
 ```
 
 ```
-## [1] 9.4044e-06
+## [1] 5.258951e-06
 ```
 -->
 
@@ -411,16 +447,16 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -0.46692, df = 37.298, p-value = 0.6433
+## t = -1.5937, df = 36.528, p-value = 0.1196
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7742577  0.4841828
+##  -0.9559243  0.1144139
 ## sample estimates:
 ## mean of x mean of y 
-##  5.093391  5.238429
+##  4.965341  5.386096
 ```
 
-You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
+You can also convert the table to long format using the `gather` function and specify the t-test using the format `dv_column~grouping_column`.
 
 
 ```r
@@ -434,13 +470,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -0.46692, df = 37.298, p-value = 0.6433
+## t = -1.5937, df = 36.528, p-value = 0.1196
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7742577  0.4841828
+##  -0.9559243  0.1144139
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.093391        5.238429
+##        4.965341        5.386096
 ```
 
 ### `broom::tidy()`
@@ -462,7 +498,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.744      4.75      5.50     -2.86 0.00791      28.5    -1.28
+## 1   -0.578      4.97      5.54     -1.84  0.0747      34.3    -1.22
 ## # … with 3 more variables: conf.high <dbl>, method <chr>,
 ## #   alternative <chr>
 ```
@@ -482,7 +518,7 @@ tibble(
 ```
 
 ```
-## [1] 0.3166456
+## [1] 0.256199
 ```
 
 ### Turn into a function
@@ -511,12 +547,28 @@ t_sim()
 ```
 
 ```
-## [1] 0.0001554576
+## [1] 0.0558203
 ```
 
 ### `replicate()`
 
-You can use the `replicate` function to run your function any number of times. Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
+You can use the `replicate` function to run a function any number of times.
+
+
+```r
+replicate(3, rnorm(5))
+```
+
+```
+##            [,1]      [,2]        [,3]
+## [1,]  0.2398579 1.0060960 -0.08836476
+## [2,] -1.7685708 0.8362997  0.08114036
+## [3,]  0.1457033 0.4557277  1.38814525
+## [4,]  0.4462924 0.5616177 -0.02341062
+## [5,]  0.5916637 1.4850093  0.98759269
+```
+
+Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
 
 
 ```r
@@ -527,7 +579,7 @@ power
 ```
 
 ```
-## [1] 0.339
+## [1] 0.304
 ```
 
 ### Set seed {#seed}
@@ -544,15 +596,13 @@ set.seed(90201)
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="images/memes/seed_alignment.png" alt="@KellyBodwin" width="100%" />
-<p class="caption">(\#fig:img-seed-alignment)@KellyBodwin</p>
+<img src="images/memes/seed_alignment.png" alt="&amp;commat;KellyBodwin" width="100%" />
+<p class="caption">(\#fig:img-seed-alignment)&commat;KellyBodwin</p>
 </div>
 
 ### Add arguments
 
 You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine `t_sim`, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.
-
-
 
 
 

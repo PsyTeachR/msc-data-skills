@@ -100,7 +100,7 @@ ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.
 
 `gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
 
-* `key` is what you want to call the row headers; it's "question" in this example. 
+* `key` is what you want to call the new column that the gathered column headers will go into; it's "question" in this example. 
 * `value` is what you want to call the values in the gathered columns; they're "score" in this example.
 * `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
 * `na.rm` determines whether rows with `NA` values should be removed

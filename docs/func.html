@@ -435,7 +435,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
-<li class="chapter" data-level="D" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>D</b> References</a></li>
+<li class="chapter" data-level="D" data-path="agenda-2019.html"><a href="agenda-2019.html"><i class="fa fa-check"></i><b>D</b> Agenda 2019</a><ul>
+<li class="chapter" data-level="D.1" data-path="agenda-2019.html"><a href="agenda-2019.html#class-1"><i class="fa fa-check"></i><b>D.1</b> 2019-09-27 Class 1</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="agenda-2019.html"><a href="agenda-2019.html#welcome-to-data-skills-for-reproducible-science"><i class="fa fa-check"></i><b>D.1.1</b> Welcome to Data Skills for Reproducible Science!</a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="agenda-2019.html"><a href="agenda-2019.html#class-2"><i class="fa fa-check"></i><b>D.2</b> 2019-10-04 Class 2</a></li>
+<li class="chapter" data-level="D.3" data-path="agenda-2019.html"><a href="agenda-2019.html#class-3"><i class="fa fa-check"></i><b>D.3</b> 2019-10-11 Class 3</a></li>
+<li class="chapter" data-level="D.4" data-path="agenda-2019.html"><a href="agenda-2019.html#class-4"><i class="fa fa-check"></i><b>D.4</b> 2019-10-18 Class 4</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -501,9 +509,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Chapters 19 and 21 of <a href="http://r4ds.had.co.nz">R for Data Science</a></li>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf">RStudio Apply Functions Cheatsheet</a></li>
 </ul>
+<p><a href="stubs/7_func.Rmd">Stub for this lesson</a></p>
 <p>In the next two lectures, we are going to learn more about <em>iteration</em> (doing the same commands over and over) and <em>custom functions</em> through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="co"># libraries needed for these examples</span></a>
-<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="kw">library</span>(tidyverse)  <span class="co">## contains purrr, tidyr, dplyr</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># libraries needed for these examples</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidyverse)  <span class="co">## contains purrr, tidyr, dplyr</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># makes sure random numbers are reproducible</span></a></code></pre></div>
 </div>
 <div id="iteration-functions" class="section level2">
 <h2><span class="header-section-number">7.3</span> Iteration functions</h2>
@@ -511,25 +521,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.3.1</span> <code>rep()</code></h3>
 <p>The function <code>rep()</code> lets you repeat the first argument a number of times.</p>
 <p>Use <code>rep()</code> to create a vector of alternating <code>&quot;A&quot;</code> and <code>&quot;B&quot;</code> values of length 24.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">12</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dv">12</span>)</a></code></pre></div>
 <pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot;
 ## [18] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
-<p>Use <code>rep()</code> to create a vector of 12 <code>&quot;A&quot;</code> values followed by 12 <code>&quot;B&quot;</code> values</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> <span class="dv">12</span>)</a></code></pre></div>
+<p>If you don’t specify what the second argument is, it defaults to <code>times</code>, repeating the vector in the first argument that many times. Make the same vector as above, setting the second argument explicitly.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">times =</span> <span class="dv">12</span>)</a></code></pre></div>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot;
+## [18] &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<p>If the second argument is a vector that is the same length as the first argument, each element in the first vector is repeated than many times. Use <code>rep()</code> to create a vector of 11 <code>&quot;A&quot;</code> values followed by 3 <code>&quot;B&quot;</code> values.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">3</span>))</a></code></pre></div>
+<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+<p>You can repeat each element of the vector a sepcified number of times using the <code>each</code> argument, Use <code>rep()</code> to create a vector of 12 <code>&quot;A&quot;</code> values followed by 12 <code>&quot;B&quot;</code> values.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> <span class="dv">12</span>)</a></code></pre></div>
 <pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;
 ## [18] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
-<p>Use <code>rep()</code> to create a vector of 11 <code>&quot;A&quot;</code> values followed by 3 <code>&quot;B&quot;</code> values</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">3</span>))</a></code></pre></div>
-<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
+<p>What do you think will happen if you set both <code>times</code> to 3 and <code>each</code> to 2?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">times =</span> <span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot;</code></pre>
 </div>
 <div id="seq" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> <code>seq()</code></h3>
 <p>The function <code>seq()</code> is useful for generating a sequence of numbers with some pattern.</p>
-<p>Use <code>seq()</code> to create a vector of the numbers 0 to 100 by 10s.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">10</span>)</a></code></pre></div>
+<p>Use <code>seq()</code> to create a vector of the integers 0 to 10.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>You can set the <code>by</code> argument to count by numbers other than 1 (the default). Use <code>seq()</code> to create a vector of the numbers 0 to 100 by 10s.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##  [1]   0  10  20  30  40  50  60  70  80  90 100</code></pre>
-<p>The argument <code>length.out</code> is useful if you know how many steps you want to divide something into Use <code>seq()</code> to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 <em>steps</em>?).</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">13</span>)</a></code></pre></div>
+<p>The argument <code>length.out</code> is useful if you know how many steps you want to divide something into. Use <code>seq()</code> to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 <em>steps</em>?).</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">length.out =</span> <span class="dv">13</span>)</a></code></pre></div>
 <pre><code>##  [1]   0.000000   8.333333  16.666667  25.000000  33.333333  41.666667
 ##  [7]  50.000000  58.333333  66.666667  75.000000  83.333333  91.666667
 ## [13] 100.000000</code></pre>
@@ -560,9 +580,9 @@ summary(mod)
 ```
 
 ```
-##             Df Sum Sq Mean Sq F value  Pr(>F)    
-## A            1  83.73   83.73   97.29 9.4e-06 ***
-## Residuals    8   6.89    0.86                    
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## A            1  95.85   95.85   113.6 5.26e-06 ***
+## Residuals    8   6.75    0.84                     
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -579,7 +599,7 @@ pval
 ```
 
 ```
-## [1] 9.4044e-06
+## [1] 5.258951e-06
 ```
 -->
 </div>
@@ -593,74 +613,74 @@ Now we are going to wrap up the code we created above into two custom functions:
 <div id="structure-function" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Structuring a function</h3>
 <p>The general structure of a function is as follows:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(my_args) {</a>
-<a class="sourceLine" id="cb286-2" data-line-number="2">  <span class="co"># process the arguments</span></a>
-<a class="sourceLine" id="cb286-3" data-line-number="3">  <span class="co"># return some value</span></a>
-<a class="sourceLine" id="cb286-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(my_args) {</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">  <span class="co"># process the arguments</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">  <span class="co"># return some value</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">}</a></code></pre></div>
 <p>Here is a very simple function. Can you guess what it does?</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">add1 &lt;-<span class="st"> </span><span class="cf">function</span>(my_number) {</a>
-<a class="sourceLine" id="cb287-2" data-line-number="2">  my_number <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb287-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb287-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb287-5" data-line-number="5"><span class="kw">add1</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">add1 &lt;-<span class="st"> </span><span class="cf">function</span>(my_number) {</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">  my_number <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw">add1</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] 11</code></pre>
 <p>Let’s make a function that reports p-values in APA format (with “p = rounded value” when p &gt;= .001 and “p &lt; .001” when p &lt; .001).</p>
 <p>First, we have to name the function. You can name it anything, but try not to duplicate existing functions or you will overwrite them. For example, if you call your function <code>rep</code>, then you will need to use <code>base::rep()</code> to access the normal <code>rep</code> function. Let’s call our p-value function <code>report_p</code> and set up the framework of the function.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb289-2" data-line-number="2">}</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">}</a></code></pre></div>
 </div>
 <div id="arguments" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Arguments</h3>
 <p>We need to add one <em>argument</em>, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses after <code>function</code> in the order you want them to default (just like the built-in functions you’ve used before).</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p) {</a>
-<a class="sourceLine" id="cb290-2" data-line-number="2">}</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p) {</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">}</a></code></pre></div>
 </div>
 <div id="defaults" class="section level3">
 <h3><span class="header-section-number">7.4.3</span> Argument defaults</h3>
 <p>You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn’t make sense to run this function without specifying the p-value, but we can add a second argument called <code>digits</code> that defaults to 3, so we can round p-values to 3 digits.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb291-2" data-line-number="2">}</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">}</a></code></pre></div>
 <p>Now we need to write some code inside the function to process the input arguments and turn them into a <strong>return</strong>ed output. Put the output as the last item in function.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb292-2" data-line-number="2">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
-<a class="sourceLine" id="cb292-3" data-line-number="3">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
-<a class="sourceLine" id="cb292-4" data-line-number="4">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb292-5" data-line-number="5">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
-<a class="sourceLine" id="cb292-6" data-line-number="6">    reported =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;p =&quot;</span>, roundp)</a>
-<a class="sourceLine" id="cb292-7" data-line-number="7">  }</a>
-<a class="sourceLine" id="cb292-8" data-line-number="8">  </a>
-<a class="sourceLine" id="cb292-9" data-line-number="9">  reported</a>
-<a class="sourceLine" id="cb292-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">    reported =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;p =&quot;</span>, roundp)</a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">  reported</a>
+<a class="sourceLine" id="cb24-10" data-line-number="10">}</a></code></pre></div>
 <p>You might also see the returned output inside of the <code>return()</code> function. This does the same thing.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb293-2" data-line-number="2">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
-<a class="sourceLine" id="cb293-3" data-line-number="3">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
-<a class="sourceLine" id="cb293-4" data-line-number="4">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb293-5" data-line-number="5">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
-<a class="sourceLine" id="cb293-6" data-line-number="6">    reported =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;p =&quot;</span>, roundp)</a>
-<a class="sourceLine" id="cb293-7" data-line-number="7">  }</a>
-<a class="sourceLine" id="cb293-8" data-line-number="8">  </a>
-<a class="sourceLine" id="cb293-9" data-line-number="9">  <span class="kw">return</span>(reported)</a>
-<a class="sourceLine" id="cb293-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">    reported =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;p =&quot;</span>, roundp)</a>
+<a class="sourceLine" id="cb25-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb25-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb25-9" data-line-number="9">  <span class="kw">return</span>(reported)</a>
+<a class="sourceLine" id="cb25-10" data-line-number="10">}</a></code></pre></div>
 <p>When you run the code defining your function, it doesn’t output anything, but makes a new object in the Environment tab under <strong><code>Functions</code></strong>. Now you can run the function.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="kw">report_p</span>(<span class="fl">0.04869</span>)</a>
-<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="kw">report_p</span>(<span class="fl">0.0000023</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">report_p</span>(<span class="fl">0.04869</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">report_p</span>(<span class="fl">0.0000023</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;p = 0.049&quot;
 ## [1] &quot;p &lt; .001&quot;</code></pre>
 </div>
 <div id="scope" class="section level3">
 <h3><span class="header-section-number">7.4.4</span> Scope</h3>
 <p>What happens in a function stays in a function. You can change the value of a variable passed to a function, but that won’t change the value of the variable outside of the function, even if that variable has the same name as the one in the function.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb296-2" data-line-number="2">  x &lt;-<span class="st"> </span>x<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb296-3" data-line-number="3">  <span class="kw">return</span>(x)</a>
-<a class="sourceLine" id="cb296-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb296-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb296-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb296-7" data-line-number="7"><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb296-8" data-line-number="8">  <span class="st">&quot;half(x)&quot;</span> =<span class="st"> </span><span class="kw">half</span>(x),</a>
-<a class="sourceLine" id="cb296-9" data-line-number="9">  <span class="st">&quot;x&quot;</span> =<span class="st"> </span>x</a>
-<a class="sourceLine" id="cb296-10" data-line-number="10">)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">  x &lt;-<span class="st"> </span>x<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="kw">return</span>(x)</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">x &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">  <span class="st">&quot;half(x)&quot;</span> =<span class="st"> </span><span class="kw">half</span>(x),</a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">  <span class="st">&quot;x&quot;</span> =<span class="st"> </span>x</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">)</a></code></pre></div>
 <pre><code>## $`half(x)`
 ## [1] 5
 ## 
@@ -675,27 +695,27 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 </div>
 <p>You might want to add a more specific warning and stop running the function code if someone enters a value that isn’t a number. You can do this with the <code>stop()</code> function.</p>
 <p>If someone enters a number that isn’t possible for a p-value (0-1), you might want to warn them that this is probably not what they intended, but still continue with the function. You can do this with <code>warning()</code>.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb298-2" data-line-number="2">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)</a>
-<a class="sourceLine" id="cb298-3" data-line-number="3">  <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)</a>
-<a class="sourceLine" id="cb298-4" data-line-number="4">  <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)</a>
-<a class="sourceLine" id="cb298-5" data-line-number="5">  </a>
-<a class="sourceLine" id="cb298-6" data-line-number="6">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
-<a class="sourceLine" id="cb298-7" data-line-number="7">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
-<a class="sourceLine" id="cb298-8" data-line-number="8">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb298-9" data-line-number="9">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
-<a class="sourceLine" id="cb298-10" data-line-number="10">    reported =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;p =&quot;</span>, roundp)</a>
-<a class="sourceLine" id="cb298-11" data-line-number="11">  }</a>
-<a class="sourceLine" id="cb298-12" data-line-number="12">  </a>
-<a class="sourceLine" id="cb298-13" data-line-number="13">  reported</a>
-<a class="sourceLine" id="cb298-14" data-line-number="14">}</a></code></pre></div>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">report_p</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">  <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">  <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">  </a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7">    reported =<span class="st"> &quot;p &lt; .001&quot;</span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb30-9" data-line-number="9">    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</a>
+<a class="sourceLine" id="cb30-10" data-line-number="10">    reported =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;p =&quot;</span>, roundp)</a>
+<a class="sourceLine" id="cb30-11" data-line-number="11">  }</a>
+<a class="sourceLine" id="cb30-12" data-line-number="12">  </a>
+<a class="sourceLine" id="cb30-13" data-line-number="13">  reported</a>
+<a class="sourceLine" id="cb30-14" data-line-number="14">}</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">report_p</span>()</a></code></pre></div>
 <pre><code>## Error in report_p(): argument &quot;p&quot; is missing, with no default</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">report_p</span>(<span class="st">&quot;a&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">report_p</span>(<span class="st">&quot;a&quot;</span>)</a></code></pre></div>
 <pre><code>## Error in report_p(&quot;a&quot;): p must be a number</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">report_p</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">report_p</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## Warning in report_p(-2): p-values are normally greater than 0</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">report_p</span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">report_p</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## Warning in report_p(2): p-values are normally less than 1</code></pre>
 <pre><code>## [1] &quot;p &lt; .001&quot;
 ## [1] &quot;p = 2&quot;</code></pre>
@@ -707,142 +727,150 @@ What happens when you omit the argument for <code>p</code>? Or if you set <code>
 <div id="rnorm" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> <code>rnorm()</code></h3>
 <p>Create a vector of 20 random numbers drawn from a normal distribution with a mean of 5 and standard deviation of 1 using the <code>rnorm()</code> function and store them in the variable <code>A</code>.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">A &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
 </div>
 <div id="tibbletibble" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> <code>tibble::tibble()</code></h3>
 <p>A <code>tibble</code> is a type of table or <code>data.frame</code>. The function <code>tibble::tibble()</code> creates a tibble with a column for each argument. Each argument takes the form <code>column_name = data_vector</code>.</p>
 <p>Create a table called <code>dat</code> including two vectors: <code>A</code> that is a vector of 20 random normally distributed numbers with a mean of 5 and SD of 1, and <code>B</code> that is a vector of 20 random normally distributed numbers with a mean of 5.5 and SD of 1.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb309-2" data-line-number="2">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb309-3" data-line-number="3">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb309-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">)</a></code></pre></div>
 </div>
 <div id="t.test" class="section level3">
 <h3><span class="header-section-number">7.5.3</span> <code>t.test</code></h3>
 <p>You can run a Welch two-sample t-test by including the two samples you made as the first two arguments to the function <code>t.test</code>. You can reference one column of a table by its names using the format <code>table_name$column_name</code></p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">t.test</span>(dat<span class="op">$</span>A, dat<span class="op">$</span>B)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">t.test</span>(dat<span class="op">$</span>A, dat<span class="op">$</span>B)</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -0.46692, df = 37.298, p-value = 0.6433
+## t = -1.5937, df = 36.528, p-value = 0.1196
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7742577  0.4841828
+##  -0.9559243  0.1144139
 ## sample estimates:
 ## mean of x mean of y 
-##  5.093391  5.238429</code></pre>
-<p>You can also convert the table to long format using the <code>gather</code> function and specify the t-test using the format <code>number_column~grouping_column</code>.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)</a>
-<a class="sourceLine" id="cb312-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb312-3" data-line-number="3"><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> longdat) </a></code></pre></div>
+##  4.965341  5.386096</code></pre>
+<p>You can also convert the table to long format using the <code>gather</code> function and specify the t-test using the format <code>dv_column~grouping_column</code>.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">longdat &lt;-<span class="st"> </span><span class="kw">gather</span>(dat, group, score, A<span class="op">:</span>B)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> longdat) </a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -0.46692, df = 37.298, p-value = 0.6433
+## t = -1.5937, df = 36.528, p-value = 0.1196
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7742577  0.4841828
+##  -0.9559243  0.1144139
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.093391        5.238429</code></pre>
+##        4.965341        5.386096</code></pre>
 </div>
 <div id="broomtidy" class="section level3">
 <h3><span class="header-section-number">7.5.4</span> <code>broom::tidy()</code></h3>
 <p>You can use the function <code>broom::tidy()</code> to extract the data from a statistical test in a table format. The example below pipes everything together.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb314-2" data-line-number="2">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb314-3" data-line-number="3">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb314-4" data-line-number="4">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb314-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb314-6" data-line-number="6"><span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb314-7" data-line-number="7"><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-6" data-line-number="6"><span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low
 ##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1   -0.744      4.75      5.50     -2.86 0.00791      28.5    -1.28
+## 1   -0.578      4.97      5.54     -1.84  0.0747      34.3    -1.22
 ## # … with 3 more variables: conf.high &lt;dbl&gt;, method &lt;chr&gt;,
 ## #   alternative &lt;chr&gt;</code></pre>
 <p>Finally, we can extract a single value from this results table using <code>pull()</code>.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb316-2" data-line-number="2">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb316-3" data-line-number="3">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb316-4" data-line-number="4">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb316-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb316-6" data-line-number="6"><span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb316-7" data-line-number="7"><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb316-8" data-line-number="8"><span class="st">  </span><span class="kw">pull</span>(p.value)</a></code></pre></div>
-<pre><code>## [1] 0.3166456</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="st">  </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="st">  </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="st">  </span><span class="kw">pull</span>(p.value)</a></code></pre></div>
+<pre><code>## [1] 0.256199</code></pre>
 </div>
 <div id="turn-into-a-function" class="section level3">
 <h3><span class="header-section-number">7.5.5</span> Turn into a function</h3>
 <p>First, name your function <code>t_sim</code> and wrap the code above in a function with no arguments.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb318-2" data-line-number="2">  <span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb318-3" data-line-number="3">    <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb318-4" data-line-number="4">    <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb318-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb318-6" data-line-number="6"><span class="st">    </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb318-7" data-line-number="7"><span class="st">    </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb318-8" data-line-number="8"><span class="st">    </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb318-9" data-line-number="9"><span class="st">    </span><span class="kw">pull</span>(p.value) </a>
-<a class="sourceLine" id="cb318-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">  <span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3">    <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb50-4" data-line-number="4">    <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="fl">5.5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb50-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="st">    </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="st">    </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="st">    </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="st">    </span><span class="kw">pull</span>(p.value) </a>
+<a class="sourceLine" id="cb50-10" data-line-number="10">}</a></code></pre></div>
 <p>Run it a few times to see what happens.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">t_sim</span>()</a></code></pre></div>
-<pre><code>## [1] 0.0001554576</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">t_sim</span>()</a></code></pre></div>
+<pre><code>## [1] 0.0558203</code></pre>
 </div>
 <div id="replicate" class="section level3">
 <h3><span class="header-section-number">7.5.6</span> <code>replicate()</code></h3>
-<p>You can use the <code>replicate</code> function to run your function any number of times. Let’s run the <code>t_sim</code> function 1000 times, assign the resulting p-values to a vector called <code>reps</code>, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>())</a>
-<a class="sourceLine" id="cb321-2" data-line-number="2">alpha &lt;-<span class="st"> </span><span class="fl">.05</span></a>
-<a class="sourceLine" id="cb321-3" data-line-number="3">power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>alpha)</a>
-<a class="sourceLine" id="cb321-4" data-line-number="4">power</a></code></pre></div>
-<pre><code>## [1] 0.339</code></pre>
+<p>You can use the <code>replicate</code> function to run a function any number of times.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">replicate</span>(<span class="dv">3</span>, <span class="kw">rnorm</span>(<span class="dv">5</span>))</a></code></pre></div>
+<pre><code>##            [,1]      [,2]        [,3]
+## [1,]  0.2398579 1.0060960 -0.08836476
+## [2,] -1.7685708 0.8362997  0.08114036
+## [3,]  0.1457033 0.4557277  1.38814525
+## [4,]  0.4462924 0.5616177 -0.02341062
+## [5,]  0.5916637 1.4850093  0.98759269</code></pre>
+<p>Let’s run the <code>t_sim</code> function 1000 times, assign the resulting p-values to a vector called <code>reps</code>, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>())</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">alpha &lt;-<span class="st"> </span><span class="fl">.05</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span>alpha)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">power</a></code></pre></div>
+<pre><code>## [1] 0.304</code></pre>
 </div>
 <div id="seed" class="section level3">
 <h3><span class="header-section-number">7.5.7</span> Set seed</h3>
 <p>You can use the <code>set.seed</code> function before you run a function that uses random numbers to make sure that you get the same random data back each time. You can use any integer you like as the seed.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">90201</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">90201</span>)</a></code></pre></div>
 <div class="warning">
 <p>
 Make sure you don’t ever use <code>set.seed()</code> <strong>inside</strong> of a simulation function, or you will just simulate the exact same data over and over again.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:img-seed-alignment"></span>
-<img src="images/memes/seed_alignment.png" alt="@KellyBodwin" width="100%" />
+<img src="images/memes/seed_alignment.png" alt="&amp;commat;KellyBodwin" width="100%" />
 <p class="caption">
-Figure 7.1: <span class="citation">(<span class="citeproc-not-found" data-reference-id="KellyBodwin"><strong>???</strong></span>)</span>
+Figure 7.1: @KellyBodwin
 </p>
 </div>
 </div>
 <div id="add-arguments" class="section level3">
 <h3><span class="header-section-number">7.5.8</span> Add arguments</h3>
 <p>You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine <code>t_sim</code>, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1=</span><span class="dv">0</span>, <span class="dt">sd1=</span><span class="dv">1</span>, <span class="dt">m2=</span><span class="dv">0</span>, <span class="dt">sd2=</span><span class="dv">1</span>) {</a>
-<a class="sourceLine" id="cb324-2" data-line-number="2">  <span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb324-3" data-line-number="3">    <span class="dt">A =</span> <span class="kw">rnorm</span>(n, m1, sd1),</a>
-<a class="sourceLine" id="cb324-4" data-line-number="4">    <span class="dt">B =</span> <span class="kw">rnorm</span>(n, m2, sd2)</a>
-<a class="sourceLine" id="cb324-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb324-6" data-line-number="6"><span class="st">    </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb324-7" data-line-number="7"><span class="st">    </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb324-8" data-line-number="8"><span class="st">    </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb324-9" data-line-number="9"><span class="st">    </span><span class="kw">pull</span>(p.value) </a>
-<a class="sourceLine" id="cb324-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">t_sim &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1=</span><span class="dv">0</span>, <span class="dt">sd1=</span><span class="dv">1</span>, <span class="dt">m2=</span><span class="dv">0</span>, <span class="dt">sd2=</span><span class="dv">1</span>) {</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">  <span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">    <span class="dt">A =</span> <span class="kw">rnorm</span>(n, m1, sd1),</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">    <span class="dt">B =</span> <span class="kw">rnorm</span>(n, m2, sd2)</a>
+<a class="sourceLine" id="cb58-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="st">    </span><span class="kw">gather</span>(group, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7"><span class="st">    </span><span class="kw">t.test</span>(score<span class="op">~</span>group, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-8" data-line-number="8"><span class="st">    </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="st">    </span><span class="kw">pull</span>(p.value) </a>
+<a class="sourceLine" id="cb58-10" data-line-number="10">}</a></code></pre></div>
 <p>Test your function with some different values to see if the results make sense.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1"><span class="kw">t_sim</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb325-2" data-line-number="2"><span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">t_sim</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 0.5065619
 ## [1] 0.001844064</code></pre>
 <p>Use <code>replicate</code> to calculate power for 100 subjects/group with an effect size of 0.2 (e.g., A: m = 0, SD = 1; B: m = 0.2, SD = 1). Use 1000 replications.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb327-2" data-line-number="2">power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>)</a>
-<a class="sourceLine" id="cb327-3" data-line-number="3">power</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">reps &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="kw">t_sim</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">power &lt;-<span class="st"> </span><span class="kw">mean</span>(reps <span class="op">&lt;</span><span class="st"> </span><span class="fl">.05</span>)</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">power</a></code></pre></div>
 <pre><code>## [1] 0.268</code></pre>
 <p>Compare this to power calculated from the <code>power.t.test</code> function.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">delta =</span> <span class="fl">0.2</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">type=</span><span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -1025,20 +1053,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
