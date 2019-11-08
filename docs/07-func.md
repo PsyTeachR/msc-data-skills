@@ -5,7 +5,7 @@
 
 ## Learning Objectives
 
-You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.
+You will learn about functions and iteration by using simulation to calculate a power analysis for an independent samples t-test.
 
 ### Basic
 
