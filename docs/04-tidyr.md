@@ -94,6 +94,7 @@ This is the tidy version.
 
 ## Tidying Data
 
+{#data-personality}
 Download the data from [personality.csv](https://psyteachr.github.io/msc-data-skills/data/personality.csv). These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.
 
 
@@ -404,8 +405,9 @@ ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.
 
 ## More Complex Example
 
-### Load Data
+### Load Data 
 
+{#data-infmort}
 Get data on infant mortality rates from the CSV file 
 [`infmort.csv`](data/infmort.csv) in the directory `data`.
 
@@ -435,6 +437,7 @@ glimpse(infmort)
 ## $ `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` <chr> …
 ```
 
+{#data-matmort}
 Get data on maternal mortality from from the excel file 
 [`matmort.xls`](data/matmort.xls) in the directory `data`
 

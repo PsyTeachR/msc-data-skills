@@ -22,7 +22,7 @@ my_pals <- c("Alvin", "Simon", "Theodore")
 
 ## Question 2
 
-The chunk below creates an integer vector `ages` with the ages of five people. (Note: defining a number with the sufficx `L`, e.g., `26L`, defines `26` as type integer rather than type double.)  Calculate how old they will be in ten years using a vectorized operation and store the result in the variable `ages_10`.
+The chunk below creates an integer vector `ages` with the ages of five people. (Note: defining a number with the suffix `L`, e.g., `26L`, defines `26` as type integer rather than type double.)  Calculate how old they will be in ten years using a vectorized operation and store the result in the variable `ages_10`.
 
 ```{r Q2}
 ages <- c(26L, 13L, 47L, 62L, 18L)

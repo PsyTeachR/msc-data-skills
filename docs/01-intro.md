@@ -58,7 +58,7 @@ You can close R and never open it again. We'll be working entirely in RStudio in
 <p class="caption">(\#fig:img-rstudio)The RStudio IDE</p>
 </div>
 
-RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes”.' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
 
 <video width="640" height="480" controls>
   <source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.05511896  0.87252252  0.82307770 -0.46609333 -0.12642648
-##  [6]  1.20797031  1.67671736 -1.87642043 -0.45202949 -0.60816802
+##  [1] -0.3404832  0.2686130  0.8210432 -0.7053084 -1.0222637  1.3604918
+##  [7]  0.6322671 -0.1163434 -1.4921886  0.3861296
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  97.65696  99.35218  99.11358  98.59506  99.48569 101.05307 100.42048
-##  [8] 100.81752 101.76668 100.53960
+##  [1] 100.06413  99.69068 100.39416 100.33661  99.54146  99.47690 100.85378
+##  [8]  99.58175  99.54523  99.72880
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.68801 100.48899 100.38205 101.06090  99.98390  98.62639 100.30004
-##  [8] 101.05193 101.47237 102.73664
+##  [1] 101.30651  99.04521 101.17981  98.73852  99.02986 100.87359  99.10028
+##  [8] 101.01970  99.71317 100.70045
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -129.97940   68.12656 -143.11548   53.27806   80.91555  -10.69488
-##  [7]  -11.09132 -106.00615   12.99392   64.70920
+##  [1]   79.33956   17.75529   39.39072  -92.85828  -83.54490   43.56438
+##  [7] -157.84331  105.56531  -85.43292  137.26891
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -502,16 +502,16 @@ jason()
 
 ```
 ## 
-##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
+##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
 ## 
 ##  ~ Chidi
-##  People are like nature's apps! 
+##   "We're running out of time and I'm your only option?" A lot of guys your age said that to me just as the bar was about to close. But I never settled for them. Because my ex-boyfriend lived nearby, he was obsessed with me and he never slept because he was addicted to Adderall. There is always another option. 
 ## 
 ##  ~ Eleanor
-##  I am an expert at mediating conflict. Like when my friends Scary, Sporty, Posh, and Baby had an issue with my other friend Archbishop Desmond Tutu. 
+##  Well, hang out with Johnny Depp long enough, and you become pretty good at lying. Like, "No, your whole thing isn't exhausting at all." 
 ## 
 ##  ~ Tahani
-##  I miss being myself. Myself was the best. 
+##  I was scared, dawg, but then I remembered my parole officer's advice, "keep your mouth shut or they'll throw a book at you." 
 ## 
 ##  ~ Jason
 ```

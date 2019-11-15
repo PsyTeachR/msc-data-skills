@@ -49,7 +49,7 @@ set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 
-## The `disgust` dataset
+## The `disgust` dataset {#data-disgust}
 
 These examples will use data from [disgust.csv](/data/disgust.csv), which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
 
@@ -287,7 +287,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2014-09-24"
+## [1] "2008-07-10" "2014-10-26"
 ```
 
 
