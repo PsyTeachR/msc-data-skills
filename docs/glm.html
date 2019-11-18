@@ -334,6 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
+<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -505,11 +506,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setup-3" class="section level2">
 <h2><span class="header-section-number">9.3</span> Setup</h2>
 <p>You’ll need the following packages.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="co"># libraries needed for these examples</span></a>
-<a class="sourceLine" id="cb417-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb417-3" data-line-number="3"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb417-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb417-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">30250</span>) <span class="co"># makes sure random numbers are reproducible</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># libraries needed for these examples</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">set.seed</span>(<span class="dv">30250</span>) <span class="co"># makes sure random numbers are reproducible</span></a></code></pre></div>
 </div>
 <div id="glm-1" class="section level2">
 <h2><span class="header-section-number">9.4</span> GLM</h2>
@@ -567,22 +568,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A person won’t always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <strong>error term</strong> to each trial. We can’t know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
 <p>Here, we’ll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
 <p>So first create variables for all of the parameters that describe your data.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1">n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb418-2" data-line-number="2">mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span></a>
-<a class="sourceLine" id="cb418-3" data-line-number="3">effect &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># average different between congruent and incongruent trials</span></a>
-<a class="sourceLine" id="cb418-4" data-line-number="4">error_sd &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># standard deviation of the error term</span></a>
-<a class="sourceLine" id="cb418-5" data-line-number="5">trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>) <span class="co"># effect code</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">effect &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># average difference between congruent and incongruent trials</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">error_sd &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># standard deviation of the error term</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>) <span class="co"># effect code</span></a></code></pre></div>
 <p>Then simulate the data by creating a data table with a row for each trial and columns for the trial type and the error term (random numbers samples from a normal distribution with the SD specified by <code>error_sd</code>). For categorical variables, include both a column with the text labels (<code>trial_type</code>) and another column with the coded version (<code>trial_type.e</code>) to make it easier to check what the codings mean and to use for graphing. Calculate the dependent variable (<code>RT</code>) as the sum of the grand mean (<code>mu</code>), the coefficient (<code>effect</code>) multiplied by the effect-coded predictor variable (<code>trial_type.e</code>), and the error term.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb419-2" data-line-number="2">  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp),</a>
-<a class="sourceLine" id="cb419-3" data-line-number="3">  <span class="dt">trial_type.e =</span> <span class="kw">rep</span>(trial_types, <span class="dt">each =</span> n_per_grp),</a>
-<a class="sourceLine" id="cb419-4" data-line-number="4">  <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="dv">2</span><span class="op">*</span>n_per_grp, <span class="dv">0</span>, error_sd)</a>
-<a class="sourceLine" id="cb419-5" data-line-number="5">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb419-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="dt">trial_type.e =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>trial_types),</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="kw">nrow</span>(.), <span class="dv">0</span>, error_sd),</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  )</a></code></pre></div>
 <p>Last but not least, always plot simulated data to make sure it looks like you expect.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb420-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb420-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), </a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">               <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plot-sim"></span>
 <img src="09-glm_files/figure-html/plot-sim-1.png" alt="Simulated Data" width="100%" />
 <p class="caption">
@@ -593,9 +597,9 @@ Figure 9.1: Simulated Data
 <div id="linear-regression" class="section level3">
 <h3><span class="header-section-number">9.4.4</span> Linear Regression</h3>
 <p>Now we can analyse the data we simulated using the function <code>lm()</code>. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the <code>summary()</code> function to see the statistical summary.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">my_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</a>
-<a class="sourceLine" id="cb421-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb421-3" data-line-number="3"><span class="kw">summary</span>(my_lm)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">my_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">summary</span>(my_lm)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = RT ~ trial_type.e, data = dat)
@@ -624,13 +628,13 @@ Change the values of <code>mu</code> and <code>effect</code>, resimulate the dat
 <div id="residuals" class="section level3">
 <h3><span class="header-section-number">9.4.5</span> Residuals</h3>
 <p>You can use the <code>residuals()</code> function to extract the error term for each each data point. This is the Y values, minus the estimates for the intercept and trial type. We’ll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">residuals</span>(my_lm)</a>
-<a class="sourceLine" id="cb423-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb423-3" data-line-number="3"><span class="kw">ggplot</span>(dat) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb423-4" data-line-number="4"><span class="st">  </span><span class="kw">stat_function</span>(<span class="kw">aes</span>(<span class="dv">0</span>), <span class="dt">color =</span> <span class="st">&quot;grey40&quot;</span>,</a>
-<a class="sourceLine" id="cb423-5" data-line-number="5">                <span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>, </a>
-<a class="sourceLine" id="cb423-6" data-line-number="6">                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> error_sd)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb423-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(res, <span class="dt">color =</span> trial_type))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">residuals</span>(my_lm)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">ggplot</span>(dat) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">stat_function</span>(<span class="kw">aes</span>(<span class="dv">0</span>), <span class="dt">color =</span> <span class="st">&quot;grey60&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                <span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> error_sd)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(res, <span class="dt">color =</span> trial_type))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:res-density-plot"></span>
 <img src="09-glm_files/figure-html/res-density-plot-1.png" alt="Model residuals should be approximately normally distributed for each group" width="100%" />
 <p class="caption">
@@ -638,11 +642,11 @@ Figure 9.2: Model residuals should be approximately normally distributed for eac
 </p>
 </div>
 <p>You can also compare the model residuals to the simulated error values. If the model is accurate, they should be almost identical. If the intercept estimate is slightly off, the points will be slightly above or below the black line. If the estimate for the effect of trial type is slightly off, there will be a small, systematic difference between residuals for congruent and incongruent trials.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb424-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb424-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(error, res,<span class="dt">color =</span> trial_type)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb424-4" data-line-number="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model Residuals&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb424-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulated Error&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(error, res,<span class="dt">color =</span> trial_type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model Residuals&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulated Error&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:res-err-plot"></span>
 <img src="09-glm_files/figure-html/res-err-plot-1.png" alt="Model residuals should be very similar to the simulated error" width="100%" />
 <p class="caption">
@@ -659,37 +663,55 @@ What happens to the residuals if you fit a model that ignores trial type (e.g., 
 <h3><span class="header-section-number">9.4.6</span> Predict New Values</h3>
 <p>You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to now the trial type to make a prediction.</p>
 <p>For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1">int_est &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;(Intercept)&quot;</span>]]</a>
-<a class="sourceLine" id="cb425-2" data-line-number="2">tt_est  &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;trial_type.e&quot;</span>]]</a>
-<a class="sourceLine" id="cb425-3" data-line-number="3">tt_code &lt;-<span class="st"> </span>trial_types[[<span class="st">&quot;congruent&quot;</span>]]</a>
-<a class="sourceLine" id="cb425-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb425-5" data-line-number="5">new_congruent_RT &lt;-<span class="st"> </span>int_est <span class="op">+</span><span class="st"> </span>tt_est <span class="op">*</span><span class="st"> </span>tt_code</a>
-<a class="sourceLine" id="cb425-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb425-7" data-line-number="7">new_congruent_RT</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">int_est &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;(Intercept)&quot;</span>]]</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">tt_est  &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;trial_type.e&quot;</span>]]</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">tt_code &lt;-<span class="st"> </span>trial_types[[<span class="st">&quot;congruent&quot;</span>]]</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">new_congruent_RT &lt;-<span class="st"> </span>int_est <span class="op">+</span><span class="st"> </span>tt_est <span class="op">*</span><span class="st"> </span>tt_code</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">new_congruent_RT</a></code></pre></div>
 <pre><code>## [1] 819.1605</code></pre>
-<p>You can also use the <code>predict()</code> function to do this more easily.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" data-line-number="1"><span class="kw">predict</span>(my_lm, <span class="kw">tibble</span>(<span class="dt">trial_type.e =</span> <span class="fl">0.5</span>))</a></code></pre></div>
+<p>You can also use the <code>predict()</code> function to do this more easily. The second argument is a data table with columns for the factors in the model and rows with the values that you want to use for the prediction.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">predict</span>(my_lm, <span class="dt">newdata =</span> <span class="kw">tibble</span>(<span class="dt">trial_type.e =</span> <span class="fl">0.5</span>))</a></code></pre></div>
 <pre><code>##        1 
 ## 819.1605</code></pre>
+<div class="info">
+<p>
+If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.”
+</p>
+<p>
+What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.
+</p>
+</div>
 </div>
 <div id="coding-schemes" class="section level3">
 <h3><span class="header-section-number">9.4.7</span> Coding Categorical Variables</h3>
 <p>In the example above, we used <strong>effect coding</strong> for trial type. You can also use <strong>sum coding</strong>, which assigns +1 and -1 to the levels instead of +0.5 and -0.5. More commonly, you might want to use <strong>treatment coding</strong>, which assigns 0 to one level (usually a baseline or control condition) and 1 to the other level (usually a treatment or experimental condition).</p>
-<p>Here we will add sum-coded and treatment-coded versions of <code>trial_type</code> to the dataset.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb429-2" data-line-number="2">  <span class="dt">trial_type.sum =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="op">+</span><span class="dv">1</span>, <span class="dv">-1</span>), <span class="dt">each =</span> n_per_grp),</a>
-<a class="sourceLine" id="cb429-3" data-line-number="3">  <span class="dt">trial_type.tr =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">each =</span> n_per_grp)</a>
-<a class="sourceLine" id="cb429-4" data-line-number="4">)</a></code></pre></div>
+<p>Here we will add sum-coded and treatment-coded versions of <code>trial_type</code> to the dataset using the <code>recode()</code> function.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>),</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">)</a></code></pre></div>
+<p>If you define named vectors with your levels and coding, you can use them with the <code>recode()</code> function if you expand them using <code>!!!</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">tt_sum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">            <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">tt_tr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">           <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_sum),</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_tr)</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">)</a></code></pre></div>
 <p>Here are the coefficients for the effect-coded version. They should be the same as those from the last analysis.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##  (Intercept) trial_type.e 
 ##    788.19166     61.93773</code></pre>
 <p>Here are the coefficients for the sum-coded version. This give the same results as effect coding, except the estimate for the categorical factor will be exactly half as large, as it represents the difference between each trial type and the hypothetical condition of 0 (the overall mean RT), rather than the difference between the two trial types.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.sum, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.sum, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##    (Intercept) trial_type.sum 
 ##      788.19166       30.96887</code></pre>
 <p>Here are the coefficients for the treatment-coded version. The estimate for the categorical factor will be the same as in the effect-coded version, but the intercept will decrease. It will be equal to the intercept minus the estimate for trial type from the sum-coded version.</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.tr, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.tr, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##   (Intercept) trial_type.tr 
 ##     757.22279      61.93773</code></pre>
 </div>
@@ -699,7 +721,7 @@ What happens to the residuals if you fit a model that ignores trial type (e.g., 
 <div id="t-test-1" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> T-test</h3>
 <p>The t-test is just a special, limited example of a general linear model.</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1"><span class="kw">t.test</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">t.test</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -720,9 +742,9 @@ What happens when you use other codings for trial type in the t-test above? Whic
 <div id="anova" class="section level3">
 <h3><span class="header-section-number">9.5.2</span> ANOVA</h3>
 <p>ANOVA is also a special, limited version of the linear model.</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1">my_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</a>
-<a class="sourceLine" id="cb438-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb438-3" data-line-number="3"><span class="kw">summary</span>(my_aov, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">my_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw">summary</span>(my_aov, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##               Df    Sum Sq   Mean Sq  F value   Pr(&gt;F)    
 ## (Intercept)    1 124249219 124249219 11963.12  &lt; 2e-16 ***
 ## trial_type.e   1    191814    191814    18.47 2.71e-05 ***
@@ -730,8 +752,8 @@ What happens when you use other codings for trial type in the t-test above? Whic
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The easiest way to get parameters out of an analysis is to use the <code>broom::tidy()</code> function. This returns a tidy table that you can extract numbers of interest from. Here, we just want to get the F-value for the effect of trial_type. Compare the square root of this value to the t-value from the t-tests above.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1">f &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">tidy</span>(my_aov)<span class="op">$</span>statistic[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb440-2" data-line-number="2"><span class="kw">sqrt</span>(f)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">f &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">tidy</span>(my_aov)<span class="op">$</span>statistic[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">sqrt</span>(f)</a></code></pre></div>
 <pre><code>## [1] 4.297498</code></pre>
 </div>
 </div>
@@ -743,17 +765,17 @@ What happens when you use other codings for trial type in the t-test above? Whic
 <div id="means-variability-and-deviation-scores" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Means, Variability, and Deviation Scores</h3>
 <p>Let’s create a simple simulation function so you can quickly create a two-sample dataset with specified Ns, means, and SDs.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1 =</span> <span class="dv">0</span>, <span class="dt">m2 =</span> <span class="dv">0</span>, <span class="dt">sd1 =</span> <span class="dv">1</span>, <span class="dt">sd2 =</span> <span class="dv">1</span>) {</a>
-<a class="sourceLine" id="cb442-2" data-line-number="2">  s1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)</a>
-<a class="sourceLine" id="cb442-3" data-line-number="3">  s2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)</a>
-<a class="sourceLine" id="cb442-4" data-line-number="4">  </a>
-<a class="sourceLine" id="cb442-5" data-line-number="5">  <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb442-6" data-line-number="6">    <span class="dt">Y =</span> <span class="kw">c</span>(s1, s2),</a>
-<a class="sourceLine" id="cb442-7" data-line-number="7">    <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n)</a>
-<a class="sourceLine" id="cb442-8" data-line-number="8">  )</a>
-<a class="sourceLine" id="cb442-9" data-line-number="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1 =</span> <span class="dv">0</span>, <span class="dt">m2 =</span> <span class="dv">0</span>, <span class="dt">sd1 =</span> <span class="dv">1</span>, <span class="dt">sd2 =</span> <span class="dv">1</span>) {</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">  s1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">  s2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">    <span class="dt">Y =</span> <span class="kw">c</span>(s1, s2),</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">    <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n)</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8">  )</a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">}</a></code></pre></div>
 <p>Now we will use <code>two_sample()</code> to create a dataset <code>dat</code> with N=5 per group, means of -2 and +2, and SDs of 1 and 1 (yes, this is an effect size of d = 4).</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dv">5</span>, <span class="dv">-2</span>, <span class="op">+</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dv">5</span>, <span class="dv">-2</span>, <span class="op">+</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a></code></pre></div>
 <p>You can calculate how each data point (<code>Y</code>) deviates from the overall sample mean (<span class="math inline">\(\hat{\mu}\)</span>), which is represented by the horizontal grey line below and the deviations are the vertical grey lines. You can also calculate how different each point is from its group-specific mean (<span class="math inline">\(\hat{A_i}\)</span>), which are represented by the horizontal coloured lines below and the deviations are the coloured vertical lines.</p>
 <div class="figure" style="text-align: center"><span id="fig:deviation"></span>
 <img src="09-glm_files/figure-html/deviation-1.png" alt="Deviations of each data point (Y) from the overall and group means" width="100%" />
@@ -772,200 +794,200 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 <li><code>err</code> is residual error, calculated by subtracting <code>mu</code> and <code>a</code> from <code>Y</code></li>
 </ul>
 <p>This produces a <em>decomposition matrix</em>, a table with columns for <code>Y</code>, <code>mu</code>, <code>a</code>, and <code>err</code>.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">decomp &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb444-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Y, grp) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb444-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(Y)) <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># calculate mu_hat</span></a>
-<a class="sourceLine" id="cb444-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb444-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">mean</span>(Y) <span class="op">-</span><span class="st"> </span>mu) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># calculate a_hat for each grp</span></a>
-<a class="sourceLine" id="cb444-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb444-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">err =</span> Y <span class="op">-</span><span class="st"> </span>mu <span class="op">-</span><span class="st"> </span>a)     <span class="co"># calculate residual error</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">decomp &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Y, grp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(Y)) <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># calculate mu_hat</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">mean</span>(Y) <span class="op">-</span><span class="st"> </span>mu) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># calculate a_hat for each grp</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">err =</span> Y <span class="op">-</span><span class="st"> </span>mu <span class="op">-</span><span class="st"> </span>a)     <span class="co"># calculate residual error</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="right">Y gr</th>
-<th align="left">p</th>
-<th align="center">mu</th>
-<th align="center">a</th>
-<th align="center">err</th>
+<th align="right">Y</th>
+<th align="left">grp</th>
+<th align="right">mu</th>
+<th align="right">a</th>
+<th align="right">err</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="right">-1.4770938</td>
 <td align="left">A</td>
-<td align="center">0.1207513</td>
-<td align="center">-1.533501</td>
-<td align="center">-0.0643443</td>
+<td align="right">0.1207513</td>
+<td align="right">-1.533501</td>
+<td align="right">-0.0643443</td>
 </tr>
 <tr class="even">
 <td align="right">-2.9508741</td>
 <td align="left">A</td>
-<td align="center">0.1207513</td>
-<td align="center">-1.533501</td>
-<td align="center">-1.5381246</td>
+<td align="right">0.1207513</td>
+<td align="right">-1.533501</td>
+<td align="right">-1.5381246</td>
 </tr>
 <tr class="odd">
 <td align="right">-0.6376736</td>
 <td align="left">A</td>
-<td align="center">0.1207513</td>
-<td align="center">-1.533501</td>
-<td align="center">0.7750759</td>
+<td align="right">0.1207513</td>
+<td align="right">-1.533501</td>
+<td align="right">0.7750759</td>
 </tr>
 <tr class="even">
 <td align="right">-1.7579084</td>
 <td align="left">A</td>
-<td align="center">0.1207513</td>
-<td align="center">-1.533501</td>
-<td align="center">-0.3451589</td>
+<td align="right">0.1207513</td>
+<td align="right">-1.533501</td>
+<td align="right">-0.3451589</td>
 </tr>
 <tr class="odd">
 <td align="right">-0.2401977</td>
 <td align="left">A</td>
-<td align="center">0.1207513</td>
-<td align="center">-1.533501</td>
-<td align="center">1.1725518</td>
+<td align="right">0.1207513</td>
+<td align="right">-1.533501</td>
+<td align="right">1.1725518</td>
 </tr>
 <tr class="even">
 <td align="right">0.1968155</td>
 <td align="left">B</td>
-<td align="center">0.1207513</td>
-<td align="center">1.533501</td>
-<td align="center">-1.4574367</td>
+<td align="right">0.1207513</td>
+<td align="right">1.533501</td>
+<td align="right">-1.4574367</td>
 </tr>
 <tr class="odd">
 <td align="right">2.6308008</td>
 <td align="left">B</td>
-<td align="center">0.1207513</td>
-<td align="center">1.533501</td>
-<td align="center">0.9765486</td>
+<td align="right">0.1207513</td>
+<td align="right">1.533501</td>
+<td align="right">0.9765486</td>
 </tr>
 <tr class="even">
 <td align="right">2.0293297</td>
 <td align="left">B</td>
-<td align="center">0.1207513</td>
-<td align="center">1.533501</td>
-<td align="center">0.3750775</td>
+<td align="right">0.1207513</td>
+<td align="right">1.533501</td>
+<td align="right">0.3750775</td>
 </tr>
 <tr class="odd">
 <td align="right">2.1629037</td>
 <td align="left">B</td>
-<td align="center">0.1207513</td>
-<td align="center">1.533501</td>
-<td align="center">0.5086516</td>
+<td align="right">0.1207513</td>
+<td align="right">1.533501</td>
+<td align="right">0.5086516</td>
 </tr>
 <tr class="even">
 <td align="right">1.2514112</td>
 <td align="left">B</td>
-<td align="center">0.1207513</td>
-<td align="center">1.533501</td>
-<td align="center">-0.4028410</td>
+<td align="right">0.1207513</td>
+<td align="right">1.533501</td>
+<td align="right">-0.4028410</td>
 </tr>
 </tbody>
 </table>
 <p>Calculate sums of squares for <code>mu</code>, <code>a</code>, and <code>err</code>.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1">SS &lt;-<span class="st"> </span>decomp <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb445-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">sum</span>(mu<span class="op">*</span>mu),</a>
-<a class="sourceLine" id="cb445-3" data-line-number="3">            <span class="dt">a =</span> <span class="kw">sum</span>(a<span class="op">*</span>a),</a>
-<a class="sourceLine" id="cb445-4" data-line-number="4">            <span class="dt">err =</span> <span class="kw">sum</span>(err<span class="op">*</span>err))</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">SS &lt;-<span class="st"> </span>decomp <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">sum</span>(mu<span class="op">*</span>mu),</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">            <span class="dt">a =</span> <span class="kw">sum</span>(a<span class="op">*</span>a),</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">            <span class="dt">err =</span> <span class="kw">sum</span>(err<span class="op">*</span>err))</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="center">mu</th>
-<th align="center">a</th>
-<th align="center">err</th>
+<th align="right">mu</th>
+<th align="right">a</th>
+<th align="right">err</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">0.1458088</td>
-<td align="center">23.51625</td>
-<td align="center">8.104182</td>
+<td align="right">0.1458088</td>
+<td align="right">23.51625</td>
+<td align="right">8.104182</td>
 </tr>
 </tbody>
 </table>
 <p>If you’ve done everything right, <code>SS$mu + SS$a + SS$err</code> should equal the sum of squares for Y.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">SS_Y &lt;-<span class="st"> </span><span class="kw">sum</span>(decomp<span class="op">$</span>Y<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb446-2" data-line-number="2">SS_Y <span class="op">==</span><span class="st"> </span>SS<span class="op">$</span>mu <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>a <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>err</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">SS_Y &lt;-<span class="st"> </span><span class="kw">sum</span>(decomp<span class="op">$</span>Y<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">all.equal</span>(SS_Y, SS<span class="op">$</span>mu <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>a <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>err)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Divide each sum of squares by its corresponding degrees of freedom (df) to calculate mean squares. The df for <code>mu</code> is 1, the df for factor <code>a</code> is <code>K-1</code> (K is the number of groups), and the df for <code>err</code> is <code>N - K</code> (N is the number of observations).</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">K &lt;-<span class="st"> </span><span class="kw">n_distinct</span>(dat<span class="op">$</span>grp)</a>
-<a class="sourceLine" id="cb448-2" data-line-number="2">N &lt;-<span class="st"> </span><span class="kw">nrow</span>(dat)</a>
-<a class="sourceLine" id="cb448-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">mu =</span> <span class="dv">1</span>, <span class="dt">a =</span> K <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">err =</span> N <span class="op">-</span><span class="st"> </span>K)</a>
-<a class="sourceLine" id="cb448-4" data-line-number="4">MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> </span>df</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">K &lt;-<span class="st"> </span><span class="kw">n_distinct</span>(dat<span class="op">$</span>grp)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">N &lt;-<span class="st"> </span><span class="kw">nrow</span>(dat)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">mu =</span> <span class="dv">1</span>, <span class="dt">a =</span> K <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">err =</span> N <span class="op">-</span><span class="st"> </span>K)</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> </span>df</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="center">mu</th>
-<th align="center">a</th>
-<th align="center">err</th>
+<th align="right">mu</th>
+<th align="right">a</th>
+<th align="right">err</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">0.1458088</td>
-<td align="center">23.51625</td>
-<td align="center">1.013023</td>
+<td align="right">0.1458088</td>
+<td align="right">23.51625</td>
+<td align="right">1.013023</td>
 </tr>
 </tbody>
 </table>
 <p>Then calculate an F-ratio for <code>mu</code> and <code>a</code> by dividing their mean squares by the error term mean square. Get the p-values that correspond to these F-values using the <code>pf()</code> function.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">F_mu &lt;-<span class="st"> </span>MS<span class="op">$</span>mu <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</a>
-<a class="sourceLine" id="cb449-2" data-line-number="2">F_a  &lt;-<span class="st"> </span>MS<span class="op">$</span>a  <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</a>
-<a class="sourceLine" id="cb449-3" data-line-number="3">p_mu &lt;-<span class="st"> </span><span class="kw">pf</span>(F_mu, <span class="dt">df1 =</span> df[<span class="st">&#39;mu&#39;</span>], <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb449-4" data-line-number="4">p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class="dt">df1 =</span> df[<span class="st">&#39;a&#39;</span>],  <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">F_mu &lt;-<span class="st"> </span>MS<span class="op">$</span>mu <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">F_a  &lt;-<span class="st"> </span>MS<span class="op">$</span>a  <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">p_mu &lt;-<span class="st"> </span><span class="kw">pf</span>(F_mu, <span class="dt">df1 =</span> df[<span class="st">&#39;mu&#39;</span>], <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class="dt">df1 =</span> df[<span class="st">&#39;a&#39;</span>],  <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Put everything into a data frame to display it in the same way as the ANOVA summary function.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1">my_calcs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb450-2" data-line-number="2">  <span class="dt">term =</span> <span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;grp&quot;</span>, <span class="st">&quot;Residuals&quot;</span>),</a>
-<a class="sourceLine" id="cb450-3" data-line-number="3">  <span class="dt">Df =</span> df,</a>
-<a class="sourceLine" id="cb450-4" data-line-number="4">  <span class="dt">SS =</span> <span class="kw">c</span>(SS<span class="op">$</span>mu, SS<span class="op">$</span>a, SS<span class="op">$</span>err),</a>
-<a class="sourceLine" id="cb450-5" data-line-number="5">  <span class="dt">MS =</span> <span class="kw">c</span>(MS<span class="op">$</span>mu, MS<span class="op">$</span>a, MS<span class="op">$</span>err),</a>
-<a class="sourceLine" id="cb450-6" data-line-number="6">  <span class="dt">F =</span> <span class="kw">c</span>(F_mu, F_a, <span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb450-7" data-line-number="7">  <span class="dt">p =</span> <span class="kw">c</span>(p_mu, p_a, <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb450-8" data-line-number="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">my_calcs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">  <span class="dt">term =</span> <span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;grp&quot;</span>, <span class="st">&quot;Residuals&quot;</span>),</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">  <span class="dt">Df =</span> df,</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">  <span class="dt">SS =</span> <span class="kw">c</span>(SS<span class="op">$</span>mu, SS<span class="op">$</span>a, SS<span class="op">$</span>err),</a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">  <span class="dt">MS =</span> <span class="kw">c</span>(MS<span class="op">$</span>mu, MS<span class="op">$</span>a, MS<span class="op">$</span>err),</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">  <span class="dt">F =</span> <span class="kw">c</span>(F_mu, F_a, <span class="ot">NA</span>),</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">  <span class="dt">p =</span> <span class="kw">c</span>(p_mu, p_a, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="right">te</th>
-<th>rm D</th>
-<th align="left">f</th>
-<th align="center">SS</th>
-<th align="center">MS</th>
-<th align="center">F</th>
-<th align="center">p</th>
+<th></th>
+<th align="left">term</th>
+<th align="right">Df</th>
+<th align="right">SS</th>
+<th align="right">MS</th>
+<th align="right">F</th>
+<th align="right">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">mu</td>
-<td>Intercept</td>
-<td align="left">1</td>
-<td align="center">0.146</td>
-<td align="center">0.146</td>
-<td align="center">0.144</td>
-<td align="center">0.714</td>
+<td>mu</td>
+<td align="left">Intercept</td>
+<td align="right">1</td>
+<td align="right">0.146</td>
+<td align="right">0.146</td>
+<td align="right">0.144</td>
+<td align="right">0.714</td>
 </tr>
 <tr class="even">
-<td align="right">a</td>
-<td>grp</td>
-<td align="left">1</td>
-<td align="center">23.516</td>
-<td align="center">23.516</td>
-<td align="center">23.214</td>
-<td align="center">0.001</td>
+<td>a</td>
+<td align="left">grp</td>
+<td align="right">1</td>
+<td align="right">23.516</td>
+<td align="right">23.516</td>
+<td align="right">23.214</td>
+<td align="right">0.001</td>
 </tr>
 <tr class="odd">
-<td align="right">err</td>
-<td>Residuals</td>
-<td align="left">8</td>
-<td align="center">8.104</td>
-<td align="center">1.013</td>
-<td align="center">NA</td>
-<td align="center">NA</td>
+<td>err</td>
+<td align="left">Residuals</td>
+<td align="right">8</td>
+<td align="right">8.104</td>
+<td align="right">1.013</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
 <p>Now run a one-way ANOVA on your results and compare it to what you obtained in your calculations.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="kw">aov</span>(Y <span class="op">~</span><span class="st"> </span>grp, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>(<span class="dt">intercept =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">aov</span>(Y <span class="op">~</span><span class="st"> </span>grp, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>(<span class="dt">intercept =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## (Intercept)  1  0.146   0.146   0.144 0.71427   
 ## grp          1 23.516  23.516  23.214 0.00132 **

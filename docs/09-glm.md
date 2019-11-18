@@ -91,7 +91,7 @@ So first create variables for all of the parameters that describe your data.
 ```r
 n_per_grp <- 100
 mu <- 800 # average RT
-effect <- 50 # average different between congruent and incongruent trials
+effect <- 50 # average difference between congruent and incongruent trials
 error_sd <- 100 # standard deviation of the error term
 trial_types <- c("congruent" = 0.5, "incongruent" = -0.5) # effect code
 ```
@@ -101,11 +101,13 @@ Then simulate the data by creating a data table with a row for each trial and co
 
 ```r
 dat <- data.frame(
-  trial_type = rep(names(trial_types), each = n_per_grp),
-  trial_type.e = rep(trial_types, each = n_per_grp),
-  error = rnorm(2*n_per_grp, 0, error_sd)
+  trial_type = rep(names(trial_types), each = n_per_grp)
 ) %>%
-  mutate(RT = mu + effect*trial_type.e + error)
+  mutate(
+    trial_type.e = recode(trial_type, !!!trial_types),
+    error = rnorm(nrow(.), 0, error_sd),
+    RT = mu + effect*trial_type.e + error
+  )
 ```
 
 Last but not least, always plot simulated data to make sure it looks like you expect.
@@ -114,7 +116,8 @@ Last but not least, always plot simulated data to make sure it looks like you ex
 ```r
 ggplot(dat, aes(trial_type, RT)) + 
   geom_violin() +
-  geom_boxplot(aes(fill = trial_type), width = 0.25, show.legend = FALSE)
+  geom_boxplot(aes(fill = trial_type), 
+               width = 0.25, show.legend = FALSE)
 ```
 
 <div class="figure" style="text-align: center">
@@ -169,8 +172,8 @@ You can use the `residuals()` function to extract the error term for each each d
 res <- residuals(my_lm)
 
 ggplot(dat) + 
-  stat_function(aes(0), color = "grey40",
-                fun = dnorm, n = 101, 
+  stat_function(aes(0), color = "grey60",
+                fun = dnorm, n = 101,
                 args = list(mean = 0, sd = error_sd)) +
   geom_density(aes(res, color = trial_type))
 ```
@@ -221,11 +224,11 @@ new_congruent_RT
 ## [1] 819.1605
 ```
 
-You can also use the `predict()` function to do this more easily.
+You can also use the `predict()` function to do this more easily. The second argument is a data table with columns for the factors in the model and rows with the values that you want to use for the prediction.
 
 
 ```r
-predict(my_lm, tibble(trial_type.e = 0.5))
+predict(my_lm, newdata = tibble(trial_type.e = 0.5))
 ```
 
 ```
@@ -234,18 +237,39 @@ predict(my_lm, tibble(trial_type.e = 0.5))
 ```
 
 
+<div class="info">
+<p>If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.”</p>
+<p>What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
+</div>
+
+
 
 ### Coding Categorical Variables {#coding-schemes}
 
 In the example above, we used **effect coding** for trial type. You can also use **sum coding**, which assigns +1 and  -1 to the levels instead of +0.5 and -0.5.  More commonly, you might want to use **treatment coding**, which assigns 0 to one level (usually a baseline or control condition) and 1 to the other level (usually a treatment or experimental condition).
 
-Here we will add sum-coded and treatment-coded versions of `trial_type` to the dataset.
+Here we will add sum-coded and treatment-coded versions of `trial_type` to the dataset using the `recode()` function.
 
 
 ```r
 dat <- dat %>% mutate(
-  trial_type.sum = rep(c(+1, -1), each = n_per_grp),
-  trial_type.tr = rep(c(1, 0), each = n_per_grp)
+  trial_type.sum = recode(trial_type, "congruent" = +1, "incongruent" = -1),
+  trial_type.tr = recode(trial_type, "congruent" = 1, "incongruent" = 0)
+)
+```
+
+If you define named vectors with your levels and coding, you can use them with the `recode()` function if you expand them using `!!!`.
+
+
+```r
+tt_sum <- c("congruent"   = +1, 
+            "incongruent" = -1)
+tt_tr <- c("congruent"   = 1, 
+           "incongruent" = 0)
+
+dat <- dat %>% mutate(
+  trial_type.sum = recode(trial_type, !!!tt_sum),
+  trial_type.tr = recode(trial_type, !!!tt_tr)
 )
 ```
 
@@ -449,7 +473,7 @@ If you've done everything right, `SS$mu + SS$a + SS$err` should equal the sum of
 
 ```r
 SS_Y <- sum(decomp$Y^2)
-SS_Y == SS$mu + SS$a + SS$err
+all.equal(SS_Y, SS$mu + SS$a + SS$err)
 ```
 
 ```
