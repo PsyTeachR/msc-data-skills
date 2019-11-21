@@ -21,6 +21,7 @@
 
 ## Resources
 
+* [Stub for this lesson](stubs/9_glm.Rmd)
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
 * [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)

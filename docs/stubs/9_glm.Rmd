@@ -1,6 +1,11 @@
-# Introduction to GLM {#glm}
-
-<img src="images/memes/linear_regression.jpg" class="meme right">
+---
+title: "Introdction to GLM"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+---
 
 ## Learning Objectives
 
@@ -20,7 +25,6 @@
 
 ## Resources
 
-* [Stub for this lesson](stubs/9_glm.Rmd)
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
 * [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
@@ -31,6 +35,9 @@
 You'll need the following packages. 
 
 ```{r, results = 'hide', warning = FALSE, message = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+
 # libraries needed for these examples
 library(tidyverse)
 library(broom)
@@ -58,7 +65,6 @@ There are some mathematical conventions that you need to learn to understand the
 | Interactions     | $AB, AC, BC, ABC, \ldots$     |
 | Random Error     | $S(Group)$                    |
 
-<img src="images/memes/confused-math-lady.png" class="meme right">
 
 The linear equation predicts the dependent variable ($Y$) as the sum of the grand average value of $Y$ ($\mu$, also called the intercept), the main effects of all the predictor variables ($A+B+C+ \ldots$), the interactions among all the predictor variables ($AB, AC, BC, ABC, \ldots$), and some random error ($S(Group)$). The equation for a model with two predictor variables ($A$ and $B$) and their interaction ($AB$) is written like this:
 
@@ -72,11 +78,7 @@ A good way to learn about linear models is to simulate data where you know exact
 
 We'll start with a very simple linear model that just has a single categorical factor with two levels. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (`mu`) is 800ms, and is 50ms faster for congruent than incongruent trials (`effect`). 
 
-<div class="warning">
 A **factor** is a categorical variable that is used to divide subjects into groups, usually to draw some comparison. Factors are composed of different **levels**. Do not confuse factors with levels!
-
-In the example above, trial type is a `r mcq(c(answer = "factor", "level"))`, incongrunt is a `r mcq(c("factor", answer = "level"))`, and congruent is a `r mcq(c("factor", answer = "level"))`.
-</div>
 
 You need to represent categorical factors with numbers. The numbers, or **coding** you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will **effect code** the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
 
@@ -87,39 +89,26 @@ Here, we'll assume the error term is sampled from a normal distribution with a s
 So first create variables for all of the parameters that describe your data.
 
 ```{r}
-n_per_grp <- 100
-mu <- 800 # average RT
-effect <- 50 # average difference between congruent and incongruent trials
-error_sd <- 100 # standard deviation of the error term
-trial_types <- c("congruent" = 0.5, "incongruent" = -0.5) # effect code
+n_per_grp <- NULL
+mu <- NULL # average RT
+effect <- NULL # average difference between congruent and incongruent trials
+error_sd <- NULL # standard deviation of the error term
+trial_types <- NULL # effect code
 ```
 
 Then simulate the data by creating a data table with a row for each trial and columns for the trial type and the error term (random numbers samples from a normal distribution with the SD specified by `error_sd`). For categorical variables, include both a column with the text labels (`trial_type`) and another column with the coded version (`trial_type.e`) to make it easier to check what the codings mean and to use for graphing. Calculate the dependent variable (`RT`) as the sum of the grand mean (`mu`), the coefficient (`effect`) multiplied by the effect-coded predictor variable (`trial_type.e`), and the error term.
 
 ```{r}
-dat <- data.frame(
-  trial_type = rep(names(trial_types), each = n_per_grp)
-) %>%
-  mutate(
-    trial_type.e = recode(trial_type, !!!trial_types),
-    error = rnorm(nrow(.), 0, error_sd),
-    RT = mu + effect*trial_type.e + error
-  )
+dat <- NULL
 ```
 
-```{block type="info"}
 
 The `!!!` (triple bang) in the code `recode(trial_type, !!!trial_types)` is a way to expand the vector `trial_types <- c("congruent" = 0.5, "incongruent" = -0.5)`. It's equivalent to `recode(trial_type, "congruent" = 0.5, "incongruent" = -0.5)`. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the `trial_types` vector).
-
-```
 
 Last but not least, always plot simulated data to make sure it looks like you expect.
 
 ```{r plot-sim, fig.cap = "Simulated Data"}
-ggplot(dat, aes(trial_type, RT)) + 
-  geom_violin() +
-  geom_boxplot(aes(fill = trial_type), 
-               width = 0.25, show.legend = FALSE)
+ggplot(dat)
 ```
 
 ### Linear Regression
@@ -127,25 +116,25 @@ ggplot(dat, aes(trial_type, RT)) +
 Now we can analyse the data we simulated using the function `lm()`. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the `summary()` function to see the statistical summary.
 
 ```{r}
-my_lm <- lm(RT ~ trial_type.e, data = dat)
+my_lm <- NULL
 
 summary(my_lm)
 ```
 
 Notice how the **estimate** for the `(Intercept)` is close to the value we set for `mu` and the estimate for `trial_type.e` is close to the value we set for `effect`.
 
-```{block, type="try"}
 Change the values of `mu` and `effect`, resimulate the data, and re-run the linear model. What happens to the estimates?
-```
 
 ### Residuals {#residuals}
 
 You can use the `residuals()` function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.
 
 ```{r res-density-plot, fig.cap="Model residuals should be approximately normally distributed for each group"}
-res <- residuals(my_lm)
+
+res <- NULL
 
 ggplot(dat) + 
+  # creates a normal distribution curve
   stat_function(aes(0), color = "grey60",
                 fun = dnorm, n = 101,
                 args = list(mean = 0, sd = error_sd)) +
@@ -157,16 +146,17 @@ ggplot(dat) +
 You can also compare the model residuals to the simulated error values. If the model is accurate, they should be almost identical. If the intercept estimate is slightly off, the points will be slightly above or below the black line. If the estimate for the effect of trial type is slightly off, there will be a small, systematic difference between residuals for congruent and incongruent trials.
 
 ```{r res-err-plot, fig.cap="Model residuals should be very similar to the simulated error"}
+
 ggplot(dat) +
   geom_abline(slope = 1) +
-  geom_point(aes(error, res,color = trial_type)) +
+  geom_point(aes(error, res, color = trial_type)) +
   ylab("Model Residuals") +
   xlab("Simulated Error")
 ```
 
-```{block, type="try"}
+
 What happens to the residuals if you fit a model that ignores trial type (e.g., `lm(Y ~ 1, data = dat)`)?
-```
+
 
 ### Predict New Values {#predict}
 
@@ -175,11 +165,11 @@ You can use the estimates from your model to predict new data points, given valu
 For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).
 
 ```{r}
-int_est <- my_lm$coefficients[["(Intercept)"]]
-tt_est  <- my_lm$coefficients[["trial_type.e"]]
-tt_code <- trial_types[["congruent"]]
+int_est <- NULL
+tt_est  <- NULL
+tt_code <- NULL
 
-new_congruent_RT <- int_est + tt_est * tt_code
+new_congruent_RT <- NULL
 
 new_congruent_RT
 ```
@@ -187,15 +177,14 @@ new_congruent_RT
 You can also use the `predict()` function to do this more easily. The second argument is a data table with columns for the factors in the model and rows with the values that you want to use for the prediction.
 
 ```{r}
-predict(my_lm, newdata = tibble(trial_type.e = 0.5))
+newdata <- NULL
+predict(my_lm, newdata)
 ```
 
 
-```{block type="info"}
 If you look up this function using `?predict`, you will see that "The function invokes particular methods which depend on the class of the first argument."
 
 What this means is that `predict()` works differently depending on whether you're predicting from the output of `lm()` or other analysis functions. You can search for help on the lm version with `?predict.lm`.
-```
 
 
 
@@ -207,24 +196,18 @@ Here we will add sum-coded and treatment-coded versions of `trial_type` to the d
 
 ```{r}
 
-dat <- dat %>% mutate(
-  trial_type.sum = recode(trial_type, "congruent" = +1, "incongruent" = -1),
-  trial_type.tr = recode(trial_type, "congruent" = 1, "incongruent" = 0)
-)
+dat <- NULL
+
 ```
 
 If you define named vectors with your levels and coding, you can use them with the `recode()` function if you expand them using `!!!`.
 
 ```{r}
 
-tt_sum <- c("congruent"   = +1, 
-            "incongruent" = -1)
-tt_tr <- c("congruent"   = 1, 
-           "incongruent" = 0)
+tt_sum <- NULL
+tt_tr  <- NULL
 
-dat <- dat %>% mutate(
-  trial_type.sum = recode(trial_type, !!!tt_sum),
-  trial_type.tr = recode(trial_type, !!!tt_tr)
+dat <- NULL
 )
 ```
 
@@ -257,16 +240,19 @@ The t-test is just a special, limited example of a general linear model.
 t.test(RT ~ trial_type.e, data = dat, var.equal = TRUE)
 ```
 
-```{block, type="try"}
 What happens when you use other codings for trial type in the t-test above? Which coding maps onto the results of the t-test best?
+
+```{r}
+
 ```
+
 
 ### ANOVA
 
 ANOVA is also a special, limited version of the linear model.
 
 ```{r}
-my_aov <- aov(RT ~ trial_type.e, data = dat)
+my_aov <- NULL
 
 summary(my_aov, intercept = TRUE)
 ```
@@ -291,26 +277,21 @@ This means that each data point ($Y_{ij}$) is predicted to be the sum of the gra
 Let's create a simple simulation function so you can quickly create a two-sample dataset with specified Ns, means, and SDs.
 
 ```{r}
-two_sample <- function(n = 10, m1 = 0, m2 = 0, sd1 = 1, sd2 = 1) {
-  s1 <- rnorm(n, m1, sd1)
-  s2 <- rnorm(n, m2, sd2)
+two_sample <- function() {
   
-  data.frame(
-    Y = c(s1, s2),
-    grp = rep(c("A", "B"), each = n)
-  )
 }
 ```
 
 Now we will use `two_sample()` to create a dataset `dat` with N=5 per group, means of -2 and +2, and SDs of 1 and 1 (yes, this is an effect size of d = 4).
 
 ```{r}
-dat <- two_sample(5, -2, +2, 1, 1)
+dat <- NULL
 ```
 
 You can calculate how each data point (`Y`) deviates from the overall sample mean ($\hat{\mu}$), which is represented by the horizontal grey line below and the deviations are the vertical grey lines. You can also calculate how different each point is from its group-specific mean ($\hat{A_i}$), which are represented by the horizontal coloured lines below and the deviations are the coloured vertical lines.
 
 ```{r deviation, echo = FALSE, fig.cap="Deviations of each data point (Y) from the overall and group means"}
+
 group_by(dat, grp) %>% 
   mutate(Ymean = mean(Y)) %>%
   ungroup() %>%
@@ -342,13 +323,7 @@ We can use the estimation equations for a one-factor ANOVA to calculate the mode
 This produces a *decomposition matrix*, a table with columns for `Y`, `mu`, `a`, and `err`.
 
 ```{r}
-decomp <- dat %>% 
-  select(Y, grp) %>%
-  mutate(mu = mean(Y)) %>%     # calculate mu_hat
-  group_by(grp) %>%
-  mutate(a = mean(Y) - mu) %>% # calculate a_hat for each grp
-  ungroup() %>%
-  mutate(err = Y - mu - a)     # calculate residual error
+decomp <- NULL
 ```
 
 `r knitr::kable(decomp)`
@@ -356,13 +331,11 @@ decomp <- dat %>%
 Calculate sums of squares for `mu`, `a`, and `err`.
 
 ```{r}
-SS <- decomp %>%
-  summarise(mu = sum(mu*mu),
-            a = sum(a*a),
-            err = sum(err*err))
+SS <- NULL
+
+SS
 ```
 
-`r knitr::kable(SS)`
 
 If you've done everything right, `SS$mu + SS$a + SS$err` should equal the sum of squares for Y.
 
@@ -374,21 +347,22 @@ all.equal(SS_Y, SS$mu + SS$a + SS$err)
 Divide each sum of squares by its corresponding degrees of freedom (df) to calculate mean squares. The df for `mu` is 1, the df for factor `a` is `K-1` (K is the number of groups), and the df for `err` is `N - K` (N is the number of observations).
 
 ```{r}
-K <- n_distinct(dat$grp)
-N <- nrow(dat)
-df <- c(mu = 1, a = K - 1, err = N - K)
-MS <- SS / df
+K <- NULL
+N <- NULL
+df <- NULL
+MS <- NULL
+
+MS
 ```
 
-`r knitr::kable(MS)`
 
 Then calculate an F-ratio for `mu` and `a` by dividing their mean squares by the error term mean square. Get the p-values that correspond to these F-values using the `pf()` function.
 
 ```{r}
-F_mu <- MS$mu / MS$err
-F_a  <- MS$a  / MS$err
-p_mu <- pf(F_mu, df1 = df['mu'], df2 = df['err'], lower.tail = FALSE)
-p_a  <- pf(F_a,  df1 = df['a'],  df2 = df['err'], lower.tail = FALSE)
+F_mu <- NULL
+F_a  <- NULL
+p_mu <- NULL
+p_a  <- NULL
 ```
 
 Put everything into a data frame to display it in the same way as the ANOVA summary function.
@@ -402,9 +376,10 @@ my_calcs <- data.frame(
   F = c(F_mu, F_a, NA),
   p = c(p_mu, p_a, NA)
 )
+
+my_calcs
 ```
 
-`r knitr::kable(my_calcs , digits = 3)`
 
 Now run a one-way ANOVA on your results and compare it to what you obtained in your calculations.
 
@@ -412,14 +387,5 @@ Now run a one-way ANOVA on your results and compare it to what you obtained in y
 aov(Y ~ grp, data = dat) %>% summary(intercept = TRUE)
 ```
 
-
-
-```{block, type="try"}
 Using the code above, write your own function that takes a table of data and returns the ANOVA results table like above.
-```
 
-
-
-## Exercises
-
-Download the [exercises](exercises/09_glm_exercise.Rmd). See the [answers](exercises/09_glm_answers.Rmd) only after you've attempted all the questions.
