@@ -53,11 +53,11 @@ There are some mathematical conventions that you need to learn to understand the
 
 | Component of GLM | Notation                      |
 |------------------|-------------------------------|
-| Dependent Variable (DV) | \( Y \)               |
-| Grand Average    | \( \mu \) (the Greek letter "mu")   |
-| Main Effects     | \( A, B, C, \ldots \)         |
-| Interactions     | \( AB, AC, BC, ABC, \ldots \) |
-| Random Error     | \( S(Group) \)                |
+| Dependent Variable (DV) | $Y$                    |
+| Grand Average    | $\mu$ (the Greek letter "mu") |
+| Main Effects     | $A, B, C, \ldots$             |
+| Interactions     | $AB, AC, BC, ABC, \ldots$     |
+| Random Error     | $S(Group)$                    |
 
 <img src="images/memes/confused-math-lady.png" class="meme right">
 
@@ -109,6 +109,10 @@ dat <- data.frame(
     RT = mu + effect*trial_type.e + error
   )
 ```
+
+<div class="info">
+<p>The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(&quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. It’s equivalent to <code>recode(trial_type, &quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).</p>
+</div>
 
 Last but not least, always plot simulated data to make sure it looks like you expect.
 
@@ -165,7 +169,7 @@ Notice how the **estimate** for the `(Intercept)` is close to the value we set f
 
 ### Residuals {#residuals}
 
-You can use the `residuals()` function to extract the error term for each each data point. This is the Y values, minus the estimates for the intercept and trial type. We'll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.
+You can use the `residuals()` function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.
 
 
 ```r
@@ -182,6 +186,7 @@ ggplot(dat) +
 <img src="09-glm_files/figure-html/res-density-plot-1.png" alt="Model residuals should be approximately normally distributed for each group" width="100%" />
 <p class="caption">(\#fig:res-density-plot)Model residuals should be approximately normally distributed for each group</p>
 </div>
+
 
 You can also compare the model residuals to the simulated error values. If the model is accurate, they should be almost identical. If the intercept estimate is slightly off, the points will be slightly above or below the black line. If the estimate for the effect of trial type is slightly off, there will be a small, systematic difference between residuals for congruent and incongruent trials.
 
