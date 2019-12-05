@@ -3,8 +3,7 @@
     "license": "cc-by-sa", 
     "title": "Data Skills for Reproducible Science", 
     "version": "1.0.0",
-    "upload_type": "publication", 
-    "publication_type": "book", 
+    "upload_type": "software", 
     "publication_date": "2019-12-05", 
     "creators": [
         {
