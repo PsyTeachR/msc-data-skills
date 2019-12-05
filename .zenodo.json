@@ -2,7 +2,7 @@
     "description": "The 2019-2020 version of the course book for the Data Skills for Reproducible Science MSc course in the Institute of Neuroscience and Psychology at the University of Glasgow.", 
     "license": "cc-by-sa", 
     "title": "Data Skills for Reproducible Science", 
-    "version": "v1.0.3",
+    "version": "v1.0.4",
     "upload_type": "software", 
     "publication_date": "2019-12-05", 
     "creators": [
@@ -21,11 +21,6 @@
             "scheme": "url", 
             "identifier": "https://PsyTeachR.github.io/msc-data-skills/", 
             "relation": "isSupplementTo"
-        }, 
-        {
-            "scheme": "doi", 
-            "identifier": "10.5281/zenodo.3564348", 
-            "relation": "isAlternateIdentifier"
         }
     ]
 }
