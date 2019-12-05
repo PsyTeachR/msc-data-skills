@@ -19,7 +19,7 @@
     "related_identifiers": [
         {
             "scheme": "url", 
-            "identifier": "https://psyteachr.github.io/msc-data-skills/", 
+            "identifier": "https://github.com/PsyTeachR/msc-data-skills/tree/v1.0.0", 
             "relation": "isSupplementTo"
         }, 
         {
