@@ -1,0 +1,32 @@
+{
+    "description": "<p>The 2019-2020 version of the course book for the MSc Data Skills course in the Institute of Neuroscience and Psychology at the University of Glasgow.</p>", 
+    "license": "CC-BY-SA 4.0", 
+    "title": "Data Skills", 
+    "version": "v1.0.0", 
+    "upload_type": "software", 
+    "publication_date": "2019-12-05", 
+    "url": "https://psyteachr.github.io/msc-data-skills/",
+    "creators": [
+        {
+            "name": "Lisa DeBruine",
+            "affiliation": "University of Glasgow"
+        }, 
+        {
+            "name": "Dale Barr",
+            "affiliation": "University of Glasgow"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/PsyTeachR/msc-data-skills/tree/v1.0.0", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.3564348", 
+            "relation": "isVersionOf"
+        }
+    ]
+}

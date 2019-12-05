@@ -6,5 +6,6 @@ The whole [psyTeachR](https://psyteachr.github.io) team at the University of Gla
 
 Several people contributed to testing these materials.
 
+* [Rebecca Lai](https://github.com/RebeccaJLai)
 * [Richard Morey](https://github.com/richarddmorey)
 * [Mossa Merhi Reimert](https://github.com/CGMossa)
