@@ -19,13 +19,13 @@
     "related_identifiers": [
         {
             "scheme": "url", 
-            "identifier": "https://github.com/PsyTeachR/msc-data-skills/tree/v1.0.1", 
+            "identifier": "https://PsyTeachR.github.io/msc-data-skills/", 
             "relation": "isSupplementTo"
         }, 
         {
             "scheme": "doi", 
             "identifier": "10.5281/zenodo.3564348", 
-            "relation": "isVersionOf"
+            "relation": "isAlternateIdentifier"
         }
     ]
 }
