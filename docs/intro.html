@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Getting Started | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown #bookdown:version# and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Getting Started | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-15" />
+<meta name="date" content="2019-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="data.html"/>
+<link rel="prev" href="index.html">
+<link rel="next" href="data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -46,76 +46,51 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -133,6 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
@@ -198,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="3.4.1" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.5.1</b> Bar plot</a></li>
@@ -302,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -388,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -398,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
@@ -437,15 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="agenda-2019.html"><a href="agenda-2019.html"><i class="fa fa-check"></i><b>E</b> Agenda 2019</a><ul>
-<li class="chapter" data-level="E.1" data-path="agenda-2019.html"><a href="agenda-2019.html#class-1"><i class="fa fa-check"></i><b>E.1</b> 2019-09-27 Class 1</a><ul>
-<li class="chapter" data-level="E.1.1" data-path="agenda-2019.html"><a href="agenda-2019.html#welcome-to-data-skills-for-reproducible-science"><i class="fa fa-check"></i><b>E.1.1</b> Welcome to Data Skills for Reproducible Science!</a></li>
-</ul></li>
-<li class="chapter" data-level="E.2" data-path="agenda-2019.html"><a href="agenda-2019.html#class-2"><i class="fa fa-check"></i><b>E.2</b> 2019-10-04 Class 2</a></li>
-<li class="chapter" data-level="E.3" data-path="agenda-2019.html"><a href="agenda-2019.html#class-3"><i class="fa fa-check"></i><b>E.3</b> 2019-10-11 Class 3</a></li>
-<li class="chapter" data-level="E.4" data-path="agenda-2019.html"><a href="agenda-2019.html#class-4"><i class="fa fa-check"></i><b>E.4</b> 2019-10-18 Class 4</a></li>
-</ul></li>
-<li class="chapter" data-level="F" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>F</b> References</a></li>
+<li class="chapter" data-level="E" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -504,14 +472,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="rconsole" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> The Base R Console</h3>
-<p>If you open up the application called R, you will see an “R Console” window that looks something like this.</p>
+<p>If you open up the application called R, you will see an &quot;R Console&quot; window that looks something like this.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-repl"></span>
 <img src="images/01/r_console.png" alt="The R Console window." width="100%" />
 <p class="caption">
 Figure 1.1: The R Console window.
 </p>
 </div>
-<p>You can close R and never open it again. We’ll be working entirely in RStudio in this class.</p>
+<p>You can close R and never open it again. We'll be working entirely in RStudio in this class.</p>
 <div class="warning">
 <p>
 ALWAYS REMEMBER: Launch R though the RStudio IDE
@@ -532,13 +500,12 @@ Figure 1.2: The RStudio IDE
 </div>
 <p>RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the <strong>source pane</strong>, where you view and edit source code from files. The bottom left pane is usually the <strong>console pane</strong>, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under <strong><code>Preferences &gt; Pane Layout</code></strong>.</p>
 <video width="640" height="480" controls>
-<source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
-<p>Your browser does not support the video tag.
-</video></p>
+<source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4"> Your browser does not support the video tag.
+</video>
 </div>
 <div id="configure-rstudio" class="section level3">
 <h3><span class="header-section-number">1.3.3</span> Configure RStudio</h3>
-<p>In this class, you will be learning how to develop <strong>reproducible scripts</strong>. This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the “trust but verify” motto.</p>
+<p>In this class, you will be learning how to develop <strong>reproducible scripts</strong>. This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the &quot;trust but verify&quot; motto.</p>
 <p><img src="images/memes/forgetting.jpg"  class="right meme"></p>
 <p>When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.</p>
 <p>There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says <strong><code>Restore .RData into workspace at startup</code></strong>. If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to <strong><code>Never</code></strong>. The only thing you want to save are your scripts.</p>
@@ -565,33 +532,33 @@ Figure 1.3: Alter these settings for increased reproducibility.
 <p>Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.</p>
 <p><img src="images/memes/typos.jpg" class="right meme"></p>
 <p>One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<p>The R console remembers a history of the commands you typed in the past. Use the up and down arrow keys on your keyboard to scroll backwards and forwards through your history. It’s a lot faster than re-typing.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<p>The R console remembers a history of the commands you typed in the past. Use the up and down arrow keys on your keyboard to scroll backwards and forwards through your history. It's a lot faster than re-typing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>You can break up math expressions over multiple lines; R waits for a complete expression before processing it.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">## here comes a long expression</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">## let&#39;s break it over multiple lines</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">    </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span> <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">    </span><span class="dv">10</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## here comes a long expression
+## let&#39;s break it over multiple lines
+<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span>
+<span class="st">    </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span> <span class="op">+</span>
+<span class="st">    </span><span class="dv">10</span></code></pre></div>
 <pre><code>## [1] 55</code></pre>
 <p>Text inside quotes is called a <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>string</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="st">&quot;Good afternoon&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Good afternoon&quot;</span></code></pre></div>
 <pre><code>## [1] &quot;Good afternoon&quot;</code></pre>
 <p>You can break up text over multiple lines; R waits for a close quote before processing it. If you want to include a double quote inside this quoted string, <a class='glossary' target='_blank' title='Include special characters like " inside of a string by prefacing them with a backslash.' href='https://psyteachr.github.io/glossary/e#escape'>escape</a> it with a backslash.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">africa &lt;-<span class="st"> &quot;I hear the drums echoing tonight  </span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">But she hears only whispers of some quiet conversation  </span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">She&#39;s coming in, 12:30 flight  </span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">The moonlit wings reflect the stars that guide me towards salvation  </span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">I stopped an old man along the way  </span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="st">Hoping to find some old forgotten words or ancient melodies  </span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">He turned to me as if to say, </span><span class="ch">\&quot;</span><span class="st">Hurry boy, it&#39;s waiting there for you</span><span class="ch">\&quot;</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="st">- Toto&quot;</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="kw">cat</span>(africa) <span class="co"># cat() prints the string</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">africa &lt;-<span class="st"> &quot;I hear the drums echoing tonight  </span>
+<span class="st">But she hears only whispers of some quiet conversation  </span>
+<span class="st">She&#39;s coming in, 12:30 flight  </span>
+<span class="st">The moonlit wings reflect the stars that guide me towards salvation  </span>
+<span class="st">I stopped an old man along the way  </span>
+<span class="st">Hoping to find some old forgotten words or ancient melodies  </span>
+<span class="st">He turned to me as if to say, </span><span class="ch">\&quot;</span><span class="st">Hurry boy, it&#39;s waiting there for you</span><span class="ch">\&quot;</span>
+
+<span class="st">- Toto&quot;</span>
+
+<span class="kw">cat</span>(africa) <span class="co"># cat() prints the string</span></code></pre></div>
 <pre><code>## I hear the drums echoing tonight  
 ## But she hears only whispers of some quiet conversation  
 ## She&#39;s coming in, 12:30 flight  
@@ -628,23 +595,23 @@ Figure 1.3: Alter these settings for increased reproducibility.
 <li>song-data</li>
 </ul>
 <p>Use the assignment operator <code>&lt;-</code> to assign the value on the right to the variable named on the left.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">## use the assignment operator &#39;&lt;-&#39;</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">## R stores the number in the variable</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## use the assignment operator &#39;&lt;-&#39;
+## R stores the number in the variable
+x &lt;-<span class="st"> </span><span class="dv">5</span></code></pre></div>
 <p>Now that we have set <code>x</code> to a value, we can do something with it:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">## R evaluates the expression and stores the result in the variable</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">boring_calculation &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
+
+## R evaluates the expression and stores the result in the variable
+boring_calculation &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<p>Note that it doesn’t print the result back at you when it’s stored. To view the result, just type the variable name on a blank line.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">boring_calculation</a></code></pre></div>
+<p>Note that it doesn't print the result back at you when it's stored. To view the result, just type the variable name on a blank line.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boring_calculation</code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<p>Once a variable is assigned a value, its value doesn’t change unless you reassign the variable, even if the variables you used to calculate it change. Predict what the code below does and test yourself:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">this_year &lt;-<span class="st"> </span><span class="dv">2019</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">my_birth_year &lt;-<span class="st"> </span><span class="dv">1976</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">my_age &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>my_birth_year</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">this_year &lt;-<span class="st"> </span><span class="dv">2020</span></a></code></pre></div>
+<p>Once a variable is assigned a value, its value doesn't change unless you reassign the variable, even if the variables you used to calculate it change. Predict what the code below does and test yourself:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">this_year &lt;-<span class="st"> </span><span class="dv">2019</span>
+my_birth_year &lt;-<span class="st"> </span><span class="dv">1976</span>
+my_age &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>my_birth_year
+this_year &lt;-<span class="st"> </span><span class="dv">2020</span></code></pre></div>
 <div class="try">
 <p>After all the code above is run:</p>
 <ul>
@@ -658,9 +625,9 @@ Figure 1.3: Alter these settings for increased reproducibility.
 <h3><span class="header-section-number">1.4.3</span> The environment</h3>
 <p>Anytime you assign something to a new variable, R creates a new object in the <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).</p>
 <p>Look at the <strong>Environment</strong> tab in the upper right pane. It lists all of the variables you have created. Click the broom icon to clear all of the variables and start fresh. You can also use the following functions in the console to view all variables, remove one variable, or remove all variables.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ls</span>()            <span class="co"># print the variables in the global environment</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">rm</span>(<span class="st">&quot;x&quot;</span>)         <span class="co"># remove the variable named x from the global environment</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>()) <span class="co"># clear out the global environment</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()            <span class="co"># print the variables in the global environment</span>
+<span class="kw">rm</span>(<span class="st">&quot;x&quot;</span>)         <span class="co"># remove the variable named x from the global environment</span>
+<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>()) <span class="co"># clear out the global environment</span></code></pre></div>
 <div class="info">
 <p>
 In the upper right corner of the Environment tab, change <strong><code>List</code></strong> to <strong><code>Grid</code></strong>. Now you can see the type, length, and size of your variables, and reorder the list by any of these attributes.
@@ -669,17 +636,17 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 </div>
 <div id="whitespace" class="section level3">
 <h3><span class="header-section-number">1.4.4</span> Whitespace</h3>
-<p>When you see <code>&gt;</code> at the beginning of a line, that means R is waiting for you to start a new command. However, if you see a <code>+</code> instead of <code>&gt;</code> at the start of the line, that means R is waiting for you to finish a command you started on a previous line. If you want to cancel whatever command you started, just press the Esc key in the console window and you’ll get back to the <code>&gt;</code> command prompt.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># R waits until next line for evaluation</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">     </span><span class="dv">5</span></a></code></pre></div>
+<p>When you see <code>&gt;</code> at the beginning of a line, that means R is waiting for you to start a new command. However, if you see a <code>+</code> instead of <code>&gt;</code> at the start of the line, that means R is waiting for you to finish a command you started on a previous line. If you want to cancel whatever command you started, just press the Esc key in the console window and you'll get back to the <code>&gt;</code> command prompt.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># R waits until next line for evaluation</span>
+(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span>
+<span class="st">     </span><span class="dv">5</span></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <p>It is often useful to break up long functions onto several lines.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">cat</span>(<span class="st">&quot;3, 6, 9, the goose drank wine&quot;</span>,</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">    <span class="st">&quot;The monkey chewed tobacco on the streetcar line&quot;</span>,</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">    <span class="st">&quot;The line broke, the monkey got choked&quot;</span>,</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">    <span class="st">&quot;And they all went to heaven in a little rowboat&quot;</span>,</a>
-<a class="sourceLine" id="cb20-5" data-line-number="5">    <span class="dt">sep =</span> <span class="st">&quot;  </span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;3, 6, 9, the goose drank wine&quot;</span>,
+    <span class="st">&quot;The monkey chewed tobacco on the streetcar line&quot;</span>,
+    <span class="st">&quot;The line broke, the monkey got choked&quot;</span>,
+    <span class="st">&quot;And they all went to heaven in a little rowboat&quot;</span>,
+    <span class="dt">sep =</span> <span class="st">&quot;  </span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
 <pre><code>## 3, 6, 9, the goose drank wine  
 ## The monkey chewed tobacco on the streetcar line  
 ## The line broke, the monkey got choked  
@@ -690,35 +657,35 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <p>A lot of what you do in R involves calling a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> and storing the results. A function is a named section of code that can be reused.</p>
 <p>For example, <code>sd</code> is a function that returns the standard deviation of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this:</p>
 <p><code>function_name(argument1, argument2 = &quot;value&quot;)</code>.</p>
-<p>The arguments in parentheses can be named (like, <code>argument1 = 10</code>) or you can skip the names if you put them in the exact same order that they’re defined in the function. You can check this by typing <code>?sd</code> (or whatever function name you’re looking up) into the console and the Help pane will show you the default order under <strong>Usage</strong>. You can also skip arguments that have a default value specified.</p>
+<p>The arguments in parentheses can be named (like, <code>argument1 = 10</code>) or you can skip the names if you put them in the exact same order that they're defined in the function. You can check this by typing <code>?sd</code> (or whatever function name you're looking up) into the console and the Help pane will show you the default order under <strong>Usage</strong>. You can also skip arguments that have a default value specified.</p>
 <p>Most functions return a value, but may also produce side effects like printing to the console.</p>
 <p>To illustrate, the function <code>rnorm()</code> generates random numbers from the standard normal distribution. The help page for <code>rnorm()</code> (accessed by typing <code>?rnorm</code> in the console) shows that it has the syntax</p>
 <p><code>rnorm(n, mean = 0, sd = 1)</code></p>
-<p>where <code>n</code> is the number of randomly generated numbers you want, <code>mean</code> is the mean of the distribution, and <code>sd</code> is the standard deviation. The default mean is 0, and the default standard deviation is 1. There is no default for <code>n</code>, which means you’ll get an error if you don’t specify it:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">rnorm</span>()</a></code></pre></div>
+<p>where <code>n</code> is the number of randomly generated numbers you want, <code>mean</code> is the mean of the distribution, and <code>sd</code> is the standard deviation. The default mean is 0, and the default standard deviation is 1. There is no default for <code>n</code>, which means you'll get an error if you don't specify it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>()</code></pre></div>
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##  [1] -0.3404832  0.2686130  0.8210432 -0.7053084 -1.0222637  1.3604918
-##  [7]  0.6322671 -0.1163434 -1.4921886  0.3861296</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>##  [1]  2.28717106  1.05694891 -0.06478901  0.91575729 -0.43803473  0.93750358
+##  [7]  0.84959022 -2.77864724  0.47168194  1.65254547</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</a></code></pre></div>
-<pre><code>##  [1] 100.06413  99.69068 100.39416 100.33661  99.54146  99.47690 100.85378
-##  [8]  99.58175  99.54523  99.72880</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre></div>
+<pre><code>##  [1]  99.60032 101.40240 101.03509  98.83903 100.48984  99.99977  99.79783
+##  [8] 100.02616  99.57440 100.34587</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</a></code></pre></div>
-<pre><code>##  [1] 101.30651  99.04521 101.17981  98.73852  99.02986 100.87359  99.10028
-##  [8] 101.01970  99.71317 100.70045</code></pre>
-<p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</a></code></pre></div>
-<pre><code>##  [1]   79.33956   17.75529   39.39072  -92.85828  -83.54490   43.56438
-##  [7] -157.84331  105.56531  -85.43292  137.26891</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</code></pre></div>
+<pre><code>##  [1] 100.00588 100.37767 100.48239 100.14153  99.49892 101.05520  99.48906
+##  [8]  99.21969  98.73413  98.43897</code></pre>
+<p>We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</code></pre></div>
+<pre><code>##  [1]  34.024036  28.022545 -73.792072  -8.897604 -11.366605  49.591464
+##  [7] 128.892933  50.566949  53.933872  22.664847</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">             <span class="dt">power =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">             <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;two.sample&quot;</span>, <span class="st">&quot;one.sample&quot;</span>, <span class="st">&quot;paired&quot;</span>),</a>
-<a class="sourceLine" id="cb32-4" data-line-number="4">             <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;one.sided&quot;</span>),</a>
-<a class="sourceLine" id="cb32-5" data-line-number="5">             <span class="dt">strict =</span> <span class="ot">FALSE</span>, <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.25</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,
+             <span class="dt">power =</span> <span class="ot">NULL</span>,
+             <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;two.sample&quot;</span>, <span class="st">&quot;one.sample&quot;</span>, <span class="st">&quot;paired&quot;</span>),
+             <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;one.sided&quot;</span>),
+             <span class="dt">strict =</span> <span class="ot">FALSE</span>, <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.25</span>)</code></pre></div>
 <div class="try">
 <ul>
 <li>What is the default value for <code>sd</code>? <select class='solveme' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select></li>
@@ -730,12 +697,12 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <div id="help" class="section level3">
 <h3><span class="header-section-number">1.4.6</span> Getting help</h3>
 <p>Start up help in a browser using the function <code>help.start()</code>.</p>
-<p>If a function is in base R or a loaded package, you can use the <code>help(&quot;function_name&quot;)</code> function or the <code>?function_name</code> shortcut to access the help file. If the package isn’t loaded, specify the package name as the second argument to the help function.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># these methods are all equivalent ways of getting help</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>)</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">?rnorm</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="dt">package=</span><span class="st">&quot;stats&quot;</span>) </a></code></pre></div>
-<p>When the package isn’t loaded or you aren’t sure what package the function is in, use the shortcut <code>??function_name</code>.</p>
+<p>If a function is in base R or a loaded package, you can use the <code>help(&quot;function_name&quot;)</code> function or the <code>?function_name</code> shortcut to access the help file. If the package isn't loaded, specify the package name as the second argument to the help function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these methods are all equivalent ways of getting help</span>
+<span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>)
+?rnorm
+<span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="dt">package=</span><span class="st">&quot;stats&quot;</span>) </code></pre></div>
+<p>When the package isn't loaded or you aren't sure what package the function is in, use the shortcut <code>??function_name</code>.</p>
 <div class="try">
 <ul>
 <li>What is the first argument to the <code>mean</code> function? <select class='solveme' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select></li>
@@ -753,59 +720,59 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <div id="installing-a-package" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> Installing a package</h3>
 <p><img src="images/memes/pokemon.gif" class="meme right"></p>
-<p>This is done using <code>install.packages()</code>. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store, and you don’t have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not <em>loaded</em>) every time you open up R.</p>
+<p>This is done using <code>install.packages()</code>. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store, and you don't have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not <em>loaded</em>) every time you open up R.</p>
 <div class="warning">
 <p>
 You may only be able to permanently install packages if you are using R on your own system; you may not be able to do this on public workstations if you lack the appropriate privileges.
 </p>
 </div>
 <p>Install the <code>ggExtra</code> package on your system. This package lets you create plots with marginal histograms.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;ggExtra&quot;</span>)</a></code></pre></div>
-<p>If you don’t already have packages like ggplot2 and shiny installed, it will also install these <strong>dependencies</strong> for you. If you don’t get an error message at the end, the installation was successful.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggExtra&quot;</span>)</code></pre></div>
+<p>If you don't already have packages like ggplot2 and shiny installed, it will also install these <strong>dependencies</strong> for you. If you don't get an error message at the end, the installation was successful.</p>
 </div>
 <div id="loading-a-package" class="section level3">
 <h3><span class="header-section-number">1.5.2</span> Loading a package</h3>
 <p>This is done using <code>library(packagename)</code>. This is like <strong>launching</strong> an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run <code>library(packagename)</code> within a session, the functionality of the package referred to by <code>packagename</code> will be made available for your R session. The next time you start R, you will need to run the <code>library()</code> function again if you want to access its functionality.</p>
 <p>You can load the functions in <code>ggExtra</code> for your current R session as follows:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">library</span>(ggExtra)</a></code></pre></div>
-<p>You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you’ve already loaded.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggExtra)</code></pre></div>
+<p>You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you've already loaded.</p>
 <div class="info">
 <p>
 You can use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.
 </p>
 </div>
 <p>Now can run the function <code>ggExtra::runExample()</code>, which runs an interactive example of marginal plots using shiny.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">ggExtra<span class="op">::</span><span class="kw">runExample</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggExtra<span class="op">::</span><span class="kw">runExample</span>()</code></pre></div>
 </div>
 <div id="install-from-github" class="section level3">
 <h3><span class="header-section-number">1.5.3</span> Install from GitHub</h3>
-<p>Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You’ll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don’t have devtools installed, <code>library(&quot;devtools&quot;)</code> will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.</p>
+<p>Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don't have devtools installed, <code>library(&quot;devtools&quot;)</code> will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-packages"></span>
 <img src="images/01/packages.png" alt="Check installed and loaded packages in the packages tab in the lower right pane." width="100%" />
 <p class="caption">
 Figure 1.4: Check installed and loaded packages in the packages tab in the lower right pane.
 </p>
 </div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;adam-gruer/goodshirt&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;adam-gruer/goodshirt&quot;</span>)</code></pre></div>
 <p>After you install the goodshirt package, load it using the <code>library()</code> function and display some quotes using the functions below.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">library</span>(goodshirt)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="co"># quotes from The Good Place</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw">chidi</span>()</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw">eleanor</span>()</a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="kw">tahani</span>()</a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="kw">jason</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(goodshirt)
+<span class="co"># quotes from The Good Place</span>
+<span class="kw">chidi</span>()
+<span class="kw">eleanor</span>()
+<span class="kw">tahani</span>()
+<span class="kw">jason</span>()</code></pre></div>
 <pre><code>## 
-##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
+##  I have what doctors call &quot;directional insanity&quot;. I once got lost on an escalator. 
 ## 
 ##  ~ Chidi
-##   &quot;We&#39;re running out of time and I&#39;m your only option?&quot; A lot of guys your age said that to me just as the bar was about to close. But I never settled for them. Because my ex-boyfriend lived nearby, he was obsessed with me and he never slept because he was addicted to Adderall. There is always another option. 
+##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, &quot;Go ahead and cry all you want, but you&#39;re gonna have to pay for that toilet plunger.&quot; 
 ## 
 ##  ~ Eleanor
-##  Well, hang out with Johnny Depp long enough, and you become pretty good at lying. Like, &quot;No, your whole thing isn&#39;t exhausting at all.&quot; 
+##  That was my first time as a fashion &quot;don&#39;t,&quot; and I did not care for it. 
 ## 
 ##  ~ Tahani
-##  I was scared, dawg, but then I remembered my parole officer&#39;s advice, &quot;keep your mouth shut or they&#39;ll throw a book at you.&quot; 
+##  She&#39;s my everything. She makes the bass drop in my heart. 
 ## 
 ##  ~ Jason</code></pre>
 <div class="try">
@@ -820,38 +787,38 @@ How many different ways can you find to discover what functions are available in
 <p>Projects in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.</p>
 <div class="try">
 <p>
-Make a new directory where you will keep all of your materials for this class. If you’re using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.
+Make a new directory where you will keep all of your materials for this class. If you're using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.
 </p>
 <p>
-Choose <strong><code>New Project…</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.
+Choose <strong><code>New Project...</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.
 </p>
 </div>
 <div id="structure" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> Structure</h3>
-<p>Here is what an R script looks like. Don’t worry about the details for now.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co"># load add-on packages</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co"># set variables ----</span></a>
-<a class="sourceLine" id="cb40-5" data-line-number="5">n &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb40-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="co"># simulate data ----</span></a>
-<a class="sourceLine" id="cb40-8" data-line-number="8">data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb40-9" data-line-number="9">  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n,</a>
-<a class="sourceLine" id="cb40-10" data-line-number="10">  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)),</a>
-<a class="sourceLine" id="cb40-11" data-line-number="11">  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n<span class="op">/</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb40-12" data-line-number="12">)</a>
-<a class="sourceLine" id="cb40-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb40-14" data-line-number="14"><span class="co"># plot data ----</span></a>
-<a class="sourceLine" id="cb40-15" data-line-number="15"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(condition, dv)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb40-16" data-line-number="16"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb40-17" data-line-number="17"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, </a>
-<a class="sourceLine" id="cb40-18" data-line-number="18">               <span class="kw">aes</span>(<span class="dt">fill =</span> condition),</a>
-<a class="sourceLine" id="cb40-19" data-line-number="19">               <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb40-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb40-21" data-line-number="21"><span class="co"># save plot ----</span></a>
-<a class="sourceLine" id="cb40-22" data-line-number="22"><span class="kw">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">6</span>)</a></code></pre></div>
-<p>It’s best if you follow the following structure when developing your own scripts:</p>
+<p>Here is what an R script looks like. Don't worry about the details for now.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load add-on packages</span>
+<span class="kw">library</span>(tidyverse)
+
+<span class="co"># set variables ----</span>
+n &lt;-<span class="st"> </span><span class="dv">100</span>
+
+<span class="co"># simulate data ----</span>
+data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n,
+  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)),
+  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n<span class="op">/</span><span class="dv">2</span>)
+)
+
+<span class="co"># plot data ----</span>
+<span class="kw">ggplot</span>(data, <span class="kw">aes</span>(condition, dv)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, 
+               <span class="kw">aes</span>(<span class="dt">fill =</span> condition),
+               <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># save plot ----</span>
+<span class="kw">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">6</span>)</code></pre></div>
+<p>It's best if you follow the following structure when developing your own scripts:</p>
 <ul>
 <li>load in any add-on packages you need to use</li>
 <li>define any custom functions</li>
@@ -859,15 +826,15 @@ Choose <strong><code>New Project…</code></strong> under the <strong><code>File
 <li>work with the data</li>
 <li>save anything you need to save</li>
 </ul>
-<p>Often when you are working on a script, you will realize that you need to load another add-on package. Don’t bury the call to <code>library(package_I_need)</code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.</p>
+<p>Often when you are working on a script, you will realize that you need to load another add-on package. Don't bury the call to <code>library(package_I_need)</code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.</p>
 <p>You can add comments to an R script by with the hash symbol (<code>#</code>). The R interpreter will ignore characters from the hash to the end of the line.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co">## comments: any text from &#39;#&#39; on is ignored until end of line</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="dv">22</span> <span class="op">/</span><span class="st"> </span><span class="dv">7</span>  <span class="co"># approximation to pi</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## comments: any text from &#39;#&#39; on is ignored until end of line
+<span class="dv">22</span> <span class="op">/</span><span class="st"> </span><span class="dv">7</span>  <span class="co"># approximation to pi</span></code></pre></div>
 <pre><code>## [1] 3.142857</code></pre>
 </div>
 <div id="rmarkdown" class="section level3">
 <h3><span class="header-section-number">1.6.2</span> Reproducible reports with R Markdown</h3>
-<p>We will make reproducible reports following the principles of <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>. The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then “compiled” from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.</p>
+<p>We will make reproducible reports following the principles of <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>. The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then &quot;compiled&quot; from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.</p>
 <p>We will use <a href="http://rmarkdown.rstudio.com/lesson-1.html">R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with backtick symbols in a row, with some infomation about the code between curly brackets, such as <code>{r chunk-name, echo=FALSE}</code> (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-reproducibleScript"></span>
 <img src="images/01/reproducibleScript.png" alt="A reproducible script." width="100%" />
@@ -878,18 +845,18 @@ Figure 1.5: A reproducible script.
 <p>If you open up a new RMarkdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it. Compiling a document is called <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/k#knitting'>knit</a> in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report.</p>
 <div class="try">
 <p>
-Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Markdown…</code></strong> menu. Change the title and author, then click the knit button to create an html file.
+Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Markdown...</code></strong> menu. Change the title and author, then click the knit button to create an html file.
 </p>
 </div>
 </div>
 <div id="working-directory" class="section level3">
 <h3><span class="header-section-number">1.6.3</span> Working Directory</h3>
-<p>Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer’s directory structure. Usually there is a single <strong>working directory</strong> where your data and scripts are stored.</p>
+<p>Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single <strong>working directory</strong> where your data and scripts are stored.</p>
 <p>Your script should only reference files in three locations, using the appropriate format.</p>
-<table>
+<table style="width:51%;">
 <colgroup>
-<col width="74%" />
-<col width="25%" />
+<col width="37%" />
+<col width="13%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -900,15 +867,15 @@ Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Ma
 <tbody>
 <tr class="odd">
 <td>on the web</td>
-<td>“<a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv" class="uri">https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv</a>”</td>
+<td>&quot;<a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv" class="uri">https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv</a>&quot;</td>
 </tr>
 <tr class="even">
 <td>in the working directory</td>
-<td>“disgust_scores.csv”</td>
+<td>&quot;disgust_scores.csv&quot;</td>
 </tr>
 <tr class="odd">
 <td>in a subdirectory</td>
-<td>“data/disgust_scores.csv”</td>
+<td>&quot;data/disgust_scores.csv&quot;</td>
 </tr>
 </tbody>
 </table>
@@ -922,16 +889,16 @@ Never set or change your working directory in a script.
 <p>For instance, if on a Windows machine your data and scripts are in the directory <code>C:\Carla's_files\thesis2\my_thesis\new_analysis</code>, you will set your working directory in one of two ways: (1) by going to the <code>Session</code> pull down menu in RStudio and choosing <code>Set Working Directory</code>, or (2) by typing <code>setwd(&quot;C:\Carla's_files\thesis2\my_thesis\new_analysis&quot;)</code> in the console window.</p>
 <div class="danger">
 <p>
-It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).
+It's tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don't do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).
 </p>
 <p>
 When manually setting the working directory, always do so by using the <strong><code>Session &gt; Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.
 </p>
 </div>
 <p>If your script needs a file in a subdirectory of <code>new_analysis</code>, say, <code>data/questionnaire.csv</code>, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a> so that it is accessible if you move the folder <code>new_analysis</code> to another location or computer:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># correct</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># correct</span></code></pre></div>
 <p>Do not load it in using an absolute path:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></code></pre></div>
 <div class="info">
 <p>
 Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
@@ -941,7 +908,7 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 </div>
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">1.7</span> Exercises</h2>
-<p>Download the first set of <a href="exercises/01_intro_exercise.Rmd">exercises</a> and put it in the project directory you created earlier for today’s exercises. See the <a href="exercises/01_intro_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
+<p>Download the first set of <a href="exercises/01_intro_exercise.Rmd">exercises</a> and put it in the project directory you created earlier for today's exercises. See the <a href="exercises/01_intro_answers.Rmd">answers</a> only after you've attempted all the questions.</p>
 
 </div>
 </div>

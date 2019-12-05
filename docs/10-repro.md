@@ -468,15 +468,15 @@ citation(package="rmarkdown")
 ## 
 ## To cite the 'rmarkdown' package in publications, please use:
 ## 
-##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier
-##   Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and
-##   Joe Cheng and Winston Chang and Richard Iannone (2019).
-##   rmarkdown: Dynamic Documents for R. R package version 1.16. URL
+##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi
+##   and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and
+##   Winston Chang and Richard Iannone (2019). rmarkdown: Dynamic
+##   Documents for R. R package version 1.18. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
-##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R
-##   Markdown: The Definitive Guide. Chapman and Hall/CRC. ISBN
-##   9781138359338. URL https://bookdown.org/yihui/rmarkdown.
+##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown:
+##   The Definitive Guide. Chapman and Hall/CRC. ISBN 9781138359338. URL
+##   https://bookdown.org/yihui/rmarkdown.
 ## 
 ## To see these entries in BibTeX format, use 'print(<citation>,
 ## bibtex=TRUE)', 'toBibtex(.)', or set

@@ -1,11 +1,10 @@
 {
-    "description": "<p>The 2019-2020 version of the course book for the MSc Data Skills course in the Institute of Neuroscience and Psychology at the University of Glasgow.</p>", 
+    "description": "<p>The 2019-2020 version of the course book for the Data Skills for Reproducible Science MSc course in the Institute of Neuroscience and Psychology at the University of Glasgow.</p>", 
     "license": "CC-BY-SA 4.0", 
-    "title": "Data Skills", 
-    "version": "v1.0.0", 
+    "title": "Data Skills for Reproducible Science", 
+    "version": "v1.0.1", 
     "upload_type": "software", 
     "publication_date": "2019-12-05", 
-    "url": "https://psyteachr.github.io/msc-data-skills/",
     "creators": [
         {
             "name": "Lisa DeBruine",
@@ -20,7 +19,7 @@
     "related_identifiers": [
         {
             "scheme": "url", 
-            "identifier": "https://github.com/PsyTeachR/msc-data-skills/tree/v1.0.0", 
+            "identifier": "https://psyteachr.github.io/msc-data-skills/", 
             "relation": "isSupplementTo"
         }, 
         {

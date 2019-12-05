@@ -1,0 +1,15 @@
+# Acknowledgements {-}
+
+
+[![DOI](https://zenodo.org/badge/166541547.svg)](https://zenodo.org/badge/latestdoi/166541547)
+
+
+The whole [psyTeachR](https://psyteachr.github.io) team at the University of Glasgow School of Psychology deserves enormous thanks for making it possible and rewarding to teach methods with a focus on reproducibility and open science. Particularly [Heather Cleland Woods](https://github.com/clelandwoods/), [Phil McAleer](https://github.com/philmcaleer), [Helena Paterson](https://github.com/HelenaPaterson), [Emily Nordmann](https://github.com/emilynordmann/), [Benedict Jones](http://facelab.org/People/benjones), and [Niamh Stack](https://github.com/eavanmac). We greatly appreciate [Iris Holzleitner](https://github.com/orgs/facelab/people/iholzleitner)'s volunteer in-class assistance with the first year of this course. We were ever so lucky to get [Rebecca Lai](https://github.com/RebeccaJLai) as a teaching assistant in the second year; her kind and patient approach to teaching technical skills is an inspiration. Thanks to [Daniël Lakens](https://github.com/Lakens) for many inspirational discussions and resources.
+
+## Contributors
+
+Several people contributed to testing these materials.
+
+* [Rebecca Lai](https://github.com/RebeccaJLai)
+* [Richard Morey](https://github.com/richarddmorey)
+* [Mossa Merhi Reimert](https://github.com/CGMossa)

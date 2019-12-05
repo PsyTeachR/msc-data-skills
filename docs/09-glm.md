@@ -112,7 +112,7 @@ dat <- data.frame(
 ```
 
 <div class="info">
-<p>The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(&quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. It’s equivalent to <code>recode(trial_type, &quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).</p>
+<p>The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(&quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. It's equivalent to <code>recode(trial_type, &quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).</p>
 </div>
 
 Last but not least, always plot simulated data to make sure it looks like you expect.
@@ -244,8 +244,8 @@ predict(my_lm, newdata = tibble(trial_type.e = 0.5))
 
 
 <div class="info">
-<p>If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.”</p>
-<p>What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
+<p>If you look up this function using <code>?predict</code>, you will see that &quot;The function invokes particular methods which depend on the class of the first argument.&quot;</p>
+<p>What this means is that <code>predict()</code> works differently depending on whether you're predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
 </div>
 
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data Relations | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown #bookdown:version# and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data Relations | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-15" />
+<meta name="date" content="2019-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dplyr.html"/>
-<link rel="next" href="func.html"/>
+<link rel="prev" href="dplyr.html">
+<link rel="next" href="func.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -46,76 +46,51 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -133,6 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
@@ -198,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="3.4.1" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.5.1</b> Bar plot</a></li>
@@ -302,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -388,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -398,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
@@ -437,15 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="agenda-2019.html"><a href="agenda-2019.html"><i class="fa fa-check"></i><b>E</b> Agenda 2019</a><ul>
-<li class="chapter" data-level="E.1" data-path="agenda-2019.html"><a href="agenda-2019.html#class-1"><i class="fa fa-check"></i><b>E.1</b> 2019-09-27 Class 1</a><ul>
-<li class="chapter" data-level="E.1.1" data-path="agenda-2019.html"><a href="agenda-2019.html#welcome-to-data-skills-for-reproducible-science"><i class="fa fa-check"></i><b>E.1.1</b> Welcome to Data Skills for Reproducible Science!</a></li>
-</ul></li>
-<li class="chapter" data-level="E.2" data-path="agenda-2019.html"><a href="agenda-2019.html#class-2"><i class="fa fa-check"></i><b>E.2</b> 2019-10-04 Class 2</a></li>
-<li class="chapter" data-level="E.3" data-path="agenda-2019.html"><a href="agenda-2019.html#class-3"><i class="fa fa-check"></i><b>E.3</b> 2019-10-11 Class 3</a></li>
-<li class="chapter" data-level="E.4" data-path="agenda-2019.html"><a href="agenda-2019.html#class-4"><i class="fa fa-check"></i><b>E.4</b> 2019-10-18 Class 4</a></li>
-</ul></li>
-<li class="chapter" data-level="F" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>F</b> References</a></li>
+<li class="chapter" data-level="E" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -519,15 +487,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="slides/05_joins_slides.pdf">Lecture slides on dplyr two-table verbs</a></li>
 </ul>
 </div>
-<div id="data-2" class="section level2">
+<div id="data-1" class="section level2">
 <h2><span class="header-section-number">6.3</span> Data</h2>
-<p>First, we’ll create two small data tables.</p>
+<p>First, we'll create two small data tables.</p>
 <p><code>subject</code> has id, sex and age for subjects 1-5. Age and sex are missing for subject 3.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">subject &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="ot">NA</span>, <span class="dv">19</span>, <span class="dv">18</span>)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subject &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>),
+  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),
+  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="ot">NA</span>, <span class="dv">19</span>, <span class="dv">18</span>)
+)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -564,12 +532,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><code>exp</code> has subject id and the score from an experiment. Some subjects are missing,
-some completed twice, and some are not in the subject table.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">exp &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">score =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">)</a></code></pre></div>
+<p><code>exp</code> has subject id and the score from an experiment. Some subjects are missing, some completed twice, and some are not in the subject table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">exp &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),
+  <span class="dt">score =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)
+)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -625,11 +592,11 @@ some completed twice, and some are not in the subject table.</p>
 <li><code>x</code> = the first (left) table</li>
 <li><code>y</code> = the second (right) table</li>
 <li>{#join-by} <code>by</code> = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.</li>
-<li>{#join-suffix} <code>suffix</code> = if columns have the same name in the two tables, but you aren’t joining by them, they get a suffix to make them unambiguous. This defaults to “.x” and “.y”, but you can change it to something more meaningful.</li>
+<li>{#join-suffix} <code>suffix</code> = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to &quot;.x&quot; and &quot;.y&quot;, but you can change it to something more meaningful.</li>
 </ul>
 <div class="info">
 <p>
-You can leave out the <code>by</code> argument if you’re matching on all of the columns with the same name, but it’s good practice to always specify it so your code is robust to changes in the loaded data.
+You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
 </p>
 </div>
 <div id="left_join" class="section level3">
@@ -643,7 +610,7 @@ Figure 6.1: Left Join
 </div>
 </div>
 <p>A <code>left_join</code> keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">left_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 7 x 4
 ##      id sex     age score
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -663,7 +630,7 @@ Figure 6.2: Left Join (reversed)
 </div>
 </div>
 <p>The order of tables is swapped here, so the result is all rows from the <code>exp</code> table joined to any matching rows from the <code>subject</code> table.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">left_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 9 x 4
 ##      id score sex     age
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -687,9 +654,8 @@ Figure 6.3: Right Join
 </p>
 </div>
 </div>
-<p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything
-that matches from the first (left) table.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">right_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything that matches from the first (left) table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">right_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 9 x 4
 ##      id sex     age score
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -704,7 +670,7 @@ that matches from the first (left) table.</p>
 ## 9     7 &lt;NA&gt;     NA     3</code></pre>
 <div class="info">
 <p>
-This table has the same information as <code>left_join(exp, subject, by = “id”)</code>, but the columns are in a different order (left table, then right table).
+This table has the same information as <code>left_join(exp, subject, by = &quot;id&quot;)</code>, but the columns are in a different order (left table, then right table).
 </p>
 </div>
 </div>
@@ -719,7 +685,7 @@ Figure 6.4: Inner Join
 </div>
 </div>
 <p>An <code>inner_join</code> returns all the rows that have a match in the other table.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">inner_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##      id sex     age score
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -740,8 +706,8 @@ Figure 6.5: Full Join
 </p>
 </div>
 </div>
-<p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn’t have a match in the other table, the other table’s column values are set to <code>NA</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">full_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn't have a match in the other table, the other table's column values are set to <code>NA</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 10 x 4
 ##       id sex     age score
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -770,7 +736,7 @@ Figure 6.6: Semi Join
 </div>
 </div>
 <p>A <code>semi_join</code> returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">semi_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">semi_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -792,7 +758,7 @@ Figure 6.7: Semi Join (Reversed)
 </div>
 </div>
 <p>Order matters in a semi join.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">semi_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">semi_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##      id score
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -813,9 +779,8 @@ Figure 6.8: Anti Join
 </p>
 </div>
 </div>
-<p>A <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching
-values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">anti_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<p>A <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching values in the right table, keeping just columns from the left table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anti_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -829,7 +794,7 @@ Figure 6.9: Anti Join (Reversed)
 </div>
 </div>
 <p>Order matters in an anti join.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">anti_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anti_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##      id score
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -843,14 +808,14 @@ Figure 6.9: Anti Join (Reversed)
 <div id="bind_rows" class="section level3">
 <h3><span class="header-section-number">6.6.1</span> bind_rows()</h3>
 <p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
-<p>Here we’ll add subject data for subjects 6-9 and bind that to the original subject table.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">6</span>, <span class="dv">9</span>),</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>)</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="kw">bind_rows</span>(subject, new_subjects)</a></code></pre></div>
+<p>Here we'll add subject data for subjects 6-9 and bind that to the original subject table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">6</span>, <span class="dv">9</span>),
+  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),
+  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>)
+)
+
+<span class="kw">bind_rows</span>(subject, new_subjects)</code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -863,18 +828,16 @@ Figure 6.9: Anti Join (Reversed)
 ## 7     7 m        16
 ## 8     8 f        20
 ## 9     9 f        19</code></pre>
-<p>The columns just have to have the same names, they don’t have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
-<p>If a row is duplicated between the two tables (like id 5 below), the row will also
-be duplicated in the resulting table. If your tables have the exact same columns,
-you can use <code>union()</code> (see below) to avoid duplicates.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">9</span>),</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">  <span class="dt">new =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb23-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb23-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="kw">bind_rows</span>(subject, new_subjects)</a></code></pre></div>
+<p>The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
+<p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code>union()</code> (see below) to avoid duplicates.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">9</span>),
+  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),
+  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),
+  <span class="dt">new =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)
+)
+
+<span class="kw">bind_rows</span>(subject, new_subjects)</code></pre></div>
 <pre><code>## # A tibble: 10 x 4
 ##       id sex     age   new
 ##    &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -891,12 +854,12 @@ you can use <code>union()</code> (see below) to avoid duplicates.</p>
 </div>
 <div id="bind_cols" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> bind_cols()</h3>
-<p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don’t have any IDs to join by and you have to rely solely on their order.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">new_info &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="dt">colour =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">)</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="kw">bind_cols</span>(subject, new_info)</a></code></pre></div>
+<p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don't have any IDs to join by and you have to rely solely on their order.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_info &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">colour =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)
+)
+
+<span class="kw">bind_cols</span>(subject, new_info)</code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##      id sex     age colour
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
@@ -911,15 +874,14 @@ you can use <code>union()</code> (see below) to avoid duplicates.</p>
 <h2><span class="header-section-number">6.7</span> Set Operations</h2>
 <div id="intersect" class="section level3">
 <h3><span class="header-section-number">6.7.1</span> intersect()</h3>
-<p><code>intersect()</code> returns all rows in two tables that match exactly. The columns
-don’t have to be in the same order.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="dv">9</span>),</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)</a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb27-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7">dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_subjects)</a></code></pre></div>
+<p><code>intersect()</code> returns all rows in two tables that match exactly. The columns don't have to be in the same order.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="dv">9</span>),
+  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),
+  <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)
+)
+
+dplyr<span class="op">::</span><span class="kw">intersect</span>(subject, new_subjects)</code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -929,7 +891,7 @@ don’t have to be in the same order.</p>
 <div id="union" class="section level3">
 <h3><span class="header-section-number">6.7.2</span> union()</h3>
 <p><code>union()</code> returns all the rows from both tables, removing duplicate rows.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">dplyr<span class="op">::</span><span class="kw">union</span>(subject, new_subjects)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">union</span>(subject, new_subjects)</code></pre></div>
 <pre><code>## # A tibble: 9 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -946,7 +908,7 @@ don’t have to be in the same order.</p>
 <div id="setdiff" class="section level3">
 <h3><span class="header-section-number">6.7.3</span> setdiff()</h3>
 <p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">setdiff</span>(subject, new_subjects)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setdiff</span>(subject, new_subjects)</code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##      id   age sex  
 ##   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -954,7 +916,7 @@ don’t have to be in the same order.</p>
 ## 2     2    22 m    
 ## 3     3    NA &lt;NA&gt;</code></pre>
 <p>Order matters for <code>setdiff</code>.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">setdiff</span>(new_subjects, subject)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setdiff</span>(new_subjects, subject)</code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##      id sex     age
 ##   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -966,7 +928,7 @@ don’t have to be in the same order.</p>
 </div>
 <div id="exercises-5" class="section level2">
 <h2><span class="header-section-number">6.8</span> Exercises</h2>
-<p>Download the <a href="exercises/06_joins_exercise.Rmd">exercises</a>. See the <a href="exercises/06_joins_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
+<p>Download the <a href="exercises/06_joins_exercise.Rmd">exercises</a>. See the <a href="exercises/06_joins_answers.Rmd">answers</a> only after you've attempted all the questions.</p>
 
 </div>
 </div>

@@ -340,8 +340,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.3404832  0.2686130  0.8210432 -0.7053084 -1.0222637  1.3604918
-##  [7]  0.6322671 -0.1163434 -1.4921886  0.3861296
+##  [1]  2.28717106  1.05694891 -0.06478901  0.91575729 -0.43803473  0.93750358
+##  [7]  0.84959022 -2.77864724  0.47168194  1.65254547
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +352,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.06413  99.69068 100.39416 100.33661  99.54146  99.47690 100.85378
-##  [8]  99.58175  99.54523  99.72880
+##  [1]  99.60032 101.40240 101.03509  98.83903 100.48984  99.99977  99.79783
+##  [8] 100.02616  99.57440 100.34587
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +364,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 101.30651  99.04521 101.17981  98.73852  99.02986 100.87359  99.10028
-##  [8] 101.01970  99.71317 100.70045
+##  [1] 100.00588 100.37767 100.48239 100.14153  99.49892 101.05520  99.48906
+##  [8]  99.21969  98.73413  98.43897
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +376,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   79.33956   17.75529   39.39072  -92.85828  -83.54490   43.56438
-##  [7] -157.84331  105.56531  -85.43292  137.26891
+##  [1]  34.024036  28.022545 -73.792072  -8.897604 -11.366605  49.591464
+##  [7] 128.892933  50.566949  53.933872  22.664847
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -502,16 +502,16 @@ jason()
 
 ```
 ## 
-##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
+##  I have what doctors call "directional insanity". I once got lost on an escalator. 
 ## 
 ##  ~ Chidi
-##   "We're running out of time and I'm your only option?" A lot of guys your age said that to me just as the bar was about to close. But I never settled for them. Because my ex-boyfriend lived nearby, he was obsessed with me and he never slept because he was addicted to Adderall. There is always another option. 
+##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, "Go ahead and cry all you want, but you're gonna have to pay for that toilet plunger." 
 ## 
 ##  ~ Eleanor
-##  Well, hang out with Johnny Depp long enough, and you become pretty good at lying. Like, "No, your whole thing isn't exhausting at all." 
+##  That was my first time as a fashion "don't," and I did not care for it. 
 ## 
 ##  ~ Tahani
-##  I was scared, dawg, but then I remembered my parole officer's advice, "keep your mouth shut or they'll throw a book at you." 
+##  She's my everything. She makes the bass drop in my heart. 
 ## 
 ##  ~ Jason
 ```
@@ -527,7 +527,7 @@ jason()
 Projects in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
 
 <div class="try">
-<p>Make a new directory where you will keep all of your materials for this class. If you’re using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.</p>
+<p>Make a new directory where you will keep all of your materials for this class. If you're using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.</p>
 <p>Choose <strong><code>New Project...</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.</p>
 </div>
 
@@ -624,7 +624,7 @@ If you are working with R scripts, store your main script file in the top-level 
 For instance, if on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
 
 <div class="danger">
-<p>It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
+<p>It's tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don't do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
 <p>When manually setting the working directory, always do so by using the <strong><code>Session &gt; Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.</p>
 </div>
 

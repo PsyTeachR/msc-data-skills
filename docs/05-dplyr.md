@@ -287,7 +287,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2014-10-26"
+## [1] "2008-07-10" "2014-12-03"
 ```
 
 
@@ -365,7 +365,7 @@ disgust_total <- disgust %>%
 ```
 
 <div class="warning">
-<p>You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren’t trying to use the old column value after you redefine it.</p>
+<p>You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.</p>
 </div>
 
 ### summarise() {#summarise}
@@ -474,7 +474,7 @@ disgust_smc <- disgust %>%
 A lot of what we did above would be easier if the data were tidy, so let's do that first. Then we can use `group_by` to calculate the domain scores.
 
 <div class="warning">
-<p>It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won’t affect some further processing, but can really mess up other things.</p>
+<p>It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won't affect some further processing, but can really mess up other things.</p>
 </div>
 
 Then we can spread out the 3 domains, calculate the total score, remove any rows with a missing (`NA`) total, and calculate mean values by year.
@@ -541,8 +541,7 @@ names(iris_underscore)
 ```
 
 ```
-## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width" 
-## [5] "Species"
+## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width"  "Species"
 ```
 
 <div class="try">
@@ -657,25 +656,24 @@ tibble(
 ```
 ## # A tibble: 10 x 9
 ## # Groups:   class [2]
-##       id class grade row_number  rank min_rank dense_rank quartile
-##    <int> <chr> <dbl>      <int> <dbl>    <int>      <int>    <int>
-##  1     1 Data…    16          1   1          1          1        1
-##  2     2 Data…    17          2   2.5        2          2        1
-##  3     3 Data…    17          3   2.5        2          2        2
-##  4     4 Data…    19          4   4          4          3        3
-##  5     5 Data…    20          5   5          5          4        4
-##  6     1 Stat…    14          1   1          1          1        1
-##  7     2 Stat…    16          2   2          2          2        1
-##  8     3 Stat…    18          3   3.5        3          3        2
-##  9     4 Stat…    18          4   3.5        3          3        3
-## 10     5 Stat…    19          5   5          5          4        4
-## # … with 1 more variable: percentile <int>
+##       id class    grade row_number  rank min_rank dense_rank quartile percentile
+##    <int> <chr>    <dbl>      <int> <dbl>    <int>      <int>    <int>      <int>
+##  1     1 Data Sk…    16          1   1          1          1        1          1
+##  2     2 Data Sk…    17          2   2.5        2          2        1         21
+##  3     3 Data Sk…    17          3   2.5        2          2        2         41
+##  4     4 Data Sk…    19          4   4          4          3        3         61
+##  5     5 Data Sk…    20          5   5          5          4        4         81
+##  6     1 Statist…    14          1   1          1          1        1          1
+##  7     2 Statist…    16          2   2          2          2        1         21
+##  8     3 Statist…    18          3   3.5        3          3        2         41
+##  9     4 Statist…    18          4   3.5        3          3        3         61
+## 10     5 Statist…    19          5   5          5          4        4         81
 ```
 
 <div class="try">
 <ul>
 <li>What are the differences among <code>row_number()</code>, <code>rank()</code>, <code>min_rank()</code>, <code>dense_rank()</code>, and <code>ntile()</code>?</li>
-<li>Why doesn’t <code>row_number()</code> need an argument?</li>
+<li>Why doesn't <code>row_number()</code> need an argument?</li>
 <li>What would happen if you gave it the argument <code>grade</code> or <code>class</code>?</li>
 <li>What do you think would happen if you removed the <code>group_by(class)</code> line above?</li>
 <li>What if you added <code>id</code> to the grouping?</li>

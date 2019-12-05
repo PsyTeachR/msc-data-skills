@@ -1,7 +1,7 @@
 
 --- 
 title: Data Skills for Reproducible Science
-date: "2019-11-15"
+date: "2019-12-05"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -122,17 +122,19 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 ## Packages used in this book
 
 * tidyverse
+* broom
 * cowsay
 * [goodshirt](https://github.com/adam-gruer/goodshirt)
 * ukbabynames
 * cowplot
 * plotly
 * MASS
+* ggExtra
 * [faux](https://github.com/debruine/faux)
 
 ## Resources
 
-Miscellanous materials added throughout the semester, such tips on installation, or the results of live-coding demos, can be found in the Appendices.
+Miscellanous materials added throughout the semester, such as tips on installation, or the results of live-coding demos, can be found in the Appendices.
 
 <img src="images/memes/changing-stuff.jpg" class="right meme" />
 

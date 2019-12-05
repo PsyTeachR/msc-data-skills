@@ -101,7 +101,7 @@ All the mutating joins have this basic syntax:
 * {#join-suffix} `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
 
 <div class="info">
-<p>You can leave out the <code>by</code> argument if you’re matching on all of the columns with the same name, but it’s good practice to always specify it so your code is robust to changes in the loaded data.</p>
+<p>You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.</p>
 </div>
 
 ### left_join() {#left_join}

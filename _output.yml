@@ -10,6 +10,7 @@ bookdown::gitbook:
       scroll_highlight: yes
       before: |
         <li><a href="./">Data Skills for Reproducible Science</a></li>
+        <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
       after: |
         <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
             target="blank"><img alt="Creative Commons License" 

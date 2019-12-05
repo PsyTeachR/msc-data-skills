@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>D Datasets | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown #bookdown:version# and GitBook 2.6.7" />
 
   <meta property="og:title" content="D Datasets | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-15" />
+<meta name="date" content="2019-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="exercise-answers.html"/>
-<link rel="next" href="agenda-2019.html"/>
+<link rel="prev" href="exercise-answers.html">
+<link rel="next" href="references-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -46,15 +46,52 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
@@ -71,6 +108,7 @@
 
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
@@ -136,7 +174,7 @@
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="3.4.1" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.5.1</b> Bar plot</a></li>
@@ -240,7 +278,7 @@
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -272,7 +310,6 @@
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
-<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -326,7 +363,7 @@
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -336,7 +373,7 @@
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
@@ -375,15 +412,7 @@
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="agenda-2019.html"><a href="agenda-2019.html"><i class="fa fa-check"></i><b>E</b> Agenda 2019</a><ul>
-<li class="chapter" data-level="E.1" data-path="agenda-2019.html"><a href="agenda-2019.html#class-1"><i class="fa fa-check"></i><b>E.1</b> 2019-09-27 Class 1</a><ul>
-<li class="chapter" data-level="E.1.1" data-path="agenda-2019.html"><a href="agenda-2019.html#welcome-to-data-skills-for-reproducible-science"><i class="fa fa-check"></i><b>E.1.1</b> Welcome to Data Skills for Reproducible Science!</a></li>
-</ul></li>
-<li class="chapter" data-level="E.2" data-path="agenda-2019.html"><a href="agenda-2019.html#class-2"><i class="fa fa-check"></i><b>E.2</b> 2019-10-04 Class 2</a></li>
-<li class="chapter" data-level="E.3" data-path="agenda-2019.html"><a href="agenda-2019.html#class-3"><i class="fa fa-check"></i><b>E.3</b> 2019-10-11 Class 3</a></li>
-<li class="chapter" data-level="E.4" data-path="agenda-2019.html"><a href="agenda-2019.html#class-4"><i class="fa fa-check"></i><b>E.4</b> 2019-10-18 Class 4</a></li>
-</ul></li>
-<li class="chapter" data-level="F" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>F</b> References</a></li>
+<li class="chapter" data-level="E" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -439,7 +468,7 @@ Text descriptions of eyes
 <li><a href="exercises/05_dplyr_exercise.Rmd">dplyr exercise</a></li>
 </ul></li>
 <li><a href="data/family_composition.csv">family_composition.csv</a><br />
-Parents’ ages and number of siblings of different types
+Parents' ages and number of siblings of different types
 <ul>
 <li><a href="exercises/04_tidyr_exercise.Rmd">tidyr exercise</a></li>
 <li><a href="exercises/05_dplyr_exercise.Rmd">dplyr exercise</a></li>
@@ -597,7 +626,7 @@ window.onload = function() {
         </div>
       </div>
 <a href="exercise-answers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="agenda-2019.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -643,6 +672,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

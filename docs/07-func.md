@@ -62,8 +62,8 @@ rep(c("A", "B"), 12)
 ```
 
 ```
-##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
-## [18] "B" "A" "B" "A" "B" "A" "B"
+##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
+## [20] "B" "A" "B" "A" "B"
 ```
 
 If you don't specify what the second argument is, it defaults to `times`, repeating the vector in the first argument that many times. Make the same vector as above, setting the second argument explicitly.
@@ -74,8 +74,8 @@ rep(c("A", "B"), times = 12)
 ```
 
 ```
-##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
-## [18] "B" "A" "B" "A" "B" "A" "B"
+##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
+## [20] "B" "A" "B" "A" "B"
 ```
 
 If the second argument is a vector that is the same length as the first argument, each element in the first vector is repeated than many times. Use `rep()` to create a vector of 11 `"A"` values followed by 3 `"B"` values.
@@ -97,8 +97,8 @@ rep(c("A", "B"), each = 12)
 ```
 
 ```
-##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B" "B" "B" "B"
-## [18] "B" "B" "B" "B" "B" "B" "B"
+##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "B" "B" "B" "B" "B" "B"
+## [20] "B" "B" "B" "B" "B"
 ```
 
 What do you think will happen if you set both `times` to 3 and `each` to 2?
@@ -343,7 +343,7 @@ list(
 ### Warnings and errors {#warnings-errors}
 
 <div class="try">
-What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or “a”?
+What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or &quot;a&quot;?
 </p>
 </div>
 
@@ -497,11 +497,10 @@ tibble(
 
 ```
 ## # A tibble: 1 x 10
-##   estimate estimate1 estimate2 statistic p.value parameter conf.low
-##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.578      4.97      5.54     -1.84  0.0747      34.3    -1.22
-## # … with 3 more variables: conf.high <dbl>, method <chr>,
-## #   alternative <chr>
+##   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
+##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>     <dbl>
+## 1   -0.578      4.97      5.54     -1.84  0.0747      34.3    -1.22    0.0606
+## # … with 2 more variables: method <chr>, alternative <chr>
 ```
 
 Finally, we can extract a single value from this results table using `pull()`.
@@ -593,7 +592,7 @@ set.seed(90201)
 ```
 
 <div class="warning">
-<p>Make sure you don’t ever use <code>set.seed()</code> <strong>inside</strong> of a simulation function, or you will just simulate the exact same data over and over again.</p>
+<p>Make sure you don't ever use <code>set.seed()</code> <strong>inside</strong> of a simulation function, or you will just simulate the exact same data over and over again.</p>
 </div>
 
 <div class="figure" style="text-align: center">
