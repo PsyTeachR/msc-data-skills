@@ -2,17 +2,21 @@
     "description": "The 2019-2020 version of the course book for the Data Skills for Reproducible Science MSc course in the Institute of Neuroscience and Psychology at the University of Glasgow.", 
     "license": "cc-by-sa", 
     "title": "Data Skills for Reproducible Science", 
-    "version": "v1.0.4",
-    "upload_type": "software", 
+    "version": "1.0.0",
+    "upload_type": "publication", 
+    "publication_type": "book", 
     "publication_date": "2019-12-05", 
+    "doi": "10.5281/zenodo.3564348",
     "creators": [
         {
             "name": "Lisa DeBruine",
-            "affiliation": "University of Glasgow"
+            "affiliation": "University of Glasgow",
+            "orcid": "0000-0002-7523-5539"
         }, 
         {
             "name": "Dale Barr",
-            "affiliation": "University of Glasgow"
+            "affiliation": "University of Glasgow",
+            "orcid": "0000-0002-1121-4608"
         }
     ], 
     "access_right": "open", 
