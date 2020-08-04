@@ -27,17 +27,21 @@ Imports:
     dplyr,
     tidyr,
     ggplot2,
+    tibble,
     readr,
     lubridate,
     purrr,
     plotly,
     MASS,
-    goodshirt,
-    webex
+    broom,
+    readxl,
+    knitr
 Suggests: 
-    knitr,
     rmarkdown,
     zip,
+    webex,
+    R.utils,
+    goodshirt,
     faux (>= 0.0.1.2)
 VignetteBuilder: knitr
 Depends: 
