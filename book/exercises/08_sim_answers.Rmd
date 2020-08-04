@@ -1,0 +1,298 @@
+---
+title: 'Formative Exercise 08: MSc Data Skills Course'
+author: "Psychology, University of Glasgow"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# please do not alter this code chunk
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library("tidyverse")
+library("MASS")
+set.seed(1980) # makes sure random numbers are reproducible
+```
+
+## Generate Data
+
+### Question 1
+
+Generate 50 data points from a normal distribution with a mean of 0 and SD of 1.
+
+```{r Q1}
+a <- rnorm(50, 0, 1)
+```
+
+### Question 2
+
+Generate another variable (`b`) that is equal to the sum of `a` and another 50 data points from a normal distribution with a mean of 0.5 and SD of 1.
+
+```{r Q2}
+b <- a + rnorm(50, 0.5, 1)
+```
+
+### Question 3
+
+Run a two-tailed, paired-samples t-test comparing `a` and `b`.
+
+```{r Q3}
+t <- t.test(a, b, paired = TRUE)
+
+t # prints results of t-test
+```
+
+## Calculate Power
+
+Use at least 1e4 replications to estimate power accurately.
+
+### Question 4
+
+Calculate power for a two-tailed t-test with an alpha (sig.level) of .05 for detecting a difference between two independent samples of 50 with an effect size of 0.3.
+
+Hint: You can use the `sim_t_ind` function from the [T-Test Class Notes](https://psyteachr.github.io/msc-data-skills/sim.html#t-test).
+
+```{r Q4}
+
+sim_t_ind <- function(n, m1, sd1, m2, sd2) {
+  v1 <- rnorm(n, m1, sd1)
+  v2 <- rnorm(n, m2, sd2)
+  t_ind <- t.test(v1, v2, paired = FALSE)
+  
+  return(t_ind$p.value)
+}
+
+my_reps <- replicate(1e4, sim_t_ind(50, 0, 1, 0.3, 1))
+alpha <- 0.05
+power.sim <- mean(my_reps < alpha)
+
+power.sim # prints the value
+
+```
+
+### Question 5
+
+Compare this to the result of `power.t.test` for the same design.
+
+```{r Q5}
+power.analytic <- power.t.test(n = 50, 
+                               delta = 0.3, 
+                               sig.level = 0.05,
+                               type = "two.sample")$power
+
+power.analytic  # prints the value
+```
+
+### Question 6
+
+Modify the `sim_t_ind` function to handle different sample sizes. Use it to calculate the power of the following design: 
+
+* 20 observations from a normal distribution with mean of 10 and SD of 4 versus
+* 30 observations from a normal distribution with a mean of 13 and SD of 4.5
+* alpha (sig.level) of 0.05
+
+```{r Q6}
+sim_t_ind <- function(n1, m1, sd1, n2, m2, sd2, 
+                       alternative = "two.sided") {
+  v1 <- rnorm(n1, m1, sd1)
+  v2 <- rnorm(n2, m2, sd2)
+  t_ind <- t.test(v1, v2, 
+                  alternative = alternative, 
+                  paired = FALSE)
+
+  return(t_ind$p.value)
+}
+
+my_reps <- replicate(1e4, sim_t_ind(20, 10, 4, 30, 13, 4.5))
+power6 <- mean(my_reps < 0.05)
+
+power6 # prints the value
+```
+
+### Question 7
+
+Do noisy environments slow down reaction times for a dot-probe task? 
+Calculate power for a one-tailed t-test with an alpha  (sig.level) of .005 for detecting a difference of at least 50ms, where participants in the quiet condition have a mean reaction time of 800ms. Assume both groups have 80 participants and both SD = 100.
+
+
+```{r Q7}
+my_reps <- replicate(1e4, sim_t_ind(80, 800, 100, 80, 850, 100, "less"))
+power7 <- mean(my_reps < 0.005)
+
+power7 # prints the value
+```
+
+## Poisson Distribution
+
+The [poisson distribution(https://en.wikipedia.org/wiki/Poisson_distribution) is good for modeling the rate of something, like the number of texts you receive per day. Then you can test hypotheses like you receive more texts on weekends than weekdays. The poisson distribution gets more like a normal distribution when the rate gets higher, so it's most useful for low-rate events.
+
+### Question 8
+
+Use `ggplot` to create a histogram of 1000 random numbers from a poisson distribution with a `lambda` of 4. 
+
+```{r Q8}
+lambda <- 4 # lambda sets the mean of the poisson distribution
+
+pois <- rpois(1000, lambda)
+
+ggplot() +
+  geom_histogram(aes(pois), fill="white", color="black", binwidth = 1)
+```
+
+## Intermediate: Binomial Distribution
+
+### Question 9
+
+Demonstrate to yourself that the binomial distribution looks like the normal distribution when the number of trials is greater than 10.
+
+Hint: You can calculate the equivalent mean for the normal distribution as the number of trials times the probability of success (`binomial_mean <- trials * prob`) and the equivalent SD as the square root of the mean times one minus probability of success (`binomial_sd <- sqrt(binomial_mean * (1 - prob))`).
+
+```{r Q9}
+n <- 1e5  # use a large n to get good estimates of the distributions
+trials <- 50
+prob <- 0.8
+binomial_mean <- trials * prob
+binomial_sd <- sqrt(binomial_mean * (1 - prob))
+
+# sample numbers from binomial and normal distributions
+
+norm_bin_comp <- tibble (
+  normal = rnorm(n, binomial_mean, binomial_sd),
+  binomial = rbinom(n, trials, prob)
+) %>%
+  gather("distribution", "value", normal:binomial)
+
+# plot the sampled numbers to compare
+ggplot(norm_bin_comp, aes(value, color=distribution)) +
+  geom_freqpoly(binwidth = 1)
+```
+
+## Advanced: Correlation power simulation
+
+Remember, there are many, many ways to do things in R. The important thing is to create your functions step-by-step, checking the accuracy at each step.
+
+### Question 10
+
+Write a function to create a pair of variables of any size with any specified correlation. Have the function return a tibble with columns `x` and `y`. Make sure all of the arguments have a default value.
+
+Hint: modify the code from the [Bivariate Normal](https://psyteachr.github.io/msc-data-skills/08_simulation.html#bvn) 
+section from the class notes.
+
+```{r Q10}
+bvn2 <- function(n = 10, rho = 0, m1 = 0, m2 = 0, sd1 = 1, sd2 = 1) {
+  # n = number of random samples
+  # rho = population correlation between the two variables
+  
+  mu <- c(m1, m2) # the means of the samples
+  stdevs <- c(sd1, sd2) # the SDs of the samples
+  
+  # correlation matrix
+  cor_mat <- matrix(c(  1, rho, 
+                      rho,   1), 2) 
+  
+  # create the covariance matrix
+  sigma <- (stdevs %*% t(stdevs)) * cor_mat
+  
+  # sample from bivariate normal distribution
+  m <- mvrnorm(n, mu, sigma) 
+  
+  # convert to a tibble to make it easier to deal with in further steps
+  colnames(m) <- c("x", "y")
+  as_tibble(m) 
+}
+
+bvn2() %>% knitr::kable() # prints the table for default arguments
+```
+
+
+### Question 11
+
+Use `cor.test` to test the Pearson's product-moment correlation between two variables generated with your function having an `n` of 50 and a `rho` of 0.45.
+
+```{r Q11}
+my_vars <- bvn2(50, 0.45)
+
+cor.test(my_vars$x, my_vars$y)
+```
+
+### Question 12
+
+Test your function from Question 10 by calculating the correlation between your two variables many times for a range of values and plotting the results. Hint: the `purrr::map()` functions might be useful here.
+
+```{r Q12}
+# set up all values you want to test
+sims <- crossing(
+  rep = 1:1000, # how many replications per combination
+  n = c(10, 100, 1000),
+  rho = c(-0.5, 0, .5)
+) %>%
+  mutate(r = purrr::map2_dbl(n, rho, function(n, rho) {
+                b <- bvn2(n = n, rho = rho)
+                cor(b$x, b$y)
+              }),
+         n = as.factor(n), # factorise for plotting
+         rho = as.factor(rho) # factorise for plotting
+         )
+
+ggplot(sims, aes(r, color=rho, linetype=n)) + 
+  geom_density()
+
+```
+
+### Question 13
+
+Make a new function that calculates power for `cor.test` through simulation.
+
+```{r Q13}
+power.cor.test <- function(reps = 1000, n = 50, rho = 0.5, alpha = 0.05, method = "pearson"){
+  power <- tibble(
+    data = rerun(reps, bvn2(n, rho))
+  ) %>%
+    mutate(power = map(data, function(data) {
+      cor.test(data$x, data$y, method = method) %>%
+        broom::tidy()
+    })) %>%
+    unnest(power) %>%
+    mutate(sig = p.value < alpha)
+  
+  tibble(
+    n = n,
+    rho = rho,
+    alpha = alpha,
+    power = mean(power$sig),
+    method = method,
+    reps = reps
+  )
+}
+
+power.cor.test(1000, 30, 0.5, method = "spearman") %>%
+  knitr::kable()
+```
+
+## Answer Checks
+
+You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
+
+```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
+# do not edit
+Q <- list()
+Q["1"] <- c(all.equal(length(a), 50),
+            all.equal(mean(a), 0, tolerance = 0.1),
+            all.equal(sd(a), 1, tolerance = 0.1)) %>% all()
+Q["2"] <- c(all.equal(length(b), 50),
+            all.equal(mean(b), 0.5, tolerance = 0.1)) %>% all()
+Q["3"] <- c(is.list(t),
+            all.equal(t$parameter, c(df=49)),
+            all.equal(t$method, "Paired t-test"),
+            all.equal(t$alternative, "two.sided")) %>% all()
+Q["4"] <- all.equal(power.sim, 0.325, tolerance = 1e-3)
+Q["5"] <- all.equal(power.analytic, 0.3175171, tolerance = 1e-6)
+Q["6"] <- all.equal(power6, 0.68, tolerance = 0.1)
+Q["7"] <- all.equal(power7, 0.71, tolerance = 0.1)
+Q["8"] <- all.equal(mean(pois), 4, tolerance = 0.1)
+  
+ans <- sapply(Q, isTRUE)
+
+knitr::kable(data.frame(
+  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
+  Answer = ifelse(ans, "correct", "incorrect")
+))
+```

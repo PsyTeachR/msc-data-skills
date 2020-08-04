@@ -1,6 +1,6 @@
 Package: dataskills
 Title: Data Skills for Reproducible Science
-Version: 0.0.0.9000
+Version: 2.0
 Authors@R: 
   c(
     person(
@@ -32,7 +32,8 @@ Imports:
     purrr,
     plotly,
     MASS,
-    goodshirt
+    goodshirt,
+    webex
 Suggests: 
     knitr,
     rmarkdown,
