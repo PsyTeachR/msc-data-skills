@@ -1,8 +1,8 @@
 {
-    "description": "The 2019-2020 version of the course book for the Data Skills for Reproducible Science MSc course in the Institute of Neuroscience and Psychology at the University of Glasgow.", 
+    "description": "The 2020-2021 version of the course book for the Data Skills for Reproducible Science MSc course in the Institute of Neuroscience and Psychology at the University of Glasgow.", 
     "license": "cc-by-sa", 
     "title": "Data Skills for Reproducible Science", 
-    "version": "1.0.0",
+    "version": "2.0.0",
     "upload_type": "software", 
     "publication_date": "2019-12-05", 
     "creators": [

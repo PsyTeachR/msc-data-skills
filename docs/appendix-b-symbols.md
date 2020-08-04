@@ -1,4 +1,3 @@
-
 # Symbols {#symbols}
 
 | Symbol | psyTeachR Term    | Also Known As     |

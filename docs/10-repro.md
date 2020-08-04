@@ -1,4 +1,3 @@
-
 # Reproducible Workflows {#repro}
 
 <img src="images/memes/repro_reports.jpg" class="meme right">
@@ -208,18 +207,22 @@ dat %>%
 
 
 ```
+## `summarise()` regrouping output by 'grp' (override with `.groups` argument)
+```
+
+```
 ## `mutate_if()` ignored the following grouping variables:
 ## Column `group`
 ```
 
 
 
-group   sex        n     Mean      SD
-------  -------  ---  -------  ------
-a       female    50   -0.361   0.796
-a       male      50   -0.284   1.052
-b       female    50    0.335   1.080
-b       male      50    0.313   0.904
+|group |sex    |  n|   Mean|    SD|
+|:-----|:------|--:|------:|-----:|
+|a     |female | 50| -0.361| 0.796|
+|a     |male   | 50| -0.284| 1.052|
+|b     |female | 50|  0.335| 1.080|
+|b     |male   | 50|  0.313| 0.904|
 
 <p class="alert alert-info">Notice that the r chunk specifies the option `results='asis'`. This lets you format the table using the `kable()` function from `knitr`. You can also use more specialised functions from [papaja](https://crsh.github.io/papaja_man/reporting.html#tables) or [kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) to format your tables.</p>
 
@@ -243,8 +246,8 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
 <p class="alert alert-info">The last line changes the default text size and font, which can be useful for generating figures that meet a journal's requirements.</p>
 
 <div class="figure" style="text-align: center">
-<img src="10-repro_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1. Scores by group and sex." width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-6)Figure 1. Scores by group and sex.</p>
+<img src="10-repro_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 1. Scores by group and sex." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-5)Figure 1. Scores by group and sex.</p>
 </div>
 
 
@@ -470,8 +473,8 @@ citation(package="rmarkdown")
 ## 
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi
 ##   and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and
-##   Winston Chang and Richard Iannone (2019). rmarkdown: Dynamic
-##   Documents for R. R package version 1.18. URL
+##   Winston Chang and Richard Iannone (2020). rmarkdown: Dynamic
+##   Documents for R. R package version 2.3. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown:

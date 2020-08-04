@@ -1,4 +1,3 @@
-
 # Tidy Data {#tidyr}
 
 <img src="images/memes/messy_data.jpg" class="meme right">
@@ -57,13 +56,13 @@ This table has three observations per row and the `total_meanRT` column contains
 
 
 
- id   score_1   score_2   score_3   rt_1   rt_2   rt_3  total_meanRT 
----  --------  --------  --------  -----  -----  -----  -------------
-  1         2         5         6    939    844    788  13 (857)     
-  2         3         6         4    718    659    764  13 (714)     
-  3         4         7         3    857    890    859  14 (869)     
-  4         5         4         2    902    900    959  11 (920)     
-  5         1         2         5    757    823    901  8 (827)      
+| id| score_1| score_2| score_3| rt_1| rt_2| rt_3|total_meanRT |
+|--:|-------:|-------:|-------:|----:|----:|----:|:------------|
+|  1|       4|       3|       7|  857|  890|  859|14 (869)     |
+|  2|       3|       1|       1|  902|  900|  959|5 (920)      |
+|  3|       2|       5|       4|  757|  823|  901|11 (827)     |
+|  4|       6|       2|       6|  844|  788|  624|14 (752)     |
+|  5|       1|       7|       2|  659|  764|  690|10 (704)     |
 
 
 
@@ -71,23 +70,23 @@ This is the tidy version.
 
 
 
- id  trial     rt   score  total   mean_rt 
----  ------  ----  ------  ------  --------
-  1  1        939       2  13      857     
-  1  2        844       5  13      857     
-  1  3        788       6  13      857     
-  2  1        718       3  13      714     
-  2  2        659       6  13      714     
-  2  3        764       4  13      714     
-  3  1        857       4  14      869     
-  3  2        890       7  14      869     
-  3  3        859       3  14      869     
-  4  1        902       5  11      920     
-  4  2        900       4  11      920     
-  4  3        959       2  11      920     
-  5  1        757       1  8       827     
-  5  2        823       2  8       827     
-  5  3        901       5  8       827     
+| id|trial |  rt| score|total |mean_rt |
+|--:|:-----|---:|-----:|:-----|:-------|
+|  1|1     | 857|     4|14    |869     |
+|  1|2     | 890|     3|14    |869     |
+|  1|3     | 859|     7|14    |869     |
+|  2|1     | 902|     3|5     |920     |
+|  2|2     | 900|     1|5     |920     |
+|  2|3     | 959|     1|5     |920     |
+|  3|1     | 757|     2|11    |827     |
+|  3|2     | 823|     5|11    |827     |
+|  3|3     | 901|     4|11    |827     |
+|  4|1     | 844|     6|14    |752     |
+|  4|2     | 788|     2|14    |752     |
+|  4|3     | 624|     6|14    |752     |
+|  5|1     | 659|     1|10    |704     |
+|  5|2     | 764|     7|10    |704     |
+|  5|3     | 690|     2|10    |704     |
 
 
 
@@ -104,14 +103,14 @@ ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.
 
 
 
- user_id  date          Op1   Ne1   Ne2   Op2   Ex1   Ex2   Co1   Co2   Ne3   Ag1   Ag2   Ne4   Ex3   Co3   Op3   Ex4   Op4   Ex5   Ag3   Co4   Co5   Ne5   Op5   Ag4   Op6   Co6   Ex6   Ne6   Co7   Ag5   Co8   Ex7   Ne7   Co9   Op7   Ne8   Ag6   Ag7   Co10   Ex8   Ex9
---------  -----------  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -----  ----  ----
-       0  2006-03-23      3     4     0     6     3     3     3     3     0     2     1     3     3     2     2     1     3     3     1     3     0     3     6     1     0     6     3     1     3     3     3     3    NA     3     0     2    NA     3      1     2     4
-       1  2006-02-08      6     0     6     0     0     0     0     0     0     0     6     6     6     0     6     0     0     0     0     6     6     0     6     0     6     0     6     6     6     6     0     6     0     6     6     0     6     0      6     0     6
-       2  2005-10-24      6     0     6     0     0     0     0     0     0     0     6     6     5     1     5     1     1     1     1     5     5     1     5     1     5     1     5     5     5     5     1     5     1     5     5     1     5     1      5     1     5
-       5  2005-12-07      6     4     4     4     2     3     3     3     1     4     0     2     5     3     5     3     6     6     1     5     5     4     2     4     1     4     3     1     1     0     1     4     2     4     5     1     2     1      5     4     5
-       8  2006-07-27      6     1     2     6     2     3     5     4     0     6     5     3     3     4     5     3     6     3     0     5     5     1     5     6     6     6     0     0     3     2     3     1     0     3     5     1     3     1      3     3     5
-     108  2006-02-28      3     2     1     4     4     4     4     3     1     5     4     2     3     4     4     3     3     3     4     3     3     1     4     5     4     5     4     1     4     5     4     2     2     4     4     1     4     3      5     4     2
+| user_id|date       | Op1| Ne1| Ne2| Op2| Ex1| Ex2| Co1| Co2| Ne3| Ag1| Ag2| Ne4| Ex3| Co3| Op3| Ex4| Op4| Ex5| Ag3| Co4| Co5| Ne5| Op5| Ag4| Op6| Co6| Ex6| Ne6| Co7| Ag5| Co8| Ex7| Ne7| Co9| Op7| Ne8| Ag6| Ag7| Co10| Ex8| Ex9|
+|-------:|:----------|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|----:|---:|---:|
+|       0|2006-03-23 |   3|   4|   0|   6|   3|   3|   3|   3|   0|   2|   1|   3|   3|   2|   2|   1|   3|   3|   1|   3|   0|   3|   6|   1|   0|   6|   3|   1|   3|   3|   3|   3|  NA|   3|   0|   2|  NA|   3|    1|   2|   4|
+|       1|2006-02-08 |   6|   0|   6|   0|   0|   0|   0|   0|   0|   0|   6|   6|   6|   0|   6|   0|   0|   0|   0|   6|   6|   0|   6|   0|   6|   0|   6|   6|   6|   6|   0|   6|   0|   6|   6|   0|   6|   0|    6|   0|   6|
+|       2|2005-10-24 |   6|   0|   6|   0|   0|   0|   0|   0|   0|   0|   6|   6|   5|   1|   5|   1|   1|   1|   1|   5|   5|   1|   5|   1|   5|   1|   5|   5|   5|   5|   1|   5|   1|   5|   5|   1|   5|   1|    5|   1|   5|
+|       5|2005-12-07 |   6|   4|   4|   4|   2|   3|   3|   3|   1|   4|   0|   2|   5|   3|   5|   3|   6|   6|   1|   5|   5|   4|   2|   4|   1|   4|   3|   1|   1|   0|   1|   4|   2|   4|   5|   1|   2|   1|    5|   4|   5|
+|       8|2006-07-27 |   6|   1|   2|   6|   2|   3|   5|   4|   0|   6|   5|   3|   3|   4|   5|   3|   6|   3|   0|   5|   5|   1|   5|   6|   6|   6|   0|   0|   3|   2|   3|   1|   0|   3|   5|   1|   3|   1|    3|   3|   5|
+|     108|2006-02-28 |   3|   2|   1|   4|   4|   4|   4|   3|   1|   5|   4|   2|   3|   4|   4|   3|   3|   3|   4|   3|   3|   1|   4|   5|   4|   5|   4|   1|   4|   5|   4|   2|   2|   4|   4|   1|   4|   3|    5|   4|   2|
 
 
 
@@ -136,14 +135,14 @@ ocean_gathered <- gather(ocean, "question", "score", Op1:Ex9)
 
 
 
- user_id  date         question    score
---------  -----------  ---------  ------
-       0  2006-03-23   Op1             3
-       1  2006-02-08   Op1             6
-       2  2005-10-24   Op1             6
-       5  2005-12-07   Op1             6
-       8  2006-07-27   Op1             6
-     108  2006-02-28   Op1             3
+| user_id|date       |question | score|
+|-------:|:----------|:--------|-----:|
+|       0|2006-03-23 |Op1      |     3|
+|       1|2006-02-08 |Op1      |     6|
+|       2|2005-10-24 |Op1      |     6|
+|       5|2005-12-07 |Op1      |     6|
+|       8|2006-07-27 |Op1      |     6|
+|     108|2006-02-28 |Op1      |     3|
 
 
 
@@ -170,14 +169,14 @@ ocean_sep <- separate(ocean_gathered, question, c("domain", "qnumber"), sep = 2)
 
 
 
- user_id  date         domain   qnumber    score
---------  -----------  -------  --------  ------
-       0  2006-03-23   Op       1              3
-       1  2006-02-08   Op       1              6
-       2  2005-10-24   Op       1              6
-       5  2005-12-07   Op       1              6
-       8  2006-07-27   Op       1              6
-     108  2006-02-28   Op       1              3
+| user_id|date       |domain |qnumber | score|
+|-------:|:----------|:------|:-------|-----:|
+|       0|2006-03-23 |Op     |1       |     3|
+|       1|2006-02-08 |Op     |1       |     6|
+|       2|2005-10-24 |Op     |1       |     6|
+|       5|2005-12-07 |Op     |1       |     6|
+|       8|2006-07-27 |Op     |1       |     6|
+|     108|2006-02-28 |Op     |1       |     3|
 
 
 
@@ -203,14 +202,14 @@ ocean_unite <- unite(ocean_sep, "domain_n", domain, qnumber, sep = "_Q")
 
 
 
- user_id  date         domain_n    score
---------  -----------  ---------  ------
-       0  2006-03-23   Op_Q1           3
-       1  2006-02-08   Op_Q1           6
-       2  2005-10-24   Op_Q1           6
-       5  2005-12-07   Op_Q1           6
-       8  2006-07-27   Op_Q1           6
-     108  2006-02-28   Op_Q1           3
+| user_id|date       |domain_n | score|
+|-------:|:----------|:--------|-----:|
+|       0|2006-03-23 |Op_Q1    |     3|
+|       1|2006-02-08 |Op_Q1    |     6|
+|       2|2005-10-24 |Op_Q1    |     6|
+|       5|2005-12-07 |Op_Q1    |     6|
+|       8|2006-07-27 |Op_Q1    |     6|
+|     108|2006-02-28 |Op_Q1    |     3|
 
 
 
@@ -230,14 +229,14 @@ ocean_spread <- spread(ocean_unite, domain_n, score)
 
 
 
- user_id  date          Ag_Q1   Ag_Q2   Ag_Q3   Ag_Q4   Ag_Q5   Ag_Q6   Ag_Q7   Co_Q1   Co_Q10   Co_Q2   Co_Q3   Co_Q4   Co_Q5   Co_Q6   Co_Q7   Co_Q8   Co_Q9   Ex_Q1   Ex_Q2   Ex_Q3   Ex_Q4   Ex_Q5   Ex_Q6   Ex_Q7   Ex_Q8   Ex_Q9   Ne_Q1   Ne_Q2   Ne_Q3   Ne_Q4   Ne_Q5   Ne_Q6   Ne_Q7   Ne_Q8   Op_Q1   Op_Q2   Op_Q3   Op_Q4   Op_Q5   Op_Q6   Op_Q7
---------  -----------  ------  ------  ------  ------  ------  ------  ------  ------  -------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------  ------
-       0  2006-03-23        2       1       1       1       3      NA       3       3        1       3       2       3       0       6       3       3       3       3       3       3       1       3       3       3       2       4       4       0       0       3       3       1      NA       2       3       6       2       3       6       0       0
-       1  2006-02-08        0       6       0       0       6       6       0       0        6       0       0       6       6       0       6       0       6       0       0       6       0       0       6       6       0       6       0       6       0       6       0       6       0       0       6       0       6       0       6       6       6
-       2  2005-10-24        0       6       1       1       5       5       1       0        5       0       1       5       5       1       5       1       5       0       0       5       1       1       5       5       1       5       0       6       0       6       1       5       1       1       6       0       5       1       5       5       5
-       5  2005-12-07        4       0       1       4       0       2       1       3        5       3       3       5       5       4       1       1       4       2       3       5       3       6       3       4       4       5       4       4       1       2       4       1       2       1       6       4       5       6       2       1       5
-       8  2006-07-27        6       5       0       6       2       3       1       5        3       4       4       5       5       6       3       3       3       2       3       3       3       3       0       1       3       5       1       2       0       3       1       0       0       1       6       6       5       6       5       6       5
-     108  2006-02-28        5       4       4       5       5       4       3       4        5       3       4       3       3       5       4       4       4       4       4       3       3       3       4       2       4       2       2       1       1       2       1       1       2       1       3       4       4       3       4       4       4
+| user_id|date       | Ag_Q1| Ag_Q2| Ag_Q3| Ag_Q4| Ag_Q5| Ag_Q6| Ag_Q7| Co_Q1| Co_Q10| Co_Q2| Co_Q3| Co_Q4| Co_Q5| Co_Q6| Co_Q7| Co_Q8| Co_Q9| Ex_Q1| Ex_Q2| Ex_Q3| Ex_Q4| Ex_Q5| Ex_Q6| Ex_Q7| Ex_Q8| Ex_Q9| Ne_Q1| Ne_Q2| Ne_Q3| Ne_Q4| Ne_Q5| Ne_Q6| Ne_Q7| Ne_Q8| Op_Q1| Op_Q2| Op_Q3| Op_Q4| Op_Q5| Op_Q6| Op_Q7|
+|-------:|:----------|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|------:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
+|       0|2006-03-23 |     2|     1|     1|     1|     3|    NA|     3|     3|      1|     3|     2|     3|     0|     6|     3|     3|     3|     3|     3|     3|     1|     3|     3|     3|     2|     4|     4|     0|     0|     3|     3|     1|    NA|     2|     3|     6|     2|     3|     6|     0|     0|
+|       1|2006-02-08 |     0|     6|     0|     0|     6|     6|     0|     0|      6|     0|     0|     6|     6|     0|     6|     0|     6|     0|     0|     6|     0|     0|     6|     6|     0|     6|     0|     6|     0|     6|     0|     6|     0|     0|     6|     0|     6|     0|     6|     6|     6|
+|       2|2005-10-24 |     0|     6|     1|     1|     5|     5|     1|     0|      5|     0|     1|     5|     5|     1|     5|     1|     5|     0|     0|     5|     1|     1|     5|     5|     1|     5|     0|     6|     0|     6|     1|     5|     1|     1|     6|     0|     5|     1|     5|     5|     5|
+|       5|2005-12-07 |     4|     0|     1|     4|     0|     2|     1|     3|      5|     3|     3|     5|     5|     4|     1|     1|     4|     2|     3|     5|     3|     6|     3|     4|     4|     5|     4|     4|     1|     2|     4|     1|     2|     1|     6|     4|     5|     6|     2|     1|     5|
+|       8|2006-07-27 |     6|     5|     0|     6|     2|     3|     1|     5|      3|     4|     4|     5|     5|     6|     3|     3|     3|     2|     3|     3|     3|     3|     0|     1|     3|     5|     1|     2|     0|     3|     1|     0|     0|     1|     6|     6|     5|     6|     5|     6|     5|
+|     108|2006-02-28 |     5|     4|     4|     5|     5|     4|     3|     4|      5|     3|     4|     3|     3|     5|     4|     4|     4|     4|     4|     3|     3|     3|     4|     2|     4|     2|     2|     1|     1|     2|     1|     1|     2|     1|     3|     4|     4|     3|     4|     4|     4|
 
 
 
@@ -274,7 +273,13 @@ data_grouped <- group_by(data_separated, id, var)
 
 # calculate the mean value for each id/var 
 data_summarised <- summarise(data_grouped, mean = mean(value))
+```
 
+```
+## `summarise()` regrouping output by 'id' (override with `.groups` argument)
+```
+
+```r
 # spread the mean column into A and B columns
 data_spread <- spread(data_summarised, var, mean)
 
@@ -289,20 +294,20 @@ data
 ## # Groups:   id [10]
 ##       id  A_mean B_mean
 ##    <int>   <dbl>  <dbl>
-##  1     1  0.0160  1.31 
-##  2     2  0.503   1.84 
-##  3     3 -0.594   1.02 
-##  4     4  0.744   2.72 
-##  5     5  0.931   3.93 
-##  6     6  0.720   1.97 
-##  7     7 -0.0281  1.95 
-##  8     8 -0.0983  3.21 
-##  9     9  0.126   0.926
-## 10    10  1.45    2.38
+##  1     1 -0.594   1.02 
+##  2     2  0.744   2.72 
+##  3     3  0.931   3.93 
+##  4     4  0.720   1.97 
+##  5     5 -0.0281  1.95 
+##  6     6 -0.0983  3.21 
+##  7     7  0.126   0.926
+##  8     8  1.45    2.38 
+##  9     9  0.298   1.66 
+## 10    10  0.559   2.10
 ```
 
 <div class="warning">
-<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don't recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
+<p>You <em>can</em> name each object <code>data</code> and keep replacing the old data object with the new one at each step. This will keep your environment clean, but I don’t recommend it because it makes it too easy to accidentally run your code out of order when you are running line-by-line for development or debugging.</p>
 </div>
 
 One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.
@@ -337,6 +342,10 @@ data <- rename(
   A_mean = A, B_mean = B)
 ```
 
+```
+## `summarise()` regrouping output by 'id' (override with `.groups` argument)
+```
+
 The pipe lets you "pipe" the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.
 
 
@@ -355,6 +364,10 @@ data <- tibble(
   summarise(mean = mean(value)) %>%
   spread(var, mean) %>%
   rename(A_mean = A, B_mean = B)
+```
+
+```
+## `summarise()` regrouping output by 'id' (override with `.groups` argument)
 ```
 
 You can read this code from top to bottom as follows:
@@ -430,8 +443,8 @@ glimpse(infmort)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 3
+## Rows: 5,044
+## Columns: 3
 ## $ Country                                                                                     <chr> …
 ## $ Year                                                                                        <dbl> …
 ## $ `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` <chr> …
@@ -448,8 +461,8 @@ glimpse(matmort)
 ```
 
 ```
-## Observations: 181
-## Variables: 4
+## Rows: 181
+## Columns: 4
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "…
 ## $ `1990`  <chr> "1 340 [ 878 - 1 950]", "71 [ 58 -  88]", "216 [ 141 -  327]"…
 ## $ `2000`  <chr> "1 100 [ 745 - 1 570]", "43 [ 33 -  56]", "170 [ 118 -  241]"…
@@ -485,8 +498,8 @@ glimpse(ccodes)
 ```
 
 ```
-## Observations: 249
-## Variables: 11
+## Rows: 249
+## Columns: 11
 ## $ name                       <chr> "Afghanistan", "Åland Islands", "Albania",…
 ## $ `alpha-2`                  <chr> "AF", "AX", "AL", "DZ", "AS", "AD", "AO", …
 ## $ `alpha-3`                  <chr> "AFG", "ALA", "ALB", "DZA", "ASM", "AND", …
@@ -515,8 +528,8 @@ glimpse(matmort_long)
 ```
 
 ```
-## Observations: 543
-## Variables: 3
+## Rows: 543
+## Columns: 3
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "…
 ## $ Year    <chr> "1990", "1990", "1990", "1990", "1990", "1990", "1990", "1990…
 ## $ stats   <chr> "1 340 [ 878 - 1 950]", "71 [ 58 -  88]", "216 [ 141 -  327]"…
@@ -545,8 +558,8 @@ glimpse(matmort_split)
 ```
 
 ```
-## Observations: 543
-## Variables: 5
+## Rows: 543
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "…
 ## $ Year    <chr> "1990", "1990", "1990", "1990", "1990", "1990", "1990", "1990…
 ## $ rate    <chr> "1340", "71", "216", "1160", "72", "58", "8", "8", "64", "46"…
@@ -555,13 +568,13 @@ glimpse(matmort_split)
 ```
 
 <div class="info">
-<p>The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do search and replace. The example above replaces all occurances of the <code>pattern</code> &quot; &quot; (a space), with the <code>replacement</code> &quot;&quot; (nothing), in the string <code>x</code> (the <code>stats</code> column). Use <code>sub()</code> instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regex</a> patterns to replace, for example, all even numbers (e.g., <code>gsub(&quot;[:02468:]&quot;, &quot;*&quot;, &quot;id = 123456&quot;)</code>) or all occurances of the word colour in US or UK spelling (e.g., <code>gsub(&quot;colo(u)?r&quot;, &quot;***&quot;, &quot;replace color, colour, or colours, but not collors&quot;)</code>).</p>
+<p>The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do search and replace. The example above replaces all occurances of the <code>pattern</code> " " (a space), with the <code>replacement</code> "" (nothing), in the string <code>x</code> (the <code>stats</code> column). Use <code>sub()</code> instead if you only want to replace the first occurance of a pattern. We only used a simple pattern here, but you can use more complicated <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regex</a> patterns to replace, for example, all even numbers (e.g., <code>gsub("[:02468:]", "*", "id = 123456")</code>) or all occurances of the word colour in US or UK spelling (e.g., <code>gsub("colo(u)?r", "***", "replace color, colour, or colours, but not collors")</code>).</p>
 </div>
 
 #### Handle spare columns with `extra` {#extra}
 
 <div class="warning">
-<p>The previous example should have given you an error warning about &quot;Too many values at 543 locations&quot;. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(&quot;100&quot;, &quot;90&quot;, &quot;110&quot;, &quot;&quot;)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don't do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to &quot;drop&quot;. Look at the help for <code>??tidyr::separate</code> to see what the other options do.</p>
+<p>The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c("100", "90", "110", "")</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.</p>
 </div>
 
 
@@ -575,8 +588,8 @@ glimpse(matmort_split)
 ```
 
 ```
-## Observations: 543
-## Variables: 5
+## Rows: 543
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "…
 ## $ Year    <chr> "1990", "1990", "1990", "1990", "1990", "1990", "1990", "1990…
 ## $ rate    <chr> "1340", "71", "216", "1160", "72", "58", "8", "8", "64", "46"…
@@ -597,8 +610,8 @@ glimpse(infmort_split)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 5
+## Rows: 5,044
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate    <chr> "66", "68", "69", "71", "73", "75", "76", "78", "80", "82", "…
@@ -610,7 +623,7 @@ glimpse(infmort_split)
 
 {#regex}
 <div class="warning">
-<p>You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by &quot;|&quot;. It's a little more complicated because brackets have a special meaning in regex, so you need to &quot;escape&quot; the left one with two backslashes &quot;\\&quot;.</p>
+<p>You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by “|”. It’s a little more complicated because brackets have a special meaning in regex, so you need to “escape” the left one with two backslashes “\\”.</p>
 </div>
 
 
@@ -627,8 +640,8 @@ glimpse(infmort_split)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 5
+## Rows: 5,044
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate    <chr> "66.3 ", "68.1 ", "69.9 ", "71.7 ", "73.4 ", "75.1 ", "76.8 "…
@@ -649,8 +662,8 @@ glimpse(infmort_split)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 5
+## Rows: 5,044
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate    <dbl> 66.3, 68.1, 69.9, 71.7, 73.4, 75.1, 76.8, 78.6, 80.4, 82.3, 8…
@@ -670,8 +683,8 @@ glimpse(matmort_split)
 ```
 
 ```
-## Observations: 543
-## Variables: 5
+## Rows: 543
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "…
 ## $ Year    <chr> "1990", "1990", "1990", "1990", "1990", "1990", "1990", "1990…
 ## $ rate    <int> 1340, 71, 216, 1160, 72, 58, 8, 8, 64, 46, 26, 569, 58, 33, 9…
@@ -720,15 +733,15 @@ glimpse(infmort)
 ```
 
 ```
-## Observations: 543
-## Variables: 5
+## Rows: 543
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", "…
 ## $ Year    <chr> "1990", "1990", "1990", "1990", "1990", "1990", "1990", "1990…
 ## $ rate    <int> 1340, 71, 216, 1160, 72, 58, 8, 8, 64, 46, 26, 569, 58, 33, 9…
 ## $ ci_low  <int> 878, 58, 141, 627, 64, 51, 7, 7, 56, 34, 20, 446, 47, 28, 7, …
 ## $ ci_hi   <int> 1950, 88, 327, 2020, 80, 65, 9, 10, 74, 61, 33, 715, 72, 38, …
-## Observations: 5,044
-## Variables: 5
+## Rows: 5,044
+## Columns: 5
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate    <dbl> 66.3, 68.1, 69.9, 71.7, 73.4, 75.1, 76.8, 78.6, 80.4, 82.3, 8…
@@ -750,8 +763,8 @@ glimpse(infmort_wide)
 ```
 
 ```
-## Observations: 4,934
-## Variables: 29
+## Rows: 4,934
+## Columns: 29
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ ci_low  <dbl> 52.7, 55.7, 58.7, 61.6, 64.4, 66.9, 69.0, 71.2, 73.4, 75.5, 7…
 ## $ ci_hi   <dbl> 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90.7, 9…
@@ -784,7 +797,7 @@ glimpse(infmort_wide)
 ```
 
 <div class="warning">
-<p>Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.</p>
+<p>Nope, that didn’t work at all, but it’s a really common mistake when spreading data. This is because <code>spread</code> matches on all the remaining columns, so Afghanistan with <code>ci_low</code> of 52.7 is treated as a different observation than Afghanistan with <code>ci_low</code> of 55.7. We can fix this by merging the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns back together.</p>
 </div>
 
 ### Merge Columns
@@ -800,8 +813,8 @@ glimpse(infmort_united)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 3
+## Rows: 5,044
+## Columns: 3
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate_ci <chr> "66.3_52.7_83.9", "68.1_55.7_83.6", "69.9_58.7_83.5", "71.7_6…
@@ -822,15 +835,15 @@ glimpse(infmort_united)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 3
+## Rows: 5,044
+## Columns: 3
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate_ci <chr> "66.3, 52.7, 83.9", "68.1, 55.7, 83.6", "69.9, 58.7, 83.5", "…
 ```
 
 <div class="info">
-<p>What if you want to put it back into the format &quot;rate [ci_low - ci_hi]&quot;? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You'll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.</p>
+<p>What if you want to put it back into the format “rate [ci_low - ci_hi]”? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You’ll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.</p>
 </div>
 
 
@@ -843,8 +856,8 @@ glimpse(infmort_united)
 ```
 
 ```
-## Observations: 5,044
-## Variables: 6
+## Rows: 5,044
+## Columns: 6
 ## $ Country <chr> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "…
 ## $ Year    <dbl> 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2…
 ## $ rate    <dbl> 66.3, 68.1, 69.9, 71.7, 73.4, 75.1, 76.8, 78.6, 80.4, 82.3, 8…
@@ -866,8 +879,8 @@ glimpse(infmort_wide)
 ```
 
 ```
-## Observations: 194
-## Variables: 27
+## Rows: 194
+## Columns: 27
 ## $ Country <chr> "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "An…
 ## $ `1990`  <chr> "122.5, 111.6, 135.5", "35.1, 31.3, 39.2", "39.7, 37.1, 42.3"…
 ## $ `1991`  <chr> "118.3, 108, 129.9", "33.7, 30.2, 37.6", "38.8, 36.1, 41.6", …
@@ -902,125 +915,125 @@ glimpse(infmort_wide)
 
 For questions 1-4, choose how to turn table A into table B. There may be more than one right answer.
 
-1. <pre class="mcq"><select class='solveme' data-answer='["gather(A, \"time\", \"score\", morning:night)","gather(A, \"time\", \"score\", morning, noon, night)"]'> <option></option> <option>gather(A, "time", "score", morning:night)</option> <option>gather(A, "pet", "score", dog:cat)</option> <option>gather(A, "time", morning, noon, night)</option> <option>gather(A, "time", "score", morning, noon, night)</option> <option>gather(A, "pet", "time", morning, noon, night)</option></select></pre>
+1. <pre class="mcq"><select class='solveme' name='q_1' data-answer='["gather(A, \"time\", \"score\", morning:night)","gather(A, \"time\", \"score\", morning, noon, night)"]'> <option></option> <option>gather(A, "time", "score", morning:night)</option> <option>gather(A, "pet", "time", morning, noon, night)</option> <option>gather(A, "time", morning, noon, night)</option> <option>gather(A, "time", "score", morning, noon, night)</option> <option>gather(A, "pet", "score", dog:cat)</option></select></pre>
     
     
-    Table: (\#tab:unnamed-chunk-11)Table A (source)
+    Table: (\#tab:unnamed-chunk-10)Table A (source)
     
-    id   pet       morning         noon        night
-    ---  ----  -----------  -----------  -----------
-    S1   dog    -0.6278186    0.6267951    1.8415804
-    S2   dog    -0.5090254    1.0724757   -0.6442133
-    S3   cat     0.4264954   -0.0924112   -1.4964122
-    S4   cat    -0.2021898    0.7707817   -1.0112066
+    |    |id |pet |    morning|       noon|      night|
+    |:---|:--|:---|----------:|----------:|----------:|
+    |1.1 |S1 |dog | -1.4964122| -0.6278186|  0.6267951|
+    |1.2 |S2 |dog | -1.0112066| -0.5090254|  1.0724757|
+    |1.3 |S3 |cat |  0.6669006|  0.4264954| -0.0924112|
+    |1.4 |S4 |cat |  1.2740238| -0.2021898|  0.7707817|
     
     
     
-    Table: (\#tab:unnamed-chunk-11)Table B (goal)
+    Table: (\#tab:unnamed-chunk-10)Table B (goal)
     
-    id   pet   time            score
-    ---  ----  --------  -----------
-    S1   dog   morning    -0.6278186
-    S2   dog   morning    -0.5090254
-    S3   cat   morning     0.4264954
-    S4   cat   morning    -0.2021898
-    S1   dog   noon        0.6267951
-    S2   dog   noon        1.0724757
-    S3   cat   noon       -0.0924112
-    S4   cat   noon        0.7707817
-    S1   dog   night       1.8415804
-    S2   dog   night      -0.6442133
-    S3   cat   night      -1.4964122
-    S4   cat   night      -1.0112066
+    |id |pet |time    |      score|
+    |:--|:---|:-------|----------:|
+    |S1 |dog |morning | -1.4964122|
+    |S2 |dog |morning | -1.0112066|
+    |S3 |cat |morning |  0.6669006|
+    |S4 |cat |morning |  1.2740238|
+    |S1 |dog |noon    | -0.6278186|
+    |S2 |dog |noon    | -0.5090254|
+    |S3 |cat |noon    |  0.4264954|
+    |S4 |cat |noon    | -0.2021898|
+    |S1 |dog |night   |  0.6267951|
+    |S2 |dog |night   |  1.0724757|
+    |S3 |cat |night   | -0.0924112|
+    |S4 |cat |night   |  0.7707817|
 
 
 
-2. <pre class="mcq"><select class='solveme' data-answer='["separate(A, pet_number, c(\"pet\", \"number\"), sep = \"\\\\.\")","separate(A, pet_number, c(\"pet\", \"number\"))"]'> <option></option> <option>separate(A, "pet", "number", pet_number)</option> <option>separate(A, c("pet", "number"))</option> <option>separate(A, pet_number, c("pet", "number"), sep = "\\.")</option> <option>separate(A, pet_number, c("pet", "number"))</option> <option>separate(A, pet_number, "pet", "number")</option> <option>separate(A, "pet", "number")</option> <option>separate(A, pet_number, c("pet", "number"), sep = ".")</option></select></pre>
+2. <pre class="mcq"><select class='solveme' name='q_2' data-answer='["separate(A, pet_number, c(\"pet\", \"number\"))","separate(A, pet_number, c(\"pet\", \"number\"), sep = \"\\\\.\")"]'> <option></option> <option>separate(A, "pet", "number")</option> <option>separate(A, "pet", "number", pet_number)</option> <option>separate(A, pet_number, c("pet", "number"), sep = ".")</option> <option>separate(A, pet_number, c("pet", "number"))</option> <option>separate(A, pet_number, c("pet", "number"), sep = "\\.")</option> <option>separate(A, pet_number, "pet", "number")</option> <option>separate(A, c("pet", "number"))</option></select></pre>
     
     
-    Table: (\#tab:unnamed-chunk-13)Table A (source)
+    Table: (\#tab:unnamed-chunk-12)Table A (source)
     
-    id   pet_number         score
-    ---  -----------  -----------
-    S1   dog.1         -0.9341027
-    S2   cat.1          0.2959839
-    S3   dog.2         -0.3984966
-    S4   cat.2          0.9157141
+    |    |id |pet_number |      score|
+    |:---|:--|:----------|----------:|
+    |1.1 |S1 |dog.1      | -0.3984966|
+    |1.2 |S2 |cat.1      |  0.9157141|
+    |1.3 |S3 |dog.2      |  0.7292385|
+    |1.4 |S4 |cat.2      | -0.4399254|
     
     
     
-    Table: (\#tab:unnamed-chunk-13)Table B (goal)
+    Table: (\#tab:unnamed-chunk-12)Table B (goal)
     
-    id   pet   number         score
-    ---  ----  -------  -----------
-    S1   dog   1         -0.9341027
-    S2   cat   1          0.2959839
-    S3   dog   2         -0.3984966
-    S4   cat   2          0.9157141
+    |    |id |pet |number |      score|
+    |:---|:--|:---|:------|----------:|
+    |1.1 |S1 |dog |1      | -0.3984966|
+    |1.2 |S2 |cat |1      |  0.9157141|
+    |1.3 |S3 |dog |2      |  0.7292385|
+    |1.4 |S4 |cat |2      | -0.4399254|
 
-3. <pre class="mcq"><select class='solveme' data-answer='["unite(A, pet_pref, pet, pref, remove = FALSE)","unite(A, \"pet_pref\", pet, pref, remove = FALSE)"]'> <option></option> <option>unite(A, pet, pref, pet_pref, remove = FALSE)</option> <option>unite(A, pet, pref, "pet_pref", remove = FALSE)</option> <option>unite(A, "pet_pref", pet, pref)</option> <option>unite(A, pet_pref, pet, pref, remove = FALSE)</option> <option>unite(A, pet_pref, pet, pref)</option> <option>unite(A, "pet_pref", pet, pref, remove = FALSE)</option></select></pre>
+3. <pre class="mcq"><select class='solveme' name='q_3' data-answer='["unite(A, pet_pref, pet, pref, remove = FALSE)","unite(A, \"pet_pref\", pet, pref, remove = FALSE)"]'> <option></option> <option>unite(A, pet_pref, pet, pref, remove = FALSE)</option> <option>unite(A, pet_pref, pet, pref)</option> <option>unite(A, "pet_pref", pet, pref, remove = FALSE)</option> <option>unite(A, pet, pref, pet_pref, remove = FALSE)</option> <option>unite(A, "pet_pref", pet, pref)</option> <option>unite(A, pet, pref, "pet_pref", remove = FALSE)</option></select></pre>
     
     
-    Table: (\#tab:unnamed-chunk-15)Table A (source)
+    Table: (\#tab:unnamed-chunk-14)Table A (source)
     
-    id   pet   pref          score
-    ---  ----  ------  -----------
-    S1   dog   lover     0.9207955
-    S2   dog   hater     1.7256719
-    S3   cat   lover     0.0933798
-    S4   cat   hater    -0.6841774
+    |    |id |pet |pref  |      score|
+    |:---|:--|:---|:-----|----------:|
+    |1.1 |S1 |dog |lover |  0.0933798|
+    |1.2 |S2 |dog |hater | -0.6841774|
+    |1.3 |S3 |cat |lover |  1.3188061|
+    |1.4 |S4 |cat |hater |  0.9196899|
     
     
     
-    Table: (\#tab:unnamed-chunk-15)Table B (goal)
+    Table: (\#tab:unnamed-chunk-14)Table B (goal)
     
-    id   pet_pref    pet   pref          score
-    ---  ----------  ----  ------  -----------
-    S1   dog_lover   dog   lover     0.9207955
-    S2   dog_hater   dog   hater     1.7256719
-    S3   cat_lover   cat   lover     0.0933798
-    S4   cat_hater   cat   hater    -0.6841774
+    |    |id |pet_pref  |pet |pref  |      score|
+    |:---|:--|:---------|:---|:-----|----------:|
+    |1.1 |S1 |dog_lover |dog |lover |  0.0933798|
+    |1.2 |S2 |dog_hater |dog |hater | -0.6841774|
+    |1.3 |S3 |cat_lover |cat |lover |  1.3188061|
+    |1.4 |S4 |cat_hater |cat |hater |  0.9196899|
 
 
-4. <pre class="mcq"><select class='solveme' data-answer='["spread(A, 3, 4, sep = \"_\")","spread(A, time, score, sep = \"_\")"]'> <option></option> <option>spread(A, 3, 4, sep = "_")</option> <option>spread(A, time, score)</option> <option>spread(A, time, score, sep = "_")</option> <option>spread(A, time, score, fill = 0)</option> <option>spread(A, time, score, drop = FALSE)</option></select></pre>
+4. <pre class="mcq"><select class='solveme' name='q_4' data-answer='["spread(A, time, score, sep = \"_\")","spread(A, 3, 4, sep = \"_\")"]'> <option></option> <option>spread(A, time, score, sep = "_")</option> <option>spread(A, 3, 4, sep = "_")</option> <option>spread(A, time, score, fill = 0)</option> <option>spread(A, time, score, drop = FALSE)</option> <option>spread(A, time, score)</option></select></pre>
     
     
-    Table: (\#tab:unnamed-chunk-17)Table A (source)
+    Table: (\#tab:unnamed-chunk-16)Table A (source)
     
-    id   pet   time            score
-    ---  ----  --------  -----------
-    S1   dog   morning    -0.5564600
-    S2   dog   morning     0.9022504
-    S3   cat   morning    -0.6079994
-    S4   cat   morning     0.1394787
-    S1   dog   night      -0.4503912
-    S2   dog   night       2.6502808
-    S3   cat   night      -0.7848588
+    |       |id |pet |time    |      score|
+    |:------|:--|:---|:-------|----------:|
+    |1.S1.1 |S1 |dog |morning |  0.5455656|
+    |1.S2.1 |S2 |dog |morning | -0.4298306|
+    |1.S3.1 |S3 |cat |morning | -1.9146288|
+    |1.S4.1 |S4 |cat |morning | -1.4403162|
+    |1.S1.2 |S1 |dog |night   |  1.4924050|
+    |1.S2.2 |S2 |dog |night   |  0.4096266|
+    |1.S3.2 |S3 |cat |night   | -0.9108425|
     
     
     
-    Table: (\#tab:unnamed-chunk-17)Table B (goal)
+    Table: (\#tab:unnamed-chunk-16)Table B (goal)
     
-    id   pet    time_morning   time_night
-    ---  ----  -------------  -----------
-    S1   dog      -0.5564600   -0.4503912
-    S2   dog       0.9022504    2.6502808
-    S3   cat      -0.6079994   -0.7848588
-    S4   cat       0.1394787           NA
+    |id |pet | time_morning| time_night|
+    |:--|:---|------------:|----------:|
+    |S1 |dog |    0.5455656|  1.4924050|
+    |S2 |dog |   -0.4298306|  0.4096266|
+    |S3 |cat |   -1.9146288| -0.9108425|
+    |S4 |cat |   -1.4403162|         NA|
 
 5. Put the built-in dataset `iris` into the following format.
     
-    Species   feature   dimension    value
-    --------  --------  ----------  ------
-    setosa    Sepal     Length         5.1
-    setosa    Sepal     Length         4.9
-    setosa    Sepal     Length         4.7
-    setosa    Sepal     Length         4.6
-    setosa    Sepal     Length         5.0
-    setosa    Sepal     Length         5.4
+    |Species |feature |dimension | value|
+    |:-------|:-------|:---------|-----:|
+    |setosa  |Sepal   |Length    |   5.1|
+    |setosa  |Sepal   |Length    |   4.9|
+    |setosa  |Sepal   |Length    |   4.7|
+    |setosa  |Sepal   |Length    |   4.6|
+    |setosa  |Sepal   |Length    |   5.0|
+    |setosa  |Sepal   |Length    |   5.4|
     
     
-    <div class='solution'><button>Solution</button>
+    <div class='solution'><button class=''>Solution</button>
     
     ```r
     iris %>%
@@ -1054,7 +1067,7 @@ For questions 1-4, choose how to turn table A into table B. There may be more th
     ```
 
     
-    <div class='solution'><button>Solution</button>
+    <div class='solution'><button class=''>Solution</button>
     
     ```r
     data <- tibble(

@@ -1,4 +1,3 @@
-
 # Data Relations {#joins}
 
 <img src="images/memes/joins.png" class="meme right">
@@ -51,13 +50,13 @@ subject <- tibble(
 
 
 
- id  sex    age
----  ----  ----
-  1  m       19
-  2  m       22
-  3  NA      NA
-  4  f       19
-  5  f       18
+| id|sex | age|
+|--:|:---|---:|
+|  1|m   |  19|
+|  2|m   |  22|
+|  3|NA  |  NA|
+|  4|f   |  19|
+|  5|f   |  18|
 
 
 
@@ -74,17 +73,17 @@ exp <- tibble(
 
 
 
- id   score
----  ------
-  2      10
-  3      18
-  4      21
-  4      23
-  5       9
-  5      11
-  6      11
-  6      12
-  7       3
+| id| score|
+|--:|-----:|
+|  2|    10|
+|  3|    18|
+|  4|    21|
+|  4|    23|
+|  5|     9|
+|  5|    11|
+|  6|    11|
+|  6|    12|
+|  7|     3|
 
 
 
@@ -101,7 +100,7 @@ All the mutating joins have this basic syntax:
 * {#join-suffix} `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
 
 <div class="info">
-<p>You can leave out the <code>by</code> argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.</p>
+<p>You can leave out the <code>by</code> argument if you’re matching on all of the columns with the same name, but it’s good practice to always specify it so your code is robust to changes in the loaded data.</p>
 </div>
 
 ### left_join() {#left_join}
@@ -189,7 +188,7 @@ right_join(subject, exp, by = "id")
 ```
 
 <div class="info">
-<p>This table has the same information as <code>left_join(exp, subject, by = &quot;id&quot;)</code>, but the columns are in a different order (left table, then right table).</p>
+<p>This table has the same information as <code>left_join(exp, subject, by = "id")</code>, but the columns are in a different order (left table, then right table).</p>
 </div>
 
 ### inner_join() {#inner_join}
@@ -500,11 +499,11 @@ setdiff(subject, new_subjects)
 
 ```
 ## # A tibble: 3 x 3
-##      id   age sex  
-##   <int> <dbl> <chr>
-## 1     1    19 m    
-## 2     2    22 m    
-## 3     3    NA <NA>
+##      id sex     age
+##   <int> <chr> <dbl>
+## 1     1 m        19
+## 2     2 m        22
+## 3     3 <NA>     NA
 ```
 
 Order matters for `setdiff`.
@@ -516,12 +515,12 @@ setdiff(new_subjects, subject)
 
 ```
 ## # A tibble: 4 x 3
-##      id sex     age
-##   <int> <chr> <dbl>
-## 1     6 m        19
-## 2     7 m        16
-## 3     8 f        20
-## 4     9 f        19
+##      id   age sex  
+##   <int> <dbl> <chr>
+## 1     6    19 m    
+## 2     7    16 m    
+## 3     8    20 f    
+## 4     9    19 f
 ```
 
 

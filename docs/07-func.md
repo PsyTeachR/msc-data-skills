@@ -1,4 +1,3 @@
-
 # Iteration & Functions {#func}
 
 <img src="images/memes/functions.jpg" class="meme right">
@@ -343,7 +342,7 @@ list(
 ### Warnings and errors {#warnings-errors}
 
 <div class="try">
-What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or &quot;a&quot;?
+What happens when you omit the argument for <code>p</code>? Or if you set <code>p</code> to 1.5 or “a”?
 </p>
 </div>
 
@@ -592,7 +591,7 @@ set.seed(90201)
 ```
 
 <div class="warning">
-<p>Make sure you don't ever use <code>set.seed()</code> <strong>inside</strong> of a simulation function, or you will just simulate the exact same data over and over again.</p>
+<p>Make sure you don’t ever use <code>set.seed()</code> <strong>inside</strong> of a simulation function, or you will just simulate the exact same data over and over again.</p>
 </div>
 
 <div class="figure" style="text-align: center">

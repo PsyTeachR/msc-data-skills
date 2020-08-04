@@ -1,4 +1,3 @@
-
 # Getting Started {#intro}
 
 <img src="images/memes/rstudio.png" class="meme right">
@@ -58,7 +57,7 @@ You can close R and never open it again. We'll be working entirely in RStudio in
 <p class="caption">(\#fig:img-rstudio)The RStudio IDE</p>
 </div>
 
-RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes”.' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
 
 <video width="640" height="480" controls>
   <source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
@@ -83,8 +82,8 @@ There are two tweaks that you should do to your RStudio installation to maximize
 <div class="try">
 Your settings should have:
 
-* Restore .RData into workspace at startup: <select class='solveme' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select>
-* Save workspace to .RData on exit: <select class='solveme' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select>
+* Restore .RData into workspace at startup: <select class='solveme' name='q_1' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select>
+* Save workspace to .RData on exit: <select class='solveme' name='q_2' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select>
 </div>
 
 ## Getting Started
@@ -247,9 +246,9 @@ this_year <- 2020
 <div class="try">
 After all the code above is run:
 
-* `this_year` = <select class='solveme' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
-* `my_birth_year` = <select class='solveme' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
-* `my_age` = <select class='solveme' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `this_year` = <select class='solveme' name='q_3' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `my_birth_year` = <select class='solveme' name='q_4' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `my_age` = <select class='solveme' name='q_5' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
 
 </div>
 
@@ -340,8 +339,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  2.28717106  1.05694891 -0.06478901  0.91575729 -0.43803473  0.93750358
-##  [7]  0.84959022 -2.77864724  0.47168194  1.65254547
+##  [1]  1.6388120  0.4554276 -1.1705473  2.0050035 -1.3675830 -2.4353102
+##  [7] -0.1541877 -0.3560212 -0.3061327  1.0408330
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -352,8 +351,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.60032 101.40240 101.03509  98.83903 100.48984  99.99977  99.79783
-##  [8] 100.02616  99.57440 100.34587
+##  [1]  99.04734 100.75924  98.60831 100.71089  99.39511 102.29079  98.66987
+##  [8]  99.56725 100.06258  99.21724
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -364,8 +363,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.00588 100.37767 100.48239 100.14153  99.49892 101.05520  99.48906
-##  [8]  99.21969  98.73413  98.43897
+##  [1] 100.19822  99.96533 102.06777 100.40522 100.22090  99.72523  98.34421
+##  [8]  99.75922 100.40145  99.90358
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -376,8 +375,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  34.024036  28.022545 -73.792072  -8.897604 -11.366605  49.591464
-##  [7] 128.892933  50.566949  53.933872  22.664847
+##  [1] -127.48532   90.08632  145.06160  -30.30810   74.87676   16.13719
+##  [7]  -96.36769   57.50536  -99.74356   62.98532
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -392,9 +391,9 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
 ```
 
 <div class="try">
-* What is the default value for `sd`? <select class='solveme' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select>
-* What is the default value for `type`? <select class='solveme' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select>
-* Which is equivalent to `power.t.test(100, 0.5)`? <select class='solveme' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select>
+* What is the default value for `sd`? <select class='solveme' name='q_6' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select>
+* What is the default value for `type`? <select class='solveme' name='q_7' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select>
+* Which is equivalent to `power.t.test(100, 0.5)`? <select class='solveme' name='q_8' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select>
 </div>
 
 ### Getting help {#help}
@@ -414,8 +413,8 @@ help("rnorm", package="stats")
 When the package isn't loaded or you aren't sure what package the function is in, use the shortcut `??function_name`.
 
 <div class="try">
-* What is the first argument to the `mean` function? <select class='solveme' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select>
-* What package is `read_excel` in? <select class='solveme' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select>
+* What is the first argument to the `mean` function? <select class='solveme' name='q_9' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select>
+* What package is `read_excel` in? <select class='solveme' name='q_10' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select>
 </div>
 
 ## Add-on packages {#install-package}
@@ -502,16 +501,16 @@ jason()
 
 ```
 ## 
-##  I have what doctors call "directional insanity". I once got lost on an escalator. 
+##  This is a mess, morally speaking. This is a putrid, disgusting bowl of ethical soup. 
 ## 
 ##  ~ Chidi
-##  In the words of a very wise Bed, Bath, and Beyond employee I once knew, "Go ahead and cry all you want, but you're gonna have to pay for that toilet plunger." 
+##  Why don't I ever listen to people when they talk about themselves? No, it's annoying, and I'm right not to. 
 ## 
 ##  ~ Eleanor
-##  That was my first time as a fashion "don't," and I did not care for it. 
+##  You know, I haven't been this upset since my good friend Taylor was rudely upstaged by my other friend, Kanye, who was defending my best friend, Beyoncé. 
 ## 
 ##  ~ Tahani
-##  She's my everything. She makes the bass drop in my heart. 
+##  I hate suits. They remind me of court, and going to court, and being my own lawyer against the advice of a judge in court, and getting immediately convicted in court... 
 ## 
 ##  ~ Jason
 ```
@@ -527,7 +526,7 @@ jason()
 Projects in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
 
 <div class="try">
-<p>Make a new directory where you will keep all of your materials for this class. If you're using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.</p>
+<p>Make a new directory where you will keep all of your materials for this class. If you’re using a lab computer, make sure you make this directory in your network drive so you can access it from other computers.</p>
 <p>Choose <strong><code>New Project...</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.</p>
 </div>
 
@@ -624,7 +623,7 @@ If you are working with R scripts, store your main script file in the top-level 
 For instance, if on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
 
 <div class="danger">
-<p>It's tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don't do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
+<p>It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
 <p>When manually setting the working directory, always do so by using the <strong><code>Session &gt; Set Working Directory</code></strong> pull-down option or by typing <code>setwd()</code> in the console.</p>
 </div>
 

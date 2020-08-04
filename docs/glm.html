@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Introduction to GLM | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown #bookdown:version# and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Introduction to GLM | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-12-05" />
+<meta name="date" content="2020-08-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sim.html">
-<link rel="next" href="repro.html">
+<link rel="prev" href="sim.html"/>
+<link rel="next" href="repro.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,51 +47,81 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.1/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.49.4/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.49.4/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
@@ -174,7 +205,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
 <li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="3.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.5.1</b> Bar plot</a></li>
@@ -278,7 +309,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -310,7 +341,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
-<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -364,7 +394,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -374,7 +404,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
@@ -474,14 +504,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="setup-3" class="section level2">
 <h2><span class="header-section-number">9.3</span> Setup</h2>
-<p>You'll need the following packages.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># libraries needed for these examples</span>
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(broom)
-
-<span class="kw">set.seed</span>(<span class="dv">30250</span>) <span class="co"># makes sure random numbers are reproducible</span></code></pre></div>
+<p>You’ll need the following packages.</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="glm.html#cb439-1"></a><span class="co"># libraries needed for these examples</span></span>
+<span id="cb439-2"><a href="glm.html#cb439-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb439-3"><a href="glm.html#cb439-3"></a><span class="kw">library</span>(broom)</span>
+<span id="cb439-4"><a href="glm.html#cb439-4"></a></span>
+<span id="cb439-5"><a href="glm.html#cb439-5"></a><span class="kw">set.seed</span>(<span class="dv">30250</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
 </div>
-<div id="glm" class="section level2">
+<div id="glm-1" class="section level2">
 <h2><span class="header-section-number">9.4</span> GLM</h2>
 <div id="what-is-the-glm" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> What is the GLM?</h3>
@@ -504,7 +534,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="even">
 <td>Grand Average</td>
-<td><span class="math inline">\(\mu\)</span> (the Greek letter &quot;mu&quot;)</td>
+<td><span class="math inline">\(\mu\)</span> (the Greek letter “mu”)</td>
 </tr>
 <tr class="odd">
 <td>Main Effects</td>
@@ -523,44 +553,44 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><img src="images/memes/confused-math-lady.png" class="meme right"></p>
 <p>The linear equation predicts the dependent variable (<span class="math inline">\(Y\)</span>) as the sum of the grand average value of <span class="math inline">\(Y\)</span> (<span class="math inline">\(\mu\)</span>, also called the intercept), the main effects of all the predictor variables (<span class="math inline">\(A+B+C+ \ldots\)</span>), the interactions among all the predictor variables (<span class="math inline">\(AB, AC, BC, ABC, \ldots\)</span>), and some random error (<span class="math inline">\(S(Group)\)</span>). The equation for a model with two predictor variables (<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>) and their interaction (<span class="math inline">\(AB\)</span>) is written like this:</p>
 <p><span class="math inline">\(Y\)</span> ~ <span class="math inline">\(\mu+A+B+AB+S(Group)\)</span></p>
-<p>Don't worry if this doesn't make sense until we walk through a concrete example.</p>
+<p>Don’t worry if this doesn’t make sense until we walk through a concrete example.</p>
 </div>
 <div id="sim-glm" class="section level3">
 <h3><span class="header-section-number">9.4.3</span> Simulating data from GLM</h3>
 <p>A good way to learn about linear models is to simulate data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.</p>
-<p>We'll start with a very simple linear model that just has a single categorical factor with two levels. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (<code>mu</code>) is 800ms, and is 50ms faster for congruent than incongruent trials (<code>effect</code>).</p>
+<p>We’ll start with a very simple linear model that just has a single categorical factor with two levels. Let’s say we’re predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (<code>mu</code>) is 800ms, and is 50ms faster for congruent than incongruent trials (<code>effect</code>).</p>
 <div class="warning">
 <p>A <strong>factor</strong> is a categorical variable that is used to divide subjects into groups, usually to draw some comparison. Factors are composed of different <strong>levels</strong>. Do not confuse factors with levels!</p>
-<p>In the example above, trial type is a <select class='solveme' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.</p>
+<p>In the example above, trial type is a <select class='solveme' name='q_1' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' name='q_2' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' name='q_3' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.</p>
 </div>
 <p>You need to represent categorical factors with numbers. The numbers, or <strong>coding</strong> you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will <strong>effect code</strong> the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.</p>
-<p>A person won't always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <strong>error term</strong> to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
-<p>Here, we'll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We'll also sample 100 trials of each type, so we can see a range of variation.</p>
+<p>A person won’t always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <strong>error term</strong> to each trial. We can’t know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
+<p>Here, we’ll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
 <p>So first create variables for all of the parameters that describe your data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span>
-mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span>
-effect &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># average difference between congruent and incongruent trials</span>
-error_sd &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># standard deviation of the error term</span>
-trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="op">-</span><span class="fl">0.5</span>) <span class="co"># effect code</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="glm.html#cb440-1"></a>n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb440-2"><a href="glm.html#cb440-2"></a>mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span></span>
+<span id="cb440-3"><a href="glm.html#cb440-3"></a>effect &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># average difference between congruent and incongruent trials</span></span>
+<span id="cb440-4"><a href="glm.html#cb440-4"></a>error_sd &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># standard deviation of the error term</span></span>
+<span id="cb440-5"><a href="glm.html#cb440-5"></a>trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>) <span class="co"># effect code</span></span></code></pre></div>
 <p>Then simulate the data by creating a data table with a row for each trial and columns for the trial type and the error term (random numbers samples from a normal distribution with the SD specified by <code>error_sd</code>). For categorical variables, include both a column with the text labels (<code>trial_type</code>) and another column with the coded version (<code>trial_type.e</code>) to make it easier to check what the codings mean and to use for graphing. Calculate the dependent variable (<code>RT</code>) as the sum of the grand mean (<code>mu</code>), the coefficient (<code>effect</code>) multiplied by the effect-coded predictor variable (<code>trial_type.e</code>), and the error term.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp)
-) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">trial_type.e =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>trial_types),
-    <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="kw">nrow</span>(.), <span class="dv">0</span>, error_sd),
-    <span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error
-  )</code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="glm.html#cb441-1"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb441-2"><a href="glm.html#cb441-2"></a>  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp)</span>
+<span id="cb441-3"><a href="glm.html#cb441-3"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb441-4"><a href="glm.html#cb441-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb441-5"><a href="glm.html#cb441-5"></a>    <span class="dt">trial_type.e =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>trial_types),</span>
+<span id="cb441-6"><a href="glm.html#cb441-6"></a>    <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="kw">nrow</span>(.), <span class="dv">0</span>, error_sd),</span>
+<span id="cb441-7"><a href="glm.html#cb441-7"></a>    <span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error</span>
+<span id="cb441-8"><a href="glm.html#cb441-8"></a>  )</span></code></pre></div>
 <div class="info">
 <p>
-The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(&quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. It's equivalent to <code>recode(trial_type, &quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).
+The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(“congruent” = 0.5, “incongruent” = -0.5)</code>. It’s equivalent to <code>recode(trial_type, “congruent” = 0.5, “incongruent” = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).
 </p>
 </div>
 <p>Last but not least, always plot simulated data to make sure it looks like you expect.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), 
-               <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="glm.html#cb442-1"></a><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb442-2"><a href="glm.html#cb442-2"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></span>
+<span id="cb442-3"><a href="glm.html#cb442-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), </span>
+<span id="cb442-4"><a href="glm.html#cb442-4"></a>               <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plot-sim"></span>
 <img src="09-glm_files/figure-html/plot-sim-1.png" alt="Simulated Data" width="100%" />
 <p class="caption">
@@ -571,9 +601,9 @@ Figure 9.1: Simulated Data
 <div id="linear-regression" class="section level3">
 <h3><span class="header-section-number">9.4.4</span> Linear Regression</h3>
 <p>Now we can analyse the data we simulated using the function <code>lm()</code>. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the <code>summary()</code> function to see the statistical summary.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)
-
-<span class="kw">summary</span>(my_lm)</code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="glm.html#cb443-1"></a>my_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</span>
+<span id="cb443-2"><a href="glm.html#cb443-2"></a></span>
+<span id="cb443-3"><a href="glm.html#cb443-3"></a><span class="kw">summary</span>(my_lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = RT ~ trial_type.e, data = dat)
@@ -601,14 +631,14 @@ Change the values of <code>mu</code> and <code>effect</code>, resimulate the dat
 </div>
 <div id="residuals" class="section level3">
 <h3><span class="header-section-number">9.4.5</span> Residuals</h3>
-<p>You can use the <code>residuals()</code> function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">residuals</span>(my_lm)
-
-<span class="kw">ggplot</span>(dat) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">stat_function</span>(<span class="kw">aes</span>(<span class="dv">0</span>), <span class="dt">color =</span> <span class="st">&quot;grey60&quot;</span>,
-                <span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>,
-                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> error_sd)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(res, <span class="dt">color =</span> trial_type))</code></pre></div>
+<p>You can use the <code>residuals()</code> function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We’ll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.</p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="glm.html#cb445-1"></a>res &lt;-<span class="st"> </span><span class="kw">residuals</span>(my_lm)</span>
+<span id="cb445-2"><a href="glm.html#cb445-2"></a></span>
+<span id="cb445-3"><a href="glm.html#cb445-3"></a><span class="kw">ggplot</span>(dat) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb445-4"><a href="glm.html#cb445-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="kw">aes</span>(<span class="dv">0</span>), <span class="dt">color =</span> <span class="st">&quot;grey60&quot;</span>,</span>
+<span id="cb445-5"><a href="glm.html#cb445-5"></a>                <span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>,</span>
+<span id="cb445-6"><a href="glm.html#cb445-6"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> error_sd)) <span class="op">+</span></span>
+<span id="cb445-7"><a href="glm.html#cb445-7"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(res, <span class="dt">color =</span> trial_type))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:res-density-plot"></span>
 <img src="09-glm_files/figure-html/res-density-plot-1.png" alt="Model residuals should be approximately normally distributed for each group" width="100%" />
 <p class="caption">
@@ -616,11 +646,11 @@ Figure 9.2: Model residuals should be approximately normally distributed for eac
 </p>
 </div>
 <p>You can also compare the model residuals to the simulated error values. If the model is accurate, they should be almost identical. If the intercept estimate is slightly off, the points will be slightly above or below the black line. If the estimate for the effect of trial type is slightly off, there will be a small, systematic difference between residuals for congruent and incongruent trials.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(error, res,<span class="dt">color =</span> trial_type)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model Residuals&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulated Error&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="glm.html#cb446-1"></a><span class="kw">ggplot</span>(dat) <span class="op">+</span></span>
+<span id="cb446-2"><a href="glm.html#cb446-2"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb446-3"><a href="glm.html#cb446-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(error, res,<span class="dt">color =</span> trial_type)) <span class="op">+</span></span>
+<span id="cb446-4"><a href="glm.html#cb446-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model Residuals&quot;</span>) <span class="op">+</span></span>
+<span id="cb446-5"><a href="glm.html#cb446-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulated Error&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:res-err-plot"></span>
 <img src="09-glm_files/figure-html/res-err-plot-1.png" alt="Model residuals should be very similar to the simulated error" width="100%" />
 <p class="caption">
@@ -637,24 +667,24 @@ What happens to the residuals if you fit a model that ignores trial type (e.g., 
 <h3><span class="header-section-number">9.4.6</span> Predict New Values</h3>
 <p>You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to now the trial type to make a prediction.</p>
 <p>For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">int_est &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;(Intercept)&quot;</span>]]
-tt_est  &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;trial_type.e&quot;</span>]]
-tt_code &lt;-<span class="st"> </span>trial_types[[<span class="st">&quot;congruent&quot;</span>]]
-
-new_congruent_RT &lt;-<span class="st"> </span>int_est <span class="op">+</span><span class="st"> </span>tt_est <span class="op">*</span><span class="st"> </span>tt_code
-
-new_congruent_RT</code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="glm.html#cb447-1"></a>int_est &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;(Intercept)&quot;</span>]]</span>
+<span id="cb447-2"><a href="glm.html#cb447-2"></a>tt_est  &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;trial_type.e&quot;</span>]]</span>
+<span id="cb447-3"><a href="glm.html#cb447-3"></a>tt_code &lt;-<span class="st"> </span>trial_types[[<span class="st">&quot;congruent&quot;</span>]]</span>
+<span id="cb447-4"><a href="glm.html#cb447-4"></a></span>
+<span id="cb447-5"><a href="glm.html#cb447-5"></a>new_congruent_RT &lt;-<span class="st"> </span>int_est <span class="op">+</span><span class="st"> </span>tt_est <span class="op">*</span><span class="st"> </span>tt_code</span>
+<span id="cb447-6"><a href="glm.html#cb447-6"></a></span>
+<span id="cb447-7"><a href="glm.html#cb447-7"></a>new_congruent_RT</span></code></pre></div>
 <pre><code>## [1] 819.1605</code></pre>
 <p>You can also use the <code>predict()</code> function to do this more easily. The second argument is a data table with columns for the factors in the model and rows with the values that you want to use for the prediction.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(my_lm, <span class="dt">newdata =</span> <span class="kw">tibble</span>(<span class="dt">trial_type.e =</span> <span class="fl">0.5</span>))</code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="glm.html#cb449-1"></a><span class="kw">predict</span>(my_lm, <span class="dt">newdata =</span> <span class="kw">tibble</span>(<span class="dt">trial_type.e =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <pre><code>##        1 
 ## 819.1605</code></pre>
 <div class="info">
 <p>
-If you look up this function using <code>?predict</code>, you will see that &quot;The function invokes particular methods which depend on the class of the first argument.&quot;
+If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.”
 </p>
 <p>
-What this means is that <code>predict()</code> works differently depending on whether you're predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.
+What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.
 </p>
 </div>
 </div>
@@ -662,40 +692,40 @@ What this means is that <code>predict()</code> works differently depending on wh
 <h3><span class="header-section-number">9.4.7</span> Coding Categorical Variables</h3>
 <p>In the example above, we used <strong>effect coding</strong> for trial type. You can also use <strong>sum coding</strong>, which assigns +1 and -1 to the levels instead of +0.5 and -0.5. More commonly, you might want to use <strong>treatment coding</strong>, which assigns 0 to one level (usually a baseline or control condition) and 1 to the other level (usually a treatment or experimental condition).</p>
 <p>Here we will add sum-coded and treatment-coded versions of <code>trial_type</code> to the dataset using the <code>recode()</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="op">-</span><span class="dv">1</span>),
-  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="glm.html#cb451-1"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb451-2"><a href="glm.html#cb451-2"></a>  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>),</span>
+<span id="cb451-3"><a href="glm.html#cb451-3"></a>  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb451-4"><a href="glm.html#cb451-4"></a>)</span></code></pre></div>
 <p>If you define named vectors with your levels and coding, you can use them with the <code>recode()</code> function if you expand them using <code>!!!</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tt_sum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, 
-            <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="op">-</span><span class="dv">1</span>)
-tt_tr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="dv">1</span>, 
-           <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)
-
-dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
-  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_sum),
-  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_tr)
-)</code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="glm.html#cb452-1"></a>tt_sum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, </span>
+<span id="cb452-2"><a href="glm.html#cb452-2"></a>            <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>)</span>
+<span id="cb452-3"><a href="glm.html#cb452-3"></a>tt_tr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb452-4"><a href="glm.html#cb452-4"></a>           <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb452-5"><a href="glm.html#cb452-5"></a></span>
+<span id="cb452-6"><a href="glm.html#cb452-6"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb452-7"><a href="glm.html#cb452-7"></a>  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_sum),</span>
+<span id="cb452-8"><a href="glm.html#cb452-8"></a>  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_tr)</span>
+<span id="cb452-9"><a href="glm.html#cb452-9"></a>)</span></code></pre></div>
 <p>Here are the coefficients for the effect-coded version. They should be the same as those from the last analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="glm.html#cb453-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##  (Intercept) trial_type.e 
 ##    788.19166     61.93773</code></pre>
 <p>Here are the coefficients for the sum-coded version. This give the same results as effect coding, except the estimate for the categorical factor will be exactly half as large, as it represents the difference between each trial type and the hypothetical condition of 0 (the overall mean RT), rather than the difference between the two trial types.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.sum, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="glm.html#cb455-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.sum, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##    (Intercept) trial_type.sum 
 ##      788.19166       30.96887</code></pre>
 <p>Here are the coefficients for the treatment-coded version. The estimate for the categorical factor will be the same as in the effect-coded version, but the intercept will decrease. It will be equal to the intercept minus the estimate for trial type from the sum-coded version.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.tr, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="glm.html#cb457-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.tr, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##   (Intercept) trial_type.tr 
 ##     757.22279      61.93773</code></pre>
 </div>
 </div>
 <div id="test-rels" class="section level2">
 <h2><span class="header-section-number">9.5</span> Relationships among tests</h2>
-<div id="t-test" class="section level3">
+<div id="t-test-1" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> T-test</h3>
 <p>The t-test is just a special, limited example of a general linear model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="glm.html#cb459-1"></a><span class="kw">t.test</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -716,9 +746,9 @@ What happens when you use other codings for trial type in the t-test above? Whic
 <div id="anova" class="section level3">
 <h3><span class="header-section-number">9.5.2</span> ANOVA</h3>
 <p>ANOVA is also a special, limited version of the linear model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)
-
-<span class="kw">summary</span>(my_aov, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="glm.html#cb461-1"></a>my_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</span>
+<span id="cb461-2"><a href="glm.html#cb461-2"></a></span>
+<span id="cb461-3"><a href="glm.html#cb461-3"></a><span class="kw">summary</span>(my_aov, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##               Df    Sum Sq   Mean Sq  F value   Pr(&gt;F)    
 ## (Intercept)    1 124249219 124249219 11963.12  &lt; 2e-16 ***
 ## trial_type.e   1    191814    191814    18.47 2.71e-05 ***
@@ -726,30 +756,30 @@ What happens when you use other codings for trial type in the t-test above? Whic
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The easiest way to get parameters out of an analysis is to use the <code>broom::tidy()</code> function. This returns a tidy table that you can extract numbers of interest from. Here, we just want to get the F-value for the effect of trial_type. Compare the square root of this value to the t-value from the t-tests above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">tidy</span>(my_aov)<span class="op">$</span>statistic[<span class="dv">1</span>]
-<span class="kw">sqrt</span>(f)</code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="glm.html#cb463-1"></a>f &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">tidy</span>(my_aov)<span class="op">$</span>statistic[<span class="dv">1</span>]</span>
+<span id="cb463-2"><a href="glm.html#cb463-2"></a><span class="kw">sqrt</span>(f)</span></code></pre></div>
 <pre><code>## [1] 4.297498</code></pre>
 </div>
 </div>
 <div id="understanding-anova" class="section level2">
 <h2><span class="header-section-number">9.6</span> Understanding ANOVA</h2>
-<p>We'll walk through an example of a one-way ANOVA with the following equation:</p>
+<p>We’ll walk through an example of a one-way ANOVA with the following equation:</p>
 <p><span class="math inline">\(Y_{ij} = \mu + A_i + S(A)_{ij}\)</span></p>
 <p>This means that each data point (<span class="math inline">\(Y_{ij}\)</span>) is predicted to be the sum of the grand mean (<span class="math inline">\(\mu\)</span>), plus the effect of factor A (<span class="math inline">\(A_i\)</span>), plus some residual error (<span class="math inline">\(S(A)_{ij}\)</span>).</p>
 <div id="means-variability-and-deviation-scores" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Means, Variability, and Deviation Scores</h3>
-<p>Let's create a simple simulation function so you can quickly create a two-sample dataset with specified Ns, means, and SDs.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1 =</span> <span class="dv">0</span>, <span class="dt">m2 =</span> <span class="dv">0</span>, <span class="dt">sd1 =</span> <span class="dv">1</span>, <span class="dt">sd2 =</span> <span class="dv">1</span>) {
-  s1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)
-  s2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)
-  
-  <span class="kw">data.frame</span>(
-    <span class="dt">Y =</span> <span class="kw">c</span>(s1, s2),
-    <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n)
-  )
-}</code></pre></div>
+<p>Let’s create a simple simulation function so you can quickly create a two-sample dataset with specified Ns, means, and SDs.</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="glm.html#cb465-1"></a>two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1 =</span> <span class="dv">0</span>, <span class="dt">m2 =</span> <span class="dv">0</span>, <span class="dt">sd1 =</span> <span class="dv">1</span>, <span class="dt">sd2 =</span> <span class="dv">1</span>) {</span>
+<span id="cb465-2"><a href="glm.html#cb465-2"></a>  s1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)</span>
+<span id="cb465-3"><a href="glm.html#cb465-3"></a>  s2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)</span>
+<span id="cb465-4"><a href="glm.html#cb465-4"></a>  </span>
+<span id="cb465-5"><a href="glm.html#cb465-5"></a>  <span class="kw">data.frame</span>(</span>
+<span id="cb465-6"><a href="glm.html#cb465-6"></a>    <span class="dt">Y =</span> <span class="kw">c</span>(s1, s2),</span>
+<span id="cb465-7"><a href="glm.html#cb465-7"></a>    <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n)</span>
+<span id="cb465-8"><a href="glm.html#cb465-8"></a>  )</span>
+<span id="cb465-9"><a href="glm.html#cb465-9"></a>}</span></code></pre></div>
 <p>Now we will use <code>two_sample()</code> to create a dataset <code>dat</code> with N=5 per group, means of -2 and +2, and SDs of 1 and 1 (yes, this is an effect size of d = 4).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dv">5</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">+</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="glm.html#cb466-1"></a>dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dv">5</span>, <span class="dv">-2</span>, <span class="op">+</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
 <p>You can calculate how each data point (<code>Y</code>) deviates from the overall sample mean (<span class="math inline">\(\hat{\mu}\)</span>), which is represented by the horizontal grey line below and the deviations are the vertical grey lines. You can also calculate how different each point is from its group-specific mean (<span class="math inline">\(\hat{A_i}\)</span>), which are represented by the horizontal coloured lines below and the deviations are the coloured vertical lines.</p>
 <div class="figure" style="text-align: center"><span id="fig:deviation"></span>
 <img src="09-glm_files/figure-html/deviation-1.png" alt="Deviations of each data point (Y) from the overall and group means" width="100%" />
@@ -768,13 +798,13 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 <li><code>err</code> is residual error, calculated by subtracting <code>mu</code> and <code>a</code> from <code>Y</code></li>
 </ul>
 <p>This produces a <em>decomposition matrix</em>, a table with columns for <code>Y</code>, <code>mu</code>, <code>a</code>, and <code>err</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">decomp &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(Y, grp) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(Y)) <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># calculate mu_hat</span>
-<span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">mean</span>(Y) <span class="op">-</span><span class="st"> </span>mu) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># calculate a_hat for each grp</span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">err =</span> Y <span class="op">-</span><span class="st"> </span>mu <span class="op">-</span><span class="st"> </span>a)     <span class="co"># calculate residual error</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="glm.html#cb467-1"></a>decomp &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb467-2"><a href="glm.html#cb467-2"></a><span class="st">  </span><span class="kw">select</span>(Y, grp) <span class="op">%&gt;%</span></span>
+<span id="cb467-3"><a href="glm.html#cb467-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(Y)) <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># calculate mu_hat</span></span>
+<span id="cb467-4"><a href="glm.html#cb467-4"></a><span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span></span>
+<span id="cb467-5"><a href="glm.html#cb467-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">mean</span>(Y) <span class="op">-</span><span class="st"> </span>mu) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># calculate a_hat for each grp</span></span>
+<span id="cb467-6"><a href="glm.html#cb467-6"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb467-7"><a href="glm.html#cb467-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">err =</span> Y <span class="op">-</span><span class="st"> </span>mu <span class="op">-</span><span class="st"> </span>a)     <span class="co"># calculate residual error</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -859,10 +889,10 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 </tbody>
 </table>
 <p>Calculate sums of squares for <code>mu</code>, <code>a</code>, and <code>err</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SS &lt;-<span class="st"> </span>decomp <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">sum</span>(mu<span class="op">*</span>mu),
-            <span class="dt">a =</span> <span class="kw">sum</span>(a<span class="op">*</span>a),
-            <span class="dt">err =</span> <span class="kw">sum</span>(err<span class="op">*</span>err))</code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="glm.html#cb468-1"></a>SS &lt;-<span class="st"> </span>decomp <span class="op">%&gt;%</span></span>
+<span id="cb468-2"><a href="glm.html#cb468-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">sum</span>(mu<span class="op">*</span>mu),</span>
+<span id="cb468-3"><a href="glm.html#cb468-3"></a>            <span class="dt">a =</span> <span class="kw">sum</span>(a<span class="op">*</span>a),</span>
+<span id="cb468-4"><a href="glm.html#cb468-4"></a>            <span class="dt">err =</span> <span class="kw">sum</span>(err<span class="op">*</span>err))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -879,15 +909,15 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 </tr>
 </tbody>
 </table>
-<p>If you've done everything right, <code>SS$mu + SS$a + SS$err</code> should equal the sum of squares for Y.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SS_Y &lt;-<span class="st"> </span><span class="kw">sum</span>(decomp<span class="op">$</span>Y<span class="op">^</span><span class="dv">2</span>)
-<span class="kw">all.equal</span>(SS_Y, SS<span class="op">$</span>mu <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>a <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>err)</code></pre></div>
+<p>If you’ve done everything right, <code>SS$mu + SS$a + SS$err</code> should equal the sum of squares for Y.</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="glm.html#cb469-1"></a>SS_Y &lt;-<span class="st"> </span><span class="kw">sum</span>(decomp<span class="op">$</span>Y<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb469-2"><a href="glm.html#cb469-2"></a><span class="kw">all.equal</span>(SS_Y, SS<span class="op">$</span>mu <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>a <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>err)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Divide each sum of squares by its corresponding degrees of freedom (df) to calculate mean squares. The df for <code>mu</code> is 1, the df for factor <code>a</code> is <code>K-1</code> (K is the number of groups), and the df for <code>err</code> is <code>N - K</code> (N is the number of observations).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="kw">n_distinct</span>(dat<span class="op">$</span>grp)
-N &lt;-<span class="st"> </span><span class="kw">nrow</span>(dat)
-df &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">mu =</span> <span class="dv">1</span>, <span class="dt">a =</span> K <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">err =</span> N <span class="op">-</span><span class="st"> </span>K)
-MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> </span>df</code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="glm.html#cb471-1"></a>K &lt;-<span class="st"> </span><span class="kw">n_distinct</span>(dat<span class="op">$</span>grp)</span>
+<span id="cb471-2"><a href="glm.html#cb471-2"></a>N &lt;-<span class="st"> </span><span class="kw">nrow</span>(dat)</span>
+<span id="cb471-3"><a href="glm.html#cb471-3"></a>df &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">mu =</span> <span class="dv">1</span>, <span class="dt">a =</span> K <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">err =</span> N <span class="op">-</span><span class="st"> </span>K)</span>
+<span id="cb471-4"><a href="glm.html#cb471-4"></a>MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> </span>df</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -905,23 +935,23 @@ MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> <
 </tbody>
 </table>
 <p>Then calculate an F-ratio for <code>mu</code> and <code>a</code> by dividing their mean squares by the error term mean square. Get the p-values that correspond to these F-values using the <code>pf()</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">F_mu &lt;-<span class="st"> </span>MS<span class="op">$</span>mu <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err
-F_a  &lt;-<span class="st"> </span>MS<span class="op">$</span>a  <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err
-p_mu &lt;-<span class="st"> </span><span class="kw">pf</span>(F_mu, <span class="dt">df1 =</span> df[<span class="st">&#39;mu&#39;</span>], <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)
-p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class="dt">df1 =</span> df[<span class="st">&#39;a&#39;</span>],  <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="glm.html#cb472-1"></a>F_mu &lt;-<span class="st"> </span>MS<span class="op">$</span>mu <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</span>
+<span id="cb472-2"><a href="glm.html#cb472-2"></a>F_a  &lt;-<span class="st"> </span>MS<span class="op">$</span>a  <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</span>
+<span id="cb472-3"><a href="glm.html#cb472-3"></a>p_mu &lt;-<span class="st"> </span><span class="kw">pf</span>(F_mu, <span class="dt">df1 =</span> df[<span class="st">&#39;mu&#39;</span>], <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb472-4"><a href="glm.html#cb472-4"></a>p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class="dt">df1 =</span> df[<span class="st">&#39;a&#39;</span>],  <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Put everything into a data frame to display it in the same way as the ANOVA summary function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_calcs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">term =</span> <span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;grp&quot;</span>, <span class="st">&quot;Residuals&quot;</span>),
-  <span class="dt">Df =</span> df,
-  <span class="dt">SS =</span> <span class="kw">c</span>(SS<span class="op">$</span>mu, SS<span class="op">$</span>a, SS<span class="op">$</span>err),
-  <span class="dt">MS =</span> <span class="kw">c</span>(MS<span class="op">$</span>mu, MS<span class="op">$</span>a, MS<span class="op">$</span>err),
-  <span class="dt">F =</span> <span class="kw">c</span>(F_mu, F_a, <span class="ot">NA</span>),
-  <span class="dt">p =</span> <span class="kw">c</span>(p_mu, p_a, <span class="ot">NA</span>)
-)</code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="glm.html#cb473-1"></a>my_calcs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb473-2"><a href="glm.html#cb473-2"></a>  <span class="dt">term =</span> <span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;grp&quot;</span>, <span class="st">&quot;Residuals&quot;</span>),</span>
+<span id="cb473-3"><a href="glm.html#cb473-3"></a>  <span class="dt">Df =</span> df,</span>
+<span id="cb473-4"><a href="glm.html#cb473-4"></a>  <span class="dt">SS =</span> <span class="kw">c</span>(SS<span class="op">$</span>mu, SS<span class="op">$</span>a, SS<span class="op">$</span>err),</span>
+<span id="cb473-5"><a href="glm.html#cb473-5"></a>  <span class="dt">MS =</span> <span class="kw">c</span>(MS<span class="op">$</span>mu, MS<span class="op">$</span>a, MS<span class="op">$</span>err),</span>
+<span id="cb473-6"><a href="glm.html#cb473-6"></a>  <span class="dt">F =</span> <span class="kw">c</span>(F_mu, F_a, <span class="ot">NA</span>),</span>
+<span id="cb473-7"><a href="glm.html#cb473-7"></a>  <span class="dt">p =</span> <span class="kw">c</span>(p_mu, p_a, <span class="ot">NA</span>)</span>
+<span id="cb473-8"><a href="glm.html#cb473-8"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">term</th>
 <th align="right">Df</th>
 <th align="right">SS</th>
@@ -932,7 +962,7 @@ p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class=
 </thead>
 <tbody>
 <tr class="odd">
-<td>mu</td>
+<td align="left">mu</td>
 <td align="left">Intercept</td>
 <td align="right">1</td>
 <td align="right">0.146</td>
@@ -941,7 +971,7 @@ p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class=
 <td align="right">0.714</td>
 </tr>
 <tr class="even">
-<td>a</td>
+<td align="left">a</td>
 <td align="left">grp</td>
 <td align="right">1</td>
 <td align="right">23.516</td>
@@ -950,7 +980,7 @@ p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class=
 <td align="right">0.001</td>
 </tr>
 <tr class="odd">
-<td>err</td>
+<td align="left">err</td>
 <td align="left">Residuals</td>
 <td align="right">8</td>
 <td align="right">8.104</td>
@@ -961,7 +991,7 @@ p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class=
 </tbody>
 </table>
 <p>Now run a one-way ANOVA on your results and compare it to what you obtained in your calculations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aov</span>(Y <span class="op">~</span><span class="st"> </span>grp, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>(<span class="dt">intercept =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="glm.html#cb474-1"></a><span class="kw">aov</span>(Y <span class="op">~</span><span class="st"> </span>grp, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>(<span class="dt">intercept =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## (Intercept)  1  0.146   0.146   0.144 0.71427   
 ## grp          1 23.516  23.516  23.214 0.00132 **
@@ -977,7 +1007,7 @@ Using the code above, write your own function that takes a table of data and ret
 </div>
 <div id="exercises-8" class="section level2">
 <h2><span class="header-section-number">9.7</span> Exercises</h2>
-<p>Download the <a href="exercises/09_glm_exercise.Rmd">exercises</a>. See the <a href="exercises/09_glm_answers.Rmd">answers</a> only after you've attempted all the questions.</p>
+<p>Download the <a href="exercises/09_glm_exercise.Rmd">exercises</a>. See the <a href="exercises/09_glm_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
 
 </div>
 </div>
@@ -1097,11 +1127,13 @@ window.onload = function() {
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1109,12 +1141,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
 },
 "fontsettings": {
 "theme": "white",
@@ -1126,6 +1158,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -1143,7 +1179,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

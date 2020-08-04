@@ -1,4 +1,3 @@
-
 # Exercise Answers {#exercise-answers}
 
 Download all [exercises and data files](exercises/msc-data-skills-exercises.zip) below as a ZIP archive. The answers are not included in the zip file.

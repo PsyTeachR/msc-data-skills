@@ -1,4 +1,3 @@
-
 # Introduction to GLM {#glm}
 
 <img src="images/memes/linear_regression.jpg" class="meme right">
@@ -77,7 +76,7 @@ We'll start with a very simple linear model that just has a single categorical f
 <div class="warning">
 A **factor** is a categorical variable that is used to divide subjects into groups, usually to draw some comparison. Factors are composed of different **levels**. Do not confuse factors with levels!
 
-In the example above, trial type is a <select class='solveme' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.
+In the example above, trial type is a <select class='solveme' name='q_1' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' name='q_2' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' name='q_3' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.
 </div>
 
 You need to represent categorical factors with numbers. The numbers, or **coding** you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will **effect code** the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
@@ -112,7 +111,7 @@ dat <- data.frame(
 ```
 
 <div class="info">
-<p>The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(&quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. It's equivalent to <code>recode(trial_type, &quot;congruent&quot; = 0.5, &quot;incongruent&quot; = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).</p>
+<p>The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c("congruent" = 0.5, "incongruent" = -0.5)</code>. It’s equivalent to <code>recode(trial_type, "congruent" = 0.5, "incongruent" = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).</p>
 </div>
 
 Last but not least, always plot simulated data to make sure it looks like you expect.
@@ -244,8 +243,8 @@ predict(my_lm, newdata = tibble(trial_type.e = 0.5))
 
 
 <div class="info">
-<p>If you look up this function using <code>?predict</code>, you will see that &quot;The function invokes particular methods which depend on the class of the first argument.&quot;</p>
-<p>What this means is that <code>predict()</code> works differently depending on whether you're predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
+<p>If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.”</p>
+<p>What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
 </div>
 
 
@@ -441,18 +440,18 @@ decomp <- dat %>%
 
 
 
-          Y  grp           mu           a          err
------------  ----  ----------  ----------  -----------
- -1.4770938  A      0.1207513   -1.533501   -0.0643443
- -2.9508741  A      0.1207513   -1.533501   -1.5381246
- -0.6376736  A      0.1207513   -1.533501    0.7750759
- -1.7579084  A      0.1207513   -1.533501   -0.3451589
- -0.2401977  A      0.1207513   -1.533501    1.1725518
-  0.1968155  B      0.1207513    1.533501   -1.4574367
-  2.6308008  B      0.1207513    1.533501    0.9765486
-  2.0293297  B      0.1207513    1.533501    0.3750775
-  2.1629037  B      0.1207513    1.533501    0.5086516
-  1.2514112  B      0.1207513    1.533501   -0.4028410
+|          Y|grp |        mu|         a|        err|
+|----------:|:---|---------:|---------:|----------:|
+| -1.4770938|A   | 0.1207513| -1.533501| -0.0643443|
+| -2.9508741|A   | 0.1207513| -1.533501| -1.5381246|
+| -0.6376736|A   | 0.1207513| -1.533501|  0.7750759|
+| -1.7579084|A   | 0.1207513| -1.533501| -0.3451589|
+| -0.2401977|A   | 0.1207513| -1.533501|  1.1725518|
+|  0.1968155|B   | 0.1207513|  1.533501| -1.4574367|
+|  2.6308008|B   | 0.1207513|  1.533501|  0.9765486|
+|  2.0293297|B   | 0.1207513|  1.533501|  0.3750775|
+|  2.1629037|B   | 0.1207513|  1.533501|  0.5086516|
+|  1.2514112|B   | 0.1207513|  1.533501| -0.4028410|
 
 
 
@@ -468,9 +467,9 @@ SS <- decomp %>%
 
 
 
-        mu          a        err
-----------  ---------  ---------
- 0.1458088   23.51625   8.104182
+|        mu|        a|      err|
+|---------:|--------:|--------:|
+| 0.1458088| 23.51625| 8.104182|
 
 
 
@@ -498,9 +497,9 @@ MS <- SS / df
 
 
 
-        mu          a        err
-----------  ---------  ---------
- 0.1458088   23.51625   1.013023
+|        mu|        a|      err|
+|---------:|--------:|--------:|
+| 0.1458088| 23.51625| 1.013023|
 
 
 
@@ -530,11 +529,11 @@ my_calcs <- data.frame(
 
 
 
-      term         Df       SS       MS        F       p
-----  ----------  ---  -------  -------  -------  ------
-mu    Intercept     1    0.146    0.146    0.144   0.714
-a     grp           1   23.516   23.516   23.214   0.001
-err   Residuals     8    8.104    1.013       NA      NA
+|    |term      | Df|     SS|     MS|      F|     p|
+|:---|:---------|--:|------:|------:|------:|-----:|
+|mu  |Intercept |  1|  0.146|  0.146|  0.144| 0.714|
+|a   |grp       |  1| 23.516| 23.516| 23.214| 0.001|
+|err |Residuals |  8|  8.104|  1.013|     NA|    NA|
 
 
 
