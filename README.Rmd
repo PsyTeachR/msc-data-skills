@@ -17,6 +17,8 @@ You can install the newest version of dataskills from [GitHub](https://github.co
 devtools::install_github("debruine/msc-data-skills")
 ```
 
+You can access the book online at <https://psyteachr.github.io/msc-data-skills/>, but you can access a local version with the function `dataskills::book()`.
+
 ## Citing
 
 Lisa DeBruine, & Dale Barr. (2019). Data Skills for Reproducible Science. Zenodo. doi:10.5281/zenodo.3564348
