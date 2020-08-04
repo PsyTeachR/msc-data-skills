@@ -1,6 +1,8 @@
 
 # Reproducible Workflows {#repro}
 
+<img src="images/memes/repro_reports.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic
@@ -186,7 +188,6 @@ Now we can make a separate code chunk to create our simulated dataset `dat`.
 dat <- two_sample(diff = 0.75, n_per_group = 100)
 ```
 
-<p class="alert alert-info">You can use the `set.seed` function to make sure that you get the same random data back each time. Make sure you don't ever do this inside of a simulation function, or you will just simulate the exact same data over and over again.</p>
 
 #### Tables
 
@@ -250,10 +251,10 @@ ggplot(dat, aes(grp, Y, fill = sex)) +
 
 You can also include images that you did not create in R using the typical markdown syntax for images: 
 ```
-![All the Things](images/x-all-the-things.png)
+![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/memes/x-all-the-things.png)
 ```
 
-![All the Things](images/x-all-the-things.png)
+![All the Things by [Hyperbole and a Half](http://hyperboleandahalf.blogspot.com/)](images/memes/x-all-the-things.png)
 
 #### In-line R
 
@@ -467,15 +468,15 @@ citation(package="rmarkdown")
 ## 
 ## To cite the 'rmarkdown' package in publications, please use:
 ## 
-##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier
-##   Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and
-##   Joe Cheng and Winston Chang and Richard Iannone (2019).
-##   rmarkdown: Dynamic Documents for R. R package version 1.12. URL
+##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi
+##   and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and
+##   Winston Chang and Richard Iannone (2019). rmarkdown: Dynamic
+##   Documents for R. R package version 1.18. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
-##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R
-##   Markdown: The Definitive Guide. Chapman and Hall/CRC. ISBN
-##   9781138359338. URL https://bookdown.org/yihui/rmarkdown.
+##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown:
+##   The Definitive Guide. Chapman and Hall/CRC. ISBN 9781138359338. URL
+##   https://bookdown.org/yihui/rmarkdown.
 ## 
 ## To see these entries in BibTeX format, use 'print(<citation>,
 ## bibtex=TRUE)', 'toBibtex(.)', or set

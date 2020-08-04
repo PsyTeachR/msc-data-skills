@@ -1,5 +1,7 @@
 # Data Visualisation {#ggplot}
 
+<img src="images/memes/better_graphs.png" class="meme right">
+
 Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 
 ## Learning Objectives
@@ -23,7 +25,7 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
     + [`geom_col()`](#geom_col)
     + [`geom_point()`](#geom_point)
     + [`geom_smooth()`](#geom_smooth)
-3. Set custom labels
+3. Set custom [labels](#custom-labels) and [colours](#custom-colours)
 4. Represent factorial designs with different colours or facets
 5. [Save plots](#ggsave) as an image file
     
@@ -38,14 +40,13 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
     + [`geom_bin2d()`](#geom_bin2d)
     + [`geom_hex()`](#geom_hex)
     + [`geom_count()`](#geom_count)
-10. Use the [`viridis`](#viridis) package to set colours
 
 ### Advanced
 
-11. Arrange plots in a grid using [`cowplot`](#cowplot)
-12. Adjust axes (e.g., flip coordinates, set axis limits)
-13. Change the [theme](#theme)
-14. Create interactive graphs with [`plotly`](#plotly)
+10. Arrange plots in a grid using [`cowplot`](#cowplot)
+11. Adjust axes (e.g., flip coordinates, set axis limits)
+12. Change the [theme](#theme)
+13. Create interactive graphs with [`plotly`](#plotly)
 
 
 ## Resources
@@ -53,15 +54,17 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 * [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
 * [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*
-* [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
-* [ggplot2 documentation](http://ggplot2.tidyverse.org/reference/)
+* [Graphs](http://www.cookbook-r.com/Graphs) in *Cookbook for R*
+* [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+* [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 * [The R Graph Gallery](http://www.r-graph-gallery.com/) (this is really useful)
 * [Top 50 ggplot2 Visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 * [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/) by Winston Chang
-* [The viridis color palettes](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 * [ggplot extensions](https://www.ggplot2-exts.org/)
 * [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
 
+
+[Stub for this lesson](stubs/3_viz.Rmd)
 
 ## Setup
 
@@ -69,15 +72,20 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 
 # libraries needed for these graphs
 library(tidyverse)
-library(viridis)
 library(plotly)
-
-# cowplot will change the default theme of graphs, so we're loading it later
-# library(cowplot) 
+library(cowplot) 
+set.seed(30250) # makes sure random numbers are reproducible
 
 ```
 
 ## Common Variable Combinations {#vartypes}
+
+**Continuous** variables are properties you can measure, like height. **Discrete** (or categorical) variables are things you can count, like the number of pets you have. Categorical variables can be **nominal**, where the categories don't really have an order, like cats, dogs and ferrets (even though ferrets are obviously best). They can also be **ordinal**, where there is a clear order, but the distance between the categories isn't something you could exactly equate, like points on a Likert rating scale.
+
+Different types of visualisations are good for different types of variables. 
+
+```{block, type="try"}
+Before you read ahead, come up with an example of each type of variable combination and sketch the types of graphs that would best display these data.
 
 * 1 discrete
 * 1 continuous
@@ -86,13 +94,11 @@ library(plotly)
 * 1 discrete, 1 continuous
 * 3 continuous
 
-```{block, type="try"}
-Before you read ahead, come up with an example of each type of variable combination and sketch the types of graphs that would best display these data.
 ```
 
-## Data
+### Data
 
-Here we've created some data frames with different types of data. 
+The code below creates some data frames with different types of data. We'll learn how to simulate data like this in the [Probability & Simulation](#sim) chapter, but for now just run the code chunk below.
 
 * `pets` has a column with pet type
 * `pet_happy` has `happiness` and `age` for 500 dog owners and 500 cat owners
@@ -100,8 +106,8 @@ Here we've created some data frames with different types of data.
 * `overlap` has two correlated ordinal variables and 1000 observations so there is a lot of overlap
 * `overplot` has two correlated continuous variables and 10000 observations
 
-```{r set-seed, echo = FALSE}
-set.seed(8675309)
+```{block, type = "try"}
+First, think about what kinds of graphs are best for representing these different types of data.
 ```
 
 ```{r sim-data}
@@ -138,9 +144,7 @@ overplot <- tibble(
 
 ```
 
-```{block, type"try"}
-First, think about what kinds of graphs are best for representing these different types of data.
-```
+
 
 ## Basic Plots
 
@@ -153,8 +157,8 @@ ggplot(pets, aes(pet)) +
   geom_bar()
 ```
 
-### Density plot
-<a name="geom_density"></a>
+### Density plot {#geom_density}
+
 Density plots are good for one continuous variable, but only if you have a fairly 
 large number of observations.
 
@@ -165,8 +169,7 @@ ggplot(pet_happy, aes(happiness)) +
 
 ```
 
-You can represent subsets of a variable by assigning the category variable to 
-the argument `group`, `fill`, or `color`. 
+You can represent subsets of a variable by assigning the category variable to the argument `group`, `fill`, or `color`. 
 
 ```{r density-grouped, fig.cap="Grouped density plot"}
 
@@ -231,13 +234,14 @@ To make column plots with error bars, you first need to calculate the means, err
 ```{r colplot, fig.cap="Column plot"}
 
 # calculate mean and SD for each pet
-pet_happy %>%
+avg_pet_happy <- pet_happy %>%
   group_by(pet) %>%
   summarise(
     mean = mean(happiness),
     sd = sd(happiness)
-  ) %>%
-ggplot(aes(pet, mean, fill=pet)) +
+  )
+
+ggplot(avg_pet_happy, aes(pet, mean, fill=pet)) +
   geom_col(alpha = 0.5) +
   geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25) +
   geom_hline(yintercept = 40)
@@ -279,7 +283,6 @@ ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
 Try changing the numbers in the `draw_quantiles` argument.
 ```
 
-
 ### Scatter plot {#geom_point}
 
 Scatter plots are a good way to represent the relationship between two continuous variables.
@@ -299,16 +302,46 @@ You often want to represent the relationship as a single line.
 ggplot(x_vs_y, aes(x, y)) +
   geom_smooth(method="lm")
 ```
- 
- 
-## Save as File
-<a name="ggsave"></a>
-You can save a ggplot using `ggsave()`. It saves the last ggplot you made, 
-by default, but you can specify which plot you want to save if you assigned that 
-plot to a variable.
 
-You can set the `width` and `height` of your plot. The default units are inches, 
-but you can change the `units` argument to "in", "cm", or "mm".
+## Customisation
+
+### Labels {#custom-labels}
+
+You can set custom titles and axis labels in a few different ways.
+
+```{r line-labels1, fig.cap="Set custom labels with ggtitle(), xlab() and ylab()"}
+ggplot(x_vs_y, aes(x, y)) +
+  geom_smooth(method="lm") +
+  ggtitle("My Plot Title") +
+  xlab("The X Variable") +
+  ylab("The Y Variable")
+```
+
+```{r line-labels2, fig.cap="Set custom labels with labs()"}
+ggplot(x_vs_y, aes(x, y)) +
+  geom_smooth(method="lm") +
+  labs(title = "My Plot Title",
+       x = "The X Variable",
+       y = "The Y Variable")
+```
+
+### Colours {#custom-colours}
+
+You can set custom values for colour and fill using functions like `scale_colour_manual()` and `scale_fill_manual()`. The [Colours chapter in Cookbook for R](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/) has many more ways to customise colour.
+
+```{r line-labels, fig.cap="Set custom colour"}
+ggplot(pet_happy, aes(pet, happiness, colour = pet, fill = pet)) +
+  geom_violin() +
+  scale_color_manual(values = c("darkgreen", "dodgerblue")) +
+  scale_fill_manual(values = c("#CCFFCC", "#BBDDFF"))
+```
+ 
+### Save as File {#ggsave}
+
+You can save a ggplot using `ggsave()`. It saves the last ggplot you made, 
+by default, but you can specify which plot you want to save if you assigned that plot to a variable.
+
+You can set the `width` and `height` of your plot. The default units are inches, but you can change the `units` argument to "in", "cm", or "mm".
 
 
 ```{r ggsave-example, eval = FALSE}
@@ -330,9 +363,7 @@ ggsave("demog_box_plot.jpg", plot = box, width = 5, height = 7)
 
 ### Violinbox plot
 
-To demonstrate the use of `facet_grid()` for factorial designs, we create a new 
-column called `agegroup` to split the data into participants older than the 
-meadian age or younger than the median age. New factors will display in alphabetical order, so we can use the `factor()` function to set the levels in the order we want.
+To demonstrate the use of `facet_grid()` for factorial designs, we create a new column called `agegroup` to split the data into participants older than the meadian age or younger than the median age. New factors will display in alphabetical order, so we can use the `factor()` function to set the levels in the order we want.
 
 ```{r violinbox, fig.cap="Violin-box plot"}
 
@@ -373,8 +404,7 @@ ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
 
 ### Violin-jitter plot
 
-If you don't have a lot of data points, it's good to represent them individually. 
-You can use `geom_point` to do this, setting `position` to "jitter".
+If you don't have a lot of data points, it's good to represent them individually. You can use `geom_jitter` to do this.
 
 ```{r violin-jitter, fig.cap="Violin-jitter plot"}
 
@@ -386,16 +416,20 @@ pet_happy %>%
     draw_quantiles = c(0.25, 0.5, 0.75), 
     alpha = 0.5
   ) + 
-  geom_point(position = "jitter", alpha = 0.7, size = 3)
+  geom_jitter(
+    width = 0.15, # points spread out over 15% of available width
+    height = 0, # do not move position on the y-axis
+    alpha = 0.5, 
+    size = 3
+  )
 
 ```
 
 ### Scatter-line graph
 
-If your graph isn't too complicated, it's good to also show the individual data 
-points behind the line.
+If your graph isn't too complicated, it's good to also show the individual data points behind the line.
 
-```{r scatter_line, fig.cap="Scatter-line plot"}
+```{r scatter-line, fig.cap="Scatter-line plot"}
 
 ggplot(x_vs_y, aes(x, y)) +
   geom_point(alpha = 0.25) +
@@ -408,8 +442,6 @@ ggplot(x_vs_y, aes(x, y)) +
 You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) package to easily make grids of different graphs. First, you have to assign each plot a name. Then you list all the plots as the first arguments of `plot_grid()` and provide a list of labels.
 
 ```{r cowplot, message = FALSE, fig.cap="Grid of plots using cowplot"}
-
-library(cowplot)
 
 my_hist <- ggplot(pet_happy, aes(happiness, fill=pet)) +
   geom_histogram(
@@ -440,7 +472,8 @@ my_bar <- pet_happy %>%
     sd = sd(happiness)
   ) %>%
   ggplot(aes(pet, mean, fill=pet)) +
-    geom_bar(stat="identity", alpha = 0.5, show.legend = FALSE) +
+    geom_bar(stat="identity", alpha = 0.5, 
+             color = "black", show.legend = FALSE) +
     geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25)
 
 plot_grid(
@@ -453,18 +486,14 @@ plot_grid(
 
 ```
 
-```{block, type="info"}
-{#theme}
-Once you load the cowplot package, your ggplot default theme will change. You can get back the default ggplot theme with `+ theme_set(theme_grey())`.
-```
 
-## Overlapping Data {#overlap}
+## Overlapping Discrete Data {#overlap}
 
-### Discrete Data 
+### Reducing Opacity 
 
 You can deal with overlapping data points (very common if you're using Likert scales) by reducing the opacity of the points. You need to use trial and error to adjust these so they look right.
 
-```{r overlap_alpha, fig.cap="Deal with overlapping data using transparency"}
+```{r overlap-alpha, fig.cap="Deal with overlapping data using transparency"}
 
 ggplot(overlap, aes(x, y)) +
   geom_point(size = 5, alpha = .05) +
@@ -472,11 +501,11 @@ ggplot(overlap, aes(x, y)) +
 
 ```
 
-{#geom_count}
-Or you can set the size of the dot proportional to the number of overlapping 
-observations using `geom_count()`.
+### Proportional Dot Plots {#geom_count}
 
-```{r overlap_size, fig.cap="Deal with overlapping data using geom_count()"}
+Or you can set the size of the dot proportional to the number of overlapping observations using `geom_count()`.
+
+```{r overlap-size, fig.cap="Deal with overlapping data using geom_count()"}
 
 overlap %>%
   ggplot(aes(x, y)) +
@@ -484,8 +513,7 @@ overlap %>%
 
 ```
 
-Alternatively, you can transform your data to create a count column and use the 
-count to set the dot colour.
+Alternatively, you can transform your data to create a count column and use the count to set the dot colour.
 
 ```{r overlap-colour, fig.cap="Deal with overlapping data using dot colour"}
 
@@ -494,28 +522,18 @@ overlap %>%
   summarise(count = n()) %>%
   ggplot(aes(x, y, color=count)) +
   geom_point(size = 5) +
-  scale_color_viridis()
+  scale_color_viridis_c()
 
 ```
-
-### Colours {#viridis}
-
-The [viridis package](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) 
-changes the colour themes to be easier to read by people with colourblindness 
-and to print better in greyscale. Use `scale_color_viridis()` to set the colour 
-palette and `scale_fill_viridis()` to set the fill palette in ggplot. If you need 
-discrete (as opposed to continuous) colours, use `scale_color_viridis(discrete=TRUE)` 
-or `scale_fill_viridis(discrete=TRUE)` instead. 
 
 
 ```{block, type="info"}
-The newest version of `ggplot2` v3.0.0 has viridis built in. It uses `scale_colour_viridis_c()` and `scale_fill_viridis_c()` for continuous variables and `scale_colour_viridis_d()` and `scale_fill_viridis_d()` for discrete variables.
+The [viridis package](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) changes the colour themes to be easier to read by people with colourblindness and to print better in greyscale. Viridis is built into `ggplot2` since v3.0.0. It uses `scale_colour_viridis_c()` and `scale_fill_viridis_c()` for continuous variables and `scale_colour_viridis_d()` and `scale_fill_viridis_d()` for discrete variables.
 ```
 
-### Continuous Data
+## Overlapping Continuous Data
 
-Even if the variables are continuous, overplotting might obscure any relationships 
-if you have lots of data.
+Even if the variables are continuous, overplotting might obscure any relationships if you have lots of data.
 
 ```{r overplot-point, fig.cap="Overplotted data"}
 overplot %>%
@@ -523,7 +541,7 @@ overplot %>%
   geom_point()
 ```
 
-{#geom_density2d}
+### 2D Density Plot {#geom_density2d}
 Use `geom_density2d()` to create a contour map.
 
 ```{r density2d, fig.cap="Contour map with geom_density2d()"}
@@ -532,20 +550,19 @@ overplot %>%
   geom_density2d()
 ```
 
-You can use `stat_density_2d(aes(fill = ..level..), geom = "polygon")` to create 
-a heatmap-style density plot. 
+You can use `stat_density_2d(aes(fill = ..level..), geom = "polygon")` to create a heatmap-style density plot. 
 
 ```{r density2d-fill, fig.cap="Heatmap-density plot"}
 overplot %>%
   ggplot(aes(x, y)) + 
   stat_density_2d(aes(fill = ..level..), geom = "polygon") +
-  scale_fill_viridis()
+  scale_fill_viridis_c()
 ```
 
 
-{#geom_bin2d}
-Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the 
-`binwidth` to the x and y dimensions to capture in each box.
+### 2D Histogram {#geom_bin2d}
+
+Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the `binwidth` to the x and y dimensions to capture in each box.
 
 ```{r bin2d, fig.cap="Heatmap of bin counts"}
 overplot %>%
@@ -553,10 +570,9 @@ overplot %>%
   geom_bin2d(binwidth = c(1,1))
 ```
 
-{#geom_hex}
-Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the 
-`binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons 
-more or less stretched.
+### Hexagonal Heatmap {#geom_hex}
+
+Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the `binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons more or less stretched.
 
 ```{r overplot-hex, fig.width=6, fig.height=5, fig.cap="Hexagonal heatmap of bin counts"}
 overplot %>%
@@ -564,39 +580,36 @@ overplot %>%
   geom_hex(binwidth = c(0.25, 0.25))
 ```
 
-## Heat map {#geom_tile}
+### Correlation Heatmap {#geom_tile}
 
-I've included the code for creating a correlation matrix from a table of variables, 
-but you don't need to understand how this is done yet. We'll cover `mutate` and 
-`gather` functions in the `dplyr` and `tidyr` lessons.
+I've included the code for creating a correlation matrix from a table of variables, but you don't need to understand how this is done yet. We'll cover `mutate()` and `gather()` functions in the [dplyr](#dplyr) and [tidyr](#tidyr) lessons.
 
 ```{r}
 # generate two sets of correlated variables (a and b)
 heatmap <- tibble(
-  a1 = rnorm(100),
-  b1 = rnorm(100)
-) %>% 
-mutate(
-  a2 = a1 + rnorm(100),
-  a3 = a1 + rnorm(100),
-  a4 = a1 + rnorm(100),
-  b2 = b1 + rnorm(100),
-  b3 = b1 + rnorm(100),
-  b4 = b1 + rnorm(100)
-) %>%
-cor() %>% # create the correlation matrix
-as.data.frame() %>% # make it a data frame
-rownames_to_column(var = "V1") %>% # set rownames as V1
-gather("V2", "r", a1:b4) # wide to long (V2)
+    a1 = rnorm(100),
+    b1 = rnorm(100)
+  ) %>% 
+  mutate(
+    a2 = a1 + rnorm(100),
+    a3 = a1 + rnorm(100),
+    a4 = a1 + rnorm(100),
+    b2 = b1 + rnorm(100),
+    b3 = b1 + rnorm(100),
+    b4 = b1 + rnorm(100)
+  ) %>%
+  cor() %>% # create the correlation matrix
+  as.data.frame() %>% # make it a data frame
+  rownames_to_column(var = "V1") %>% # set rownames as V1
+  gather("V2", "r", a1:b4) # wide to long (V2)
 ```
 
-Once you have a correlation matrix in the correct (long) format, it's easy to 
-make a heatmap using `geom_tile()`.
+Once you have a correlation matrix in the correct (long) format, it's easy to make a heatmap using `geom_tile()`.
 
 ```{r heatmap, fig.cap="Heatmap using geom_tile()"}
 ggplot(heatmap, aes(V1, V2, fill=r)) +
   geom_tile() +
-  scale_fill_viridis()
+  scale_fill_viridis_c()
 ```
 
 ```{block, type="info"}
@@ -607,8 +620,7 @@ specifying the argument `device`, which can take the following values:
 
 ## Interactive Plots {#plotly}
 
-You can use the `plotly` package to make interactive graphs. Just assign your 
-ggplot to a variable and use the function `ggplotly()`.
+You can use the `plotly` package to make interactive graphs. Just assign your ggplot to a variable and use the function `ggplotly()`.
 
 ```{r plotly, message = FALSE, fig.cap="Interactive graph using plotly"}
 
@@ -656,6 +668,7 @@ Hover over the data points above and click on the legend items.
     ```
     
     ```{r quiz-save-answer, echo = FALSE, results = 'asis'}
+    cat("<pre class=\"mcq\">")
     c(
       "ggsave()",
       "ggsave(\"figname\")",
@@ -663,6 +676,7 @@ Hover over the data points above and click on the legend items.
       "ggsave(\"figname.png\", plot = cars)"
     ) %>%
       webex::mcq() %>% cat()
+  cat("</pre>")
     ```
 
   
@@ -747,65 +761,4 @@ Hover over the data points above and click on the legend items.
 
 ## Exercises
 
-Download the [formative exercises](formative_exercises/03_ggplot_stub.Rmd). See the [answer demo](formative_exercises/03_ggplot_answers.html) to see what your plots should look like (this doesn't contain the answer code).
-
-
-### Common Plots
-
-Generate a violin plot, boxplot, histogram, density plot, and column plot for the following data. 
-
-```{r}
-
-# dog weights estimated from http://petobesityprevention.org/ideal-weight-ranges/
-
-dogs <- tibble(
-  breed = rep(c("beagle", "boxer", "bulldog"), each = 100),
-  weight = c(
-    rnorm(100, 24, 6),
-    rnorm(100, 62.5, 12.5),
-    rnorm(100, 45, 5)
-  )
-)
-
-```
-
-*Basic*: Create each plot.
-
-*Intermediate*: Change the axis labels and colours. Save each plot as a PNG file.
-
-*Advanced*: Create a grid of the first four plot styles (exclude the column plot). In your RMarkdown file, display just the graph, but not the `r` code for the graph.
-
-
-### Two continuous variables
-
-Represent the relationships among moral, sexual and pathogen disgust scores from the dataset [disgust_scores.csv](data/disgust_scores.csv). 
-
-*Basic*: Graph the linear relationship between moral and pathogen disgust. Make sure the axes run from the minimum to maximum possible scores on both axes. Give the graph an appropriate title and axis lables.
-  
-  
-*Intermediate*: Create a 2d density plot of the relationship between pathogen and sexual disgust. 
-
-Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = ?, 
-h = c(?, ?))`, set n and h to values that make the graph look good, and 
-figure out what `n` and `h` represent.
-
-*Advanced*: Create a 3x3 grid of plots with columns representing the x-axis and 
-rows representing the y-axis. Put a density plot of each variable along the 
-diagonal. Make sure the graphs have appropriate titles and axis labels and 
-that the range of the axes are the same in all graphs.
-
-|              | moral   | sexual  | pathogen |
-|--------------|---------|---------|----------|
-| **moral**    | density | line    | line     | 
-| **sexual**   | line    | density | line     |
-| **pathogen** | line    | line    | density  |
-
-
-
-### Many correlated variables
-
-*Basic*: Create a heatmap of the relationships among all the questions in 
-[disgust_cors.csv](data/disgust_cors.csv) 
-(the correlations have already been calculated for you). 
-
-*Intermediate*: Figure out how to rotate the text on the x-axis so it's readable.
+Download the [exercises](exercises/03_ggplot_exercise.Rmd). See the [plots](exercises/03_ggplot_answers.html) to see what your plots should look like (this doesn't contain the answer code). See the [answers](exercises/03_ggplot_answers.Rmd) only after you've attempted all the questions.

@@ -1,1 +1,3 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/ for how to compile this example.
+Lisa DeBruine, & Dale Barr. (2019). Data Skills for Reproducible Science. Zenodo. doi:10.5281/zenodo.3564348
+
+[![DOI](https://zenodo.org/badge/166541547.svg)](https://zenodo.org/badge/latestdoi/166541547)

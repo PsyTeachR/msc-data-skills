@@ -1,62 +1,72 @@
 
 # Probability & Simulation {#sim}
 
+<img src="images/memes/sim.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic
 
 1. Understand what types of data are best modeled by different distributions
-    + uniform
-    + binomial
-    + normal
-    + poisson
+    + [uniform](#uniform)
+    + [binomial](#binomial)
+    + [normal](#normal)
+    + [poisson](#poisson)
 2. Generate and plot data randomly sampled from the above distributions
 3. Test sampled distributions against a null hypothesis
-    + exact binomial test
-    + t-test (1-sample, independent samples, paired samples)
-    + correlation (pearson, kendall and spearman)
-4. Define the following statistical terms:
-    + p-value
-    + alpha
-    + power
-    + false positive (type I error)
-    + false negative (type II error)
-    + confidence interval
+    + [exact binomial test](#exact-binom)
+    + [t-test](#t-test) (1-sample, independent samples, paired samples)
+    + [correlation](#correlation) (pearson, kendall and spearman)
+4. Define the following [statistical terms](#stat-terms):
+    + [p-value](#p-value)
+    + [alpha](#alpha)
+    + [power](#power)
+    + smallest effect size of interest ([SESOI](#sesoi))
+    + [false positive](#false-pos) (type I error)
+    + [false negative](#false-neg) (type II error)
+    + confidence interval ([CI](#conf-inf))
+5. [Calculate power](#calc-power) using iteration and a sampling function
 
 ### Intermediate
 
-5. Create a function to generate a sample with specific properties and run an inferential test
-6. Calculate power using `replicate` and a sampling function
-7. Calculate the minimum sample size for a specific power level and design
+6. Generate 3+ variables from a [multivariate normal](#mvnorm) distribution and plot them
 
 ### Advanced
 
-8. Generate 3+ variables from a multivariate normal distribution and plot them
+7. Calculate the minimum sample size for a specific power level and design
+
 
 ## Resources
 
+* [Stub for this lesson](stubs/8_sim.Rmd)
+* [Distribution Shiny App](http://shiny.psy.gla.ac.uk/debruine/simulate/)
+* [Simulation tutorials](https://debruine.github.io/tutorials/sim-data.html)
 * [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science*
 * [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera (week 1)
+* [Faux](https://debruine.github.io/faux/) package for data simulation
+* [Simulation-Based Power-Analysis for Factorial ANOVA Designs](https://psyarxiv.com/baxsf) [@lakens_caldwell_2019]
+* [Understanding mixed effects models through data simulation](https://psyarxiv.com/xp5cy/) [@debruine_barr_2019]
 
 
 ## Distributions
 
-Simulating data is a very powerful way to test your understanding of statistical 
-concepts. We are going to use simulations to learn the basics of probability.
+Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use simulations to learn the basics of probability.
 
 
 ```r
 # libraries needed for these examples
 library(tidyverse)
 library(MASS)
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
+### Uniform Distribution {#uniform}
 
+The uniform distribution is the simplest distribution. All numbers in the range have an equal probability of being sampled.
 
-### Uniform Distribution
-
-The uniform distribution is the simplest distribution. All numbers in the range 
-have an equal probability of being sampled. 
+<div class="try">
+<p>Take a minute to think of things in your own research that are uniformly distributed.</p>
+</div>
 
 #### Sample continuous distribution
 
@@ -66,13 +76,15 @@ Use `runif()` to sample from a continuous uniform distribution.
 
 
 ```r
-runif(10, min = 0, max = 1)
+u <- runif(100000, min = 0, max = 1)
+
+# plot to visualise
+ggplot() + 
+  geom_histogram(aes(u), binwidth = 0.05, boundary = 0,
+                 fill = "white", colour = "black")
 ```
 
-```
-##  [1] 0.1594836 0.4781883 0.7647987 0.7696877 0.2685485 0.6730459 0.9787908
-##  [8] 0.8463270 0.8566562 0.4451601
-```
+<img src="08-sim_files/figure-html/runif-1.png" width="100%" style="display: block; margin: auto;" />
 
 #### Sample discrete distribution
 
@@ -80,26 +92,22 @@ runif(10, min = 0, max = 1)
 
 Use `sample()` to sample from a discrete distribution.
 
-Simulate a single roll of a 6-sided die.
+You can use `sample()` to simulate events like rolling dice or choosing from a deck of cards. The code below simulates rolling a 6-sided die 10000 times. We set `replace` to `TRUE` so that each event is independent. See what happens if you set `replace` to `FALSE`.
+
 
 ```r
-sample(6, 1)
+rolls <- sample(1:6, 10000, replace = TRUE)
+
+# plot the results
+ggplot() + 
+  geom_histogram(aes(rolls), binwidth = 1, 
+                 fill = "white", color = "black")
 ```
 
-```
-## [1] 6
-```
-
-Simulate 10 rolls of a 6-sided die. Set `replace` to `TRUE` so each roll is 
-independent. See what happens if you set `replace` to `FALSE`.
-
-```r
-sample(6, 10, replace = TRUE)
-```
-
-```
-##  [1] 4 4 2 5 6 5 2 5 5 1
-```
+<div class="figure" style="text-align: center">
+<img src="08-sim_files/figure-html/sample-replace-1.png" alt="Distribution of dice rolls." width="100%" />
+<p class="caption">(\#fig:sample-replace)Distribution of dice rolls.</p>
+</div>
 
 You can also use sample to sample from a list of named outcomes.
 
@@ -110,13 +118,11 @@ sample(pet_types, 10, replace = TRUE)
 ```
 
 ```
-##  [1] "fish"   "fish"   "dog"    "ferret" "bird"   "dog"    "cat"   
-##  [8] "cat"    "fish"   "fish"
+##  [1] "ferret" "bird"   "cat"    "dog"    "ferret" "cat"    "ferret" "ferret"
+##  [9] "ferret" "fish"
 ```
 
-Ferrets are a much less common pet than cats and dogs, so our sample isn't very 
-realistic. You can set the probabilities of each item in the list with the `prob` 
-argument.
+Ferrets are a much less common pet than cats and dogs, so our sample isn't very realistic. You can set the probabilities of each item in the list with the `prob` argument.
 
 
 ```r
@@ -126,15 +132,14 @@ sample(pet_types, 10, replace = TRUE, prob = pet_prob)
 ```
 
 ```
-##  [1] "fish"   "dog"    "cat"    "dog"    "cat"    "cat"    "dog"   
-##  [8] "dog"    "ferret" "bird"
+##  [1] "ferret" "dog"    "ferret" "bird"   "dog"    "bird"   "cat"    "ferret"
+##  [9] "dog"    "dog"
 ```
 
-### Binomial Distribution
 
-The binomial distribution is useful for modeling binary data, where each 
-observation can have one of two outcomes, like success/failure, yes/no or 
-head/tails. 
+### Binomial Distribution {#binomial}
+
+The binomial distribution is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails. 
 
 #### Sample distribution
 
@@ -146,53 +151,52 @@ The `rbinom` function will generate a random binomial distribution.
 * `size` = number of trials
 * `prob` = probability of success on each trial
 
-Coin flips are a typical example of a binomial distribution, where we can assign 
-head to 1 and tails to 0.
+Coin flips are a typical example of a binomial distribution, where we can assign heads to 1 and tails to 0.
 
-20 individual coin flips of a fair coin
 
 ```r
+# 20 individual coin flips of a fair coin
 rbinom(20, 1, 0.5)
 ```
 
 ```
-##  [1] 1 1 1 0 0 0 0 0 1 1 0 1 0 1 0 0 0 1 0 1
+##  [1] 0 1 1 1 0 0 1 0 0 0 0 1 1 1 0 0 1 1 0 1
 ```
 
-20 individual coin flips of a baised (0.75) coin
+
 
 ```r
+# 20 individual coin flips of a baised (0.75) coin
 rbinom(20, 1, 0.75)
 ```
 
 ```
-##  [1] 1 0 0 0 0 1 0 1 1 1 1 1 0 1 0 1 1 1 1 1
+##  [1] 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 0 1 1
 ```
 
-You can generate the total number of heads in 1 set of 20 coin flips by setting 
-`size` to 20 and `n` to 1.
+You can generate the total number of heads in 1 set of 20 coin flips by setting `size` to 20 and `n` to 1.
+
 
 ```r
 rbinom(1, 20, 0.75)
 ```
 
 ```
-## [1] 15
+## [1] 18
 ```
 
 You can generate more sets of 20 coin flips by increasing the `n`.
+
 
 ```r
 rbinom(10, 20, 0.5)
 ```
 
 ```
-##  [1] 10 12 10  7 12  8  9  8 10 11
+##  [1]  9  7 11  9  9  9 13 11 10 10
 ```
 
-You should always check your randomly generated data to check that it makes sense. 
-For large samples, it's easiest to do that graphically. A histogram is usually 
-the best choice for plotting binomial data.
+You should always check your randomly generated data to check that it makes sense. For large samples, it's easiest to do that graphically. A histogram is usually the best choice for plotting binomial data.
 
 
 ```r
@@ -207,28 +211,23 @@ ggplot() +
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/sim_flips-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:sim_flips)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/sim_flips-1.png" width="100%" style="display: block; margin: auto;" />
 
-<div class="info">
+<div class="try">
 <p>Run the simulation above several times, noting how the histogram changes. Try changing the values of <code>n</code>, <code>size</code>, and <code>prob</code>.</p>
 </div>
 
-#### Exact binomial test
+#### Exact binomial test {#exact-binom}
 
 `binom.test(x, n, p)`
 
-You can test a binomial distribution against a specific probability using the 
-exact binomial test.
+You can test a binomial distribution against a specific probability using the exact binomial test.
 
 * `x` = the number of successes
 * `n` = the number of trials
 * `p` = hypothesised probability of success
 
-Here we can test a series of 10 coin flips from a fair coin and a biased coin 
-against the hypothesised probability of 0.5 (even odds).
+Here we can test a series of 10 coin flips from a fair coin and a biased coin against the hypothesised probability of 0.5 (even odds).
 
 
 ```r
@@ -245,29 +244,29 @@ binom.test(biased_coin, n, p = 0.5)
 ## 	Exact binomial test
 ## 
 ## data:  fair_coin and n
+## number of successes = 5, number of trials = 10, p-value = 1
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.187086 0.812914
+## sample estimates:
+## probability of success 
+##                    0.5 
+## 
+## 
+## 	Exact binomial test
+## 
+## data:  biased_coin and n
 ## number of successes = 4, number of trials = 10, p-value = 0.7539
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
 ##  0.1215523 0.7376219
 ## sample estimates:
 ## probability of success 
-##                    0.4 
-## 
-## 
-## 	Exact binomial test
-## 
-## data:  biased_coin and n
-## number of successes = 7, number of trials = 10, p-value = 0.3438
-## alternative hypothesis: true probability of success is not equal to 0.5
-## 95 percent confidence interval:
-##  0.3475471 0.9332605
-## sample estimates:
-## probability of success 
-##                    0.7
+##                    0.4
 ```
 
 <div class="info">
-<p>Run the code above several times, noting the p-values for the fair and biased coins. Alternatively, you can <a href="https://debruine.shinyapps.io/coinsim/">simulate coin flips</a> online and build up a graph of results and p-values.</p>
+<p>Run the code above several times, noting the p-values for the fair and biased coins. Alternatively, you can <a href="http://shiny.psy.gla.ac.uk/debruine/coinsim/">simulate coin flips</a> online and build up a graph of results and p-values.</p>
 <ul>
 <li>How does the p-value vary for the fair and biased coins?</li>
 <li>What happens to the confidence intervals if you increase n from 10 to 100?</li>
@@ -277,35 +276,64 @@ binom.test(biased_coin, n, p = 0.5)
 </ul>
 </div>
 
-#### False positives & negatives
+#### Statistical terms {#stat-terms}
 
-The probability that a test concludes the fair coin is biased is called the 
-*false positive rate* (or _Type I Error Rate_). The *alpha* is the false positive 
-rate we accept for a test. This is traditionally set at 0.05, but there are good 
-arguments for setting a different criterion in some circumstances.
+The **effect** is some measure of your data. This will depend on the type of data you have and the type of statistical test you are using. For example, if you flipped a coin 100 times and it landed heads 66 times, the effect would be 66/100. You can then use the exact binomial test to compare this effect to the **null effect** you would expect from a fair coin (50/100) or to any other effect you choose. The **effect size** refers to the difference between the effect in your data and the null effect (usually a chance value).
 
-The probability that a test concludes the biased coin is fair is called the 
-*false negative rate* (of _Type II Error Rate_). The *power* of a test is 1 
-minus its false negative rate (i.e., the *true positive rate*). Power depends 
-on how biased the coin is and how many samples we take. 
+<img src="images/memes/p-value.jpg" class="meme right">
+
+{#p-value}
+The **p-value** of a test is the probability of seeing an effect at least as extreme as what you have, if the real effect was the value you are testing against (e.g., a null effect). So if you used a binomial test to test against a chance probability of 1/6 (e.g., the probability of rolling 1 with a 6-sided die), then a p-value of 0.17 means that you could expect to see effects at least as extreme as your data 17% of the time just by chance alone. 
+
+{#alpha}
+If you are using null hypothesis significance testing (**NHST**), then you need to decide on a cutoff value (**alpha**) for making a decision to reject the null hypothesis. We call p-values below the alpha cutoff **significant**. In psychology, alpha is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html). 
+
+{#false-pos}{#false-neg}
+The probability that a test concludes there is an effect when there is really no effect (e.g., concludes a fair coin is biased) is called the **false positive rate** (or _Type I Error Rate_). The alpha is the false positive rate we accept for a test. The probability that a test concludes there is no effect when there really is one (e.g., concludes a biased coin is fair) is called the **false negative rate** (or _Type II Error Rate_). The **beta** is the false negative rate we accept for a test.
+
+<div class="info">
+<p>The false positive rate is not the overall probability of getting a false positive, but the probability of a false positive <em>under the null hypothesis</em>. Similarly, the false negative rate is the probability of a false negative <em>under the alternative hypothesis</em>. Unless we know the probability that we are testing a null effect, we can't say anything about the overall probability of false positives or negatives. If 100% of the hypotheses we test are false, then all significant effects are false positives, but if all of the hypotheses we test are true, then all of the positives are true positives and the overall false positive rate is 0.</p>
+</div>
+
+{#power}{#sesoi}
+**Power** is equal to 1 minus beta (i.e., the **true positive rate**), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last. The effect size you use in power calculations should be the smallest effect size of interest (**SESOI**). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
+
+<div class="try">
+Let's say you want to be able to detect at least a 15% difference from chance (50%) in a coin's fairness, and you want your test to have a 5% chance of false positives and a 10% chance of false negatives. What are the following values?
+
+* alpha = <input class='solveme nospaces' size='4' data-answer='["0.05",".05","5%"]'/>
+* beta = <input class='solveme nospaces' size='4' data-answer='["0.1","0.10",".1",".10","10%"]'/>
+* false positive rate = <input class='solveme nospaces' size='4' data-answer='["0.05",".05","5%"]'/>
+* false negative rate = <input class='solveme nospaces' size='4' data-answer='["0.1","0.10",".1",".10","10%"]'/>
+* power = <input class='solveme nospaces' size='4' data-answer='["0.9","0.90",".9",".90","90%"]'/>
+* SESOI = <input class='solveme nospaces' size='4' data-answer='["0.15",".15","15%"]'/>
+</div>
+
+{#conf-int}
+The **confidence interval** is a range around some value (such as a mean) that has some probability (usually 95%, but you can calculate CIs for any percentage) of containing the parameter, if you repeated the process many times. 
+
+<div class="info">
+A 95% CI does *not* mean that there is a 95% probability that the true mean lies within this range, but that, if you repeated the study many times and calculated the CI this same way every time, you'd expect the true mean to be inside the CI in 95% of the studies. This seems like a subtle distinction, but can lead to some misunderstandings. See [@Morey2016](https://link.springer.com/article/10.3758/s13423-015-0947-8) for more detailed discussion.
+</div>
+
 
 #### Sampling function
 
 To estimate these rates, we need to repeat the sampling above many times. 
-A function is ideal for repeating the exact same procedure over and over. Set 
-the arguments of the function to variables that you might want to change. Here, 
-we will want to estimate power for:
+A function is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:
 
 * different sample sizes (`n`)
-* different coin biases (`bias`)
+* different effects (`bias`)
 * different hypothesised probabilities (`p`, defaults to 0.5)
 
 
 ```r
 sim_binom_test <- function(n, bias, p = 0.5) {
+  # simulate 1 coin flip n times with the specified bias
   coin <- rbinom(1, n, bias)
+  # run a binomial test on the simulated data for the specified p
   btest <- binom.test(coin, n, p)
-  
+  # returun the p-value of this test
   btest$p.value
 }
 ```
@@ -318,70 +346,70 @@ sim_binom_test(100, 0.6)
 ```
 
 ```
-## [1] 0.0352002
+## [1] 0.9204108
 ```
 
-#### Calculate power
+#### Calculate power {#calc-power}
 
-Then you can use the `replicate()` function to run it many times and save all 
-the output values. You can calculate the *power* of your analysis by checking the 
-proportion of your simulated analyses that have a p-value less than your _alpha_ 
-(the probability of rejecting the null hypothesis when the null hypothesis is true).
+Then you can use the `replicate()` function to run it many times and save all the output values. You can calculate the *power* of your analysis by checking the proportion of your simulated analyses that have a p-value less than your _alpha_ (the probability of rejecting the null hypothesis when the null hypothesis is true).
 
 
 ```r
 my_reps <- replicate(1e4, sim_binom_test(100, 0.6))
 
-mean(my_reps < 0.05)
+alpha <- 0.05 # this does not always have to be 0.05
+
+mean(my_reps < alpha)
 ```
 
 ```
-## [1] 0.461
+## [1] 0.4663
 ```
 
 <div class="info">
-<p><code>1e4</code> is just scientific notation for a 1 followed by 4 zeros (<code>10000</code>). When youre running simulations, you usually want to run a lot of them and it's a pain to keep track of whether you've typed 5 or 6 zeros (100000 vs 1000000) and this will change your running time by an order of magnitude.</p>
+<p><code>1e4</code> is just scientific notation for a 1 followed by 4 zeros (<code>10000</code>). When you're running simulations, you usually want to run a lot of them. It's a pain to keep track of whether you've typed 5 or 6 zeros (100000 vs 1000000) and this will change your running time by an order of magnitude.</p>
 </div>
 
-### Normal Distribution
+### Normal Distribution {#normal}
 
 #### Sample distribution
 
 `rnorm(n, mean, sd)`
 
-We can simulate a normal distribution of size `n` if we know the `mean` and 
-standard deviation (`sd`). A density plot is usually the best way to visualise 
-this type of data if your `n` is large.
+We can simulate a normal distribution of size `n` if we know the `mean` and standard deviation (`sd`). A density plot is usually the best way to visualise this type of data if your `n` is large.
 
 
 ```r
 dv <- rnorm(1e5, 10, 2)
 
+# proportions of normally-distributed data 
+# within 1, 2, or 3 SD of the mean
+sd1 <- .6827 
+sd2 <- .9545
+sd3 <- .9973
+
 ggplot() +
   geom_density(aes(dv), fill = "white") +
   geom_vline(xintercept = mean(dv), color = "red") +
-  geom_vline(xintercept = quantile(dv, .5 - (.6827/2)), color = "darkgreen") +
-  geom_vline(xintercept = quantile(dv, .5 + (.6827/2)), color = "darkgreen") +
-  geom_vline(xintercept = quantile(dv, .5 - (.9545/2)), color = "blue") +
-  geom_vline(xintercept = quantile(dv, .5 + (.9545/2)), color = "blue") +
-  geom_vline(xintercept = quantile(dv, .5 - (.9973/2)), color = "purple") +
-  geom_vline(xintercept = quantile(dv, .5 + (.9973/2)), color = "purple") +
+  geom_vline(xintercept = quantile(dv, .5 - sd1/2), color = "darkgreen") +
+  geom_vline(xintercept = quantile(dv, .5 + sd1/2), color = "darkgreen") +
+  geom_vline(xintercept = quantile(dv, .5 - sd2/2), color = "blue") +
+  geom_vline(xintercept = quantile(dv, .5 + sd2/2), color = "blue") +
+  geom_vline(xintercept = quantile(dv, .5 - sd3/2), color = "purple") +
+  geom_vline(xintercept = quantile(dv, .5 + sd3/2), color = "purple") +
   scale_x_continuous(
     limits = c(0,20), 
     breaks = seq(0,20)
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/rnorm-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:rnorm)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/rnorm-1.png" width="100%" style="display: block; margin: auto;" />
 
 <div class="info">
 <p>Run the simulation above several times, noting how the density plot changes. What do the vertical lines represent? Try changing the values of <code>n</code>, <code>mean</code>, and <code>sd</code>.</p>
 </div>
 
-#### T-test
+#### T-test {#t-test}
 
 `t.test(x, y, alternative, mu, paired)`
 
@@ -405,13 +433,13 @@ t.test(sim_norm, mu = 0)
 ## 	One Sample t-test
 ## 
 ## data:  sim_norm
-## t = 5.7482, df = 99, p-value = 1.001e-07
+## t = 4.988, df = 99, p-value = 2.608e-06
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  0.3957309 0.8129538
+##  0.3087384 0.7166283
 ## sample estimates:
 ## mean of x 
-## 0.6043423
+## 0.5126833
 ```
 
 Run an independent-samples t-test by comparing two lists of values.
@@ -429,13 +457,13 @@ t_ind
 ## 	Welch Two Sample t-test
 ## 
 ## data:  a and b
-## t = -1.933, df = 197.78, p-value = 0.05466
+## t = -2.9732, df = 193.23, p-value = 0.003323
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.582471984  0.005816091
+##  -0.6300477 -0.1275070
 ## sample estimates:
 ## mean of x mean of y 
-## 0.4745243 0.7628522
+## 0.3850962 0.7638735
 ```
 
 <div class="warning">
@@ -444,8 +472,8 @@ t_ind
 
 #### Sampling function
 
-We can use the `names()` function to find out the names of all the t.test parameters 
-and use this to just get one type of data, like the test statistic (e.g., t-value).
+We can use the `names()` function to find out the names of all the t.test parameters and use this to just get one type of data, like the test statistic (e.g., t-value).
+
 
 ```r
 names(t_ind)
@@ -456,7 +484,7 @@ t_ind$statistic
 ## [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   
 ## [6] "null.value"  "alternative" "method"      "data.name"  
 ##         t 
-## -1.933038
+## -2.973168
 ```
 
 Alternatively, use `broom::tidy()` to convert the output into a tidy table.
@@ -468,24 +496,28 @@ broom::tidy(t_ind)
 
 ```
 ## # A tibble: 1 x 10
-##   estimate estimate1 estimate2 statistic p.value parameter conf.low
-##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>
-## 1   -0.288     0.475     0.763     -1.93  0.0547      198.   -0.582
-## # … with 3 more variables: conf.high <dbl>, method <chr>,
-## #   alternative <chr>
+##   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
+##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>     <dbl>
+## 1   -0.379     0.385     0.764     -2.97 0.00332      193.   -0.630    -0.128
+## # … with 2 more variables: method <chr>, alternative <chr>
 ```
 
 
-If you want to run the simulation many times and record information each time, 
-first you need to turn your simulation into a function.
+If you want to run the simulation many times and record information each time, first you need to turn your simulation into a function.
 
 
 ```r
 sim_t_ind <- function(n, m1, sd1, m2, sd2) {
+  # simulate v1
   v1 <- rnorm(n, m1, sd1)
+  
+  #simulate v2
   v2 <- rnorm(n, m2, sd2)
+    
+  # compare using an independent samples t-test
   t_ind <- t.test(v1, v2, paired = FALSE)
   
+  # return the p-value
   return(t_ind$p.value)
 }
 ```
@@ -498,7 +530,7 @@ sim_t_ind(100, 0.7, 1, 0.5, 1)
 ```
 
 ```
-## [1] 0.4601542
+## [1] 0.08335778
 ```
 
 Now replicate the simulation 1000 times.
@@ -513,15 +545,14 @@ power
 ```
 
 ```
-## [1] 0.2965
+## [1] 0.2959
 ```
 
 <div class="try">
 <p>Run the code above several times. How much does the power value fluctuate? How many replications do you need to run to get a reliable estimate of power?</p>
 </div>
 
-Compare your power estimate from simluation to a power calculation using `power.t.test()`. 
-Here, `delta` is the difference between `m1` and `m2` above.
+Compare your power estimate from simluation to a power calculation using `power.t.test()`. Here, `delta` is the difference between `m1` and `m2` above.
 
 
 ```r
@@ -542,7 +573,6 @@ power.t.test(n = 100, delta = 0.2, sd = 1, sig.level = alpha, type = "two.sample
 ## NOTE: n is number in *each* group
 ```
 
-
 You can plot the distribution of p-values.
 
 
@@ -557,10 +587,7 @@ ggplot() +
   )
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/plot-reps-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:plot-reps)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/plot-reps-1.png" width="100%" style="display: block; margin: auto;" />
 
 <div class="try">
 <p>What do you think the distribution of p-values is when there is no effect (i.e., the means are identical)? Check this yourself.</p>
@@ -570,33 +597,34 @@ ggplot() +
 <p>Make sure the <code>boundary</code> argument is set to <code>0</code> for p-value histograms. See what happens with a null effect if <code>boundary</code> is not set.</p>
 </div>
 
-#### Bivariate Normal
+### Bivariate Normal
 
-##### Correlation 
+#### Correlation {#correlation}
 
 You can test if two continuous variables are related to each other using the `cor()` function.
 
-Below is a quick and dirty way to generate two correlated variables. `x` is drawn 
-from a normal distribution, while `y` is the sum of `x` and another value drawn 
-from a random normal distribution. We'll learn later how to generate specific 
-correlations in simulated data.
+Below is one way to generate two correlated variables: `a` is drawn from a normal distribution, while `x` and `y` the sum of  and another value drawn from a random normal distribution. We'll learn later how to generate specific correlations in simulated data.
 
 
 ```r
 n <- 100 # number of random samples
 
-x <- rnorm(n, 0, 1)
-y <- x + rnorm(n, 0, 1)
+a <- rnorm(n, 0, 1)
+x <- a + rnorm(n, 0, 1)
+y <- a + rnorm(n, 0, 1)
 
 cor(x, y)
 ```
 
 ```
-## [1] 0.7097442
+## [1] 0.3525645
 ```
 
-`cor()` defaults to Pearson's correlations. Set the `method` argument to use 
-Kendall or Spearman correlations.
+<div class="try">
+<p>Set <code>n</code> to a large number like 1e6 so that the correlations are less affected by chance. Change the value of the <strong>mean</strong> for <code>a</code>, <code>x</code>, or <code>y</code>. Does it change the correlation between <code>x</code> and <code>y</code>? What happens when you increase or decrease the <strong>sd</strong> for <code>a</code>? Can you work out any rules here?</p>
+</div>
+
+`cor()` defaults to Pearson's correlations. Set the `method` argument to use Kendall or Spearman correlations.
 
 
 ```r
@@ -604,22 +632,20 @@ cor(x, y, method = "spearman")
 ```
 
 ```
-## [1] 0.7153195
+## [1] 0.3062106
 ```
 
-##### Sample distribution
-<a name="bvn"></a>
+#### Sample distribution {#bvn}
 
-What if we want to sample from a population with specific relationships between 
-variables? We can sample from a _bivariate normal distribution_ using the `MASS` package,
+What if we want to sample from a population with specific relationships between variables? We can sample from a **bivariate normal distribution** using `mvrnorm()` from the `MASS` package. 
 
 
 ```r
-n <- 1000 # number of random samples
-rho <- 0.5 # population correlation between the two variables
+n   <- 1000 # number of random samples
+rho <- 0.5  # population correlation between the two variables
 
-mu <- c(10, 20) # the means of the samples
-stdevs <- c(5, 6) # the SDs of the samples
+mu     <- c(10, 20) # the means of the samples
+stdevs <- c(5, 6)   # the SDs of the samples
 
 # correlation matrix
 cor_mat <- matrix(c(  1, rho, 
@@ -629,19 +655,18 @@ cor_mat <- matrix(c(  1, rho,
 sigma <- (stdevs %*% t(stdevs)) * cor_mat
 
 # sample from bivariate normal distribution
-bvn <- mvrnorm(n, mu, sigma) 
+bvn <- MASS::mvrnorm(n, mu, sigma) 
 
 cor(bvn) # check correlation matrix
 ```
 
 ```
-##           [,1]      [,2]
-## [1,] 1.0000000 0.4986956
-## [2,] 0.4986956 1.0000000
+##          [,1]     [,2]
+## [1,] 1.000000 0.539311
+## [2,] 0.539311 1.000000
 ```
 
-Plot your sampled variables to check everything worked like you expect. You need 
-to convert the output of `mvnorm` into a tibble in order to use it in ggplot.
+Plot your sampled variables to check everything worked like you expect. It's easiest to convert the output of `mvnorm` into a tibble in order to use it in ggplot.
 
 
 ```r
@@ -658,24 +683,23 @@ bvn %>%
 ## This warning is displayed once per session.
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/graph-bvn-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:graph-bvn)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/graph-bvn-1.png" width="100%" style="display: block; margin: auto;" />
 
-### Multivariate Normal
+### Multivariate Normal {#mvnorm}
 
-##### Sample distribution
+You can generate more than 2 correlated variables, but it gets a little trickier to create the correlation matrix.
+
+#### Sample distribution
 
 
 ```r
-n <- 200 # number of random samples
+n      <- 200 # number of random samples
 rho1_2 <- 0.5 # correlation betwen v1 and v2
-rho1_3 <- 0 # correlation betwen v1 and v3
+rho1_3 <- 0   # correlation betwen v1 and v3
 rho2_3 <- 0.7 # correlation betwen v2 and v3
 
-mu <- c(10, 20, 30) # the means of the samples
-stdevs <- c(8, 9, 10) # the SDs of the samples
+mu     <- c(10, 20, 30) # the means of the samples
+stdevs <- c(8, 9, 10)   # the SDs of the samples
 
 # correlation matrix
 cor_mat <- matrix(c(     1, rho1_2, rho1_3, 
@@ -683,19 +707,64 @@ cor_mat <- matrix(c(     1, rho1_2, rho1_3,
                     rho1_3, rho2_3,      1), 3) 
 
 sigma <- (stdevs %*% t(stdevs)) * cor_mat
-bvn3 <- mvrnorm(n, mu, sigma)
+bvn3 <- MASS::mvrnorm(n, mu, sigma)
 
 cor(bvn3) # check correlation matrix
 ```
 
 ```
-##           [,1]      [,2]      [,3]
-## [1,] 1.0000000 0.5980426 0.1007923
-## [2,] 0.5980426 1.0000000 0.6949006
-## [3,] 0.1007923 0.6949006 1.0000000
+##            [,1]     [,2]       [,3]
+## [1,] 1.00000000 0.526778 0.04238033
+## [2,] 0.52677804 1.000000 0.73857497
+## [3,] 0.04238033 0.738575 1.00000000
 ```
 
-##### 3D Plots
+Alternatively, you can use the (in-development) package faux to generate any number of correlated variables. It also allows to to easily name the variables and has a function for checking the parameters of your new simulated data (`check_sim_stats()`).
+
+
+```r
+#devtools::install_github("debruine/faux")
+library(faux)
+```
+
+```
+## 
+## ************
+## Welcome to faux. For support and examples visit:
+## http://debruine.github.io/faux/
+## - Get and set global package options with: faux_options()
+## ************
+```
+
+```r
+bvn3 <- faux::rnorm_multi(
+  n = n,
+  vars = 3,
+  mu = mu,
+  sd = stdevs,
+  r = c(rho1_2, rho1_3, rho2_3),
+  varnames = c("A", "B", "C")
+)
+
+faux::check_sim_stats(bvn3)
+```
+
+```
+## Warning: All elements of `...` must be named.
+## Did you want `multisim_data = c(A, B, C)`?
+```
+
+```
+## # A tibble: 3 x 7
+##       n var       A     B     C  mean    sd
+##   <dbl> <chr> <dbl> <dbl> <dbl> <dbl> <dbl>
+## 1   200 A      1     0.48 -0.14  10.4  7.88
+## 2   200 B      0.48  1     0.63  21.0  8.37
+## 3   200 C     -0.14  0.63  1     30.6  9.28
+```
+
+
+#### 3D Plots
 
 You can use the `plotly` library to make a 3D graph.
 
@@ -746,38 +815,25 @@ marker_style = list(
 
 bvn3 %>%
   as_tibble() %>%
-  plot_ly(x = ~V1, y = ~V2, z = ~V3, marker = marker_style) %>%
+  plot_ly(x = ~A, y = ~B, z = ~C, marker = marker_style) %>%
   add_markers()
 ```
 
-<div class="figure" style="text-align: center">
-<!--html_preserve--><div id="htmlwidget-398537f4a7f58e5be370" style="width:100%;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-398537f4a7f58e5be370">{"x":{"visdat":{"c6b0605e2833":["function () ","plotlyVisDat"]},"cur_data":"c6b0605e2833","attrs":{"c6b0605e2833":{"x":{},"y":{},"z":{},"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"V1"},"yaxis":{"title":"V2"},"zaxis":{"title":"V3"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[11.1148934084963,-1.66498088857444,10.6811913231604,4.78726002783861,6.88514032796861,3.01805113414321,13.1795268100109,3.74787301926506,-0.181775531936175,0.87435384755309,16.5698489400346,12.4265034172464,1.45650927465134,8.05113464911467,31.8438893047431,7.58117641418362,22.6847711466373,-1.85557963677383,15.8122919481733,17.2808294764598,6.76173905606375,14.5638328090566,11.6374942303838,19.9891868393746,13.2060588689455,4.14672160722232,10.1955741604546,16.7974027585985,23.7035405505464,7.70837420988864,-2.15218490561808,14.0317958132652,16.7913989282841,2.98147089019423,-8.55672999697654,19.290547930685,14.6158547871846,14.030141309246,14.5226020031962,11.9902711059039,2.65887063781444,10.3979646039631,-2.35952032550511,7.48588212478059,23.7560949435314,6.49800483461837,11.4761737741547,-7.134691085379,14.4789565041416,-1.77576399591401,8.16279262753046,18.353798278226,9.24803681700702,3.876175682443,3.71631274654606,11.398541683716,-2.51261164958883,3.48530848336078,15.5708271601487,16.4736735575654,10.0240058017052,18.5235929827603,21.1646162905576,-0.095647246787939,17.8791547924125,17.6843007079761,10.9433611790579,11.781118519091,16.3700363837459,8.56837382182195,16.5913846337896,4.9113042881134,17.6020957785226,16.9528227083516,20.1448304850817,6.17889339889091,2.41798064686243,22.9312805902455,25.7581228925173,18.1358013879732,12.6185092014007,3.53986018546909,2.19719154634623,21.2167368265081,10.1098971138003,3.46059846862061,23.2548339285602,-7.81571036717409,-4.54126541817403,24.9114678610626,16.9700778288186,14.5447411433333,8.3496063536746,14.6414770509675,12.7425732162067,14.0768936028322,15.7256120007008,15.0033920579141,11.7540646779828,-3.32749076303686,3.46708679737292,13.8192713446663,17.8470929733787,9.47809198704144,2.0796848390253,8.91843888866914,18.1385741598274,1.27248128493452,-9.32866743821121,20.0497415169071,27.9409274196184,3.31964398415861,14.7318280275677,16.6583984600534,0.928702646359394,10.1678696438659,11.5042681608989,4.24516904310622,8.76681569685673,21.9093649964623,8.20796554475855,1.27511070719744,-2.01752009028856,7.24353755999789,24.6618402819927,9.11307747134696,19.6965424695837,-4.66258322648446,2.48733753280544,7.87772317474198,14.1876456571292,14.7999547523464,3.49018882037571,4.96000013576747,11.975028608271,15.8480798496304,14.832665257273,13.5599144131624,22.1406024247893,7.31457854047192,6.57639972253891,11.4178231306918,14.4677203451809,9.61897705897155,0.470855481266547,20.836333625054,8.28849374524221,14.5838576318135,9.5319991638203,5.98348358735693,22.1855670554324,26.3195540080616,33.1591398285116,2.41404786524075,7.29167733804315,10.958983652565,8.21007583378738,6.07715849589573,16.1480898315212,15.6431892328152,4.3655708623208,16.1912746845997,25.9450913958415,-2.21708948129395,-16.0207990166948,-2.50746931983802,10.9310610169806,3.46347962852626,11.8968131376732,8.74454443444312,23.3746814309392,26.0022597214998,12.3753348492352,5.85621531348225,7.52822281122869,11.2523775592591,14.784269817157,4.82910667799392,13.2121142177486,7.61265806595182,-2.15858419316497,17.6293066166568,-6.64318246937081,17.6321253368242,11.0489878355592,3.30359368392457,7.90323607356413,21.1378727998954,14.2802877666847,9.4528121730635,16.1886854066549,4.58088068617413,14.7394204221826,13.944475991566,19.2930885506612,0.267910602957652,1.39970640632444,0.752335267231922,20.0010718730004,-0.288272146142694],"y":[11.3142513536567,19.4628404426847,17.6557525685348,4.95107205228466,21.817487659359,10.2259972169188,24.5467874018055,25.2624917655222,34.4569896878497,18.7101014367376,29.14059664125,31.8619948481306,4.30333712620789,23.3676872713337,43.2728947073299,16.4520066969602,15.5097264545959,10.9339850338437,19.1959442130777,23.6800462596908,15.2607463469114,34.6477029726345,13.3803780581169,18.386682890763,21.1465042891789,4.824611452621,26.1877444257019,27.2723334678665,35.2119394863957,27.7711142806995,7.1197523363117,26.6812319714731,17.284054251371,18.8993634560284,17.1753116039415,23.8867998292136,28.8180961322882,28.6323117709672,26.4501642954248,22.8123713498582,5.26720938932735,14.1211324409628,-4.36876079631003,31.0194897985618,28.9111205563551,12.2748691844461,22.8702881486256,1.50325430944365,21.4362738840641,17.6457183343654,10.3649566057793,23.4059261238669,18.4235294288521,15.2957541194795,14.012265638748,20.6678326834623,9.99540952204818,21.3793703683506,32.9022861254977,21.824944413323,25.5148487059503,30.3752187591089,27.1683253430368,11.5712536447209,21.9698547356066,17.5451090869945,21.8249388272084,15.8548447059514,14.2151130497875,27.6003313418188,33.8179991186594,10.6033238144759,23.8915063804932,7.53370345938155,22.9106193946624,14.4679962772395,18.5841450418415,37.2504303848473,28.9933693161702,26.5343949093641,24.3024258669068,5.55476425624523,22.6822715769932,28.2424898528385,12.1358100334843,8.24623724142442,46.2011463325562,1.22244195190766,27.1600542619408,17.7643865750468,21.4347368254892,10.4183333094749,21.4125383233079,25.7624358979432,19.6787766935566,24.2480938002438,32.9276783207064,19.8033891755952,33.7547466573742,12.1142260160141,16.4917623107947,27.3956507920295,20.3459147922709,19.4561025141169,10.6207252252284,17.7150060067604,24.1448864846663,16.6325680542512,-8.05955496421473,27.4958093935573,22.3883274541547,30.3565062944689,39.074002809608,18.9282990865516,11.2075298123745,27.0746707220919,25.1804059023683,11.0257169788071,18.0123866651442,25.224325062325,20.8879119802848,4.30152162443666,10.2421158373819,3.08528812633165,40.9979423982973,10.5484302141932,12.6942048691093,16.6343428371679,23.8476938902904,37.9484064017918,16.6386502980992,32.5257364240722,14.9545951526251,18.9766437862907,24.3789296775903,22.4827369600428,30.7118519890683,29.65666068747,27.4488779755106,26.1138469700269,0.610569481699255,35.7813915604707,26.660161753753,14.3813052973617,4.02976743198094,8.82151681079848,15.2275776819573,29.3090650574094,32.0695640729609,16.131927129955,36.5951299738802,36.9809137621398,37.0536538284069,24.2706650963441,18.8828155440265,27.5367978260365,23.5284886042624,22.9167048335702,23.5630062253305,9.42960672224729,14.7675288606382,23.2515254105736,39.8204854576362,8.24346427881328,11.1045047744758,1.90050425436231,20.9232596509789,31.7091928838321,14.5543184260051,21.3784550200961,44.0108084119517,29.4122556922672,25.8820815740264,24.9955106222381,30.7651409620457,27.8449323676795,25.9402340158256,14.1879155269193,16.7777062667743,9.28066044078779,4.58467160700904,18.0170810403703,19.4864083605284,31.8217891465829,23.8954838641425,7.62028467140052,14.7289465194314,26.1867731721274,25.4828127380156,29.5565470607616,21.534381496136,20.0186337627439,26.0718284561408,35.0337218385103,15.637103745121,20.7905430201623,11.7831687576067,8.62152461803907,35.4671809288675,14.1177740660904],"z":[23.3056886875019,38.1904125485321,20.9259100047855,12.8709797762802,30.1667949179176,26.5762687536294,37.9500599819661,31.945094737688,51.781067135754,29.6246017438921,34.5259243509077,38.7083636589081,21.2184215873117,37.0570949330247,37.3901939984151,28.1816665985689,6.49128017822727,35.9736583318908,25.692484188583,31.6073043516226,29.2182849715847,39.879744167991,22.9455329128774,22.9650379225763,29.4492436605455,13.9808719459961,36.529041317483,33.7918877819452,37.9536445987545,38.6709696434672,18.2850215776852,31.0865095170726,23.7179261832991,29.6268591313795,42.9231614846237,30.5933081783238,41.8427284939299,39.1386936756847,32.947785907181,35.4645361195111,18.0383418556767,29.6782854664054,13.8517330457453,42.387228696378,32.8878845936131,26.8145321218888,30.4892035774145,11.8601251229675,27.0036981360709,54.8918169331917,23.6372767419564,44.2815689795873,29.8459443785672,36.6319632527921,26.847582135015,29.423611517949,27.6751157716671,39.1097506754011,44.0109609697286,27.3913036422733,36.188874922214,39.0077236371587,35.3541353949638,25.1121429733554,30.5797121423827,18.7580064482851,24.175323696158,27.2141740685196,15.0773458341387,41.2508315726659,37.692214051231,32.948709859135,26.3544821012255,11.5349615983488,23.8626065612663,23.7141569772208,25.9485288835724,33.5124631893497,35.4573945795999,23.7159959830747,41.5601544229212,21.7127786434553,45.5419809494962,36.3427687795288,27.7265359163373,20.8957726252501,37.2604958479942,20.2540399121682,41.5692914350533,13.9661499374392,23.0722051269961,11.7318451688934,36.7993927290413,27.21217093316,40.2848963256064,34.3700483676921,36.2782442735901,28.2414497193164,43.8022425803844,29.406981695878,25.9099864442135,39.8685399704939,15.481656780691,32.700733214484,33.4514999647136,32.004454402978,28.7865916357954,28.5785673292063,12.0772911750627,37.8071518575751,27.8568388823057,42.3562804981346,53.7354244994399,32.1413423213359,33.9275283259942,38.4999749370075,22.1769234990292,24.9099656051475,23.4801807942709,36.7534254012368,36.0321871401764,24.4870182091137,26.6330459100522,13.9166499048262,47.4659511285402,8.16742635568904,26.2189424234198,20.8817554055301,43.7788128713553,54.4389148444979,23.5842758327404,43.1742641927296,21.7348599336383,26.5572524861645,43.3676735996844,28.0142549790496,44.0834865061032,26.2727011235645,32.2897467148473,34.263736366614,18.0149857036007,47.2006368415867,37.094347535178,19.0368556252555,21.5095060634708,20.8787004116612,37.7711320662943,27.4164559258456,35.3040847948313,34.0854662272644,35.7631849672786,31.7005129862698,26.5334415710184,33.8734501396952,18.3119402098496,36.1172677455415,47.0130015864936,36.1546965599502,31.5510058615113,9.84639327665813,29.8716551834612,40.0514434711092,40.0791574062273,26.4780355558516,34.4846683132664,11.9185995779508,31.7105470411136,45.546191013024,17.1989804521013,27.5504690850461,46.574131321165,35.7542793209018,26.3831501941907,32.7381030293211,37.997492166159,20.0613734301851,38.0740537346843,34.7474287976971,29.5103941395398,17.1547694603168,27.3554071636278,25.7813264288705,45.545715690094,47.9993703089265,24.9547529839293,21.3323390832915,24.9252347380147,23.4544669026669,30.8410689091183,42.2037328949707,31.1461032170714,27.5654868647415,31.216383439263,44.9873381561458,23.2172997829676,33.4583514095478,27.5539280361629,22.1694888534779,35.2855276819751,22.9586125354087],"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"type":"scatter3d","mode":"markers","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script><!--/html_preserve-->
-<p class="caption">(\#fig:3d-graph-mvn)**CAPTION THIS FIGURE!!**</p>
-</div>
+<!--html_preserve--><div id="htmlwidget-a2f50596dc8393459864" style="width:100%;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a2f50596dc8393459864">{"x":{"visdat":{"1de71ea2400f":["function () ","plotlyVisDat"]},"cur_data":"1de71ea2400f","attrs":{"1de71ea2400f":{"x":{},"y":{},"z":{},"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"A"},"yaxis":{"title":"B"},"zaxis":{"title":"C"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[12.6083670024058,6.36122646228668,12.2544409381861,22.1714999668419,15.4344310386314,11.6162207555062,5.91706161607455,11.6144808741993,7.27086696886945,26.5105355886793,19.8830950271336,9.79374424555693,14.9348146893983,19.9532420638366,25.0540282290862,15.3788136337759,4.15970067951797,12.7078849440048,5.22527676970516,11.2410890155764,15.3633924690931,2.04618887796837,23.7178687870289,5.70763317997816,11.0405167891847,2.69652082805543,14.6999687833166,16.8041019488886,20.0130241527148,0.45725664315543,7.11698521100179,28.8013197223409,12.293748083555,8.22532318572171,21.1958187702776,-8.77973586959668,13.1709065672923,15.7638532843296,19.259786375195,8.48574515947254,1.56732570400427,2.40477274988207,16.7326773158987,8.10777226855499,13.5677559799233,16.5771058168727,-11.3000067720573,20.0545653751993,0.260123920050518,7.27706274445775,15.3044594112114,-2.34556733099235,7.19468610128647,22.6200730569302,12.3925824502698,4.94866328645585,-1.04345740247651,11.5968557358798,3.79733713978858,0.15628441571082,11.3586691060178,0.590844987693611,18.1457555078082,6.13623772815992,4.5312885957627,17.227330644018,9.23733359016146,3.08251445358619,4.34413539581293,2.03192713569511,8.39508906374432,-4.89265378982637,20.703552161257,2.73177891641275,18.2893351878787,10.6474741464922,17.5110187371093,11.3022354515033,18.2478984277374,6.36534823558046,8.46775925523767,13.0401092659601,6.04426828444106,20.8122565279673,8.12957695808228,7.081775708841,6.66939842348871,10.0267403993135,7.73136125752861,15.1630607263138,0.490490097714313,8.52055654868393,9.69488485131989,14.7068792296266,28.7748861025396,14.1137966276696,3.92183478361084,2.21773720112918,6.62849008547957,4.34818662390257,6.33678583090717,14.5187034665977,2.15465444770301,3.70236253298963,16.7218002517239,14.5723777118697,10.8609952939677,15.7518968666889,0.808781456597835,11.6313757230576,14.645745550223,20.5576671739282,11.465800117087,8.06952106599334,12.2959504260526,19.4033397156026,8.38364477447367,18.1532627773889,15.8335160041359,-2.06647949158381,11.9592500705946,1.07843052170672,8.9099160089493,12.5922964965646,0.268885132445259,10.6254134092356,12.5211927061256,7.14686587008166,14.1585247796275,5.92135001787867,11.7245542405758,18.6957330536429,8.11969922933652,0.456917567382982,7.2576279568463,25.687180941634,16.8130366152809,11.4629100584683,-6.08754876230991,6.11995340626945,0.71529831536415,7.25749213945387,7.77253687192546,6.87304502584013,-5.94794126345833,21.2641677804734,7.9808280168167,31.4033575420326,14.5408470237698,20.536434716855,1.54196197231417,8.42397650418055,9.76048807376718,11.5168914587048,28.0161159957812,-3.62392599497875,11.647998427765,-12.0852347314493,18.8900110972045,4.53104739949392,7.23727416307634,20.8538641397039,8.95348531461343,0.944274737012559,-2.40442028126848,23.2603404796527,-2.18381933409388,21.5508282505303,18.8497766079805,10.2001088077161,0.381382905566344,5.95471690220943,6.89218038666115,22.6108469037705,12.3113459702167,5.89645476493532,-5.68899876987158,6.63762897999473,15.4071780666117,4.70739152791616,10.7674188976629,9.48975104785403,10.1057857073929,17.7628898260405,17.2262038677775,4.07244258753947,10.4609680464575,-2.39726468450969,19.9510994598183,14.461970942805,7.38445480410885,8.24783352658683,24.374528098583,12.0348350436616,13.0936963061619,16.5564424572434,18.4789232614196,11.724032861981,16.7515403052027,12.5605068847005],"y":[20.3624419083991,21.7399189855995,4.08448368941389,26.4756830560029,30.2654998821932,20.2594252834978,18.7966401149551,17.371319134628,30.5485640394181,28.5105731962212,19.0463866805174,26.5927351223509,25.5482250278288,21.8791189891766,29.2300254744169,33.662694587036,29.8032530402373,38.8566110858767,15.9411814840229,12.078774414548,19.3570060207793,18.7180573276479,31.8937181509243,35.3344976503415,11.7365747864685,7.78171657378346,22.0986080053846,12.8492965647197,28.3006068297345,19.713241326703,23.999101375736,38.1992692991946,7.38118139081393,9.79347507552719,17.810759204945,12.6987562120524,18.8440764958371,20.0740657171184,20.2320219299023,14.2267988916655,21.3595771902926,-1.65291755656886,14.392394770534,27.2212002816911,38.2051773301848,27.1926277208883,6.5301170458064,20.9885489280085,15.433308343446,19.0011555025147,25.2386601171441,23.4389225076914,11.1471940071254,19.8930581140936,23.861141167432,7.74394530304086,11.8741152089984,28.4368975444758,10.5989364349715,9.42564748810321,27.4002619394806,19.6411983566845,42.0946166285425,9.45189189267511,23.4199373036897,17.9459693152081,24.4912810949241,23.6952692292045,30.1676988077947,19.8912864323574,18.0038200157678,9.19521272263484,27.9904018157461,6.14066145846881,25.9609653530169,22.5646014701445,34.7519324596088,16.1014984907847,21.7445585675441,21.0182569689852,7.70310511090462,38.2272420404679,13.8754024658153,29.7916875709027,27.963813949996,17.9889155080048,13.8388201781316,18.0524465402826,13.3048547743024,26.4797404787457,18.1841905277461,27.734101542383,35.8332082461659,19.0129456910674,18.589589917262,16.3064865281098,31.0475807575783,16.3787151288282,17.1009872259931,11.8785255483613,23.6169740272319,14.3454314581426,14.6101575597185,22.1476647064362,18.8736518220079,20.011785512349,29.2052881755322,20.5795716537861,7.32330121051379,13.8253448970203,25.1953149490001,19.9200481848172,24.1750852145179,26.4204579319141,22.1120324219909,37.2010556591143,27.6017509173656,18.0902563885676,30.8904072602231,20.6287519984186,1.07977445499293,23.1631313612659,31.9038508606498,25.0782822524923,2.51193943669319,20.9658726221974,27.5920080617383,17.4535032739415,25.1285869291355,16.0830969536434,16.655609776129,23.7473462716602,25.6507044392618,18.4441261963088,30.4459681857659,20.6767635918898,22.9170874309422,33.4656774167904,1.47745099520023,15.5479120849919,5.47768978032888,26.1549987619274,20.0863849438043,25.0717133371158,5.26000287526958,10.7938474332267,24.0341915479121,29.6517504352636,20.3066125892818,29.5809167129068,11.6627058756773,38.5786574176584,23.0937185042567,18.7036116164832,28.7258037428585,7.1802451182579,20.0950381217876,12.1801412888902,20.6874453849478,9.70118255484624,24.8003376332494,30.885309980701,26.9406211595275,11.2554224274649,15.8961489645236,26.2846184020927,17.2776625443671,27.0029444885079,37.9120434958332,23.4293651266291,13.6641587527449,28.6970250277124,21.8012206371381,26.1522289892619,28.170937324054,27.1903997784713,2.72803135441195,17.3863656595155,25.1512122399581,18.416475791199,8.6964470347342,8.77847867031726,27.0272623593204,19.9190517266812,29.1980031542548,20.0533874107572,16.312118046269,16.2993716816882,28.9238752447041,33.4079036598916,22.8080475565866,14.7964285783407,24.9591402291977,28.0302971272888,24.4048864930885,17.1307714790975,32.6564499952205,21.026488775678,24.1621545507367,31.2844793304679],"z":[27.3860811010919,40.0296301001653,5.11841179954811,35.2459968687756,35.3110178069949,26.4858926346628,35.1981323001033,29.7326933747718,39.4448851804835,19.4738078496414,15.6683733535041,40.6879332093763,29.9708632006823,31.8560719022715,34.0024953504457,40.1099257775454,33.5205790445324,49.7847133313449,27.6991255391417,21.9766154691134,24.487132168234,38.6415802500403,36.8375547084378,44.8634722405597,31.0024158253106,20.7229069227014,26.4345106484514,20.4118760921321,36.0925629906455,36.2236296536541,34.9434811238032,26.1754388102085,13.4748676375256,15.2190195604692,15.4828912968415,32.2889586404675,10.4774175008486,24.57446360875,29.392678611346,29.7628602889807,44.7470023935308,8.39343897352797,12.1155277815557,39.8884987185227,45.8746011899287,25.8192342510866,21.7267231569516,26.3502970233454,38.0338287339723,42.1514560402279,26.9722809811804,31.7748643352333,25.6366886497861,20.8037131177544,43.5832172751129,12.0702136075763,22.2536799457062,40.1815688718361,30.5481978659304,21.8033852809598,40.1313256896613,39.0175366730351,50.4641014868608,19.6526961300927,41.3008011201141,16.7543461005783,41.4617282966221,34.5046014998126,44.6172888021044,33.1668580513963,27.5029611383648,31.6942919967995,26.0677051052435,19.9558174892476,28.3569355503812,21.1883581452407,41.9841191311018,21.1240430319158,27.9268821296615,43.848129375457,12.3831970575861,59.3419907921375,27.7008350870915,33.7328309964413,35.7457433774776,23.9387558267141,26.0883852305469,29.7474743365395,26.7528112760428,37.8167756012066,33.1464436574557,37.9282348974103,39.9874492163993,27.3262428258796,24.7928048530788,16.323720549024,44.9468824837964,41.1928932324073,37.0823279993313,27.9928442928912,39.0953598467587,19.1269395385855,31.4034934880158,41.26683139768,36.7285700001738,32.6570217065109,28.4889627100659,25.7548559820811,22.0680352227856,32.4385831743253,26.6446415521046,26.2250953877551,38.8269962067005,35.5469557268423,29.0887675398198,42.6526663882892,35.601913092535,22.5427009944222,45.8051418989035,36.5160176652928,13.5525063010309,41.5620317710596,41.3157041402003,30.2386486389418,18.7639048240464,28.5483500692259,28.4870733856652,29.3617547083935,36.6753089060478,28.7094479004124,35.1589824869552,22.263258681176,43.8689695415958,36.8322001052786,36.3021840283187,19.5089060067416,22.9326960165341,38.3695151699928,17.3696648914706,20.6575283548579,14.3851810193398,45.6684817270334,33.774505052454,46.5738456848668,30.7179732683326,17.2281918998779,30.9681839578836,24.5475500829473,32.83893830319,31.8384613613787,25.3786441162928,44.7254163525105,32.4098035983199,34.5682177632631,28.055630152753,27.2683130675316,35.1025376810619,33.7425103779945,27.990761393749,27.0812021415886,45.6349204027523,33.0894140189154,40.1175958717214,30.3540064691985,35.7354883010401,26.2084097958631,34.2696462500943,24.8274069033203,29.7844798756618,22.6943941377123,17.9089050954875,44.4514156399913,40.0240391447096,15.1757559594292,38.4736535490954,37.7803909137013,20.1363441547869,36.5458802906418,29.5254415981903,47.1285092467619,14.5190604848312,18.398923265443,36.9164803320233,26.8171049299778,30.6713691178226,33.6135344157841,19.2858375339553,29.3637845448849,26.9634659554232,35.9722537058689,34.7785176047443,30.9032828553158,23.0338546693178,40.4857468758141,26.6494799301358,27.3351586038758,37.735278846091,21.037155167658,20.5379550895862,30.0254806423148],"marker":{"color":"#ff0000","line":{"color":"#444","width":1},"opacity":0.5,"size":5},"type":"scatter3d","mode":"markers","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 
 ## Example
 
 This example uses the [Growth Chart Data Tables](https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv) 
-from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm). 
+from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm). The data consist of height in centimeters for the z-scores of –2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, and 2 by sex (1=male; 2=female) and half-month of age (from 24.0 to 240.5 months).
 
 ### Load & wrangle
 
-We have to do a little data wrangling first. Have a look at the data after you 
-import it and relabel `Sex` to `male` and `female` instead of `1` and `2`. Also 
-convert `Agemos` (age in months) to years. Relabel the column `0` as `mean` and 
-calculate a new column named `sd` as the difference between columns `1` and `0`. 
+We have to do a little data wrangling first. Have a look at the data after you import it and relabel `Sex` to `male` and `female` instead of `1` and `2`. Also convert `Agemos` (age in months) to years. Relabel the column `0` as `mean` and calculate a new column named `sd` as the difference between columns `1` and `0`. 
 
 
 ```r
-height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv") %>%
-  filter(Sex %in% c(1,2)) %>%
-  mutate(
-    sex = recode(Sex, "1" = "male", "2" = "female"),
-    age = as.numeric(Agemos)/12,
-    sd = `1` - `0`
-  ) %>%
-  dplyr::select(sex, age, mean = `0`, sd)
+orig_height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv") 
 ```
 
 ```
@@ -797,8 +853,19 @@ height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.cs
 ## )
 ```
 
+```r
+height_age <- orig_height_age %>%
+  filter(Sex %in% c(1,2)) %>%
+  mutate(
+    sex = recode(Sex, "1" = "male", "2" = "female"),
+    age = as.numeric(Agemos)/12,
+    sd = `1` - `0`
+  ) %>%
+  dplyr::select(sex, age, mean = `0`, sd)
+```
+
 <div class="warning">
-<p>If you run the code above without putting <code>dplyr::</code> before the <code>select()</code> function, you will get an error message. This is because the <code>MASS</code> package also has a function called <code>select()</code> and, since we loaded <code>MASS</code> after <code>tidyverse</code>, the <code>MASS</code> function is the default. When you loaded <code>MASS</code>, you should have seen a warning like &quot;The following object is masked from ‘package:dplyr’: select&quot;. You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.</p>
+<p>If you run the code above without putting <code>dplyr::</code> before the <code>select()</code> function, you might get an error message. This is because the <code>MASS</code> package also has a function called <code>select()</code> and, since we loaded <code>MASS</code> after <code>tidyverse</code>, the <code>MASS</code> function becomes the default. When you loaded <code>MASS</code>, you should have seen a warning like &quot;The following object is masked from ‘package:dplyr’: select&quot;. You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.</p>
 </div>
 
 ### Plot
@@ -811,10 +878,7 @@ ggplot(height_age, aes(age, mean, color = sex)) +
   geom_smooth(aes(ymin = mean - sd, ymax = mean + sd), stat="identity")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/plot-height-means-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:plot-height-means)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/plot-height-means-1.png" width="100%" style="display: block; margin: auto;" />
 
 ### Get means and SDs
 
@@ -842,8 +906,7 @@ height_sub
 
 ### Simulate a population
 
-Simulate 50 random male heights and 50 radom female heights using the `rnorm()` 
-function and the means and SDs above. Plot the data.
+Simulate 50 random male heights and 50 random female heights using the `rnorm()` function and the means and SDs above. Plot the data.
 
 
 ```r
@@ -858,10 +921,7 @@ ggplot(sim_height) +
   xlim(125, 225)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/sim-height-20-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:sim-height-20)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/sim-height-20-1.png" width="100%" style="display: block; margin: auto;" />
 
 <div class="try">
 <p>Run the simulation above several times, noting how the density plot changes. Try changing the age you're simulating.</p>
@@ -869,9 +929,7 @@ ggplot(sim_height) +
 
 ### Analyse simulated data
 
-Use the `sim_t_ind(n, m1, sd1, m2, sd2)` function we created above to generate 
-one simulation with a sample size of 50 in each group using the means and SDs 
-of male and female 14-year-olds.
+Use the `sim_t_ind(n, m1, sd1, m2, sd2)` function we created above to generate one simulation with a sample size of 50 in each group using the means and SDs of male and female 14-year-olds.
 
 
 ```r
@@ -885,15 +943,12 @@ sim_t_ind(50, m_mean, m_sd, f_mean, f_sd)
 ```
 
 ```
-## [1] 0.01405976
+## [1] 0.009012868
 ```
 
 ### Replicate simulation
 
-Now replicate this 1e4 times using the `replicate()` function. This function 
-will save the returned p-values in a list (`my_reps`). We can then check what 
-proportion of those p-values are less than our alpha value. This is the power of 
-our test.
+Now replicate this 1e4 times using the `replicate()` function. This function will save the returned p-values in a list (`my_reps`). We can then check what proportion of those p-values are less than our alpha value. This is the power of our test.
 
 
 ```r
@@ -905,17 +960,14 @@ power
 ```
 
 ```
-## [1] 0.6448
+## [1] 0.657
 ```
 
 ### One-tailed prediction
 
-This design has about 65% power to detect the sex difference in height (with a 
-2-tailed test). Modify the `sim_t_ind` function for a 1-tailed prediction.
+This design has about 65% power to detect the sex difference in height (with a 2-tailed test). Modify the `sim_t_ind` function for a 1-tailed prediction.
 
-You could just set `alternative` equal to "greater" in the function, but it might be 
-better to add the `alternative` argument to your function (giving it the same default 
-value as `t.test`) and change the value of `alternative` in the function to `alternative`.
+You could just set `alternative` equal to "greater" in the function, but it might be better to add the `alternative` argument to your function (giving it the same default value as `t.test`) and change the value of `alternative` in the function to `alternative`.
 
 
 ```r
@@ -927,28 +979,24 @@ sim_t_ind <- function(n, m1, sd1, m2, sd2, alternative = "two.sided") {
   return(t_ind$p.value)
 }
 
+alpha <- 0.05
 my_reps <- replicate(1e4, sim_t_ind(50, m_mean, m_sd, f_mean, f_sd, "greater"))
 mean(my_reps < alpha)
 ```
 
 ```
-## [1] 0.7591
+## [1] 0.758
 ```
 
 ### Range of sample sizes
 
-What if we want to find out what sample size will give us 80% power? We can try 
-trial and error. We know the number should be slightly larger than 50. But you 
-can search more systematically by repeating your power calculation for a range 
-of sample sizes. 
+What if we want to find out what sample size will give us 80% power? We can try trial and error. We know the number should be slightly larger than 50. But you can search more systematically by repeating your power calculation for a range of sample sizes. 
 
 <div class="info">
 <p>This might seem like overkill for a t-test, where you can easily look up sample size calculators online, but it is a valuable skill to learn for when your analyses become more complicated.</p>
 </div>
 
-Start with a relatively low number of replications and/or more spread-out samples 
-to estimate where you should be looking more specifically. Then you can repeat 
-with a narrower/denser range of sample sizes and more iterations.
+Start with a relatively low number of replications and/or more spread-out samples to estimate where you should be looking more specifically. Then you can repeat with a narrower/denser range of sample sizes and more iterations.
 
 
 ```r
@@ -971,13 +1019,9 @@ ggplot(power_table, aes(n, power)) +
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-sim_files/figure-html/range-sample-sizes-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:range-sample-sizes)**CAPTION THIS FIGURE!!**</p>
-</div>
+<img src="08-sim_files/figure-html/range-sample-sizes-1.png" width="100%" style="display: block; margin: auto;" />
 
-Now we can narrow down our search to values around 55 (plus or minus 5) and 
-increase the number of replications from 1e3 to 1e4.
+Now we can narrow down our search to values around 55 (plus or minus 5) and increase the number of replications from 1e3 to 1e4.
 
 
 ```r
@@ -996,7 +1040,7 @@ power_table <- tibble(
 ##  scale_x_continuous(breaks = sample_size)
 ```
 
-## Formative exercises
+## Exercises
 
-Download the [formative exercises](formative_exercises/08_simulations_stub.Rmd). See the [answers](formative_exercises/08_simulations_answers.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/08_sim_exercise.Rmd). See the [answers](exercises/08_sim_answers.Rmd) only after you've attempted all the questions.
 

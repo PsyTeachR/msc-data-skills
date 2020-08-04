@@ -1,6 +1,8 @@
 
 # Data Wrangling {#dplyr}
 
+<img src="images/memes/real_world_data.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic
@@ -25,9 +27,7 @@
 ### Advanced
 
 3. Fine control of [`select()` operations](#select_helpers)
-4. Perform 'windowed' operations
-    + windowed `mutate()`
-    + windowed `slice()`
+4. Use [window functions](#window)
 
 ## Resources
 
@@ -43,19 +43,19 @@ You'll need the following packages.
 
 ```r
 # libraries needed for these examples
-library(lubridate)
 library(tidyverse)
-library(ukbabynames)
+library(lubridate)
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 
-## The `disgust` dataset
+## The `disgust` dataset {#data-disgust}
 
 These examples will use data from [disgust.csv](/data/disgust.csv), which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
 
 
 ```r
-disgust <- read_csv("https://gupsych.github.io/data_skills/data/disgust.csv")
+disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
 ```
 
 *Questionnaire Instructions*: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.
@@ -287,7 +287,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2014-05-04"
+## [1] "2008-07-10" "2014-12-03"
 ```
 
 
@@ -521,655 +521,268 @@ disgust_tidy3 <- disgust_tidy2 %>%
     first_user = first(user_id),
     last_user = last(user_id)
   )
-
-disgust_tidy3
-```
-
-```
-## # A tibble: 10 x 7
-##     year     n avg_pathogen avg_moral avg_sexual first_user last_user
-##    <dbl> <int>        <dbl>     <dbl>      <dbl>      <dbl>     <dbl>
-##  1  2008  2392         3.70      3.81       2.54          0    188708
-##  2  2009  2410         3.67      3.76       2.53       6093    251959
-##  3  2010  1418         3.73      3.84       2.51       5469    319641
-##  4  2011  5586         3.76      3.81       2.63       4458    406569
-##  5  2012  5375         3.74      3.77       2.55       2118    458194
-##  6  2013  1222         3.77      3.91       2.55       7646    462428
-##  7  2014    54         3.76      4          2.31      11090    461307
-##  8  2015    19         3.78      4.45       2.38     102699    460283
-##  9  2016     8         3.70      3.62       2.38       4976    453237
-## 10  2017     6         3.07      3.69       1.40      48303    370464
 ```
 
 ## Additional dplyr one-table verbs
 
+Use the code examples below and the help pages to figure out what the following one-table verbs do. Most have pretty self-explanatory names.
+
 ### rename() {#rename}
+
+
+```r
+iris_underscore <- iris %>%
+  rename(sepal_length = Sepal.Length,
+         sepal_width = Sepal.Width,
+         petal_length = Petal.Length,
+         petal_width = Petal.Width)
+
+names(iris_underscore)
+```
+
+```
+## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width"  "Species"
+```
+
+<div class="try">
+<p>Almost everyone gets confused at some point with <code>rename()</code> and tries to put the original names on the left and the new names on the right. Try it and see what the error message looks like.</p>
+</div>
 
 ### distinct() {#distinct}
 
+
+```r
+# create a data table with duplicated values
+dupes <- tibble(
+  id = rep(1:5, 2),
+  dv = rep(LETTERS[1:5], 2)
+)
+
+distinct(dupes)
+```
+
+```
+## # A tibble: 5 x 2
+##      id dv   
+##   <int> <chr>
+## 1     1 A    
+## 2     2 B    
+## 3     3 C    
+## 4     4 D    
+## 5     5 E
+```
+
 ### count() {#count}
 
-### slice() {#slide}
+
+```r
+# how many observations from each species are in iris?
+count(iris, Species)
+```
+
+```
+## # A tibble: 3 x 2
+##   Species        n
+##   <fct>      <int>
+## 1 setosa        50
+## 2 versicolor    50
+## 3 virginica     50
+```
+
+
+### slice() {#slice}
+
+
+```r
+tibble(
+  id = 1:10,
+  condition = rep(c("A","B"), 5)
+) %>%
+  slice(3:6, 9)
+```
+
+```
+## # A tibble: 5 x 2
+##      id condition
+##   <int> <chr>    
+## 1     3 A        
+## 2     4 B        
+## 3     5 A        
+## 4     6 B        
+## 5     9 A
+```
+
 
 ### pull() {#pull}
 
+
+```r
+iris %>%
+  group_by(Species) %>%
+  summarise_all(mean) %>%
+  pull(Sepal.Length)
+```
+
+```
+## [1] 5.006 5.936 6.588
+```
+
+
+## Window functions {#window}
+
+Window functions use the order of rows to calculate values. You can use them to do things that require ranking or ordering, like choose the top scores in each class, or acessing the previous and next rows, like calculating cumulative sums or means.
+
+The [dplyr window functions vignette](https://dplyr.tidyverse.org/articles/window-functions.html) has very good detailed explanations of these functions, but we've described a few of the most useful ones below. 
+
+### Ranking functions
+
+
+```r
+tibble(
+  id = 1:5,
+  "Data Skills" = c(16, 17, 17, 19, 20), 
+  "Statistics"  = c(14, 16, 18, 18, 19)
+) %>%
+  gather(class, grade, 2:3) %>%
+  group_by(class) %>%
+  mutate(row_number = row_number(),
+         rank       = rank(grade),
+         min_rank   = min_rank(grade),
+         dense_rank = dense_rank(grade),
+         quartile   = ntile(grade, 4),
+         percentile = ntile(grade, 100))
+```
+
+```
+## # A tibble: 10 x 9
+## # Groups:   class [2]
+##       id class    grade row_number  rank min_rank dense_rank quartile percentile
+##    <int> <chr>    <dbl>      <int> <dbl>    <int>      <int>    <int>      <int>
+##  1     1 Data Sk…    16          1   1          1          1        1          1
+##  2     2 Data Sk…    17          2   2.5        2          2        1         21
+##  3     3 Data Sk…    17          3   2.5        2          2        2         41
+##  4     4 Data Sk…    19          4   4          4          3        3         61
+##  5     5 Data Sk…    20          5   5          5          4        4         81
+##  6     1 Statist…    14          1   1          1          1        1          1
+##  7     2 Statist…    16          2   2          2          2        1         21
+##  8     3 Statist…    18          3   3.5        3          3        2         41
+##  9     4 Statist…    18          4   3.5        3          3        3         61
+## 10     5 Statist…    19          5   5          5          4        4         81
+```
+
+<div class="try">
+<ul>
+<li>What are the differences among <code>row_number()</code>, <code>rank()</code>, <code>min_rank()</code>, <code>dense_rank()</code>, and <code>ntile()</code>?</li>
+<li>Why doesn't <code>row_number()</code> need an argument?</li>
+<li>What would happen if you gave it the argument <code>grade</code> or <code>class</code>?</li>
+<li>What do you think would happen if you removed the <code>group_by(class)</code> line above?</li>
+<li>What if you added <code>id</code> to the grouping?</li>
+<li>What happens if you change the order of the rows?</li>
+<li>What does the second argument in <code>ntile()</code> do?</li>
+</ul>
+</div>
+
+You can use window functions to group your data into quantiles.
+
+
+```r
+iris %>%
+  group_by(tertile = ntile(Sepal.Length, 3)) %>%
+  summarise(mean.Sepal.Length = mean(Sepal.Length))
+```
+
+```
+## # A tibble: 3 x 2
+##   tertile mean.Sepal.Length
+##     <int>             <dbl>
+## 1       1              4.94
+## 2       2              5.81
+## 3       3              6.78
+```
+
+### Offset functions
+
+
+```r
+tibble(
+  trial = 1:10,
+  cond = rep(c("exp", "ctrl"), c(6, 4)),
+  score = rpois(10, 4)
+) %>%
+  mutate(
+    score_change = score - lag(score, order_by = trial),
+    last_cond_trial = cond != lead(cond, default = TRUE)
+  )
+```
+
+```
+## # A tibble: 10 x 5
+##    trial cond  score score_change last_cond_trial
+##    <int> <chr> <int>        <int> <lgl>          
+##  1     1 exp       2           NA FALSE          
+##  2     2 exp       4            2 FALSE          
+##  3     3 exp       5            1 FALSE          
+##  4     4 exp       5            0 FALSE          
+##  5     5 exp       3           -2 FALSE          
+##  6     6 exp       5            2 TRUE           
+##  7     7 ctrl      9            4 FALSE          
+##  8     8 ctrl      6           -3 FALSE          
+##  9     9 ctrl      6            0 FALSE          
+## 10    10 ctrl      4           -2 TRUE
+```
+
+<div class="try">
+<p>Look at the help pages for <code>lag()</code> and <code>lead()</code>.</p>
+<ul>
+<li>What happens if you remove the <code>order_by</code> argument or change it to <code>cond</code>?</li>
+<li>What does the <code>default</code> argument do?</li>
+<li>Can you think of circumstances in your own data where you might need to use <code>lag()</code> or <code>lead()</code>?</li>
+</ul>
+</div>
+
+### Cumulative aggregates
+
+`cumsum()`, `cummin()`, and `cummax()` are base R functions for calcumaling cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
+
+
+```r
+tibble(
+  time = 1:10,
+  obs = c(1, 0, 1, 2, 4, 3, 1, 0, 3, 5)
+) %>%
+  mutate(
+    cumsum = cumsum(obs),
+    cummin = cummin(obs),
+    cummax = cummax(obs),
+    cumany = cumany(obs == 3),
+    cumall = cumall(obs < 4)
+  )
+```
+
+```
+## # A tibble: 10 x 7
+##     time   obs cumsum cummin cummax cumany cumall
+##    <int> <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl> 
+##  1     1     1      1      1      1 FALSE  TRUE  
+##  2     2     0      1      0      1 FALSE  TRUE  
+##  3     3     1      2      0      1 FALSE  TRUE  
+##  4     4     2      4      0      2 FALSE  TRUE  
+##  5     5     4      8      0      4 FALSE  FALSE 
+##  6     6     3     11      0      4 TRUE   FALSE 
+##  7     7     1     12      0      4 TRUE   FALSE 
+##  8     8     0     12      0      4 TRUE   FALSE 
+##  9     9     3     15      0      4 TRUE   FALSE 
+## 10    10     5     20      0      5 TRUE   FALSE
+```
+
+<div class="try">
+<ul>
+<li>What would happen if you change <code>cumany(obs == 3)</code> to <code>cumany(obs &gt; 2)</code>?</li>
+<li>What would happen if you change <code>cumall(obs &lt; 4)</code> to <code>cumall(obs &lt; 2)</code>?</li>
+<li>Can you think of circumstances in your own data where you might need to use <code>cumany()</code> or <code>cumall()</code>?</li>
+</ul>
+</div>
+
 ## Exercises
 
-Download the [formative exercises](formative_exercises/05_wrangle2_stub.Rmd). See the [answers](formative_exercises/05_wrangle2_answers.Rmd) only after you've attempted all the questions.
-
-
-The following exercises use a dataset included in the `ukbabynames` package. Might as well convert to a tibble to make printing prettier.
-
-
-```r
-## convert to a tibble
-ukb <- as_tibble(ukbabynames)
-```
-
-
-### Easy
-
-1. How many records are in the dataset?
-
-
-<div class='solution'><button>Solution</button>
-  
-
-```r
-count(ukb) ## or: nrow(ukb)
-```
-
-```
-## # A tibble: 1 x 1
-##        n
-##    <int>
-## 1 227449
-```
-
-</div>
-
-
-2. Remove the column `rank` from the dataset.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>%
-  select(-rank)
-```
-
-```
-## # A tibble: 227,449 x 4
-##     year sex   name          n
-##    <dbl> <chr> <chr>     <dbl>
-##  1  1996 F     Sophie     7087
-##  2  1996 F     Chloe      6824
-##  3  1996 F     Jessica    6711
-##  4  1996 F     Emily      6415
-##  5  1996 F     Lauren     6299
-##  6  1996 F     Hannah     5916
-##  7  1996 F     Charlotte  5866
-##  8  1996 F     Rebecca    5828
-##  9  1996 F     Amy        5206
-## 10  1996 F     Megan      4948
-## # … with 227,439 more rows
-```
-
-</div>
-
-
-3. What is the range of birth years contained in the dataset?
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>%
-  summarise(minyear = min(year),
-            maxyear = max(year))
-```
-
-```
-## # A tibble: 1 x 2
-##   minyear maxyear
-##     <dbl>   <dbl>
-## 1    1996    2015
-```
-
-</div>
-
-
-
-4. Pull out the babies named Hermione.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>%
-  filter(name == "Hermione")
-```
-
-```
-## # A tibble: 20 x 5
-##     year sex   name         n  rank
-##    <dbl> <chr> <chr>    <dbl> <dbl>
-##  1  1996 F     Hermione    21   974
-##  2  1997 F     Hermione    29   789
-##  3  1998 F     Hermione    40   628
-##  4  1999 F     Hermione    35   678
-##  5  2000 F     Hermione    40   637
-##  6  2001 F     Hermione    52   540
-##  7  2002 F     Hermione    84   394
-##  8  2003 F     Hermione   158   265
-##  9  2004 F     Hermione   162   265
-## 10  2005 F     Hermione   122   331
-## 11  2006 F     Hermione   118   359
-## 12  2007 F     Hermione   109   385
-## 13  2008 F     Hermione   129   348
-## 14  2009 F     Hermione   116   370
-## 15  2010 F     Hermione   111   398
-## 16  2011 F     Hermione   118   392
-## 17  2012 F     Hermione    97   465
-## 18  2013 F     Hermione    77   542
-## 19  2014 F     Hermione    85   500
-## 20  2015 F     Hermione    79   549
-```
-
-</div>
-
-
-5. Sort the dataset by sex and then by year (descending) and then by rank (descending).
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>%
-  arrange(sex, desc(year), desc(rank))
-```
-
-```
-## # A tibble: 227,449 x 5
-##     year sex   name            n  rank
-##    <dbl> <chr> <chr>       <dbl> <dbl>
-##  1  2015 F     Aabidah         3  5730
-##  2  2015 F     Aabish          3  5730
-##  3  2015 F     Aaeesha         3  5730
-##  4  2015 F     Aafreen         3  5730
-##  5  2015 F     Aaiza           3  5730
-##  6  2015 F     Aakifa          3  5730
-##  7  2015 F     Aala            3  5730
-##  8  2015 F     Aaliyah-Mai     3  5730
-##  9  2015 F     Aaliyah-may     3  5730
-## 10  2015 F     Aamena          3  5730
-## # … with 227,439 more rows
-```
-
-</div>
-
-
-6. Create a new column, `decade`, that contains the decade of birth (1990, 2000, 2010).  Hint: see `?floor`
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-  ukb %>%
-    mutate(decade = floor(year / 10) * 10)
-```
-
-```
-## # A tibble: 227,449 x 6
-##     year sex   name          n  rank decade
-##    <dbl> <chr> <chr>     <dbl> <dbl>  <dbl>
-##  1  1996 F     Sophie     7087     1   1990
-##  2  1996 F     Chloe      6824     2   1990
-##  3  1996 F     Jessica    6711     3   1990
-##  4  1996 F     Emily      6415     4   1990
-##  5  1996 F     Lauren     6299     5   1990
-##  6  1996 F     Hannah     5916     6   1990
-##  7  1996 F     Charlotte  5866     7   1990
-##  8  1996 F     Rebecca    5828     8   1990
-##  9  1996 F     Amy        5206     9   1990
-## 10  1996 F     Megan      4948    10   1990
-## # … with 227,439 more rows
-```
-
-</div>
-
-
-7. Pull out the male babies named Courtney that were born between 1998 and 2001 (inclusive).
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-    ukb %>%
-      filter(name == "Courtney", sex == "M",
-             year >= 1998, year <= 2001)
-```
-
-```
-## # A tibble: 4 x 5
-##    year sex   name         n  rank
-##   <dbl> <chr> <chr>    <dbl> <dbl>
-## 1  1998 M     Courtney    33   554
-## 2  1999 M     Courtney    15   973
-## 3  2000 M     Courtney    19   848
-## 4  2001 M     Courtney    22   786
-```
-
-</div>
-
-
-
-8. How many distinct names are represented in the dataset?
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-## how many distinct names are represented in the dataset?
-ukb %>%
-  distinct(name) %>%
-  count()
-```
-
-```
-## # A tibble: 1 x 1
-##       n
-##   <int>
-## 1 31272
-```
-
-</div>
-
-
-
-9. Pull out all the female babies named Frankie that were born before 1999 or after 2010
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-  ukb %>%
-    filter(name == "Frankie", sex == "F",
-          (year < 1999) | (year > 2010))
-```
-
-```
-## # A tibble: 8 x 5
-##    year sex   name        n  rank
-##   <dbl> <chr> <chr>   <dbl> <dbl>
-## 1  1996 F     Frankie    34   686
-## 2  1997 F     Frankie    48   545
-## 3  1998 F     Frankie    41   619
-## 4  2011 F     Frankie   337   156
-## 5  2012 F     Frankie   298   173
-## 6  2013 F     Frankie   273   195
-## 7  2014 F     Frankie   344   162
-## 8  2015 F     Frankie   376   147
-```
-
-</div>
-
-
-10. How many total babies in the dataset were named 'Emily'?
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-  ## 
-  ukb %>%
-    filter(name == "Emily") %>%
-    summarise(tot = sum(n)) %>%
-    pull(tot)
-```
-
-```
-## [1] 102250
-```
-
-</div>
-
-
-11. How many distinct names are there for each sex?
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>% 
-  group_by(sex) %>%
-  distinct(name) %>%
-  count()
-```
-
-```
-## # A tibble: 2 x 2
-## # Groups:   sex [2]
-##   sex       n
-##   <chr> <int>
-## 1 F     18823
-## 2 M     14378
-```
-
-</div>
-
-
-12. What is the most popular name in the dataset?
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>%
-  group_by(name) %>%
-  summarise(tot = sum(n)) %>%
-  arrange(desc(tot)) %>%
-  slice(1) %>%
-  pull(name)
-```
-
-```
-## [1] "Jack"
-```
-
-</div>
-
-
-13. How many babies were born each year for each sex?  Make a plot.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-babes_per_year <- ukb %>%
-  group_by(year, sex) %>%
-  summarise(tot = sum(n))
-
-ggplot(babes_per_year, aes(year, tot, color = sex)) +
-  geom_line()
-```
-
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex5-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex5)**CAPTION THIS FIGURE!!**</p>
-</div>
-
-</div>
-
-
-### Intermediate
-
-- For the next questions, you might first want to read about window functions (`group_by()` + `filter()` or `mutate()` in the dplyr vignette: `vignette("window-functions")`.
-
-1. Create a column `prop` that contains the proportion of babies that were given a particular name for a given sex in a given year, then `ungroup()` the resulting table.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb_prop <- ukb %>%
-  group_by(year, sex) %>%
-  mutate(p = n / sum(n)) %>%
-  ungroup()
-
-## TODO double check that you did it right by making sure the props
-## for each year/sex combo sum to 1
-```
-
-</div>
-
-
-2. Use a window function to pull out the top year for each name/sex combination in the table you just created (i.e., the year when the name was given to greatest proportion of babies of a given sex).
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb_top_year <- ukb_prop %>%
-  group_by(name, sex) %>%
-  filter(p == max(p)) %>%
-  ungroup() %>%
-  arrange(year)
-```
-
-</div>
-
-
-
-### Advanced
-
-1. Make a frequency histogram for the final letter of each name, broken down by sex.  Are certain final letters more "gendered" than others?
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-last_letter <- ukb %>%
-  mutate(lastchar = substr(name, nchar(name), nchar(name))) %>%
-  filter(lastchar %in% letters) %>%
-  count(sex, lastchar) %>%
-  arrange(lastchar)
-
-ggplot(last_letter, aes(lastchar, n, fill = sex)) +
-  geom_bar(stat = "identity")
-```
-
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex1-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex1-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
-
-</div>
-
-
-2. Calculate the top 5 boys and girls names for each decade and print out the whole table.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ukb %>%
-  mutate(decade = floor(year / 10) * 10) %>%
-  group_by(decade, sex, name) %>%
-  summarise(tot_n = sum(n)) %>%
-  arrange(desc(tot_n)) %>%
-  slice(1:5) %>%
-  ungroup() %>%
-  print(n = +Inf)
-```
-
-```
-## # A tibble: 30 x 4
-##    decade sex   name    tot_n
-##     <dbl> <chr> <chr>   <dbl>
-##  1   1990 F     Chloe   33235
-##  2   1990 F     Emily   26341
-##  3   1990 F     Sophie  24111
-##  4   1990 F     Megan   23363
-##  5   1990 F     Jessica 23319
-##  6   1990 M     Jack    40554
-##  7   1990 M     Thomas  38004
-##  8   1990 M     James   37183
-##  9   1990 M     Daniel  34052
-## 10   1990 M     Joshua  30532
-## 11   2000 F     Emily   51663
-## 12   2000 F     Chloe   50965
-## 13   2000 F     Jessica 48023
-## 14   2000 F     Olivia  44937
-## 15   2000 F     Sophie  44885
-## 16   2000 M     Jack    82540
-## 17   2000 M     Thomas  70475
-## 18   2000 M     Joshua  69428
-## 19   2000 M     James   59247
-## 20   2000 M     Oliver  56990
-## 21   2010 F     Amelia  32397
-## 22   2010 F     Olivia  28977
-## 23   2010 F     Emily   24246
-## 24   2010 F     Jessica 21690
-## 25   2010 F     Lily    21379
-## 26   2010 M     Oliver  42642
-## 27   2010 M     Harry   38128
-## 28   2010 M     Jack    37492
-## 29   2010 M     Charlie 31009
-## 30   2010 M     Jacob   29667
-```
-
-</div>
-
-
-3. Pull out the top 5 boys and girls names for the final year of the dataset, and plot the historical trajectory of their popularity, with separate graphs for boys and girls. (Hint: This might require merging tables, which you will learn about next week.)
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-top_names <- ukb %>%
-  filter(year == max(year), rank <= 5) %>%
-  select(sex, name)
-
-ukb %>%
-  inner_join(top_names, c("sex", "name")) %>%
-  ggplot(aes(year, n, color = name)) +
-    geom_line() +
-    facet_wrap(~sex)
-```
-
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex3-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex3-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
-
-</div>
-
-
-4. What are the 10 most androgynous names in the UK?  Discard any names that were given to less than 5000 babies total.  Calculate an "androgyny index" for each name as log(F + .5) - log(M + .5) where F is the number of female and M is the number of male babies.  This index will be zero for perfect gender balance, positive for skewed female, and negative for skewed male.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-andro <- ukb %>%
-  group_by(sex, name) %>%
-  summarise(tot = sum(n)) %>%
-  ungroup() %>%
-  spread(sex, tot, fill = 0) %>%
-  mutate(N = F + M)
-
-andro_gbal <- andro %>%
-  filter(N >= 5000) %>%
-  mutate(gbal = log(F + .5) - log(M + .5),
-         tot = F + M) %>%
-  arrange(abs(gbal)) %>%
-  slice(1:10)
-```
-
-</div>
-
-
-5. Which girl name has increased the most in popularity, if you directly compare the first year of the dataset to the last year?  Which girl name has decreased the most?  (Only comare names that were given to at least 500 babies in at least one of the years covered by the dataset.)
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-name_pop <- ukb %>%
-  filter(sex == "F", (year == 1996) | (year == 2015)) %>%
-  spread(year, n, fill = 0) %>%
-  filter(`2015` > 500 | `1996` > 500) %>%
-  mutate(chg = `2015` - `1996`)
-
-name_pop %>%
-  arrange(desc(chg)) %>%
-  slice(1) %>%
-  pull(name)
-
-name_pop %>%
-  arrange(chg) %>%
-  slice(1) %>%
-  pull(name)
-```
-
-```
-## [1] "Amelia"
-## [1] "Sophie"
-```
-
-</div>
-
-
-6. Calculate the proportion of names that are androgynous for each year in the dataset (were given to both male and female babies) and then plot the historical trend.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-p_andro <- ukb %>%
-  select(-rank) %>%
-  spread(sex, n, fill = 0) %>%
-  mutate(is_andro = (F != 0) & (M != 0)) %>%
-  group_by(year) %>%
-  summarise(p = mean(is_andro))
-
-ggplot(p_andro, aes(year, p)) + geom_line()
-```
-
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex6-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex6-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
-
-</div>
-
-
-7. *Naming diversity trends.* Calculate a naming diversity index (number of names divided by number of babies) for each year and sex in the dataset.  Plot the historical trend for naming diversity.
-
-
-<div class='solution'><button>Solution</button>
-
-
-```r
-ndiversity <- ukb %>%
-  group_by(year, sex) %>%
-  summarise(n_names = n_distinct(name),
-            n_babies = sum(n),
-            d_index = n_names / n_babies) %>%
-  ungroup()
-
-ggplot(ndiversity,
-  aes(year, d_index, color = sex)) + geom_line()
-```
-
-<div class="figure" style="text-align: center">
-<img src="05-dplyr_files/figure-html/ex7-adv-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:ex7-adv)**CAPTION THIS FIGURE!!**</p>
-</div>
-
-</div>
-
-
+Download the [exercises](exercises/05_dplyr_exercise.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.

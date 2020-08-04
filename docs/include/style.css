@@ -1,2 +1,26 @@
 /* (edit style.css for your own book styles) */
 
+.meme {
+  max-width: 33% !important;
+  margin: 0.5em;
+}
+
+.right {
+  float: right;
+  margin-right: 0;
+}
+
+.left {
+  float: left;
+  margin-left: 0;
+}
+
+pre.mcq {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: none;
+  display: inline;
+  border: none !important;
+  border-radius: none;
+}
+

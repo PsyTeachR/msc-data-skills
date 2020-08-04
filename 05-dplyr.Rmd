@@ -1,5 +1,7 @@
 # Data Wrangling {#dplyr}
 
+<img src="images/memes/real_world_data.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic
@@ -24,9 +26,7 @@
 ### Advanced
 
 3. Fine control of [`select()` operations](#select_helpers)
-4. Perform 'windowed' operations
-    + windowed `mutate()`
-    + windowed `slice()`
+4. Use [window functions](#window)
 
 ## Resources
 
@@ -41,20 +41,18 @@ You'll need the following packages.
 
 ```{r, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
-library(lubridate)
 library(tidyverse)
-library(ukbabynames)
+library(lubridate)
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 
-## The `disgust` dataset
+## The `disgust` dataset {#data-disgust}
 
 These examples will use data from [disgust.csv](/data/disgust.csv), which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
 
 ```{r, message = FALSE}
-
-disgust <- read_csv("https://gupsych.github.io/data_skills/data/disgust.csv")
-
+disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
 ```
 
 *Questionnaire Instructions*: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.
@@ -378,322 +376,162 @@ disgust_tidy3 <- disgust_tidy2 %>%
     last_user = last(user_id)
   )
 
-disgust_tidy3
 ```
 
 ## Additional dplyr one-table verbs
 
+Use the code examples below and the help pages to figure out what the following one-table verbs do. Most have pretty self-explanatory names.
+
 ### rename() {#rename}
+
+```{r rename}
+iris_underscore <- iris %>%
+  rename(sepal_length = Sepal.Length,
+         sepal_width = Sepal.Width,
+         petal_length = Petal.Length,
+         petal_width = Petal.Width)
+
+names(iris_underscore)
+```
+
+```{block type="try"}
+Almost everyone gets confused at some point with `rename()` and tries to put the original names on the left and the new names on the right. Try it and see what the error message looks like.
+```
 
 ### distinct() {#distinct}
 
+```{r distinct}
+# create a data table with duplicated values
+dupes <- tibble(
+  id = rep(1:5, 2),
+  dv = rep(LETTERS[1:5], 2)
+)
+
+distinct(dupes)
+```
+
 ### count() {#count}
 
-### slice() {#slide}
+```{r count}
+# how many observations from each species are in iris?
+count(iris, Species)
+```
+
+
+### slice() {#slice}
+
+```{r slice}
+
+tibble(
+  id = 1:10,
+  condition = rep(c("A","B"), 5)
+) %>%
+  slice(3:6, 9)
+
+```
+
 
 ### pull() {#pull}
 
+```{r pull}
+
+iris %>%
+  group_by(Species) %>%
+  summarise_all(mean) %>%
+  pull(Sepal.Length)
+
+```
+
+
+## Window functions {#window}
+
+Window functions use the order of rows to calculate values. You can use them to do things that require ranking or ordering, like choose the top scores in each class, or acessing the previous and next rows, like calculating cumulative sums or means.
+
+The [dplyr window functions vignette](https://dplyr.tidyverse.org/articles/window-functions.html) has very good detailed explanations of these functions, but we've described a few of the most useful ones below. 
+
+### Ranking functions
+
+```{r}
+tibble(
+  id = 1:5,
+  "Data Skills" = c(16, 17, 17, 19, 20), 
+  "Statistics"  = c(14, 16, 18, 18, 19)
+) %>%
+  gather(class, grade, 2:3) %>%
+  group_by(class) %>%
+  mutate(row_number = row_number(),
+         rank       = rank(grade),
+         min_rank   = min_rank(grade),
+         dense_rank = dense_rank(grade),
+         quartile   = ntile(grade, 4),
+         percentile = ntile(grade, 100))
+```
+
+```{block type="try"}
+* What are the differences among `row_number()`, `rank()`, `min_rank()`, `dense_rank()`, and `ntile()`? 
+* Why doesn't `row_number()` need an argument? 
+* What would happen if you gave it the argument `grade` or `class`? 
+* What do you think would happen if you removed the `group_by(class)` line above? 
+* What if you added `id` to the grouping?
+* What happens if you change the order of the rows?
+* What does the second argument in `ntile()` do?
+```
+
+You can use window functions to group your data into quantiles.
+
+```{r}
+iris %>%
+  group_by(tertile = ntile(Sepal.Length, 3)) %>%
+  summarise(mean.Sepal.Length = mean(Sepal.Length))
+
+```
+
+### Offset functions
+
+```{r}
+tibble(
+  trial = 1:10,
+  cond = rep(c("exp", "ctrl"), c(6, 4)),
+  score = rpois(10, 4)
+) %>%
+  mutate(
+    score_change = score - lag(score, order_by = trial),
+    last_cond_trial = cond != lead(cond, default = TRUE)
+  )
+```
+
+```{block type="try"}
+Look at the help pages for `lag()` and `lead()`.
+
+* What happens if you remove the `order_by` argument or change it to `cond`?
+* What does the `default` argument do?
+* Can you think of circumstances in your own data where you might need to use `lag()` or `lead()`?
+```
+
+### Cumulative aggregates
+
+`cumsum()`, `cummin()`, and `cummax()` are base R functions for calcumaling cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
+
+```{r}
+tibble(
+  time = 1:10,
+  obs = c(1, 0, 1, 2, 4, 3, 1, 0, 3, 5)
+) %>%
+  mutate(
+    cumsum = cumsum(obs),
+    cummin = cummin(obs),
+    cummax = cummax(obs),
+    cumany = cumany(obs == 3),
+    cumall = cumall(obs < 4)
+  )
+```
+
+```{block type="try"}
+* What would happen if you change `cumany(obs == 3)` to `cumany(obs > 2)`?
+* What would happen if you change `cumall(obs < 4)` to `cumall(obs < 2)`?
+* Can you think of circumstances in your own data where you might need to use `cumany()` or `cumall()`?
+```
+
 ## Exercises
 
-Download the [formative exercises](formative_exercises/05_wrangle2_stub.Rmd). See the [answers](formative_exercises/05_wrangle2_answers.Rmd) only after you've attempted all the questions.
-
-
-The following exercises use a dataset included in the `ukbabynames` package. Might as well convert to a tibble to make printing prettier.
-
-```{r ukbn}
-## convert to a tibble
-ukb <- as_tibble(ukbabynames)
-```
-
-
-### Easy
-
-1. How many records are in the dataset?
-
-`r webex::hide()`  
-```{r}
-count(ukb) ## or: nrow(ukb)
-```
-`r webex::unhide()`
-
-2. Remove the column `rank` from the dataset.
-
-`r webex::hide()`
-```{r}
-ukb %>%
-  select(-rank)
-```
-`r webex::unhide()`
-
-3. What is the range of birth years contained in the dataset?
-
-`r webex::hide()`
-```{r}
-ukb %>%
-  summarise(minyear = min(year),
-            maxyear = max(year))
-```
-`r webex::unhide()`
-
-
-4. Pull out the babies named Hermione.
-
-`r webex::hide()`
-```{r}
-ukb %>%
-  filter(name == "Hermione")
-```
-`r webex::unhide()`
-
-5. Sort the dataset by sex and then by year (descending) and then by rank (descending).
-
-`r webex::hide()`
-```{r}
-ukb %>%
-  arrange(sex, desc(year), desc(rank))
-```
-`r webex::unhide()`
-
-6. Create a new column, `decade`, that contains the decade of birth (1990, 2000, 2010).  Hint: see `?floor`
-
-`r webex::hide()`
-```{r}
-  ukb %>%
-    mutate(decade = floor(year / 10) * 10)
-```
-`r webex::unhide()`
-
-7. Pull out the male babies named Courtney that were born between 1998 and 2001 (inclusive).
-
-`r webex::hide()`
-```{r}
-    ukb %>%
-      filter(name == "Courtney", sex == "M",
-             year >= 1998, year <= 2001)
-```
-`r webex::unhide()`
-
-
-8. How many distinct names are represented in the dataset?
-
-`r webex::hide()`
-```{r}
-## how many distinct names are represented in the dataset?
-ukb %>%
-  distinct(name) %>%
-  count()
-```
-`r webex::unhide()`
-
-
-9. Pull out all the female babies named Frankie that were born before 1999 or after 2010
-
-`r webex::hide()`
-```{r ex1}
-  ukb %>%
-    filter(name == "Frankie", sex == "F",
-          (year < 1999) | (year > 2010))
-```
-`r webex::unhide()`
-
-10. How many total babies in the dataset were named 'Emily'?
-
-`r webex::hide()`
-```{r ex2}
-  ## 
-  ukb %>%
-    filter(name == "Emily") %>%
-    summarise(tot = sum(n)) %>%
-    pull(tot)
-```
-`r webex::unhide()`
-
-11. How many distinct names are there for each sex?
-
-`r webex::hide()`
-```{r ex3}
-ukb %>% 
-  group_by(sex) %>%
-  distinct(name) %>%
-  count()
-```
-`r webex::unhide()`
-
-12. What is the most popular name in the dataset?
-
-`r webex::hide()`
-```{r ex4}
-ukb %>%
-  group_by(name) %>%
-  summarise(tot = sum(n)) %>%
-  arrange(desc(tot)) %>%
-  slice(1) %>%
-  pull(name)
-```
-`r webex::unhide()`
-
-13. How many babies were born each year for each sex?  Make a plot.
-
-`r webex::hide()`
-```{r ex5}
-babes_per_year <- ukb %>%
-  group_by(year, sex) %>%
-  summarise(tot = sum(n))
-
-ggplot(babes_per_year, aes(year, tot, color = sex)) +
-  geom_line()
-```
-`r webex::unhide()`
-
-### Intermediate
-
-- For the next questions, you might first want to read about window functions (`group_by()` + `filter()` or `mutate()` in the dplyr vignette: `vignette("window-functions")`.
-
-1. Create a column `prop` that contains the proportion of babies that were given a particular name for a given sex in a given year, then `ungroup()` the resulting table.
-
-`r webex::hide()`
-```{r ex6}
-ukb_prop <- ukb %>%
-  group_by(year, sex) %>%
-  mutate(p = n / sum(n)) %>%
-  ungroup()
-
-## TODO double check that you did it right by making sure the props
-## for each year/sex combo sum to 1
-```
-`r webex::unhide()`
-
-2. Use a window function to pull out the top year for each name/sex combination in the table you just created (i.e., the year when the name was given to greatest proportion of babies of a given sex).
-
-`r webex::hide()`
-```{r ex7}
-ukb_top_year <- ukb_prop %>%
-  group_by(name, sex) %>%
-  filter(p == max(p)) %>%
-  ungroup() %>%
-  arrange(year)
-```
-`r webex::unhide()`
-
-
-### Advanced
-
-1. Make a frequency histogram for the final letter of each name, broken down by sex.  Are certain final letters more "gendered" than others?
-
-`r webex::hide()`
-```{r ex1-adv}
-last_letter <- ukb %>%
-  mutate(lastchar = substr(name, nchar(name), nchar(name))) %>%
-  filter(lastchar %in% letters) %>%
-  count(sex, lastchar) %>%
-  arrange(lastchar)
-
-ggplot(last_letter, aes(lastchar, n, fill = sex)) +
-  geom_bar(stat = "identity")
-```
-`r webex::unhide()`
-
-2. Calculate the top 5 boys and girls names for each decade and print out the whole table.
-
-`r webex::hide()`
-```{r ex2-adv}
-ukb %>%
-  mutate(decade = floor(year / 10) * 10) %>%
-  group_by(decade, sex, name) %>%
-  summarise(tot_n = sum(n)) %>%
-  arrange(desc(tot_n)) %>%
-  slice(1:5) %>%
-  ungroup() %>%
-  print(n = +Inf)
-```
-`r webex::unhide()`
-
-3. Pull out the top 5 boys and girls names for the final year of the dataset, and plot the historical trajectory of their popularity, with separate graphs for boys and girls. (Hint: This might require merging tables, which you will learn about next week.)
-
-`r webex::hide()`
-```{r ex3-adv}
-top_names <- ukb %>%
-  filter(year == max(year), rank <= 5) %>%
-  select(sex, name)
-
-ukb %>%
-  inner_join(top_names, c("sex", "name")) %>%
-  ggplot(aes(year, n, color = name)) +
-    geom_line() +
-    facet_wrap(~sex)
-```
-`r webex::unhide()`
-
-4. What are the 10 most androgynous names in the UK?  Discard any names that were given to less than 5000 babies total.  Calculate an "androgyny index" for each name as log(F + .5) - log(M + .5) where F is the number of female and M is the number of male babies.  This index will be zero for perfect gender balance, positive for skewed female, and negative for skewed male.
-
-`r webex::hide()`
-```{r ex4-adv}
-andro <- ukb %>%
-  group_by(sex, name) %>%
-  summarise(tot = sum(n)) %>%
-  ungroup() %>%
-  spread(sex, tot, fill = 0) %>%
-  mutate(N = F + M)
-
-andro_gbal <- andro %>%
-  filter(N >= 5000) %>%
-  mutate(gbal = log(F + .5) - log(M + .5),
-         tot = F + M) %>%
-  arrange(abs(gbal)) %>%
-  slice(1:10)
-```
-`r webex::unhide()`
-
-5. Which girl name has increased the most in popularity, if you directly compare the first year of the dataset to the last year?  Which girl name has decreased the most?  (Only comare names that were given to at least 500 babies in at least one of the years covered by the dataset.)
-
-`r webex::hide()`
-```{r ex5-adv}
-name_pop <- ukb %>%
-  filter(sex == "F", (year == 1996) | (year == 2015)) %>%
-  spread(year, n, fill = 0) %>%
-  filter(`2015` > 500 | `1996` > 500) %>%
-  mutate(chg = `2015` - `1996`)
-
-name_pop %>%
-  arrange(desc(chg)) %>%
-  slice(1) %>%
-  pull(name)
-
-name_pop %>%
-  arrange(chg) %>%
-  slice(1) %>%
-  pull(name)
-```
-`r webex::unhide()`
-
-6. Calculate the proportion of names that are androgynous for each year in the dataset (were given to both male and female babies) and then plot the historical trend.
-
-`r webex::hide()`
-```{r ex6-adv}
-p_andro <- ukb %>%
-  select(-rank) %>%
-  spread(sex, n, fill = 0) %>%
-  mutate(is_andro = (F != 0) & (M != 0)) %>%
-  group_by(year) %>%
-  summarise(p = mean(is_andro))
-
-ggplot(p_andro, aes(year, p)) + geom_line()
-```
-`r webex::unhide()`
-
-7. *Naming diversity trends.* Calculate a naming diversity index (number of names divided by number of babies) for each year and sex in the dataset.  Plot the historical trend for naming diversity.
-
-`r webex::hide()`
-```{r ex7-adv}
-ndiversity <- ukb %>%
-  group_by(year, sex) %>%
-  summarise(n_names = n_distinct(name),
-            n_babies = sum(n),
-            d_index = n_names / n_babies) %>%
-  ungroup()
-
-ggplot(ndiversity,
-  aes(year, d_index, color = sex)) + geom_line()
-```
-`r webex::unhide()`
-
+Download the [exercises](exercises/05_dplyr_exercise.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.

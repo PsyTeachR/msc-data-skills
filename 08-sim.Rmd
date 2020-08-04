@@ -1,62 +1,70 @@
 # Probability & Simulation {#sim}
 
+<img src="images/memes/sim.jpg" class="meme right">
+
 ## Learning Objectives
 
 ### Basic
 
 1. Understand what types of data are best modeled by different distributions
-    + uniform
-    + binomial
-    + normal
-    + poisson
+    + [uniform](#uniform)
+    + [binomial](#binomial)
+    + [normal](#normal)
+    + [poisson](#poisson)
 2. Generate and plot data randomly sampled from the above distributions
 3. Test sampled distributions against a null hypothesis
-    + exact binomial test
-    + t-test (1-sample, independent samples, paired samples)
-    + correlation (pearson, kendall and spearman)
-4. Define the following statistical terms:
-    + p-value
-    + alpha
-    + power
-    + false positive (type I error)
-    + false negative (type II error)
-    + confidence interval
+    + [exact binomial test](#exact-binom)
+    + [t-test](#t-test) (1-sample, independent samples, paired samples)
+    + [correlation](#correlation) (pearson, kendall and spearman)
+4. Define the following [statistical terms](#stat-terms):
+    + [p-value](#p-value)
+    + [alpha](#alpha)
+    + [power](#power)
+    + smallest effect size of interest ([SESOI](#sesoi))
+    + [false positive](#false-pos) (type I error)
+    + [false negative](#false-neg) (type II error)
+    + confidence interval ([CI](#conf-inf))
+5. [Calculate power](#calc-power) using iteration and a sampling function
 
 ### Intermediate
 
-5. Create a function to generate a sample with specific properties and run an inferential test
-6. Calculate power using `replicate` and a sampling function
-7. Calculate the minimum sample size for a specific power level and design
+6. Generate 3+ variables from a [multivariate normal](#mvnorm) distribution and plot them
 
 ### Advanced
 
-8. Generate 3+ variables from a multivariate normal distribution and plot them
+7. Calculate the minimum sample size for a specific power level and design
+
 
 ## Resources
 
+* [Stub for this lesson](stubs/8_sim.Rmd)
+* [Distribution Shiny App](http://shiny.psy.gla.ac.uk/debruine/simulate/)
+* [Simulation tutorials](https://debruine.github.io/tutorials/sim-data.html)
 * [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science*
 * [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera (week 1)
+* [Faux](https://debruine.github.io/faux/) package for data simulation
+* [Simulation-Based Power-Analysis for Factorial ANOVA Designs](https://psyarxiv.com/baxsf) [@lakens_caldwell_2019]
+* [Understanding mixed effects models through data simulation](https://psyarxiv.com/xp5cy/) [@debruine_barr_2019]
 
 
 ## Distributions
 
-Simulating data is a very powerful way to test your understanding of statistical 
-concepts. We are going to use simulations to learn the basics of probability.
+Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use simulations to learn the basics of probability.
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
 library(tidyverse)
 library(MASS)
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
-```{r set-seed, echo = FALSE}
-set.seed(8675309)
+### Uniform Distribution {#uniform}
+
+The uniform distribution is the simplest distribution. All numbers in the range have an equal probability of being sampled.
+
+```{block type="try"}
+Take a minute to think of things in your own research that are uniformly distributed.
 ```
-
-### Uniform Distribution
-
-The uniform distribution is the simplest distribution. All numbers in the range 
-have an equal probability of being sampled. 
 
 #### Sample continuous distribution
 
@@ -65,7 +73,12 @@ have an equal probability of being sampled.
 Use `runif()` to sample from a continuous uniform distribution.
 
 ```{r runif}
-runif(10, min = 0, max = 1)
+u <- runif(100000, min = 0, max = 1)
+
+# plot to visualise
+ggplot() + 
+  geom_histogram(aes(u), binwidth = 0.05, boundary = 0,
+                 fill = "white", colour = "black")
 ```
 
 #### Sample discrete distribution
@@ -74,15 +87,15 @@ runif(10, min = 0, max = 1)
 
 Use `sample()` to sample from a discrete distribution.
 
-Simulate a single roll of a 6-sided die.
-```{r sample}
-sample(6, 1)
-```
+You can use `sample()` to simulate events like rolling dice or choosing from a deck of cards. The code below simulates rolling a 6-sided die 10000 times. We set `replace` to `TRUE` so that each event is independent. See what happens if you set `replace` to `FALSE`.
 
-Simulate 10 rolls of a 6-sided die. Set `replace` to `TRUE` so each roll is 
-independent. See what happens if you set `replace` to `FALSE`.
-```{r sample-replace}
-sample(6, 10, replace = TRUE)
+```{r sample-replace, fig.cap = "Distribution of dice rolls."}
+rolls <- sample(1:6, 10000, replace = TRUE)
+
+# plot the results
+ggplot() + 
+  geom_histogram(aes(rolls), binwidth = 1, 
+                 fill = "white", color = "black")
 ```
 
 You can also use sample to sample from a list of named outcomes.
@@ -92,9 +105,7 @@ pet_types <- c("cat", "dog", "ferret", "bird", "fish")
 sample(pet_types, 10, replace = TRUE)
 ```
 
-Ferrets are a much less common pet than cats and dogs, so our sample isn't very 
-realistic. You can set the probabilities of each item in the list with the `prob` 
-argument.
+Ferrets are a much less common pet than cats and dogs, so our sample isn't very realistic. You can set the probabilities of each item in the list with the `prob` argument.
 
 ```{r sample-prob}
 pet_types <- c("cat", "dog", "ferret", "bird", "fish")
@@ -102,11 +113,10 @@ pet_prob <- c(0.3, 0.4, 0.1, 0.1, 0.1)
 sample(pet_types, 10, replace = TRUE, prob = pet_prob)
 ```
 
-### Binomial Distribution
 
-The binomial distribution is useful for modeling binary data, where each 
-observation can have one of two outcomes, like success/failure, yes/no or 
-head/tails. 
+### Binomial Distribution {#binomial}
+
+The binomial distribution is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails. 
 
 #### Sample distribution
 
@@ -118,33 +128,32 @@ The `rbinom` function will generate a random binomial distribution.
 * `size` = number of trials
 * `prob` = probability of success on each trial
 
-Coin flips are a typical example of a binomial distribution, where we can assign 
-head to 1 and tails to 0.
+Coin flips are a typical example of a binomial distribution, where we can assign heads to 1 and tails to 0.
 
-20 individual coin flips of a fair coin
 ```{r rbinom-fair}
+# 20 individual coin flips of a fair coin
 rbinom(20, 1, 0.5)
 ```
 
-20 individual coin flips of a baised (0.75) coin
+
 ```{r rbinom-bias}
+# 20 individual coin flips of a baised (0.75) coin
 rbinom(20, 1, 0.75)
 ```
 
-You can generate the total number of heads in 1 set of 20 coin flips by setting 
-`size` to 20 and `n` to 1.
+You can generate the total number of heads in 1 set of 20 coin flips by setting `size` to 20 and `n` to 1.
+
 ```{r rbinom-size}
 rbinom(1, 20, 0.75)
 ```
 
 You can generate more sets of 20 coin flips by increasing the `n`.
+
 ```{r rbinom-n}
 rbinom(10, 20, 0.5)
 ```
 
-You should always check your randomly generated data to check that it makes sense. 
-For large samples, it's easiest to do that graphically. A histogram is usually 
-the best choice for plotting binomial data.
+You should always check your randomly generated data to check that it makes sense. For large samples, it's easiest to do that graphically. A histogram is usually the best choice for plotting binomial data.
 
 ```{r sim_flips}
 flips <- rbinom(1000, 20, 0.5)
@@ -158,23 +167,21 @@ ggplot() +
   )
 ```
 
-```{block, type="info"}
+```{block, type="try"}
 Run the simulation above several times, noting how the histogram changes. Try changing the values of `n`, `size`, and `prob`.
 ```
 
-#### Exact binomial test
+#### Exact binomial test {#exact-binom}
 
 `binom.test(x, n, p)`
 
-You can test a binomial distribution against a specific probability using the 
-exact binomial test.
+You can test a binomial distribution against a specific probability using the exact binomial test.
 
 * `x` = the number of successes
 * `n` = the number of trials
 * `p` = hypothesised probability of success
 
-Here we can test a series of 10 coin flips from a fair coin and a biased coin 
-against the hypothesised probability of 0.5 (even odds).
+Here we can test a series of 10 coin flips from a fair coin and a biased coin against the hypothesised probability of 0.5 (even odds).
 
 ```{r binom-test}
 
@@ -188,9 +195,7 @@ binom.test(biased_coin, n, p = 0.5)
 ```
 
 ```{block, type="info"}
-Run the code above several times, noting the p-values for the fair and biased coins. 
-Alternatively, you can [simulate coin flips](https://debruine.shinyapps.io/coinsim/) 
-online and build up a graph of results and p-values. 
+Run the code above several times, noting the p-values for the fair and biased coins. Alternatively, you can [simulate coin flips](http://shiny.psy.gla.ac.uk/debruine/coinsim/) online and build up a graph of results and p-values. 
 
 * How does the p-value vary for the fair and biased coins?
 * What happens to the confidence intervals if you increase n from 10 to 100?
@@ -199,35 +204,64 @@ online and build up a graph of results and p-values.
 * How often do you conclude the biased coin is fair (false negatives)?
 ```
 
-#### False positives & negatives
+#### Statistical terms {#stat-terms}
 
-The probability that a test concludes the fair coin is biased is called the 
-*false positive rate* (or _Type I Error Rate_). The *alpha* is the false positive 
-rate we accept for a test. This is traditionally set at 0.05, but there are good 
-arguments for setting a different criterion in some circumstances.
+The **effect** is some measure of your data. This will depend on the type of data you have and the type of statistical test you are using. For example, if you flipped a coin 100 times and it landed heads 66 times, the effect would be 66/100. You can then use the exact binomial test to compare this effect to the **null effect** you would expect from a fair coin (50/100) or to any other effect you choose. The **effect size** refers to the difference between the effect in your data and the null effect (usually a chance value).
 
-The probability that a test concludes the biased coin is fair is called the 
-*false negative rate* (of _Type II Error Rate_). The *power* of a test is 1 
-minus its false negative rate (i.e., the *true positive rate*). Power depends 
-on how biased the coin is and how many samples we take. 
+<img src="images/memes/p-value.jpg" class="meme right">
+
+{#p-value}
+The **p-value** of a test is the probability of seeing an effect at least as extreme as what you have, if the real effect was the value you are testing against (e.g., a null effect). So if you used a binomial test to test against a chance probability of 1/6 (e.g., the probability of rolling 1 with a 6-sided die), then a p-value of 0.17 means that you could expect to see effects at least as extreme as your data 17% of the time just by chance alone. 
+
+{#alpha}
+If you are using null hypothesis significance testing (**NHST**), then you need to decide on a cutoff value (**alpha**) for making a decision to reject the null hypothesis. We call p-values below the alpha cutoff **significant**. In psychology, alpha is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html). 
+
+{#false-pos}{#false-neg}
+The probability that a test concludes there is an effect when there is really no effect (e.g., concludes a fair coin is biased) is called the **false positive rate** (or _Type I Error Rate_). The alpha is the false positive rate we accept for a test. The probability that a test concludes there is no effect when there really is one (e.g., concludes a biased coin is fair) is called the **false negative rate** (or _Type II Error Rate_). The **beta** is the false negative rate we accept for a test.
+
+```{block type="info"}
+The false positive rate is not the overall probability of getting a false positive, but the probability of a false positive *under the null hypothesis*. Similarly, the false negative rate is the probability of a false negative *under the alternative hypothesis*. Unless we know the probability that we are testing a null effect, we can't say anything about the overall probability of false positives or negatives. If 100% of the hypotheses we test are false, then all significant effects are false positives, but if all of the hypotheses we test are true, then all of the positives are true positives and the overall false positive rate is 0.
+```
+
+{#power}{#sesoi}
+**Power** is equal to 1 minus beta (i.e., the **true positive rate**), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last. The effect size you use in power calculations should be the smallest effect size of interest (**SESOI**). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
+
+<div class="try">
+Let's say you want to be able to detect at least a 15% difference from chance (50%) in a coin's fairness, and you want your test to have a 5% chance of false positives and a 10% chance of false negatives. What are the following values?
+
+* alpha = `r fitb(c("0.05", ".05", "5%"))`
+* beta = `r fitb(c("0.1", "0.10", ".1", ".10", "10%"))`
+* false positive rate = `r fitb(c("0.05", ".05", "5%"))`
+* false negative rate = `r fitb(c("0.1", "0.10", ".1", ".10", "10%"))`
+* power = `r fitb(c("0.9", "0.90", ".9", ".90", "90%"))`
+* SESOI = `r fitb(c("0.15", ".15", "15%"))`
+</div>
+
+{#conf-int}
+The **confidence interval** is a range around some value (such as a mean) that has some probability (usually 95%, but you can calculate CIs for any percentage) of containing the parameter, if you repeated the process many times. 
+
+<div class="info">
+A 95% CI does *not* mean that there is a 95% probability that the true mean lies within this range, but that, if you repeated the study many times and calculated the CI this same way every time, you'd expect the true mean to be inside the CI in 95% of the studies. This seems like a subtle distinction, but can lead to some misunderstandings. See [@Morey2016](https://link.springer.com/article/10.3758/s13423-015-0947-8) for more detailed discussion.
+</div>
+
 
 #### Sampling function
 
 To estimate these rates, we need to repeat the sampling above many times. 
-A function is ideal for repeating the exact same procedure over and over. Set 
-the arguments of the function to variables that you might want to change. Here, 
-we will want to estimate power for:
+A function is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:
 
 * different sample sizes (`n`)
-* different coin biases (`bias`)
+* different effects (`bias`)
 * different hypothesised probabilities (`p`, defaults to 0.5)
 
 ```{r sim_binom_test}
 
 sim_binom_test <- function(n, bias, p = 0.5) {
+  # simulate 1 coin flip n times with the specified bias
   coin <- rbinom(1, n, bias)
+  # run a binomial test on the simulated data for the specified p
   btest <- binom.test(coin, n, p)
-  
+  # returun the p-value of this test
   btest$p.value
 }
 
@@ -239,51 +273,50 @@ Once you've created your function, test it a few times, changing the values.
 sim_binom_test(100, 0.6)
 ```
 
-#### Calculate power
+#### Calculate power {#calc-power}
 
-Then you can use the `replicate()` function to run it many times and save all 
-the output values. You can calculate the *power* of your analysis by checking the 
-proportion of your simulated analyses that have a p-value less than your _alpha_ 
-(the probability of rejecting the null hypothesis when the null hypothesis is true).
+Then you can use the `replicate()` function to run it many times and save all the output values. You can calculate the *power* of your analysis by checking the proportion of your simulated analyses that have a p-value less than your _alpha_ (the probability of rejecting the null hypothesis when the null hypothesis is true).
 
 ```{r replicate}
 
 my_reps <- replicate(1e4, sim_binom_test(100, 0.6))
 
-mean(my_reps < 0.05)
+alpha <- 0.05 # this does not always have to be 0.05
+
+mean(my_reps < alpha)
 
 ```
 
 ```{block, type="info"}
-`1e4` is just scientific notation for a 1 followed 
-by 4 zeros (`10000`). When youre running simulations, you usually want to run a 
-lot of them and it's a pain to keep track of whether you've typed 5 or 6 zeros 
-(100000 vs 1000000) and this will change your running time by an order of 
-magnitude.
+`1e4` is just scientific notation for a 1 followed by 4 zeros (`10000`). When you're running simulations, you usually want to run a lot of them. It's a pain to keep track of whether you've typed 5 or 6 zeros (100000 vs 1000000) and this will change your running time by an order of magnitude.
 ```
 
-### Normal Distribution
+### Normal Distribution {#normal}
 
 #### Sample distribution
 
 `rnorm(n, mean, sd)`
 
-We can simulate a normal distribution of size `n` if we know the `mean` and 
-standard deviation (`sd`). A density plot is usually the best way to visualise 
-this type of data if your `n` is large.
+We can simulate a normal distribution of size `n` if we know the `mean` and standard deviation (`sd`). A density plot is usually the best way to visualise this type of data if your `n` is large.
 
 ```{r rnorm}
 dv <- rnorm(1e5, 10, 2)
 
+# proportions of normally-distributed data 
+# within 1, 2, or 3 SD of the mean
+sd1 <- .6827 
+sd2 <- .9545
+sd3 <- .9973
+
 ggplot() +
   geom_density(aes(dv), fill = "white") +
   geom_vline(xintercept = mean(dv), color = "red") +
-  geom_vline(xintercept = quantile(dv, .5 - (.6827/2)), color = "darkgreen") +
-  geom_vline(xintercept = quantile(dv, .5 + (.6827/2)), color = "darkgreen") +
-  geom_vline(xintercept = quantile(dv, .5 - (.9545/2)), color = "blue") +
-  geom_vline(xintercept = quantile(dv, .5 + (.9545/2)), color = "blue") +
-  geom_vline(xintercept = quantile(dv, .5 - (.9973/2)), color = "purple") +
-  geom_vline(xintercept = quantile(dv, .5 + (.9973/2)), color = "purple") +
+  geom_vline(xintercept = quantile(dv, .5 - sd1/2), color = "darkgreen") +
+  geom_vline(xintercept = quantile(dv, .5 + sd1/2), color = "darkgreen") +
+  geom_vline(xintercept = quantile(dv, .5 - sd2/2), color = "blue") +
+  geom_vline(xintercept = quantile(dv, .5 + sd2/2), color = "blue") +
+  geom_vline(xintercept = quantile(dv, .5 - sd3/2), color = "purple") +
+  geom_vline(xintercept = quantile(dv, .5 + sd3/2), color = "purple") +
   scale_x_continuous(
     limits = c(0,20), 
     breaks = seq(0,20)
@@ -291,12 +324,10 @@ ggplot() +
 ```
 
 ```{block, type="info"}
-Run the simulation above several times, noting how 
-the density plot changes. What do the vertical lines represent? Try changing the 
-values of `n`, `mean`, and `sd`.
+Run the simulation above several times, noting how the density plot changes. What do the vertical lines represent? Try changing the values of `n`, `mean`, and `sd`.
 ```
 
-#### T-test
+#### T-test {#t-test}
 
 `t.test(x, y, alternative, mu, paired)`
 
@@ -329,8 +360,8 @@ The `paired` argument defaults to `FALSE`, but it's good practice to always expl
 
 #### Sampling function
 
-We can use the `names()` function to find out the names of all the t.test parameters 
-and use this to just get one type of data, like the test statistic (e.g., t-value).
+We can use the `names()` function to find out the names of all the t.test parameters and use this to just get one type of data, like the test statistic (e.g., t-value).
+
 ```{r names}
 names(t_ind)
 t_ind$statistic
@@ -343,15 +374,20 @@ broom::tidy(t_ind)
 ```
 
 
-If you want to run the simulation many times and record information each time, 
-first you need to turn your simulation into a function.
+If you want to run the simulation many times and record information each time, first you need to turn your simulation into a function.
 
 ```{r sim_t_ind}
 sim_t_ind <- function(n, m1, sd1, m2, sd2) {
+  # simulate v1
   v1 <- rnorm(n, m1, sd1)
+  
+  #simulate v2
   v2 <- rnorm(n, m2, sd2)
+    
+  # compare using an independent samples t-test
   t_ind <- t.test(v1, v2, paired = FALSE)
   
+  # return the p-value
   return(t_ind$p.value)
 }
 ```
@@ -376,13 +412,11 @@ power
 Run the code above several times. How much does the power value fluctuate? How many replications do you need to run to get a reliable estimate of power?
 ```
 
-Compare your power estimate from simluation to a power calculation using `power.t.test()`. 
-Here, `delta` is the difference between `m1` and `m2` above.
+Compare your power estimate from simluation to a power calculation using `power.t.test()`. Here, `delta` is the difference between `m1` and `m2` above.
 
 ```{r power.t.test}
 power.t.test(n = 100, delta = 0.2, sd = 1, sig.level = alpha, type = "two.sample")
 ```
-
 
 You can plot the distribution of p-values.
 
@@ -406,45 +440,44 @@ when there is no effect (i.e., the means are identical)? Check this yourself.
 Make sure the `boundary` argument is set to `0` for p-value histograms. See what happens with a null effect if `boundary` is not set.
 ```
 
-#### Bivariate Normal
+### Bivariate Normal
 
-##### Correlation 
+#### Correlation {#correlation}
 
 You can test if two continuous variables are related to each other using the `cor()` function.
 
-Below is a quick and dirty way to generate two correlated variables. `x` is drawn 
-from a normal distribution, while `y` is the sum of `x` and another value drawn 
-from a random normal distribution. We'll learn later how to generate specific 
-correlations in simulated data.
+Below is one way to generate two correlated variables: `a` is drawn from a normal distribution, while `x` and `y` the sum of  and another value drawn from a random normal distribution. We'll learn later how to generate specific correlations in simulated data.
 
 ```{r cor}
 n <- 100 # number of random samples
 
-x <- rnorm(n, 0, 1)
-y <- x + rnorm(n, 0, 1)
+a <- rnorm(n, 0, 1)
+x <- a + rnorm(n, 0, 1)
+y <- a + rnorm(n, 0, 1)
 
 cor(x, y)
 ```
 
-`cor()` defaults to Pearson's correlations. Set the `method` argument to use 
-Kendall or Spearman correlations.
+```{block type="try"}
+Set `n` to a large number like 1e6 so that the correlations are less affected by chance. Change the value of the **mean** for `a`, `x`, or `y`. Does it change the correlation between `x` and `y`? What happens when you increase or decrease the **sd** for `a`? Can you work out any rules here?
+```
+
+`cor()` defaults to Pearson's correlations. Set the `method` argument to use Kendall or Spearman correlations.
 
 ```{r cor-spearman}
 cor(x, y, method = "spearman")
 ```
 
-##### Sample distribution
-<a name="bvn"></a>
+#### Sample distribution {#bvn}
 
-What if we want to sample from a population with specific relationships between 
-variables? We can sample from a _bivariate normal distribution_ using the `MASS` package,
+What if we want to sample from a population with specific relationships between variables? We can sample from a **bivariate normal distribution** using `mvrnorm()` from the `MASS` package. 
 
 ```{r bvn}
-n <- 1000 # number of random samples
-rho <- 0.5 # population correlation between the two variables
+n   <- 1000 # number of random samples
+rho <- 0.5  # population correlation between the two variables
 
-mu <- c(10, 20) # the means of the samples
-stdevs <- c(5, 6) # the SDs of the samples
+mu     <- c(10, 20) # the means of the samples
+stdevs <- c(5, 6)   # the SDs of the samples
 
 # correlation matrix
 cor_mat <- matrix(c(  1, rho, 
@@ -454,13 +487,12 @@ cor_mat <- matrix(c(  1, rho,
 sigma <- (stdevs %*% t(stdevs)) * cor_mat
 
 # sample from bivariate normal distribution
-bvn <- mvrnorm(n, mu, sigma) 
+bvn <- MASS::mvrnorm(n, mu, sigma) 
 
 cor(bvn) # check correlation matrix
 ```
 
-Plot your sampled variables to check everything worked like you expect. You need 
-to convert the output of `mvnorm` into a tibble in order to use it in ggplot.
+Plot your sampled variables to check everything worked like you expect. It's easiest to convert the output of `mvnorm` into a tibble in order to use it in ggplot.
 
 ```{r graph-bvn}
 bvn %>%
@@ -471,18 +503,20 @@ bvn %>%
     geom_density2d()
 ```
 
-### Multivariate Normal
+### Multivariate Normal {#mvnorm}
 
-##### Sample distribution
+You can generate more than 2 correlated variables, but it gets a little trickier to create the correlation matrix.
+
+#### Sample distribution
 
 ```{r mvn}
-n <- 200 # number of random samples
+n      <- 200 # number of random samples
 rho1_2 <- 0.5 # correlation betwen v1 and v2
-rho1_3 <- 0 # correlation betwen v1 and v3
+rho1_3 <- 0   # correlation betwen v1 and v3
 rho2_3 <- 0.7 # correlation betwen v2 and v3
 
-mu <- c(10, 20, 30) # the means of the samples
-stdevs <- c(8, 9, 10) # the SDs of the samples
+mu     <- c(10, 20, 30) # the means of the samples
+stdevs <- c(8, 9, 10)   # the SDs of the samples
 
 # correlation matrix
 cor_mat <- matrix(c(     1, rho1_2, rho1_3, 
@@ -490,12 +524,32 @@ cor_mat <- matrix(c(     1, rho1_2, rho1_3,
                     rho1_3, rho2_3,      1), 3) 
 
 sigma <- (stdevs %*% t(stdevs)) * cor_mat
-bvn3 <- mvrnorm(n, mu, sigma)
+bvn3 <- MASS::mvrnorm(n, mu, sigma)
 
 cor(bvn3) # check correlation matrix
 ```
 
-##### 3D Plots
+Alternatively, you can use the (in-development) package faux to generate any number of correlated variables. It also allows to to easily name the variables and has a function for checking the parameters of your new simulated data (`check_sim_stats()`).
+
+```{r}
+#devtools::install_github("debruine/faux")
+library(faux)
+
+bvn3 <- faux::rnorm_multi(
+  n = n,
+  vars = 3,
+  mu = mu,
+  sd = stdevs,
+  r = c(rho1_2, rho1_3, rho2_3),
+  varnames = c("A", "B", "C")
+)
+
+faux::check_sim_stats(bvn3)
+
+```
+
+
+#### 3D Plots
 
 You can use the `plotly` library to make a 3D graph.
 
@@ -515,24 +569,23 @@ marker_style = list(
 
 bvn3 %>%
   as_tibble() %>%
-  plot_ly(x = ~V1, y = ~V2, z = ~V3, marker = marker_style) %>%
+  plot_ly(x = ~A, y = ~B, z = ~C, marker = marker_style) %>%
   add_markers()
 ```
 
 ## Example
 
 This example uses the [Growth Chart Data Tables](https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv) 
-from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm). 
+from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm). The data consist of height in centimeters for the z-scores of –2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, and 2 by sex (1=male; 2=female) and half-month of age (from 24.0 to 240.5 months).
 
 ### Load & wrangle
 
-We have to do a little data wrangling first. Have a look at the data after you 
-import it and relabel `Sex` to `male` and `female` instead of `1` and `2`. Also 
-convert `Agemos` (age in months) to years. Relabel the column `0` as `mean` and 
-calculate a new column named `sd` as the difference between columns `1` and `0`. 
+We have to do a little data wrangling first. Have a look at the data after you import it and relabel `Sex` to `male` and `female` instead of `1` and `2`. Also convert `Agemos` (age in months) to years. Relabel the column `0` as `mean` and calculate a new column named `sd` as the difference between columns `1` and `0`. 
 
 ```{r load-height-data}
-height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv") %>%
+orig_height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv") 
+
+height_age <- orig_height_age %>%
   filter(Sex %in% c(1,2)) %>%
   mutate(
     sex = recode(Sex, "1" = "male", "2" = "female"),
@@ -543,13 +596,7 @@ height_age <- read_csv("https://www.cdc.gov/growthcharts/data/zscore/zstatage.cs
 ```
 
 ```{block, type="warning"}
-If you run the code above without putting `dplyr::` 
-before the `select()` function, you will get an error message. This is because 
-the `MASS` package also has a function called `select()` and, since we loaded 
-`MASS` after `tidyverse`, the `MASS` function is the default. When you loaded 
-`MASS`, you should have seen a warning like "The following object is masked from 
-‘package:dplyr’: select". You can use functions with the same name from different 
-packages by specifying the package before the function name, separated by two colons.
+If you run the code above without putting `dplyr::` before the `select()` function, you might get an error message. This is because the `MASS` package also has a function called `select()` and, since we loaded `MASS` after `tidyverse`, the `MASS` function becomes the default. When you loaded `MASS`, you should have seen a warning like "The following object is masked from ‘package:dplyr’: select". You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.
 ```
 
 ### Plot
@@ -580,8 +627,7 @@ height_sub
 
 ### Simulate a population
 
-Simulate 50 random male heights and 50 radom female heights using the `rnorm()` 
-function and the means and SDs above. Plot the data.
+Simulate 50 random male heights and 50 random female heights using the `rnorm()` function and the means and SDs above. Plot the data.
 
 ```{r sim-height-20}
 
@@ -603,9 +649,7 @@ Run the simulation above several times, noting how the density plot changes. Try
 
 ### Analyse simulated data
 
-Use the `sim_t_ind(n, m1, sd1, m2, sd2)` function we created above to generate 
-one simulation with a sample size of 50 in each group using the means and SDs 
-of male and female 14-year-olds.
+Use the `sim_t_ind(n, m1, sd1, m2, sd2)` function we created above to generate one simulation with a sample size of 50 in each group using the means and SDs of male and female 14-year-olds.
 
 ```{r subset-height-14}
 height_sub <- height_age %>% filter(age == 14)
@@ -619,10 +663,7 @@ sim_t_ind(50, m_mean, m_sd, f_mean, f_sd)
 
 ### Replicate simulation
 
-Now replicate this 1e4 times using the `replicate()` function. This function 
-will save the returned p-values in a list (`my_reps`). We can then check what 
-proportion of those p-values are less than our alpha value. This is the power of 
-our test.
+Now replicate this 1e4 times using the `replicate()` function. This function will save the returned p-values in a list (`my_reps`). We can then check what proportion of those p-values are less than our alpha value. This is the power of our test.
 
 ```{r rep-height-14}
 my_reps <- replicate(1e4, sim_t_ind(50, m_mean, m_sd, f_mean, f_sd))
@@ -635,12 +676,9 @@ power
 
 ### One-tailed prediction
 
-This design has about 65% power to detect the sex difference in height (with a 
-2-tailed test). Modify the `sim_t_ind` function for a 1-tailed prediction.
+This design has about 65% power to detect the sex difference in height (with a 2-tailed test). Modify the `sim_t_ind` function for a 1-tailed prediction.
 
-You could just set `alternative` equal to "greater" in the function, but it might be 
-better to add the `alternative` argument to your function (giving it the same default 
-value as `t.test`) and change the value of `alternative` in the function to `alternative`.
+You could just set `alternative` equal to "greater" in the function, but it might be better to add the `alternative` argument to your function (giving it the same default value as `t.test`) and change the value of `alternative` in the function to `alternative`.
 
 ```{r add-1tailed}
 sim_t_ind <- function(n, m1, sd1, m2, sd2, alternative = "two.sided") {
@@ -651,6 +689,7 @@ sim_t_ind <- function(n, m1, sd1, m2, sd2, alternative = "two.sided") {
   return(t_ind$p.value)
 }
 
+alpha <- 0.05
 my_reps <- replicate(1e4, sim_t_ind(50, m_mean, m_sd, f_mean, f_sd, "greater"))
 mean(my_reps < alpha)
 
@@ -658,18 +697,13 @@ mean(my_reps < alpha)
 
 ### Range of sample sizes
 
-What if we want to find out what sample size will give us 80% power? We can try 
-trial and error. We know the number should be slightly larger than 50. But you 
-can search more systematically by repeating your power calculation for a range 
-of sample sizes. 
+What if we want to find out what sample size will give us 80% power? We can try trial and error. We know the number should be slightly larger than 50. But you can search more systematically by repeating your power calculation for a range of sample sizes. 
 
 ```{block, type="info"}
 This might seem like overkill for a t-test, where you can easily look up sample size calculators online, but it is a valuable skill to learn for when your analyses become more complicated.
 ```
 
-Start with a relatively low number of replications and/or more spread-out samples 
-to estimate where you should be looking more specifically. Then you can repeat 
-with a narrower/denser range of sample sizes and more iterations.
+Start with a relatively low number of replications and/or more spread-out samples to estimate where you should be looking more specifically. Then you can repeat with a narrower/denser range of sample sizes and more iterations.
 
 ```{r range-sample-sizes}
 
@@ -689,8 +723,7 @@ ggplot(power_table, aes(n, power)) +
 
 ```
 
-Now we can narrow down our search to values around 55 (plus or minus 5) and 
-increase the number of replications from 1e3 to 1e4.
+Now we can narrow down our search to values around 55 (plus or minus 5) and increase the number of replications from 1e3 to 1e4.
 
 ```{r narrow-range-sample-sizes}
 
@@ -710,7 +743,7 @@ power_table <- tibble(
 
 ```
 
-## Formative exercises
+## Exercises
 
-Download the [formative exercises](formative_exercises/08_simulations_stub.Rmd). See the [answers](formative_exercises/08_simulations_answers.Rmd) only after you've attempted all the questions.
+Download the [exercises](exercises/08_sim_exercise.Rmd). See the [answers](exercises/08_sim_answers.Rmd) only after you've attempted all the questions.
 

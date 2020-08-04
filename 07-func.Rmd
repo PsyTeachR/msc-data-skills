@@ -1,8 +1,10 @@
 # Iteration & Functions {#func}
 
+<img src="images/memes/functions.jpg" class="meme right">
+
 ## Learning Objectives
 
-You will learn about functions and iteration by using simulation to calculate a power analysis for ANOVA on a simple two-group design.
+You will learn about functions and iteration by using simulation to calculate a power analysis for an independent samples t-test.
 
 ### Basic
 
@@ -18,6 +20,8 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Advanced
 
+<img src="images/memes/purrr.gif" class="meme right">
+
 The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
 7. Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
@@ -30,14 +34,16 @@ The topics below are not (yet) covered in these materials, but they are directio
 
 * Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
-
-
+* [Stub for this lesson](stubs/7_func.Rmd)
 
 In the next two lectures, we are going to learn more about *iteration* (doing the same commands over and over) and *custom functions* through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.
 
 ```{r setup}
 # libraries needed for these examples
 library(tidyverse)  ## contains purrr, tidyr, dplyr
+library(broom) ## converts test output to tidy tables
+
+set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 ## Iteration functions {#iteration-functions}
@@ -52,31 +58,50 @@ Use `rep()` to create a vector of alternating `"A"` and `"B"` values of length 2
 rep(c("A", "B"), 12)
 ```
 
-Use `rep()` to create a vector of 12 `"A"` values followed by 12 `"B"` values
+If you don't specify what the second argument is, it defaults to `times`, repeating the vector in the first argument that many times. Make the same vector as above, setting the second argument explicitly.
 
-```{r rep2}
+```{r rep1-times}
+rep(c("A", "B"), times = 12)
+```
+
+If the second argument is a vector that is the same length as the first argument, each element in the first vector is repeated than many times. Use `rep()` to create a vector of 11 `"A"` values followed by 3 `"B"` values.
+
+```{r rep-vector}
+rep(c("A", "B"), c(11, 3))
+```
+
+You can repeat each element of the vector a sepcified number of times using the `each` argument, Use `rep()` to create a vector of 12 `"A"` values followed by 12 `"B"` values.
+
+```{r rep-each}
 rep(c("A", "B"), each = 12)
 ```
 
-Use `rep()` to create a vector of 11 `"A"` values followed by 3 `"B"` values
+What do you think will happen if you set both `times` to 3 and `each` to 2?
 
-```{r rep3}
-rep(c("A", "B"), c(11, 3))
+```{r rep-times-each}
+rep(c("A", "B"), times = 3, each = 2)
 ```
+
 
 ### `seq()`
 
 The function `seq()` is useful for generating a sequence of numbers with some pattern.
 
-Use `seq()` to create a vector of the numbers 0 to 100 by 10s.
+Use `seq()` to create a vector of the integers 0 to 10.
 
-```{r seq1}
+```{r seq1-10}
+seq(0, 10)
+```
+
+You can set the `by` argument to count by numbers other than 1 (the default). Use `seq()` to create a vector of the numbers 0 to 100 by 10s.
+
+```{r seq-by}
 seq(0, 100, by = 10)
 ```
 
-The argument `length.out` is useful if you know how many steps you want to divide something into Use `seq()` to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 *steps*?).
+The argument `length.out` is useful if you know how many steps you want to divide something into. Use `seq()` to create a vector that starts with 0, ends with 100, and has 12 equally spaced steps (hint: how many numbers would be in a vector with 2 *steps*?).
 
-```{r seq2}
+```{r seq-length-out}
 seq(0, 100, length.out = 13)
 ```
 
@@ -269,7 +294,7 @@ First, let's build up the code that we want to iterate.
 
 Create a vector of 20 random numbers drawn from a normal distribution with a mean of 5 and standard deviation of 1 using the `rnorm()` function and store them in the variable `A`.
 
-```{r Q4}
+```{r}
 A <- rnorm(20, mean = 5, sd = 1)
 ```
 
@@ -294,7 +319,7 @@ You can run a Welch two-sample t-test by including the two samples you made as t
 t.test(dat$A, dat$B)
 ```
 
-You can also convert the table to long format using the `gather` function and specify the t-test using the format `number_column~grouping_column`.
+You can also convert the table to long format using the `gather` function and specify the t-test using the format `dv_column~grouping_column`.
 
 ```{r}
 longdat <- gather(dat, group, score, A:B)
@@ -354,7 +379,13 @@ t_sim()
 
 ### `replicate()`
 
-You can use the `replicate` function to run your function any number of times. Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
+You can use the `replicate` function to run a function any number of times.
+
+```{r}
+replicate(3, rnorm(5))
+```
+
+Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
 
 ```{r}
 reps <- replicate(1000, t_sim())
@@ -363,9 +394,26 @@ power <- mean(reps < alpha)
 power
 ```
 
+### Set seed {#seed}
+
+You can use the `set.seed` function before you run a function that uses random numbers to make sure that you get the same random data back each time. You can use any integer you like as the seed.
+
+```{r set-seed-90210}
+set.seed(90201)
+```
+
+```{block type="warning"}
+Make sure you don't ever use `set.seed()` **inside** of a simulation function, or you will just simulate the exact same data over and over again.
+```
+
+```{r img-seed-alignment, echo=FALSE, fig.cap="&commat;KellyBodwin"}
+knitr::include_graphics("images/memes/seed_alignment.png")
+```
+
 ### Add arguments
 
 You can just edit your function each time you want to cacluate power for a different sample n, but it is more efficent to build this into your fuction as an arguments. Redefine `t_sim`, setting arguments for the mean and SD of group A, the mean and SD of group B, and the number of subjects per group. Give them all default values.
+
 
 ```{r}
 t_sim <- function(n = 10, m1=0, sd1=1, m2=0, sd2=1) {
@@ -409,152 +457,4 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 ## Exercises
 
-Download the [formative exercises](formative_exercises/07_functions_stub.Rmd). See the [answers](formative_exercises/07_functions_answers.Rmd) only after you've attempted all the questions.
-
-<!--
-### Custom functions: `sim_data`
-
-Put the code you used to create `dat` above as the body of a new function `sim_data()` with no arguments.  Call the function twice to make sure it works and that it gives you different data each time.
-
-```{r simdata1}
-sim_data <- function() {
-  tibble(
-    mu = 100,
-    eff = rep(c(-3, 3), each = 5),
-    A = rep(c("A1", "A2"), each = 5),
-    err = rnorm(10),
-    Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-```
-
-Now re-write `sim_data()` to allow the user to change the values of `mu`, `eff`, and the standard deviation of `err`.  The use the values you used before as defaults.
-
-```{r simdata2}
-sim_data <- function(mu = 100, eff = 3, sd = 1) {
-  tibble(
-    mu = mu,
-    eff = rep(c(-eff, eff), each = 5),
-    A = rep(c("A1", "A2"), each = 5),
-    err = rnorm(10, sd = sd),
-    Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-
-sim_data()
-```
-
-<p class="alert alert-info">What happens when you call the function with different values?</p>
-
-Next, re-write it *again* to allow the user to change the number of observations per group through an argument `n_per_group`, which defaults to 5. Run it a few times with varying arguments to check.
-
-```{r simdata3}
-sim_data <- function(mu = 100, eff = 3, sd = 1, n_per_group = 5) {
-  tibble(mu = mu,
-     eff = rep(c(-eff, eff), each = n_per_group),
-     A = factor(rep(c("A1", "A2"), each = n_per_group)),
-     err = rnorm(2 * n_per_group, sd = sd),
-     Y = mu + eff + err) %>%
-  select(Y, mu:err)
-}
-
-sim_data(n_per_group = 2)
-sim_data(0, 10, 40, 20)
-```
-
-OK now let's wrap the code you created to run an ANOVA and get the p-value in the function `run_anova()`.  It should have one argument, `x`, which is the data on which the anova is to be performed, and it should return a single value: the $p$-value.  Call it a few times with `x` as a simulated dataset to make sure it works as you intended, and that the p-values are changing.
-
-```{r run_anova1}
-run_anova <- function(x) {
-  mod <- aov(Y ~ A, x)
-  broom::tidy(mod) %>% pull(p.value) %>% pluck(1)
-}
-
-run_anova(sim_data())
-```
-
-Modify `run_anova()` so that it accepts an additional argument `all_stats` (default `FALSE`) which determines whether the whole table from `broom::tidy()` is returned (when `TRUE`), or just the $p$-value (when `FALSE`).
-
-```{r run_anova2}
-run_anova <- function(x, all_stats = FALSE) {
-  mod <- aov(Y ~ A, x)
-  stats_tbl <- broom::tidy(mod)
-  if (all_stats) {
-    stats_tbl
-  } else {
-    stats_tbl %>% pull(p.value) %>% pluck(1)
-  }
-}
-
-run_anova(sim_data())
-run_anova(sim_data(), TRUE)
-```
-
-## Iterating
-
-Now we're going to pull together what we've done so far and attempt to perform a power analysis through simulation!
-
-Power is *the probability of rejecting a false null hypothesis*, usually denoted as $1 - \beta$ where $\beta$ is the probability of a Type II error (retaining $H_0$ when it is false).  It relates to the sensitivity of an analysis.
-
-For simple designs, like our two-group situation, power can be calculated analytically.  However, for more complicated designs, it is often necessary to run simulations to estimate power.  So although the approach here is overkill (for a two-group design you could use the function `pow.t.test()`) it more generalizable.
-
-Our simulation-based power estimate will involve three main steps:
-
-1. Generate `nmc` number of datasets, where `nmc` is a large number (typically >1000);
-2. Run the analysis on the datasets and store the results
-3. Analyze the results from step 2
-
-First let's learn about some of the functions used for iteration.  These functions live in the `purrr` package which is part of the tidyverse.
-
-The `purrr::map*` functions are probably the most important.  `purrr::map()` takes a list as its first object and iterates through the elements of the list, passing each element to the function name specified as the second argument and storing the results.  You can choose one of the various `map()` functions depending on how you want the return values stored.  `map_chr()` returns a vector of character strings; `map_dbl()` returns a vector of real numbers; `map_int()` returns a vector of integers.
-
-`map()` is appropriate when you have varying input and want to do something to each element of the input and keep the result.  Sometimes you don't have any input, but just want to do the same thing $X$ times and keep the result.  In this situation, use `purrr::rerun()`.  Other times, you might have varying input, but want to call a function not for the result it will return, but for its side effect (e.g., save a file, or print a message to the user).  In this situation, use `purrr::walk()`.  Take a moment to familiarize yourself with the help pages for these functions.
-
-1. Create a list `dsets` containing 5 datasets using `purrr::rerun()` on your `sim_data()` function.
-
-```{r dsets}
-dsets <- rerun(5, sim_data())
-```
-
-2. Now use `map()` on `dsets` to call `run_anova()` on each of the 5 datasets.
-
-```{r dsets_map}
-map(dsets, run_anova)
-```
-
-3. Re-write the `map()` command above so that it returns a vector of type `double` instead of a list.  At the same time, re-write it so that it performs steps 1 and 2 in a single line.
-
-```{r dsets_map_dbl}
-map_dbl(rerun(5, sim_data()), run_anova)
-```
-
-4. Write code to count the proportion of runs for which the $p$-value is less than .05.  This is your estimate of power, given the effect size.
-
-```{r n_sig}
-n_runs <- 5L
-pvals <- map_dbl(rerun(n_runs, sim_data()), run_anova)
-psig <- sum(pvals < .05) / n_runs
-```
-
-5. Now put all of the code you have created in this section into a new function `sim_power()` which gives the user control over all parameters (`mu`, `eff`, `n_per_group`, `sd`, `n_runs`).  If you need to debug your function, put `browser()` as the first line of the function body and then call it from the console.
-
-```{r sim_power}
-sim_power <- function(eff = 0, sd = 6, mu = 0, n_per_group = 10, n_runs = 1000L) {
-  pvals <- map_dbl(rerun(n_runs, sim_data(mu, eff, sd, n_per_group)), 
-                   run_anova)
-  sum(pvals < .05) / n_runs
-}
-```
-
-6. Check your function by running scenarios where the effect takes on various values, including zero.  Compare your results to `power.t.test()`.
-
-```{r}
-my_eff <- 1
-my_sd <- 3
-
-power.t.test(n = 20, delta = my_eff, sd = my_sd)
-sim_power(eff = my_eff, sd = my_sd, mu = 0, n_per_group = 20)
-
-```
-
--->
+Download the [exercises](exercises/07_func_exercise.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.
