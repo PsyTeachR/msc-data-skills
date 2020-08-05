@@ -2,13 +2,10 @@
 
 library(tidyverse)
 library(faux)
-
-# clear datasets file
-write("", "R/datasets.R", append = FALSE)
 faux::faux_options(verbose = FALSE)
 
 # function for creating dataset descriptions in Roxygen
-make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "csv", source = NULL, write = "R/datasets.R") {
+make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "csv", source = NULL, write = TRUE) {
   
   # read data and save to data directory
   datafile <- paste0("data-raw/", dataname, ".", filetype)
@@ -47,7 +44,7 @@ make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "cs
                paste(items, collapse = "\n"),
                source, dataname
   )
-  if (!isFALSE(write)) write(s, write, append = TRUE)
+  if (!isFALSE(write)) write(s, paste0("R/data_", dataname, ".R"))
   invisible(s)
 }
 

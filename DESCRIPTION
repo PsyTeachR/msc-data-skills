@@ -35,7 +35,10 @@ Imports:
     MASS,
     broom,
     readxl,
-    knitr
+    knitr,
+    shiny,
+    shinyjs,
+    shinydashboard
 Suggests: 
     rmarkdown,
     zip,

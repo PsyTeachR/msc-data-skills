@@ -16,8 +16,8 @@ knitr::opts_chunk$set(
 )
 
 # make docs directory and include .nojekyll file for github
-if (!dir.exists('../inst/book')) dir.create('../inst/book')
-file.create('../inst/book/.nojekyll')
+if (!dir.exists('../docs')) dir.create('../docs')
+file.create('../docs/.nojekyll')
 
 ## set global theme options for figures
 theme_set(theme_bw())

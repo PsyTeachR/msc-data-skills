@@ -21,6 +21,8 @@ bookdown::preview_chapter("01-intro.Rmd")
 bookdown::render_book("index.Rmd")
 
 # copies dir
-fromdir = "../inst/book"
-todir = "../docs"
-R.utils::copyDirectory(fromdir, todir, overwrite = TRUE, recursive = TRUE)
+R.utils::copyDirectory(
+  fromdir = "../docs",
+  todir = "../inst/book", 
+  overwrite = TRUE, 
+  recursive = TRUE)

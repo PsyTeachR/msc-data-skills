@@ -1,0 +1,15 @@
+# infmort ----
+#' Infant Mortality
+#'
+#' Infant mortality by country and year from the World Health Organisation.
+#'
+#' @format A data frame with 5044 rows and 3 variables:
+#' \describe{
+#'    \item{Country}{The full country name}
+#'    \item{Year}{The year the statistic was calculated for (yyyy)}
+#'    \item{Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)}{Infant mortality rate (the probability of dying between birth and age 1 per 1000 live births) and confidence interval in the format rate [lowCI-highCI]}
+#' }
+#' @source \url{https://apps.who.int/gho/data/view.main.182?lang=en}
+"infmort"
+
+

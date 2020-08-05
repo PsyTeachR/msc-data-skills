@@ -38,7 +38,7 @@
 ## Resources
 
 * [Stub for this lesson](stubs/8_sim.Rmd)
-* [Distribution Shiny App](http://shiny.psy.gla.ac.uk/debruine/simulate/)
+* [Distribution Shiny App](http://shiny.psy.gla.ac.uk/debruine/simulate/) (or run `dataskills::app("simulate")`
 * [Simulation tutorials](https://debruine.github.io/tutorials/sim-data.html)
 * [Chapter 21: Iteration](http://r4ds.had.co.nz/iteration.html)  of *R for Data Science*
 * [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera (week 1)
