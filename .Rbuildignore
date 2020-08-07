@@ -1,2 +1,5 @@
+^LICENSE\.md$
+^data-raw$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^book$
