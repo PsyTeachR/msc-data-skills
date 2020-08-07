@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -270,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -332,6 +330,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -369,71 +368,57 @@ summary {
 </div>
 
 
-<p>Edit the code chunks below and knit the document to check if the answers are correct. Make sure you don’t change the names of the variables that are given to you, or the answer checks won’t work.</p>
-<div id="question-1" class="section level2">
-<h2>Question 1</h2>
-<p>Create a variable called <code>my_pals</code> containing the names of three of your friends. This should be a three-element vector of type <code>character</code>.</p>
-<pre class="r"><code>my_pals &lt;- NULL</code></pre>
+<p>Edit the code chunks below and knit the document.</p>
+<div id="creating-and-manipulating-variables" class="section level2">
+<h2>Creating and manipulating variables</h2>
+<p>Create objects called <code>a</code> and <code>b</code> containing the numbers 10 and 12. Use the addition operator (<code>+</code>) to add them and assign the results of that to an object called <code>c</code>.</p>
+<pre class="r"><code>a &lt;- NULL
+b &lt;- NULL
+c &lt;- NULL</code></pre>
+<p>Create objects called <code>first_name</code> and <code>last_name</code> containing your first and last names. Use the <code>paste()</code> function to combine them and assign the results of that to an object called <code>full_name</code>.</p>
+<pre class="r"><code>first_name &lt;- NULL
+last_name  &lt;- NULL
+full_name  &lt;- NULL</code></pre>
 </div>
-<div id="question-2" class="section level2">
-<h2>Question 2</h2>
-<p>The chunk below creates an integer vector <code>ages</code> with the ages of five people. (Note: defining a number with the sufficx <code>L</code>, e.g., <code>26L</code>, defines <code>26</code> as type integer rather than type double.) Calculate how old they will be in ten years using a vectorized operation and store the result in the variable <code>ages_10</code>.</p>
-<pre class="r"><code>ages &lt;- c(26L, 13L, 47L, 62L, 18L)
+<div id="vectors" class="section level2">
+<h2>Vectors</h2>
+<p>Variables can be more than one value. This is called a “vector”. Use the function <code>c()</code> to group values into a vector.</p>
+<p>The chunk below creates a vector called <code>ages</code> with the ages of five people. Use functions and operations on <code>ages</code> to answer the following questions:</p>
+<ul>
+<li><code>ages_10</code>: How old will each person be in 10 years?</li>
+<li><code>mean_ages</code>: What is the mean age of the 5 people?</li>
+<li><code>sd_ages</code>: What is the standard deviation of <code>ages</code>?</li>
+<li><code>n_ages</code>: How many ages are listed in the vector <code>ages</code>?</li>
+</ul>
+<pre class="r"><code>ages &lt;- c(26, 13, 47, 62, 18)
 
-ages_10 &lt;- NULL</code></pre>
+ages_10   &lt;- NULL
+mean_ages &lt;- NULL
+sd_ages   &lt;- NULL
+n_ages    &lt;- NULL</code></pre>
+<p>Replace {?} below with inline R to describe the sample from <code>ages2</code>. Knit to see the result.</p>
+<p>There are people with a mean age of years (SD = ).</p>
 </div>
-<div id="question-3" class="section level2">
-<h2>Question 3</h2>
+<div id="installing-packages" class="section level2">
+<h2>Installing Packages</h2>
+<p>Install the CRAN package called “fortunes”. Run the code to do and include it in the code chunk below, but comment it out. It is bad practice to write a script that installs a package without the user having the option to cancel. Also, some packages take a long time to load, so you won’t want to install them every time you run a script.</p>
+<pre class="r"><code># comment out the installation code</code></pre>
 <p>The code below has an error and won’t run. Fix the code.</p>
-<pre class="r"><code>my_fortune &lt;- fortune()</code></pre>
+<pre class="r"><code>fortune()</code></pre>
 <pre><code>## Error in fortune(): could not find function &quot;fortune&quot;</code></pre>
-<pre class="r"><code>my_fortune</code></pre>
-<pre><code>## Error in eval(expr, envir, enclos): object 'my_fortune' not found</code></pre>
 </div>
-<div id="question-4" class="section level2">
-<h2>Question 4</h2>
-<p>Call the <code>rnorm()</code> function to generate 10 random values from a normal distribution with a mean of 800 and a standard deviation of 20, and store the result in the variable <code>random_vals</code>.</p>
+<div id="functions-and-help" class="section level2">
+<h2>Functions and Help</h2>
+<p>Call the <code>rnorm()</code> function to generate 10 random values from a normal distribution with a mean of 800 and a standard deviation of 20, and store the resulting vector in the object <code>random_vals</code>.</p>
 <pre class="r"><code>random_vals &lt;- NULL</code></pre>
-</div>
-<div id="question-5" class="section level2">
-<h2>Question 5</h2>
 <p>Use the help function to figure out what argument you need to set to ignore <code>NA</code> values when calculating the mean of <code>the_values</code>. Change the function below to store the mean of <code>the_values</code> in the variable <code>the_mean</code>.</p>
 <pre class="r"><code>the_values &lt;- c(1,1,1,2,3,4,6,8,9,9, NA) # do not alter this line
-the_mean &lt;- mean(the_values)</code></pre>
-</div>
-<div id="answer-checks" class="section level2">
-<h2>Answer Checks</h2>
-<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Question</th>
-<th align="left">Answer</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="#question-1">Question 1</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-2">Question 2</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-3">Question 3</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-4">Question 4</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-5">Question 5</a></td>
-<td align="left">incorrect</td>
-</tr>
-</tbody>
-</table>
+the_mean   &lt;- NULL</code></pre>
+<p>Figure out what the function <code>seq()</code> does. Use the function to set <code>tens</code> to the vector <code>c(0, 10, 20, 30, 40, 50 ,60, 70 ,80 ,90, 100)</code>. Set <code>bins6</code> to the cutoffs if you wanted to divide the numbers 0 to 100 into 6 bins. For example, dividing 0 to 100 into 4 bins results in the cutoffs <code>c(0, 25, 50, 75, 100)</code>,</p>
+<pre class="r"><code>tens  &lt;- NULL
+bins6 &lt;- NULL</code></pre>
+<p>Figure out how to use the <code>paste()</code> function to paste together strings with forward slashes (“/”) instead of spaces. Use <code>paste()</code> to set <code>my_dir</code> to “my/project/directory”.</p>
+<pre class="r"><code>my_dir &lt;- NULL</code></pre>
 </div>
 
 

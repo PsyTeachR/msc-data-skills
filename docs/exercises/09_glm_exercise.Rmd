@@ -140,29 +140,3 @@ false_pos <- NULL
 
 false_pos # print the value
 ```
-
-
-
-## Answer Checks
-
-You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
-
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- list()
-Q["2"] <- all.equal(sum(iris_mod$coefficients), -2.447297, tolerance = 1e-5)
-Q["3"] <- all.equal(ifelse(length(residuals), sum(abs(residuals)), FALSE), 53.91187, tolerance = 1e-5)
-Q["4"] <- all.equal(iris_pred, c("1" = 0.7526022, "2" = 1.5431657), tolerance = 1e-6)
-Q["5"] <- all.equal(sum(Yi), -353.477, tolerance = 1e-3)
-Q["6"] <- all(c("b0", "n", "b1", "X_mu", "X_sd", "err_sd") %in% (formals(sim_lm_data) %>% names()))
-Q["7"] <- all.equal(mod7$coefficients[[1]], 80, tolerance = 0.1)
-Q["8"] <- all.equal(power, .4, tolerance = 0.1)
-Q["9"] <- all.equal(false_pos, .05, tolerance = 0.1)
-  
-ans <- sapply(Q, isTRUE)
-
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
-```

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Psychology, University of Glasgow" />
@@ -269,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -331,6 +330,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -342,18 +342,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -382,40 +370,30 @@ $(document).ready(function () {
 
 <div id="vectors" class="section level2">
 <h2>Vectors</h2>
-<div id="question-1" class="section level3">
-<h3>Question 1</h3>
 <p>The built-in vector <code>letters</code> contains the letters of the English alphabet. Use an indexing vector of integers to extract the letters that spell ‘cat’.</p>
 <pre class="r"><code>cat &lt;- NULL</code></pre>
-</div>
-<div id="question-2" class="section level3">
-<h3>Question 2</h3>
 <p>The function <code>colors()</code> returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)</p>
 <pre class="r"><code>col_length &lt;- NULL</code></pre>
-</div>
-<div id="question-3" class="section level3">
-<h3>Question 3</h3>
-<p>The function call <code>runif(1000, 0, 1)</code> will draw 1000 numbers from a uniform distribution from 0 to 1, which simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Store the result of this call in <code>pvals</code>. Create a logical vector called <code>is_sig</code> that is <code>TRUE</code> if the corresponding element of <code>pvals</code> is less than .05, <code>FALSE</code> otherwise (hint: vectorized operations from the last lession), then use this logical vector to pull out those p-values. Finally, calculate the proportion of those p-values that were significant.</p>
-<pre class="r"><code>pvals &lt;- runif(1000, 0, 1)
+<p>The function call <code>runif(n, min, max)</code> will draw <code>n</code> numbers from a uniform distribution from <code>min</code> to <code>max</code>. If you set <code>n</code> to 1000, <code>min</code> to 0 and <code>max</code> to 1, this simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Create the following objects:</p>
+<ul>
+<li><code>pvals</code>: 1000 simulated p-values using <code>runif()</code></li>
+<li><code>is_sig</code>: a logical vector that is <code>TRUE</code> if the corresponding element of <code>pvals</code> is less than .05, <code>FALSE</code> otherwise</li>
+<li><code>sig_vals</code>: a vector of just the significant p-values</li>
+<li><code>prop_sig</code>: the proportion of those p-values that were significant</li>
+</ul>
+<pre class="r"><code>set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
 
-is_sig &lt;- NULL
-
+pvals    &lt;- NULL
+is_sig   &lt;- NULL
+sig_vals &lt;- NULL
 prop_sig &lt;- NULL</code></pre>
-</div>
 </div>
 <div id="tabular-data" class="section level2">
 <h2>Tabular Data</h2>
-<div id="question-4" class="section level3">
-<h3>Question 4</h3>
-<p>Create a tibble with the columns <code>name</code>, <code>age</code>, and <code>country</code> of origin for 3 people you know.</p>
+<p>Create a tibble with the columns <code>name</code>, <code>age</code>, and <code>country</code> of origin for 2 people you know.</p>
 <pre class="r"><code>people &lt;- NULL</code></pre>
-</div>
-<div id="question-5" class="section level3">
-<h3>Question 5</h3>
-<p>Convert the built-in base R <code>iris</code> dataset to a tibble, and store it in the variable <code>iris2</code>.</p>
-<pre class="r"><code>iris2 &lt;- NULL</code></pre>
-</div>
-<div id="question-6" class="section level3">
-<h3>Question 6</h3>
+<p>Convert the built-in base R <code>mtcars</code> dataset to a tibble, and store it in the variable <code>mt</code>.</p>
+<pre class="r"><code>mt &lt;- NULL</code></pre>
 <p>Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: <code>rep()</code>). Store it in the variable <code>my_tbl</code>.</p>
 <table>
 <thead>
@@ -477,77 +455,17 @@ prop_sig &lt;- NULL</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>my_tbl &lt;- NULL  </code></pre>
-</div>
+<pre class="r"><code>my_tbl &lt;- NULL</code></pre>
 </div>
 <div id="data-import" class="section level2">
 <h2>Data Import</h2>
-<div id="question-7" class="section level3">
-<h3>Question 7</h3>
 <p>Download the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv">disgust_scores.csv</a> and read it into a table.</p>
 <pre class="r"><code>disgust &lt;- NULL</code></pre>
-</div>
-<div id="question-8" class="section level3">
-<h3>Question 8</h3>
 <p>Override the default column specifications to skip the <code>id</code> column.</p>
 <pre class="r"><code>disgust_skip &lt;- NULL</code></pre>
-</div>
-<div id="question-9" class="section level3">
-<h3>Question 9</h3>
 <p>How many rows and columns are in the dataset from question 7?</p>
 <pre class="r"><code>disgust_rows &lt;- NULL
 disgust_cols &lt;- NULL</code></pre>
-</div>
-</div>
-<div id="answer-checks" class="section level2">
-<h2>Answer Checks</h2>
-<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Question</th>
-<th align="left">Answer</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="#question-1">Question 1</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-2">Question 2</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-3">Question 3</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-4">Question 4</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-5">Question 5</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-6">Question 6</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-7">Question 7</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-8">Question 8</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-9">Question 9</a></td>
-<td align="left">incorrect</td>
-</tr>
-</tbody>
-</table>
 </div>
 
 
@@ -567,6 +485,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -341,6 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
+<li class="chapter" data-level="7.3.3" data-path="func.html"><a href="func.html#aov-summary-and-broomtidy"><i class="fa fa-check"></i><b>7.3.3</b> <code>aov()</code>, <code>summary()</code>, and <code>broom::tidy()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
@@ -697,20 +698,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -1.68004611  0.08639822 -1.43109319  1.48040070 -1.76651201  3.30071255
-##  [7]  0.08181096 -0.84626672  1.10401593 -0.70865022</code></pre>
+<pre><code>##  [1] -0.989385059  0.024958071  0.287382828 -0.538338474  1.140961753
+##  [6]  1.089467831 -0.201203342 -0.064977850 -0.002551074 -1.924314204</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.33219 100.40749 101.35441 101.75865 100.37188 101.21133  99.88157
-##  [8] 101.53194 101.87864  99.33626</code></pre>
+<pre><code>##  [1] 100.15136  98.39386  99.31253 101.36198 100.00225 100.10667  98.60571
+##  [8]  99.93720 100.55919 101.25707</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.46125 100.07827 101.22573 101.15157  99.08492 100.13375  98.68946
-##  [8]  98.64204  99.70670  99.12161</code></pre>
+<pre><code>##  [1]  99.48224  99.74961  99.76975  99.41016  99.64158 100.95832  99.59027
+##  [8]  99.58010 101.22792 101.67085</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  219.02818  -21.21528  -72.59081  135.89469  -95.03784   63.85614
-##  [7] -130.05655   88.62968  150.72415  -59.44538</code></pre>
+<pre><code>##  [1]    1.546919 -220.027042  117.115237  -38.249405  164.873987  -23.524980
+##  [7]   35.481523 -112.809156  122.599675   38.356500</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb32-2"><a href="intro.html#cb32-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>
@@ -772,7 +773,7 @@ You may only be able to permanently install packages if you are using R on your 
 You can use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.
 </p>
 </div>
-<p>Now can run the function <code>ggExtra::runExample()</code>, which runs an interactive example of marginal plots using shiny.</p>
+<p>Now you can run the function <code>ggExtra::runExample()</code>, which runs an interactive example of marginal plots using shiny.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1"></a>ggExtra<span class="op">::</span><span class="kw">runExample</span>()</span></code></pre></div>
 </div>
 <div id="install-from-github" class="section level3">
@@ -784,31 +785,25 @@ You can use the convention <code>package::function()</code> to indicate in which
 Figure 1.4: Check installed and loaded packages in the packages tab in the lower right pane.
 </p>
 </div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb37-2"><a href="intro.html#cb37-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;adam-gruer/goodshirt&quot;</span>)</span></code></pre></div>
-<p>After you install the goodshirt package, load it using the <code>library()</code> function and display some quotes using the functions below.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1"></a><span class="kw">library</span>(goodshirt)</span>
-<span id="cb38-2"><a href="intro.html#cb38-2"></a><span class="co"># quotes from The Good Place</span></span>
-<span id="cb38-3"><a href="intro.html#cb38-3"></a><span class="kw">chidi</span>()</span>
-<span id="cb38-4"><a href="intro.html#cb38-4"></a><span class="kw">eleanor</span>()</span>
-<span id="cb38-5"><a href="intro.html#cb38-5"></a><span class="kw">tahani</span>()</span>
-<span id="cb38-6"><a href="intro.html#cb38-6"></a><span class="kw">jason</span>()</span></code></pre></div>
-<pre><code>## 
-##  There really is an afterlife. I can&#39;t wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
-## 
-##  ~ Chidi
-##  Holy motherforking shirtballs! 
-## 
-##  ~ Eleanor
-##  I understand nothing. 
-## 
-##  ~ Tahani
-##  Long story short, it was all a dream. 
-## 
-##  ~ Jason</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1"></a><span class="co"># install devtools if you get</span></span>
+<span id="cb37-2"><a href="intro.html#cb37-2"></a><span class="co"># Error in loadNamespace(name) : there is no package called ‘devtools’</span></span>
+<span id="cb37-3"><a href="intro.html#cb37-3"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb37-4"><a href="intro.html#cb37-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
+<p>After you install the dataskills package, load it using the <code>library()</code> function. You can then try out some of the functions below.</p>
+<ul>
+<li><code>book()</code> opens a local copy of this book in your web browser.</li>
+<li><code>app("plotdemo")</code> opens a shiny app that lets you see how simulated data would look in different plot styles</li>
+<li><code>exercise(1)</code> creates and opens a file containing the exercises for this chapter</li>
+<li><code>?disgust</code> shows you the documentation for the built-in dataset <code>disgust</code>, which we will be using in future lessons</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1"></a><span class="kw">library</span>(dataskills)</span>
+<span id="cb38-2"><a href="intro.html#cb38-2"></a><span class="kw">book</span>()</span>
+<span id="cb38-3"><a href="intro.html#cb38-3"></a><span class="kw">app</span>(<span class="st">&quot;plotdemo&quot;</span>)</span>
+<span id="cb38-4"><a href="intro.html#cb38-4"></a><span class="kw">exercise</span>(<span class="dv">1</span>)</span>
+<span id="cb38-5"><a href="intro.html#cb38-5"></a>?disgust</span></code></pre></div>
 <div class="try">
 <p>
-How many different ways can you find to discover what functions are available in the goodshirt package?
+How many different ways can you find to discover what functions are available in the dataskills package?
 </p>
 </div>
 </div>
@@ -827,28 +822,28 @@ Choose <strong><code>New Project…</code></strong> under the <strong><code>File
 <div id="structure" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> Structure</h3>
 <p>Here is what an R script looks like. Don’t worry about the details for now.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1"></a><span class="co"># load add-on packages</span></span>
-<span id="cb40-2"><a href="intro.html#cb40-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb40-3"><a href="intro.html#cb40-3"></a></span>
-<span id="cb40-4"><a href="intro.html#cb40-4"></a><span class="co"># set variables ----</span></span>
-<span id="cb40-5"><a href="intro.html#cb40-5"></a>n &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb40-6"><a href="intro.html#cb40-6"></a></span>
-<span id="cb40-7"><a href="intro.html#cb40-7"></a><span class="co"># simulate data ----</span></span>
-<span id="cb40-8"><a href="intro.html#cb40-8"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb40-9"><a href="intro.html#cb40-9"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n,</span>
-<span id="cb40-10"><a href="intro.html#cb40-10"></a>  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)),</span>
-<span id="cb40-11"><a href="intro.html#cb40-11"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb40-12"><a href="intro.html#cb40-12"></a>)</span>
-<span id="cb40-13"><a href="intro.html#cb40-13"></a></span>
-<span id="cb40-14"><a href="intro.html#cb40-14"></a><span class="co"># plot data ----</span></span>
-<span id="cb40-15"><a href="intro.html#cb40-15"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(condition, dv)) <span class="op">+</span></span>
-<span id="cb40-16"><a href="intro.html#cb40-16"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb40-17"><a href="intro.html#cb40-17"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, </span>
-<span id="cb40-18"><a href="intro.html#cb40-18"></a>               <span class="kw">aes</span>(<span class="dt">fill =</span> condition),</span>
-<span id="cb40-19"><a href="intro.html#cb40-19"></a>               <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb40-20"><a href="intro.html#cb40-20"></a></span>
-<span id="cb40-21"><a href="intro.html#cb40-21"></a><span class="co"># save plot ----</span></span>
-<span id="cb40-22"><a href="intro.html#cb40-22"></a><span class="kw">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intro.html#cb39-1"></a><span class="co"># load add-on packages</span></span>
+<span id="cb39-2"><a href="intro.html#cb39-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb39-3"><a href="intro.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="intro.html#cb39-4"></a><span class="co"># set variables ----</span></span>
+<span id="cb39-5"><a href="intro.html#cb39-5"></a>n &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb39-6"><a href="intro.html#cb39-6"></a></span>
+<span id="cb39-7"><a href="intro.html#cb39-7"></a><span class="co"># simulate data ----</span></span>
+<span id="cb39-8"><a href="intro.html#cb39-8"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb39-9"><a href="intro.html#cb39-9"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n,</span>
+<span id="cb39-10"><a href="intro.html#cb39-10"></a>  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)),</span>
+<span id="cb39-11"><a href="intro.html#cb39-11"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb39-12"><a href="intro.html#cb39-12"></a>)</span>
+<span id="cb39-13"><a href="intro.html#cb39-13"></a></span>
+<span id="cb39-14"><a href="intro.html#cb39-14"></a><span class="co"># plot data ----</span></span>
+<span id="cb39-15"><a href="intro.html#cb39-15"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(condition, dv)) <span class="op">+</span></span>
+<span id="cb39-16"><a href="intro.html#cb39-16"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb39-17"><a href="intro.html#cb39-17"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, </span>
+<span id="cb39-18"><a href="intro.html#cb39-18"></a>               <span class="kw">aes</span>(<span class="dt">fill =</span> condition),</span>
+<span id="cb39-19"><a href="intro.html#cb39-19"></a>               <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb39-20"><a href="intro.html#cb39-20"></a></span>
+<span id="cb39-21"><a href="intro.html#cb39-21"></a><span class="co"># save plot ----</span></span>
+<span id="cb39-22"><a href="intro.html#cb39-22"></a><span class="kw">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
 <p>It’s best if you follow the following structure when developing your own scripts:</p>
 <ul>
 <li>load in any add-on packages you need to use</li>
@@ -859,9 +854,14 @@ Choose <strong><code>New Project…</code></strong> under the <strong><code>File
 </ul>
 <p>Often when you are working on a script, you will realize that you need to load another add-on package. Don’t bury the call to <code>library(package_I_need)</code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.</p>
 <p>You can add comments to an R script by with the hash symbol (<code>#</code>). The R interpreter will ignore characters from the hash to the end of the line.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="intro.html#cb41-1"></a><span class="co">## comments: any text from &#39;#&#39; on is ignored until end of line</span></span>
-<span id="cb41-2"><a href="intro.html#cb41-2"></a><span class="dv">22</span> <span class="op">/</span><span class="st"> </span><span class="dv">7</span>  <span class="co"># approximation to pi</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1"></a><span class="co">## comments: any text from &#39;#&#39; on is ignored until end of line</span></span>
+<span id="cb40-2"><a href="intro.html#cb40-2"></a><span class="dv">22</span> <span class="op">/</span><span class="st"> </span><span class="dv">7</span>  <span class="co"># approximation to pi</span></span></code></pre></div>
 <pre><code>## [1] 3.142857</code></pre>
+<div class="info">
+<p>
+If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (shift-cmd-O).
+</p>
+</div>
 </div>
 <div id="rmarkdown" class="section level3">
 <h3><span class="header-section-number">1.6.2</span> Reproducible reports with R Markdown</h3>
@@ -882,7 +882,7 @@ Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Ma
 </div>
 <div id="working-directory" class="section level3">
 <h3><span class="header-section-number">1.6.3</span> Working Directory</h3>
-<p>Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer’s directory structure. Usually there is a single <strong>working directory</strong> where your data and scripts are stored.</p>
+<p>Where should you put all of your files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer’s directory structure. Usually there is a single <strong>working directory</strong> where your data and scripts are stored.</p>
 <p>Your script should only reference files in three locations, using the appropriate format.</p>
 <table>
 <colgroup>
@@ -917,7 +917,7 @@ Never set or change your working directory in a script.
 </div>
 <p>If you are working with an R Markdown file, it will automatically use the same directory the .Rmd file is in as the working directory.</p>
 <p>If you are working with R scripts, store your main script file in the top-level directory and manually set your working directory to that location. You will have to reset the working directory each time you open RStudio, unless you create a <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>project</a> and access the script from the project.</p>
-<p>For instance, if on a Windows machine your data and scripts are in the directory <code>C:\Carla's_files\thesis2\my_thesis\new_analysis</code>, you will set your working directory in one of two ways: (1) by going to the <code>Session</code> pull down menu in RStudio and choosing <code>Set Working Directory</code>, or (2) by typing <code>setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")</code> in the console window.</p>
+<p>For instance, if you are on a Windows machine your data and scripts are in the directory <code>C:\Carla's_files\thesis2\my_thesis\new_analysis</code>, you will set your working directory in one of two ways: (1) by going to the <code>Session</code> pull down menu in RStudio and choosing <code>Set Working Directory</code>, or (2) by typing <code>setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")</code> in the console window.</p>
 <div class="danger">
 <p>
 It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).
@@ -927,9 +927,9 @@ When manually setting the working directory, always do so by using the <strong><
 </p>
 </div>
 <p>If your script needs a file in a subdirectory of <code>new_analysis</code>, say, <code>data/questionnaire.csv</code>, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a> so that it is accessible if you move the folder <code>new_analysis</code> to another location or computer:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="intro.html#cb43-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># correct</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intro.html#cb42-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># correct</span></span></code></pre></div>
 <p>Do not load it in using an absolute path:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="intro.html#cb43-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></span></code></pre></div>
 <div class="info">
 <p>
 Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
@@ -940,6 +940,11 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">1.7</span> Exercises</h2>
 <p>Download the first set of <a href="exercises/01_intro_exercise.Rmd">exercises</a> and put it in the project directory you created earlier for today’s exercises. See the <a href="exercises/01_intro_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1"></a><span class="co"># run this to access the exercise</span></span>
+<span id="cb44-2"><a href="intro.html#cb44-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">1</span>)</span>
+<span id="cb44-3"><a href="intro.html#cb44-3"></a></span>
+<span id="cb44-4"><a href="intro.html#cb44-4"></a><span class="co"># run this to access the answers</span></span>
+<span id="cb44-5"><a href="intro.html#cb44-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">1</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -1106,20 +1111,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

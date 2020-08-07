@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -270,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -332,6 +330,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -411,7 +410,7 @@ iris_pred # print the predicted values</code></pre>
 <p><em>NOTE: You can knit this file to html to see formatted versions of the equations below (which are enclosed in <code>$</code> characters); alternatively, if you find it easier, you can hover your mouse pointer over the <code>$</code> in the code equations to see the formatted versions.</em></p>
 <p>Write code to randomly generate 10 Y values from a simple linear regression model with an intercept of 3 and a slope of -7. Recall the form of the linear model:</p>
 <p><span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + e_i\)</span></p>
-<p>The residuals (<span class="math inline">\(e_i\)</span>s) are drawn from a normal distribution with mean 0 and variance <span class="math inline">\(\sigma^2 = 4\)</span>, and <span class="math inline">\(X\)</span> is the vector of integer values from 1 to 10. Store the 10 observations in the variable <code>Yi</code> below. (NOTE: the standard deviation is the <em>square root</em> of the variance, i.e. <span class="math inline">\(\sigma\)</span>; <code>rnorm()</code> takes the standard deviation, not the variance, as its third argument).</p>
+<p>The residuals (<span class="math inline">\(e_i\)</span>s) are drawn from a normal distribution with mean 0 and variance <span class="math inline">\(\sigma^2 = 4\)</span>, and <span class="math inline">\(X\)</span> is the vector of integer values from 1 to 10. Store the 10 observations in the variable <code>Yi</code> below. (NOTE: the standard deviation is the <em>square root</em> of the variance, i.e. <span class="math inline">\(\sigma\)</span>; <code>rnorm()</code> takes the standard deviation, not the variance, as its third argument).</p>
 <pre class="r"><code>X   &lt;- NULL
 err &lt;- NULL
 Yi  &lt;- NULL
@@ -435,8 +434,8 @@ Yi # print the values of Yi</code></pre>
 dat6 &lt;- sim_lm_data(n = 10) # do not edit 
 
 knitr::kable(dat6) # print table</code></pre>
-<pre><code>## Warning in kable_markdown(x, padding = padding, ...): The table should have
-## a header (column names)</code></pre>
+<pre><code>## Warning in kable_pipe(x = structure(character(0), .Dim = c(0L, 0L), .Dimnames =
+## list(: The table should have a header (column names)</code></pre>
 <p>|| || || ||</p>
 </div>
 <div id="question-7" class="section level3">
@@ -468,61 +467,6 @@ power # print the value</code></pre>
 false_pos # print the value</code></pre>
 <pre><code>## NULL</code></pre>
 </div>
-</div>
-<div id="answer-checks" class="section level2">
-<h2>Answer Checks</h2>
-<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th align="left">Question</th>
-<th align="left">Answer</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2</td>
-<td align="left"><a href="#question-2">Question 2</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td align="left"><a href="#question-3">Question 3</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td>4</td>
-<td align="left"><a href="#question-4">Question 4</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td>5</td>
-<td align="left"><a href="#question-5">Question 5</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td>6</td>
-<td align="left"><a href="#question-6">Question 6</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td>7</td>
-<td align="left"><a href="#question-7">Question 7</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td>8</td>
-<td align="left"><a href="#question-8">Question 8</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td>9</td>
-<td align="left"><a href="#question-9">Question 9</a></td>
-<td align="left">incorrect</td>
-</tr>
-</tbody>
-</table>
 </div>
 
 

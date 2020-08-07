@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Psychology, University of Glasgow" />
@@ -269,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -331,6 +330,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -342,18 +342,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -410,7 +398,7 @@ lager &lt;- paste(reversed, collapse = &quot;&quot;) # make it into a string</co
 <h3>Question 3</h3>
 <p>Load the data from <a href="https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv">sensation_seeking.csv</a>.</p>
 <pre class="r"><code>ss &lt;- read_csv(https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv)</code></pre>
-<pre><code>## Error: &lt;text&gt;:1:22: unexpected '/'
+<pre><code>## Error: &lt;text&gt;:1:22: unexpected &#39;/&#39;
 ## 1: ss &lt;- read_csv(https:/
 ##                          ^</code></pre>
 <pre class="r"><code>ss &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv&quot;)</code></pre>
@@ -428,7 +416,7 @@ lager &lt;- paste(reversed, collapse = &quot;&quot;) # make it into a string</co
 <p>Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
 <pre class="r"><code>ss_sep &lt;- ss_long %&gt;%
   separate(question, domain, qnumber, sep = 3)</code></pre>
-<pre><code>## Error in separate.data.frame(., question, domain, qnumber, sep = 3): object 'domain' not found</code></pre>
+<pre><code>## Error in str_separate(value, into = into, sep = sep, convert = convert, : object &#39;domain&#39; not found</code></pre>
 <pre class="r"><code>ss_sep &lt;- ss_long %&gt;%
   separate(question, c(&quot;domain&quot;, &quot;qnumber&quot;), sep = 3)</code></pre>
 </div>
@@ -437,7 +425,8 @@ lager &lt;- paste(reversed, collapse = &quot;&quot;) # make it into a string</co
 <p>Put the <code>id</code> and <code>user_id</code> columns together into a new column named <code>super_id</code>. Make it in a format like “id-user_id”.</p>
 <pre class="r"><code>ss_unite &lt;- ss_sep %&gt;%
   unite(id, user_id, &quot;super_id&quot;, sep = &quot;-&quot;)</code></pre>
-<pre><code>## Unknown column `super_id`</code></pre>
+<pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
+## [31mx[39m Column `super_id` doesn&#39;t exist.</code></pre>
 <pre class="r"><code>ss_unite &lt;- ss_sep %&gt;%
   unite(&quot;super_id&quot;, id, user_id, sep = &quot;-&quot;)</code></pre>
 </div>
@@ -543,6 +532,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
