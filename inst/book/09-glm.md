@@ -210,7 +210,7 @@ ggplot(dat) +
 
 ### Predict New Values {#predict}
 
-You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to now the trial type to make a prediction.
+You can use the estimates from your model to predict new data points, given values for the model parameters. For this example, we only need to know the trial type to make a prediction.
 
 For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).
 
