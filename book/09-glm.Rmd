@@ -23,8 +23,8 @@
 * [Stub for this lesson](stubs/9_glm.Rmd)
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
-* [GLM shiny app](http://shiny.psy.gla.ac.uk/Dale/GLM/)
-* [F distribution](http://shiny.psy.gla.ac.uk/Dale/fdist)
+* [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
+* [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)
 
 ## Setup
 
@@ -34,7 +34,6 @@ You'll need the following packages.
 # libraries needed for these examples
 library(tidyverse)
 library(broom)
-
 set.seed(30250) # makes sure random numbers are reproducible
 ```
 
@@ -108,9 +107,7 @@ dat <- data.frame(
 ```
 
 ```{block type="info"}
-
 The `!!!` (triple bang) in the code `recode(trial_type, !!!trial_types)` is a way to expand the vector `trial_types <- c("congruent" = 0.5, "incongruent" = -0.5)`. It's equivalent to `recode(trial_type, "congruent" = 0.5, "incongruent" = -0.5)`. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the `trial_types` vector).
-
 ```
 
 Last but not least, always plot simulated data to make sure it looks like you expect.
@@ -128,7 +125,6 @@ Now we can analyse the data we simulated using the function `lm()`. It takes the
 
 ```{r}
 my_lm <- lm(RT ~ trial_type.e, data = dat)
-
 summary(my_lm)
 ```
 
@@ -144,7 +140,6 @@ You can use the `residuals()` function to extract the error term for each each d
 
 ```{r res-density-plot, fig.cap="Model residuals should be approximately normally distributed for each group"}
 res <- residuals(my_lm)
-
 ggplot(dat) + 
   stat_function(aes(0), color = "grey60",
                 fun = dnorm, n = 101,
@@ -170,7 +165,7 @@ What happens to the residuals if you fit a model that ignores trial type (e.g., 
 
 ### Predict New Values {#predict}
 
-You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we need to know the trial type to make a prediction.
+You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to know the trial type to make a prediction.
 
 For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).
 
@@ -178,9 +173,7 @@ For congruent trials, you would predict that a new data point would be equal to 
 int_est <- my_lm$coefficients[["(Intercept)"]]
 tt_est  <- my_lm$coefficients[["trial_type.e"]]
 tt_code <- trial_types[["congruent"]]
-
 new_congruent_RT <- int_est + tt_est * tt_code
-
 new_congruent_RT
 ```
 
@@ -193,7 +186,6 @@ predict(my_lm, newdata = tibble(trial_type.e = 0.5))
 
 ```{block type="info"}
 If you look up this function using `?predict`, you will see that "The function invokes particular methods which depend on the class of the first argument."
-
 What this means is that `predict()` works differently depending on whether you're predicting from the output of `lm()` or other analysis functions. You can search for help on the lm version with `?predict.lm`.
 ```
 
@@ -206,7 +198,6 @@ In the example above, we used **effect coding** for trial type. You can also use
 Here we will add sum-coded and treatment-coded versions of `trial_type` to the dataset using the `recode()` function.
 
 ```{r}
-
 dat <- dat %>% mutate(
   trial_type.sum = recode(trial_type, "congruent" = +1, "incongruent" = -1),
   trial_type.tr = recode(trial_type, "congruent" = 1, "incongruent" = 0)
@@ -216,12 +207,10 @@ dat <- dat %>% mutate(
 If you define named vectors with your levels and coding, you can use them with the `recode()` function if you expand them using `!!!`.
 
 ```{r}
-
 tt_sum <- c("congruent"   = +1, 
             "incongruent" = -1)
 tt_tr <- c("congruent"   = 1, 
            "incongruent" = 0)
-
 dat <- dat %>% mutate(
   trial_type.sum = recode(trial_type, !!!tt_sum),
   trial_type.tr = recode(trial_type, !!!tt_tr)
@@ -267,7 +256,6 @@ ANOVA is also a special, limited version of the linear model.
 
 ```{r}
 my_aov <- aov(RT ~ trial_type.e, data = dat)
-
 summary(my_aov, intercept = TRUE)
 ```
 
