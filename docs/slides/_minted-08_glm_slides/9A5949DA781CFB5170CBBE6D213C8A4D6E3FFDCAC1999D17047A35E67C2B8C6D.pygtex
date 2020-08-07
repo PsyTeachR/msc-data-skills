@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-spelling\PYG{o}{\PYGZdl{}}A \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{k+kp}{factor}\PYG{p}{(}spelling\PYG{o}{\PYGZdl{}}A\PYG{p}{)}
-mod \PYG{o}{\PYGZlt{}\PYGZhy{}} aov\PYG{p}{(}Y \PYG{o}{\PYGZti{}} A\PYG{p}{,} data \PYG{o}{=} spelling\PYG{p}{)}
-\PYG{k+kp}{summary}\PYG{p}{(}mod\PYG{p}{)}
-\end{Verbatim}

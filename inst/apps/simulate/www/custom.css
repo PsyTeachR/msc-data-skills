@@ -1,0 +1,18 @@
+div.func-spec {
+  min-width: 15em; 
+  display: inline-block;
+}
+div.func-spec span {
+  font-size: 150%;
+}
+
+div.func-spec div.form-group.shiny-input-container {
+  text-align: right;
+  display: inline-block; 
+  vertical-align:middle; 
+  width: 4em;
+}
+
+div.func-spec input[type=number].form-control  {
+  padding: 3px;
+}

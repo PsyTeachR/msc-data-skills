@@ -1,0 +1,179 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Empathizing Quotient",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Reverse coded (Q#R) questions coded and strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0. Wakabayashi, A., Baron-Cohen, S., Wheelwright, S., Goldenfeld, N., Delaney, J., Fine, D., Smith, R., & Weil, L. (2006). Development of short forms of the Empathy Quotient (EQ-Short) and the Systemizing Quotient (SQ-Short). Personality and Individual Differences, 41(5), 929–940. https://doi.org/10.1016/j.paid.2006.03.017",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sex",
+            "description": "The participant's sex",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "age",
+            "description": "The participant's age in years",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "id",
+            "description": "Each questionnaire completion's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "starttime",
+            "description": "The time the questionnaire was started (yyyy-MM-dd HH:mm:ss)",
+            "dataType": "double"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "endtime",
+            "description": "The time the questionnaire was completed (yyyy-MM-dd HH:mm:ss)",
+            "dataType": "double"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q01",
+            "description": "I can easily tell if someone else wants to enter a conversation.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q02",
+            "description": "I really enjoy caring for other people.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q03R",
+            "description": "I find it hard to know what to do in a social situation.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q04R",
+            "description": "I often find it difficult to judge if something is rude or polite.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q05R",
+            "description": "In a conversation, I tend to focus on my own thoughts rather than on what my listener might be thinking.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q06",
+            "description": "I can pick up quickly if someone says one thing but means another.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q07R",
+            "description": "It is hard for me to see why some things upset people so much.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q08",
+            "description": "I find it easy to put myself in somebody else's shoes.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q09",
+            "description": "I am good at predicting how someone will feel.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q10",
+            "description": "I am quick to spot when someone in a group is feeling awkward or uncomfortable.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q11R",
+            "description": "I can't always see why someone should have felt offended by a remark.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q12",
+            "description": "I don't tend to find social situations confusing.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q13",
+            "description": "Other people tell me I am good at understanding how they are feeling and what they are thinking.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q14",
+            "description": "I can easily tell if someone else is interested or bored with what I am saying.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q15",
+            "description": "Friends usually talk to me about their problems as they say that I am very understanding.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q16",
+            "description": "I can sense if I am intruding, even if the other person doesn't tell me.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q17R",
+            "description": "Other people often say that I am insensitive, though I don't always see why.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q18",
+            "description": "I can tune into how someone else feels rapidly and intuitively.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q19",
+            "description": "I can easily work out what another person might want to talk about.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q20",
+            "description": "I can tell if someone is masking their true emotion.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q21",
+            "description": "I am good at predicting what someone will do.",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Q22",
+            "description": "I tend to get emotionally involved with a friend's problems.",
+            "dataType": "string"
+        }
+    ]
+}

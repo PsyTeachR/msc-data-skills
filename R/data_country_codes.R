@@ -1,0 +1,25 @@
+# country_codes ----
+#' Country Codes
+#'
+#' Multiple country, subregion, and region codes for 249 countries.
+#'
+#' From https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
+#'
+#' @format A data frame with 249 rows and 11 variables:
+#' \describe{
+#'    \item{name}{Full country name}
+#'    \item{alpha-2}{2-character country code}
+#'    \item{alpha-3}{3-character country code}
+#'    \item{country-code}{3-digit country code}
+#'    \item{iso_3166-2}{ISO code}
+#'    \item{region}{World region}
+#'    \item{sub-region}{Sub-region}
+#'    \item{intermediate-region}{Intermediate region}
+#'    \item{region-code}{World region code}
+#'    \item{sub-region-code}{Sub-region code}
+#'    \item{intermediate-region-code}{Intermediate region code}
+#' }
+#' @source \url{https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv}
+"country_codes"
+
+

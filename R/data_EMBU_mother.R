@@ -1,0 +1,38 @@
+# EMBU_mother ----
+#' Parental Attachment (Mothers)
+#'
+#' Items starting with r, p and e are for the rejection (r), overprotection (p), and emotional warmth (e) subscales.
+#'
+#' Arrindell et al. (1999). The development of a short form of the EMBU: Its appraisal with students in Greece, Guatemala, Hungary and Italy. Personality and Individual Differences, 27, 613-628.
+#'
+#' @format A data frame with 142 rows and 24 variables:
+#' \describe{
+#'    \item{id}{A unique ID for each questionnaire completion}
+#'    \item{r1}{It happened that my mother was sour or angry with me without letting me know the cause}
+#'    \item{e1}{My mother praised me}
+#'    \item{p1}{It happened that I wished my mother would worry less about what I was doing}
+#'    \item{r2}{It happened that my mother gave me more corporal punishment than I deserved}
+#'    \item{p2}{When I came home, I then had to account for what I had been doing, to my mother}
+#'    \item{e2}{I think that my mother tried to make my adolescence stimulating, interesting and instructive (for instance by giving me good books, arranging for me to go on camps, taking me to clubs)}
+#'    \item{r3}{My mother criticized me and told me how lazy and useless I was in front of others}
+#'    \item{p3}{It happened that my mother forbade me to do things other children were allowed to do because she was afraid that something might happen to me}
+#'    \item{no_subscale}{My mother tried to spur me to become the best}
+#'    \item{p4}{My mother would look sad or in some other way show that I had behaved badly so that I got real feelings of guilt}
+#'    \item{p5}{I think that my mother's anxiety that something might happen to me was exaggerated}
+#'    \item{e3}{If things went badly for me, I then felt that my mother tried to comfort and encourage me}
+#'    \item{r4}{I was treated as the ‘black sheep' or ‘scapegoat' of the family}
+#'    \item{e4}{My mother showed with words and gestures that he liked me}
+#'    \item{r5}{I felt that my mother liked my brother(s) and/or sister(s) more than she liked me}
+#'    \item{r6}{My mother treated me in such a way that I felt ashamed}
+#'    \item{p6}{I was allowed to go where I liked without my mother caring too much}
+#'    \item{p7}{I felt that my mother interfered with everything I did}
+#'    \item{e5}{I felt that warmth and tenderness existed between me and my mother}
+#'    \item{p8}{My mother put decisive limits for what I was and was not allowed to do, to which she then adhered rigorously}
+#'    \item{r7}{My mother would punish me hard, even for triffles (small offenses)}
+#'    \item{p9}{My mother wanted to decide how I should be dressed or how I should look}
+#'    \item{e6}{I felt that my mother was proud when I succeeded in something I had undertaken}
+#' }
+#' @source \url{https://psyteachr.github.io/msc-data-skills/data/EMBU_mother.csv}
+"EMBU_mother"
+
+

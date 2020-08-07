@@ -1,0 +1,14 @@
+citHeader("To cite dataskills in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "Data Skills for Reproducible Science",
+  author   = "Lisa DeBruine and Dale Barr",
+  doi      = "10.5281/zenodo.3564348",
+  publisher = "Zenodo",
+  year     = "2020",
+  month    = "August",
+  note     = "R package version 2.0",
+  url      = "https://psyteachr.github.io/msc-data-skills/",
+  textVersion = paste("Lisa DeBruine and Dale Barr (2020, August 3). Data Skills for Reproducible Science. R package version 2.0. Zenodo. http://doi.org/10.5281/zenodo.3564348")
+)
