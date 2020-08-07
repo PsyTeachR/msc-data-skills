@@ -527,3 +527,12 @@ setdiff(new_subjects, subject)
 ## Exercises
 
 Download the [exercises](exercises/06_joins_exercise.Rmd). See the [answers](exercises/06_joins_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(6)
+
+# run this to access the answers
+dataskills::exercise(6, answers = TRUE)
+```

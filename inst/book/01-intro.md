@@ -339,8 +339,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.68004611  0.08639822 -1.43109319  1.48040070 -1.76651201  3.30071255
-##  [7]  0.08181096 -0.84626672  1.10401593 -0.70865022
+##  [1] -0.6069774  0.3835476  0.3182623  0.2710811  0.9641806  0.5505551
+##  [7] -1.0302113 -0.5201622  0.4550493 -1.2222862
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -351,8 +351,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.33219 100.40749 101.35441 101.75865 100.37188 101.21133  99.88157
-##  [8] 101.53194 101.87864  99.33626
+##  [1] 100.64720  98.33654 100.66760 100.45885 100.76315  99.84097  99.95509
+##  [8] 100.12307 101.12464 102.23501
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -363,8 +363,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.46125 100.07827 101.22573 101.15157  99.08492 100.13375  98.68946
-##  [8]  98.64204  99.70670  99.12161
+##  [1]  98.86251  99.16299 101.52808  99.80647  98.63488  99.90174  99.88075
+##  [8]  99.58714  99.07995  98.32578
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -375,8 +375,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  219.02818  -21.21528  -72.59081  135.89469  -95.03784   63.85614
-##  [7] -130.05655   88.62968  150.72415  -59.44538
+##  [1] -119.633668 -138.250289  160.352017 -203.545831   15.470320   51.624640
+##  [7]  -18.129826 -237.903975   91.579001   -8.108447
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -463,7 +463,7 @@ You might get some red text when you load a package, this is normal. It is usual
 <p>You can use the convention <code>package::function()</code> to indicate in which add-on package a function resides. For instance, if you see <code>readr::read_csv()</code>, that refers to the function <code>read_csv()</code> in the <code>readr</code> add-on package.</p>
 </div>
 
-Now can run the function `ggExtra::runExample()`, which runs an interactive example of marginal plots using shiny.
+Now you can run the function `ggExtra::runExample()`, which runs an interactive example of marginal plots using shiny.
 
 
 ```r
@@ -483,41 +483,31 @@ Many R packages are not yet on CRAN because they are still in development. Incre
 
 
 ```r
-install.packages("devtools")
-devtools::install_github("adam-gruer/goodshirt")
+# install devtools if you get
+# Error in loadNamespace(name) : there is no package called ‘devtools’
+# install.packages("devtools")
+devtools::install_github("psyteachr/msc-data-skills")
 ```
 
-After you install the goodshirt package, load it using the `library()` function and display some quotes using the functions below. 
+After you install the dataskills package, load it using the `library()` function. You can then try out some of the functions below.
+
+* `book()` opens a local copy of this book in your web browser. 
+* `app("plotdemo")` opens a shiny app that lets you see how simulated data would look in different plot styles
+* `exercise(1)` creates and opens a file containing the exercises for this chapter
+* `?disgust` shows you the documentation for the built-in dataset `disgust`, which we will be using in future lessons
 
 
 ```r
-library(goodshirt)
-# quotes from The Good Place
-chidi()
-eleanor()
-tahani()
-jason()
-```
-
-```
-## 
-##  There really is an afterlife. I can't wait to have breakfast with Kant, and lunch with Michel Foucault, and then have dinner with Kant again so we can talk about what came up at breakfast! 
-## 
-##  ~ Chidi
-##  Holy motherforking shirtballs! 
-## 
-##  ~ Eleanor
-##  I understand nothing. 
-## 
-##  ~ Tahani
-##  Long story short, it was all a dream. 
-## 
-##  ~ Jason
+library(dataskills)
+book()
+app("plotdemo")
+exercise(1)
+?disgust
 ```
 
 
 <div class="try">
-<p>How many different ways can you find to discover what functions are available in the goodshirt package?</p>
+<p>How many different ways can you find to discover what functions are available in the dataskills package?</p>
 </div>
 
 
@@ -582,6 +572,10 @@ You can add comments to an R script by with the hash symbol (`#`). The R interpr
 ## [1] 3.142857
 ```
 
+<div class="info">
+<p>If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (shift-cmd-O).</p>
+</div>
+
 ### Reproducible reports with R Markdown {#rmarkdown}
 
 We will make reproducible reports following the principles of [literate programming](https://en.wikipedia.org/wiki/Literate_programming). The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then "compiled" from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.
@@ -602,7 +596,7 @@ If you open up a new RMarkdown file from a template, you will see an example doc
 
 ### Working Directory
 
-Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single **working directory** where your data and scripts are stored.
+Where should you put all of your files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single **working directory** where your data and scripts are stored.
 
 Your script should only reference files in three locations, using the appropriate format.
 
@@ -620,7 +614,7 @@ If you are working with an R Markdown file, it will automatically use the same d
 
 If you are working with R scripts, store your main script file in the top-level directory and manually set your working directory to that location. You will have to reset the working directory each time you open RStudio, unless you create a <a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>project</a> and access the script from the project. 
 
-For instance, if on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
+For instance, if you are on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
 
 <div class="danger">
 <p>It’s tempting to make your life simple by putting the <code>setwd()</code> command in your script. Don’t do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).</p>
@@ -649,3 +643,13 @@ dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionn
 ## Exercises
 
 Download the first set of [exercises](exercises/01_intro_exercise.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(1)
+
+# run this to access the answers
+dataskills::exercise(1, answers = TRUE)
+```
+

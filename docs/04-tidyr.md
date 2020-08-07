@@ -1088,3 +1088,12 @@ For questions 1-4, choose how to turn table A into table B. There may be more th
 ## Exercises
 
 Download the [exercises](exercises/04_tidyr_exercise.Rmd). See the [answers](exercises/04_tidyr_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(4)
+
+# run this to access the answers
+dataskills::exercise(4, answers = TRUE)
+```

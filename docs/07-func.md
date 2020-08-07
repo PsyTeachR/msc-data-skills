@@ -674,3 +674,12 @@ Calculate power via simulation and `power.t.test` for the following tests:
 ## Exercises
 
 Download the [exercises](exercises/07_func_exercise.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(7)
+
+# run this to access the answers
+dataskills::exercise(7, answers = TRUE)
+```

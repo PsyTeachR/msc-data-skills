@@ -799,3 +799,12 @@ tibble(
 ## Exercises
 
 Download the [exercises](exercises/05_dplyr_exercise.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(5)
+
+# run this to access the answers
+dataskills::exercise(5, answers = TRUE)
+```

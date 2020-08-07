@@ -5,5 +5,5 @@
 #'
 book <- function() {
   file <- system.file("book", "index.html", package = "dataskills")
-  utils::browseURL(file, browser = )
+  utils::browseURL(file)
 }

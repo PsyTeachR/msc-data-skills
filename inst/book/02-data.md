@@ -525,3 +525,12 @@ This will save the data in CSV format to your working directory.
 ## Exercises
 
 Download the [exercises](exercises/02_data_exercise.Rmd). See the [answers](exercises/02_data_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(2)
+
+# run this to access the answers
+dataskills::exercise(2, answers = TRUE)
+```

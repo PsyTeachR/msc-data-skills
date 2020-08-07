@@ -369,7 +369,7 @@ You might get some red text when you load a package, this is normal. It is usual
 You can use the convention `package::function()` to indicate in which add-on package a function resides. For instance, if you see `readr::read_csv()`, that refers to the function `read_csv()` in the `readr` add-on package.
 ```
 
-Now can run the function `ggExtra::runExample()`, which runs an interactive example of marginal plots using shiny.
+Now you can run the function `ggExtra::runExample()`, which runs an interactive example of marginal plots using shiny.
 
 ```{r ggExtra-demo, eval = FALSE}
 ggExtra::runExample()
@@ -386,24 +386,30 @@ knitr::include_graphics("images/01/packages.png")
 ```
 
 ```{r, eval = FALSE}
-install.packages("devtools")
-devtools::install_github("adam-gruer/goodshirt")
+# install devtools if you get
+# Error in loadNamespace(name) : there is no package called ‘devtools’
+# install.packages("devtools")
+devtools::install_github("psyteachr/msc-data-skills")
 ```
 
-After you install the goodshirt package, load it using the `library()` function and display some quotes using the functions below. 
+After you install the dataskills package, load it using the `library()` function. You can then try out some of the functions below.
 
-```{r good-place}
-library(goodshirt)
-# quotes from The Good Place
-chidi()
-eleanor()
-tahani()
-jason()
+* `book()` opens a local copy of this book in your web browser. 
+* `app("plotdemo")` opens a shiny app that lets you see how simulated data would look in different plot styles
+* `exercise(1)` creates and opens a file containing the exercises for this chapter
+* `?disgust` shows you the documentation for the built-in dataset `disgust`, which we will be using in future lessons
+
+```{r dataskills, eval = FALSE}
+library(dataskills)
+book()
+app("plotdemo")
+exercise(1)
+?disgust
 ```
 
 
 ```{block type="try"}
-How many different ways can you find to discover what functions are available in the goodshirt package?
+How many different ways can you find to discover what functions are available in the dataskills package?
 ```
 
 
@@ -464,6 +470,10 @@ You can add comments to an R script by with the hash symbol (`#`). The R interpr
 22 / 7  # approximation to pi
 ```
 
+```{block, type="info"}
+If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (shift-cmd-O).
+```
+
 ### Reproducible reports with R Markdown {#rmarkdown}
 
 We will make reproducible reports following the principles of [literate programming](https://en.wikipedia.org/wiki/Literate_programming). The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then "compiled" from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.
@@ -483,7 +493,7 @@ Create a new R Markdown file from the **`File > New File > R Markdown...`** menu
 
 ### Working Directory
 
-Where should I put all my files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single **working directory** where your data and scripts are stored.
+Where should you put all of your files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single **working directory** where your data and scripts are stored.
 
 Your script should only reference files in three locations, using the appropriate format.
 
@@ -501,7 +511,7 @@ If you are working with an R Markdown file, it will automatically use the same d
 
 If you are working with R scripts, store your main script file in the top-level directory and manually set your working directory to that location. You will have to reset the working directory each time you open RStudio, unless you create a `r glossary("project")` and access the script from the project. 
 
-For instance, if on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
+For instance, if you are on a Windows machine your data and scripts are in the directory `C:\Carla's_files\thesis2\my_thesis\new_analysis`, you will set your working directory in one of two ways: (1) by going to the `Session` pull down menu in RStudio and choosing `Set Working Directory`, or (2) by typing `setwd("C:\Carla's_files\thesis2\my_thesis\new_analysis")` in the console window.
 
 ```{block, type="danger"}
 It's tempting to make your life simple by putting the `setwd()` command in your script. Don't do this! Others will not have the same directory tree as you (and when your laptop dies and you get a new one, neither will you).
@@ -529,3 +539,12 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 ## Exercises
 
 Download the first set of [exercises](exercises/01_intro_exercise.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
+
+```{r, eval = FALSE}
+# run this to access the exercise
+dataskills::exercise(1)
+
+# run this to access the answers
+dataskills::exercise(1, answers = TRUE)
+```
+

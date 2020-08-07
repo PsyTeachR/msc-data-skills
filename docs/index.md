@@ -1,6 +1,6 @@
 --- 
 title: Data Skills for Reproducible Science
-date: "2020-08-04"
+date: "2020-08-07"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -120,15 +120,21 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 
 ## Packages used in this book
 
-* tidyverse
+There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills). You can install it with the code below. It will download all of the packages below that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
+
+
+```r
+devtools::install_github("psyteachr/msc-data-skills")
+```
+
+* tidyverse (includes dplyr, tidyr, ggplot2 and other packages)
+* readxl
 * broom
-* cowsay
-* [goodshirt](https://github.com/adam-gruer/goodshirt)
-* ukbabynames
 * cowplot
 * plotly
 * MASS
 * ggExtra
+* ukbabynames
 * [faux](https://github.com/debruine/faux)
 
 ## Resources
@@ -157,9 +163,9 @@ Miscellanous materials added throughout the semester, such as tips on installati
 ### Other
 
 - [Style guide for R programming](http://style.tidyverse.org)
-- [#rstats on twitter](https://twitter.com/search?q=%2523rstats) highly recommended!
-
-
-
-
-
+- [#rstats on twitter](https://twitter.com/search?q=%2523rstats) highly recommended!```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

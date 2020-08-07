@@ -22,7 +22,7 @@ bookdown::render_book("index.Rmd")
 
 # copies dir
 R.utils::copyDirectory(
-  fromdir = "../docs",
-  todir = "../inst/book", 
+  from = "../docs",
+  to = "../inst/book", 
   overwrite = TRUE, 
   recursive = TRUE)

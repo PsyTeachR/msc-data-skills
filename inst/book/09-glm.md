@@ -23,8 +23,8 @@
 * [Stub for this lesson](stubs/9_glm.Rmd)
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
-* [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
-* [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)
+* [GLM shiny app](http://shiny.psy.gla.ac.uk/Dale/GLM/)
+* [F distribution](http://shiny.psy.gla.ac.uk/Dale/fdist)
 
 ## Setup
 
@@ -564,3 +564,12 @@ aov(Y ~ grp, data = dat) %>% summary(intercept = TRUE)
 ## Exercises
 
 Download the [exercises](exercises/09_glm_exercise.Rmd). See the [answers](exercises/09_glm_answers.Rmd) only after you've attempted all the questions.
+
+
+```r
+# run this to access the exercise
+dataskills::exercise(9)
+
+# run this to access the answers
+dataskills::exercise(9, answers = TRUE)
+```

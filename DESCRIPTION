@@ -38,20 +38,20 @@ Imports:
     knitr,
     shiny,
     shinyjs,
-    shinydashboard
+    shinydashboard,
+    ukbabynames,
+    cowplot
 Suggests: 
     rmarkdown,
     zip,
     webex,
     R.utils,
-    goodshirt,
     faux (>= 0.0.1.2)
 VignetteBuilder: knitr
 Depends: 
     tidyverse,
     R (>= 2.10)
 Remotes: 
-    debruine/faux,
-    adam-gruer/goodshirt
+    debruine/faux
 URL: https://github.com/psyteachr/msc-data-skills
 BugReports: https://github.com/psyteachr/msc-data-skills/issues

@@ -27,8 +27,8 @@ output:
 
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
-* [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
-* [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)
+* [GLM shiny app](http://shiny.psy.gla.ac.uk/Dale/GLM/)
+* [F distribution](http://shiny.psy.gla.ac.uk/Dale/fdist)
 
 ## Setup
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Introduction to GLM | Data Skills for Reproducible Science</title>
+  <title>Chapter 8 Introduction to GLM | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Introduction to GLM | Data Skills for Reproducible Science" />
+  <meta property="og:title" content="Chapter 8 Introduction to GLM | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,14 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Introduction to GLM | Data Skills for Reproducible Science" />
+  <meta name="twitter:title" content="Chapter 8 Introduction to GLM | Data Skills for Reproducible Science" />
   
   <meta name="twitter:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
   
 
 
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,297 +142,285 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
-<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
-<li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.6.3" data-path="index.html"><a href="index.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
+<li class="chapter" data-level="" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="0.1" data-path="overview.html"><a href="overview.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
+<li class="chapter" data-level="0.2" data-path="overview.html"><a href="overview.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="0.3" data-path="overview.html"><a href="overview.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
+<li class="chapter" data-level="0.4" data-path="overview.html"><a href="overview.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
+<li class="chapter" data-level="0.5" data-path="overview.html"><a href="overview.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.6" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
+<li class="chapter" data-level="0.6.1" data-path="overview.html"><a href="overview.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
+<li class="chapter" data-level="0.6.2" data-path="overview.html"><a href="overview.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
+<li class="chapter" data-level="0.6.3" data-path="overview.html"><a href="overview.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
+<li class="chapter" data-level="0.6.4" data-path="overview.html"><a href="overview.html#vars"><i class="fa fa-check"></i><b>0.6.4</b> Variables</a></li>
+<li class="chapter" data-level="0.6.5" data-path="overview.html"><a href="overview.html#the-environment"><i class="fa fa-check"></i><b>0.6.5</b> The environment</a></li>
+<li class="chapter" data-level="0.6.6" data-path="overview.html"><a href="overview.html#whitespace"><i class="fa fa-check"></i><b>0.6.6</b> Whitespace</a></li>
+<li class="chapter" data-level="0.6.7" data-path="overview.html"><a href="overview.html#function_syx"><i class="fa fa-check"></i><b>0.6.7</b> Function syntax</a></li>
+<li class="chapter" data-level="0.6.8" data-path="overview.html"><a href="overview.html#help"><i class="fa fa-check"></i><b>0.6.8</b> Getting help</a></li>
 </ul></li>
+<li class="chapter" data-level="0.7" data-path="overview.html"><a href="overview.html#install-package"><i class="fa fa-check"></i><b>0.7</b> Add-on packages</a><ul>
+<li class="chapter" data-level="0.7.1" data-path="overview.html"><a href="overview.html#installing-a-package"><i class="fa fa-check"></i><b>0.7.1</b> Installing a package</a></li>
+<li class="chapter" data-level="0.7.2" data-path="overview.html"><a href="overview.html#loading-a-package"><i class="fa fa-check"></i><b>0.7.2</b> Loading a package</a></li>
+<li class="chapter" data-level="0.7.3" data-path="overview.html"><a href="overview.html#install-from-github"><i class="fa fa-check"></i><b>0.7.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
-<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
-<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
+<li class="chapter" data-level="0.8" data-path="overview.html"><a href="overview.html#projects"><i class="fa fa-check"></i><b>0.8</b> Organising a project</a><ul>
+<li class="chapter" data-level="0.8.1" data-path="overview.html"><a href="overview.html#structure"><i class="fa fa-check"></i><b>0.8.1</b> Structure</a></li>
+<li class="chapter" data-level="0.8.2" data-path="overview.html"><a href="overview.html#rmarkdown"><i class="fa fa-check"></i><b>0.8.2</b> Reproducible reports with R Markdown</a></li>
+<li class="chapter" data-level="0.8.3" data-path="overview.html"><a href="overview.html#working-directory"><i class="fa fa-check"></i><b>0.8.3</b> Working Directory</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
-<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Variables</a></li>
-<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
-<li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.4</b> Whitespace</a></li>
-<li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
-<li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
+<li class="chapter" data-level="0.9" data-path="overview.html"><a href="overview.html#exercises"><i class="fa fa-check"></i><b>0.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
-<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
+<li class="chapter" data-level="1" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>1</b> Working with Data</a><ul>
+<li class="chapter" data-level="1.1" data-path="data.html"><a href="data.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="data.html"><a href="data.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
+<li class="chapter" data-level="1.3" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>1.3</b> Basic data types</a></li>
+<li class="chapter" data-level="1.4" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>1.4</b> Basic container types</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>1.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>1.4.2</b> Lists</a></li>
+<li class="chapter" data-level="1.4.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>1.4.3</b> Tabular data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
+<li class="chapter" data-level="1.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>1.5</b> Importing data</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>1.5.1</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+<li class="chapter" data-level="1.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a><ul>
-<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#resources-2"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
-<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.3</b> Basic data types</a></li>
-<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.4</b> Basic container types</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>2.4.1</b> Vectors</a></li>
-<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>2.4.2</b> Lists</a></li>
-<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>2.4.3</b> Tabular data</a></li>
+<li class="chapter" data-level="2" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>2</b> Data Visualisation</a><ul>
+<li class="chapter" data-level="2.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>2.1.1</b> Basic</a></li>
+<li class="chapter" data-level="2.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>2.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="2.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>2.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.5</b> Importing data</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
+<li class="chapter" data-level="2.2" data-path="ggplot.html"><a href="ggplot.html#resources-2"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
+<li class="chapter" data-level="2.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>2.3</b> Setup</a></li>
+<li class="chapter" data-level="2.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>2.4</b> Common Variable Combinations</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>2.4.1</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>2.5</b> Basic Plots</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>2.5.1</b> Bar plot</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ggplot.html"><a href="ggplot.html#geom_density"><i class="fa fa-check"></i><b>2.5.2</b> Density plot</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ggplot.html"><a href="ggplot.html#geom_freqpoly"><i class="fa fa-check"></i><b>2.5.3</b> Frequency Polygons</a></li>
+<li class="chapter" data-level="2.5.4" data-path="ggplot.html"><a href="ggplot.html#geom_histogram"><i class="fa fa-check"></i><b>2.5.4</b> Histogram</a></li>
+<li class="chapter" data-level="2.5.5" data-path="ggplot.html"><a href="ggplot.html#geom_col"><i class="fa fa-check"></i><b>2.5.5</b> Column plot</a></li>
+<li class="chapter" data-level="2.5.6" data-path="ggplot.html"><a href="ggplot.html#geom_boxplot"><i class="fa fa-check"></i><b>2.5.6</b> Boxplot</a></li>
+<li class="chapter" data-level="2.5.7" data-path="ggplot.html"><a href="ggplot.html#geom_violin"><i class="fa fa-check"></i><b>2.5.7</b> Violin plot</a></li>
+<li class="chapter" data-level="2.5.8" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>2.5.8</b> Scatter plot</a></li>
+<li class="chapter" data-level="2.5.9" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>2.5.9</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
-<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>3.1.1</b> Basic</a></li>
-<li class="chapter" data-level="3.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>3.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="3.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>3.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="2.6" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>2.6</b> Customisation</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>2.6.1</b> Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>2.6.2</b> Colours</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>2.6.3</b> Save as File</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
-<li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
-<li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="2.7" data-path="ggplot.html"><a href="ggplot.html#combination-plots"><i class="fa fa-check"></i><b>2.7</b> Combination Plots</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>2.7.1</b> Violinbox plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>2.7.2</b> Violin-point-range plot</a></li>
+<li class="chapter" data-level="2.7.3" data-path="ggplot.html"><a href="ggplot.html#violin-jitter-plot"><i class="fa fa-check"></i><b>2.7.3</b> Violin-jitter plot</a></li>
+<li class="chapter" data-level="2.7.4" data-path="ggplot.html"><a href="ggplot.html#scatter-line-graph"><i class="fa fa-check"></i><b>2.7.4</b> Scatter-line graph</a></li>
+<li class="chapter" data-level="2.7.5" data-path="ggplot.html"><a href="ggplot.html#cowplot"><i class="fa fa-check"></i><b>2.7.5</b> Grid of plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.5.1</b> Bar plot</a></li>
-<li class="chapter" data-level="3.5.2" data-path="ggplot.html"><a href="ggplot.html#geom_density"><i class="fa fa-check"></i><b>3.5.2</b> Density plot</a></li>
-<li class="chapter" data-level="3.5.3" data-path="ggplot.html"><a href="ggplot.html#geom_freqpoly"><i class="fa fa-check"></i><b>3.5.3</b> Frequency Polygons</a></li>
-<li class="chapter" data-level="3.5.4" data-path="ggplot.html"><a href="ggplot.html#geom_histogram"><i class="fa fa-check"></i><b>3.5.4</b> Histogram</a></li>
-<li class="chapter" data-level="3.5.5" data-path="ggplot.html"><a href="ggplot.html#geom_col"><i class="fa fa-check"></i><b>3.5.5</b> Column plot</a></li>
-<li class="chapter" data-level="3.5.6" data-path="ggplot.html"><a href="ggplot.html#geom_boxplot"><i class="fa fa-check"></i><b>3.5.6</b> Boxplot</a></li>
-<li class="chapter" data-level="3.5.7" data-path="ggplot.html"><a href="ggplot.html#geom_violin"><i class="fa fa-check"></i><b>3.5.7</b> Violin plot</a></li>
-<li class="chapter" data-level="3.5.8" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.5.8</b> Scatter plot</a></li>
-<li class="chapter" data-level="3.5.9" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.5.9</b> Line graph</a></li>
+<li class="chapter" data-level="2.8" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>2.8</b> Overlapping Discrete Data</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="ggplot.html"><a href="ggplot.html#reducing-opacity"><i class="fa fa-check"></i><b>2.8.1</b> Reducing Opacity</a></li>
+<li class="chapter" data-level="2.8.2" data-path="ggplot.html"><a href="ggplot.html#geom_count"><i class="fa fa-check"></i><b>2.8.2</b> Proportional Dot Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.6</b> Customisation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.6.1</b> Labels</a></li>
-<li class="chapter" data-level="3.6.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.6.2</b> Colours</a></li>
-<li class="chapter" data-level="3.6.3" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.6.3</b> Save as File</a></li>
+<li class="chapter" data-level="2.9" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>2.9</b> Overlapping Continuous Data</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="ggplot.html"><a href="ggplot.html#geom_density2d"><i class="fa fa-check"></i><b>2.9.1</b> 2D Density Plot</a></li>
+<li class="chapter" data-level="2.9.2" data-path="ggplot.html"><a href="ggplot.html#geom_bin2d"><i class="fa fa-check"></i><b>2.9.2</b> 2D Histogram</a></li>
+<li class="chapter" data-level="2.9.3" data-path="ggplot.html"><a href="ggplot.html#geom_hex"><i class="fa fa-check"></i><b>2.9.3</b> Hexagonal Heatmap</a></li>
+<li class="chapter" data-level="2.9.4" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>2.9.4</b> Correlation Heatmap</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#combination-plots"><i class="fa fa-check"></i><b>3.7</b> Combination Plots</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.7.1</b> Violinbox plot</a></li>
-<li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.7.2</b> Violin-point-range plot</a></li>
-<li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#violin-jitter-plot"><i class="fa fa-check"></i><b>3.7.3</b> Violin-jitter plot</a></li>
-<li class="chapter" data-level="3.7.4" data-path="ggplot.html"><a href="ggplot.html#scatter-line-graph"><i class="fa fa-check"></i><b>3.7.4</b> Scatter-line graph</a></li>
-<li class="chapter" data-level="3.7.5" data-path="ggplot.html"><a href="ggplot.html#cowplot"><i class="fa fa-check"></i><b>3.7.5</b> Grid of plots</a></li>
+<li class="chapter" data-level="2.10" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>2.10</b> Interactive Plots</a></li>
+<li class="chapter" data-level="2.11" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>2.11</b> Quiz</a></li>
+<li class="chapter" data-level="2.12" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>2.12</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.8</b> Overlapping Discrete Data</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#reducing-opacity"><i class="fa fa-check"></i><b>3.8.1</b> Reducing Opacity</a></li>
-<li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#geom_count"><i class="fa fa-check"></i><b>3.8.2</b> Proportional Dot Plots</a></li>
+<li class="chapter" data-level="3" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>3</b> Tidy Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>3.1.1</b> Basic</a></li>
+<li class="chapter" data-level="3.1.2" data-path="tidyr.html"><a href="tidyr.html#intermediate-1"><i class="fa fa-check"></i><b>3.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="3.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced-1"><i class="fa fa-check"></i><b>3.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.9</b> Overlapping Continuous Data</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#geom_density2d"><i class="fa fa-check"></i><b>3.9.1</b> 2D Density Plot</a></li>
-<li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#geom_bin2d"><i class="fa fa-check"></i><b>3.9.2</b> 2D Histogram</a></li>
-<li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#geom_hex"><i class="fa fa-check"></i><b>3.9.3</b> Hexagonal Heatmap</a></li>
-<li class="chapter" data-level="3.9.4" data-path="ggplot.html"><a href="ggplot.html#geom_tile"><i class="fa fa-check"></i><b>3.9.4</b> Correlation Heatmap</a></li>
+<li class="chapter" data-level="3.2" data-path="tidyr.html"><a href="tidyr.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
+<li class="chapter" data-level="3.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
+<li class="chapter" data-level="3.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>3.4</b> Three Rules for Tidy Data</a></li>
+<li class="chapter" data-level="3.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>3.5</b> Tidying Data</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>3.5.1</b> gather()</a></li>
+<li class="chapter" data-level="3.5.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>3.5.2</b> separate()</a></li>
+<li class="chapter" data-level="3.5.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>3.5.3</b> unite()</a></li>
+<li class="chapter" data-level="3.5.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>3.5.4</b> spread()</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.10</b> Interactive Plots</a></li>
-<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>3.11</b> Quiz</a></li>
-<li class="chapter" data-level="3.12" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>3.12</b> Exercises</a></li>
+<li class="chapter" data-level="3.6" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>3.6</b> Pipes</a></li>
+<li class="chapter" data-level="3.7" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>3.7</b> More Complex Example</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>3.7.1</b> Load Data</a></li>
+<li class="chapter" data-level="3.7.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>3.7.2</b> Wide to Long</a></li>
+<li class="chapter" data-level="3.7.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>3.7.3</b> One Piece of Data per Column</a></li>
+<li class="chapter" data-level="3.7.4" data-path="tidyr.html"><a href="tidyr.html#all-in-one-step"><i class="fa fa-check"></i><b>3.7.4</b> All in one step</a></li>
+<li class="chapter" data-level="3.7.5" data-path="tidyr.html"><a href="tidyr.html#columns-by-year"><i class="fa fa-check"></i><b>3.7.5</b> Columns by Year</a></li>
+<li class="chapter" data-level="3.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>3.7.6</b> Merge Columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
-<li class="chapter" data-level="4.1.2" data-path="tidyr.html"><a href="tidyr.html#intermediate-1"><i class="fa fa-check"></i><b>4.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="4.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced-1"><i class="fa fa-check"></i><b>4.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="3.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>3.8</b> Quiz</a></li>
+<li class="chapter" data-level="3.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Three Rules for Tidy Data</a></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>4.5</b> Tidying Data</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.5.1</b> gather()</a></li>
-<li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.5.2</b> separate()</a></li>
-<li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.5.3</b> unite()</a></li>
-<li class="chapter" data-level="4.5.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.5.4</b> spread()</a></li>
+<li class="chapter" data-level="4" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="dplyr.html"><a href="dplyr.html#basic-2"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-2"><i class="fa fa-check"></i><b>4.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="4.1.3" data-path="dplyr.html"><a href="dplyr.html#advanced-2"><i class="fa fa-check"></i><b>4.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.7</b> More Complex Example</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.7.1</b> Load Data</a></li>
-<li class="chapter" data-level="4.7.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.7.2</b> Wide to Long</a></li>
-<li class="chapter" data-level="4.7.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.7.3</b> One Piece of Data per Column</a></li>
-<li class="chapter" data-level="4.7.4" data-path="tidyr.html"><a href="tidyr.html#all-in-one-step"><i class="fa fa-check"></i><b>4.7.4</b> All in one step</a></li>
-<li class="chapter" data-level="4.7.5" data-path="tidyr.html"><a href="tidyr.html#columns-by-year"><i class="fa fa-check"></i><b>4.7.5</b> Columns by Year</a></li>
-<li class="chapter" data-level="4.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>4.7.6</b> Merge Columns</a></li>
+<li class="chapter" data-level="4.2" data-path="dplyr.html"><a href="dplyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
+<li class="chapter" data-level="4.3" data-path="dplyr.html"><a href="dplyr.html#setup-2"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
+<li class="chapter" data-level="4.4" data-path="dplyr.html"><a href="dplyr.html#data-disgust"><i class="fa fa-check"></i><b>4.4</b> The <code>disgust</code> dataset</a></li>
+<li class="chapter" data-level="4.5" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>4.5</b> Six main dplyr verbs</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>4.5.1</b> select()</a></li>
+<li class="chapter" data-level="4.5.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>4.5.2</b> filter()</a></li>
+<li class="chapter" data-level="4.5.3" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>4.5.3</b> arrange()</a></li>
+<li class="chapter" data-level="4.5.4" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>4.5.4</b> mutate()</a></li>
+<li class="chapter" data-level="4.5.5" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>4.5.5</b> summarise()</a></li>
+<li class="chapter" data-level="4.5.6" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>4.5.6</b> group_by()</a></li>
+<li class="chapter" data-level="4.5.7" data-path="dplyr.html"><a href="dplyr.html#all-together"><i class="fa fa-check"></i><b>4.5.7</b> All Together</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.8</b> Quiz</a></li>
-<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
+<li class="chapter" data-level="4.6" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>4.6</b> Additional dplyr one-table verbs</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>4.6.1</b> rename()</a></li>
+<li class="chapter" data-level="4.6.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>4.6.2</b> distinct()</a></li>
+<li class="chapter" data-level="4.6.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>4.6.3</b> count()</a></li>
+<li class="chapter" data-level="4.6.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>4.6.4</b> slice()</a></li>
+<li class="chapter" data-level="4.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>4.6.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
-<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="dplyr.html"><a href="dplyr.html#basic-2"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
-<li class="chapter" data-level="5.1.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-2"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="5.1.3" data-path="dplyr.html"><a href="dplyr.html#advanced-2"><i class="fa fa-check"></i><b>5.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="4.7" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>4.7</b> Window functions</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="dplyr.html"><a href="dplyr.html#ranking-functions"><i class="fa fa-check"></i><b>4.7.1</b> Ranking functions</a></li>
+<li class="chapter" data-level="4.7.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>4.7.2</b> Offset functions</a></li>
+<li class="chapter" data-level="4.7.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>4.7.3</b> Cumulative aggregates</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html#resources-5"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
-<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup-2"><i class="fa fa-check"></i><b>5.3</b> Setup</a></li>
-<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#data-disgust"><i class="fa fa-check"></i><b>5.4</b> The <code>disgust</code> dataset</a></li>
-<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.5</b> Six main dplyr verbs</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.5.1</b> select()</a></li>
-<li class="chapter" data-level="5.5.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.5.2</b> filter()</a></li>
-<li class="chapter" data-level="5.5.3" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.5.3</b> arrange()</a></li>
-<li class="chapter" data-level="5.5.4" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>5.5.4</b> mutate()</a></li>
-<li class="chapter" data-level="5.5.5" data-path="dplyr.html"><a href="dplyr.html#summarise"><i class="fa fa-check"></i><b>5.5.5</b> summarise()</a></li>
-<li class="chapter" data-level="5.5.6" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.5.6</b> group_by()</a></li>
-<li class="chapter" data-level="5.5.7" data-path="dplyr.html"><a href="dplyr.html#all-together"><i class="fa fa-check"></i><b>5.5.7</b> All Together</a></li>
+<li class="chapter" data-level="4.8" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>4.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.6</b> Additional dplyr one-table verbs</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.6.1</b> rename()</a></li>
-<li class="chapter" data-level="5.6.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.6.2</b> distinct()</a></li>
-<li class="chapter" data-level="5.6.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.6.3</b> count()</a></li>
-<li class="chapter" data-level="5.6.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.6.4</b> slice()</a></li>
-<li class="chapter" data-level="5.6.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.6.5</b> pull()</a></li>
+<li class="chapter" data-level="5" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>5</b> Data Relations</a><ul>
+<li class="chapter" data-level="5.1" data-path="joins.html"><a href="joins.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>5.1.1</b> Beginner</a></li>
+<li class="chapter" data-level="5.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.7</b> Window functions</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="dplyr.html"><a href="dplyr.html#ranking-functions"><i class="fa fa-check"></i><b>5.7.1</b> Ranking functions</a></li>
-<li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>5.7.2</b> Offset functions</a></li>
-<li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>5.7.3</b> Cumulative aggregates</a></li>
+<li class="chapter" data-level="5.2" data-path="joins.html"><a href="joins.html#resources-5"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
+<li class="chapter" data-level="5.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>5.3</b> Data</a></li>
+<li class="chapter" data-level="5.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>5.4</b> Mutating Joins</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>5.4.1</b> left_join()</a></li>
+<li class="chapter" data-level="5.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>5.4.2</b> right_join()</a></li>
+<li class="chapter" data-level="5.4.3" data-path="joins.html"><a href="joins.html#inner_join"><i class="fa fa-check"></i><b>5.4.3</b> inner_join()</a></li>
+<li class="chapter" data-level="5.4.4" data-path="joins.html"><a href="joins.html#full_join"><i class="fa fa-check"></i><b>5.4.4</b> full_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>5.5</b> Filtering Joins</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="joins.html"><a href="joins.html#semi_join"><i class="fa fa-check"></i><b>5.5.1</b> semi_join()</a></li>
+<li class="chapter" data-level="5.5.2" data-path="joins.html"><a href="joins.html#anti_join"><i class="fa fa-check"></i><b>5.5.2</b> anti_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
-<li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
-<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="5.6" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>5.6</b> Binding Joins</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="joins.html"><a href="joins.html#bind_rows"><i class="fa fa-check"></i><b>5.6.1</b> bind_rows()</a></li>
+<li class="chapter" data-level="5.6.2" data-path="joins.html"><a href="joins.html#bind_cols"><i class="fa fa-check"></i><b>5.6.2</b> bind_cols()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
-<li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
-<li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
-<li class="chapter" data-level="6.4.3" data-path="joins.html"><a href="joins.html#inner_join"><i class="fa fa-check"></i><b>6.4.3</b> inner_join()</a></li>
-<li class="chapter" data-level="6.4.4" data-path="joins.html"><a href="joins.html#full_join"><i class="fa fa-check"></i><b>6.4.4</b> full_join()</a></li>
+<li class="chapter" data-level="5.7" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>5.7</b> Set Operations</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="joins.html"><a href="joins.html#intersect"><i class="fa fa-check"></i><b>5.7.1</b> intersect()</a></li>
+<li class="chapter" data-level="5.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>5.7.2</b> union()</a></li>
+<li class="chapter" data-level="5.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>5.7.3</b> setdiff()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.5</b> Filtering Joins</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="joins.html"><a href="joins.html#semi_join"><i class="fa fa-check"></i><b>6.5.1</b> semi_join()</a></li>
-<li class="chapter" data-level="6.5.2" data-path="joins.html"><a href="joins.html#anti_join"><i class="fa fa-check"></i><b>6.5.2</b> anti_join()</a></li>
+<li class="chapter" data-level="5.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.6</b> Binding Joins</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="joins.html"><a href="joins.html#bind_rows"><i class="fa fa-check"></i><b>6.6.1</b> bind_rows()</a></li>
-<li class="chapter" data-level="6.6.2" data-path="joins.html"><a href="joins.html#bind_cols"><i class="fa fa-check"></i><b>6.6.2</b> bind_cols()</a></li>
+<li class="chapter" data-level="6" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>6</b> Iteration &amp; Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="func.html"><a href="func.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>6.1.1</b> Basic</a></li>
+<li class="chapter" data-level="6.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="6.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>6.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.7</b> Set Operations</a><ul>
-<li class="chapter" data-level="6.7.1" data-path="joins.html"><a href="joins.html#intersect"><i class="fa fa-check"></i><b>6.7.1</b> intersect()</a></li>
-<li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.7.2</b> union()</a></li>
-<li class="chapter" data-level="6.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.7.3</b> setdiff()</a></li>
+<li class="chapter" data-level="6.2" data-path="func.html"><a href="func.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
+<li class="chapter" data-level="6.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>6.3</b> Iteration functions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>6.3.1</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>6.3.2</b> <code>seq()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>6.4</b> Custom functions</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>6.4.1</b> Structuring a function</a></li>
+<li class="chapter" data-level="6.4.2" data-path="func.html"><a href="func.html#arguments"><i class="fa fa-check"></i><b>6.4.2</b> Arguments</a></li>
+<li class="chapter" data-level="6.4.3" data-path="func.html"><a href="func.html#defaults"><i class="fa fa-check"></i><b>6.4.3</b> Argument defaults</a></li>
+<li class="chapter" data-level="6.4.4" data-path="func.html"><a href="func.html#scope"><i class="fa fa-check"></i><b>6.4.4</b> Scope</a></li>
+<li class="chapter" data-level="6.4.5" data-path="func.html"><a href="func.html#warnings-errors"><i class="fa fa-check"></i><b>6.4.5</b> Warnings and errors</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
-<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="6.5" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>6.5</b> Iterating your own functions</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="func.html"><a href="func.html#rnorm"><i class="fa fa-check"></i><b>6.5.1</b> <code>rnorm()</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="func.html"><a href="func.html#tibbletibble"><i class="fa fa-check"></i><b>6.5.2</b> <code>tibble::tibble()</code></a></li>
+<li class="chapter" data-level="6.5.3" data-path="func.html"><a href="func.html#t.test"><i class="fa fa-check"></i><b>6.5.3</b> <code>t.test</code></a></li>
+<li class="chapter" data-level="6.5.4" data-path="func.html"><a href="func.html#broomtidy"><i class="fa fa-check"></i><b>6.5.4</b> <code>broom::tidy()</code></a></li>
+<li class="chapter" data-level="6.5.5" data-path="func.html"><a href="func.html#turn-into-a-function"><i class="fa fa-check"></i><b>6.5.5</b> Turn into a function</a></li>
+<li class="chapter" data-level="6.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>6.5.6</b> <code>replicate()</code></a></li>
+<li class="chapter" data-level="6.5.7" data-path="func.html"><a href="func.html#seed"><i class="fa fa-check"></i><b>6.5.7</b> Set seed</a></li>
+<li class="chapter" data-level="6.5.8" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>6.5.8</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
-<li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
-<li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
+<li class="chapter" data-level="6.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>6.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.4</b> Custom functions</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.4.1</b> Structuring a function</a></li>
-<li class="chapter" data-level="7.4.2" data-path="func.html"><a href="func.html#arguments"><i class="fa fa-check"></i><b>7.4.2</b> Arguments</a></li>
-<li class="chapter" data-level="7.4.3" data-path="func.html"><a href="func.html#defaults"><i class="fa fa-check"></i><b>7.4.3</b> Argument defaults</a></li>
-<li class="chapter" data-level="7.4.4" data-path="func.html"><a href="func.html#scope"><i class="fa fa-check"></i><b>7.4.4</b> Scope</a></li>
-<li class="chapter" data-level="7.4.5" data-path="func.html"><a href="func.html#warnings-errors"><i class="fa fa-check"></i><b>7.4.5</b> Warnings and errors</a></li>
+<li class="chapter" data-level="7" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>7</b> Probability &amp; Simulation</a><ul>
+<li class="chapter" data-level="7.1" data-path="sim.html"><a href="sim.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
+<li class="chapter" data-level="7.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.5</b> Iterating your own functions</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="func.html"><a href="func.html#rnorm"><i class="fa fa-check"></i><b>7.5.1</b> <code>rnorm()</code></a></li>
-<li class="chapter" data-level="7.5.2" data-path="func.html"><a href="func.html#tibbletibble"><i class="fa fa-check"></i><b>7.5.2</b> <code>tibble::tibble()</code></a></li>
-<li class="chapter" data-level="7.5.3" data-path="func.html"><a href="func.html#t.test"><i class="fa fa-check"></i><b>7.5.3</b> <code>t.test</code></a></li>
-<li class="chapter" data-level="7.5.4" data-path="func.html"><a href="func.html#broomtidy"><i class="fa fa-check"></i><b>7.5.4</b> <code>broom::tidy()</code></a></li>
-<li class="chapter" data-level="7.5.5" data-path="func.html"><a href="func.html#turn-into-a-function"><i class="fa fa-check"></i><b>7.5.5</b> Turn into a function</a></li>
-<li class="chapter" data-level="7.5.6" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.5.6</b> <code>replicate()</code></a></li>
-<li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#seed"><i class="fa fa-check"></i><b>7.5.7</b> Set seed</a></li>
-<li class="chapter" data-level="7.5.8" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.8</b> Add arguments</a></li>
+<li class="chapter" data-level="7.2" data-path="sim.html"><a href="sim.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
+<li class="chapter" data-level="7.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>7.3</b> Distributions</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>7.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="7.3.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>7.3.2</b> Binomial Distribution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>7.3.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="7.3.4" data-path="sim.html"><a href="sim.html#bivariate-normal"><i class="fa fa-check"></i><b>7.3.4</b> Bivariate Normal</a></li>
+<li class="chapter" data-level="7.3.5" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>7.3.5</b> Multivariate Normal</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>7.4</b> Example</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>7.4.1</b> Load &amp; wrangle</a></li>
+<li class="chapter" data-level="7.4.2" data-path="sim.html"><a href="sim.html#plot"><i class="fa fa-check"></i><b>7.4.2</b> Plot</a></li>
+<li class="chapter" data-level="7.4.3" data-path="sim.html"><a href="sim.html#get-means-and-sds"><i class="fa fa-check"></i><b>7.4.3</b> Get means and SDs</a></li>
+<li class="chapter" data-level="7.4.4" data-path="sim.html"><a href="sim.html#simulate-a-population"><i class="fa fa-check"></i><b>7.4.4</b> Simulate a population</a></li>
+<li class="chapter" data-level="7.4.5" data-path="sim.html"><a href="sim.html#analyse-simulated-data"><i class="fa fa-check"></i><b>7.4.5</b> Analyse simulated data</a></li>
+<li class="chapter" data-level="7.4.6" data-path="sim.html"><a href="sim.html#replicate-simulation"><i class="fa fa-check"></i><b>7.4.6</b> Replicate simulation</a></li>
+<li class="chapter" data-level="7.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>7.4.7</b> One-tailed prediction</a></li>
+<li class="chapter" data-level="7.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>7.4.8</b> Range of sample sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
-<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
-<li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
-<li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.3.3</b> Normal Distribution</a></li>
-<li class="chapter" data-level="8.3.4" data-path="sim.html"><a href="sim.html#bivariate-normal"><i class="fa fa-check"></i><b>8.3.4</b> Bivariate Normal</a></li>
-<li class="chapter" data-level="8.3.5" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.3.5</b> Multivariate Normal</a></li>
+<li class="chapter" data-level="8" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>8</b> Introduction to GLM</a><ul>
+<li class="chapter" data-level="8.1" data-path="glm.html"><a href="glm.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
+<li class="chapter" data-level="8.1.2" data-path="glm.html"><a href="glm.html#intermediate-6"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.4</b> Example</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.4.1</b> Load &amp; wrangle</a></li>
-<li class="chapter" data-level="8.4.2" data-path="sim.html"><a href="sim.html#plot"><i class="fa fa-check"></i><b>8.4.2</b> Plot</a></li>
-<li class="chapter" data-level="8.4.3" data-path="sim.html"><a href="sim.html#get-means-and-sds"><i class="fa fa-check"></i><b>8.4.3</b> Get means and SDs</a></li>
-<li class="chapter" data-level="8.4.4" data-path="sim.html"><a href="sim.html#simulate-a-population"><i class="fa fa-check"></i><b>8.4.4</b> Simulate a population</a></li>
-<li class="chapter" data-level="8.4.5" data-path="sim.html"><a href="sim.html#analyse-simulated-data"><i class="fa fa-check"></i><b>8.4.5</b> Analyse simulated data</a></li>
-<li class="chapter" data-level="8.4.6" data-path="sim.html"><a href="sim.html#replicate-simulation"><i class="fa fa-check"></i><b>8.4.6</b> Replicate simulation</a></li>
-<li class="chapter" data-level="8.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>8.4.7</b> One-tailed prediction</a></li>
-<li class="chapter" data-level="8.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>8.4.8</b> Range of sample sizes</a></li>
+<li class="chapter" data-level="8.2" data-path="glm.html"><a href="glm.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
+<li class="chapter" data-level="8.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>8.3</b> Setup</a></li>
+<li class="chapter" data-level="8.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>8.4</b> GLM</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>8.4.1</b> What is the GLM?</a></li>
+<li class="chapter" data-level="8.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>8.4.2</b> Components</a></li>
+<li class="chapter" data-level="8.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>8.4.3</b> Simulating data from GLM</a></li>
+<li class="chapter" data-level="8.4.4" data-path="glm.html"><a href="glm.html#linear-regression"><i class="fa fa-check"></i><b>8.4.4</b> Linear Regression</a></li>
+<li class="chapter" data-level="8.4.5" data-path="glm.html"><a href="glm.html#residuals"><i class="fa fa-check"></i><b>8.4.5</b> Residuals</a></li>
+<li class="chapter" data-level="8.4.6" data-path="glm.html"><a href="glm.html#predict"><i class="fa fa-check"></i><b>8.4.6</b> Predict New Values</a></li>
+<li class="chapter" data-level="8.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>8.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>8.5</b> Relationships among tests</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>8.5.1</b> T-test</a></li>
+<li class="chapter" data-level="8.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>8.5.2</b> ANOVA</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
-<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
-<li class="chapter" data-level="9.1.2" data-path="glm.html"><a href="glm.html#intermediate-6"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>8.6</b> Understanding ANOVA</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="glm.html"><a href="glm.html#means-variability-and-deviation-scores"><i class="fa fa-check"></i><b>8.6.1</b> Means, Variability, and Deviation Scores</a></li>
+<li class="chapter" data-level="8.6.2" data-path="glm.html"><a href="glm.html#decomp"><i class="fa fa-check"></i><b>8.6.2</b> Decomposition matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
-<li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
-<li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
-<li class="chapter" data-level="9.4.4" data-path="glm.html"><a href="glm.html#linear-regression"><i class="fa fa-check"></i><b>9.4.4</b> Linear Regression</a></li>
-<li class="chapter" data-level="9.4.5" data-path="glm.html"><a href="glm.html#residuals"><i class="fa fa-check"></i><b>9.4.5</b> Residuals</a></li>
-<li class="chapter" data-level="9.4.6" data-path="glm.html"><a href="glm.html#predict"><i class="fa fa-check"></i><b>9.4.6</b> Predict New Values</a></li>
-<li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
+<li class="chapter" data-level="8.7" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>8.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
-<li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
+<li class="chapter" data-level="9" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>9</b> Reproducible Workflows</a><ul>
+<li class="chapter" data-level="9.1" data-path="repro.html"><a href="repro.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
+<li class="chapter" data-level="9.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="9.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>9.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="glm.html"><a href="glm.html#means-variability-and-deviation-scores"><i class="fa fa-check"></i><b>9.6.1</b> Means, Variability, and Deviation Scores</a></li>
-<li class="chapter" data-level="9.6.2" data-path="glm.html"><a href="glm.html#decomp"><i class="fa fa-check"></i><b>9.6.2</b> Decomposition matrices</a></li>
+<li class="chapter" data-level="9.2" data-path="repro.html"><a href="repro.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
+<li class="chapter" data-level="9.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>9.3</b> R Markdown</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>9.3.1</b> knitr options</a></li>
+<li class="chapter" data-level="9.3.2" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>9.3.2</b> YAML Header</a></li>
+<li class="chapter" data-level="9.3.3" data-path="repro.html"><a href="repro.html#toc-and-document-headers"><i class="fa fa-check"></i><b>9.3.3</b> TOC and Document Headers</a></li>
+<li class="chapter" data-level="9.3.4" data-path="repro.html"><a href="repro.html#code-chunks"><i class="fa fa-check"></i><b>9.3.4</b> Code Chunks</a></li>
+<li class="chapter" data-level="9.3.5" data-path="repro.html"><a href="repro.html#bibliography"><i class="fa fa-check"></i><b>9.3.5</b> Bibliography</a></li>
+<li class="chapter" data-level="9.3.6" data-path="repro.html"><a href="repro.html#output-formats"><i class="fa fa-check"></i><b>9.3.6</b> Output Formats</a></li>
+<li class="chapter" data-level="9.3.7" data-path="repro.html"><a href="repro.html#computational-reproducibility"><i class="fa fa-check"></i><b>9.3.7</b> Computational Reproducibility</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
-<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
-<li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.3</b> R Markdown</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>10.3.1</b> knitr options</a></li>
-<li class="chapter" data-level="10.3.2" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>10.3.2</b> YAML Header</a></li>
-<li class="chapter" data-level="10.3.3" data-path="repro.html"><a href="repro.html#toc-and-document-headers"><i class="fa fa-check"></i><b>10.3.3</b> TOC and Document Headers</a></li>
-<li class="chapter" data-level="10.3.4" data-path="repro.html"><a href="repro.html#code-chunks"><i class="fa fa-check"></i><b>10.3.4</b> Code Chunks</a></li>
-<li class="chapter" data-level="10.3.5" data-path="repro.html"><a href="repro.html#bibliography"><i class="fa fa-check"></i><b>10.3.5</b> Bibliography</a></li>
-<li class="chapter" data-level="10.3.6" data-path="repro.html"><a href="repro.html#output-formats"><i class="fa fa-check"></i><b>10.3.6</b> Output Formats</a></li>
-<li class="chapter" data-level="10.3.7" data-path="repro.html"><a href="repro.html#computational-reproducibility"><i class="fa fa-check"></i><b>10.3.7</b> Computational Reproducibility</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>10.4</b> References</a></li>
+<li class="chapter" data-level="9.4" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>9.4</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a><ul>
-<li class="chapter" data-level="10.5" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>10.5</b> Contributors</a></li>
+<li class="chapter" data-level="9.5" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>9.5</b> Contributors</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a><ul>
@@ -469,12 +457,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="glm" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Introduction to GLM</h1>
+<h1><span class="header-section-number">Chapter 8</span> Introduction to GLM</h1>
 <p><img src="images/memes/linear_regression.jpg" class="meme right"></p>
-<div id="learning-objectives-8" class="section level2">
-<h2><span class="header-section-number">9.1</span> Learning Objectives</h2>
+<div id="learning-objectives-7" class="section level2">
+<h2><span class="header-section-number">8.1</span> Learning Objectives</h2>
 <div id="basic-5" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> Basic</h3>
+<h3><span class="header-section-number">8.1.1</span> Basic</h3>
 <ol style="list-style-type: decimal">
 <li>Define the <a href="glm.html#glm-components">components</a> of the GLM</li>
 <li><a href="glm.html#sim-glm">Simulate data</a> using GLM equations</li>
@@ -485,40 +473,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </div>
 <div id="intermediate-6" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> Intermediate</h3>
+<h3><span class="header-section-number">8.1.2</span> Intermediate</h3>
 <ol start="7" style="list-style-type: decimal">
 <li>Demonstrate the <a href="glm.html#test-rels">relationships</a> among two-sample t-test, one-way ANOVA, and linear regression</li>
 <li>Given data and a GLM, <a href="glm.html#decomp">generate a decomposition matrix</a> and calculate sums of squares, mean squares, and F ratios for a one-way ANOVA</li>
 </ol>
 </div>
 </div>
-<div id="resources-9" class="section level2">
-<h2><span class="header-section-number">9.2</span> Resources</h2>
+<div id="resources-8" class="section level2">
+<h2><span class="header-section-number">8.2</span> Resources</h2>
 <ul>
 <li><a href="stubs/9_glm.Rmd">Stub for this lesson</a></li>
 <li><a href="http://www.otago.ac.nz/psychology/otago039309.pdf">Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)</a></li>
 <li><a href="slides/08_glm_slides.pdf">lecture slides introducing the General Linear Model</a></li>
-<li><a href="http://rstudio2.psy.gla.ac.uk/Dale/GLM">GLM shiny app</a></li>
-<li><a href="http://rstudio2.psy.gla.ac.uk/Dale/fdist">F distribution</a></li>
+<li><a href="http://shiny.psy.gla.ac.uk/Dale/GLM/">GLM shiny app</a></li>
+<li><a href="http://shiny.psy.gla.ac.uk/Dale/fdist">F distribution</a></li>
 </ul>
 </div>
 <div id="setup-3" class="section level2">
-<h2><span class="header-section-number">9.3</span> Setup</h2>
+<h2><span class="header-section-number">8.3</span> Setup</h2>
 <p>You’ll need the following packages.</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="glm.html#cb439-1"></a><span class="co"># libraries needed for these examples</span></span>
-<span id="cb439-2"><a href="glm.html#cb439-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb439-3"><a href="glm.html#cb439-3"></a><span class="kw">library</span>(broom)</span>
-<span id="cb439-4"><a href="glm.html#cb439-4"></a></span>
-<span id="cb439-5"><a href="glm.html#cb439-5"></a><span class="kw">set.seed</span>(<span class="dv">30250</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="glm.html#cb448-1"></a><span class="co"># libraries needed for these examples</span></span>
+<span id="cb448-2"><a href="glm.html#cb448-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb448-3"><a href="glm.html#cb448-3"></a><span class="kw">library</span>(broom)</span>
+<span id="cb448-4"><a href="glm.html#cb448-4"></a></span>
+<span id="cb448-5"><a href="glm.html#cb448-5"></a><span class="kw">set.seed</span>(<span class="dv">30250</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
 </div>
 <div id="glm-1" class="section level2">
-<h2><span class="header-section-number">9.4</span> GLM</h2>
+<h2><span class="header-section-number">8.4</span> GLM</h2>
 <div id="what-is-the-glm" class="section level3">
-<h3><span class="header-section-number">9.4.1</span> What is the GLM?</h3>
+<h3><span class="header-section-number">8.4.1</span> What is the GLM?</h3>
 <p>The General Linear Model (GLM) a general mathematical framework for expressing relationships among variables that can express or test linear relationships between a numerical <strong>dependent variable</strong> and any combination of categorical or continuous <strong>independent variables</strong>.</p>
 </div>
 <div id="glm-components" class="section level3">
-<h3><span class="header-section-number">9.4.2</span> Components</h3>
+<h3><span class="header-section-number">8.4.2</span> Components</h3>
 <p>There are some mathematical conventions that you need to learn to understand the equations representing linear models. Once you understand those, learning about the GLM will get much easier.</p>
 <table>
 <thead>
@@ -556,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Don’t worry if this doesn’t make sense until we walk through a concrete example.</p>
 </div>
 <div id="sim-glm" class="section level3">
-<h3><span class="header-section-number">9.4.3</span> Simulating data from GLM</h3>
+<h3><span class="header-section-number">8.4.3</span> Simulating data from GLM</h3>
 <p>A good way to learn about linear models is to simulate data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.</p>
 <p>We’ll start with a very simple linear model that just has a single categorical factor with two levels. Let’s say we’re predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (<code>mu</code>) is 800ms, and is 50ms faster for congruent than incongruent trials (<code>effect</code>).</p>
 <div class="warning">
@@ -567,43 +555,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A person won’t always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <strong>error term</strong> to each trial. We can’t know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
 <p>Here, we’ll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
 <p>So first create variables for all of the parameters that describe your data.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="glm.html#cb440-1"></a>n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb440-2"><a href="glm.html#cb440-2"></a>mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span></span>
-<span id="cb440-3"><a href="glm.html#cb440-3"></a>effect &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># average difference between congruent and incongruent trials</span></span>
-<span id="cb440-4"><a href="glm.html#cb440-4"></a>error_sd &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># standard deviation of the error term</span></span>
-<span id="cb440-5"><a href="glm.html#cb440-5"></a>trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>) <span class="co"># effect code</span></span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="glm.html#cb449-1"></a>n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb449-2"><a href="glm.html#cb449-2"></a>mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span></span>
+<span id="cb449-3"><a href="glm.html#cb449-3"></a>effect &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># average difference between congruent and incongruent trials</span></span>
+<span id="cb449-4"><a href="glm.html#cb449-4"></a>error_sd &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># standard deviation of the error term</span></span>
+<span id="cb449-5"><a href="glm.html#cb449-5"></a>trial_types &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>) <span class="co"># effect code</span></span></code></pre></div>
 <p>Then simulate the data by creating a data table with a row for each trial and columns for the trial type and the error term (random numbers samples from a normal distribution with the SD specified by <code>error_sd</code>). For categorical variables, include both a column with the text labels (<code>trial_type</code>) and another column with the coded version (<code>trial_type.e</code>) to make it easier to check what the codings mean and to use for graphing. Calculate the dependent variable (<code>RT</code>) as the sum of the grand mean (<code>mu</code>), the coefficient (<code>effect</code>) multiplied by the effect-coded predictor variable (<code>trial_type.e</code>), and the error term.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="glm.html#cb441-1"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb441-2"><a href="glm.html#cb441-2"></a>  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp)</span>
-<span id="cb441-3"><a href="glm.html#cb441-3"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb441-4"><a href="glm.html#cb441-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb441-5"><a href="glm.html#cb441-5"></a>    <span class="dt">trial_type.e =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>trial_types),</span>
-<span id="cb441-6"><a href="glm.html#cb441-6"></a>    <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="kw">nrow</span>(.), <span class="dv">0</span>, error_sd),</span>
-<span id="cb441-7"><a href="glm.html#cb441-7"></a>    <span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error</span>
-<span id="cb441-8"><a href="glm.html#cb441-8"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="glm.html#cb450-1"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb450-2"><a href="glm.html#cb450-2"></a>  <span class="dt">trial_type =</span> <span class="kw">rep</span>(<span class="kw">names</span>(trial_types), <span class="dt">each =</span> n_per_grp)</span>
+<span id="cb450-3"><a href="glm.html#cb450-3"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb450-4"><a href="glm.html#cb450-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb450-5"><a href="glm.html#cb450-5"></a>    <span class="dt">trial_type.e =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>trial_types),</span>
+<span id="cb450-6"><a href="glm.html#cb450-6"></a>    <span class="dt">error =</span> <span class="kw">rnorm</span>(<span class="kw">nrow</span>(.), <span class="dv">0</span>, error_sd),</span>
+<span id="cb450-7"><a href="glm.html#cb450-7"></a>    <span class="dt">RT =</span> mu <span class="op">+</span><span class="st"> </span>effect<span class="op">*</span>trial_type.e <span class="op">+</span><span class="st"> </span>error</span>
+<span id="cb450-8"><a href="glm.html#cb450-8"></a>  )</span></code></pre></div>
 <div class="info">
 <p>
 The <code>!!!</code> (triple bang) in the code <code>recode(trial_type, !!!trial_types)</code> is a way to expand the vector <code>trial_types &lt;- c(“congruent” = 0.5, “incongruent” = -0.5)</code>. It’s equivalent to <code>recode(trial_type, “congruent” = 0.5, “incongruent” = -0.5)</code>. This pattern avoids making mistakes with recoding because there is only one place where you set up the category to code mapping (in the <code>trial_types</code> vector).
 </p>
 </div>
 <p>Last but not least, always plot simulated data to make sure it looks like you expect.</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="glm.html#cb442-1"></a><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb442-2"><a href="glm.html#cb442-2"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></span>
-<span id="cb442-3"><a href="glm.html#cb442-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), </span>
-<span id="cb442-4"><a href="glm.html#cb442-4"></a>               <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="glm.html#cb451-1"></a><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(trial_type, RT)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb451-2"><a href="glm.html#cb451-2"></a><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></span>
+<span id="cb451-3"><a href="glm.html#cb451-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> trial_type), </span>
+<span id="cb451-4"><a href="glm.html#cb451-4"></a>               <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plot-sim"></span>
 <img src="09-glm_files/figure-html/plot-sim-1.png" alt="Simulated Data" width="100%" />
 <p class="caption">
-Figure 9.1: Simulated Data
+Figure 8.1: Simulated Data
 </p>
 </div>
 </div>
 <div id="linear-regression" class="section level3">
-<h3><span class="header-section-number">9.4.4</span> Linear Regression</h3>
+<h3><span class="header-section-number">8.4.4</span> Linear Regression</h3>
 <p>Now we can analyse the data we simulated using the function <code>lm()</code>. It takes the formula as the first argument. This is the same as the data-generating equation, but you can omit the error term (this is implied), and takes the data table as the second argument. Use the <code>summary()</code> function to see the statistical summary.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="glm.html#cb443-1"></a>my_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</span>
-<span id="cb443-2"><a href="glm.html#cb443-2"></a></span>
-<span id="cb443-3"><a href="glm.html#cb443-3"></a><span class="kw">summary</span>(my_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="glm.html#cb452-1"></a>my_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</span>
+<span id="cb452-2"><a href="glm.html#cb452-2"></a></span>
+<span id="cb452-3"><a href="glm.html#cb452-3"></a><span class="kw">summary</span>(my_lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = RT ~ trial_type.e, data = dat)
@@ -630,31 +618,31 @@ Change the values of <code>mu</code> and <code>effect</code>, resimulate the dat
 </div>
 </div>
 <div id="residuals" class="section level3">
-<h3><span class="header-section-number">9.4.5</span> Residuals</h3>
+<h3><span class="header-section-number">8.4.5</span> Residuals</h3>
 <p>You can use the <code>residuals()</code> function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We’ll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="glm.html#cb445-1"></a>res &lt;-<span class="st"> </span><span class="kw">residuals</span>(my_lm)</span>
-<span id="cb445-2"><a href="glm.html#cb445-2"></a></span>
-<span id="cb445-3"><a href="glm.html#cb445-3"></a><span class="kw">ggplot</span>(dat) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb445-4"><a href="glm.html#cb445-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="kw">aes</span>(<span class="dv">0</span>), <span class="dt">color =</span> <span class="st">&quot;grey60&quot;</span>,</span>
-<span id="cb445-5"><a href="glm.html#cb445-5"></a>                <span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>,</span>
-<span id="cb445-6"><a href="glm.html#cb445-6"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> error_sd)) <span class="op">+</span></span>
-<span id="cb445-7"><a href="glm.html#cb445-7"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(res, <span class="dt">color =</span> trial_type))</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="glm.html#cb454-1"></a>res &lt;-<span class="st"> </span><span class="kw">residuals</span>(my_lm)</span>
+<span id="cb454-2"><a href="glm.html#cb454-2"></a></span>
+<span id="cb454-3"><a href="glm.html#cb454-3"></a><span class="kw">ggplot</span>(dat) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb454-4"><a href="glm.html#cb454-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="kw">aes</span>(<span class="dv">0</span>), <span class="dt">color =</span> <span class="st">&quot;grey60&quot;</span>,</span>
+<span id="cb454-5"><a href="glm.html#cb454-5"></a>                <span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>,</span>
+<span id="cb454-6"><a href="glm.html#cb454-6"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> error_sd)) <span class="op">+</span></span>
+<span id="cb454-7"><a href="glm.html#cb454-7"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(res, <span class="dt">color =</span> trial_type))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:res-density-plot"></span>
 <img src="09-glm_files/figure-html/res-density-plot-1.png" alt="Model residuals should be approximately normally distributed for each group" width="100%" />
 <p class="caption">
-Figure 9.2: Model residuals should be approximately normally distributed for each group
+Figure 8.2: Model residuals should be approximately normally distributed for each group
 </p>
 </div>
 <p>You can also compare the model residuals to the simulated error values. If the model is accurate, they should be almost identical. If the intercept estimate is slightly off, the points will be slightly above or below the black line. If the estimate for the effect of trial type is slightly off, there will be a small, systematic difference between residuals for congruent and incongruent trials.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="glm.html#cb446-1"></a><span class="kw">ggplot</span>(dat) <span class="op">+</span></span>
-<span id="cb446-2"><a href="glm.html#cb446-2"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb446-3"><a href="glm.html#cb446-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(error, res,<span class="dt">color =</span> trial_type)) <span class="op">+</span></span>
-<span id="cb446-4"><a href="glm.html#cb446-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model Residuals&quot;</span>) <span class="op">+</span></span>
-<span id="cb446-5"><a href="glm.html#cb446-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulated Error&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="glm.html#cb455-1"></a><span class="kw">ggplot</span>(dat) <span class="op">+</span></span>
+<span id="cb455-2"><a href="glm.html#cb455-2"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb455-3"><a href="glm.html#cb455-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(error, res,<span class="dt">color =</span> trial_type)) <span class="op">+</span></span>
+<span id="cb455-4"><a href="glm.html#cb455-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Model Residuals&quot;</span>) <span class="op">+</span></span>
+<span id="cb455-5"><a href="glm.html#cb455-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Simulated Error&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:res-err-plot"></span>
 <img src="09-glm_files/figure-html/res-err-plot-1.png" alt="Model residuals should be very similar to the simulated error" width="100%" />
 <p class="caption">
-Figure 9.3: Model residuals should be very similar to the simulated error
+Figure 8.3: Model residuals should be very similar to the simulated error
 </p>
 </div>
 <div class="try">
@@ -664,19 +652,19 @@ What happens to the residuals if you fit a model that ignores trial type (e.g., 
 </div>
 </div>
 <div id="predict" class="section level3">
-<h3><span class="header-section-number">9.4.6</span> Predict New Values</h3>
+<h3><span class="header-section-number">8.4.6</span> Predict New Values</h3>
 <p>You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to now the trial type to make a prediction.</p>
 <p>For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="glm.html#cb447-1"></a>int_est &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;(Intercept)&quot;</span>]]</span>
-<span id="cb447-2"><a href="glm.html#cb447-2"></a>tt_est  &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;trial_type.e&quot;</span>]]</span>
-<span id="cb447-3"><a href="glm.html#cb447-3"></a>tt_code &lt;-<span class="st"> </span>trial_types[[<span class="st">&quot;congruent&quot;</span>]]</span>
-<span id="cb447-4"><a href="glm.html#cb447-4"></a></span>
-<span id="cb447-5"><a href="glm.html#cb447-5"></a>new_congruent_RT &lt;-<span class="st"> </span>int_est <span class="op">+</span><span class="st"> </span>tt_est <span class="op">*</span><span class="st"> </span>tt_code</span>
-<span id="cb447-6"><a href="glm.html#cb447-6"></a></span>
-<span id="cb447-7"><a href="glm.html#cb447-7"></a>new_congruent_RT</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="glm.html#cb456-1"></a>int_est &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;(Intercept)&quot;</span>]]</span>
+<span id="cb456-2"><a href="glm.html#cb456-2"></a>tt_est  &lt;-<span class="st"> </span>my_lm<span class="op">$</span>coefficients[[<span class="st">&quot;trial_type.e&quot;</span>]]</span>
+<span id="cb456-3"><a href="glm.html#cb456-3"></a>tt_code &lt;-<span class="st"> </span>trial_types[[<span class="st">&quot;congruent&quot;</span>]]</span>
+<span id="cb456-4"><a href="glm.html#cb456-4"></a></span>
+<span id="cb456-5"><a href="glm.html#cb456-5"></a>new_congruent_RT &lt;-<span class="st"> </span>int_est <span class="op">+</span><span class="st"> </span>tt_est <span class="op">*</span><span class="st"> </span>tt_code</span>
+<span id="cb456-6"><a href="glm.html#cb456-6"></a></span>
+<span id="cb456-7"><a href="glm.html#cb456-7"></a>new_congruent_RT</span></code></pre></div>
 <pre><code>## [1] 819.1605</code></pre>
 <p>You can also use the <code>predict()</code> function to do this more easily. The second argument is a data table with columns for the factors in the model and rows with the values that you want to use for the prediction.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="glm.html#cb449-1"></a><span class="kw">predict</span>(my_lm, <span class="dt">newdata =</span> <span class="kw">tibble</span>(<span class="dt">trial_type.e =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="glm.html#cb458-1"></a><span class="kw">predict</span>(my_lm, <span class="dt">newdata =</span> <span class="kw">tibble</span>(<span class="dt">trial_type.e =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <pre><code>##        1 
 ## 819.1605</code></pre>
 <div class="info">
@@ -689,43 +677,43 @@ What this means is that <code>predict()</code> works differently depending on wh
 </div>
 </div>
 <div id="coding-schemes" class="section level3">
-<h3><span class="header-section-number">9.4.7</span> Coding Categorical Variables</h3>
+<h3><span class="header-section-number">8.4.7</span> Coding Categorical Variables</h3>
 <p>In the example above, we used <strong>effect coding</strong> for trial type. You can also use <strong>sum coding</strong>, which assigns +1 and -1 to the levels instead of +0.5 and -0.5. More commonly, you might want to use <strong>treatment coding</strong>, which assigns 0 to one level (usually a baseline or control condition) and 1 to the other level (usually a treatment or experimental condition).</p>
 <p>Here we will add sum-coded and treatment-coded versions of <code>trial_type</code> to the dataset using the <code>recode()</code> function.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="glm.html#cb451-1"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
-<span id="cb451-2"><a href="glm.html#cb451-2"></a>  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>),</span>
-<span id="cb451-3"><a href="glm.html#cb451-3"></a>  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb451-4"><a href="glm.html#cb451-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="glm.html#cb460-1"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb460-2"><a href="glm.html#cb460-2"></a>  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>),</span>
+<span id="cb460-3"><a href="glm.html#cb460-3"></a>  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="st">&quot;congruent&quot;</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb460-4"><a href="glm.html#cb460-4"></a>)</span></code></pre></div>
 <p>If you define named vectors with your levels and coding, you can use them with the <code>recode()</code> function if you expand them using <code>!!!</code>.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="glm.html#cb452-1"></a>tt_sum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, </span>
-<span id="cb452-2"><a href="glm.html#cb452-2"></a>            <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>)</span>
-<span id="cb452-3"><a href="glm.html#cb452-3"></a>tt_tr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="dv">1</span>, </span>
-<span id="cb452-4"><a href="glm.html#cb452-4"></a>           <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb452-5"><a href="glm.html#cb452-5"></a></span>
-<span id="cb452-6"><a href="glm.html#cb452-6"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
-<span id="cb452-7"><a href="glm.html#cb452-7"></a>  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_sum),</span>
-<span id="cb452-8"><a href="glm.html#cb452-8"></a>  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_tr)</span>
-<span id="cb452-9"><a href="glm.html#cb452-9"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="glm.html#cb461-1"></a>tt_sum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="op">+</span><span class="dv">1</span>, </span>
+<span id="cb461-2"><a href="glm.html#cb461-2"></a>            <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">-1</span>)</span>
+<span id="cb461-3"><a href="glm.html#cb461-3"></a>tt_tr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;congruent&quot;</span>   =<span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb461-4"><a href="glm.html#cb461-4"></a>           <span class="st">&quot;incongruent&quot;</span> =<span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb461-5"><a href="glm.html#cb461-5"></a></span>
+<span id="cb461-6"><a href="glm.html#cb461-6"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(</span>
+<span id="cb461-7"><a href="glm.html#cb461-7"></a>  <span class="dt">trial_type.sum =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_sum),</span>
+<span id="cb461-8"><a href="glm.html#cb461-8"></a>  <span class="dt">trial_type.tr =</span> <span class="kw">recode</span>(trial_type, <span class="op">!!!</span>tt_tr)</span>
+<span id="cb461-9"><a href="glm.html#cb461-9"></a>)</span></code></pre></div>
 <p>Here are the coefficients for the effect-coded version. They should be the same as those from the last analysis.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="glm.html#cb453-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="glm.html#cb462-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##  (Intercept) trial_type.e 
 ##    788.19166     61.93773</code></pre>
 <p>Here are the coefficients for the sum-coded version. This give the same results as effect coding, except the estimate for the categorical factor will be exactly half as large, as it represents the difference between each trial type and the hypothetical condition of 0 (the overall mean RT), rather than the difference between the two trial types.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="glm.html#cb455-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.sum, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="glm.html#cb464-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.sum, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##    (Intercept) trial_type.sum 
 ##      788.19166       30.96887</code></pre>
 <p>Here are the coefficients for the treatment-coded version. The estimate for the categorical factor will be the same as in the effect-coded version, but the intercept will decrease. It will be equal to the intercept minus the estimate for trial type from the sum-coded version.</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="glm.html#cb457-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.tr, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="glm.html#cb466-1"></a><span class="kw">lm</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.tr, <span class="dt">data =</span> dat)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##   (Intercept) trial_type.tr 
 ##     757.22279      61.93773</code></pre>
 </div>
 </div>
 <div id="test-rels" class="section level2">
-<h2><span class="header-section-number">9.5</span> Relationships among tests</h2>
+<h2><span class="header-section-number">8.5</span> Relationships among tests</h2>
 <div id="t-test-1" class="section level3">
-<h3><span class="header-section-number">9.5.1</span> T-test</h3>
+<h3><span class="header-section-number">8.5.1</span> T-test</h3>
 <p>The t-test is just a special, limited example of a general linear model.</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="glm.html#cb459-1"></a><span class="kw">t.test</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="glm.html#cb468-1"></a><span class="kw">t.test</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -744,11 +732,11 @@ What happens when you use other codings for trial type in the t-test above? Whic
 </div>
 </div>
 <div id="anova" class="section level3">
-<h3><span class="header-section-number">9.5.2</span> ANOVA</h3>
+<h3><span class="header-section-number">8.5.2</span> ANOVA</h3>
 <p>ANOVA is also a special, limited version of the linear model.</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="glm.html#cb461-1"></a>my_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</span>
-<span id="cb461-2"><a href="glm.html#cb461-2"></a></span>
-<span id="cb461-3"><a href="glm.html#cb461-3"></a><span class="kw">summary</span>(my_aov, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="glm.html#cb470-1"></a>my_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(RT <span class="op">~</span><span class="st"> </span>trial_type.e, <span class="dt">data =</span> dat)</span>
+<span id="cb470-2"><a href="glm.html#cb470-2"></a></span>
+<span id="cb470-3"><a href="glm.html#cb470-3"></a><span class="kw">summary</span>(my_aov, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##               Df    Sum Sq   Mean Sq  F value   Pr(&gt;F)    
 ## (Intercept)    1 124249219 124249219 11963.12  &lt; 2e-16 ***
 ## trial_type.e   1    191814    191814    18.47 2.71e-05 ***
@@ -756,41 +744,41 @@ What happens when you use other codings for trial type in the t-test above? Whic
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The easiest way to get parameters out of an analysis is to use the <code>broom::tidy()</code> function. This returns a tidy table that you can extract numbers of interest from. Here, we just want to get the F-value for the effect of trial_type. Compare the square root of this value to the t-value from the t-tests above.</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="glm.html#cb463-1"></a>f &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">tidy</span>(my_aov)<span class="op">$</span>statistic[<span class="dv">1</span>]</span>
-<span id="cb463-2"><a href="glm.html#cb463-2"></a><span class="kw">sqrt</span>(f)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="glm.html#cb472-1"></a>f &lt;-<span class="st"> </span>broom<span class="op">::</span><span class="kw">tidy</span>(my_aov)<span class="op">$</span>statistic[<span class="dv">1</span>]</span>
+<span id="cb472-2"><a href="glm.html#cb472-2"></a><span class="kw">sqrt</span>(f)</span></code></pre></div>
 <pre><code>## [1] 4.297498</code></pre>
 </div>
 </div>
 <div id="understanding-anova" class="section level2">
-<h2><span class="header-section-number">9.6</span> Understanding ANOVA</h2>
+<h2><span class="header-section-number">8.6</span> Understanding ANOVA</h2>
 <p>We’ll walk through an example of a one-way ANOVA with the following equation:</p>
 <p><span class="math inline">\(Y_{ij} = \mu + A_i + S(A)_{ij}\)</span></p>
 <p>This means that each data point (<span class="math inline">\(Y_{ij}\)</span>) is predicted to be the sum of the grand mean (<span class="math inline">\(\mu\)</span>), plus the effect of factor A (<span class="math inline">\(A_i\)</span>), plus some residual error (<span class="math inline">\(S(A)_{ij}\)</span>).</p>
 <div id="means-variability-and-deviation-scores" class="section level3">
-<h3><span class="header-section-number">9.6.1</span> Means, Variability, and Deviation Scores</h3>
+<h3><span class="header-section-number">8.6.1</span> Means, Variability, and Deviation Scores</h3>
 <p>Let’s create a simple simulation function so you can quickly create a two-sample dataset with specified Ns, means, and SDs.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="glm.html#cb465-1"></a>two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1 =</span> <span class="dv">0</span>, <span class="dt">m2 =</span> <span class="dv">0</span>, <span class="dt">sd1 =</span> <span class="dv">1</span>, <span class="dt">sd2 =</span> <span class="dv">1</span>) {</span>
-<span id="cb465-2"><a href="glm.html#cb465-2"></a>  s1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)</span>
-<span id="cb465-3"><a href="glm.html#cb465-3"></a>  s2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)</span>
-<span id="cb465-4"><a href="glm.html#cb465-4"></a>  </span>
-<span id="cb465-5"><a href="glm.html#cb465-5"></a>  <span class="kw">data.frame</span>(</span>
-<span id="cb465-6"><a href="glm.html#cb465-6"></a>    <span class="dt">Y =</span> <span class="kw">c</span>(s1, s2),</span>
-<span id="cb465-7"><a href="glm.html#cb465-7"></a>    <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n)</span>
-<span id="cb465-8"><a href="glm.html#cb465-8"></a>  )</span>
-<span id="cb465-9"><a href="glm.html#cb465-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="glm.html#cb474-1"></a>two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">m1 =</span> <span class="dv">0</span>, <span class="dt">m2 =</span> <span class="dv">0</span>, <span class="dt">sd1 =</span> <span class="dv">1</span>, <span class="dt">sd2 =</span> <span class="dv">1</span>) {</span>
+<span id="cb474-2"><a href="glm.html#cb474-2"></a>  s1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m1, sd1)</span>
+<span id="cb474-3"><a href="glm.html#cb474-3"></a>  s2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m2, sd2)</span>
+<span id="cb474-4"><a href="glm.html#cb474-4"></a>  </span>
+<span id="cb474-5"><a href="glm.html#cb474-5"></a>  <span class="kw">data.frame</span>(</span>
+<span id="cb474-6"><a href="glm.html#cb474-6"></a>    <span class="dt">Y =</span> <span class="kw">c</span>(s1, s2),</span>
+<span id="cb474-7"><a href="glm.html#cb474-7"></a>    <span class="dt">grp =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n)</span>
+<span id="cb474-8"><a href="glm.html#cb474-8"></a>  )</span>
+<span id="cb474-9"><a href="glm.html#cb474-9"></a>}</span></code></pre></div>
 <p>Now we will use <code>two_sample()</code> to create a dataset <code>dat</code> with N=5 per group, means of -2 and +2, and SDs of 1 and 1 (yes, this is an effect size of d = 4).</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="glm.html#cb466-1"></a>dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dv">5</span>, <span class="dv">-2</span>, <span class="op">+</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="glm.html#cb475-1"></a>dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dv">5</span>, <span class="dv">-2</span>, <span class="op">+</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
 <p>You can calculate how each data point (<code>Y</code>) deviates from the overall sample mean (<span class="math inline">\(\hat{\mu}\)</span>), which is represented by the horizontal grey line below and the deviations are the vertical grey lines. You can also calculate how different each point is from its group-specific mean (<span class="math inline">\(\hat{A_i}\)</span>), which are represented by the horizontal coloured lines below and the deviations are the coloured vertical lines.</p>
 <div class="figure" style="text-align: center"><span id="fig:deviation"></span>
 <img src="09-glm_files/figure-html/deviation-1.png" alt="Deviations of each data point (Y) from the overall and group means" width="100%" />
 <p class="caption">
-Figure 9.4: Deviations of each data point (Y) from the overall and group means
+Figure 8.4: Deviations of each data point (Y) from the overall and group means
 </p>
 </div>
 <p>You can use these deviations to calculate variability between groups and within groups. ANOVA tests whether the variability between groups is larger than that within groups, accounting for the number of groups and observations.</p>
 </div>
 <div id="decomp" class="section level3">
-<h3><span class="header-section-number">9.6.2</span> Decomposition matrices</h3>
+<h3><span class="header-section-number">8.6.2</span> Decomposition matrices</h3>
 <p>We can use the estimation equations for a one-factor ANOVA to calculate the model components.</p>
 <ul>
 <li><code>mu</code> is the overall mean</li>
@@ -798,13 +786,13 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 <li><code>err</code> is residual error, calculated by subtracting <code>mu</code> and <code>a</code> from <code>Y</code></li>
 </ul>
 <p>This produces a <em>decomposition matrix</em>, a table with columns for <code>Y</code>, <code>mu</code>, <code>a</code>, and <code>err</code>.</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="glm.html#cb467-1"></a>decomp &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb467-2"><a href="glm.html#cb467-2"></a><span class="st">  </span><span class="kw">select</span>(Y, grp) <span class="op">%&gt;%</span></span>
-<span id="cb467-3"><a href="glm.html#cb467-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(Y)) <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># calculate mu_hat</span></span>
-<span id="cb467-4"><a href="glm.html#cb467-4"></a><span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span></span>
-<span id="cb467-5"><a href="glm.html#cb467-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">mean</span>(Y) <span class="op">-</span><span class="st"> </span>mu) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># calculate a_hat for each grp</span></span>
-<span id="cb467-6"><a href="glm.html#cb467-6"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb467-7"><a href="glm.html#cb467-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">err =</span> Y <span class="op">-</span><span class="st"> </span>mu <span class="op">-</span><span class="st"> </span>a)     <span class="co"># calculate residual error</span></span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="glm.html#cb476-1"></a>decomp &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb476-2"><a href="glm.html#cb476-2"></a><span class="st">  </span><span class="kw">select</span>(Y, grp) <span class="op">%&gt;%</span></span>
+<span id="cb476-3"><a href="glm.html#cb476-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(Y)) <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># calculate mu_hat</span></span>
+<span id="cb476-4"><a href="glm.html#cb476-4"></a><span class="st">  </span><span class="kw">group_by</span>(grp) <span class="op">%&gt;%</span></span>
+<span id="cb476-5"><a href="glm.html#cb476-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">mean</span>(Y) <span class="op">-</span><span class="st"> </span>mu) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># calculate a_hat for each grp</span></span>
+<span id="cb476-6"><a href="glm.html#cb476-6"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb476-7"><a href="glm.html#cb476-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">err =</span> Y <span class="op">-</span><span class="st"> </span>mu <span class="op">-</span><span class="st"> </span>a)     <span class="co"># calculate residual error</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -889,10 +877,10 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 </tbody>
 </table>
 <p>Calculate sums of squares for <code>mu</code>, <code>a</code>, and <code>err</code>.</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="glm.html#cb468-1"></a>SS &lt;-<span class="st"> </span>decomp <span class="op">%&gt;%</span></span>
-<span id="cb468-2"><a href="glm.html#cb468-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">sum</span>(mu<span class="op">*</span>mu),</span>
-<span id="cb468-3"><a href="glm.html#cb468-3"></a>            <span class="dt">a =</span> <span class="kw">sum</span>(a<span class="op">*</span>a),</span>
-<span id="cb468-4"><a href="glm.html#cb468-4"></a>            <span class="dt">err =</span> <span class="kw">sum</span>(err<span class="op">*</span>err))</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="glm.html#cb477-1"></a>SS &lt;-<span class="st"> </span>decomp <span class="op">%&gt;%</span></span>
+<span id="cb477-2"><a href="glm.html#cb477-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">sum</span>(mu<span class="op">*</span>mu),</span>
+<span id="cb477-3"><a href="glm.html#cb477-3"></a>            <span class="dt">a =</span> <span class="kw">sum</span>(a<span class="op">*</span>a),</span>
+<span id="cb477-4"><a href="glm.html#cb477-4"></a>            <span class="dt">err =</span> <span class="kw">sum</span>(err<span class="op">*</span>err))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -910,14 +898,14 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 </tbody>
 </table>
 <p>If you’ve done everything right, <code>SS$mu + SS$a + SS$err</code> should equal the sum of squares for Y.</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="glm.html#cb469-1"></a>SS_Y &lt;-<span class="st"> </span><span class="kw">sum</span>(decomp<span class="op">$</span>Y<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb469-2"><a href="glm.html#cb469-2"></a><span class="kw">all.equal</span>(SS_Y, SS<span class="op">$</span>mu <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>a <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>err)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="glm.html#cb478-1"></a>SS_Y &lt;-<span class="st"> </span><span class="kw">sum</span>(decomp<span class="op">$</span>Y<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb478-2"><a href="glm.html#cb478-2"></a><span class="kw">all.equal</span>(SS_Y, SS<span class="op">$</span>mu <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>a <span class="op">+</span><span class="st"> </span>SS<span class="op">$</span>err)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Divide each sum of squares by its corresponding degrees of freedom (df) to calculate mean squares. The df for <code>mu</code> is 1, the df for factor <code>a</code> is <code>K-1</code> (K is the number of groups), and the df for <code>err</code> is <code>N - K</code> (N is the number of observations).</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="glm.html#cb471-1"></a>K &lt;-<span class="st"> </span><span class="kw">n_distinct</span>(dat<span class="op">$</span>grp)</span>
-<span id="cb471-2"><a href="glm.html#cb471-2"></a>N &lt;-<span class="st"> </span><span class="kw">nrow</span>(dat)</span>
-<span id="cb471-3"><a href="glm.html#cb471-3"></a>df &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">mu =</span> <span class="dv">1</span>, <span class="dt">a =</span> K <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">err =</span> N <span class="op">-</span><span class="st"> </span>K)</span>
-<span id="cb471-4"><a href="glm.html#cb471-4"></a>MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> </span>df</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="glm.html#cb480-1"></a>K &lt;-<span class="st"> </span><span class="kw">n_distinct</span>(dat<span class="op">$</span>grp)</span>
+<span id="cb480-2"><a href="glm.html#cb480-2"></a>N &lt;-<span class="st"> </span><span class="kw">nrow</span>(dat)</span>
+<span id="cb480-3"><a href="glm.html#cb480-3"></a>df &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">mu =</span> <span class="dv">1</span>, <span class="dt">a =</span> K <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">err =</span> N <span class="op">-</span><span class="st"> </span>K)</span>
+<span id="cb480-4"><a href="glm.html#cb480-4"></a>MS &lt;-<span class="st"> </span>SS <span class="op">/</span><span class="st"> </span>df</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -935,19 +923,19 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 </tbody>
 </table>
 <p>Then calculate an F-ratio for <code>mu</code> and <code>a</code> by dividing their mean squares by the error term mean square. Get the p-values that correspond to these F-values using the <code>pf()</code> function.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="glm.html#cb472-1"></a>F_mu &lt;-<span class="st"> </span>MS<span class="op">$</span>mu <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</span>
-<span id="cb472-2"><a href="glm.html#cb472-2"></a>F_a  &lt;-<span class="st"> </span>MS<span class="op">$</span>a  <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</span>
-<span id="cb472-3"><a href="glm.html#cb472-3"></a>p_mu &lt;-<span class="st"> </span><span class="kw">pf</span>(F_mu, <span class="dt">df1 =</span> df[<span class="st">&#39;mu&#39;</span>], <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb472-4"><a href="glm.html#cb472-4"></a>p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class="dt">df1 =</span> df[<span class="st">&#39;a&#39;</span>],  <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="glm.html#cb481-1"></a>F_mu &lt;-<span class="st"> </span>MS<span class="op">$</span>mu <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</span>
+<span id="cb481-2"><a href="glm.html#cb481-2"></a>F_a  &lt;-<span class="st"> </span>MS<span class="op">$</span>a  <span class="op">/</span><span class="st"> </span>MS<span class="op">$</span>err</span>
+<span id="cb481-3"><a href="glm.html#cb481-3"></a>p_mu &lt;-<span class="st"> </span><span class="kw">pf</span>(F_mu, <span class="dt">df1 =</span> df[<span class="st">&#39;mu&#39;</span>], <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb481-4"><a href="glm.html#cb481-4"></a>p_a  &lt;-<span class="st"> </span><span class="kw">pf</span>(F_a,  <span class="dt">df1 =</span> df[<span class="st">&#39;a&#39;</span>],  <span class="dt">df2 =</span> df[<span class="st">&#39;err&#39;</span>], <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Put everything into a data frame to display it in the same way as the ANOVA summary function.</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="glm.html#cb473-1"></a>my_calcs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb473-2"><a href="glm.html#cb473-2"></a>  <span class="dt">term =</span> <span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;grp&quot;</span>, <span class="st">&quot;Residuals&quot;</span>),</span>
-<span id="cb473-3"><a href="glm.html#cb473-3"></a>  <span class="dt">Df =</span> df,</span>
-<span id="cb473-4"><a href="glm.html#cb473-4"></a>  <span class="dt">SS =</span> <span class="kw">c</span>(SS<span class="op">$</span>mu, SS<span class="op">$</span>a, SS<span class="op">$</span>err),</span>
-<span id="cb473-5"><a href="glm.html#cb473-5"></a>  <span class="dt">MS =</span> <span class="kw">c</span>(MS<span class="op">$</span>mu, MS<span class="op">$</span>a, MS<span class="op">$</span>err),</span>
-<span id="cb473-6"><a href="glm.html#cb473-6"></a>  <span class="dt">F =</span> <span class="kw">c</span>(F_mu, F_a, <span class="ot">NA</span>),</span>
-<span id="cb473-7"><a href="glm.html#cb473-7"></a>  <span class="dt">p =</span> <span class="kw">c</span>(p_mu, p_a, <span class="ot">NA</span>)</span>
-<span id="cb473-8"><a href="glm.html#cb473-8"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="glm.html#cb482-1"></a>my_calcs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb482-2"><a href="glm.html#cb482-2"></a>  <span class="dt">term =</span> <span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;grp&quot;</span>, <span class="st">&quot;Residuals&quot;</span>),</span>
+<span id="cb482-3"><a href="glm.html#cb482-3"></a>  <span class="dt">Df =</span> df,</span>
+<span id="cb482-4"><a href="glm.html#cb482-4"></a>  <span class="dt">SS =</span> <span class="kw">c</span>(SS<span class="op">$</span>mu, SS<span class="op">$</span>a, SS<span class="op">$</span>err),</span>
+<span id="cb482-5"><a href="glm.html#cb482-5"></a>  <span class="dt">MS =</span> <span class="kw">c</span>(MS<span class="op">$</span>mu, MS<span class="op">$</span>a, MS<span class="op">$</span>err),</span>
+<span id="cb482-6"><a href="glm.html#cb482-6"></a>  <span class="dt">F =</span> <span class="kw">c</span>(F_mu, F_a, <span class="ot">NA</span>),</span>
+<span id="cb482-7"><a href="glm.html#cb482-7"></a>  <span class="dt">p =</span> <span class="kw">c</span>(p_mu, p_a, <span class="ot">NA</span>)</span>
+<span id="cb482-8"><a href="glm.html#cb482-8"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -991,7 +979,7 @@ Figure 9.4: Deviations of each data point (Y) from the overall and group means
 </tbody>
 </table>
 <p>Now run a one-way ANOVA on your results and compare it to what you obtained in your calculations.</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="glm.html#cb474-1"></a><span class="kw">aov</span>(Y <span class="op">~</span><span class="st"> </span>grp, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>(<span class="dt">intercept =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="glm.html#cb483-1"></a><span class="kw">aov</span>(Y <span class="op">~</span><span class="st"> </span>grp, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>(<span class="dt">intercept =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## (Intercept)  1  0.146   0.146   0.144 0.71427   
 ## grp          1 23.516  23.516  23.214 0.00132 **
@@ -1006,8 +994,13 @@ Using the code above, write your own function that takes a table of data and ret
 </div>
 </div>
 <div id="exercises-8" class="section level2">
-<h2><span class="header-section-number">9.7</span> Exercises</h2>
+<h2><span class="header-section-number">8.7</span> Exercises</h2>
 <p>Download the <a href="exercises/09_glm_exercise.Rmd">exercises</a>. See the <a href="exercises/09_glm_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="glm.html#cb485-1"></a><span class="co"># run this to access the exercise</span></span>
+<span id="cb485-2"><a href="glm.html#cb485-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">9</span>)</span>
+<span id="cb485-3"><a href="glm.html#cb485-3"></a></span>
+<span id="cb485-4"><a href="glm.html#cb485-4"></a><span class="co"># run this to access the answers</span></span>
+<span id="cb485-5"><a href="glm.html#cb485-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">9</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>

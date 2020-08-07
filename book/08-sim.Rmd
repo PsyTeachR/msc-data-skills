@@ -747,3 +747,10 @@ power_table <- tibble(
 
 Download the [exercises](exercises/08_sim_exercise.Rmd). See the [answers](exercises/08_sim_answers.Rmd) only after you've attempted all the questions.
 
+```{r, eval = FALSE}
+# run this to access the exercise
+dataskills::exercise(8)
+
+# run this to access the answers
+dataskills::exercise(8, answers = TRUE)
+```
