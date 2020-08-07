@@ -11,10 +11,10 @@ This R package contains the datasets needed for the University of Glasgow MSc co
 
 ## Installation
 
-You can install the newest version of dataskills from [GitHub](https://github.com/debruine/msc-data-skills) with:
+You can install the newest version of dataskills from [GitHub](https://github.com/psyteachr/msc-data-skills) with:
 
 ``` r
-devtools::install_github("debruine/msc-data-skills")
+devtools::install_github("psyteachr/msc-data-skills")
 ```
 
 You can access the book online at <https://psyteachr.github.io/msc-data-skills/>, but you can access a local version with the function `dataskills::book()`.
