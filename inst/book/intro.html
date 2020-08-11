@@ -475,13 +475,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="learning-objectives" class="section level2">
 <h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Understand the components of the <a href="intro.html#rstudio_ide">RStudio IDE</a></li>
-<li>Type commands into the <a href="intro.html#console">console</a></li>
-<li>Understand <a href="intro.html#function_syx">function syntax</a></li>
-<li>Install a <a href="intro.html#install-package">package</a></li>
-<li><a href="intro.html#projects">Organise a project</a></li>
-<li>Appropriately <a href="intro.html#structure">structure an R script or RMarkdown file</a></li>
-<li>Create and compile an <a href="intro.html#rmarkdown">Rmarkdown document</a></li>
+<li>Understand the components of the <a href="intro.html#rstudio_ide">RStudio IDE</a> <a href="https://youtu.be/CbA6ZVlJE78" class="video">(video)</a></li>
+<li>Type commands into the <a href="intro.html#console">console</a> <a href="https://youtu.be/wbI4c_7y0kE" class="video">(video)</a></li>
+<li>Understand <a href="intro.html#function_syx">function syntax</a> <a href="https://youtu.be/X5P038N5Q8I" class="video">(video)</a></li>
+<li>Install a <a href="intro.html#install-package">package</a> <a href="https://youtu.be/u_pvHnqkVCE" class="video">(video)</a></li>
+<li><a href="intro.html#projects">Organise a project</a> <a href="https://youtu.be/" class="video">(video)</a></li>
+<li>Appropriately <a href="intro.html#structure">structure an R script or RMarkdown file</a> <a href="https://youtu.be/" class="video">(video)</a></li>
+<li>Create and compile an <a href="intro.html#rmarkdown">Rmarkdown document</a> <a href="https://youtu.be/" class="video">(video)</a></li>
 </ol>
 </div>
 <div id="resources-1" class="section level2">
@@ -501,6 +501,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="info">
 <p>See Appendix <a href="installingr.html#installingr">A</a> for more information on on how to install R and associated programs.</p>
 </div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/90IdULVGmYY" frameborder="0" allowfullscreen>
+</iframe>
 <div id="rconsole" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> The Base R Console</h3>
 <p>If you open up the application called R, you will see an “R Console” window that looks something like this.</p>
@@ -522,6 +524,8 @@ Launch <img src="images/01/rstudio_icon.png" style="height: 2em; vertical-align:
 </div>
 <div id="rstudio_ide" class="section level3">
 <h3><span class="header-section-number">1.3.2</span> RStudio</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CbA6ZVlJE78" frameborder="0" allowfullscreen>
+</iframe>
 <p><a href="http://www.rstudio.com">RStudio</a> is an Integrated Development Environment (IDE). This is a program that serves as a text editor, file manager, and provides many functions to help you read and write R code.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-rstudio"></span>
 <img src="images/01/rstudio.png" alt="The RStudio IDE" width="100%" />
@@ -560,6 +564,8 @@ Figure 1.3: Alter these settings for increased reproducibility.
 <h2><span class="header-section-number">1.4</span> Getting Started</h2>
 <div id="console" class="section level3">
 <h3><span class="header-section-number">1.4.1</span> Console commands</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wbI4c_7y0kE" frameborder="0" allowfullscreen>
+</iframe>
 <p>We are first going to learn about how to interact with the console. In general, you will be developing R scripts or R markdown files, rather than working directly in the console window. However, you can consider the console a kind of <strong>sandbox</strong> where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.</p>
 <p>Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.</p>
 <p><img src="images/memes/typos.jpg" class="right meme"></p>
@@ -686,6 +692,8 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 </div>
 <div id="function_syx" class="section level3">
 <h3><span class="header-section-number">1.4.5</span> Function syntax</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X5P038N5Q8I" frameborder="0" allowfullscreen>
+</iframe>
 <p>A lot of what you do in R involves calling a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> and storing the results. A function is a named section of code that can be reused.</p>
 <p>For example, <code>sd</code> is a function that returns the standard deviation of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this:</p>
 <p><code>function_name(argument1, argument2 = "value")</code>.</p>
@@ -698,20 +706,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.989385059  0.024958071  0.287382828 -0.538338474  1.140961753
-##  [6]  1.089467831 -0.201203342 -0.064977850 -0.002551074 -1.924314204</code></pre>
+<pre><code>##  [1] -1.74313320  0.51436004 -0.35692161 -0.75373946 -0.14600399  1.59839583
+##  [7]  1.79012196 -0.12750430 -1.27545390 -0.02178603</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 100.15136  98.39386  99.31253 101.36198 100.00225 100.10667  98.60571
-##  [8]  99.93720 100.55919 101.25707</code></pre>
+<pre><code>##  [1]  99.95867  98.78835  98.68498 100.76640  99.29409 100.53252  98.37064
+##  [8] 101.16581  99.95064  98.97781</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.48224  99.74961  99.76975  99.41016  99.64158 100.95832  99.59027
-##  [8]  99.58010 101.22792 101.67085</code></pre>
+<pre><code>##  [1] 100.94641 101.84638 102.60498 100.57025  99.38648 101.21386 100.24631
+##  [8]  99.14684 100.47274  99.52132</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]    1.546919 -220.027042  117.115237  -38.249405  164.873987  -23.524980
-##  [7]   35.481523 -112.809156  122.599675   38.356500</code></pre>
+<pre><code>##  [1] -85.48642 -12.35367  20.53798 -85.91969  52.31486 -30.74559 -11.89204
+##  [8] 131.39306 117.37917 -79.56952</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb32-2"><a href="intro.html#cb32-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>
@@ -745,6 +753,8 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 </div>
 <div id="install-package" class="section level2">
 <h2><span class="header-section-number">1.5</span> Add-on packages</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u_pvHnqkVCE" frameborder="0" allowfullscreen>
+</iframe>
 <p>One of the great things about R is that it is <strong>user extensible</strong>: anyone can create a new add-on software package that extends its functionality. There are currently thousands of add-on packages that R users have created to solve many different kinds of problems, or just simply to have fun. There are packages for data visualisation, machine learning, neuroimaging, eyetracking, web scraping, and playing games such as Sudoku.</p>
 <p>Add-on packages are not distributed with base R, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install a fitness app on your smartphone.</p>
 <p>The main repository where packages reside is called CRAN, the Comprehensive R Archive Network. A package has to pass strict tests devised by the R core team to be allowed to be part of the CRAN archive. You can install from the CRAN archive through R using the <code>install.packages()</code> function.</p>

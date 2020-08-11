@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-08-04" />
+<meta name="date" content="2020-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,8 +146,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#course-resources"><i class="fa fa-check"></i><b>0.4</b> Course Resources</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#formative-exercises"><i class="fa fa-check"></i><b>0.5</b> Formative Exercises</a></li>
 <li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
 <li class="chapter" data-level="0.6.1" data-path="index.html"><a href="index.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
 <li class="chapter" data-level="0.6.2" data-path="index.html"><a href="index.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
@@ -470,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Data Skills for Reproducible Science</h1>
-<p class="date"><em>2020-08-04</em></p>
+<p class="date"><em>2020-08-11</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered">
 <h1>Overview</h1>
@@ -500,8 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Type commands into the <a href="intro.html#console">console</a></li>
 <li>Understand <a href="intro.html#function_syx">function syntax</a></li>
 <li>Install a <a href="intro.html#install-package">package</a></li>
-<li><a href="intro.html#projects">Organise a project</a></li>
-<li>Appropriately <a href="intro.html#structure">structure an R script or RMarkdown file</a></li>
+<li>Organise a <a href="intro.html#projects">project</a></li>
 <li>Create and compile an <a href="intro.html#rmarkdown">Rmarkdown document</a></li>
 </ol></li>
 <li><a href="data.html#data">Working with Data</a>
@@ -571,8 +570,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 </ol>
 </div>
+<div id="course-resources" class="section level2">
+<h2><span class="header-section-number">0.4</span> Course Resources</h2>
+<p>Each chapter has several short video lectures for the main learning outcomes at the playlist <a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt" target="_blank">Data Skills</a>. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility.</p>
+<p>There is a custom package for this course called <a href="https://github.com/psyteachr/msc-data-skills">dataskills</a>. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
+</div>
 <div id="formative-exercises" class="section level2">
-<h2><span class="header-section-number">0.4</span> Formative Exercises</h2>
+<h2><span class="header-section-number">0.5</span> Formative Exercises</h2>
 <p>Exercises are available at the end of each lesson’s webpage. These are not marked or mandatory, but if you can work through each of these (using web resources, of course), you will easily complete the marked assessments.</p>
 <p>Download all <a href="exercises/msc-data-skills-exercises.zip">exercises and data files</a> below as a ZIP archive.</p>
 <ul>
@@ -586,21 +591,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="exercises/07_func_exercise.Rmd">07 functions</a>: Functions and iteration</li>
 <li><a href="exercises/08_sim_exercise.Rmd">08 simulation</a>: Simulation</li>
 <li><a href="exercises/09_glm_exercise.Rmd">09 glm</a>: GLM</li>
-</ul>
-</div>
-<div id="packages-used-in-this-book" class="section level2">
-<h2><span class="header-section-number">0.5</span> Packages used in this book</h2>
-<ul>
-<li>tidyverse</li>
-<li>broom</li>
-<li>cowsay</li>
-<li><a href="https://github.com/adam-gruer/goodshirt">goodshirt</a></li>
-<li>ukbabynames</li>
-<li>cowplot</li>
-<li>plotly</li>
-<li>MASS</li>
-<li>ggExtra</li>
-<li><a href="https://github.com/debruine/faux">faux</a></li>
 </ul>
 </div>
 <div id="resources" class="section level2">

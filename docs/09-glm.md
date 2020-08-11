@@ -23,8 +23,8 @@
 * [Stub for this lesson](stubs/9_glm.Rmd)
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
 * [lecture slides introducing the General Linear Model](slides/08_glm_slides.pdf)
-* [GLM shiny app](http://shiny.psy.gla.ac.uk/Dale/GLM/)
-* [F distribution](http://shiny.psy.gla.ac.uk/Dale/fdist)
+* [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
+* [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)
 
 ## Setup
 
@@ -35,7 +35,6 @@ You'll need the following packages.
 # libraries needed for these examples
 library(tidyverse)
 library(broom)
-
 set.seed(30250) # makes sure random numbers are reproducible
 ```
 
@@ -136,7 +135,6 @@ Now we can analyse the data we simulated using the function `lm()`. It takes the
 
 ```r
 my_lm <- lm(RT ~ trial_type.e, data = dat)
-
 summary(my_lm)
 ```
 
@@ -174,7 +172,6 @@ You can use the `residuals()` function to extract the error term for each each d
 
 ```r
 res <- residuals(my_lm)
-
 ggplot(dat) + 
   stat_function(aes(0), color = "grey60",
                 fun = dnorm, n = 101,
@@ -210,7 +207,7 @@ ggplot(dat) +
 
 ### Predict New Values {#predict}
 
-You can use the estimates from your model to predict new data points, given values for the model parameters. For this example, we only need to know the trial type to make a prediction.
+You can use the estimates from your model to predict new data points, given values for the model parameters. For this simple example, we just need to know the trial type to make a prediction.
 
 For congruent trials, you would predict that a new data point would be equal to the intercept estimate plus the trial type estimate multiplied by 0.5 (the effect code for congruent trials).
 
@@ -219,9 +216,7 @@ For congruent trials, you would predict that a new data point would be equal to 
 int_est <- my_lm$coefficients[["(Intercept)"]]
 tt_est  <- my_lm$coefficients[["trial_type.e"]]
 tt_code <- trial_types[["congruent"]]
-
 new_congruent_RT <- int_est + tt_est * tt_code
-
 new_congruent_RT
 ```
 
@@ -243,8 +238,7 @@ predict(my_lm, newdata = tibble(trial_type.e = 0.5))
 
 
 <div class="info">
-<p>If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.”</p>
-<p>What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
+<p>If you look up this function using <code>?predict</code>, you will see that “The function invokes particular methods which depend on the class of the first argument.” What this means is that <code>predict()</code> works differently depending on whether you’re predicting from the output of <code>lm()</code> or other analysis functions. You can search for help on the lm version with <code>?predict.lm</code>.</p>
 </div>
 
 
@@ -271,7 +265,6 @@ tt_sum <- c("congruent"   = +1,
             "incongruent" = -1)
 tt_tr <- c("congruent"   = 1, 
            "incongruent" = 0)
-
 dat <- dat %>% mutate(
   trial_type.sum = recode(trial_type, !!!tt_sum),
   trial_type.tr = recode(trial_type, !!!tt_tr)
@@ -351,7 +344,6 @@ ANOVA is also a special, limited version of the linear model.
 
 ```r
 my_aov <- aov(RT ~ trial_type.e, data = dat)
-
 summary(my_aov, intercept = TRUE)
 ```
 

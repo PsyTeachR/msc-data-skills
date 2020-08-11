@@ -4,13 +4,12 @@
 
 ## Learning Objectives
 
-1. Understand the components of the [RStudio IDE](#rstudio_ide)
-2. Type commands into the [console](#console)
-3. Understand [function syntax](#function_syx)
-4. Install a [package](#install-package)
-5. [Organise a project](#projects)
-6. Appropriately [structure an R script or RMarkdown file](#structure)
-7. Create and compile an [Rmarkdown document](#rmarkdown)
+1. Understand the components of the [RStudio IDE](#rstudio_ide) [(video)](https://youtu.be/CbA6ZVlJE78){class="video"}
+2. Type commands into the [console](#console) [(video)](https://youtu.be/wbI4c_7y0kE){class="video"}
+3. Understand [function syntax](#function_syx) [(video)](https://youtu.be/X5P038N5Q8I){class="video"}
+4. Install a [package](#install-package) [(video)](https://youtu.be/u_pvHnqkVCE){class="video"}
+5. Organise a [project](#projects) [(video)](https://youtu.be/y-KiPueC9xw ){class="video"}
+6. Create and compile an [Rmarkdown document](#rmarkdown) [(video)](https://youtu.be/EqJiAlJAl8Y ){class="video"}
 
 
 ## Resources
@@ -31,6 +30,7 @@ R is a programming environment for data processing and statistical analysis. We 
 <div class='info'>
 See Appendix \@ref(installingr) for more information on on how to install R and associated programs.
 </div>
+
 
 ### The Base R Console {#rconsole}
 

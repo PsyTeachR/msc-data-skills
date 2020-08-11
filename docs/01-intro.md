@@ -4,13 +4,12 @@
 
 ## Learning Objectives
 
-1. Understand the components of the [RStudio IDE](#rstudio_ide)
-2. Type commands into the [console](#console)
-3. Understand [function syntax](#function_syx)
-4. Install a [package](#install-package)
-5. [Organise a project](#projects)
-6. Appropriately [structure an R script or RMarkdown file](#structure)
-7. Create and compile an [Rmarkdown document](#rmarkdown)
+1. Understand the components of the [RStudio IDE](#rstudio_ide) [(video)](https://youtu.be/CbA6ZVlJE78){class="video"}
+2. Type commands into the [console](#console) [(video)](https://youtu.be/wbI4c_7y0kE){class="video"}
+3. Understand [function syntax](#function_syx) [(video)](https://youtu.be/X5P038N5Q8I){class="video"}
+4. Install a [package](#install-package) [(video)](https://youtu.be/u_pvHnqkVCE){class="video"}
+5. Organise a [project](#projects) [(video)](https://youtu.be/y-KiPueC9xw ){class="video"}
+6. Create and compile an [Rmarkdown document](#rmarkdown) [(video)](https://youtu.be/EqJiAlJAl8Y ){class="video"}
 
 
 ## Resources
@@ -31,6 +30,7 @@ R is a programming environment for data processing and statistical analysis. We 
 <div class='info'>
 See Appendix \@ref(installingr) for more information on on how to install R and associated programs.
 </div>
+
 
 ### The Base R Console {#rconsole}
 
@@ -339,8 +339,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.989385059  0.024958071  0.287382828 -0.538338474  1.140961753
-##  [6]  1.089467831 -0.201203342 -0.064977850 -0.002551074 -1.924314204
+##  [1]  0.3057132  1.0390222  1.1953924 -0.5252853 -1.1160861 -0.7130507
+##  [7]  0.5291057 -0.3398384 -0.5491177 -0.3299037
 ```
 
 If you want 10 numbers from a distribution with a mean of 100:
@@ -351,8 +351,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.15136  98.39386  99.31253 101.36198 100.00225 100.10667  98.60571
-##  [8]  99.93720 100.55919 101.25707
+##  [1] 100.38127  99.97533 100.60551 102.02970  99.23983  99.95636  99.10433
+##  [8] 101.80828  99.94214  98.77635
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -363,8 +363,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.48224  99.74961  99.76975  99.41016  99.64158 100.95832  99.59027
-##  [8]  99.58010 101.22792 101.67085
+##  [1] 100.95741  99.64600 102.07044 101.99428  98.98912 100.08413 100.53175
+##  [8] 101.62985  97.60364 100.50012
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -375,8 +375,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]    1.546919 -220.027042  117.115237  -38.249405  164.873987  -23.524980
-##  [7]   35.481523 -112.809156  122.599675   38.356500
+##  [1]   95.45782546   54.77623961   -0.08322615   89.82368941 -211.28963907
+##  [6] -144.59078109   35.64854428 -147.30491392  -88.10534161   -7.40860348
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:

@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-08-07" />
+<meta name="date" content="2020-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,8 +146,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.1" data-path="overview.html"><a href="overview.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="overview.html"><a href="overview.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="overview.html"><a href="overview.html#course-outline"><i class="fa fa-check"></i><b>0.3</b> Course Outline</a></li>
-<li class="chapter" data-level="0.4" data-path="overview.html"><a href="overview.html#formative-exercises"><i class="fa fa-check"></i><b>0.4</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.5" data-path="overview.html"><a href="overview.html#packages-used-in-this-book"><i class="fa fa-check"></i><b>0.5</b> Packages used in this book</a></li>
+<li class="chapter" data-level="0.4" data-path="overview.html"><a href="overview.html#course-resources"><i class="fa fa-check"></i><b>0.4</b> Course Resources</a></li>
+<li class="chapter" data-level="0.5" data-path="overview.html"><a href="overview.html#formative-exercises"><i class="fa fa-check"></i><b>0.5</b> Formative Exercises</a></li>
 <li class="chapter" data-level="0.6" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>0.6</b> Resources</a><ul>
 <li class="chapter" data-level="0.6.1" data-path="overview.html"><a href="overview.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
 <li class="chapter" data-level="0.6.2" data-path="overview.html"><a href="overview.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
@@ -458,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Data Skills for Reproducible Science</h1>
-<p class="date"><em>2020-08-07</em></p>
+<p class="date"><em>2020-08-11</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered">
 <h1>Overview</h1>
@@ -488,8 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Type commands into the <a href="#console">console</a></li>
 <li>Understand <a href="overview.html#function_syx">function syntax</a></li>
 <li>Install a <a href="overview.html#install-package">package</a></li>
-<li><a href="overview.html#projects">Organise a project</a></li>
-<li>Appropriately <a href="overview.html#structure">structure an R script or RMarkdown file</a></li>
+<li>Organise a <a href="overview.html#projects">project</a></li>
 <li>Create and compile an <a href="overview.html#rmarkdown">Rmarkdown document</a></li>
 </ol></li>
 <li><a href="data.html#data">Working with Data</a>
@@ -559,8 +558,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 </ol>
 </div>
+<div id="course-resources" class="section level2">
+<h2><span class="header-section-number">0.4</span> Course Resources</h2>
+<p>Each chapter has several short video lectures for the main learning outcomes at the playlist <a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt" target="_blank">Data Skills</a>. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility.</p>
+<p>There is a custom package for this course called <a href="https://github.com/psyteachr/msc-data-skills">dataskills</a>. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="overview.html#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
+</div>
 <div id="formative-exercises" class="section level2">
-<h2><span class="header-section-number">0.4</span> Formative Exercises</h2>
+<h2><span class="header-section-number">0.5</span> Formative Exercises</h2>
 <p>Exercises are available at the end of each lesson’s webpage. These are not marked or mandatory, but if you can work through each of these (using web resources, of course), you will easily complete the marked assessments.</p>
 <p>Download all <a href="exercises/msc-data-skills-exercises.zip">exercises and data files</a> below as a ZIP archive.</p>
 <ul>
@@ -574,22 +579,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="exercises/07_func_exercise.Rmd">07 functions</a>: Functions and iteration</li>
 <li><a href="exercises/08_sim_exercise.Rmd">08 simulation</a>: Simulation</li>
 <li><a href="exercises/09_glm_exercise.Rmd">09 glm</a>: GLM</li>
-</ul>
-</div>
-<div id="packages-used-in-this-book" class="section level2">
-<h2><span class="header-section-number">0.5</span> Packages used in this book</h2>
-<p>There is a custom package for this course called <a href="https://github.com/psyteachr/msc-data-skills">dataskills</a>. You can install it with the code below. It will download all of the packages below that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="overview.html#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
-<ul>
-<li>tidyverse (includes dplyr, tidyr, ggplot2 and other packages)</li>
-<li>readxl</li>
-<li>broom</li>
-<li>cowplot</li>
-<li>plotly</li>
-<li>MASS</li>
-<li>ggExtra</li>
-<li>ukbabynames</li>
-<li><a href="https://github.com/debruine/faux">faux</a></li>
 </ul>
 </div>
 <div id="resources" class="section level2">
@@ -637,13 +626,12 @@ knitr::write_bib(c(
 
 ## Learning Objectives
 
-1. Understand the components of the [RStudio IDE](#rstudio_ide)
-2. Type commands into the [console](#console)
-3. Understand [function syntax](#function_syx)
-4. Install a [package](#install-package)
-5. [Organise a project](#projects)
-6. Appropriately [structure an R script or RMarkdown file](#structure)
-7. Create and compile an [Rmarkdown document](#rmarkdown)
+1. Understand the components of the [RStudio IDE](#rstudio_ide) [(video)](https://youtu.be/CbA6ZVlJE78){class=&quot;video&quot;}
+2. Type commands into the [console](#console) [(video)](https://youtu.be/wbI4c_7y0kE){class=&quot;video&quot;}
+3. Understand [function syntax](#function_syx) [(video)](https://youtu.be/X5P038N5Q8I){class=&quot;video&quot;}
+4. Install a [package](#install-package) [(video)](https://youtu.be/u_pvHnqkVCE){class=&quot;video&quot;}
+5. Organise a [project](#projects) [(video)](https://youtu.be/){class=&quot;video&quot;}
+6. Create and compile an [Rmarkdown document](#rmarkdown) [(video)](https://youtu.be/){class=&quot;video&quot;}
 
 
 ## Resources
@@ -664,6 +652,7 @@ R is a programming environment for data processing and statistical analysis. We 
 &lt;div class=&#39;info&#39;&gt;
 See Appendix \@ref(installingr) for more information on on how to install R and associated programs.
 &lt;/div&gt;
+
 
 ### The Base R Console {#rconsole}
 
@@ -867,20 +856,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="overview.html#cb25-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.6069774  0.3835476  0.3182623  0.2710811  0.9641806  0.5505551
-##  [7] -1.0302113 -0.5201622  0.4550493 -1.2222862</code></pre>
+<pre><code>##  [1] -1.05782941  0.50293064  0.75637159 -1.89188760 -0.25883514  0.06340644
+##  [7]  0.22333015  1.11508914 -1.22532588  1.46940154</code></pre>
 <p>If you want 10 numbers from a distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="overview.html#cb27-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 100.64720  98.33654 100.66760 100.45885 100.76315  99.84097  99.95509
-##  [8] 100.12307 101.12464 102.23501</code></pre>
+<pre><code>##  [1]  99.34888  99.42570  98.80745  99.73069 100.24631  99.37552 100.46270
+##  [8]  99.98762 101.01895 100.62346</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="overview.html#cb29-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  98.86251  99.16299 101.52808  99.80647  98.63488  99.90174  99.88075
-##  [8]  99.58714  99.07995  98.32578</code></pre>
+<pre><code>##  [1] 101.61149 101.68466  99.47954 102.55694  99.89882  99.86906  97.49362
+##  [8] 100.41542 100.99620 100.75258</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="overview.html#cb31-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] -119.633668 -138.250289  160.352017 -203.545831   15.470320   51.624640
-##  [7]  -18.129826 -237.903975   91.579001   -8.108447</code></pre>
+<pre><code>##  [1] -241.43407  108.55522  -42.31336  -17.14676  -75.06289   35.34414
+##  [7]   -7.12523 -104.55789   57.29211   63.12118</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="overview.html#cb33-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb33-2"><a href="overview.html#cb33-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>

@@ -1,6 +1,6 @@
 --- 
 title: Data Skills for Reproducible Science
-date: "2020-08-07"
+date: "2020-08-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -40,9 +40,8 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     2. Type commands into the [console](#console)
     3. Understand [function syntax](#function_syx)
     4. Install a [package](#install-package)
-    5. [Organise a project](#projects)
-    6. Appropriately [structure an R script or RMarkdown file](#structure)
-    7. Create and compile an [Rmarkdown document](#rmarkdown)
+    5. Organise a [project](#projects)
+    6. Create and compile an [Rmarkdown document](#rmarkdown)
 
 2. [Working with Data](#data)
     1. Understand the use the [basic data types](#data_types)
@@ -100,6 +99,17 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     5. Use `source()` to include code from an external file 
     6. Report the output of an analysis using inline R
 
+## Course Resources
+
+Each chapter has several short video lectures for the main learning outcomes at the playlist [Data Skills](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility.
+
+There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills). You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
+
+
+```r
+devtools::install_github("psyteachr/msc-data-skills")
+```
+
 
 ## Formative Exercises
 
@@ -118,24 +128,6 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 * [08 simulation](exercises/08_sim_exercise.Rmd): Simulation
 * [09 glm](exercises/09_glm_exercise.Rmd): GLM
 
-## Packages used in this book
-
-There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills). You can install it with the code below. It will download all of the packages below that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
-
-
-```r
-devtools::install_github("psyteachr/msc-data-skills")
-```
-
-* tidyverse (includes dplyr, tidyr, ggplot2 and other packages)
-* readxl
-* broom
-* cowplot
-* plotly
-* MASS
-* ggExtra
-* ukbabynames
-* [faux](https://github.com/debruine/faux)
 
 ## Resources
 
@@ -163,9 +155,6 @@ Miscellanous materials added throughout the semester, such as tips on installati
 ### Other
 
 - [Style guide for R programming](http://style.tidyverse.org)
-- [#rstats on twitter](https://twitter.com/search?q=%2523rstats) highly recommended!```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+- [#rstats on twitter](https://twitter.com/search?q=%2523rstats) highly recommended!
+
+
