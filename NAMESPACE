@@ -3,3 +3,5 @@
 export(app)
 export(book)
 export(exercise)
+export(getdata)
+import(tidyverse)

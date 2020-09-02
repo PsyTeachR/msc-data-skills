@@ -1,0 +1,53 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Messy Data",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "A dataset with missing values, blank rows, incorrect data types, multiple values in one column, and multiple date types for practicing data import.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "junk",
+            "description": "Junk values (just the word 'junk')",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "order",
+            "description": "Meant to be all integer values",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "score",
+            "description": "Meant to be all numeric values",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "letter",
+            "description": "Meant to be all character values",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "good",
+            "description": "Meant to be all logical values",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "min_max",
+            "description": "Two integers separated by a dash",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "date",
+            "description": "Dates in two different formats",
+            "dataType": "string"
+        }
+    ]
+}

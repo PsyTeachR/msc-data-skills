@@ -1,0 +1,33 @@
+/* (edit style.css for your own book styles) */
+
+.meme {
+  max-width: 33% !important;
+  margin: 0.5em;
+}
+
+.right {
+  float: right;
+  margin-right: 0;
+}
+
+.left {
+  float: left;
+  margin-left: 0;
+}
+
+pre.mcq {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: none;
+  display: inline;
+  border: none !important;
+  border-radius: none;
+}
+
+a.video { 
+  text-indent: -9999px;
+  content: url("../images/icons/video.svg");
+  margin: 0 3px 0 5px;
+  width: 20px;
+  height: 20px;
+}

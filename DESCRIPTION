@@ -40,13 +40,15 @@ Imports:
     shinyjs,
     shinydashboard,
     ukbabynames,
-    cowplot
+    cowplot,
+    rio
 Suggests: 
     rmarkdown,
     zip,
     webex,
     R.utils,
-    faux (>= 0.0.1.2)
+    faux (>= 0.0.1.2),
+    testthat
 VignetteBuilder: knitr
 Depends: 
     tidyverse,

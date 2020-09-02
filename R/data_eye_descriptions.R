@@ -1,7 +1,7 @@
 # eye_descriptions ----
 #' Descriptions of Eyes
 #'
-#' Participant's written descriptions of the eyes of 47 people
+#' Participant's written descriptions of the eyes of 50 people
 #'
 #' @format A data frame with 220 rows and 53 variables:
 #' \describe{
@@ -55,6 +55,9 @@
 #'    \item{t45}{The description for face 45}
 #'    \item{t46}{The description for face 46}
 #'    \item{t47}{The description for face 47}
+#'    \item{t48}{The description for face 48}
+#'    \item{t49}{The description for face 49}
+#'    \item{t50}{The description for face 50}
 #' }
 #' @source \url{https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv}
 "eye_descriptions"

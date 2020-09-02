@@ -3,6 +3,7 @@
 library(tidyverse)
 library(faux)
 faux::faux_options(verbose = FALSE)
+set.seed(8675309)
 
 # function for creating dataset descriptions in Roxygen
 make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "csv", source = NULL, write = TRUE) {
@@ -47,6 +48,31 @@ make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "cs
   if (!isFALSE(write)) write(s, paste0("R/data_", dataname, ".R"))
   invisible(s)
 }
+
+
+# smalldata ----
+time <- list(time = c(pre = "Pre-intervention score",
+                      post = "Post-intervention score"))
+group <- list(group = c(control = "Control group",
+                        exp = "Experimental group"))
+set.seed(8675309)
+data <- faux::sim_design(within = time, 
+                         between = group,
+                         n = 5, 
+                         mu = c(100, 100, 100, 110),
+                         sd = 20, r = 0.5,
+                         dv = "score")
+readr::write_csv(data, "data-raw/smalldata.csv")
+vardesc <- list(
+  description = list(
+    id = "Subject ID",
+    group = "Between-subject factor (control vs experimental group)",
+    pre = "Score before the intervention",
+    post = "Score after the intervention"
+  )
+)
+make_dataset("smalldata", "Small Factorial Design: 2w*2b", 
+             "Small simulated dataset (n = 5) with one within-subject factor (time) having 2 levels (pre and post) and one beteen-subject factor (group) having two levels(control and experimental). The dataset is in wide format and created with faux.", vardesc)
 
 # country_codes ----
 ccodes <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
@@ -127,7 +153,7 @@ vardesc <- list(
     user_id = "Each participant's unique ID",
     date = "Date of completion (YYY-mm-dd)",
     moral = "The mean value for the 7 moral items",
-    pathogen = "The mean value for the 7 sexual items",
+    sexual = "The mean value for the 7 sexual items",
     pathogen = "The mean value for the 7 pathogen items"
   ),
   minValue = list(moral = 0, pathogen = 0, sexual = 0),
@@ -236,19 +262,19 @@ vardesc <- list(
     age = "The participant's age in years"
   )
 )
-tt <- paste0("The description for face ", 1:47)
-names(tt) <- paste0("t", 1:47)
+tt <- paste0("The description for face ", 1:50)
+names(tt) <- paste0("t", 1:50)
 vardesc$description <- c(vardesc$description, tt)
 
 make_dataset("eye_descriptions", "Descriptions of Eyes", 
-             "Participant's written descriptions of the eyes of 47 people", vardesc)
+             "Participant's written descriptions of the eyes of 50 people", vardesc)
 
 # infmort ----
 vardesc <- list(
   description = list(
     Country = "The full country name",
     Year = "The year the statistic was calculated for (yyyy)",
-    "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)" = "Infant mortality rate (the probability of dying between birth and age 1 per 1000 live births) and confidence interval in the format rate [lowCI-highCI]"
+    "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)" = "Infant mortality rate (the probability of dying between birth and age 1 per 1000 live births) and confidence interval in the format \"rate [lowCI-highCI]\""
   )
 )
 
@@ -260,9 +286,9 @@ make_dataset("infmort", "Infant Mortality",
 vardesc <- list(
   description = list(
     Country = "The full country name",
-    "1990" = "Maternal mortality for 1990 (rate [lowCI-highCI])",
-    "2000" = "Maternal mortality for 2000 (rate [lowCI-highCI])",
-    "2015" = "Maternal mortality for 2015 (rate [lowCI-highCI])"
+    "1990" = "Maternal mortality for 1990 (format: \"rate [lowCI-highCI])",
+    "2000" = "Maternal mortality for 2000 (format: \"rate [lowCI-highCI]\")",
+    "2015" = "Maternal mortality for 2015 (format: \"rate [lowCI-highCI]\")"
   )
 )
 
@@ -270,7 +296,18 @@ make_dataset("matmort", "Maternal Mortality",
              "Maternal mortality by country and year from the World Health Organisation.", vardesc, filetype = "xls", source = "https://apps.who.int/gho/data/node.main.15?lang=en")
 
 
+# stroop ----
+vardesc <- list(
+  description = list(
+    sub_id = "Subject ID",
+    word = "The text of the word",
+    ink_colour = "The ink colour of the word",
+    response = "The subject's response",
+    rt - "Reaction time (in ms)"
+  )
+)
 
+make_dataset("stroop", "Stroop Task", "", vardesc)
 
 # systemising ----
 vardesc <- list(
@@ -280,7 +317,32 @@ vardesc <- list(
     age = "The participant's age in years",
     id = "Each questionnaire completion's unique ID",
     starttime = "The time the questionnaire was started (yyyy-MM-dd HH:mm:ss)",
-    endtime = "The time the questionnaire was completed (yyyy-MM-dd HH:mm:ss)"
+    endtime = "The time the questionnaire was completed (yyyy-MM-dd HH:mm:ss)",
+    Q01 = "If I were buying a car, I would want to obtain specific information about its engine.",
+    Q02 = "If there was a problem with the electrical wiring in my home, I’d be able to fix it myself.",
+    Q03R = "I rarely read articles or web pages about new technology.",
+    Q04R = "I do not enjoy games that involve a high degree of strategy.",
+    Q05 = "I am fascinated by how machines work.",
+    Q06 = "In math, I am intrigued by the rules and patterns governing numbers.",
+    Q07R = "I find it difficult to understand instruction manuals for putting appliances together.",
+    Q08 = "If I were buying a computer, I would want to know exact details about its hard disc drive capacity and processor speed.",
+    Q09R = "I find it difficult to read and understand maps.",
+    Q10R = "When I look at a piece of furniture, I do not notice the details of how it was constructed.",
+    Q11R = "I find it difficult to learn my way around a new city.",
+    Q12R = "I do not tend to watch science documentaries on television or read articles about science and nature.",
+    Q13 = "If I were buying a stereo, I would want to know about its precise technical features.",
+    Q14 = "I find it easy to grasp exactly how odds work in betting.",
+    Q15R = "I am not very meticulous when I carry out D.I.Y.",
+    Q16 = "When I look at a building, I am curious about the precise way it was constructed.",
+    Q17R = "I find it difficult to understand information the bank sends me on different investment and saving systems.",
+    Q18 = "When travelling by train, I often wonder exactly how the rail networks are coordinated.",
+    Q19R = "If I were buying a camera, I would not look carefully into the quality of the lens.",
+    Q20R = "When I hear the weather forecast, I am not very interested in the meteorological patterns.",
+    Q21 = "When I look a mountain, I think about how precisely it was formed.",
+    Q22 = "I can easily visualize how the motorways in my region link up.",
+    Q23R = "When I'm in a plane, I do not think about the aerodynamics.",
+    Q24 = "I am interested in knowing the path a river takes from its source to the sea.",
+    Q25R = "I am not interested in understanding how wireless communication works."
   )
 )
 
@@ -307,8 +369,65 @@ data <- select(d, -q, -score, -rev) %>%
 write_csv(data, "data-raw/sq_data.csv")
 
 make_dataset("sq_data", "Systemizing Quotient", 
-             "Reverse coded (Q#R) questions coded and strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.\nWakabayashi, A., Baron-Cohen, S., Wheelwright, S., Goldenfeld, N., Delaney, J., Fine, D., Smith, R., & Weil, L. (2006). Development of short forms of the Empathy Quotient (EQ-Short) and the Systemizing Quotient (SQ-Short). Personality and Individual Differences, 41(5), 929–940. https://doi.org/10.1016/j.paid.2006.03.017", vardesc)
+             "Reverse coded (Q#R) questions coded as strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.\nWakabayashi, A., Baron-Cohen, S., Wheelwright, S., Goldenfeld, N., Delaney, J., Fine, D., Smith, R., & Weil, L. (2006). Development of short forms of the Empathy Quotient (EQ-Short) and the Systemizing Quotient (SQ-Short). Personality and Individual Differences, 41(5), 929–940. https://doi.org/10.1016/j.paid.2006.03.017", vardesc)
 
 
+# mess ----
+set.seed(8675309)
+mess <- data.frame(
+  junk = "junk",
+  order = 1:26,
+  score = round(rnorm(26), 2),
+  letter = letters,
+  good = sample(c("TRUE", "FALSE", "T", "F", 0, 1), 26, replace = TRUE),
+  min_max = paste(1:26, "-", 2:27),
+  date = c(paste0("2020-01-", 1:26))
+) %>%
+  add_row(order = 1:26, letter = LETTERS) %>%
+  arrange(order, letter) %>%
+  mutate(order = ifelse(row_number() == 3, "missing", order),
+         order = ifelse(is.na(score), NA, order),
+         letter = ifelse(is.na(score), NA, letter),
+         score = ifelse(row_number() %in% c(9,23), NA, score)
+         ) %>%
+  select(everything())
 
+messtxt <- format_csv(mess) %>%
+  gsub("NA,NA,NA,NA,NA,NA,NA", "", ., fixed = TRUE)
+write(messtxt, "data-raw/mess.csv")
+
+vardesc <- list(
+  description = list(
+    junk = "Junk values (just the word 'junk')",
+    order = "Meant to be all integer values",
+    score = "Meant to be all numeric values",
+    letter = "Meant to be all character values",
+    good = "Meant to be all logical values",
+    min_max = "Two integers separated by a dash",
+    date = "Dates in two different formats"
+  )
+)
+
+make_dataset("mess", "Messy Data",
+             "A dataset with missing values, blank rows, incorrect data types, multiple values in one column, and multiple date types for practicing data import.", vardesc)
+
+## add bad header rows
+write(paste0("This is my messy dataset\n\n", messtxt), "data-raw/mess.csv")
+
+## update documentation -----
 devtools::document()
+
+## copy raw data to book data dir ----
+unlink("book/data", recursive = TRUE)
+file.copy(
+  from = "data-raw",
+  to = "book", 
+  overwrite = TRUE, 
+  recursive = TRUE)
+file.rename("book/data-raw", "book/data")
+
+# make zip file ----
+f <- list.files("book/data", full.names = TRUE)
+zipfile <- "book/data/data.zip"
+unlink(zipfile)
+zip(zipfile, f)

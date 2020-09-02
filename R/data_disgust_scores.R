@@ -9,7 +9,7 @@
 #'    \item{user_id}{Each participant's unique ID}
 #'    \item{date}{Date of completion (YYY-mm-dd)}
 #'    \item{moral}{The mean value for the 7 moral items}
-#'    \item{pathogen}{The mean value for the 7 sexual items}
+#'    \item{sexual}{The mean value for the 7 sexual items}
 #'    \item{pathogen}{The mean value for the 7 pathogen items}
 #' }
 #' @source \url{https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv}

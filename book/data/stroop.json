@@ -1,0 +1,41 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Stroop Task",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "sub_id",
+            "description": "sub_id",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "word",
+            "description": "word",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "ink_colour",
+            "description": "ink_colour",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "response",
+            "description": "response",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "rt",
+            "description": "rt",
+            "dataType": "float"
+        }
+    ]
+}

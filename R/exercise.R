@@ -8,9 +8,12 @@
 #' @export
 #'
 #' @examples
-#' exercise(1) # get exercise for chapter 1
-#' exercise(1, answers = TRUE) # get answers for chapter 1
-#' exercise(1, "exercises/ch1.Rmd") # save into exercises directory
+#' \dontrun() {
+#'   exercise(1) # get exercise for chapter 1
+#'   exercise(1, answers = TRUE) # get answers for chapter 1
+#'   exercise(1, "exercises/ch1.Rmd") # save into exercises directory
+#' }
+#' 
 exercise <- function(chapter, filename = NULL, answers = FALSE) {
   tag <- c("intro", "data", "ggplot", "tidyr", "dplyr", "joins", "func", "sim", "glm")
   fname <- sprintf("book/exercises/%02d_%s_%s.Rmd",

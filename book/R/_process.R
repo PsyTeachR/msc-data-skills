@@ -17,12 +17,15 @@ zip(zipfile, c(f.zip, d.zip))
 
 
 # render a chapter or the whole book
-bookdown::preview_chapter("01-intro.Rmd")
+browseURL(bookdown::preview_chapter("09-glm.Rmd"))
+browseURL(bookdown::preview_chapter("02-data.Rmd"))
 bookdown::render_book("index.Rmd")
 
 # copies dir
-R.utils::copyDirectory(
+file.copy(
   from = "../docs",
   to = "../inst/book", 
   overwrite = TRUE, 
   recursive = TRUE)
+
+unlink("inst/book/.nojekyll")

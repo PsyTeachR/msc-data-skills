@@ -1,0 +1,20 @@
+In chapter 1, we learned how to use the RStudio integrated development environment, or IDE, to create scripts using the R coding language and documents using R Markdown.
+
+We also learned how to type commands in to the console, basically using the console like a calculator. We assigned values to some variables, and used those variables in functions, like the function paste().
+
+We learned how to install a package from CRAN using the RStudio interface or the console, and we installed the class package, dataskills, from github.
+
+We also created a project to keep our class exercises in, learned how to create and knit an RMarkdown document, and how to get the chapter exercises with the dataskills function exercise().
+
+Now let's open up your class project and create a new R Markdown file for Chapter 2.
+
+Chapter 2 will get you familiar with the different types of data in R and how you can get your own data into and out of R.
+
+Our 6 main learning objectives are to
+
+1. Understand the use the basic data types
+2. Understand and use the basic container types
+3. Create vectors and store them as variables
+4. Understand vectorized operations
+5. Create a data table
+6. Import data from CSV and Excel files

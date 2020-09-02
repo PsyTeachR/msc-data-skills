@@ -1,0 +1,155 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Three Domain Disgust Questionnaire (items)",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "A dataset containing responses to the 21 items in the Three Domain Disgust Questionnaire (Tybur et al.)",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "id",
+            "description": "Each questionnaire completion's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "date",
+            "description": "Date of completion (YYY-mm-dd)",
+            "dataType": "double"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral1",
+            "description": "Shoplifting a candy bar from a convenience store",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral2",
+            "description": "Stealing from a neighbor",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral3",
+            "description": "A student cheating to get good grades",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral4",
+            "description": "Deceiving a friend",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral5",
+            "description": "Forging someone's signature on a legal document",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral6",
+            "description": "Cutting to the front of a line to purchase the last few tickets to a show",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral7",
+            "description": "Intentionally lying during a business transaction",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual1",
+            "description": "Hearing two strangers having sex",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual2",
+            "description": "Performing oral sex",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual3",
+            "description": "Watching a pornographic video",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual4",
+            "description": "Finding out that someone you don't like has sexual fantasies about you",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual5",
+            "description": "Bringing someone you just met back to your room to have sex",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual6",
+            "description": "A stranger of the opposite sex intentionally rubbing your thigh in an elevator",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual7",
+            "description": "Having anal sex with someone of the opposite sex",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen1",
+            "description": "Stepping on dog poop",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen2",
+            "description": "Sitting next to someone who has red sores on their arm",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen3",
+            "description": "Shaking hands with a stranger who has sweaty palms",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen4",
+            "description": "Seeing some mold on old leftovers in your refrigerator",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen5",
+            "description": "Standing close to a person who has body odor",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen6",
+            "description": "Seeing a cockroach run across the floor",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen7",
+            "description": "Accidentally touching a person's bloody cut",
+            "dataType": "float"
+        }
+    ]
+}

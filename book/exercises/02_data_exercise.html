@@ -368,32 +368,34 @@ summary {
 </div>
 
 
-<div id="vectors" class="section level2">
-<h2>Vectors</h2>
-<p>The built-in vector <code>letters</code> contains the letters of the English alphabet. Use an indexing vector of integers to extract the letters that spell ‘cat’.</p>
-<pre class="r"><code>cat &lt;- NULL</code></pre>
-<p>The function <code>colors()</code> returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)</p>
-<pre class="r"><code>col_length &lt;- NULL</code></pre>
-<p>The function call <code>runif(n, min, max)</code> will draw <code>n</code> numbers from a uniform distribution from <code>min</code> to <code>max</code>. If you set <code>n</code> to 1000, <code>min</code> to 0 and <code>max</code> to 1, this simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Create the following objects:</p>
-<ul>
-<li><code>pvals</code>: 1000 simulated p-values using <code>runif()</code></li>
-<li><code>is_sig</code>: a logical vector that is <code>TRUE</code> if the corresponding element of <code>pvals</code> is less than .05, <code>FALSE</code> otherwise</li>
-<li><code>sig_vals</code>: a vector of just the significant p-values</li>
-<li><code>prop_sig</code>: the proportion of those p-values that were significant</li>
-</ul>
-<pre class="r"><code>set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
-
-pvals    &lt;- NULL
-is_sig   &lt;- NULL
-sig_vals &lt;- NULL
-prop_sig &lt;- NULL</code></pre>
+<div id="load-built-in-datasets" class="section level2">
+<h2>Load built-in datasets</h2>
+<p>List the packages in <code>dplyr</code>.</p>
+<pre class="r"><code># put code here</code></pre>
+<p>Load the built-in dataset <code>starwars</code>.</p>
+<pre class="r"><code># put code here</code></pre>
+<p>Convert the built-in base R <code>mtcars</code> dataset to a tibble, and store it in the object <code>mt</code>.</p>
+<pre class="r"><code>mt &lt;- NULL</code></pre>
 </div>
-<div id="tabular-data" class="section level2">
-<h2>Tabular Data</h2>
+<div id="import-data-from-csv-and-excel-files" class="section level2">
+<h2>Import data from CSV and Excel files</h2>
+<p>Using the data directory created by <code>dataskills::getdata()</code> (or download <a href="https://psyteachr.github.io/msc-data-skills/data/data.zip">the zip file</a>, read “disgust_scores.csv” into a table.</p>
+<pre class="r"><code>disgust &lt;- NULL</code></pre>
+<p>Override the default column specifications to skip the <code>id</code> column.</p>
+<pre class="r"><code>disgust_skip &lt;- NULL</code></pre>
+<p>How many rows and columns are in the <code>disgust</code> dataset?</p>
+<pre class="r"><code>disgust_rows &lt;- NULL
+disgust_cols &lt;- NULL</code></pre>
+<p>Load the data in “data/stroop.csv” as <code>stroop1</code> and “data/stroop.xlsx” as <code>stroop2</code>.</p>
+<pre class="r"><code>stroop1 &lt;- NULL
+stroop2 &lt;- NULL</code></pre>
+<p>Use <code>glimpse()</code> to figure out the difference between the two data tables and fix the problem.</p>
+<pre class="r"><code>stroop2b &lt;- NULL</code></pre>
+</div>
+<div id="create-a-data-table" class="section level2">
+<h2>Create a data table</h2>
 <p>Create a tibble with the columns <code>name</code>, <code>age</code>, and <code>country</code> of origin for 2 people you know.</p>
 <pre class="r"><code>people &lt;- NULL</code></pre>
-<p>Convert the built-in base R <code>mtcars</code> dataset to a tibble, and store it in the variable <code>mt</code>.</p>
-<pre class="r"><code>mt &lt;- NULL</code></pre>
 <p>Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: <code>rep()</code>). Store it in the variable <code>my_tbl</code>.</p>
 <table>
 <thead>
@@ -455,17 +457,71 @@ prop_sig &lt;- NULL</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>my_tbl &lt;- NULL</code></pre>
+<pre class="r"><code>my_tbl &lt;- NULL  </code></pre>
 </div>
-<div id="data-import" class="section level2">
-<h2>Data Import</h2>
-<p>Download the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv">disgust_scores.csv</a> and read it into a table.</p>
-<pre class="r"><code>disgust &lt;- NULL</code></pre>
-<p>Override the default column specifications to skip the <code>id</code> column.</p>
-<pre class="r"><code>disgust_skip &lt;- NULL</code></pre>
-<p>How many rows and columns are in the dataset from question 7?</p>
-<pre class="r"><code>disgust_rows &lt;- NULL
-disgust_cols &lt;- NULL</code></pre>
+<div id="understand-the-use-the-basic-data-types" class="section level2">
+<h2>Understand the use the basic data types</h2>
+<p>Set the following objects to the number 1 with the indicated data type:</p>
+<ul>
+<li><code>one_int</code> (integer)</li>
+<li><code>one_dbl</code> (double)</li>
+<li><code>one_chr</code> (character)</li>
+</ul>
+<pre class="r"><code>one_int &lt;- NULL
+one_dbl &lt;- NULL
+one_chr &lt;- NULL</code></pre>
+<p>Set the objects <code>T_log</code>, <code>T_chr</code>, <code>T_int</code> and <code>T_dbl</code> to logical, character, integer and double values that will all be equal to <code>TRUE</code>.</p>
+<pre class="r"><code>T_log &lt;- NULL
+T_chr &lt;- NULL
+T_int &lt;- NULL
+T_dbl &lt;- NULL</code></pre>
+<p>Check your answers with this code:</p>
+<pre class="r"><code># these should all evaluate to TRUE
+c(
+  T_log == TRUE,
+  T_chr == TRUE,
+  T_int == TRUE,
+  T_dbl == TRUE,
+  is.logical(T_log),
+  is.character(T_chr),
+  is.integer(T_int),
+  is.double(T_dbl)
+)</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div id="understand-and-use-the-basic-container-types" class="section level2">
+<h2>Understand and use the basic container types</h2>
+<p>Create a vector of the numbers 3, 6, and 9.</p>
+<pre class="r"><code>threes &lt;- NULL</code></pre>
+<p>The built-in vector <code>letters</code> contains the letters of the English alphabet. Use an indexing vector of integers to extract the letters that spell ‘cat’.</p>
+<pre class="r"><code>cat &lt;- NULL</code></pre>
+<p>The function <code>colors()</code> returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)</p>
+<pre class="r"><code>col_length &lt;- NULL</code></pre>
+<p>Create a named list called <code>col_types</code> where the name is each column in the built-in dataset <code>table1</code> and the value is the column data type (e.g., “double”, “character”, “integer”, “logical”).</p>
+<pre class="r"><code>col_types &lt;- NULL</code></pre>
+</div>
+<div id="use-vectorized-operations" class="section level2">
+<h2>Use vectorized operations</h2>
+<p>Set the object <code>x</code> to the integers 1 to 100. Use vectorised operations to set <code>y</code> to <code>x</code> squared. Use <code>plot(x, y)</code> to visualise the relationship between these two numbers.</p>
+<pre class="r"><code>x &lt;- NULL
+y &lt;- NULL</code></pre>
+<p>Set <code>t</code> to the numbers 0 to 100 in increments of 0.1. Set <code>x</code> to the sine of <code>t</code> and <code>y</code> to the cosine of <code>t</code>. Plot <code>x</code> against <code>y</code>.</p>
+<pre class="r"><code>t &lt;- NULL
+x &lt;- NULL
+y &lt;- NULL</code></pre>
+<p>The function call <code>runif(n, min, max)</code> will draw <code>n</code> numbers from a uniform distribution from <code>min</code> to <code>max</code>. If you set <code>n</code> to 10000, <code>min</code> to 0 and <code>max</code> to 1, this simulates the p-values that you would get from 10000 experiments where the null hypothesis is true. Create the following objects:</p>
+<ul>
+<li><code>pvals</code>: 10000 simulated p-values using <code>runif()</code></li>
+<li><code>is_sig</code>: a logical vector that is <code>TRUE</code> if the corresponding element of <code>pvals</code> is less than .05, <code>FALSE</code> otherwise</li>
+<li><code>sig_vals</code>: a vector of just the significant p-values</li>
+<li><code>prop_sig</code>: the proportion of those p-values that were significant</li>
+</ul>
+<pre class="r"><code>set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
+
+pvals    &lt;- NULL
+is_sig   &lt;- NULL
+sig_vals &lt;- NULL
+prop_sig &lt;- NULL</code></pre>
 </div>
 
 

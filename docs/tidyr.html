@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Tidy Data | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Tidy Data | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-08-11" />
+<meta name="date" content="2020-09-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,6 +140,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt">Videos</a></li>
+<li><code>devtools::install_github("psyteachr/msc-data-skills")</code></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
@@ -156,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources-1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
@@ -164,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
-<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Variables</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Objects</a></li>
 <li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
 <li class="chapter" data-level="1.4.4" data-path="intro.html"><a href="intro.html#whitespace"><i class="fa fa-check"></i><b>1.4.4</b> Whitespace</a></li>
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
@@ -180,32 +182,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
 <li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#glossary"><i class="fa fa-check"></i><b>1.7</b> Glossary</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>1.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a><ul>
-<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#resources-2"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
-<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.3</b> Basic data types</a></li>
-<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.4</b> Basic container types</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>2.4.1</b> Vectors</a></li>
-<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>2.4.2</b> Lists</a></li>
-<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>2.4.3</b> Tabular data</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#setup"><i class="fa fa-check"></i><b>2.3</b> Setup</a></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#builtin"><i class="fa fa-check"></i><b>2.4.1</b> Built-in data</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#creating-data"><i class="fa fa-check"></i><b>2.4.3</b> Creating data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.4.4</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.5</b> Importing data</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.5.1</b> Writing Data</a></li>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#numeric-data"><i class="fa fa-check"></i><b>2.5.1</b> Numeric data</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#character-data"><i class="fa fa-check"></i><b>2.5.2</b> Character data</a></li>
+<li class="chapter" data-level="2.5.3" data-path="data.html"><a href="data.html#logical-data"><i class="fa fa-check"></i><b>2.5.3</b> Logical Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#exercises-1"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.6.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>2.6.2</b> Lists</a></li>
+<li class="chapter" data-level="2.6.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>2.6.3</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="data.html"><a href="data.html#troubleshooting"><i class="fa fa-check"></i><b>2.7</b> Troubleshooting</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#glossary"><i class="fa fa-check"></i><b>2.8</b> Glossary</a></li>
+<li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>2.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
-<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>3.1.1</b> Basic</a></li>
 <li class="chapter" data-level="3.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>3.1.2</b> Intermediate</a></li>
 <li class="chapter" data-level="3.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>3.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="ggplot.html"><a href="ggplot.html#resources-3"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
-<li class="chapter" data-level="3.3" data-path="ggplot.html"><a href="ggplot.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
+<li class="chapter" data-level="3.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>3.2</b> Resources</a></li>
+<li class="chapter" data-level="3.3" data-path="data.html"><a href="data.html#setup"><i class="fa fa-check"></i><b>3.3</b> Setup</a></li>
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="ggplot.html"><a href="ggplot.html#data-1"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="3.4.1" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.5.1</b> Bar plot</a></li>
@@ -242,16 +255,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#plotly"><i class="fa fa-check"></i><b>3.10</b> Interactive Plots</a></li>
 <li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#ggplot-quiz"><i class="fa fa-check"></i><b>3.11</b> Quiz</a></li>
-<li class="chapter" data-level="3.12" data-path="ggplot.html"><a href="ggplot.html#exercises-2"><i class="fa fa-check"></i><b>3.12</b> Exercises</a></li>
+<li class="chapter" data-level="3.12" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>3.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
-<li class="chapter" data-level="4.1.2" data-path="tidyr.html"><a href="tidyr.html#intermediate-1"><i class="fa fa-check"></i><b>4.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="4.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced-1"><i class="fa fa-check"></i><b>4.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="4.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>4.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>4.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources-4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup-1"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
+<li class="chapter" data-level="4.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#setup"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
 <li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Three Rules for Tidy Data</a></li>
 <li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#tidying-data"><i class="fa fa-check"></i><b>4.5</b> Tidying Data</a><ul>
 <li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.5.1</b> gather()</a></li>
@@ -269,16 +282,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7.6" data-path="tidyr.html"><a href="tidyr.html#merge-columns"><i class="fa fa-check"></i><b>4.7.6</b> Merge Columns</a></li>
 </ul></li>
 <li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#tidyr-quiz"><i class="fa fa-check"></i><b>4.8</b> Quiz</a></li>
-<li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#exercises-3"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
+<li class="chapter" data-level="4.9" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>4.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
-<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="dplyr.html"><a href="dplyr.html#basic-2"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
-<li class="chapter" data-level="5.1.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-2"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="5.1.3" data-path="dplyr.html"><a href="dplyr.html#advanced-2"><i class="fa fa-check"></i><b>5.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="5.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>5.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html#resources-5"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
-<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup-2"><i class="fa fa-check"></i><b>5.3</b> Setup</a></li>
+<li class="chapter" data-level="5.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#setup"><i class="fa fa-check"></i><b>5.3</b> Setup</a></li>
 <li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#data-disgust"><i class="fa fa-check"></i><b>5.4</b> The <code>disgust</code> dataset</a></li>
 <li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.5</b> Six main dplyr verbs</a><ul>
 <li class="chapter" data-level="5.5.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.5.1</b> select()</a></li>
@@ -301,15 +314,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>5.7.2</b> Offset functions</a></li>
 <li class="chapter" data-level="5.7.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>5.7.3</b> Cumulative aggregates</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html#exercises-4"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
+<li class="chapter" data-level="5.8" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
-<li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="6.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="joins.html"><a href="joins.html#beginner"><i class="fa fa-check"></i><b>6.1.1</b> Beginner</a></li>
-<li class="chapter" data-level="6.1.2" data-path="joins.html"><a href="joins.html#intermediate-3"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>6.1.2</b> Intermediate</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources-6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
-<li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#data-2"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
+<li class="chapter" data-level="6.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
+<li class="chapter" data-level="6.3" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>6.3</b> Data</a></li>
 <li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.4</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.4.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.4.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.4.2</b> right_join()</a></li>
@@ -329,15 +342,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.7.2</b> union()</a></li>
 <li class="chapter" data-level="6.7.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.7.3</b> setdiff()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#exercises-5"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
+<li class="chapter" data-level="6.8" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>6.8</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
-<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-4"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-3"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
+<li class="chapter" data-level="7.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources-7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
+<li class="chapter" data-level="7.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.3</b> Iteration functions</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.3.1</b> <code>rep()</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.3.2</b> <code>seq()</code></a></li>
@@ -359,15 +372,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5.7" data-path="func.html"><a href="func.html#seed"><i class="fa fa-check"></i><b>7.5.7</b> Set seed</a></li>
 <li class="chapter" data-level="7.5.8" data-path="func.html"><a href="func.html#add-arguments"><i class="fa fa-check"></i><b>7.5.8</b> Add arguments</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#exercises-6"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
-<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-5"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="8.1.3" data-path="sim.html"><a href="sim.html#advanced-4"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="8.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>8.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources-8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
+<li class="chapter" data-level="8.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#distributions"><i class="fa fa-check"></i><b>8.3</b> Distributions</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.3.1</b> Uniform Distribution</a></li>
 <li class="chapter" data-level="8.3.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.3.2</b> Binomial Distribution</a></li>
@@ -385,15 +398,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4.7" data-path="sim.html"><a href="sim.html#one-tailed-prediction"><i class="fa fa-check"></i><b>8.4.7</b> One-tailed prediction</a></li>
 <li class="chapter" data-level="8.4.8" data-path="sim.html"><a href="sim.html#range-of-sample-sizes"><i class="fa fa-check"></i><b>8.4.8</b> Range of sample sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#exercises-7"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+<li class="chapter" data-level="8.5" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
-<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
-<li class="chapter" data-level="9.1.2" data-path="glm.html"><a href="glm.html#intermediate-6"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="9.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
+<li class="chapter" data-level="9.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources-9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
-<li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup-3"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
+<li class="chapter" data-level="9.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
+<li class="chapter" data-level="9.3" data-path="data.html"><a href="data.html#setup"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
 <li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
@@ -404,22 +417,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
 <li class="chapter" data-level="9.6.1" data-path="glm.html"><a href="glm.html#means-variability-and-deviation-scores"><i class="fa fa-check"></i><b>9.6.1</b> Means, Variability, and Deviation Scores</a></li>
 <li class="chapter" data-level="9.6.2" data-path="glm.html"><a href="glm.html#decomp"><i class="fa fa-check"></i><b>9.6.2</b> Decomposition matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#exercises-8"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
+<li class="chapter" data-level="9.7" data-path="intro.html"><a href="intro.html#exercises"><i class="fa fa-check"></i><b>9.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
-<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-7"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-5"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="ggplot.html"><a href="ggplot.html#advanced"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources-10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
+<li class="chapter" data-level="10.2" data-path="index.html"><a href="index.html#resources"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.3</b> R Markdown</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>10.3.1</b> knitr options</a></li>
 <li class="chapter" data-level="10.3.2" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>10.3.2</b> YAML Header</a></li>
@@ -443,7 +456,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
+<li class="chapter" data-level="E" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -472,9 +485,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Tidy Data</h1>
 <p><img src="images/memes/messy_data.jpg" class="meme right"></p>
 <p>Take the <a href="tidyr.html#tidyr-quiz">quiz</a> to see if you need to review this chapter.</p>
-<div id="learning-objectives-3" class="section level2">
+<div id="learning-objectives" class="section level2">
 <h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
-<div id="basic-1" class="section level3">
+<div id="basic" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Basic</h3>
 <ol style="list-style-type: decimal">
 <li>Understand the concept of <a href="tidyr.html#tidy-data">tidy data</a></li>
@@ -488,20 +501,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Be able to chain functions using <a href="tidyr.html#pipes">pipes</a></li>
 </ol>
 </div>
-<div id="intermediate-1" class="section level3">
+<div id="intermediate" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Intermediate</h3>
 <ol start="4" style="list-style-type: decimal">
 <li>Be able to use arguments like <a href="tidyr.html#sep"><code>sep</code></a>, <a href="tidyr.html#extra"><code>extra</code></a>, and <a href="tidyr.html#convert"><code>convert</code></a> to handle less straightforward data cleaning</li>
 </ol>
 </div>
-<div id="advanced-1" class="section level3">
+<div id="advanced" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> Advanced</h3>
 <ol start="5" style="list-style-type: decimal">
 <li>Be able to use <a href="#regex">regular expressions</a> to separate complex columns</li>
 </ol>
 </div>
 </div>
-<div id="resources-4" class="section level2">
+<div id="resources" class="section level2">
 <h2><span class="header-section-number">4.2</span> Resources</h2>
 <ul>
 <li><a href="http://vita.had.co.nz/papers/tidy-data.html">Tidy Data</a></li>
@@ -510,13 +523,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling cheat sheet</a></li>
 </ul>
 </div>
-<div id="setup-1" class="section level2">
+<div id="setup" class="section level2">
 <h2><span class="header-section-number">4.3</span> Setup</h2>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="tidyr.html#cb142-1"></a><span class="co"># libraries needed</span></span>
-<span id="cb142-2"><a href="tidyr.html#cb142-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb142-3"><a href="tidyr.html#cb142-3"></a><span class="kw">library</span>(readxl)</span>
-<span id="cb142-4"><a href="tidyr.html#cb142-4"></a></span>
-<span id="cb142-5"><a href="tidyr.html#cb142-5"></a><span class="kw">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="tidyr.html#cb183-1"></a><span class="co"># libraries needed</span></span>
+<span id="cb183-2"><a href="tidyr.html#cb183-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb183-3"><a href="tidyr.html#cb183-3"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb183-4"><a href="tidyr.html#cb183-4"></a></span>
+<span id="cb183-5"><a href="tidyr.html#cb183-5"></a><span class="kw">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
 </div>
 <div id="tidy-data" class="section level2">
 <h2><span class="header-section-number">4.4</span> Three Rules for Tidy Data</h2>
@@ -732,7 +745,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.5</span> Tidying Data</h2>
 <p>{#data-personality}
 Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data/personality.csv">personality.csv</a>. These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="tidyr.html#cb143-1"></a>ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="tidyr.html#cb184-1"></a>ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>)</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="4%" />
@@ -1111,7 +1124,7 @@ Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data
 <li><code>factor_key</code> whether to store the key values as a factor (with the same order as in the table) or character vector</li>
 </ul>
 <p><code>ocean</code> is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation. The resulting dataframe should have the columns: <code>user_id</code>, <code>date</code>, <code>question</code>, and <code>score</code>.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="tidyr.html#cb144-1"></a>ocean_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(ocean, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="tidyr.html#cb185-1"></a>ocean_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(ocean, <span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1175,7 +1188,7 @@ Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data
 </ul>
 <p>Split the <code>question</code> column into two columns: <code>domain</code> and <code>qnumber</code>.</p>
 <p>There is no character to split on, here, but you can separate a column after a specific number of characters by setting <code>sep</code> to an integer. For example, to split “abcde” after the third character, use <code>sep = 3</code>, which results in <code>c("abc", "de")</code>. You can also use negative number to split before the <em>n</em>th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like “lisa03”“,”amanda38"), you can use <code>sep = -2</code>.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tidyr.html#cb145-1"></a>ocean_sep &lt;-<span class="st"> </span><span class="kw">separate</span>(ocean_gathered, question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="tidyr.html#cb186-1"></a>ocean_sep &lt;-<span class="st"> </span><span class="kw">separate</span>(ocean_gathered, question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1245,7 +1258,7 @@ Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data
 <li><code>remove</code> determines whether the united columns (<code>...</code>) will be removed from the new data table. The default is to remove them.</li>
 </ul>
 <p>Put the domain and qnumber columns back together into a new column named <code>domain_n</code>. Make it in a format like “Op_Q1”.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="tidyr.html#cb146-1"></a>ocean_unite &lt;-<span class="st"> </span><span class="kw">unite</span>(ocean_sep, <span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="tidyr.html#cb187-1"></a>ocean_unite &lt;-<span class="st"> </span><span class="kw">unite</span>(ocean_sep, <span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1303,7 +1316,7 @@ Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data
 <li><code>key</code> is the column that contains your new column headers</li>
 <li><code>value</code> is the column that contains the values in the new spread columns</li>
 </ul>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="tidyr.html#cb147-1"></a>ocean_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(ocean_unite, domain_n, score)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="tidyr.html#cb188-1"></a>ocean_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(ocean_unite, domain_n, score)</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="3%" />
@@ -1678,34 +1691,34 @@ Download the data from <a href="https://psyteachr.github.io/msc-data-skills/data
 <p>Pipes are a way to order your code in a more readable format.</p>
 <p>Let’s say you have a small data table with 10 participant IDs, two columns with variable type A, and 2 columns with variable type B. You want to calculate the mean of the A variables and the mean of the B variables and return a table with 10 rows (1 for each participant) and 3 columns (<code>id</code>, <code>A_mean</code> and <code>B_mean</code>).</p>
 <p>One way you could do this is by creating a new object at every step and using that object in the next step. This is pretty clear, but you’ve created 6 unnecessary data objects in your environment. This can get confusing in very long scripts.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="tidyr.html#cb148-1"></a><span class="co"># make a data table with 10 subjects</span></span>
-<span id="cb148-2"><a href="tidyr.html#cb148-2"></a>data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb148-3"><a href="tidyr.html#cb148-3"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb148-4"><a href="tidyr.html#cb148-4"></a>  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</span>
-<span id="cb148-5"><a href="tidyr.html#cb148-5"></a>  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</span>
-<span id="cb148-6"><a href="tidyr.html#cb148-6"></a>  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</span>
-<span id="cb148-7"><a href="tidyr.html#cb148-7"></a>  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span>
-<span id="cb148-8"><a href="tidyr.html#cb148-8"></a>)</span>
-<span id="cb148-9"><a href="tidyr.html#cb148-9"></a></span>
-<span id="cb148-10"><a href="tidyr.html#cb148-10"></a><span class="co"># gather columns A1 to B2 into &quot;variable&quot; and &quot;value&quot; columns</span></span>
-<span id="cb148-11"><a href="tidyr.html#cb148-11"></a>data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, variable, value, A1<span class="op">:</span>B2)</span>
-<span id="cb148-12"><a href="tidyr.html#cb148-12"></a></span>
-<span id="cb148-13"><a href="tidyr.html#cb148-13"></a><span class="co"># separate the variable column at the _ into &quot;var&quot; and &quot;var_n&quot; columns</span></span>
-<span id="cb148-14"><a href="tidyr.html#cb148-14"></a>data_separated &lt;-<span class="st"> </span><span class="kw">separate</span>(data_gathered, variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>)</span>
-<span id="cb148-15"><a href="tidyr.html#cb148-15"></a></span>
-<span id="cb148-16"><a href="tidyr.html#cb148-16"></a><span class="co"># group the data by id and var</span></span>
-<span id="cb148-17"><a href="tidyr.html#cb148-17"></a>data_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(data_separated, id, var)</span>
-<span id="cb148-18"><a href="tidyr.html#cb148-18"></a></span>
-<span id="cb148-19"><a href="tidyr.html#cb148-19"></a><span class="co"># calculate the mean value for each id/var </span></span>
-<span id="cb148-20"><a href="tidyr.html#cb148-20"></a>data_summarised &lt;-<span class="st"> </span><span class="kw">summarise</span>(data_grouped, <span class="dt">mean =</span> <span class="kw">mean</span>(value))</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="tidyr.html#cb189-1"></a><span class="co"># make a data table with 10 subjects</span></span>
+<span id="cb189-2"><a href="tidyr.html#cb189-2"></a>data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb189-3"><a href="tidyr.html#cb189-3"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb189-4"><a href="tidyr.html#cb189-4"></a>  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</span>
+<span id="cb189-5"><a href="tidyr.html#cb189-5"></a>  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb189-6"><a href="tidyr.html#cb189-6"></a>  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</span>
+<span id="cb189-7"><a href="tidyr.html#cb189-7"></a>  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span>
+<span id="cb189-8"><a href="tidyr.html#cb189-8"></a>)</span>
+<span id="cb189-9"><a href="tidyr.html#cb189-9"></a></span>
+<span id="cb189-10"><a href="tidyr.html#cb189-10"></a><span class="co"># gather columns A1 to B2 into &quot;variable&quot; and &quot;value&quot; columns</span></span>
+<span id="cb189-11"><a href="tidyr.html#cb189-11"></a>data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, variable, value, A1<span class="op">:</span>B2)</span>
+<span id="cb189-12"><a href="tidyr.html#cb189-12"></a></span>
+<span id="cb189-13"><a href="tidyr.html#cb189-13"></a><span class="co"># separate the variable column at the _ into &quot;var&quot; and &quot;var_n&quot; columns</span></span>
+<span id="cb189-14"><a href="tidyr.html#cb189-14"></a>data_separated &lt;-<span class="st"> </span><span class="kw">separate</span>(data_gathered, variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>)</span>
+<span id="cb189-15"><a href="tidyr.html#cb189-15"></a></span>
+<span id="cb189-16"><a href="tidyr.html#cb189-16"></a><span class="co"># group the data by id and var</span></span>
+<span id="cb189-17"><a href="tidyr.html#cb189-17"></a>data_grouped &lt;-<span class="st"> </span><span class="kw">group_by</span>(data_separated, id, var)</span>
+<span id="cb189-18"><a href="tidyr.html#cb189-18"></a></span>
+<span id="cb189-19"><a href="tidyr.html#cb189-19"></a><span class="co"># calculate the mean value for each id/var </span></span>
+<span id="cb189-20"><a href="tidyr.html#cb189-20"></a>data_summarised &lt;-<span class="st"> </span><span class="kw">summarise</span>(data_grouped, <span class="dt">mean =</span> <span class="kw">mean</span>(value))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;id&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="tidyr.html#cb150-1"></a><span class="co"># spread the mean column into A and B columns</span></span>
-<span id="cb150-2"><a href="tidyr.html#cb150-2"></a>data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_summarised, var, mean)</span>
-<span id="cb150-3"><a href="tidyr.html#cb150-3"></a></span>
-<span id="cb150-4"><a href="tidyr.html#cb150-4"></a><span class="co"># rename A and B to A_mean and B_mean</span></span>
-<span id="cb150-5"><a href="tidyr.html#cb150-5"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</span>
-<span id="cb150-6"><a href="tidyr.html#cb150-6"></a></span>
-<span id="cb150-7"><a href="tidyr.html#cb150-7"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="tidyr.html#cb191-1"></a><span class="co"># spread the mean column into A and B columns</span></span>
+<span id="cb191-2"><a href="tidyr.html#cb191-2"></a>data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_summarised, var, mean)</span>
+<span id="cb191-3"><a href="tidyr.html#cb191-3"></a></span>
+<span id="cb191-4"><a href="tidyr.html#cb191-4"></a><span class="co"># rename A and B to A_mean and B_mean</span></span>
+<span id="cb191-5"><a href="tidyr.html#cb191-5"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data_spread, <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</span>
+<span id="cb191-6"><a href="tidyr.html#cb191-6"></a></span>
+<span id="cb191-7"><a href="tidyr.html#cb191-7"></a>data</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   id [10]
 ##       id  A_mean B_mean
@@ -1726,43 +1739,43 @@ You <em>can</em> name each object <code>data</code> and keep replacing the old d
 </p>
 </div>
 <p>One way to avoid extra objects is to nest your functions, literally replacing each data object with the code that generated it in the previous step. This can be fine for very short chains.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="tidyr.html#cb152-1"></a>mean_petal_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(iris<span class="op">$</span>Petal.Width), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="tidyr.html#cb193-1"></a>mean_petal_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(iris<span class="op">$</span>Petal.Width), <span class="dv">2</span>)</span></code></pre></div>
 <p>But it gets extremely confusing for long chains:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="tidyr.html#cb153-1"></a><span class="co"># do not ever do this!!</span></span>
-<span id="cb153-2"><a href="tidyr.html#cb153-2"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(</span>
-<span id="cb153-3"><a href="tidyr.html#cb153-3"></a>  <span class="kw">spread</span>(</span>
-<span id="cb153-4"><a href="tidyr.html#cb153-4"></a>    <span class="kw">summarise</span>(</span>
-<span id="cb153-5"><a href="tidyr.html#cb153-5"></a>      <span class="kw">group_by</span>(</span>
-<span id="cb153-6"><a href="tidyr.html#cb153-6"></a>        <span class="kw">separate</span>(</span>
-<span id="cb153-7"><a href="tidyr.html#cb153-7"></a>          <span class="kw">gather</span>(</span>
-<span id="cb153-8"><a href="tidyr.html#cb153-8"></a>            <span class="kw">tibble</span>(</span>
-<span id="cb153-9"><a href="tidyr.html#cb153-9"></a>              <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb153-10"><a href="tidyr.html#cb153-10"></a>              <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</span>
-<span id="cb153-11"><a href="tidyr.html#cb153-11"></a>              <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</span>
-<span id="cb153-12"><a href="tidyr.html#cb153-12"></a>              <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</span>
-<span id="cb153-13"><a href="tidyr.html#cb153-13"></a>              <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)), </span>
-<span id="cb153-14"><a href="tidyr.html#cb153-14"></a>            variable, value, A1<span class="op">:</span>B2), </span>
-<span id="cb153-15"><a href="tidyr.html#cb153-15"></a>          variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>), </span>
-<span id="cb153-16"><a href="tidyr.html#cb153-16"></a>        id, var), </span>
-<span id="cb153-17"><a href="tidyr.html#cb153-17"></a>      <span class="dt">mean =</span> <span class="kw">mean</span>(value)), </span>
-<span id="cb153-18"><a href="tidyr.html#cb153-18"></a>    var, mean), </span>
-<span id="cb153-19"><a href="tidyr.html#cb153-19"></a>  <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="tidyr.html#cb194-1"></a><span class="co"># do not ever do this!!</span></span>
+<span id="cb194-2"><a href="tidyr.html#cb194-2"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(</span>
+<span id="cb194-3"><a href="tidyr.html#cb194-3"></a>  <span class="kw">spread</span>(</span>
+<span id="cb194-4"><a href="tidyr.html#cb194-4"></a>    <span class="kw">summarise</span>(</span>
+<span id="cb194-5"><a href="tidyr.html#cb194-5"></a>      <span class="kw">group_by</span>(</span>
+<span id="cb194-6"><a href="tidyr.html#cb194-6"></a>        <span class="kw">separate</span>(</span>
+<span id="cb194-7"><a href="tidyr.html#cb194-7"></a>          <span class="kw">gather</span>(</span>
+<span id="cb194-8"><a href="tidyr.html#cb194-8"></a>            <span class="kw">tibble</span>(</span>
+<span id="cb194-9"><a href="tidyr.html#cb194-9"></a>              <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb194-10"><a href="tidyr.html#cb194-10"></a>              <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</span>
+<span id="cb194-11"><a href="tidyr.html#cb194-11"></a>              <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb194-12"><a href="tidyr.html#cb194-12"></a>              <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</span>
+<span id="cb194-13"><a href="tidyr.html#cb194-13"></a>              <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)), </span>
+<span id="cb194-14"><a href="tidyr.html#cb194-14"></a>            variable, value, A1<span class="op">:</span>B2), </span>
+<span id="cb194-15"><a href="tidyr.html#cb194-15"></a>          variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>), </span>
+<span id="cb194-16"><a href="tidyr.html#cb194-16"></a>        id, var), </span>
+<span id="cb194-17"><a href="tidyr.html#cb194-17"></a>      <span class="dt">mean =</span> <span class="kw">mean</span>(value)), </span>
+<span id="cb194-18"><a href="tidyr.html#cb194-18"></a>    var, mean), </span>
+<span id="cb194-19"><a href="tidyr.html#cb194-19"></a>  <span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;id&#39; (override with `.groups` argument)</code></pre>
 <p>The pipe lets you “pipe” the result of each function into the next function, allowing you to put your code in a logical order without creating too many extra objects.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="tidyr.html#cb155-1"></a><span class="co"># calculate mean of A and B variables for each participant</span></span>
-<span id="cb155-2"><a href="tidyr.html#cb155-2"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb155-3"><a href="tidyr.html#cb155-3"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb155-4"><a href="tidyr.html#cb155-4"></a>  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</span>
-<span id="cb155-5"><a href="tidyr.html#cb155-5"></a>  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</span>
-<span id="cb155-6"><a href="tidyr.html#cb155-6"></a>  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</span>
-<span id="cb155-7"><a href="tidyr.html#cb155-7"></a>  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
-<span id="cb155-8"><a href="tidyr.html#cb155-8"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb155-9"><a href="tidyr.html#cb155-9"></a><span class="st">  </span><span class="kw">gather</span>(variable, value, A1<span class="op">:</span>B2) <span class="op">%&gt;%</span></span>
-<span id="cb155-10"><a href="tidyr.html#cb155-10"></a><span class="st">  </span><span class="kw">separate</span>(variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb155-11"><a href="tidyr.html#cb155-11"></a><span class="st">  </span><span class="kw">group_by</span>(id, var) <span class="op">%&gt;%</span></span>
-<span id="cb155-12"><a href="tidyr.html#cb155-12"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span></span>
-<span id="cb155-13"><a href="tidyr.html#cb155-13"></a><span class="st">  </span><span class="kw">spread</span>(var, mean) <span class="op">%&gt;%</span></span>
-<span id="cb155-14"><a href="tidyr.html#cb155-14"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="tidyr.html#cb196-1"></a><span class="co"># calculate mean of A and B variables for each participant</span></span>
+<span id="cb196-2"><a href="tidyr.html#cb196-2"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb196-3"><a href="tidyr.html#cb196-3"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb196-4"><a href="tidyr.html#cb196-4"></a>  <span class="dt">A1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>),</span>
+<span id="cb196-5"><a href="tidyr.html#cb196-5"></a>  <span class="dt">A2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb196-6"><a href="tidyr.html#cb196-6"></a>  <span class="dt">B1 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>),</span>
+<span id="cb196-7"><a href="tidyr.html#cb196-7"></a>  <span class="dt">B2 =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb196-8"><a href="tidyr.html#cb196-8"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb196-9"><a href="tidyr.html#cb196-9"></a><span class="st">  </span><span class="kw">gather</span>(variable, value, A1<span class="op">:</span>B2) <span class="op">%&gt;%</span></span>
+<span id="cb196-10"><a href="tidyr.html#cb196-10"></a><span class="st">  </span><span class="kw">separate</span>(variable, <span class="kw">c</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;var_n&quot;</span>), <span class="dt">sep=</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb196-11"><a href="tidyr.html#cb196-11"></a><span class="st">  </span><span class="kw">group_by</span>(id, var) <span class="op">%&gt;%</span></span>
+<span id="cb196-12"><a href="tidyr.html#cb196-12"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span></span>
+<span id="cb196-13"><a href="tidyr.html#cb196-13"></a><span class="st">  </span><span class="kw">spread</span>(var, mean) <span class="op">%&gt;%</span></span>
+<span id="cb196-14"><a href="tidyr.html#cb196-14"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">A_mean =</span> A, <span class="dt">B_mean =</span> B)</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;id&#39; (override with `.groups` argument)</code></pre>
 <p>You can read this code from top to bottom as follows:</p>
 <ol style="list-style-type: decimal">
@@ -1788,11 +1801,11 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 </p>
 </div>
 <p>Chain all the steps above using pipes.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="tidyr.html#cb157-1"></a>ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb157-2"><a href="tidyr.html#cb157-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9) <span class="op">%&gt;%</span></span>
-<span id="cb157-3"><a href="tidyr.html#cb157-3"></a><span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></span>
-<span id="cb157-4"><a href="tidyr.html#cb157-4"></a><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb157-5"><a href="tidyr.html#cb157-5"></a><span class="st">  </span><span class="kw">spread</span>(domain_n, score)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="tidyr.html#cb198-1"></a>ocean &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://psyteachr.github.io/msc-data-skills/data/personality.csv&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb198-2"><a href="tidyr.html#cb198-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, Op1<span class="op">:</span>Ex9) <span class="op">%&gt;%</span></span>
+<span id="cb198-3"><a href="tidyr.html#cb198-3"></a><span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;qnumber&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb198-4"><a href="tidyr.html#cb198-4"></a><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;domain_n&quot;</span>, domain, qnumber, <span class="dt">sep =</span> <span class="st">&quot;_Q&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb198-5"><a href="tidyr.html#cb198-5"></a><span class="st">  </span><span class="kw">spread</span>(domain_n, score)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_double(),
@@ -1807,14 +1820,14 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 <p>{#data-infmort}
 Get data on infant mortality rates from the CSV file
 <a href="data/infmort.csv"><code>infmort.csv</code></a> in the directory <code>data</code>.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="tidyr.html#cb160-1"></a>infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="tidyr.html#cb201-1"></a>infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Country = col_character(),
 ##   Year = col_double(),
 ##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="tidyr.html#cb162-1"></a><span class="kw">glimpse</span>(infmort)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="tidyr.html#cb203-1"></a><span class="kw">glimpse</span>(infmort)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 3
 ## $ Country                                                                                     &lt;chr&gt; …
@@ -1823,8 +1836,8 @@ Get data on infant mortality rates from the CSV file
 <p>{#data-matmort}
 Get data on maternal mortality from from the excel file
 <a href="data/matmort.xls"><code>matmort.xls</code></a> in the directory <code>data</code></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="tidyr.html#cb164-1"></a>matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)</span>
-<span id="cb164-2"><a href="tidyr.html#cb164-2"></a><span class="kw">glimpse</span>(matmort)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tidyr.html#cb205-1"></a>matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>)</span>
+<span id="cb205-2"><a href="tidyr.html#cb205-2"></a><span class="kw">glimpse</span>(matmort)</span></code></pre></div>
 <pre><code>## Rows: 181
 ## Columns: 4
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentina&quot;, &quot;…
@@ -1832,7 +1845,7 @@ Get data on maternal mortality from from the excel file
 ## $ `2000`  &lt;chr&gt; &quot;1 100 [ 745 - 1 570]&quot;, &quot;43 [ 33 -  56]&quot;, &quot;170 [ 118 -  241]&quot;…
 ## $ `2015`  &lt;chr&gt; &quot;396 [ 253 -  620]&quot;, &quot;29 [ 16 -  46]&quot;, &quot;140 [ 82 -  244]&quot;, &quot;4…</code></pre>
 <p>Get data on country codes from <a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv">https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv</a></p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="tidyr.html#cb166-1"></a>ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="tidyr.html#cb207-1"></a>ccodes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   name = col_character(),
@@ -1847,7 +1860,7 @@ Get data on maternal mortality from from the excel file
 ##   `sub-region-code` = col_character(),
 ##   `intermediate-region-code` = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="tidyr.html#cb168-1"></a><span class="kw">glimpse</span>(ccodes)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="tidyr.html#cb209-1"></a><span class="kw">glimpse</span>(ccodes)</span></code></pre></div>
 <pre><code>## Rows: 249
 ## Columns: 11
 ## $ name                       &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Åland Islands&quot;, &quot;Albania&quot;,…
@@ -1866,10 +1879,10 @@ Get data on maternal mortality from from the excel file
 <h3><span class="header-section-number">4.7.2</span> Wide to Long</h3>
 <p><code>matmort</code> is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.</p>
 <p>This example is complicated because the column names to gather <em>are</em> numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (`) like the example below.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="tidyr.html#cb170-1"></a>matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span></span>
-<span id="cb170-2"><a href="tidyr.html#cb170-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>)</span>
-<span id="cb170-3"><a href="tidyr.html#cb170-3"></a></span>
-<span id="cb170-4"><a href="tidyr.html#cb170-4"></a><span class="kw">glimpse</span>(matmort_long)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="tidyr.html#cb211-1"></a>matmort_long &lt;-<span class="st"> </span>matmort <span class="op">%&gt;%</span></span>
+<span id="cb211-2"><a href="tidyr.html#cb211-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>)</span>
+<span id="cb211-3"><a href="tidyr.html#cb211-3"></a></span>
+<span id="cb211-4"><a href="tidyr.html#cb211-4"></a><span class="kw">glimpse</span>(matmort_long)</span></code></pre></div>
 <pre><code>## Rows: 543
 ## Columns: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentina&quot;, &quot;…
@@ -1880,12 +1893,12 @@ Get data on maternal mortality from from the excel file
 <h3><span class="header-section-number">4.7.3</span> One Piece of Data per Column</h3>
 <p>The data in the <code>stats</code> column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don’t need any of the spaces, so first we’ll remove them with <code>mutate</code>.</p>
 <p>The <code>separate</code> function will separate your data on anything that is not a number or letter, so try it first without specifying the <code>sep</code> argument. The <code>into</code> argument is a list of the new column names.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="tidyr.html#cb172-1"></a>matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></span>
-<span id="cb172-2"><a href="tidyr.html#cb172-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
-<span id="cb172-3"><a href="tidyr.html#cb172-3"></a><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="tidyr.html#cb213-1"></a>matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></span>
+<span id="cb213-2"><a href="tidyr.html#cb213-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
+<span id="cb213-3"><a href="tidyr.html#cb213-3"></a><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Expected 3 pieces. Additional pieces discarded in 543 rows [1, 2, 3, 4,
 ## 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="tidyr.html#cb174-1"></a><span class="kw">glimpse</span>(matmort_split)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="tidyr.html#cb215-1"></a><span class="kw">glimpse</span>(matmort_split)</span></code></pre></div>
 <pre><code>## Rows: 543
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentina&quot;, &quot;…
@@ -1905,11 +1918,11 @@ The <code>gsub(pattern, replacement, x)</code> function is a flexible way to do 
 The previous example should have given you an error warning about “Too many values at 543 locations”. This is because <code>separate</code> splits the column at the brackets and dashes, so the text <code>100[90-110]</code> would split into four values <code>c(“100”, “90”, “110”, "“)</code>, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but <code>separate</code> generates a warning so you don’t do that accidentally. You can turn off the warning by adding the <code>extra</code> argument and setting it to “drop”. Look at the help for <code>??tidyr::separate</code> to see what the other options do.
 </p>
 </div>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="tidyr.html#cb176-1"></a>matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></span>
-<span id="cb176-2"><a href="tidyr.html#cb176-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
-<span id="cb176-3"><a href="tidyr.html#cb176-3"></a><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)</span>
-<span id="cb176-4"><a href="tidyr.html#cb176-4"></a></span>
-<span id="cb176-5"><a href="tidyr.html#cb176-5"></a><span class="kw">glimpse</span>(matmort_split)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="tidyr.html#cb217-1"></a>matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></span>
+<span id="cb217-2"><a href="tidyr.html#cb217-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
+<span id="cb217-3"><a href="tidyr.html#cb217-3"></a><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb217-4"><a href="tidyr.html#cb217-4"></a></span>
+<span id="cb217-5"><a href="tidyr.html#cb217-5"></a><span class="kw">glimpse</span>(matmort_split)</span></code></pre></div>
 <pre><code>## Rows: 543
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentina&quot;, &quot;…
@@ -1921,10 +1934,10 @@ The previous example should have given you an error warning about “Too many va
 <div id="sep" class="section level4">
 <h4><span class="header-section-number">4.7.3.2</span> Set delimiters with <code>sep</code></h4>
 <p>Now do the same with <code>infmort</code>. It’s already in long format, so you don’t need to use <code>gather</code>, but the third column has a crazy long name, so we can just refer to it by its column number (3).</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="tidyr.html#cb178-1"></a>infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb178-2"><a href="tidyr.html#cb178-2"></a><span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)</span>
-<span id="cb178-3"><a href="tidyr.html#cb178-3"></a></span>
-<span id="cb178-4"><a href="tidyr.html#cb178-4"></a><span class="kw">glimpse</span>(infmort_split)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="tidyr.html#cb219-1"></a>infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb219-2"><a href="tidyr.html#cb219-2"></a><span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb219-3"><a href="tidyr.html#cb219-3"></a></span>
+<span id="cb219-4"><a href="tidyr.html#cb219-4"></a><span class="kw">glimpse</span>(infmort_split)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -1939,15 +1952,15 @@ The previous example should have given you an error warning about “Too many va
 You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html">regular expressions</a> to separate complex columns. Here, we want to separate on dashes and brackets. You can separate on a list of delimiters by putting them in parentheses, separated by “|”. It’s a little more complicated because brackets have a special meaning in regex, so you need to “escape” the left one with two backslashes “\”.
 </p>
 </div>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="tidyr.html#cb180-1"></a>infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb180-2"><a href="tidyr.html#cb180-2"></a><span class="st">  </span><span class="kw">separate</span>(</span>
-<span id="cb180-3"><a href="tidyr.html#cb180-3"></a>    <span class="dt">col =</span> <span class="dv">3</span>, </span>
-<span id="cb180-4"><a href="tidyr.html#cb180-4"></a>    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </span>
-<span id="cb180-5"><a href="tidyr.html#cb180-5"></a>    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </span>
-<span id="cb180-6"><a href="tidyr.html#cb180-6"></a>    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span></span>
-<span id="cb180-7"><a href="tidyr.html#cb180-7"></a>  )</span>
-<span id="cb180-8"><a href="tidyr.html#cb180-8"></a></span>
-<span id="cb180-9"><a href="tidyr.html#cb180-9"></a><span class="kw">glimpse</span>(infmort_split)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="tidyr.html#cb221-1"></a>infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb221-2"><a href="tidyr.html#cb221-2"></a><span class="st">  </span><span class="kw">separate</span>(</span>
+<span id="cb221-3"><a href="tidyr.html#cb221-3"></a>    <span class="dt">col =</span> <span class="dv">3</span>, </span>
+<span id="cb221-4"><a href="tidyr.html#cb221-4"></a>    <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </span>
+<span id="cb221-5"><a href="tidyr.html#cb221-5"></a>    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </span>
+<span id="cb221-6"><a href="tidyr.html#cb221-6"></a>    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span></span>
+<span id="cb221-7"><a href="tidyr.html#cb221-7"></a>  )</span>
+<span id="cb221-8"><a href="tidyr.html#cb221-8"></a></span>
+<span id="cb221-9"><a href="tidyr.html#cb221-9"></a><span class="kw">glimpse</span>(infmort_split)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -1959,10 +1972,10 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <div id="convert" class="section level4">
 <h4><span class="header-section-number">4.7.3.3</span> Fix data types with <code>convert</code></h4>
 <p>That’s better. Notice the <em><chr></em> next to <code>Year</code>, <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code>. That means these columns hold characters (like words), not numbers or integers. This can cause problems when you try to do thigs like average the numbers (you can’t average words), so we can fix it by adding the argument <code>convert</code> and setting it to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="tidyr.html#cb182-1"></a>infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb182-2"><a href="tidyr.html#cb182-2"></a><span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb182-3"><a href="tidyr.html#cb182-3"></a></span>
-<span id="cb182-4"><a href="tidyr.html#cb182-4"></a><span class="kw">glimpse</span>(infmort_split)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="tidyr.html#cb223-1"></a>infmort_split &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb223-2"><a href="tidyr.html#cb223-2"></a><span class="st">  </span><span class="kw">separate</span>(<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb223-3"><a href="tidyr.html#cb223-3"></a></span>
+<span id="cb223-4"><a href="tidyr.html#cb223-4"></a><span class="kw">glimpse</span>(infmort_split)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -1971,11 +1984,11 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 ## $ ci_low  &lt;dbl&gt; 52.7, 55.7, 58.7, 61.6, 64.4, 66.9, 69.0, 71.2, 73.4, 75.5, 7…
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90.7, 9…</code></pre>
 <p>Do the same for <code>matmort</code>.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="tidyr.html#cb184-1"></a>matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></span>
-<span id="cb184-2"><a href="tidyr.html#cb184-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
-<span id="cb184-3"><a href="tidyr.html#cb184-3"></a><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb184-4"><a href="tidyr.html#cb184-4"></a></span>
-<span id="cb184-5"><a href="tidyr.html#cb184-5"></a><span class="kw">glimpse</span>(matmort_split)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tidyr.html#cb225-1"></a>matmort_split &lt;-<span class="st"> </span>matmort_long <span class="op">%&gt;%</span></span>
+<span id="cb225-2"><a href="tidyr.html#cb225-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
+<span id="cb225-3"><a href="tidyr.html#cb225-3"></a><span class="st">  </span><span class="kw">separate</span>(stats, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb225-4"><a href="tidyr.html#cb225-4"></a></span>
+<span id="cb225-5"><a href="tidyr.html#cb225-5"></a><span class="kw">glimpse</span>(matmort_split)</span></code></pre></div>
 <pre><code>## Rows: 543
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentina&quot;, &quot;…
@@ -1988,32 +2001,32 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <div id="all-in-one-step" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> All in one step</h3>
 <p>We can chain all the steps above together, since we don’t need those intermediate dataframes.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="tidyr.html#cb186-1"></a>infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb186-2"><a href="tidyr.html#cb186-2"></a><span class="st">  </span><span class="kw">separate</span>(</span>
-<span id="cb186-3"><a href="tidyr.html#cb186-3"></a>    <span class="dv">3</span>, </span>
-<span id="cb186-4"><a href="tidyr.html#cb186-4"></a>    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </span>
-<span id="cb186-5"><a href="tidyr.html#cb186-5"></a>    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </span>
-<span id="cb186-6"><a href="tidyr.html#cb186-6"></a>    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, </span>
-<span id="cb186-7"><a href="tidyr.html#cb186-7"></a>    <span class="dt">convert =</span> <span class="ot">TRUE</span></span>
-<span id="cb186-8"><a href="tidyr.html#cb186-8"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tidyr.html#cb227-1"></a>infmort &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/infmort.csv&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb227-2"><a href="tidyr.html#cb227-2"></a><span class="st">  </span><span class="kw">separate</span>(</span>
+<span id="cb227-3"><a href="tidyr.html#cb227-3"></a>    <span class="dv">3</span>, </span>
+<span id="cb227-4"><a href="tidyr.html#cb227-4"></a>    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </span>
+<span id="cb227-5"><a href="tidyr.html#cb227-5"></a>    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </span>
+<span id="cb227-6"><a href="tidyr.html#cb227-6"></a>    <span class="dt">sep =</span> <span class="st">&quot;(</span><span class="ch">\\</span><span class="st">[|-|])&quot;</span>, </span>
+<span id="cb227-7"><a href="tidyr.html#cb227-7"></a>    <span class="dt">convert =</span> <span class="ot">TRUE</span></span>
+<span id="cb227-8"><a href="tidyr.html#cb227-8"></a>  )</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Country = col_character(),
 ##   Year = col_double(),
 ##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="tidyr.html#cb188-1"></a>matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb188-2"><a href="tidyr.html#cb188-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>) <span class="op">%&gt;%</span></span>
-<span id="cb188-3"><a href="tidyr.html#cb188-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
-<span id="cb188-4"><a href="tidyr.html#cb188-4"></a><span class="st">  </span><span class="kw">separate</span>(</span>
-<span id="cb188-5"><a href="tidyr.html#cb188-5"></a>    stats, </span>
-<span id="cb188-6"><a href="tidyr.html#cb188-6"></a>    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </span>
-<span id="cb188-7"><a href="tidyr.html#cb188-7"></a>    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </span>
-<span id="cb188-8"><a href="tidyr.html#cb188-8"></a>    <span class="dt">convert =</span> <span class="ot">TRUE</span></span>
-<span id="cb188-9"><a href="tidyr.html#cb188-9"></a>  )</span>
-<span id="cb188-10"><a href="tidyr.html#cb188-10"></a></span>
-<span id="cb188-11"><a href="tidyr.html#cb188-11"></a><span class="kw">glimpse</span>(matmort)</span>
-<span id="cb188-12"><a href="tidyr.html#cb188-12"></a><span class="kw">glimpse</span>(infmort)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tidyr.html#cb229-1"></a>matmort &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&quot;data/matmort.xls&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb229-2"><a href="tidyr.html#cb229-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;stats&quot;</span>, <span class="st">`</span><span class="dt">1990</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2015</span><span class="st">`</span>) <span class="op">%&gt;%</span></span>
+<span id="cb229-3"><a href="tidyr.html#cb229-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stats =</span> <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, stats)) <span class="op">%&gt;%</span></span>
+<span id="cb229-4"><a href="tidyr.html#cb229-4"></a><span class="st">  </span><span class="kw">separate</span>(</span>
+<span id="cb229-5"><a href="tidyr.html#cb229-5"></a>    stats, </span>
+<span id="cb229-6"><a href="tidyr.html#cb229-6"></a>    <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;ci_low&quot;</span>, <span class="st">&quot;ci_hi&quot;</span>), </span>
+<span id="cb229-7"><a href="tidyr.html#cb229-7"></a>    <span class="dt">extra =</span> <span class="st">&quot;drop&quot;</span>, </span>
+<span id="cb229-8"><a href="tidyr.html#cb229-8"></a>    <span class="dt">convert =</span> <span class="ot">TRUE</span></span>
+<span id="cb229-9"><a href="tidyr.html#cb229-9"></a>  )</span>
+<span id="cb229-10"><a href="tidyr.html#cb229-10"></a></span>
+<span id="cb229-11"><a href="tidyr.html#cb229-11"></a><span class="kw">glimpse</span>(matmort)</span>
+<span id="cb229-12"><a href="tidyr.html#cb229-12"></a><span class="kw">glimpse</span>(infmort)</span></code></pre></div>
 <pre><code>## Rows: 543
 ## Columns: 5
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Angola&quot;, &quot;Argentina&quot;, &quot;…
@@ -2032,10 +2045,10 @@ You can use <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/reg
 <div id="columns-by-year" class="section level3">
 <h3><span class="header-section-number">4.7.5</span> Columns by Year</h3>
 <p>Spread out the infant mortality rate by year.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="tidyr.html#cb190-1"></a>infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb190-2"><a href="tidyr.html#cb190-2"></a><span class="st">  </span><span class="kw">spread</span>(Year, rate)</span>
-<span id="cb190-3"><a href="tidyr.html#cb190-3"></a></span>
-<span id="cb190-4"><a href="tidyr.html#cb190-4"></a><span class="kw">glimpse</span>(infmort_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tidyr.html#cb231-1"></a>infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb231-2"><a href="tidyr.html#cb231-2"></a><span class="st">  </span><span class="kw">spread</span>(Year, rate)</span>
+<span id="cb231-3"><a href="tidyr.html#cb231-3"></a></span>
+<span id="cb231-4"><a href="tidyr.html#cb231-4"></a><span class="kw">glimpse</span>(infmort_wide)</span></code></pre></div>
 <pre><code>## Rows: 4,934
 ## Columns: 29
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -2076,10 +2089,10 @@ Nope, that didn’t work at all, but it’s a really common mistake when spreadi
 <div id="merge-columns" class="section level3">
 <h3><span class="header-section-number">4.7.6</span> Merge Columns</h3>
 <p>Merge the rate and confidence intervals into one column.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="tidyr.html#cb192-1"></a>infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb192-2"><a href="tidyr.html#cb192-2"></a><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi)</span>
-<span id="cb192-3"><a href="tidyr.html#cb192-3"></a></span>
-<span id="cb192-4"><a href="tidyr.html#cb192-4"></a><span class="kw">glimpse</span>(infmort_united)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="tidyr.html#cb233-1"></a>infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb233-2"><a href="tidyr.html#cb233-2"></a><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi)</span>
+<span id="cb233-3"><a href="tidyr.html#cb233-3"></a></span>
+<span id="cb233-4"><a href="tidyr.html#cb233-4"></a><span class="kw">glimpse</span>(infmort_united)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -2089,10 +2102,10 @@ Nope, that didn’t work at all, but it’s a really common mistake when spreadi
 <h4><span class="header-section-number">4.7.6.1</span> Control separation with <code>sep</code></h4>
 <p><code>unite()</code> separates merged names with an underscore by default.
 Set the <code>sep</code> argument if you want to change that.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="tidyr.html#cb194-1"></a>infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb194-2"><a href="tidyr.html#cb194-2"></a><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb194-3"><a href="tidyr.html#cb194-3"></a></span>
-<span id="cb194-4"><a href="tidyr.html#cb194-4"></a><span class="kw">glimpse</span>(infmort_united)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="tidyr.html#cb235-1"></a>infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb235-2"><a href="tidyr.html#cb235-2"></a><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate, ci_low, ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>)</span>
+<span id="cb235-3"><a href="tidyr.html#cb235-3"></a></span>
+<span id="cb235-4"><a href="tidyr.html#cb235-4"></a><span class="kw">glimpse</span>(infmort_united)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 3
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -2103,10 +2116,10 @@ Set the <code>sep</code> argument if you want to change that.</p>
 What if you want to put it back into the format “rate [ci_low - ci_hi]”? Then, <code>mutate</code> and <code>paste</code> are a better choice than <code>unite</code>, but you have to get rid of the <code>rate</code>, <code>ci_low</code> and <code>ci_hi</code> columns with <code>select</code>. You’ll learn more about these function in the <a href="04_dplyr.html">Data Manipulation</a> lesson.
 </p>
 </div>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="tidyr.html#cb196-1"></a>infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb196-2"><a href="tidyr.html#cb196-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rate_ci =</span> <span class="kw">paste0</span>(rate, <span class="st">&quot; [&quot;</span>, ci_low, <span class="st">&quot; - &quot;</span>, ci_hi, <span class="st">&quot;]&quot;</span>))</span>
-<span id="cb196-3"><a href="tidyr.html#cb196-3"></a></span>
-<span id="cb196-4"><a href="tidyr.html#cb196-4"></a><span class="kw">glimpse</span>(infmort_united)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="tidyr.html#cb237-1"></a>infmort_united &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb237-2"><a href="tidyr.html#cb237-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rate_ci =</span> <span class="kw">paste0</span>(rate, <span class="st">&quot; [&quot;</span>, ci_low, <span class="st">&quot; - &quot;</span>, ci_hi, <span class="st">&quot;]&quot;</span>))</span>
+<span id="cb237-3"><a href="tidyr.html#cb237-3"></a></span>
+<span id="cb237-4"><a href="tidyr.html#cb237-4"></a><span class="kw">glimpse</span>(infmort_united)</span></code></pre></div>
 <pre><code>## Rows: 5,044
 ## Columns: 6
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;…
@@ -2116,11 +2129,11 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 ## $ ci_hi   &lt;dbl&gt; 83.9, 83.6, 83.5, 83.7, 84.2, 85.1, 86.1, 87.3, 88.9, 90.7, 9…
 ## $ rate_ci &lt;chr&gt; &quot;66.3 [52.7 - 83.9]&quot;, &quot;68.1 [55.7 - 83.6]&quot;, &quot;69.9 [58.7 - 83.…</code></pre>
 <p>Now let’s try spreading on year again. Notice here we’re uniting columns <code>rate:ci_hi</code>, instead of <code>rate, ci_low, ci_hi</code>. The colon just says to select all the columns between the first and last named ones. Check the help documentation for <code>??tidyr::unite</code> and <code>??tidyr::select</code> to see other ways to select columns.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="tidyr.html#cb198-1"></a>infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
-<span id="cb198-2"><a href="tidyr.html#cb198-2"></a><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate<span class="op">:</span>ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb198-3"><a href="tidyr.html#cb198-3"></a><span class="st">  </span><span class="kw">spread</span>(Year, rate_ci)</span>
-<span id="cb198-4"><a href="tidyr.html#cb198-4"></a></span>
-<span id="cb198-5"><a href="tidyr.html#cb198-5"></a><span class="kw">glimpse</span>(infmort_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="tidyr.html#cb239-1"></a>infmort_wide &lt;-<span class="st"> </span>infmort <span class="op">%&gt;%</span></span>
+<span id="cb239-2"><a href="tidyr.html#cb239-2"></a><span class="st">  </span><span class="kw">unite</span>(rate_ci, rate<span class="op">:</span>ci_hi, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb239-3"><a href="tidyr.html#cb239-3"></a><span class="st">  </span><span class="kw">spread</span>(Year, rate_ci)</span>
+<span id="cb239-4"><a href="tidyr.html#cb239-4"></a></span>
+<span id="cb239-5"><a href="tidyr.html#cb239-5"></a><span class="kw">glimpse</span>(infmort_wide)</span></code></pre></div>
 <pre><code>## Rows: 194
 ## Columns: 27
 ## $ Country &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;Andorra&quot;, &quot;Angola&quot;, &quot;An…
@@ -2614,51 +2627,51 @@ What if you want to put it back into the format “rate [ci_low - ci_hi]”? The
 <button class>
 Solution
 </button>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidyr.html#cb200-1"></a>iris <span class="op">%&gt;%</span></span>
-<span id="cb200-2"><a href="tidyr.html#cb200-2"></a><span class="st">  </span><span class="kw">gather</span>(var, value, Sepal.Length<span class="op">:</span>Petal.Width) <span class="op">%&gt;%</span></span>
-<span id="cb200-3"><a href="tidyr.html#cb200-3"></a><span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="tidyr.html#cb241-1"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb241-2"><a href="tidyr.html#cb241-2"></a><span class="st">  </span><span class="kw">gather</span>(var, value, Sepal.Length<span class="op">:</span>Petal.Width) <span class="op">%&gt;%</span></span>
+<span id="cb241-3"><a href="tidyr.html#cb241-3"></a><span class="st">  </span><span class="kw">separate</span>(var, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;feature&quot;</span>, <span class="st">&quot;dimension&quot;</span>))</span></code></pre></div>
 </div></li>
 <li><p>Re-write the following code using pipes. Assign the resulting data table to a variable called <code>data</code>.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="tidyr.html#cb201-1"></a><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span></span>
-<span id="cb201-2"><a href="tidyr.html#cb201-2"></a>data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb201-3"><a href="tidyr.html#cb201-3"></a>  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</span>
-<span id="cb201-4"><a href="tidyr.html#cb201-4"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),</span>
-<span id="cb201-5"><a href="tidyr.html#cb201-5"></a>  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</span>
-<span id="cb201-6"><a href="tidyr.html#cb201-6"></a>  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb201-7"><a href="tidyr.html#cb201-7"></a>)</span>
-<span id="cb201-8"><a href="tidyr.html#cb201-8"></a></span>
-<span id="cb201-9"><a href="tidyr.html#cb201-9"></a><span class="co"># gather columns A and B into &quot;score_type&quot; and &quot;score&quot; columns</span></span>
-<span id="cb201-10"><a href="tidyr.html#cb201-10"></a>data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, score_type, score, A<span class="op">:</span>B)</span>
-<span id="cb201-11"><a href="tidyr.html#cb201-11"></a></span>
-<span id="cb201-12"><a href="tidyr.html#cb201-12"></a><span class="co"># unite the score_type and condition columns into a column called &quot;cell&quot;</span></span>
-<span id="cb201-13"><a href="tidyr.html#cb201-13"></a>data_united &lt;-<span class="st"> </span><span class="kw">unite</span>(data_gathered, cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb201-14"><a href="tidyr.html#cb201-14"></a></span>
-<span id="cb201-15"><a href="tidyr.html#cb201-15"></a><span class="co"># spread the score column into cells</span></span>
-<span id="cb201-16"><a href="tidyr.html#cb201-16"></a>data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="tidyr.html#cb242-1"></a><span class="co"># make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions</span></span>
+<span id="cb242-2"><a href="tidyr.html#cb242-2"></a>data_original &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb242-3"><a href="tidyr.html#cb242-3"></a>  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</span>
+<span id="cb242-4"><a href="tidyr.html#cb242-4"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),</span>
+<span id="cb242-5"><a href="tidyr.html#cb242-5"></a>  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb242-6"><a href="tidyr.html#cb242-6"></a>  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb242-7"><a href="tidyr.html#cb242-7"></a>)</span>
+<span id="cb242-8"><a href="tidyr.html#cb242-8"></a></span>
+<span id="cb242-9"><a href="tidyr.html#cb242-9"></a><span class="co"># gather columns A and B into &quot;score_type&quot; and &quot;score&quot; columns</span></span>
+<span id="cb242-10"><a href="tidyr.html#cb242-10"></a>data_gathered &lt;-<span class="st"> </span><span class="kw">gather</span>(data_original, score_type, score, A<span class="op">:</span>B)</span>
+<span id="cb242-11"><a href="tidyr.html#cb242-11"></a></span>
+<span id="cb242-12"><a href="tidyr.html#cb242-12"></a><span class="co"># unite the score_type and condition columns into a column called &quot;cell&quot;</span></span>
+<span id="cb242-13"><a href="tidyr.html#cb242-13"></a>data_united &lt;-<span class="st"> </span><span class="kw">unite</span>(data_gathered, cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb242-14"><a href="tidyr.html#cb242-14"></a></span>
+<span id="cb242-15"><a href="tidyr.html#cb242-15"></a><span class="co"># spread the score column into cells</span></span>
+<span id="cb242-16"><a href="tidyr.html#cb242-16"></a>data_spread &lt;-<span class="st"> </span><span class="kw">spread</span>(data_united, cell, score)</span></code></pre></div>
 <div class="solution">
 <button class>
 Solution
 </button>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="tidyr.html#cb202-1"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb202-2"><a href="tidyr.html#cb202-2"></a>  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</span>
-<span id="cb202-3"><a href="tidyr.html#cb202-3"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),</span>
-<span id="cb202-4"><a href="tidyr.html#cb202-4"></a>  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</span>
-<span id="cb202-5"><a href="tidyr.html#cb202-5"></a>  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb202-6"><a href="tidyr.html#cb202-6"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb202-7"><a href="tidyr.html#cb202-7"></a><span class="st">  </span><span class="kw">gather</span>(score_type, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></span>
-<span id="cb202-8"><a href="tidyr.html#cb202-8"></a><span class="st">  </span><span class="kw">unite</span>(cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb202-9"><a href="tidyr.html#cb202-9"></a><span class="st">  </span><span class="kw">spread</span>(cell, score)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="tidyr.html#cb243-1"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb243-2"><a href="tidyr.html#cb243-2"></a>  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),</span>
+<span id="cb243-3"><a href="tidyr.html#cb243-3"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">5</span>),</span>
+<span id="cb243-4"><a href="tidyr.html#cb243-4"></a>  <span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb243-5"><a href="tidyr.html#cb243-5"></a>  <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb243-6"><a href="tidyr.html#cb243-6"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb243-7"><a href="tidyr.html#cb243-7"></a><span class="st">  </span><span class="kw">gather</span>(score_type, score, A<span class="op">:</span>B) <span class="op">%&gt;%</span></span>
+<span id="cb243-8"><a href="tidyr.html#cb243-8"></a><span class="st">  </span><span class="kw">unite</span>(cell, score_type, condition, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb243-9"><a href="tidyr.html#cb243-9"></a><span class="st">  </span><span class="kw">spread</span>(cell, score)</span></code></pre></div>
 </div></li>
 </ol>
 </div>
-<div id="exercises-3" class="section level2">
+<div id="exercises" class="section level2">
 <h2><span class="header-section-number">4.9</span> Exercises</h2>
 <p>Download the <a href="exercises/04_tidyr_exercise.Rmd">exercises</a>. See the <a href="exercises/04_tidyr_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="tidyr.html#cb203-1"></a><span class="co"># run this to access the exercise</span></span>
-<span id="cb203-2"><a href="tidyr.html#cb203-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">4</span>)</span>
-<span id="cb203-3"><a href="tidyr.html#cb203-3"></a></span>
-<span id="cb203-4"><a href="tidyr.html#cb203-4"></a><span class="co"># run this to access the answers</span></span>
-<span id="cb203-5"><a href="tidyr.html#cb203-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">4</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="tidyr.html#cb244-1"></a><span class="co"># run this to access the exercise</span></span>
+<span id="cb244-2"><a href="tidyr.html#cb244-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">4</span>)</span>
+<span id="cb244-3"><a href="tidyr.html#cb244-3"></a></span>
+<span id="cb244-4"><a href="tidyr.html#cb244-4"></a><span class="co"># run this to access the answers</span></span>
+<span id="cb244-5"><a href="tidyr.html#cb244-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">4</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>

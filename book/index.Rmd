@@ -44,12 +44,12 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     6. Create and compile an [Rmarkdown document](#rmarkdown)
 
 2. [Working with Data](#data)
-    1. Understand the use the [basic data types](#data_types)
-    2. Understand and use the [basic container types](#containers) (list, vector)
-    3. [Create vectors](#vectors) and store them as [variables](#vars)
-    4. Understand [vectorized operations](#vectorized_ops)
-    5. Create a [data table](#tables)
-    6. [Import data](#import_data) from CSV and Excel files
+    1. Load [built-in datasets](#builtin)
+    2. [Import data](#import_data) from CSV and Excel files
+    3. Create a [data table](#tables)
+    4. Understand the use the [basic data types](#data_types)
+    5. Understand and use the [basic container types](#containers) (list, vector)
+    6. Use [vectorized operations](#vectorized_ops)
 
 3. [Data Visualisation](#ggplot)
     1. Understand what types of graphs are best for [different types of data](#vartypes)

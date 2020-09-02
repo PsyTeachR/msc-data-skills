@@ -3,3 +3,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^book$
+^docs$
+^README\.Rmd$
+^README\.html$
+^\.zenodo\.json$

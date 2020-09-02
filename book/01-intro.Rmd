@@ -25,7 +25,7 @@
 
 <img src="images/01/new_R_logo.png"  class="left meme">
 
-R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote **reproducible research**. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write scripts that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.
+R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote `r glossary("reproducible research")`. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write `r glossary("script", "scripts")` that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.
 
 <div class='info'>
 See Appendix \@ref(installingr) for more information on on how to install R and associated programs.
@@ -50,7 +50,7 @@ Launch <img src="images/01/rstudio_icon.png" style="height: 2em; vertical-align:
 
 ### RStudio {#rstudio_ide}
 
-[RStudio](http://www.rstudio.com) is an Integrated Development Environment (IDE). This is a program that serves as a text editor, file manager, and provides many functions to help you read and write R code.
+[RStudio](http://www.rstudio.com) is an Integrated Development Environment (`r glossary("IDE")`). This is a program that serves as a text editor, file manager, and provides many functions to help you read and write R code.
 
 ```{r img-rstudio, echo=FALSE, fig.cap="The RStudio IDE"}
 knitr::include_graphics("images/01/rstudio.png")
@@ -88,7 +88,7 @@ Your settings should have:
 
 ### Console commands {#console}
 
-We are first going to learn about how to interact with the console. In general, you will be developing R scripts or R markdown files, rather than working directly in the console window.  However, you can consider the console a kind of **sandbox** where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
+We are first going to learn about how to interact with the console. In general, you will be developing R `r glossary("scripts", "script")` or `r glossary("R Markdown")` files, rather than working directly in the console window. However, you can consider the console a kind of "sandbox" where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
 
 Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.
 
@@ -106,7 +106,7 @@ The R console remembers a history of the commands you typed in the past. Use the
 1 + 1 + 3
 ```
 
-You can break up math expressions over multiple lines; R waits for a complete expression before processing it.
+You can break up mathematical expressions over multiple lines; R waits for a complete expression before processing it.
 
 ```{r calc3}
 ## here comes a long expression
@@ -139,15 +139,15 @@ cat(africa) # cat() prints the string
 ```
 
 
-### Variables {#vars}
+### Objects {#vars}
 
-Often you want to store the result of some computation for later use.  You can store it in a `r glossary("variable")`. A variable in R:
+Often you want to store the result of some computation for later use.  You can store it in an `r glossary("object")` (also sometimes called a `r glossary("variable")`). An object in R:
 
 * contains only letters, numbers, full stops, and underscores
 * starts with a letter or a full stop and a letter
 * distinguishes uppercase and lowercase letters (`rickastley` is not the same as `RickAstley`)
 
-The following are valid and different variables:
+The following are valid and different objects:
 
 * songdata
 * SongData
@@ -156,7 +156,7 @@ The following are valid and different variables:
 * .song.data
 * never_gonna_give_you_up_never_gonna_let_you_down
 
-The following are not valid variables:
+The following are not valid objects:
 
 * _song_data
 * 1song
@@ -164,11 +164,11 @@ The following are not valid variables:
 * song data
 * song-data
 
-Use the assignment operator `<-` to assign the value on the right to the variable named on the left.
+Use the `r glossary("assignment operator") `<-` to assign the value on the right to the object named on the left.
 
 ```{r assignment}
 ## use the assignment operator '<-'
-## R stores the number in the variable
+## R stores the number in the object
 x <- 5
 ```
 
@@ -177,17 +177,17 @@ Now that we have set `x` to a value, we can do something with it:
 ```{r var-demo}
 x * 2
 
-## R evaluates the expression and stores the result in the variable
+## R evaluates the expression and stores the result in the object boring_calculation
 boring_calculation <- 2 + 2
 ```
 
-Note that it doesn't print the result back at you when it's stored. To view the result, just type the variable name on a blank line.
+Note that it doesn't print the result back at you when it's stored. To view the result, just type the object name on a blank line.
 
 ```{r var-demo2}
 boring_calculation
 ```
 
-Once a variable is assigned a value, its value doesn't change unless you reassign the variable, even if the variables you used to calculate it change. Predict what the code below does and test yourself:
+Once an object is assigned a value, its value doesn't change unless you reassign the object, even if the objects you used to calculate it change. Predict what the code below does and test yourself:
 
 ```{r}
 this_year <- 2019
@@ -208,21 +208,33 @@ After all the code above is run:
 
 ### The environment
 
-Anytime you assign something to a new variable, R creates a new object in the `r glossary("global environment")`. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).
+Anytime you assign something to a new object, R creates a new entry in the `r glossary("global environment")`. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).
 
-Look at the **Environment** tab in the upper right pane. It lists all of the variables you have created. Click the broom icon to clear all of the variables and start fresh. You can also use the following functions in the console to view all variables, remove one variable, or remove all variables. 
+Look at the **Environment** tab in the upper right pane. It lists all of the objects you have created. Click the broom icon to clear all of the objects and start fresh. You can also use the following functions in the console to view all objects, remove one object, or remove all objects.
 
 ```{r global-environment, eval = FALSE}
-ls()            # print the variables in the global environment
-rm("x")         # remove the variable named x from the global environment
+ls()            # print the objects in the global environment
+rm("x")         # remove the object named x from the global environment
 rm(list = ls()) # clear out the global environment
 ```
 
 ```{block, type = "info"}
-In the upper right corner of the Environment tab, change **`List`** to **`Grid`**. Now you can see the type, length, and size of your variables, and reorder the list by any of these attributes.
+In the upper right corner of the Environment tab, change **`List`** to **`Grid`**. Now you can see the type, length, and size of your objects, and reorder the list by any of these attributes.
 ```
 
 ### Whitespace
+
+R mostly ignores `r glossary("whitespace")`: spaces, tabs, and line breaks. This means that you can use whitespace to help you organise your code.
+
+```{r}
+# a and b are identical
+a <- list(ctl = "Control Condition", exp1 = "Experimental Condition 1", exp2 = "Experimental Condition 2")
+
+# but b is much easier to read
+b <- list(ctl  = "Control Condition", 
+          exp1 = "Experimental Condition 1", 
+          exp2 = "Experimental Condition 2")
+```
 
 When you see `>` at the beginning of a line, that means R is waiting for you to start a new command.  However, if you see a `+` instead of `>` at the start of the line, that means R is waiting for you to finish a command you started on a previous line.  If you want to cancel whatever command you started, just press the Esc key in the console window and you'll get back to the `>` command prompt.
 
@@ -247,7 +259,7 @@ cat("3, 6, 9, the goose drank wine",
 
 A lot of what you do in R involves calling a `r glossary("function")` and storing the results. A function is a named section of code that can be reused. 
 
-For example, `sd` is a function that returns the standard deviation of the `r glossary("vector")` of numbers that you provide as the input `r glossary("argument")`. Functions are set up like this: 
+For example, `sd` is a function that returns the `r glossary("standard deviation")` of the `r glossary("vector")` of numbers that you provide as the input `r glossary("argument")`. Functions are set up like this: 
 
 `function_name(argument1, argument2 = "value")`. 
 
@@ -255,7 +267,7 @@ The arguments in parentheses can be named (like, `argument1 = 10`) or you can sk
 
 Most functions return a value, but may also produce side effects like printing to the console.
 
-To illustrate, the function `rnorm()` generates random numbers from the standard normal distribution.  The help page for `rnorm()` (accessed by typing `?rnorm` in the console) shows that it has the syntax 
+To illustrate, the function `rnorm()` generates random numbers from the standard `r glossary("normal distribution")`. The help page for `rnorm()` (accessed by typing `?rnorm` in the console) shows that it has the syntax 
 
 `rnorm(n, mean = 0, sd = 1)`
 
@@ -265,13 +277,13 @@ where `n` is the number of randomly generated numbers you want, `mean` is the me
 rnorm()
 ```
 
-If you want 10 random numbers from a distribution with mean of 0 and standard deviation, you can just use the defaults.
+If you want 10 random numbers from a normal distribution with mean of 0 and standard deviation, you can just use the defaults.
 
 ```{r rnorm-10}
 rnorm(10)
 ```
 
-If you want 10 numbers from a distribution with a mean of 100:
+If you want 10 numbers from a normal distribution with a mean of 100:
 
 ```{r rnorm-10-100}
 rnorm(10, 100)
@@ -309,7 +321,7 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
 
 Start up help in a browser using the function `help.start()`.
 
-If a function is in base R or a loaded package, you can use the `help("function_name")` function or the `?function_name` shortcut to access the help file. If the package isn't loaded, specify the package name as the second argument to the help function.
+If a function is in `r glossary("base R")` or a loaded `r glossary("package")`, you can use the `help("function_name")` function or the `?function_name` shortcut to access the help file. If the package isn't loaded, specify the package name as the second argument to the help function.
 
 ```{r help, eval = FALSE}
 # these methods are all equivalent ways of getting help
@@ -379,7 +391,7 @@ ggExtra::runExample()
 
 ### Install from GitHub
 
-Many R packages are not yet on CRAN because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don't have devtools installed, `library("devtools")` will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.
+Many R packages are not yet on `r glossary("CRAN")` because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You'll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don't have devtools installed, `library("devtools")` will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.
 
 ```{r img-packages, echo=FALSE, out.width='100%', fig.cap="Check installed and loaded packages in the packages tab in the lower right pane."}
 knitr::include_graphics("images/01/packages.png")
@@ -415,7 +427,7 @@ How many different ways can you find to discover what functions are available in
 
 ## Organising a project {#projects}
 
-Projects in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
+`r glossary("project", "Projects")` in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.
 
 ```{block type="try"}
 Make a new directory where you will keep all of your materials for this class. If you're using a lab computer, make sure you make this directory in your network drive so you can access it from other computers. 
@@ -431,7 +443,7 @@ Here is what an R script looks like. Don't worry about the details for now.
 # load add-on packages
 library(tidyverse)
 
-# set variables ----
+# set object ----
 n <- 100
 
 # simulate data ----
@@ -478,13 +490,13 @@ If you add 4 or more dashes to the end of a comment, it acts like a header and c
 
 We will make reproducible reports following the principles of [literate programming](https://en.wikipedia.org/wiki/Literate_programming). The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then "compiled" from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.
 
-We will use [R Markdown](http://rmarkdown.rstudio.com/lesson-1.html) to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with backtick symbols in a row, with some infomation about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in `r glossary("markdown")`, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
+We will use `r glossary("R Markdown")` to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with backtick symbols in a row, with some infomation about the code between curly brackets, such as `{r chunk-name, echo=FALSE}` (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in `r glossary("markdown")`, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.
 
 ```{r img-reproducibleScript, echo=FALSE, fig.cap="A reproducible script."}
 knitr::include_graphics("images/01/reproducibleScript.png")
 ```
 
-If you open up a new RMarkdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it.  Compiling a document is called `r glossary("knitting", "knit")` in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report. 
+If you open up a new R Markdown file from a template, you will see an example document with several code blocks in it. To create an HTML or PDF report from an R Markdown (Rmd) document, you compile it.  Compiling a document is called `r glossary("knit", "knitting")` in RStudio. There is a button that looks like a ball of yarn with needles through it that you click on to compile your file into a report. 
 
 ```{block, type="try"}
 Create a new R Markdown file from the **`File > New File > R Markdown...`** menu. Change the title and author, then click the knit button to create an html file.
@@ -493,7 +505,7 @@ Create a new R Markdown file from the **`File > New File > R Markdown...`** menu
 
 ### Working Directory
 
-Where should you put all of your files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single **working directory** where your data and scripts are stored.
+Where should you put all of your files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer's directory structure. Usually there is a single `r glossary("working directory")` where your data and scripts are stored.
 
 Your script should only reference files in three locations, using the appropriate format.
 
@@ -525,7 +537,7 @@ If your script needs a file in a subdirectory of `new_analysis`, say, `data/ques
 dat <- read_csv("data/questionnaire.csv")  # correct
 ```
 
-Do not load it in using an absolute path:
+Do not load it in using an `r glossary("absolute path")`:
 
 ```{r abs-path, eval = FALSE}
 dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv")   # wrong
@@ -534,6 +546,12 @@ dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionn
 ```{block, type="info"}
 Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
 ```
+
+## Glossary
+
+Each chapter ends with a glossary table defining the jargon introduced in this chapter. The links below take you to the [glossary book](https://psyteachr.github.io/glossary), which you can also download for offline use with `devtools::install_github("psyteachr/glossary")` and access the glossary offline with `glossary::book()`.
+
+`r glossary_table()`
 
 
 ## Exercises
