@@ -5,13 +5,15 @@ library(faux)
 faux::faux_options(verbose = FALSE)
 set.seed(8675309)
 
+setwd(rstudioapi::getActiveProject())
+
 # function for creating dataset descriptions in Roxygen
-make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "csv", source = NULL, write = TRUE) {
+make_dataset <- function(dataname, title, desc, vardesc = list(), filetype = "csv", source = NULL, write = TRUE, ct = readr::cols()) {
   
   # read data and save to data directory
   datafile <- paste0("data-raw/", dataname, ".", filetype)
   if (filetype == "csv") {
-    data <- readr::read_csv(datafile, col_types = readr::cols())
+    data <- readr::read_csv(datafile, col_types = ct)
   } else if (filetype == "xls") {
     data <- readxl::read_xls(datafile)
   }
@@ -371,6 +373,43 @@ write_csv(data, "data-raw/sq_data.csv")
 make_dataset("sq_data", "Systemizing Quotient", 
              "Reverse coded (Q#R) questions coded as strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.\nWakabayashi, A., Baron-Cohen, S., Wheelwright, S., Goldenfeld, N., Delaney, J., Fine, D., Smith, R., & Weil, L. (2006). Development of short forms of the Empathy Quotient (EQ-Short) and the Systemizing Quotient (SQ-Short). Personality and Individual Differences, 41(5), 929–940. https://doi.org/10.1016/j.paid.2006.03.017", vardesc)
 
+# pets ----
+set.seed(8675309)
+dog_r <- c(.25, .25, .5)
+cat_r <- c(-.25, -.25, .5)
+fer_r <- c(0, 0, .5)
+pets <- faux::sim_design(
+  within = list(var = c("score", "age", "weight")),
+  between = list(pet = c("dog", "cat", "ferret"),
+                 country = c("UK", "NL")),
+  n = list(dog_UK = 200, cat_UK = 150, ferret_UK = 50,
+           dog_NL = 200, cat_NL = 150, ferret_NL = 50), 
+  sd = c(score = 10, age = 3, weight = 2), 
+  r = list(dog_UK = dog_r, cat_UK = cat_r, ferret_UK = fer_r,
+           dog_NL = dog_r, cat_NL = cat_r, ferret_NL = fer_r),
+  mu = list(score = c(100, 100, 90, 90, 110, 110), 
+            age = c(7, 7, 7, 7, 7, 7),
+            weight = c(20, 18, 10, 9, 5, 4.5)),
+  plot = FALSE) %>%
+  mutate(score = round(score), 
+         age = faux::norm2trunc(age, 0, mu = 7, sd = 3),
+         age = round(age))
+
+write_csv(pets, "data-raw/pets.csv")
+
+vardesc <- list(
+  description = list(
+    id = "Subject ID",
+    pet = "Type of pet (dog, cat, ferret)",
+    country = "What country the pet is from (UK or NL)",
+    score = "Score on some test (integers around 100)",
+    age = "Age of the pet in years",
+    weight = "Weight of the pet in kilograms"
+  )
+)
+
+make_dataset("pets", "Pets",
+             "A simulated dataset with one random factor (id), two categorical factors (pet, country) and three continuous variables (score, age, weight). This dataset is useful for practicing plotting.", vardesc, ct = "cffiid")
 
 # mess ----
 set.seed(8675309)

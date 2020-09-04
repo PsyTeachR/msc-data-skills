@@ -2,8 +2,6 @@
 
 <img src="images/memes/better_graphs.png" class="meme right">
 
-Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
-
 ## Learning Objectives
 
 ### Basic
@@ -20,21 +18,27 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
     + [`geom_density()`](#geom_density)
     + [`geom_freqpoly()`](#geom_freqpoly)
     + [`geom_histogram()`](#geom_histogram)
-    + [`geom_violin()`](#geom_violin)
-    + [`geom_boxplot()`](#geom_boxplot)
     + [`geom_col()`](#geom_col)
+    + [`geom_boxplot()`](#geom_boxplot)
+    + [`geom_violin()`](#geom_violin)
+    + [Vertical Intervals](#vertical_intervals)
+        + `geom_crossbar()`
+        + `geom_errorbar()`
+        + `geom_linerange()`
+        + `geom_pointrange()`
     + [`geom_point()`](#geom_point)
     + [`geom_smooth()`](#geom_smooth)
-3. Set custom [labels](#custom-labels) and [colours](#custom-colours)
-4. Represent factorial designs with different colours or facets
-5. [Save plots](#ggsave) as an image file
+3. Arrange plots in a grid using [`cowplot`](#cowplot)
+4. Set custom [labels](#custom-labels),  [colours](#custom-colours), and [themes](#themes)
+5. Represent factorial designs with different colours or facets
+6. [Save plots](#ggsave) as an image file
+7. Superimpose different types of graphs
     
 ### Intermediate
 
-6. Superimpose different types of graphs
-7. Add lines to graphs
-8. Deal with [overlapping data](#overlap)
-9. Create less common types of graphs
+8. Add lines to graphs
+9. Deal with [overlapping data](#overlap)
+10. Create less common types of graphs
     + [`geom_tile()`](#geom_tile)
     + [`geom_density2d()`](#geom_density2d)
     + [`geom_bin2d()`](#geom_bin2d)
@@ -43,7 +47,6 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 
 ### Advanced
 
-10. Arrange plots in a grid using [`cowplot`](#cowplot)
 11. Adjust axes (e.g., flip coordinates, set axis limits)
 12. Change the [theme](#theme)
 13. Create interactive graphs with [`plotly`](#plotly)
@@ -54,6 +57,7 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 * [Look at Data](http://socviz.co/look-at-data.html) from [Data Vizualization for Social Science](http://socviz.co/)
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
 * [Chapter 28: Graphics for communication](http://r4ds.had.co.nz/graphics-for-communication.html) of *R for Data Science*
+* [Hack Your Data Beautiful](https://psyteachr.github.io/hack-your-data/) workshop by University of Glasgow postgraduate students
 * [Graphs](http://www.cookbook-r.com/Graphs) in *Cookbook for R*
 * [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
 * [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
@@ -72,6 +76,7 @@ Take the [quiz](#ggplot-quiz) to see if you need to review this chapter.
 
 # libraries needed for these graphs
 library(tidyverse)
+library(dataskills)
 library(plotly)
 library(cowplot) 
 set.seed(30250) # makes sure random numbers are reproducible
@@ -80,73 +85,93 @@ set.seed(30250) # makes sure random numbers are reproducible
 
 ## Common Variable Combinations {#vartypes}
 
-**Continuous** variables are properties you can measure, like height. **Discrete** (or categorical) variables are things you can count, like the number of pets you have. Categorical variables can be **nominal**, where the categories don't really have an order, like cats, dogs and ferrets (even though ferrets are obviously best). They can also be **ordinal**, where there is a clear order, but the distance between the categories isn't something you could exactly equate, like points on a Likert rating scale.
+`r glossary("Continuous")` variables are properties you can measure, like height. `r glossary("Discrete")` variables are things you can count, like the number of pets you have. Categorical variables can be `r glossary("nominal")`, where the categories don't really have an order, like cats, dogs and ferrets (even though ferrets are obviously best). They can also be `r glossary("ordinal")`, where there is a clear order, but the distance between the categories isn't something you could exactly equate, like points on a `r glossary("Likert")` rating scale.
 
 Different types of visualisations are good for different types of variables. 
+
+Load the `pets` dataset from the `dataskills` package and explore it with `glimpse(pets)` or `View(pets)`. This is a simulated dataset with one random factor (`id`), two categorical factors (`pet`, `country`) and three continuous variables (`score`, `age`, `weight`). 
+
+```{r pets}
+data("pets")
+# if you don't have the dataskills package, use:
+# pets <- read_csv("https://psyteachr.github.io/msc-data-skills/data/pets.csv", col_types = "cffiid")
+glimpse(pets)
+```
+
 
 ```{block, type="try"}
 Before you read ahead, come up with an example of each type of variable combination and sketch the types of graphs that would best display these data.
 
-* 1 discrete
+* 1 categorical
 * 1 continuous
-* 2 discrete
+* 2 categorical
 * 2 continuous
-* 1 discrete, 1 continuous
+* 1 categorical, 1 continuous
 * 3 continuous
 
 ```
 
-### Data
-
-The code below creates some data frames with different types of data. We'll learn how to simulate data like this in the [Probability & Simulation](#sim) chapter, but for now just run the code chunk below.
-
-* `pets` has a column with pet type
-* `pet_happy` has `happiness` and `age` for 500 dog owners and 500 cat owners
-* `x_vs_y` has two correlated continuous variables (`x` and `y`)
-* `overlap` has two correlated ordinal variables and 1000 observations so there is a lot of overlap
-* `overplot` has two correlated continuous variables and 10000 observations
-
-```{block, type = "try"}
-First, think about what kinds of graphs are best for representing these different types of data.
-```
-
-```{r sim-data}
-
-pets <- tibble(
-  pet = sample(
-    c("dog", "cat", "ferret", "bird", "fish"), 
-    100, 
-    TRUE, 
-    c(0.45, 0.40, 0.05, 0.05, 0.05)
-  )
-)
-
-pet_happy <- tibble(
-  pet = rep(c("dog", "cat"), each = 500),
-  happiness = c(rnorm(500, 55, 10), rnorm(500, 45, 10)),
-  age = rpois(1000, 3) + 20
-)
-
-x_vs_y <- tibble(
-  x = rnorm(100),
-  y = x + rnorm(100, 0, 0.5)
-)
-
-overlap <- tibble(
-  x = rbinom(1000, 10, 0.5),
-  y = x + rbinom(1000, 20, 0.5)
-)
-
-overplot <- tibble(
-  x = rnorm(10000),
-  y = x + rnorm(10000, 0, 0.5)
-)
-
-```
-
-
 
 ## Basic Plots
+
+R has some basic plotting functions, but they're difficult to use and aesthetically not very nice. They can be useful to have a quick look at data while you're working on a script, though. The function `plot()` usually defaults to a sensible type of plot, depending on whether the arguments `x` and `y` are categorical, continuous, or missing.
+
+```{r plot0, fig.cap="plot() with categorical x"}
+plot(x = pets$pet)
+```
+
+```{r plot1, fig.cap="plot() with categorical x and continuous y"}
+plot(x = pets$pet, y = pets$score)
+```
+
+```{r plot2, fig.cap="plot() with continuous x and y"}
+plot(x = pets$age, y = pets$weight)
+```
+The function `hist()` creates a quick histogram so you can see the distribution of your data. You can adjust how many columns are plotted with the argument `breaks`.
+
+```{r hist, fig.cap="hist()"}
+hist(pets$score, breaks = 20)
+```
+
+## GGplots
+
+While the functions above are nice for quick visualisations, it's hard to make pretty, publication-ready plots. The package `ggplot2` (loaded with `tidyverse`) is one of the most common packages for creating beautiful visualisations.
+
+`ggplot2` creates plots using a "grammar of graphics" where you add `r glossary("geoms")` in layers. It can be complex to understand, but it's very powerful once you have a mental model of how it works. 
+
+Let's start with a totally empty plot layer created by the `ggplot()` function with no arguments.
+
+```{r ggplot_empty, fig.cap="A plot base created by ggplot()"}
+ggplot()
+```
+
+The first argument to `ggplot()` is the `data` table you want to plot. Let's use the `pets` data we loaded above. The second argument is the `mapping` for which columns in your data table correspond to which properties of the plot, such as the `x`-axis, the `y`-axis, line `colour` or `linetype`, point `shape`, or object `fill`. These mappings are specified by the `aes()` function. Just adding this to the `ggplot` function creates the labels and ranges for the `x` and `y` axes. They usually have sensible default values, given your data, but we'll learn how to change them later.
+
+```{r ggplot_labels, fig.cap="Empty ggplot with x and y labels"}
+mapping <- aes(x = pet, 
+               y = score, 
+               colour = country, 
+               fill = country)
+ggplot(data = pets, mapping = mapping)
+```
+
+People usually omit the argument names and just put the `aes()` function directly as the second argument to `ggplot`. They also usually omit `x` and `y` as argument names to `aes()` (but you have to name the other properties). Next we can add "geoms", or plot styles. You literally add them with the `+` symbol. You can also add other plot attributes, such as labels, or change the theme and base font size.
+
+```{r ggplot_geom, fig.cap="Violin plot with country represented by colour."}
+ggplot(pets, aes(pet, score, colour = country, fill = country)) +
+  geom_violin(alpha = 0.5) +
+  labs(x = "Pet type",
+       y = "Score on an Important Test",
+       colour = "Country of Origin",
+       fill = "Country of Origin",
+       title = "My first plot!") +
+  theme_bw(base_size = 15)
+```
+
+
+## Common Plot Types
+
+There are many geoms, and they can take different arguments to customise their appearance. We'll learn about some of the most common below.
 
 ### Bar plot {#geom_bar}
 
@@ -159,12 +184,11 @@ ggplot(pets, aes(pet)) +
 
 ### Density plot {#geom_density}
 
-Density plots are good for one continuous variable, but only if you have a fairly 
-large number of observations.
+Density plots are good for one continuous variable, but only if you have a fairly large number of observations.
 
 ```{r density, fig.cap="Density plot"}
 
-ggplot(pet_happy, aes(happiness)) +
+ggplot(pets, aes(score)) +
   geom_density()
 
 ```
@@ -173,7 +197,7 @@ You can represent subsets of a variable by assigning the category variable to th
 
 ```{r density-grouped, fig.cap="Grouped density plot"}
 
-ggplot(pet_happy, aes(happiness, fill = pet)) +
+ggplot(pets, aes(score, fill = pet)) +
   geom_density(alpha = 0.5)
 
 ```
@@ -182,19 +206,19 @@ ggplot(pet_happy, aes(happiness, fill = pet)) +
 Try changing the `alpha` argument to figure out what it does.
 ```
 
-### Frequency Polygons {#geom_freqpoly}
+### Frequency polygons {#geom_freqpoly}
 
-If you don't want smoothed distributions, try `geom_freqpoly()`.
+If you want the y-axis to represent count rather than density, try `geom_freqpoly()`.
 
 ```{r freqpoly, fig.cap="Frequency ploygon plot"}
 
-ggplot(pet_happy, aes(happiness, color = pet)) +
-  geom_freqpoly(binwidth = 1)
+ggplot(pets, aes(score, color = pet)) +
+  geom_freqpoly(binwidth = 5)
   
 ```
 
 ``````{block, type="try"}
-Try changing the `binwidth` argument to 5 and 0.1. How do you figure out the right value?
+Try changing the `binwidth` argument to 10 and 1. How do you figure out the right value?
 ```
 
 ### Histogram {#geom_histogram}
@@ -203,8 +227,8 @@ Histograms are also good for one continuous variable, and work well if you don't
 
 ```{r histogram, fig.cap="Histogram"}
 
-ggplot(pet_happy, aes(happiness)) +
-  geom_histogram(binwidth = 1, fill = "white", color = "black")
+ggplot(pets, aes(score)) +
+  geom_histogram(binwidth = 5, fill = "white", color = "black")
   
 ```
 
@@ -216,8 +240,9 @@ If you show grouped histograms, you also probably want to change the default `po
 
 ```{r histogram-grouped, fig.cap="Grouped Histogram"}
 
-ggplot(pet_happy, aes(happiness, fill=pet)) +
-  geom_histogram(binwidth = 1, alpha = 0.5, position = "dodge")
+ggplot(pets, aes(score, fill=pet)) +
+  geom_histogram(binwidth = 5, alpha = 0.5, 
+                 position = "dodge")
   
 ```
 
@@ -227,39 +252,29 @@ Try changing the `position` argument to "identity", "fill", "dodge", or "stack".
 
 ### Column plot {#geom_col}
 
-Column plots are the worst way to represent grouped continuous data, but also one of the most common.
+Column plots are the worst way to represent grouped continuous data, but also one of the most common. If your data are already aggregated (e.g., you have rows for each group with columns for the mean and standard error), you can use `geom_bar` or `geom_col` and `geom_errorbar` directly. If not, you can use the function `stat_summary` to calculate the mean and standard error and send those numbers to the appropriate geom for plotting.
 
-To make column plots with error bars, you first need to calculate the means, error bar uper limits (`ymax`) and error bar lower limits (`ymin`) for each category. You'll learn more about how to use the code below in the next two lessons.
+```{r colplot_statsum, fig.cap="Column plot"}
 
-```{r colplot, fig.cap="Column plot"}
-
-# calculate mean and SD for each pet
-avg_pet_happy <- pet_happy %>%
-  group_by(pet) %>%
-  summarise(
-    mean = mean(happiness),
-    sd = sd(happiness)
-  )
-
-ggplot(avg_pet_happy, aes(pet, mean, fill=pet)) +
-  geom_col(alpha = 0.5) +
-  geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25) +
-  geom_hline(yintercept = 40)
+ggplot(pets, aes(pet, score, fill=pet)) +
+  stat_summary(fun = mean, geom = "col", alpha = 0.5) + 
+  stat_summary(fun.data = mean_se, geom = "errorbar",
+               width = 0.25) +
+  coord_cartesian(ylim = c(80, 120))
 
 ```
 
 ```{block, type="try"}
-What do you think `geom_hline()` does?
+Try changing the values for `coord_cartesian`. What does this do?
 ```
 
 ### Boxplot {#geom_boxplot}
 
-Boxplots are great for representing the distribution of grouped continuous 
-variables. They fix most of the problems with using barplots for continuous data.
+Boxplots are great for representing the distribution of grouped continuous variables. They fix most of the problems with using bar/column plots for continuous data.
 
 ```{r boxplot, fig.cap="Box plot"}
 
-ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
+ggplot(pets, aes(pet, score, fill=pet)) +
   geom_boxplot(alpha = 0.5)
 
 ```
@@ -270,17 +285,65 @@ Violin pots are like sideways, mirrored density plots. They give even more infor
 
 ```{r violin, fig.cap="Violin plot"}
 
-ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
-  geom_violin(
-    trim = FALSE,
-    draw_quantiles = c(0.25, 0.5, 0.75), 
-    alpha = 0.5
-  )
+ggplot(pets, aes(pet, score, fill=pet)) +
+  geom_violin(draw_quantiles = .5,
+              trim = FALSE, alpha = 0.5,)
 
 ```
 
 ```{block, type="try"}
-Try changing the numbers in the `draw_quantiles` argument.
+Try changing the `quantile` argument. Set it to a vector of the numbers 0.1 to 0.9 in steps of 0.1.
+```
+
+### Vertical intervals {#vertical_intervals}
+
+Boxplots and violin plots don't always map well onto inferential stats that use the mean. You can represent the mean and standard error or any other value you can calculate.
+
+Here, we will create a table with the means and standard errors for two groups. We'll learn how to calculate this from raw data in the chapter on [data wrangling](#dplyr). We also create a new object called `gg` that sets up the base of the plot. 
+
+```{r}
+dat <- tibble(
+  group = c("A", "B"),
+  mean = c(10, 20),
+  se = c(2, 3)
+)
+gg <- ggplot(dat, aes(group, mean, 
+                      ymin = mean-se, 
+                      ymax = mean+se))
+```
+
+The trick above can be useful if you want to represent the same data in different ways. You can add different geoms to the base plot without having to re-type the base plot code.
+
+{#cowplot}
+
+You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) package to easily make grids of different graphs. First, you have to assign each plot a name. Then you list all the plots as the first arguments of `plot_grid()` and provide a vector of labels.
+
+```{r vertint, fig.cap="Different vertical interval geoms"}
+
+cb <- gg + geom_crossbar()
+eb <- gg + geom_errorbar()
+lr <- gg + geom_linerange()
+pr <- gg + geom_pointrange()
+labels <- c("geom_crossbar()", 
+            "geom_errorbar()", 
+            "geom_linerange()", 
+            "geom_pointrange()")
+
+plot_grid(cb, eb, lr, pr, labels = labels)
+
+```
+
+You can also use the function `stats_summary` to calculate mean, standard error, or any other value for your data and display it using any geom. 
+
+```{r vertint_statssum, fig.cap="Vertical intervals with stats_summary()"}
+
+ggplot(pets, aes(pet, score, color=pet)) +
+  stat_summary(fun.data = mean_se, geom = "crossbar") +
+  stat_summary(fun.min = function(x) mean(x) - sd(x),
+               fun.max = function(x) mean(x) + sd(x),
+               geom = "errorbar", width = 0) +
+  theme(legend.position = "none") # gets rid of the legend
+
 ```
 
 ### Scatter plot {#geom_point}
@@ -289,7 +352,7 @@ Scatter plots are a good way to represent the relationship between two continuou
 
 ```{r scatter, fig.cap="Scatter plot using geom_point()"}
 
-ggplot(x_vs_y, aes(x, y)) +
+ggplot(pets, aes(age, score, color = pet)) +
   geom_point()
 
 ```
@@ -299,9 +362,31 @@ ggplot(x_vs_y, aes(x, y)) +
 You often want to represent the relationship as a single line.
 
 ```{r line, fig.cap="Line plot using geom_smooth()"}
-ggplot(x_vs_y, aes(x, y)) +
-  geom_smooth(method="lm")
+ggplot(pets, aes(age, score, color = pet)) +
+  geom_smooth(formula = y ~ x, method="lm")
 ```
+
+```{block, type="try"}
+What are some other options for the `method` argument to `geom_smooth`? When might you want to use them?
+```
+
+<div class="info">
+
+You can plot functions other than the linear `y ~ x`. The code below creates a data table where `x` is 101 values between -10 and 10. and `y` is `x` squared plus `3*x` plus `1`. You'll probably recognise this from algebra as the quadratic equation. You can set the `formula` argument in `geom_smooth` to a quadratic formula (`y ~ x + I(x^2)`) to fit a quadratic function to the data.
+
+```{r quadratic, fig.cap="Fitting quadratic functions"}
+
+quad <- tibble(
+  x = seq(-10, 10, length.out = 101),
+  y = x^2 + 3*x + 1
+)
+
+ggplot(quad, aes(x, y)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x + I(x^2), 
+              method="lm")
+```
+</div>
 
 ## Customisation
 
@@ -309,20 +394,23 @@ ggplot(x_vs_y, aes(x, y)) +
 
 You can set custom titles and axis labels in a few different ways.
 
-```{r line-labels1, fig.cap="Set custom labels with ggtitle(), xlab() and ylab()"}
-ggplot(x_vs_y, aes(x, y)) +
-  geom_smooth(method="lm") +
-  ggtitle("My Plot Title") +
-  xlab("The X Variable") +
-  ylab("The Y Variable")
+```{r line-labels1, fig.cap="Set custom labels with labs()"}
+
+ggplot(pets, aes(age, score, color = pet)) +
+  geom_smooth(formula = y ~ x, method="lm") +
+  labs(title = "Pet score with Age",
+       x = "Age (in Years)",
+       y = "score Score",
+       color = "Pet Type")
 ```
 
-```{r line-labels2, fig.cap="Set custom labels with labs()"}
-ggplot(x_vs_y, aes(x, y)) +
-  geom_smooth(method="lm") +
-  labs(title = "My Plot Title",
-       x = "The X Variable",
-       y = "The Y Variable")
+```{r line-labels2, fig.cap="Set custom labels with individual functions"}
+ggplot(pets, aes(age, score, color = pet)) +
+  geom_smooth(formula = y ~ x, method="lm") +
+  ggtitle("Pet score with Age") +
+  xlab("Age (in Years)") +
+  ylab("score Score") +
+  scale_color_discrete(name = "Pet Type")
 ```
 
 ### Colours {#custom-colours}
@@ -330,26 +418,67 @@ ggplot(x_vs_y, aes(x, y)) +
 You can set custom values for colour and fill using functions like `scale_colour_manual()` and `scale_fill_manual()`. The [Colours chapter in Cookbook for R](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/) has many more ways to customise colour.
 
 ```{r line-labels, fig.cap="Set custom colour"}
-ggplot(pet_happy, aes(pet, happiness, colour = pet, fill = pet)) +
+ggplot(pets, aes(pet, score, colour = pet, fill = pet)) +
   geom_violin() +
-  scale_color_manual(values = c("darkgreen", "dodgerblue")) +
-  scale_fill_manual(values = c("#CCFFCC", "#BBDDFF"))
+  scale_color_manual(values = c("darkgreen", "dodgerblue", "orange")) +
+  scale_fill_manual(values = c("#CCFFCC", "#BBDDFF", "#FFCC66"))
 ```
- 
-### Save as File {#ggsave}
 
-You can save a ggplot using `ggsave()`. It saves the last ggplot you made, 
-by default, but you can specify which plot you want to save if you assigned that plot to a variable.
+### Themes {#themes}
+
+GGplot comes with several additional themes and the ability to fully customise your theme. Type `?theme` into the console to see the full list. Other packages such as `cowplot` also have custom themes. You can add a custom theme to the end of your ggplot object and specify a new `base_size` to make the default fonts and lines larger or smaller.
+
+```{r themes, fig.cap="Minimal theme with 18-point base font size"}
+ggplot(pets, aes(age, score, color = pet)) +
+  geom_smooth(formula = y ~ x, method="lm") +
+  theme_minimal(base_size = 18)
+```
+
+It's more complicated, but you can fully customise your theme with `theme()`. You can save this to an object and add it to the end of all of your plots to make the style consistent. Alternatively, you can set the theme at the top of a script with `theme_set()` and this will apply to all subsequent ggplot plots.
+
+```{r, include = FALSE}
+t <- theme_get() # record current theme
+```
+
+
+```{r custom_themes, fig.cap="Custom theme"}
+
+vampire_theme <- theme(
+  rect = element_rect(fill = "black"),
+  panel.background = element_rect(fill = "black"),
+  text = element_text(size = 20, colour = "white"),
+  axis.text = element_text(size = 16, colour = "grey70"),
+  line = element_line(colour = "white", size = 2),
+  panel.grid = element_blank(),
+  axis.line = element_line(colour = "white"),
+  axis.ticks = element_blank(),
+  legend.position = "top"
+)
+
+theme_set(vampire_theme)
+
+ggplot(pets, aes(age, score, color = pet)) +
+  geom_smooth(formula = y ~ x, method="lm")
+```
+
+
+```{r, include = FALSE}
+theme_set(t) # return to theme
+```
+
+### Save as file {#ggsave}
+
+You can save a ggplot using `ggsave()`. It saves the last ggplot you made, by default, but you can specify which plot you want to save if you assigned that plot to a variable.
 
 You can set the `width` and `height` of your plot. The default units are inches, but you can change the `units` argument to "in", "cm", or "mm".
 
 
 ```{r ggsave-example, eval = FALSE}
 
-box <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
+box <- ggplot(pets, aes(pet, score, fill=pet)) +
   geom_boxplot(alpha = 0.5)
 
-violin <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
+violin <- ggplot(pets, aes(pet, score, fill=pet)) +
   geom_violin(alpha = 0.5)
 
 ggsave("demog_violin_plot.png", width = 5, height = 7)
@@ -358,23 +487,24 @@ ggsave("demog_box_plot.jpg", plot = box, width = 5, height = 7)
 
 ```
 
+```{block, type="info"}
+The file type is set from the filename suffix, or by 
+specifying the argument `device`, which can take the following values: 
+"eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf".
+```
 
 ## Combination Plots
 
 ### Violinbox plot
 
-To demonstrate the use of `facet_grid()` for factorial designs, we create a new column called `agegroup` to split the data into participants older than the meadian age or younger than the median age. New factors will display in alphabetical order, so we can use the `factor()` function to set the levels in the order we want.
+A combination of a violin plot to show the shape of the distribution and a boxplot to show the median and interquartile ranges can be a very useful visualisation.
 
 ```{r violinbox, fig.cap="Violin-box plot"}
 
-pet_happy %>%
-  mutate(agegroup = ifelse(age<median(age), "Younger", "Older"),
-         agegroup = factor(agegroup, levels = c("Younger", "Older"))) %>%
-  ggplot(aes(pet, happiness, fill=pet)) +
-    geom_violin(trim = FALSE, alpha=0.5, show.legend = FALSE) +
-    geom_boxplot(width = 0.25, fill="white") +
-    facet_grid(.~agegroup) +
-    scale_fill_manual(values = c("orange", "green"))
+ggplot(pets, aes(pet, score, fill = pet)) +
+  geom_violin(show.legend = FALSE) + 
+  geom_boxplot(width = 0.2, fill = "white", 
+               show.legend = FALSE)
 
 ```
 
@@ -388,15 +518,12 @@ You can use `stat_summary()` to superimpose a point-range plot showning the mean
 
 ```{r stat-summary, fig.cap="Point-range plot using stat_summary()"}
 
-ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
-  geom_violin(
-    trim = FALSE,
-    alpha = 0.5
-  ) +
+ggplot(pets, aes(pet, score, fill=pet)) +
+  geom_violin(trim = FALSE, alpha = 0.5) +
   stat_summary(
-    fun.y = mean,
-    fun.ymax = function(x) {mean(x) + sd(x)},
-    fun.ymin = function(x) {mean(x) - sd(x)},
+    fun = mean,
+    fun.max = function(x) {mean(x) + sd(x)},
+    fun.min = function(x) {mean(x) - sd(x)},
     geom="pointrange"
   )
 
@@ -407,10 +534,8 @@ ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
 If you don't have a lot of data points, it's good to represent them individually. You can use `geom_jitter` to do this.
 
 ```{r violin-jitter, fig.cap="Violin-jitter plot"}
-
-pet_happy %>%
-  sample_n(50) %>%  # choose 50 random observations from the dataset
-  ggplot(aes(pet, happiness, fill=pet)) +
+# sample_n chooses 50 random observations from the dataset
+ggplot(sample_n(pets, 50), aes(pet, score, fill=pet)) +
   geom_violin(
     trim = FALSE,
     draw_quantiles = c(0.25, 0.5, 0.75), 
@@ -431,58 +556,9 @@ If your graph isn't too complicated, it's good to also show the individual data 
 
 ```{r scatter-line, fig.cap="Scatter-line plot"}
 
-ggplot(x_vs_y, aes(x, y)) +
-  geom_point(alpha = 0.25) +
-  geom_smooth(method="lm")
-
-```
-
-### Grid of plots {#cowplot}
-
-You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) package to easily make grids of different graphs. First, you have to assign each plot a name. Then you list all the plots as the first arguments of `plot_grid()` and provide a list of labels.
-
-```{r cowplot, message = FALSE, fig.cap="Grid of plots using cowplot"}
-
-my_hist <- ggplot(pet_happy, aes(happiness, fill=pet)) +
-  geom_histogram(
-    binwidth = 1, 
-    alpha = 0.5, 
-    position = "dodge", 
-    show.legend = FALSE
-  )
-
-my_violin <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
-  geom_violin(
-    trim = FALSE,
-    draw_quantiles = c(0.5), 
-    alpha = 0.5, 
-    show.legend = FALSE
-  )
-
-my_box <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
-  geom_boxplot(alpha=0.5, show.legend = FALSE)
-
-my_density <- ggplot(pet_happy, aes(happiness, fill=pet)) +
-  geom_density(alpha=0.5, show.legend = FALSE)
-
-my_bar <- pet_happy %>%
-  group_by(pet) %>%
-  summarise(
-    mean = mean(happiness),
-    sd = sd(happiness)
-  ) %>%
-  ggplot(aes(pet, mean, fill=pet)) +
-    geom_bar(stat="identity", alpha = 0.5, 
-             color = "black", show.legend = FALSE) +
-    geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.25)
-
-plot_grid(
-  my_violin, 
-  my_box, 
-  my_density, 
-  my_bar, 
-  labels = c("A", "B", "C", "D")
-)
+ggplot(sample_n(pets, 50), aes(age, weight, colour = pet)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method="lm")
 
 ```
 
@@ -495,9 +571,9 @@ You can deal with overlapping data points (very common if you're using Likert sc
 
 ```{r overlap-alpha, fig.cap="Deal with overlapping data using transparency"}
 
-ggplot(overlap, aes(x, y)) +
-  geom_point(size = 5, alpha = .05) +
-  geom_smooth(method="lm")
+ggplot(pets, aes(age, score, colour = pet)) +
+  geom_point(alpha = 0.25) +
+  geom_smooth(formula = y ~ x, method="lm")
 
 ```
 
@@ -507,21 +583,20 @@ Or you can set the size of the dot proportional to the number of overlapping obs
 
 ```{r overlap-size, fig.cap="Deal with overlapping data using geom_count()"}
 
-overlap %>%
-  ggplot(aes(x, y)) +
-  geom_count(color = "#663399")
+ggplot(pets, aes(age, score, colour = pet)) +
+  geom_count()
 
 ```
 
-Alternatively, you can transform your data to create a count column and use the count to set the dot colour.
+Alternatively, you can transform your data (we will learn to do this in the [data wrangling](#dplyr) chapter) to create a count column and use the count to set the dot colour.
 
 ```{r overlap-colour, fig.cap="Deal with overlapping data using dot colour"}
 
-overlap %>%
-  group_by(x, y) %>%
-  summarise(count = n()) %>%
-  ggplot(aes(x, y, color=count)) +
-  geom_point(size = 5) +
+pets %>%
+  group_by(age, score) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  ggplot(aes(age, score, color=count)) +
+  geom_point(size = 2) +
   scale_color_viridis_c()
 
 ```
@@ -536,8 +611,7 @@ The [viridis package](https://cran.r-project.org/web/packages/viridis/vignettes/
 Even if the variables are continuous, overplotting might obscure any relationships if you have lots of data.
 
 ```{r overplot-point, fig.cap="Overplotted data"}
-overplot %>%
-  ggplot(aes(x, y)) + 
+ggplot(pets, aes(age, score)) +
   geom_point()
 ```
 
@@ -545,16 +619,14 @@ overplot %>%
 Use `geom_density2d()` to create a contour map.
 
 ```{r density2d, fig.cap="Contour map with geom_density2d()"}
-overplot %>%
-  ggplot(aes(x, y)) + 
+ggplot(pets, aes(age, score)) +
   geom_density2d()
 ```
 
 You can use `stat_density_2d(aes(fill = ..level..), geom = "polygon")` to create a heatmap-style density plot. 
 
 ```{r density2d-fill, fig.cap="Heatmap-density plot"}
-overplot %>%
-  ggplot(aes(x, y)) + 
+ggplot(pets, aes(age, score)) +
   stat_density_2d(aes(fill = ..level..), geom = "polygon") +
   scale_fill_viridis_c()
 ```
@@ -565,9 +637,8 @@ overplot %>%
 Use `geom_bin2d()` to create a rectangular heatmap of bin counts. Set the `binwidth` to the x and y dimensions to capture in each box.
 
 ```{r bin2d, fig.cap="Heatmap of bin counts"}
-overplot %>%
-  ggplot(aes(x, y)) + 
-  geom_bin2d(binwidth = c(1,1))
+ggplot(pets, aes(age, score)) +
+  geom_bin2d(binwidth = c(1, 5))
 ```
 
 ### Hexagonal Heatmap {#geom_hex}
@@ -575,9 +646,8 @@ overplot %>%
 Use `geomhex()` to create a hexagonal heatmap of bin counts. Adjust the `binwidth`, `xlim()`, `ylim()` and/or the figure dimensions to make the hexagons more or less stretched.
 
 ```{r overplot-hex, fig.width=6, fig.height=5, fig.cap="Hexagonal heatmap of bin counts"}
-overplot %>%
-  ggplot(aes(x, y)) + 
-  geom_hex(binwidth = c(0.25, 0.25))
+ggplot(pets, aes(age, score)) +
+  geom_hex(binwidth = c(1, 5))
 ```
 
 ### Correlation Heatmap {#geom_tile}
@@ -585,23 +655,11 @@ overplot %>%
 I've included the code for creating a correlation matrix from a table of variables, but you don't need to understand how this is done yet. We'll cover `mutate()` and `gather()` functions in the [dplyr](#dplyr) and [tidyr](#tidyr) lessons.
 
 ```{r}
-# generate two sets of correlated variables (a and b)
-heatmap <- tibble(
-    a1 = rnorm(100),
-    b1 = rnorm(100)
-  ) %>% 
-  mutate(
-    a2 = a1 + rnorm(100),
-    a3 = a1 + rnorm(100),
-    a4 = a1 + rnorm(100),
-    b2 = b1 + rnorm(100),
-    b3 = b1 + rnorm(100),
-    b4 = b1 + rnorm(100)
-  ) %>%
+heatmap <- pets %>%
+  select_if(is.numeric) %>% # get just the numeric columns
   cor() %>% # create the correlation matrix
-  as.data.frame() %>% # make it a data frame
-  rownames_to_column(var = "V1") %>% # set rownames as V1
-  gather("V2", "r", a1:b4) # wide to long (V2)
+  as_tibble(rownames = "V1") %>% # make it a tibble
+  gather("V2", "r", 2:ncol(.)) # wide to long (V2)
 ```
 
 Once you have a correlation matrix in the correct (long) format, it's easy to make a heatmap using `geom_tile()`.
@@ -612,20 +670,15 @@ ggplot(heatmap, aes(V1, V2, fill=r)) +
   scale_fill_viridis_c()
 ```
 
-```{block, type="info"}
-The file type is set from the filename suffix, or by 
-specifying the argument `device`, which can take the following values: 
-"eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf".
-```
-
 ## Interactive Plots {#plotly}
 
 You can use the `plotly` package to make interactive graphs. Just assign your ggplot to a variable and use the function `ggplotly()`.
 
 ```{r plotly, message = FALSE, fig.cap="Interactive graph using plotly"}
 
-demog_plot <- ggplot(pet_happy, aes(pet, happiness, fill=pet)) +
-  geom_point(position = position_jitter(width= 0.2, height = 0), size = 2)
+demog_plot <- ggplot(pets, aes(age, score, fill=pet)) +
+  geom_point() +
+  geom_smooth(formula = y~x, method = lm)
 
 ggplotly(demog_plot)
 
@@ -635,129 +688,10 @@ ggplotly(demog_plot)
 Hover over the data points above and click on the legend items.
 ```
 
-## Quiz {#ggplot-quiz}
+## Glossary
 
-1. Generate a plot like this from the built-in dataset `iris`. Make sure to include the custom axis labels.
+`r glossary_table()`
 
-    ```{r quiz-boxplot, echo = FALSE, fig.cap = ""}
-    ggplot(iris, aes(Species, Petal.Width, fill = Species)) +
-      geom_boxplot(show.legend = FALSE) +
-      xlab("Flower Species") +
-      ylab("Petal Width (in cm)")
-    ```
-    
-    ```{r quiz-boxplot-answer, eval = FALSE, webex.hide = TRUE}
-    ggplot(iris, aes(Species, Petal.Width, fill = Species)) +
-      geom_boxplot(show.legend = FALSE) +
-      xlab("Flower Species") +
-      ylab("Petal Width (in cm)")
-    
-    # there are many ways to do things, the code below is also correct
-    ggplot(iris) +
-      geom_boxplot(aes(Species, Petal.Width, fill = Species), show.legend = FALSE) +
-      labs(x = "Flower Species",
-           y = "Petal Width (in cm)")
-    ```
-
-
-2. You have just created a plot using the following code. How do you save it?
-    ```{r quiz-save, eval = FALSE}
-    ggplot(cars, aes(speed, dist)) + 
-      geom_point() +
-      geom_smooth(method = lm)
-    ```
-    
-    ```{r quiz-save-answer, echo = FALSE, results = 'asis'}
-    cat("<pre class=\"mcq\">")
-    c(
-      "ggsave()",
-      "ggsave(\"figname\")",
-      answer = "ggsave(\"figname.png\")",
-      "ggsave(\"figname.png\", plot = cars)"
-    ) %>%
-      webex::mcq() %>% cat()
-  cat("</pre>")
-    ```
-
-  
-3. Debug the following code.
-    ```{r quiz-debug, eval = FALSE}
-    ggplot(iris) +
-      geom_point(aes(Petal.Width, Petal.Length, colour = Species)) +
-      geom_smooth(method = lm) +
-      facet_grid(Species)
-    ```
-    
-    ```{r quiz-debug-answer, webex.hide = TRUE, fig.cap = ""}
-    ggplot(iris, aes(Petal.Width, Petal.Length, colour = Species)) +
-      geom_point() +
-      geom_smooth(method = lm) +
-      facet_grid(~Species)
-    ```
-
-
-4. Generate a plot like this from the built-in dataset `ChickWeight`.  
-
-    ```{r, echo = FALSE, fig.cap = ""}
-    ggplot(ChickWeight, aes(weight, Time)) +
-      geom_hex(binwidth = c(10, 1)) +
-      scale_fill_viridis_c()
-    ```
-    
-    ```{r, eval = FALSE, webex.hide = TRUE}
-    ggplot(ChickWeight, aes(weight, Time)) +
-      geom_hex(binwidth = c(10, 1)) +
-      scale_fill_viridis_c()
-    ```
-
-    
-5. Generate a plot like this from the built-in dataset `iris`.
-
-    ```{r quiz-cowplot, echo = FALSE, fig.height = 10, fig.cap = ""}
-    pw <- ggplot(iris, aes(Petal.Width, color = Species)) +
-      geom_density() +
-      xlab("Petal Width (in cm)")
-    
-    pl <- ggplot(iris, aes(Petal.Length, color = Species)) +
-      geom_density() +
-      xlab("Petal Length (in cm)") +
-      coord_flip()
-    
-    pw_pl <- ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
-      geom_point() +
-      geom_smooth(method = lm) +
-      xlab("Petal Width (in cm)") +
-      ylab("Petal Length (in cm)")
-    
-    cowplot::plot_grid(
-      pw, pl, pw_pl, 
-      labels = c("A", "B", "C"),
-      nrow = 3
-    )
-    ```
-    
-    ```{r quiz-cowplot-answer, eval = FALSE, webex.hide = TRUE}
-    pw <- ggplot(iris, aes(Petal.Width, color = Species)) +
-      geom_density() +
-      xlab("Petal Width (in cm)")
-    
-    pl <- ggplot(iris, aes(Petal.Length, color = Species)) +
-      geom_density() +
-      xlab("Petal Length (in cm)") +
-      coord_flip()
-    
-    pw_pl <- ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
-      geom_point() +
-      geom_smooth(method = lm) +
-      xlab("Petal Width (in cm)") +
-      ylab("Petal Length (in cm)")
-    
-    cowplot::plot_grid(
-      pw, pl, pw_pl, 
-      labels = c("A", "B", "C"),
-      nrow = 3
-    )
-    ```
 
 ## Exercises
 

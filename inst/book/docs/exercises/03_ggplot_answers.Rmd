@@ -176,6 +176,3 @@ disgust_grid <- NULL
 disgust_grid # prints the plot below
 ```
 
-
-
-
