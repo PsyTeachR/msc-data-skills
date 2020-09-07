@@ -282,6 +282,9 @@ Order matters for `setdiff`.
 setdiff(new_subjects, subject)
 ```
 
+## Glossary {#glossary6}
+
+`r glossary_table()`
 
 ## Exercises
 

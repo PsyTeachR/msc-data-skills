@@ -28,28 +28,22 @@
         + `geom_pointrange()`
     + [`geom_point()`](#geom_point)
     + [`geom_smooth()`](#geom_smooth)
-3. Arrange plots in a grid using [`cowplot`](#cowplot)
-4. Set custom [labels](#custom-labels),  [colours](#custom-colours), and [themes](#themes)
-5. Represent factorial designs with different colours or facets
-6. [Save plots](#ggsave) as an image file
-7. Superimpose different types of graphs
+3. Set custom [labels](#custom-labels),  [colours](#custom-colours), and [themes](#themes)
+4. [Combine plots](combo_plots) on the same plot, as facets, or as a grid using cowplot
+5. [Save plots](#ggsave) as an image file
     
 ### Intermediate
 
-8. Add lines to graphs
-9. Deal with [overlapping data](#overlap)
-10. Create less common types of graphs
+6. Add lines to graphs
+7. Deal with [overlapping data](#overlap)
+8. Create less common types of graphs
     + [`geom_tile()`](#geom_tile)
     + [`geom_density2d()`](#geom_density2d)
     + [`geom_bin2d()`](#geom_bin2d)
     + [`geom_hex()`](#geom_hex)
     + [`geom_count()`](#geom_count)
-
-### Advanced
-
-11. Adjust axes (e.g., flip coordinates, set axis limits)
-12. Change the [theme](#theme)
-13. Create interactive graphs with [`plotly`](#plotly)
+9. Adjust axes (e.g., flip coordinates, set axis limits)
+10. Create interactive graphs with [`plotly`](#plotly)
 
 
 ## Resources
@@ -67,8 +61,6 @@
 * [ggplot extensions](https://www.ggplot2-exts.org/)
 * [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
 
-
-[Stub for this lesson](stubs/3_viz.Rmd)
 
 ## Setup
 
@@ -137,17 +129,17 @@ hist(pets$score, breaks = 20)
 
 While the functions above are nice for quick visualisations, it's hard to make pretty, publication-ready plots. The package `ggplot2` (loaded with `tidyverse`) is one of the most common packages for creating beautiful visualisations.
 
-`ggplot2` creates plots using a "grammar of graphics" where you add `r glossary("geoms")` in layers. It can be complex to understand, but it's very powerful once you have a mental model of how it works. 
+`ggplot2` creates plots using a "grammar of graphics" where you add `r glossary("geom", "geoms")` in layers. It can be complex to understand, but it's very powerful once you have a mental model of how it works. 
 
 Let's start with a totally empty plot layer created by the `ggplot()` function with no arguments.
 
-```{r ggplot_empty, fig.cap="A plot base created by ggplot()"}
+```{r ggplot-empty, fig.cap="A plot base created by ggplot()"}
 ggplot()
 ```
 
 The first argument to `ggplot()` is the `data` table you want to plot. Let's use the `pets` data we loaded above. The second argument is the `mapping` for which columns in your data table correspond to which properties of the plot, such as the `x`-axis, the `y`-axis, line `colour` or `linetype`, point `shape`, or object `fill`. These mappings are specified by the `aes()` function. Just adding this to the `ggplot` function creates the labels and ranges for the `x` and `y` axes. They usually have sensible default values, given your data, but we'll learn how to change them later.
 
-```{r ggplot_labels, fig.cap="Empty ggplot with x and y labels"}
+```{r ggplot-labels, fig.cap="Empty ggplot with x and y labels"}
 mapping <- aes(x = pet, 
                y = score, 
                colour = country, 
@@ -157,7 +149,7 @@ ggplot(data = pets, mapping = mapping)
 
 People usually omit the argument names and just put the `aes()` function directly as the second argument to `ggplot`. They also usually omit `x` and `y` as argument names to `aes()` (but you have to name the other properties). Next we can add "geoms", or plot styles. You literally add them with the `+` symbol. You can also add other plot attributes, such as labels, or change the theme and base font size.
 
-```{r ggplot_geom, fig.cap="Violin plot with country represented by colour."}
+```{r ggplot-geom, fig.cap="Violin plot with country represented by colour."}
 ggplot(pets, aes(pet, score, colour = country, fill = country)) +
   geom_violin(alpha = 0.5) +
   labs(x = "Pet type",
@@ -254,7 +246,7 @@ Try changing the `position` argument to "identity", "fill", "dodge", or "stack".
 
 Column plots are the worst way to represent grouped continuous data, but also one of the most common. If your data are already aggregated (e.g., you have rows for each group with columns for the mean and standard error), you can use `geom_bar` or `geom_col` and `geom_errorbar` directly. If not, you can use the function `stat_summary` to calculate the mean and standard error and send those numbers to the appropriate geom for plotting.
 
-```{r colplot_statsum, fig.cap="Column plot"}
+```{r colplot-statsum, fig.cap="Column plot"}
 
 ggplot(pets, aes(pet, score, fill=pet)) +
   stat_summary(fun = mean, geom = "col", alpha = 0.5) + 
@@ -314,28 +306,26 @@ gg <- ggplot(dat, aes(group, mean,
 
 The trick above can be useful if you want to represent the same data in different ways. You can add different geoms to the base plot without having to re-type the base plot code.
 
-{#cowplot}
-
-You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) package to easily make grids of different graphs. First, you have to assign each plot a name. Then you list all the plots as the first arguments of `plot_grid()` and provide a vector of labels.
-
-```{r vertint, fig.cap="Different vertical interval geoms"}
-
-cb <- gg + geom_crossbar()
-eb <- gg + geom_errorbar()
-lr <- gg + geom_linerange()
-pr <- gg + geom_pointrange()
-labels <- c("geom_crossbar()", 
-            "geom_errorbar()", 
-            "geom_linerange()", 
-            "geom_pointrange()")
-
-plot_grid(cb, eb, lr, pr, labels = labels)
-
+```{r geom-crossbar, fig.cap="geom_crossbar()"}
+gg + geom_crossbar()
 ```
+
+```{r geom-errorbar, fig.cap="geom_errorbar()"}
+gg + geom_errorbar()
+```
+
+```{r geom-linerange, fig.cap="geom_linerange()"}
+gg + geom_linerange()
+```
+
+```{r geom-pointrange, fig.cap="geom_pointrange()"}
+gg + geom_pointrange()
+```
+
 
 You can also use the function `stats_summary` to calculate mean, standard error, or any other value for your data and display it using any geom. 
 
-```{r vertint_statssum, fig.cap="Vertical intervals with stats_summary()"}
+```{r vertint-statssum, fig.cap="Vertical intervals with stats_summary()"}
 
 ggplot(pets, aes(pet, score, color=pet)) +
   stat_summary(fun.data = mean_se, geom = "crossbar") +
@@ -441,7 +431,7 @@ t <- theme_get() # record current theme
 ```
 
 
-```{r custom_themes, fig.cap="Custom theme"}
+```{r custom-themes, fig.cap="Custom theme"}
 
 vampire_theme <- theme(
   rect = element_rect(fill = "black"),
@@ -493,7 +483,7 @@ specifying the argument `device`, which can take the following values:
 "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf".
 ```
 
-## Combination Plots
+## Combination Plots {#combo_plots}
 
 ### Violinbox plot
 
@@ -562,6 +552,28 @@ ggplot(sample_n(pets, 50), aes(age, weight, colour = pet)) +
 
 ```
 
+### Grid of plots {#cowplot}
+
+You can use the [ `cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) package to easily make grids of different graphs. First, you have to assign each plot a name. Then you list all the plots as the first arguments of `plot_grid()` and provide a vector of labels.
+
+```{r grid, fig.cap="Grid of plots"}
+
+gg <- ggplot(pets, aes(pet, score, colour = pet))
+nolegend <- theme(legend.position = 0)
+
+vp <- gg + geom_violin(alpha = 0.5) + nolegend +
+  ggtitle("Violin Plot")
+bp <- gg + geom_boxplot(alpha = 0.5) + nolegend +
+  ggtitle("Box Plot")
+cp <- gg + stat_summary(fun = mean, geom = "col", fill = "white") + nolegend +
+  ggtitle("Column Plot")
+dp <- ggplot(pets, aes(score, colour = pet)) + 
+  geom_density() + nolegend +
+  ggtitle("Density Plot")
+
+plot_grid(vp, bp, cp, dp, labels = LETTERS[1:4])
+
+```
 
 ## Overlapping Discrete Data {#overlap}
 
@@ -688,7 +700,7 @@ ggplotly(demog_plot)
 Hover over the data points above and click on the legend items.
 ```
 
-## Glossary
+## Glossary {#glossary3}
 
 `r glossary_table()`
 

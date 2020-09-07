@@ -533,6 +533,10 @@ tibble(
 * Can you think of circumstances in your own data where you might need to use `cumany()` or `cumall()`?
 ```
 
+## Glossary {#glossary5}
+
+`r glossary_table()`
+
 ## Exercises
 
 Download the [exercises](exercises/05_dplyr_exercise.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.

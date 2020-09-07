@@ -455,6 +455,10 @@ Calculate power via simulation and `power.t.test` for the following tests:
 * 40 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 20 subjects/group, A: m = 10, SD = 1; B: m = 12, SD = 1.5
 
+## Glossary {#glossary7}
+
+`r glossary_table()`
+
 ## Exercises
 
 Download the [exercises](exercises/07_func_exercise.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.

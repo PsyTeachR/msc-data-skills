@@ -407,6 +407,9 @@ Using the code above, write your own function that takes a table of data and ret
 ```
 
 
+## Glossary {#glossary9}
+
+`r glossary_table()`
 
 ## Exercises
 

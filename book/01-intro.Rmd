@@ -547,7 +547,7 @@ dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionn
 Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
 ```
 
-## Glossary
+## Glossary  {#glossary1}
 
 Each chapter ends with a glossary table defining the jargon introduced in this chapter. The links below take you to the [glossary book](https://psyteachr.github.io/glossary), which you can also download for offline use with `devtools::install_github("psyteachr/glossary")` and access the glossary offline with `glossary::book()`.
 

@@ -513,5 +513,8 @@ Computational reproducibility refers to making all aspects of your analysis repr
 
 [Code Ocean](https://codeocean.com/) is a new platform that lets you run your code in the cloud via a web browser. 
 
+## Glossary {#glossary10}
+
+`r glossary_table()`
 
 ## References

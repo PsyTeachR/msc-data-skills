@@ -599,7 +599,7 @@ tidiest
 ```
 
 
-## Glossary
+## Glossary {#glossary2}
 
 `r glossary_table()`
 

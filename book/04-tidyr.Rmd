@@ -553,6 +553,10 @@ glimpse(infmort_wide)
 ```
 
 
+## Glossary {#glossary4}
+
+`r glossary_table()`
+
 ## Quiz {#tidyr-quiz}
 
 For questions 1-4, choose how to turn table A into table B. There may be more than one right answer.

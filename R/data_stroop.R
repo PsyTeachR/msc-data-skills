@@ -1,9 +1,9 @@
 # stroop ----
 #' Stroop Task
 #'
-#' 
+#' 50 simulated subject in a stroop task viewing all combinations of word and ink colours blue, purple, green, red, and brown, 5 times each. Subjects respond with the ink colour. Subjects who do not respond in time have NA for response and rt.
 #'
-#' @format A data frame with 1000 rows and 5 variables:
+#' @format A data frame with 12500 rows and 5 variables:
 #' \describe{
 #'    \item{Country}{The full country name}
 #'    \item{1990}{Maternal mortality for 1990 (format: "rate [lowCI-highCI])}

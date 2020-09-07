@@ -8,14 +8,13 @@ output: html_document
 # please do not alter this code chunk
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, error = TRUE)
 library(tidyverse)
-library(viridis)
 library(cowplot)
 # devtools::install_github("psyteachr/msc-data-skills)
 library(dataskills) 
 ```
 
 
-Generate a violin plot, boxplot, histogram, density plot, and column plot for the following data. 
+Generate the plots below showing the distribution of dog weight by breed.
 
 ```{r dogs}
 # do not edit this chunk
@@ -37,8 +36,11 @@ dogs <- tibble(
 
 ## Violin Plot
 
+Make a violin plot with `breed` on the x-axis and `weight` on the y-axis. Make each violin white, 50% transparent, and outlined in a different coloour, but omit the legend.
+
 ```{r exercise-violin}
-dog_violin <- NULL
+dog_violin <- ggplot(dogs, aes(breed, weight, colour = breed)) +
+  geom_violin(fill = "white", alpha = .5, show.legend = FALSE)
 
 dog_violin # prints the plot below
 ```
@@ -46,26 +48,22 @@ dog_violin # prints the plot below
 
 ## Boxplot
 
+Make a boxplot with `breed` on the x-axis and `weight` on the y-axis. Make each violin white, 50% transparent, and outlined in a different coloour, but omit the legend.
+
 ```{r exercise-boxplot}
-dog_boxplot <- NULL
+dog_boxplot <- ggplot(dogs, aes(breed, weight, colour = breed)) +
+  geom_boxplot(fill = "white", alpha = .5, show.legend = FALSE)
 
 dog_boxplot # prints the plot below
 ```
 
-
-## Histogram
-
-```{r exercise-histogram}
-dog_histogram <- NULL
-
-dog_histogram # prints the plot below
-```
-
-
 ## Density plot
 
+Make a density with `weight` on the x-axis. Make each breed white, 50% transparent, and outlined in a different colour, but omit the legend.
+
 ```{r exercise-density}
-dog_density <- NULL
+dog_density <- ggplot(dogs, aes(weight, colour = breed)) +
+  geom_density(fill = "white", alpha = .5, show.legend = FALSE)
 
 dog_density # prints the plot below
 ```
@@ -73,35 +71,65 @@ dog_density # prints the plot below
 
 ## Column Plot
 
-```{r exercise-colplot}
-dog_column <- NULL
+Use `stat_summary` to create a column plot with error bars showing 1 standard error. Make each column white with a black border, but omit the legend.
+
+```{r exercise-column}
+dog_column <- ggplot(dogs, aes(breed, weight, colour = breed)) +
+  stat_summary(geom = "col", fill = "white", alpha = .5) +
+  stat_summary(geom = "errorbar", width = 0) +
+  theme(legend.position = "none")
 
 dog_column # prints the plot below
 ```
 
 ## Grid
 
-Create a grid of the first four plot styles (exclude the column plot). (Hint: use a function from cowplot).
+Create a grid of the four plots above. (Hint: use a function from cowplot).
 
-```{r exercise-dog-advanced}
-dog_grid <- NULL
+```{r exercise-grid}
+dog_grid <- plot_grid(dog_violin, 
+                      dog_boxplot, 
+                      dog_density, 
+                      dog_column)
 
 dog_grid # prints the plot below
 ```
 
 ## Changing defaults
 
-For the five plots above, change the axis labels so the x-axis reads "Breed of Dog" or "Weight of Dog" (depending on the plot type) and the y-axis reads "Weight of Dog", "Number of Dogs", or "Density of Dogs" (depending on the plot type).
+For the four plots above, change the axis labels so the x-axis reads "Breed of Dog" or "Weight of Dog" (depending on the plot type) and the y-axis reads "Weight of Dog", "Number of Dogs", or "Density of Dogs" (depending on the plot type).
 
 Change the default colours to "orange", "dodgerblue", and "hotpink".
 
 Add a title to each plot describing the plot type.
 
-Save each plot as a PNG file with the names "dog_violin.png", "dog_boxplot.png","dog_histogram.png", "dog_density.png", and "dog_column.png" (the names are important so they show up in the code below).
+Save each plot as a PNG file with the names "dog_violin.png", "dog_boxplot.png", "dog_density.png", and "dog_column.png" (the names are important so they show up in the code below).
 
-```{r exercise-dog-intermediate}
+```{r exercise-save}
 # Hint: you can add changes to an existing plot, e.g.:
 # dog_density + xlim(0, 100)
+
+colours <- scale_colour_manual(values = c("orange", "dodgerblue", "hotpink"))
+labs <- labs(x = "Breed of Dog", y = "Weight of Dog")
+
+dog_violin + colours + labs +
+  ggtitle("Violin Plot")
+ggsave("dog_violin.png")
+
+dog_boxplot + colours + labs +
+  ggtitle("Box Plot")
+ggsave("dog_boxplot.png")
+
+dog_density + colours +
+  labs(title = "Density Plot",
+       x = "Weight of Dog",
+       y = "Density of Dogs")
+ggsave("dog_density.png")
+
+dog_column + colours + labs +
+  ggtitle("Column Plot")
+ggsave("dog_column.png")
+
 ```
 
 
@@ -110,7 +138,6 @@ Save each plot as a PNG file with the names "dog_violin.png", "dog_boxplot.png",
 # do not change; displays the images saved above
 knitr::include_graphics("dog_violin.png")
 knitr::include_graphics("dog_boxplot.png")
-knitr::include_graphics("dog_histogram.png")
 knitr::include_graphics("dog_column.png")
 knitr::include_graphics("dog_violin.png")
 ```
@@ -122,10 +149,11 @@ Represent the relationships among disgust subscales from the dataset [disgust_sc
 
 Graph the linear relationship between moral and pathogen disgust. Make sure the axes run from the minimum to maximum possible scores on both axes. Give the graph an appropriate title and axis labels.
   
-```{r exercise-cor-basic, message = FALSE, warning = FALSE}
-disgust_scatterplot <- NULL
+```{r exercise-lineplot}
+disgust_lineplot <- ggplot(disgust_scores, aes(moral, pathogen)) +
+  geom_smooth(formula = y~x, method = lm)
 
-disgust_scatterplot # prints the plot below
+disgust_lineplot # prints the plot below
 ```
 
 
@@ -136,7 +164,10 @@ Create a heatmap of the relationships among all the questions in [disgust_cors.c
 *Bonus*: Figure out how to rotate the text on the x-axis so it's readable.
 
 ```{r exercise-heatmap}
-disgust_heatmap <- NULL
+disgust_heatmap <- ggplot(disgust_cors, aes(V1, V2, fill = r)) +
+  geom_tile() +
+  scale_fill_viridis_c() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 disgust_heatmap # prints the plot below
 ```
@@ -145,21 +176,37 @@ disgust_heatmap # prints the plot below
 
 Create a 2d density plot of the relationship between pathogen and sexual disgust for `disgust_scores`. 
 
-Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = n, 
-h = h)`, set n and h to values that make the graph look good, and 
-figure out what `n` and `h` represent.
+Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = n)`, set n to a value that makes the graph look good, and 
+figure out what it represents.
 
 ```{r exercise-density2d, warning=FALSE}
-disgust_density <- NULL
+disgust_density <- ggplot(disgust_scores, aes(pathogen, sexual)) +
+  stat_density_2d(aes(fill = ..level..), geom = "polygon", n = 50)
 
 disgust_density # prints the plot below
+```
+
+
+## Facets
+
+Create a grid of plots for the `stroop` dataset from dataskills using faceting. Plot `rt` for each combination of `word` and `ink` to make a 5x5 grid of density plots. Make each plot line the same colour as the ink. For bonus points, make the lines for plots where the ink colour matches the word colour thicker than the other lines.
+
+```{r facets}
+word_by_ink <- ggplot(stroop, aes(rt, colour = ink, 
+                   size = ink == word)) +
+  geom_density(show.legend = FALSE) +
+  facet_grid(word~ink, labeller = label_both) +
+  scale_colour_manual(values = c("blue", "brown","green", "purple", "red")) +
+  scale_size_manual(values = c(.5, 2))
+
+word_by_ink # prints the plot below
 ```
 
 
 
 ## Advanced Grid
 
-Create a 3x3 grid of plots with columns representing the x-axis and rows representing the y-axis and assign it to `disgust_grid`. Put a density plot of each variable along the diagonal. Make sure the graphs have appropriate titles and axis labels and that the range of the axes are the same in all graphs.
+Create a 3x3 grid of linear line plots from `disgust_scores` with columns representing the x-axis and rows representing the y-axis and assign it to `disgust_grid`. Put a density plot of each variable along the diagonal. Make sure the graphs have appropriate titles and axis labels and that the range of the axes are the same in all graphs.
 
 |              | moral   | sexual  | pathogen |
 |--------------|---------|---------|----------|
@@ -171,7 +218,44 @@ Create a 3x3 grid of plots with columns representing the x-axis and rows represe
 ```{r exercise-cor-advanced, message = FALSE, warning = FALSE}
 # Hint: set up your 9 separate plots first
 
-disgust_grid <- NULL
+my_geom <- geom_smooth(formula = y~x, method = lm)
+
+moral_sexual <- ggplot(disgust_scores, aes(moral, sexual, color)) +
+  ggtitle("Moral vs Sexual") + my_geom + xlim(0, 6) + ylim(0, 6)
+
+moral_pathogen <- ggplot(disgust_scores, aes(moral, pathogen)) +
+  ggtitle("Moral vs Pathogen") + my_geom + xlim(0, 6) + ylim(0, 6)
+
+pathogen_moral <- ggplot(disgust_scores, aes(pathogen, moral)) +
+  ggtitle("Pathogen vs Moral") + my_geom + xlim(0, 6) + ylim(0, 6)
+
+pathogen_sexual <- ggplot(disgust_scores, aes(pathogen, sexual)) +
+  ggtitle("Pathogen vs Sexual") + my_geom + xlim(0, 6) + ylim(0, 6)
+
+sexual_moral <- ggplot(disgust_scores, aes(sexual, moral)) +
+  ggtitle("Sexual vs Moral") + my_geom + xlim(0, 6) + ylim(0, 6)
+
+sexual_pathogen <- ggplot(disgust_scores, aes(sexual, pathogen)) +
+  ggtitle("Sexual vs Pathogen") + my_geom + xlim(0, 6) + ylim(0, 6)
+
+moral_moral <- ggplot(disgust_scores, aes(moral)) +
+  geom_density() + ggtitle("Moral Disgust") + 
+  xlim(0, 6) + ylim(0, 0.4)
+
+sexual_sexual <- ggplot(disgust_scores, aes(sexual)) +
+  geom_density() + ggtitle("Sexual Disgust") + 
+  xlim(0, 6) + ylim(0, 0.4)
+
+pathogen_pathogen <- ggplot(disgust_scores, aes(pathogen)) +
+  geom_density() + ggtitle("Pathogen Disgust") + 
+  xlim(0, 6) + ylim(0, 0.4)
+
+disgust_grid <- plot_grid(
+  moral_moral,    sexual_moral,    pathogen_moral, 
+  moral_sexual,   sexual_sexual,   pathogen_sexual, 
+  moral_pathogen, sexual_pathogen, pathogen_pathogen,
+  labels = LETTERS[1:9]
+)
 
 disgust_grid # prints the plot below
 ```
