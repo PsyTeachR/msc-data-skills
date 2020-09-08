@@ -15,8 +15,8 @@ zip(zipfile, c(f.zip, d.zip))
 
 
 # render a chapter or the whole book
-browseURL(bookdown::preview_chapter("03-ggplot.Rmd"))
-browseURL(bookdown::preview_chapter("02-data.Rmd"))
+#browseURL(bookdown::preview_chapter("03-ggplot.Rmd"))
+#browseURL(bookdown::preview_chapter("02-data.Rmd"))
 bookdown::render_book("index.Rmd")
 
 # copies dir
