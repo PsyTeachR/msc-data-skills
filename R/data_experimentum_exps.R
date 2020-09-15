@@ -1,0 +1,26 @@
+# experimentum_exps ----
+#' Experimentum Project Experiments
+#'
+#' Data from a demo experiment on Experimentum <https://debruine.github.io/experimentum/>. Subjects are shown pairs of upright and inverted Mooney faces and asked to click on the upright face.
+#'
+#' @format A data frame with 990 rows and 14 variables:
+#' \describe{
+#'    \item{session_id}{The unique session ID assigned each time a user starts a project}
+#'    \item{project_id}{The unique ID for the project (a collection of questionnaires and/or experiments}
+#'    \item{exp_id}{The unique ID for the experiment}
+#'    \item{user_id}{The unique ID for the user (subject/participant)}
+#'    \item{user_sex}{The user's sex/gender (male, female, nonbinary, na)}
+#'    \item{user_status}{The user's status (test, guest, registered, student,res, super, admin)}
+#'    \item{user_age}{The user's age in years; calculated from birthdate}
+#'    \item{trial_name}{The name of the trial}
+#'    \item{trial_n}{The unique number of the trial in the experiment}
+#'    \item{order}{The order the trial was shown in (for experiments with randomised order)}
+#'    \item{dv}{The response}
+#'    \item{rt}{The reaction time in ms}
+#'    \item{side}{The side of presentation (for multi-stimulus trials)}
+#'    \item{dt}{The timestamp of the trial response}
+#' }
+#' @source \url{https://psyteachr.github.io/msc-data-skills/data/experimentum_exps.csv}
+"experimentum_exps"
+
+

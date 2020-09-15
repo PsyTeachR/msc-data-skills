@@ -2,6 +2,13 @@
 setwd(rstudioapi::getActiveProject())
 setwd("book")
 
+# render a chapter or the whole book
+browseURL(bookdown::preview_chapter("04-tidyr.Rmd"))
+bookdown::render_book("index.Rmd")
+
+
+
+
 # knit all exercise and answer Rmd files
 input <- list.files("exercises", "*.Rmd", full.names = TRUE)
 purrr::map(input, rmarkdown::render)
@@ -14,10 +21,7 @@ if (file.exists(zipfile)) file.remove(zipfile)
 zip(zipfile, c(f.zip, d.zip))
 
 
-# render a chapter or the whole book
-#browseURL(bookdown::preview_chapter("03-ggplot.Rmd"))
-#browseURL(bookdown::preview_chapter("02-data.Rmd"))
-bookdown::render_book("index.Rmd")
+
 
 # copies dir
 file.copy(

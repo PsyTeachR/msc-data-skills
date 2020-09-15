@@ -328,7 +328,7 @@ vardesc <- list(
     word = "The text of the word",
     ink = "The ink colour of the word",
     response = "The subject's response (should equal the ink colour)",
-    rt - "Reaction time (in ms)"
+    rt = "Reaction time (in ms)"
   )
 )
 
@@ -395,6 +395,58 @@ write_csv(data, "data-raw/sq_data.csv")
 
 make_dataset("sq_data", "Systemizing Quotient", 
              "Reverse coded (Q#R) questions coded as strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.\nWakabayashi, A., Baron-Cohen, S., Wheelwright, S., Goldenfeld, N., Delaney, J., Fine, D., Smith, R., & Weil, L. (2006). Development of short forms of the Empathy Quotient (EQ-Short) and the Systemizing Quotient (SQ-Short). Personality and Individual Differences, 41(5), 929–940. https://doi.org/10.1016/j.paid.2006.03.017", vardesc)
+
+# personality ----
+
+vardesc <- list(
+  description = list(
+    user_id = "Each participant's unique ID",
+    date = "The date this questionnaire was completed",
+    Op1 = "Tend to vote for conservative political candidates (REV)",
+    Ne1 = "Have frequent mood swings (FWD)",
+    Ne2 = "Am not easily bothered by things (REV)",
+    Op2 = "Believe in the importance of art (FWD)",
+    Ex1 = "Am the life of the party (FWD)",
+    Ex2 = "Am skilled in handling social situations (FWD)",
+    Co1 = "Am always prepared (FWD)",
+    Co2 = "Make plans and stick to them (FWD)",
+    Ne3 = "Dislike myself (FWD)",
+    Ag1 = "Respect others (FWD)",
+    Ag2 = "Insult people (REV)",
+    Ne4 = "Seldom feel blue (REV)",
+    Ex3 = "Don't like to draw attention to myself (REV)",
+    Co3 = "Carry out my plans (FWD)",
+    Op3 = "Am not interested in abstract ideas (REV)",
+    Ex4 = "Make friends easily (FWD)",
+    Op4 = "Tend to vote for liberal political candidates (FWD)",
+    Ex5 = "Know how to captivate people (FWD)",
+    Ag3 = "Believe that others have good intentions (FWD)",
+    Co4 = "Do just enough work to get by (REV)",
+    Co5 = "Find it difficult to get down to work (REV)",
+    Ne5 = "Panic easily (FWD)",
+    Op5 = "Avoid philosophical discussions (REV)",
+    Ag4 = "Accept people as they are (FWD)",
+    Op6 = "Do not enjoy going to art museums (REV)",
+    Co6 = "Pay attention to details (FWD)",
+    Ex6 = "Keep in the background (REV)",
+    Ne6 = "Feel comfortable with myself (REV)",
+    Co7 = "Waste my time (REV)",
+    Ag5 = "Get back at others (REV)",
+    Co8 = "Get chores done right away (FWD)",
+    Ex7 = "Don't talk a lot (REV)",
+    Ne7 = "Am often down in the dumps (FWD)",
+    Co9 = "Shirk my duties (REV)",
+    Op7 = "Do not like art (REV)",
+    Ne8 = "Often feel blue (FWD)",
+    Ag6 = "Cut others to pieces (REV)",
+    Ag7 = "Have a good word for everyone (FWD)",
+    Co10 = "Don't see things through (REV)",
+    Ex8 = "Feel comfortable around people (FWD)",
+    Ex9 = "Have little to say (REV)"
+  )
+)
+
+make_dataset("personality", "5-Factor Personality Items", "Archival data from the Face Research Lab of a 5-factor personality questionnaire. Each question is labelled with the domain (Op = openness, Co = conscientiousness, Ex = extroversion, Ag = agreeableness, and Ne = neuroticism) and the question number. Participants rate each statement on a Likert scale from 0 (Never) to 6 (Always). Questions with REV have already been reverse-coded (0 = Always, 6 = Never). \n\nInstructions: A number of statements which people have used to describe themselves are given below. Read each statement and then click on of the seven options to indicate how frequently this statement applies to you. There are no right or wrong answers. Do not spend too much time on any one statement, but give the answer which seems to describe how you generally feel or behave.", vardesc)
 
 # pets ----
 set.seed(8675309)

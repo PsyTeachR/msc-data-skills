@@ -31,7 +31,7 @@
 ## Resources
 
 * [Chapter 5: Data Transformation](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
-* [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf)
+* [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Lecture slides on dplyr one-table verbs](slides/04_dplyr_slides.pdf)
 * [Chapter 16: Date and times](http://r4ds.had.co.nz/dates-and-times.html) in *R for Data Science*
 

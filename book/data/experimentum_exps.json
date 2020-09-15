@@ -1,0 +1,95 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Experimentum Project Experiments",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Data from a demo experiment on Experimentum <https://debruine.github.io/experimentum/>. Subjects are shown pairs of upright and inverted Mooney faces and asked to click on the upright face.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "session_id",
+            "description": "The unique session ID assigned each time a user starts a project",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "project_id",
+            "description": "The unique ID for the project (a collection of questionnaires and/or experiments",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "exp_id",
+            "description": "The unique ID for the experiment",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "The unique ID for the user (subject/participant)",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "user_sex",
+            "description": "The user's sex/gender (male, female, nonbinary, na)",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "user_status",
+            "description": "The user's status (test, guest, registered, student,res, super, admin)",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "user_age",
+            "description": "The user's age in years; calculated from birthdate",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "trial_name",
+            "description": "The name of the trial",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "trial_n",
+            "description": "The unique number of the trial in the experiment",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "order",
+            "description": "The order the trial was shown in (for experiments with randomised order)",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "dv",
+            "description": "The response",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "rt",
+            "description": "The reaction time in ms",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "side",
+            "description": "The side of presentation (for multi-stimulus trials)",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "dt",
+            "description": "The timestamp of the trial response",
+            "dataType": "double"
+        }
+    ]
+}

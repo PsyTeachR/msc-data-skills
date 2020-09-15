@@ -60,8 +60,9 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 4. [Tidy Data](#tidyr)
     1. Understand the concept of [tidy data](#tidy-data)
-    2. Be able to use the 4 basic `tidyr` verbs: [`gather()`](#gather), [`separate()`](#separate), [`spread()`](#spread), [`unite()`](#unite)
-    3. Be able to chain functions using [pipes](#pipes)
+  2. Be able to convert between long and wide formats using [pivot functions](#pivot)
+  3. Be able to use the 4 basic [`tidyr` verbs](#tidy-verbs)
+  4. Be able to chain functions using [pipes](#pipes)
 
 5. [Data Wrangling](#dplyr)
     1. Be able to use the 6 main dplyr one-table verbs: [`select()`](#select), [`filter()`](#filter), [`arrange()`](#arrange), [`mutate()`](#mutate), [`summarise()`](#summarise), [`group_by()`](#group_by)

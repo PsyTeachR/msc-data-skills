@@ -10,31 +10,31 @@
         {
             "@type": "PropertyValue",
             "name": "sub_id",
-            "description": "sub_id",
+            "description": "Subject ID",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "word",
-            "description": "word",
+            "description": "The text of the word",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "ink",
-            "description": "ink",
+            "description": "The ink colour of the word",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "response",
-            "description": "response",
+            "description": "The subject's response (should equal the ink colour)",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "rt",
-            "description": "rt",
+            "description": "Reaction time (in ms)",
             "dataType": "float"
         }
     ]

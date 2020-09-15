@@ -3,7 +3,7 @@ bookdown::gitbook:
   smart: false
   includes:
     after_body: [include/footer.html, include/webex.js]
-  css: [include/psyteachr.css, include/style.css]
+  css: [include/psyteachr.css, include/style.css, include/webex.css]
   config:
     toc:
       collapse: section

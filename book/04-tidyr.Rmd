@@ -2,23 +2,20 @@
 
 <img src="images/memes/messy_data.jpg" class="meme right">
 
-Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
-
 ## Learning Objectives
 
 ### Basic
 
 1. Understand the concept of [tidy data](#tidy-data)
-2. Be able to use the 4 basic `tidyr` verbs
+2. Be able to convert between long and wide formats using pivot functions
+    + [`pivot_longer()`](#pivot_longer)
+    + [`pivot_wider()`](#pivot_wider)
+3. Be able to use the 4 basic `tidyr` verbs
     + [`gather()`](#gather)
     + [`separate()`](#separate)
     + [`spread()`](#spread)
     + [`unite()`](#unite)
-3. Be able to chain functions using [pipes](#pipes)
-
-### Intermediate
-
-4. Be able to use arguments like [`sep`](#sep), [`extra`](#extra), and [`convert`](#convert) to handle less straightforward data cleaning
+4. Be able to chain functions using [pipes](#pipes)
 
 ### Advanced
 
@@ -39,12 +36,14 @@ Take the [quiz](#tidyr-quiz) to see if you need to review this chapter.
 
 # libraries needed
 library(tidyverse)
-library(readxl)
+library(dataskills)
 
 set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
-## Three Rules for Tidy Data {#tidy-data}
+## Tidy Data {#tidy-data}
+
+### Three Rules
 
 * Each `r glossary("variable")` must have its own column
 * Each `r glossary("observation")` must have its own row
@@ -78,65 +77,186 @@ tidy <- untidy %>%
 
 This table has three observations per row and the `total_meanRT` column contains two values.
 
-`r knitr::kable(untidy)`
+`r knitr::kable(untidy, caption = "Untidy table")`
 
 This is the tidy version.
 
-`r knitr::kable(tidy)`
+`r knitr::kable(tidy, caption = "Tidy table")`
 
+### Wide versus long {#wide_long}
 
-## Tidying Data
+Data tables can be in `r glossary("wide")` format or `r glossary("long")` format (and sometimes a mix of the two). Wide data are where all of the observations about one subject are in the same row, while long data are where each observation is on a separate row. You often need to convert between these formats to do different types of analyses or data processing.
 
-{#data-personality}
-Download the data from [personality.csv](https://psyteachr.github.io/msc-data-skills/data/personality.csv). These data are from a 5-factor (OCEAN) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = concientiousness, Ex = extraversion, Ag = agreeableness, and Ne = neuroticism) and the question number.
+Imagine a study where each subject completes a questionnaire with three items. Each answer is an `r glossary("observation")` of that subject. You are probably most familiar with data like this in a wide format, where the subject `id` is in one column, and each of the three item responses is in its own column.
 
-```{r load-ocean, message=FALSE}
-ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv")
+```{r wide-data, echo = FALSE, render = "asis"}
+x <- tibble(id = c("A", "B"),
+            Q1 = c(1,4),
+            Q2 = c(2,5),
+            Q3 = c(3,6))
+
+knitr::kable(x, caption = "Wide data")
 ```
 
-`r head(ocean) %>% knitr::kable()`
+The same data can be represented in a long format by creating a new column that specifies what `item` the observation is from and a new column that specifies the `value` of that observation.
 
+```{r long-data, echo = FALSE, render = "asis"}
+gather(x, "item", "value", Q1:Q3) %>%
+  knitr::kable(caption = "Long data")
+```
+
+<div class="try">
+
+Create a long version of the following table.
+
+| id     | fav_colour | fav_animal |
+|:-------|:-----------|:-----------|
+| Lisa   | red        | echidna    |
+| Robbie | orange     | babirusa   |
+| Steven | green      | frog       |
+
+
+`r hide("Answer")`
+Your answer doesn't need to have the same column headers or be in the same order.
+
+| id     | fav    | answer   |
+|:-------|:------ |:---------|
+| Lisa   | colour | red      |
+| Lisa   | animal | echidna  |
+| Robbie | colour | orange   | 
+| Robbie | animal | babirusa |
+| Steven | colour | green    |
+| Steven | animal | frog     |
+
+`r unhide()`
+
+</div>
+
+
+## Pivot Functions {#pivot}
+
+The pivot functions allow you to transform a data table from wide to long or long to wide in one step.
+
+### Load Data
+
+We will used the dataset `personality` from the dataskills package (or download the data from [personality.csv](https://psyteachr.github.io/msc-data-skills/data/personality.csv)). These data are from a 5-factor (personality) personality questionnaire. Each question is labelled with the domain (Op = openness, Co = conscientiousness, Ex = extroversion, Ag = agreeableness, and Ne = neuroticism) and the question number.
+
+```{r load-personality}
+
+data("personality", package = "dataskills")
+
+```
+
+`r head(personality) %>% knitr::kable()`
+
+### pivot_longer() {#pivot_longer}
+
+`pivot_longer()` converts a wide data table to long format by converting the  headers from specified columns into the values of new columns, and combining the values of those columns into a new condensed column.
+
+* `cols` refers to the columns you want to make long You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
+* `names_to` is what you want to call the new columns that the gathered column headers will go into; it's "domain" and "qnumber" in this example. 
+* `names_sep` is an optional argument if you have more than one value for `names_to`. It specifies the characters or position to split the values of the `cols` headers.
+* `values_to` is what you want to call the values in the columns `...`; they're "score" in this example. 
+
+```{r pivot-longer}
+personality_long <- pivot_longer(
+  data = personality, 
+  cols = Op1:Ex9,                    # columns to make long 
+  names_to = c("domain", "qnumber"), # new column names for headers
+  names_sep = 2,                     # how to split the headers
+  values_to = "score"                # new column name for values
+) %>%
+  glimpse()
+```
+
+```{block type="info"}
+You can pipe a data table to `glimpse()` at the end to have a quick look at it. It will still save to the object.
+```
+
+<div class="try">
+
+What would you set `names_sep` to in order to split the `cols` headers listed below into the results?
+
+```{r, echo = FALSE}
+w1 <- webex::mcq(c("A", "B", "1", "2", answer = "_"))
+w2 <- webex::mcq(c("A", "B", answer = "1", "2", "_"))
+w3 <- webex::mcq(c(answer = "-", "&", answer = "-|&", "c(3, 7)"))
+```
+
+
+| `cols` | `names_to`  | `names_sep` |
+|:-------|:------------|:------------|
+| `A_1`, `A_2`, `B_1`, `B_2` | `c("condition", "version")` | `r w1` |
+| `A1`, `A2`, `B1`, `B2` | `c("condition", "version")` | `r w2` |
+| `cat-day&pre`, `cat-day&post`, `cat-night&pre`, `cat-night&post`, `dog-day&pre`, `dog-day&post`, `dog-night&pre`, `dog-night&post` | `c("pet", "time", "condition")` | `r w3` |
+
+
+</div>
+
+
+### pivot_wider() {#pivot_wider}
+
+We can also go from long to wide format using the `pivot_wider()` function.
+
+* `names_from` is the columns that contain your new column headers. 
+* `values_from` is the column that contains the values for the new columns.
+* `names_sep` is the character string used to join names if `names_from` is more than one column.
+
+```{r pivot-wider}
+personality_wide <- pivot_wider(
+  data = personality_long,
+  names_from = c(domain, qnumber),
+  values_from = score,
+  names_sep = ""
+) %>%
+  glimpse()
+```
+
+
+## Tidy Verbs {#tidy-verbs}
+
+The pivot functions above are relatively new functions that combine the four basic tidy verbs. You can also convert data between long and wide formats using these functions. Many researchers still use these functions and older code will not use the pivot functions, so it is useful to know how to interpret these.
 
 ### gather() {#gather}
 
-`gather(data, key = "key", value = "value", ..., na.rm = FALSE, convert = FALSE, factor_key = FALSE)`
+Much like `pivot_longer()`, `gather()`  makes a wide data table long by creating a column for the headers and a column for the values. The main difference is that you cannot turn the headers into more than one column.
 
-* `key` is what you want to call the new column that the gathered column headers will go into; it's "question" in this example. 
-* `value` is what you want to call the values in the gathered columns; they're "score" in this example.
-* `...` refers to the columns you want to gather. You can refer to them by their names, like `col1, col2, col3, col4` or `col1:col4` or by their numbers, like `8, 9, 10` or `8:10`.
-* `na.rm` determines whether rows with `NA` values should be removed
-* `convert` whether to automatically convert the results to another data type
-* `factor_key` whether to store the key values as a factor (with the same order as in the table) or character vector
+* `key` is what you want to call the new column that the gathered column headers will go into; it's "question" in this example. It is like `names_to` in `pivot_longer()`, but can only take one value  (multiple values need to be separated after `separate()`).
+* `value` is what you want to call the values in the gathered columns; they're "score" in this example. It is like `values_to` in `pivot_longer()`.
+* `...` refers to the columns you want to gather. It is like `cols` in `pivot_longer()`. 
 
-`ocean` is in wide format, with a separate column for each question. Change it to long format, with a row for each user/question observation. The resulting dataframe should have the columns: `user_id`, `date`, `question`, and `score`.
+The `gather()` function converts `personality` from a wide data table to long format, with a row for each user/question observation. The resulting data table should have the columns: `user_id`, `date`, `question`, and `score`.
     
-```{r ocean-gathered}
-ocean_gathered <- gather(ocean, "question", "score", Op1:Ex9)
+```{r personality-gathered}
+personality_gathered <- gather(
+  data = personality, 
+  key = "question", # new column name for gathered headers
+  value = "score",  # new column name for gathered values
+  Op1:Ex9           # columns to gather
+) %>%
+  glimpse()
 ```
-
-`r head(ocean_gathered) %>% knitr::kable()`
 
 ### separate() {#separate} 
 
-`separate(data, col, into, sep = "[^[:alnum:]]+", remove = TRUE, convert = FALSE, extra = "warn", fill = "warn")`
-
 * `col` is the column you want to separate
 * `into` is a vector of new column names
-* `sep` is the character(s) that separate your new columns. This defaults to anything that isn't alphanumeric, like .`,_-/:`
-* `remove` determines whether the separated column (`col`) will be removed from the new data table. The default is to remove it.
-* `convert` whether to automatically convert the results to another data type
-* `extra` controls what happens when there are too many pieces
-* `fill` controls what happens when there are not enough pieces
+* `sep` is the character(s) that separate your new columns. This defaults to anything that isn't alphanumeric, like .`,_-/:` and is like the `names_sep` argument in `pivot_longer()`.
 
 Split the `question` column into two columns: `domain` and `qnumber`.
 
 There is no character to split on, here, but you can separate a column after a specific number of characters by setting `sep` to  an integer. For example, to split "abcde" after the third character, use `sep = 3`, which results in `c("abc", "de")`. You can also use negative number to split before the *n*th character from the right. For example, to split a column that has words of various lengths and 2-digit suffixes (like "lisa03"", "amanda38"), you can use `sep = -2`.
     
-```{r ocean-separate}
-ocean_sep <- separate(ocean_gathered, question, c("domain", "qnumber"), sep = 2)
+```{r personality-separate}
+personality_sep <- separate(
+  data = personality_gathered, 
+  col = question,                # column to separate
+  into = c("domain", "qnumber"), # new column names
+  sep = 2                        # where to separate
+) %>%
+  glimpse()
 ```
 
-`r head(ocean_sep) %>% knitr::kable()`
 
 <div class="warning">
 If you want to separate just at full stops, you need to use `sep = "\\."`, not `sep = "."`. The two slashes **escape** the full stop, making it interpreted as a literal full stop and not the regular expression for any character.
@@ -144,35 +264,37 @@ If you want to separate just at full stops, you need to use `sep = "\\."`, not `
 
 ### unite() {#unite} 
 
-`unite(data, col, ..., sep = "_", remove = TRUE)`
-
 * `col` is your new united column
 * `...` refers to the columns you want to unite
 * `sep` is the character(s) that will separate your united columns
-* `remove` determines whether the united columns (`...`) will be removed from the new data table. The default is to remove them.
 
 Put the domain and qnumber columns back together into a new column named `domain_n`. Make it in a format like "Op_Q1".
     
-```{r ocean-unite}
-ocean_unite <- unite(ocean_sep, "domain_n", domain, qnumber, sep = "_Q")
+```{r personality-unite}
+personality_unite <- unite(
+  data = personality_sep, 
+  col = "domain_n", # new column name
+  domain, qnumber,  # columns to unite
+  sep = "_Q"        # separation characters
+) %>%
+  glimpse()
 ```
-
-`r head(ocean_unite) %>% knitr::kable()`
 
 ### spread() {#spread} 
 
-`spread(data, key, value, fill = NA, convert = FALSE, drop = TRUE, sep = NULL)`
-
 You can reverse the processes above, as well. For example, you can convert data from long format into wide format.
 
-* `key` is the column that contains your new column headers
-* `value` is the column that contains the values in the new spread columns
+* `key` is the column that contains your new column headers. It is like `names_from` in `pivot_wider()`, but can only take one value (multiple values need to be merged first using `unite()`).
+* `value` is the column that contains the values in the new spread columns.  It is like `values_from` in `pivot_wider()`.
     
-```{r ocean-spread}
-ocean_spread <- spread(ocean_unite, domain_n, score)
+```{r personality-spread}
+personality_spread <- spread(
+  data = personality_unite,
+  key = domain_n, # column that contains new headers
+  value = score   # column that contains new values
+) %>%
+  glimpse()
 ```
-
-`r head(ocean_spread) %>% knitr::kable()`
 
 
 ## Pipes {#pipes}
@@ -206,7 +328,7 @@ data_separated <- separate(data_gathered, variable, c("var", "var_n"), sep = 1)
 data_grouped <- group_by(data_separated, id, var)
 
 # calculate the mean value for each id/var 
-data_summarised <- summarise(data_grouped, mean = mean(value))
+data_summarised <- summarise(data_grouped, mean = mean(value), .groups = "drop")
 
 # spread the mean column into A and B columns
 data_spread <- spread(data_summarised, var, mean)
@@ -246,7 +368,7 @@ data <- rename(
             variable, value, A1:B2), 
           variable, c("var", "var_n"), sep = 1), 
         id, var), 
-      mean = mean(value)), 
+      mean = mean(value), .groups = "drop"), 
     var, mean), 
   A_mean = A, B_mean = B)
 
@@ -266,7 +388,7 @@ data <- tibble(
   gather(variable, value, A1:B2) %>%
   separate(variable, c("var", "var_n"), sep=1) %>%
   group_by(id, var) %>%
-  summarise(mean = mean(value)) %>%
+  summarise(mean = mean(value), .groups = "drop") %>%
   spread(var, mean) %>%
   rename(A_mean = A, B_mean = B)
   
@@ -283,7 +405,7 @@ You can read this code from top to bottom as follows:
 2. Gather to create `variable` and `value` column from columns `A_1` to `B_2`; and then
 3. Separate the column `variable` into 2 new columns called `var`and `var_n`, separate at character 1; and then
 4. Group by columns `id` and `var`; and then
-5. Summarise and new column called `mean` as the mean of the `value` column for each group; and then
+5. Summarise and new column called `mean` as the mean of the `value` column for each group and drop the grouping; and then
 6. Spread to make new columns with the key names in `var` and values in `mean`; and then
 7. Rename to make columns called `A_mean` (old `A`) and `B_mean` (old `B`)
 
@@ -296,8 +418,8 @@ You can debug a pipe by highlighting from the beginning to just before the pipe 
 
 Chain all the steps above using pipes.
     
-```{r ocean-pipe}
-ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.csv") %>%
+```{r personality-pipe}
+personality_reshaped <- personality %>%
   gather("question", "score", Op1:Ex9) %>%
   separate(question, c("domain", "qnumber"), sep = 2) %>%
   unite("domain_n", domain, qnumber, sep = "_Q") %>%
@@ -309,49 +431,55 @@ ocean <- read_csv("https://psyteachr.github.io/msc-data-skills/data/personality.
 
 ### Load Data 
 
-{#data-infmort}
-Get data on infant mortality rates from the CSV file 
-[`infmort.csv`](data/infmort.csv) in the directory `data`.
+Get data on infant and maternal mortality rates from the dataskills package. If you don't have the package, you can download them here:
+
+* [infant mortality](https://psyteachr.github.io/msc-data-skills/data/infmort.csv)  
+* [maternal mortality](https://psyteachr.github.io/msc-data-skills/data/matmort.xls)  
 
 ```{r load-infmort}
-infmort <- read_csv("data/infmort.csv")
-glimpse(infmort)
+data("infmort", package = "dataskills")
+head(infmort)
 ```
 
-{#data-matmort}
-Get data on maternal mortality from from the excel file 
-[`matmort.xls`](data/matmort.xls) in the directory `data`
 
 ```{r load-matmort}
-matmort <- read_xls("data/matmort.xls")
-glimpse(matmort)
+data("matmort", package = "dataskills")
+head(matmort)
 ```
 
-Get data on country codes from [https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv](https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv)
 
-```{r load-ccodes}
-ccodes <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
-glimpse(ccodes)
-```
 
 ### Wide to Long
 
-`matmort` is in wide format, with a separate column for each year. Change it to long format, with a row for each County/Year observation.
+`matmort` is in wide format, with a separate column for each year. Change it to long format, with a row for each Country/Year observation.
   
 This example is complicated because the column names to gather _are_ numbers. If the column names are non-standard (e.g., have spaces, start with numbers, or have special characters), you can enclose them in backticks (\`) like the example below.
 
 ```{r matmort-long}
 
 matmort_long <- matmort %>%
-  gather("Year", "stats", `1990`:`2015`)
+  pivot_longer(cols = `1990`:`2015`,
+               names_to = "Year",
+               values_to = "stats") %>%
+  glimpse()
 
-glimpse(matmort_long)
+```
 
+```{block type="info"}
+You can put `matmort` at the first argument to `pivot_longer()`; you don't have to pipe it in. But when I'm working on data processing I often find myself needing to insert or rearrange steps and I constantly introduce errors by forgetting to take the first argument out of a pipe chain, so now I start with the original data table and pipe from there.
+```
+
+Alternatively, you can use the `gather()` function.
+
+```{r matmort-long-gather}
+matmort_long <- matmort %>%
+  gather("Year", "stats", `1990`:`2015`) %>%
+  glimpse()
 ```
 
 ### One Piece of Data per Column
 
-The data in the `stats` column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with `mutate`. 
+The data in the `stats` column is in an unusual format with some sort of confidence interval in brackets and lots of extra spaces. We don't need any of the spaces, so first we'll remove them with `mutate()`, which we'll learn more about in the next lesson.
 
 The `separate` function will separate your data on anything that is not a number or letter, so try it first without specifying the `sep` argument. The `into` argument is a list of the new column names.
 
@@ -359,9 +487,8 @@ The `separate` function will separate your data on anything that is not a number
 
 matmort_split <- matmort_long %>%
   mutate(stats = gsub(" ", "", stats)) %>%
-  separate(stats, c("rate", "ci_low", "ci_hi"))
-
-glimpse(matmort_split)
+  separate(stats, c("rate", "ci_low", "ci_hi")) %>%
+  glimpse()
 
 ```
 
@@ -375,8 +502,7 @@ flexible way to do search and replace. The example above replaces all occurances
 
 ```{block, type="warning"}
 The previous example should have given you an error warning about 
-"Too many values at 543 locations". This is because `separate` splits the column at the brackets and dashes, so the text `100[90-110]` would split into four values `c("100", "90", "110", "")`, but we only specified 3 new columns. The fourth value 
-is always empty (just the part after the last bracket), so we are happy to drop it, but `separate` generates a warning so you don't do that accidentally. You can turn off the warning by adding the `extra` argument and setting it to "drop". Look at the help for `??tidyr::separate` to see what the other options do.
+"Additional pieces discarded in 543 rows". This is because `separate` splits the column at the brackets and dashes, so the text `100[90-110]` would split into four values `c("100", "90", "110", "")`, but we only specified 3 new columns. The fourth value is always empty (just the part after the last bracket), so we are happy to drop it, but `separate` generates a warning so you don't do that accidentally. You can turn off the warning by adding the `extra` argument and setting it to "drop". Look at the help for `??tidyr::separate` to see what the other options do.
 ```
 
 
@@ -384,26 +510,24 @@ is always empty (just the part after the last bracket), so we are happy to drop 
 
 matmort_split <- matmort_long %>%
   mutate(stats = gsub(" ", "", stats)) %>%
-  separate(stats, c("rate", "ci_low", "ci_hi"), extra = "drop")
-
-glimpse(matmort_split)
+  separate(stats, c("rate", "ci_low", "ci_hi"), extra = "drop") %>%
+  glimpse()
 
 ```
 
 #### Set delimiters with `sep` {#sep}
 
-Now do the same with `infmort`. It's already in long format, so you don't need to use `gather`, but the third column has a crazy long name, so we can just refer to it by its column number (3).
+Now do the same with `infmort`. It's already in long format, so you don't need to use `gather`, but the third column has a ridiculously long name, so we can just refer to it by its column number (3).
 
 ```{r infmort-split-sep}
 
 infmort_split <- infmort %>%
-  separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop")
-
-glimpse(infmort_split)
+  separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop") %>%
+  glimpse()
 
 ```
 
-*Wait, that didn't work at all!* It split the column on spaces, brackets, _and_ full stops. We just want to split on the spaces, brackets and dashes. So we need to manually set `sep` to what the delimiters are. Also, once there are more than a few arguments specified for a function, it's easier to read them if you put one argument on each line.
+**Wait, that didn't work at all!** It split the column on spaces, brackets, _and_ full stops. We just want to split on the spaces, brackets and dashes. So we need to manually set `sep` to what the delimiters are. Also, once there are more than a few arguments specified for a function, it's easier to read them if you put one argument on each line.
 
 {#regex}
 ```{block, type="warning"}
@@ -419,9 +543,8 @@ infmort_split <- infmort %>%
     into = c("rate", "ci_low", "ci_hi"), 
     extra = "drop", 
     sep = "(\\[|-|])"
-  )
-
-glimpse(infmort_split)
+  ) %>%
+  glimpse()
 
 ```
 
@@ -432,9 +555,12 @@ That's better. Notice the _<chr>_ next to `Year`, `rate`, `ci_low` and `ci_hi`. 
 ```{r infmort-split-convert}
 
 infmort_split <- infmort %>%
-  separate(3, c("rate", "ci_low", "ci_hi"), extra = "drop", sep = "(\\[|-|])", convert = TRUE)
-
-glimpse(infmort_split)
+  separate(col = 3, 
+           into = c("rate", "ci_low", "ci_hi"), 
+           extra = "drop", 
+           sep = "(\\[|-|])", 
+           convert = TRUE) %>%
+  glimpse()
   
 ```
 
@@ -444,278 +570,98 @@ Do the same for `matmort`.
 
 matmort_split <- matmort_long %>%
   mutate(stats = gsub(" ", "", stats)) %>%
-  separate(stats, c("rate", "ci_low", "ci_hi"), extra = "drop", convert = TRUE)
-
-glimpse(matmort_split)
+  separate(col = stats, 
+           into = c("rate", "ci_low", "ci_hi"), 
+           extra = "drop", 
+           convert = TRUE) %>%
+  glimpse()
 
 ```
 
 ### All in one step
 
-We can chain all the steps above together, since we don't need those intermediate dataframes.
+We can chain all the steps for `matmort` above together, since we don't need those intermediate data tables.
 
-```{r all-in-1}
+```{r matmort-pipes}
 
-infmort <- read_csv("data/infmort.csv") %>%
-  separate(
-    3, 
-    c("rate", "ci_low", "ci_hi"), 
-    extra = "drop", 
-    sep = "(\\[|-|])", 
-    convert = TRUE
-  )
-
-matmort <- read_xls("data/matmort.xls") %>%
+matmort2<- dataskills::matmort %>%
   gather("Year", "stats", `1990`:`2015`) %>%
   mutate(stats = gsub(" ", "", stats)) %>%
   separate(
-    stats, 
-    c("rate", "ci_low", "ci_hi"), 
+    col = stats, 
+    into = c("rate", "ci_low", "ci_hi"), 
     extra = "drop", 
     convert = TRUE
-  )
-
-glimpse(matmort)
-glimpse(infmort)
+  ) %>%
+  glimpse()
 
 ```
 
 
 ### Columns by Year
 
-Spread out the infant mortality rate by year.
+Spread out the maternal mortality rate by year.
 
 ```{r infmort-wide-spread}
 
-infmort_wide <- infmort %>%
-  spread(Year, rate)
-
-glimpse(infmort_wide)
+matmort_wide <- matmort2 %>%
+  spread(key = Year, value = rate) %>%
+  print()
 
 ```
 
 ```{block, type="warning"}
-Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because `spread` matches on all the remaining columns, so Afghanistan with `ci_low` of 52.7 is treated as a different observation than Afghanistan with `ci_low` of 55.7. We can fix this by merging the `rate`, `ci_low` and `ci_hi` columns back together.
+Nope, that didn't work at all, but it's a really common mistake when spreading data. This is because `spread` matches on all the remaining columns, so Afghanistan with `ci_low` of 253 is treated as a different observation than Afghanistan with `ci_low` of 745. 
 ```
 
-### Merge Columns
+This is where `pivot_wider()` can be very useful. You can set `values_from` to multiple column names and their names will be added to the `names_from` values. 
 
-Merge the rate and confidence intervals into one column.
-
-```{r infmort-united}
-
-infmort_united <- infmort %>%
-  unite(rate_ci, rate, ci_low, ci_hi)
-
-glimpse(infmort_united)
-
+```{r}
+matmort_wide <- matmort2 %>%
+  pivot_wider(
+    names_from = Year,
+    values_from = c(rate, ci_low, ci_hi)
+  )
+              
+glimpse(matmort_wide)
 ```
 
+### Experimentum Data
 
-#### Control separation with `sep`
+Students in the Institute of Neuroscience and Psychology at the University of Glasgow can use the online experiment builder platform, [Experimentum](https://debruine.github.io/experimentum/). The platform is also [open source on github](https://github.com/debruine/experimentum) for anyone who can install it on a web server. It allows you to group questionnaires and experiments into **projects** with randomisation and counterbalancing. Data for questionnaires and experiments are downloadable in long format, but researchers often need to put them in wide format for analysis.
 
-`unite()` separates merged names with an underscore by default. 
-Set the `sep` argument if you want to change that.
+Look at the help menu for built-in dataset `dataskills::experimentum_quests` to learn what each column is. Subjects are asked questions about dogs to test the different questionnaire response types.
 
-```{r infmort-united-sep}
+* current: Do you own a dog? (yes/no)  
+* past: Have you ever owned a dog? (yes/no)  
+* name: What is the best name for a dog? (free short text)  
+* good: How good are dogs? (1=pretty good:7=very good)  
+* country: What country do borzois come from?  
+* good_borzoi: How good are borzois? (0=pretty good:100=very good)  
+* text: Write some text about dogs. (free long text)  
+* time: What time is it? (time)
 
-infmort_united <- infmort %>%
-  unite(rate_ci, rate, ci_low, ci_hi, sep = ", ")
+To get the dataset into wide format, where each question is in a separate column, use the following code:
 
-glimpse(infmort_united)
-
+```{r}
+q <- dataskills::experimentum_quests %>%
+  pivot_wider(id_cols = session_id:user_age,
+              names_from = q_name,
+              values_from = dv) %>%
+  type.convert(as.is = TRUE) %>%
+  print()
 ```
 
-```{block, type="info"}
-What if you want to put it back into the format "rate [ci_low - ci_hi]"? Then, `mutate` and `paste` are a better choice than `unite`, but you have to get rid of the `rate`, `ci_low` and `ci_hi` columns with `select`. You'll learn more about these function in the [Data Manipulation](04_dplyr.html) lesson.
-```
+```{block type="info"}
 
+The responses in the `dv` column have multiple types (e.g., `r glossary("integer")`, `r glossary("double")`, and `r glossary("character")`), but they are all represented as character strings when they're in the same column. After you spread the data to wide format, each column should be given the ocrrect data type. The function `type.convert()` makes a best guess at what type each new column should be and converts it. The argument `as.is = TRUE` converts columns where none of the numbers have decimal places to integers.
 
-```{r infmort-united-mutate}
-
-infmort_united <- infmort %>%
-  mutate(rate_ci = paste0(rate, " [", ci_low, " - ", ci_hi, "]"))
-
-glimpse(infmort_united)
-
-```
-
-
-Now let's try spreading on year again. Notice here we're uniting columns `rate:ci_hi`, instead of `rate, ci_low, ci_hi`. The colon just says to select all the columns between the first and last named ones. Check the help documentation for `??tidyr::unite` and `??tidyr::select` to see other ways to select columns.
-
-```{r infmort-wide}
-
-infmort_wide <- infmort %>%
-  unite(rate_ci, rate:ci_hi, sep = ", ") %>%
-  spread(Year, rate_ci)
-
-glimpse(infmort_wide)
 ```
 
 
 ## Glossary {#glossary4}
 
 `r glossary_table()`
-
-## Quiz {#tidyr-quiz}
-
-For questions 1-4, choose how to turn table A into table B. There may be more than one right answer.
-
-```{r, echo = FALSE, results='asis'}
-A <- faux::sim_design(
-  within = list(time = c("morning", "noon", "night")),
-  between = list(pet = c("dog", "cat")),
-  n = 2, plot = FALSE
-)
-
-B <- gather(A, time, score, morning:night)
-
-cat("1. <pre class=\"mcq\">")
-c("gather(A, \"pet\", \"score\", dog:cat)",
-  "gather(A, \"pet\", \"time\", morning, noon, night)",
-  "gather(A, \"time\", morning, noon, night)",
-  answer = "gather(A, \"time\", \"score\", morning:night)",
-  answer = "gather(A, \"time\", \"score\", morning, noon, night)"
-) %>% sample() %>% webex::mcq() %>% cat()
-cat("</pre>")
-```
-    
-    ```{r, echo = FALSE, results='asis'}
-    knitr::kable(A, caption = "Table A (source)")
-    knitr::kable(B, caption = "Table B (goal)")
-    ```
-
-
-
-```{r, echo = FALSE, results='asis'}
-A <- faux::sim_design(
-  between = list(pet_number = c("dog_1", "cat_1", "dog_2", "cat_2")),
-  dv = "score",
-  n = 1, plot = FALSE
-)
-
-B <- separate(A, pet_number, c("pet", "number"), sep = "\\.")
-
-cat("2. <pre class=\"mcq\">")
-c(answer = "separate(A, pet_number, c(\"pet\", \"number\"))",
-  answer = "separate(A, pet_number, c(\"pet\", \"number\"), sep = \"\\\\.\")",
-  "separate(A, pet_number, c(\"pet\", \"number\"), sep = \".\")",
-  "separate(A, \"pet\", \"number\")",
-  "separate(A, c(\"pet\", \"number\"))",
-  "separate(A, \"pet\", \"number\", pet_number)",
-  "separate(A, pet_number, \"pet\", \"number\")"
-) %>% sample() %>% webex::mcq() %>% cat()
-cat("</pre>")
-```
-    
-    ```{r, echo = FALSE, results='asis'}
-    knitr::kable(A, caption = "Table A (source)")
-    knitr::kable(B, caption = "Table B (goal)")
-    ```
-
-```{r, echo = FALSE, results='asis'}
-A <- faux::sim_design(
-  between = list(pet = c("dog", "cat"),
-                 pref = c("lover", "hater")),
-  dv = "score",
-  n = 1, plot = FALSE
-)
-
-B <- unite(A, pet_pref, pet, pref, remove = FALSE)
-
-cat("3. <pre class=\"mcq\">")
-c(answer = "unite(A, pet_pref, pet, pref, remove = FALSE)",
-  answer = "unite(A, \"pet_pref\", pet, pref, remove = FALSE)",
-  "unite(A, pet_pref, pet, pref)",
-  "unite(A, \"pet_pref\", pet, pref)",
-  "unite(A, pet, pref, \"pet_pref\", remove = FALSE)",
-  "unite(A, pet, pref, pet_pref, remove = FALSE)"
-) %>% sample() %>% webex::mcq() %>% cat()
-cat("</pre>")
-```
-    
-    ```{r, echo = FALSE, results='asis'}
-    knitr::kable(A, caption = "Table A (source)")
-    knitr::kable(B, caption = "Table B (goal)")
-    ```
-
-
-```{r, echo = FALSE, results='asis'}
-A <- faux::sim_design(
-  within = list(time = c("morning", "night")),
-  between = list(pet = c("dog", "cat")),
-  dv = "score", n = 2, plot = FALSE, long = TRUE
-) %>%
-  filter(row_number() != 8)
-
-B <- spread(A, time, score, sep = "_")
-
-cat("4. <pre class=\"mcq\">")
-c(answer = "spread(A, time, score, sep = \"_\")",
-  answer = "spread(A, 3, 4, sep = \"_\")",
-  "spread(A, time, score, drop = FALSE)",
-  "spread(A, time, score)",
-  "spread(A, time, score, fill = 0)"
-) %>% sample() %>% webex::mcq() %>% cat()
-cat("</pre>")
-```
-    
-    ```{r, echo = FALSE, results='asis'}
-    knitr::kable(A, caption = "Table A (source)")
-    knitr::kable(B, caption = "Table B (goal)")
-    ```
-
-5. Put the built-in dataset `iris` into the following format.
-    ```{r, echo = FALSE, results='asis'}
-    iris %>%
-      gather(var, value, Sepal.Length:Petal.Width) %>%
-      separate(var, into = c("feature", "dimension")) %>%
-      head() %>%
-      knitr::kable()
-    ```
-    
-    ```{r, eval = FALSE, webex.hide = TRUE}
-    iris %>%
-      gather(var, value, Sepal.Length:Petal.Width) %>%
-      separate(var, into = c("feature", "dimension"))
-    ```
-
-6. Re-write the following code using pipes. Assign the resulting data table to a variable called `data`.
-
-    ```{r, eval = FALSE}
-    
-    # make a data table with 5 subjects providing 2 scores (A and B) in each of 2 conditions
-    data_original <- tibble(
-      id = c(1:5, 1:5),
-      condition = rep(1:2, each = 5),
-      A = rnorm(10),
-      B = rnorm(10)
-    )
-    
-    # gather columns A and B into "score_type" and "score" columns
-    data_gathered <- gather(data_original, score_type, score, A:B)
-    
-    # unite the score_type and condition columns into a column called "cell"
-    data_united <- unite(data_gathered, cell, score_type, condition, sep = "")
-    
-    # spread the score column into cells
-    data_spread <- spread(data_united, cell, score)
-    
-    ```
-
-    ```{r, eval = FALSE, webex.hide = TRUE}
-    
-    data <- tibble(
-      id = c(1:5, 1:5),
-      condition = rep(1:2, each = 5),
-      A = rnorm(10),
-      B = rnorm(10)
-    ) %>%
-      gather(score_type, score, A:B) %>%
-      unite(cell, score_type, condition, sep = "") %>%
-      spread(cell, score)
-    
-    ```
 
 
 ## Exercises
