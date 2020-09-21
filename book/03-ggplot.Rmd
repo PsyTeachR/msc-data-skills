@@ -353,7 +353,7 @@ ggplot(pets, aes(age, score, color = pet)) +
 
 You often want to represent the relationship as a single line.
 
-```{r line, fig.cap="Line plot using geom_smooth()"}
+```{r smooth, fig.cap="Line plot using geom_smooth()"}
 ggplot(pets, aes(age, score, color = pet)) +
   geom_smooth(formula = y ~ x, method="lm")
 ```

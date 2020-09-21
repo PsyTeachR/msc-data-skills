@@ -12,7 +12,7 @@ description: "This course provides an overview of skills needed for reproducible
 # Overview {-}
 
 <img src="images/data_skills.png" style="width: 200px; float: right;"
-     alt="Hex sticker, blue, text: MSC DATA SKILLS>
+     alt="Hex sticker, blue, text: MSC DATA SKILLS">
 
 This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.
 
@@ -104,7 +104,7 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 ## Course Resources
 
-Each chapter has several short video lectures for the main learning outcomes at the playlist [Data Skills](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility.
+Each chapter has several short video lectures for the main learning outcomes at the playlist [Data Skills](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are avilable on the course Moodle and by request from the instructor.
 
 There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills). You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
 
