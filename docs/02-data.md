@@ -1,23 +1,24 @@
 # Working with Data {#data}
 
-<img src="images/memes/read_csv.png" class="meme right">
+<img src="images/memes/read_csv.png" class="meme right"
+     alt = "Top left: Pooh Bear in a red shirt looking sad; Top right: read.csv() in outline font; Bottom left: Pooh Bear in a tuxedo looking smug; Bottom right: read_csv() in handwritten font">
 
 ## Learning Objectives
 
-1. Load [built-in datasets](#builtin)
-2. [Import data](#import_data) from CSV and Excel files
-3. Create a [data table](#tables)
-4. Understand the use the [basic data types](#data_types)
-5. Understand and use the [basic container types](#containers) (list, vector)
-6. Use [vectorized operations](#vectorized_ops)
-
+1. Load [built-in datasets](#builtin) [(video)](https://youtu.be/Z5fK5VGmzlY){class="video"}
+2. [Import data](#import_data) from CSV and Excel files [(video)](https://youtu.be/a7Ra-hnB8l8){class="video"}
+3. Create a [data table](#tables) [(video)](https://youtu.be/k-aqhurepb4){class="video"}
+4. Understand the use the [basic data types](#data_types) [(video)](https://youtu.be/jXQrF18Jaac){class="video"}
+5. Understand and use the [basic container types](#containers) (list, vector) [(video)](https://youtu.be/4xU7uKNdoig){class="video"}
+6. Use [vectorized operations](#vectorized_ops) [(video)](https://youtu.be/9I5MdS7UWmI){class="video"}
+7. Be able to [troubleshoot](#Troubleshooting) common data import problems [(video)](https://youtu.be/gcxn4LJ_vAI){class="video"}
 
 
 
 ## Resources
 
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
-* [RStudio Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-import-cheatsheet.pdf)
+* [RStudio Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
 * [Scottish Babynames](https://www.nrscotland.gov.uk/files//statistics/babies-first-names-full-list/summary-records/babies-names16-all-names-years.csv)
 * [Developing an analysis in R/RStudio: Scottish babynames (1/2)](https://www.youtube.com/watch?v=lAaVPMcMs1w)
 * [Developing an analysis in R/RStudio: Scottish babynames (2/2)](https://www.youtube.com/watch?v=lzdTHCcClqo)
@@ -899,7 +900,7 @@ tidiest
 ```
 
 
-## Glossary
+## Glossary {#glossary2}
 
 
 

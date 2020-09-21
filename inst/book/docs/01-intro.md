@@ -17,7 +17,7 @@
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
-* [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+* [R Markdown Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
 * [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 
@@ -352,8 +352,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.20384277  0.96688267  1.88396001  1.45831749  0.03896113 -0.10014306
-##  [7]  0.74044033 -0.76699267 -1.74144231 -0.16500428
+##  [1]  1.4360589 -0.1318414  0.3068686  1.4070428  0.4215832 -1.0828898
+##  [7] -1.2401611  0.0577206 -0.6359958  1.6342735
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -364,8 +364,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  97.73660  99.07303  99.19990 100.90338  96.50546 100.93076  98.95138
-##  [8]  99.28327  99.36264  99.95147
+##  [1]  98.85022  99.99255  99.98995 100.31463 100.35992  99.81634  99.25089
+##  [8]  99.60180 100.11002  99.56796
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -376,8 +376,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.20185 100.21152  99.23138  98.40846 100.62282 100.62669 101.09040
-##  [8] 100.28609  99.86802  99.08204
+##  [1]  99.26586 100.51477 100.42743  99.38060  99.19447  99.98355 100.20818
+##  [8] 100.14821 100.44520  97.59245
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -388,8 +388,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   31.43331  131.26876  -83.81535 -188.45527  -39.90805  -76.82985
-##  [7]  126.52885   19.00928   50.61698  129.40370
+##  [1]   72.74558  110.72249   24.53404 -103.01845  103.93365  -27.32416
+##  [7]   -5.31533  243.98040  235.19727  -33.01027
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -652,7 +652,7 @@ dat <- read_csv("C:/Carla's_files/thesis22/my_thesis/new_analysis/data/questionn
 <p>Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.</p>
 </div>
 
-## Glossary
+## Glossary  {#glossary1}
 
 Each chapter ends with a glossary table defining the jargon introduced in this chapter. The links below take you to the [glossary book](https://psyteachr.github.io/glossary), which you can also download for offline use with `devtools::install_github("psyteachr/glossary")` and access the glossary offline with `glossary::book()`.
 

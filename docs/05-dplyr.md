@@ -1,6 +1,7 @@
 # Data Wrangling {#dplyr}
 
-<img src="images/memes/real_world_data.jpg" class="meme right">
+<img src="images/memes/real_world_data.jpg" class="meme right" 
+     alt="A cute golden retriever labelled 'iris & mtcars' and a scary werewolf labelled 'Real world data'">
 
 ## Learning Objectives
 
@@ -13,26 +14,25 @@
     + [`mutate()`](#mutate)
     + [`summarise()`](#summarise)
     + [`group_by()`](#group_by)
-
-### Intermediate
-
 2. Also know these additional one-table verbs:
     + [`rename()`](#rename)
     + [`distinct()`](#distinct)
     + [`count()`](#count)
     + [`slice()`](#slice)
     + [`pull()`](#pull)
-    
-### Advanced
+
+### Intermediate
 
 3. Fine control of [`select()` operations](#select_helpers)
+
+### Advanced
+
 4. Use [window functions](#window)
 
 ## Resources
 
 * [Chapter 5: Data Transformation](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
-* [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf)
-* [Lecture slides on dplyr one-table verbs](slides/04_dplyr_slides.pdf)
+* [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Chapter 16: Date and times](http://r4ds.had.co.nz/dates-and-times.html) in *R for Data Science*
 
 ## Setup
@@ -44,47 +44,26 @@ You'll need the following packages.
 # libraries needed for these examples
 library(tidyverse)
 library(lubridate)
+library(dataskills)
 set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 
-## The `disgust` dataset {#data-disgust}
+### The `disgust` dataset {#data-disgust}
 
-These examples will use data from [disgust.csv](/data/disgust.csv), which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
+These examples will use data from `dataskills::disgust`, which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`. Look at the Help for this dataset to see the individual questions.
 
 
 ```r
-disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
+data("disgust", package = "dataskills")
+
+#disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
 ```
 
-*Questionnaire Instructions*: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.
 
-| colname   | question                                                                          |
-|----------:|:----------------------------------------------------------------------------------|
-| moral1 	  | Shoplifting a candy bar from a convenience store                                  |
-| moral2	  | Stealing from a neighbor                                                          |
-| moral3	  | A student cheating to get good grades                                             |
-| moral4	  | Deceiving a friend                                                                |
-| moral5	  | Forging someone's signature on a legal document                                   |
-| moral6	  | Cutting to the front of a line to purchase the last few tickets to a show         |
-| moral7	  | Intentionally lying during a business transaction                                 |
-| sexual1	  | Hearing two strangers having sex                                                  |
-| sexual2	  | Performing oral sex                                                               |
-| sexual3	  | Watching a pornographic video                                                     |
-| sexual4	  | Finding out that someone you don't like has sexual fantasies about you            |
-| sexual5	  | Bringing someone you just met back to your room to have sex                       |
-| sexual6	  | A stranger of the opposite sex intentionally rubbing your thigh in an elevator    |
-| sexual7	  | Having anal sex with someone of the opposite sex                                  |
-| pathogen1	| Stepping on dog poop                                                              |
-| pathogen2	| Sitting next to someone who has red sores on their arm                            |
-| pathogen3	| Shaking hands with a stranger who has sweaty palms                                |
-| pathogen4	| Seeing some mold on old leftovers in your refrigerator                            |
-| pathogen5	| Standing close to a person who has body odor                                      |
-| pathogen6	| Seeing a cockroach run across the floor                                           |
-| pathogen7	| Accidentally touching a person's bloody cut                                       |
 ## Six main dplyr verbs
 
-Most of the data wrangling you'll want to do with psychological data will involve the `tidyr` verbs you learned in [Chapter 3](#tidyr) and the six main `dplyr` verbs: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`.
+Most of the <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> you'll want to do with psychological data will involve the `tidyr` functions you learned in [Chapter 4](#tidyr) and the six main `dplyr` verbs: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`.
 
 ### select() {#select}
 
@@ -129,9 +108,11 @@ names(pathogen)
 ## [7] "pathogen6" "pathogen7"
 ```
 
-You can select columns based on criteria about the column names.{#select_helpers}
+#### Select helpers {#select_helpers}
 
-#### `starts_with()` {#starts_with}
+You can select columns based on criteria about the column names.
+
+##### `starts_with()` {#starts_with}
 
 Select columns that start with a character string.
 
@@ -145,7 +126,7 @@ names(u)
 ## [1] "user_id"
 ```
 
-#### `ends_with()` {#ends_with}
+##### `ends_with()` {#ends_with}
 
 Select columns that end with a character string.
 
@@ -159,7 +140,7 @@ names(firstq)
 ## [1] "moral1"    "sexual1"   "pathogen1"
 ```
 
-#### `contains()` {#contains}
+##### `contains()` {#contains}
 
 Select columns that contain a character string.
 
@@ -174,7 +155,7 @@ names(pathogen)
 ## [7] "pathogen7"
 ```
 
-#### `num_range()` {#num_range}
+##### `num_range()` {#num_range}
 
 Select columns with a name that matches the pattern `prefix`.
 
@@ -245,11 +226,11 @@ moral_extremes <- disgust %>%
 moral_consistent <- disgust %>% 
   filter(
     moral2 == moral1 & 
-      moral3 == moral1 & 
-      moral4 == moral1 &
-      moral5 == moral1 &
-      moral6 == moral1 &
-      moral7 == moral1
+    moral3 == moral1 & 
+    moral4 == moral1 &
+    moral5 == moral1 &
+    moral6 == moral1 &
+    moral7 == moral1
   )
 
 # everyone who did not answer 7 for all 7 moral questions
@@ -257,7 +238,9 @@ moral_no_ceiling <- disgust %>%
   filter(moral1+moral2+moral3+moral4+moral5+moral6+moral7 != 7*7)
 ```
 
-Sometimes you need to exclude some participant IDs for reasons that can't be described in code. the `%in%` operator is useful here for testing if a column value is in a list. Surround the equation with parentheses and put `!` in front to test that a value is not in the list.
+#### Match operator (%in%) {#match-operator}
+
+Sometimes you need to exclude some participant IDs for reasons that can't be described in code. The match operator (`%in%`) is useful here for testing if a column value is in a list. Surround the equation with parentheses and put `!` in front to test that a value is not in the list.
 
 
 ```r
@@ -265,17 +248,34 @@ no_researchers <- disgust %>%
   filter(!(user_id %in% c(1,2)))
 ```
 
+
 #### Dates {#dates}
 
 You can use the `lubridate` package to work with dates. For example, you can use the `year()` function to return just the year from the `date` column and then select only data collected in 2010.
 
 
 ```r
-disgust2010 <- disgust  %>%
+disgust2010 <- disgust %>%
   filter(year(date) == 2010)
 ```
 
-Or select data from at least 5 years ago. You can use the `range` function to check the minimum and maxiumum dates in the resulting dataset.
+
+
+Table: (\#tab:dates-year)Rows 1-6 from `disgust2010`
+
+|   id| user_id|date       | moral1| moral2| moral3| moral4| moral5| moral6| moral7| sexual1| sexual2| sexual3| sexual4| sexual5| sexual6| sexual7| pathogen1| pathogen2| pathogen3| pathogen4| pathogen5| pathogen6| pathogen7|
+|----:|-------:|:----------|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+| 6902|    5469|2010-12-06 |      0|      1|      3|      4|      1|      0|      1|       3|       5|       2|       4|       6|       6|       5|         5|         2|         4|         4|         2|         2|         6|
+| 6158|    6066|2010-04-18 |      4|      5|      6|      5|      5|      4|      4|       3|       0|       1|       6|       3|       5|       3|         6|         5|         5|         5|         5|         5|         5|
+| 6362|    7129|2010-06-09 |      4|      4|      4|      4|      3|      3|      2|       4|       2|       1|       3|       2|       3|       6|         5|         2|         0|         4|         5|         5|         4|
+| 6302|   39318|2010-05-20 |      2|      4|      1|      4|      5|      6|      0|       1|       0|       0|       1|       0|       0|       1|         3|         2|         3|         2|         3|         2|         4|
+| 5429|   43029|2010-01-02 |      1|      1|      1|      3|      6|      4|      2|       2|       0|       1|       4|       6|       6|       6|         4|         6|         6|         6|         6|         6|         4|
+| 6732|   71955|2010-10-15 |      2|      5|      3|      6|      3|      2|      5|       4|       3|       3|       6|       6|       6|       5|         4|         2|         6|         5|         6|         6|         3|
+
+
+
+
+Or select data from at least 5 years ago. You can use the `range` function to check the minimum and maximum dates in the resulting dataset.
 
 
 ```r
@@ -286,70 +286,64 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2015-08-18"
+## [1] "2008-07-10" "2015-09-21"
 ```
 
 
 ### arrange() {#arrange}
 
-Sort your dataset using `arrange()`.
+Sort your dataset using `arrange()`. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But `arrange()` can be useful when preparing data from display in tables.
 
 
 ```r
 disgust_order <- disgust %>%
-  arrange(id)
-
-head(disgust_order)
+  arrange(date, moral1)
 ```
 
-```
-## # A tibble: 6 x 24
-##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
-##   <dbl>   <dbl> <date>      <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1     1       1 2008-07-10      2      2      1      2      1      1      1
-## 2     3  155324 2008-07-11      2      4      3      5      2      1      4
-## 3     4  155366 2008-07-12      6      6      6      3      6      6      6
-## 4     5  155370 2008-07-12      6      6      4      6      6      6      6
-## 5     6  155386 2008-07-12      2      4      0      4      0      0      0
-## 6     7  155409 2008-07-12      4      5      5      4      5      1      5
-## # … with 14 more variables: sexual1 <dbl>, sexual2 <dbl>, sexual3 <dbl>,
-## #   sexual4 <dbl>, sexual5 <dbl>, sexual6 <dbl>, sexual7 <dbl>,
-## #   pathogen1 <dbl>, pathogen2 <dbl>, pathogen3 <dbl>, pathogen4 <dbl>,
-## #   pathogen5 <dbl>, pathogen6 <dbl>, pathogen7 <dbl>
-```
+
+
+Table: (\#tab:arrange)Rows 1-6 from `disgust_order`
+
+| id| user_id|date       | moral1| moral2| moral3| moral4| moral5| moral6| moral7| sexual1| sexual2| sexual3| sexual4| sexual5| sexual6| sexual7| pathogen1| pathogen2| pathogen3| pathogen4| pathogen5| pathogen6| pathogen7|
+|--:|-------:|:----------|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|  1|       1|2008-07-10 |      2|      2|      1|      2|      1|      1|      1|       3|       1|       1|       2|       1|       2|       2|         3|         2|         3|         3|         2|         3|         3|
+|  3|  155324|2008-07-11 |      2|      4|      3|      5|      2|      1|      4|       1|       0|       1|       2|       2|       6|       1|         4|         3|         1|         0|         4|         4|         2|
+|  6|  155386|2008-07-12 |      2|      4|      0|      4|      0|      0|      0|       6|       0|       0|       6|       4|       4|       6|         4|         5|         5|         1|         6|         4|         2|
+|  7|  155409|2008-07-12 |      4|      5|      5|      4|      5|      1|      5|       3|       0|       1|       5|       2|       0|       0|         5|         5|         3|         4|         4|         2|         6|
+|  4|  155366|2008-07-12 |      6|      6|      6|      3|      6|      6|      6|       0|       0|       0|       0|       0|       0|       3|         4|         4|         5|         5|         4|         6|         0|
+|  5|  155370|2008-07-12 |      6|      6|      4|      6|      6|      6|      6|       2|       6|       4|       3|       6|       6|       6|         6|         6|         6|         2|         4|         4|         6|
+
+
 
 Reverse the order using `desc()`
 
 
 ```r
-disgust_order <- disgust %>%
-  arrange(desc(id))
-
-head(disgust_order)
+disgust_order_desc <- disgust %>%
+  arrange(desc(date))
 ```
 
-```
-## # A tibble: 6 x 24
-##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
-##   <dbl>   <dbl> <date>      <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1 39456  356866 2017-08-21      1      1      1      1      1      1      1
-## 2 39447  128727 2017-08-13      2      4      1      2      2      5      3
-## 3 39371  152955 2017-06-13      6      6      3      6      6      6      6
-## 4 39342   48303 2017-05-22      4      5      4      4      6      4      5
-## 5 39159  151633 2017-04-04      4      5      6      5      3      6      2
-## 6 38942  370464 2017-02-01      1      5      0      6      5      5      5
-## # … with 14 more variables: sexual1 <dbl>, sexual2 <dbl>, sexual3 <dbl>,
-## #   sexual4 <dbl>, sexual5 <dbl>, sexual6 <dbl>, sexual7 <dbl>,
-## #   pathogen1 <dbl>, pathogen2 <dbl>, pathogen3 <dbl>, pathogen4 <dbl>,
-## #   pathogen5 <dbl>, pathogen6 <dbl>, pathogen7 <dbl>
-```
+
+
+Table: (\#tab:arrange-desc)Rows 1-6 from `disgust_order_desc`
+
+|    id| user_id|date       | moral1| moral2| moral3| moral4| moral5| moral6| moral7| sexual1| sexual2| sexual3| sexual4| sexual5| sexual6| sexual7| pathogen1| pathogen2| pathogen3| pathogen4| pathogen5| pathogen6| pathogen7|
+|-----:|-------:|:----------|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+| 39456|  356866|2017-08-21 |      1|      1|      1|      1|      1|      1|      1|       1|       1|       1|       1|       1|       1|       1|         1|         1|         1|         1|         1|         1|         1|
+| 39447|  128727|2017-08-13 |      2|      4|      1|      2|      2|      5|      3|       0|       0|       1|       0|       0|       2|       1|         2|         0|         2|         1|         1|         1|         1|
+| 39371|  152955|2017-06-13 |      6|      6|      3|      6|      6|      6|      6|       1|       0|       0|       2|       1|       4|       4|         5|         0|         5|         4|         3|         6|         3|
+| 39342|   48303|2017-05-22 |      4|      5|      4|      4|      6|      4|      5|       2|       1|       4|       1|       1|       3|       1|         5|         5|         4|         4|         4|         4|         5|
+| 39159|  151633|2017-04-04 |      4|      5|      6|      5|      3|      6|      2|       6|       4|       0|       4|       0|       3|       6|         4|         4|         6|         6|         6|         6|         4|
+| 38942|  370464|2017-02-01 |      1|      5|      0|      6|      5|      5|      5|       0|       0|       0|       0|       0|       0|       0|         5|         0|         3|         3|         1|         6|         3|
+
+
 
 
 ### mutate() {#mutate}
 
 Add new columns. This is one of the most useful functions in the tidyverse.
 
-Refer to other columns by their names (unquoted). You can add more than one column, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., `total` below).
+Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., `total` below).
 
 
 ```r
@@ -363,9 +357,25 @@ disgust_total <- disgust %>%
   )
 ```
 
+
+
+Table: (\#tab:mutate)Rows 1-6 from `disgust_total`
+
+|    id|user_id |date       | moral1| moral2| moral3| moral4| moral5| moral6| moral7| sexual1| sexual2| sexual3| sexual4| sexual5| sexual6| sexual7| pathogen1| pathogen2| pathogen3| pathogen4| pathogen5| pathogen6| pathogen7| pathogen| moral| sexual| total|
+|-----:|:-------|:----------|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|--------:|-----:|------:|-----:|
+|  1199|U0      |2008-10-07 |      5|      6|      4|      6|      5|      5|      6|       4|       0|       1|       0|       1|       4|       5|         6|         1|         6|         5|         4|         5|         6|       33|    37|     15|    85|
+|     1|U1      |2008-07-10 |      2|      2|      1|      2|      1|      1|      1|       3|       1|       1|       2|       1|       2|       2|         3|         2|         3|         3|         2|         3|         3|       19|    10|     12|    41|
+|  1599|U2      |2008-10-27 |      1|      1|      1|      1|     NA|     NA|      1|       1|      NA|       1|      NA|       1|      NA|      NA|        NA|        NA|         1|        NA|        NA|        NA|        NA|       NA|    NA|     NA|    NA|
+| 13332|U2118   |2012-01-02 |      0|      1|      1|      1|      1|      2|      1|       4|       3|       0|       6|       0|       3|       5|         5|         6|         4|         6|         5|         5|         4|       35|     7|     21|    63|
+|    23|U2311   |2008-07-15 |      4|      4|      4|      4|      4|      4|      4|       2|       1|       2|       1|       1|       1|       5|         5|         5|         4|         4|         5|         4|         3|       30|    28|     13|    71|
+|  1160|U3630   |2008-10-06 |      1|      5|     NA|      5|      5|      5|      1|       0|       5|       0|       2|       0|       1|       0|         6|         3|         1|         1|         3|         1|         0|       15|    NA|      8|    NA|
+
+
+
 <div class="warning">
-<p>You can overwrite a column by giving a new column the same name as the old column. Make sure that you mean to do this and that you aren’t trying to use the old column value after you redefine it.</p>
+<p>You can overwrite a column by giving a new column the same name as the old column (see <code>user_id</code>) above. Make sure that you mean to do this and that you aren’t trying to use the old column value after you redefine it.</p>
 </div>
+
 
 ### summarise() {#summarise}
 
@@ -373,7 +383,7 @@ Create summary statistics for the dataset. Check the [Data Wrangling Cheat Sheet
 
 
 ```r
-disgust_total %>%
+disgust_summary<- disgust_total %>%
   summarise(
     n = n(),
     q25 = quantile(total, .25, na.rm = TRUE),
@@ -386,12 +396,15 @@ disgust_total %>%
   )
 ```
 
-```
-## # A tibble: 1 x 8
-##       n   q25   q50   q75 avg_total sd_total min_total max_total
-##   <int> <dbl> <dbl> <dbl>     <dbl>    <dbl>     <dbl>     <dbl>
-## 1 20000    59    71    83      70.7     18.2         0       126
-```
+
+
+Table: (\#tab:summarise)All rows from `disgust_summary`
+
+|     n| q25| q50| q75| avg_total| sd_total| min_total| max_total|
+|-----:|---:|---:|---:|---------:|--------:|---------:|---------:|
+| 20000|  59|  71|  83|   70.6868| 18.24253|         0|       126|
+
+
 
 
 ### group_by() {#group_by}
@@ -403,7 +416,7 @@ Here, we'll use `mutate` to create a new column called `year`, group by `year`, 
 
 
 ```r
-disgust_total %>%
+disgust_groups <- disgust_total %>%
   mutate(year = year(date)) %>%
   group_by(year) %>%
   summarise(
@@ -411,35 +424,40 @@ disgust_total %>%
     avg_total = mean(total, na.rm = TRUE),
     sd_total  = sd(total, na.rm = TRUE),
     min_total = min(total, na.rm = TRUE),
-    max_total = max(total, na.rm = TRUE)
+    max_total = max(total, na.rm = TRUE),
+    .groups = "drop"
   )
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
 
-```
-## # A tibble: 10 x 6
-##     year     n avg_total sd_total min_total max_total
-##    <dbl> <int>     <dbl>    <dbl>     <dbl>     <dbl>
-##  1  2008  2578      70.3     18.5         0       126
-##  2  2009  2580      69.7     18.6         3       126
-##  3  2010  1514      70.6     18.9         6       126
-##  4  2011  6046      71.3     17.8         0       126
-##  5  2012  5938      70.4     18.4         0       126
-##  6  2013  1251      71.6     17.6         0       126
-##  7  2014    58      70.5     17.2        19       113
-##  8  2015    21      74.3     16.9        43       107
-##  9  2016     8      67.9     32.6         0       110
-## 10  2017     6      57.2     27.9        21        90
-```
 
-You can use `filter` after `group_by`. The following example returns the lowest total score from each year.
+Table: (\#tab:group-by)All rows from `disgust_groups`
+
+| year|    n| avg_total| sd_total| min_total| max_total|
+|----:|----:|---------:|--------:|---------:|---------:|
+| 2008| 2578|  70.29975| 18.46251|         0|       126|
+| 2009| 2580|  69.74481| 18.61959|         3|       126|
+| 2010| 1514|  70.59238| 18.86846|         6|       126|
+| 2011| 6046|  71.34425| 17.79446|         0|       126|
+| 2012| 5938|  70.42530| 18.35782|         0|       126|
+| 2013| 1251|  71.59574| 17.61375|         0|       126|
+| 2014|   58|  70.46296| 17.23502|        19|       113|
+| 2015|   21|  74.26316| 16.89787|        43|       107|
+| 2016|    8|  67.87500| 32.62531|         0|       110|
+| 2017|    6|  57.16667| 27.93862|        21|        90|
+
+
+
+<div class="warning">
+<p>If you don’t add <code>.groups = "drop"</code> at the end of the <code>summarise()</code> function, you will get the following message: “<code>summarise()</code> ungrouping output (override with <code>.groups</code> argument)”. This just reminds you that the groups are still in effect and any further functions will also be grouped.</p>
+<p>Older versions of dplyr didn’t do this, so older code will generate this warning if you run it with newer version of dplyr. Older code might <code>ungroup()</code> after <code>summarise()</code> to indicate that groupings should be dropped. The default behaviour is usually correct, so you don’t need to worry, but it’s best to explicitly set <code>.groups</code> in a <code>summarise()</code> function after <code>group_by()</code> if you want to “keep” or “drop” the groupings.</p>
+</div>
+
+You can use `filter` after `group_by`. The following example returns the lowest total score from each year (i.e., the row where the `rank()` of the value in the column `total` is equivalent to `1`).
 
 
 ```r
-disgust_total %>%
+disgust_lowest <- disgust_total %>%
   mutate(year = year(date)) %>%
   select(user_id, year, total) %>%
   group_by(year) %>%
@@ -447,19 +465,21 @@ disgust_total %>%
   arrange(year)
 ```
 
-```
-## # A tibble: 7 x 3
-## # Groups:   year [7]
-##   user_id  year total
-##   <chr>   <dbl> <dbl>
-## 1 U236585  2009     3
-## 2 U292359  2010     6
-## 3 U245384  2013     0
-## 4 U206293  2014    19
-## 5 U407089  2015    43
-## 6 U453237  2016     0
-## 7 U356866  2017    21
-```
+
+
+Table: (\#tab:group-by-filter)All rows from `disgust_lowest`
+
+|user_id | year| total|
+|:-------|----:|-----:|
+|U236585 | 2009|     3|
+|U292359 | 2010|     6|
+|U245384 | 2013|     0|
+|U206293 | 2014|    19|
+|U407089 | 2015|    43|
+|U453237 | 2016|     0|
+|U356866 | 2017|    21|
+
+
 
 You can also use `mutate` after `group_by`. The following example calculates subject-mean-centered scores by grouping the scores by `user_id` and then subtracting the group-specific mean from each score. <span class="text-warning">Note the use of `gather` to tidy the data into a long format first.</span>
 
@@ -468,48 +488,63 @@ You can also use `mutate` after `group_by`. The following example calculates sub
 disgust_smc <- disgust %>%
   gather("question", "score", moral1:pathogen7) %>%
   group_by(user_id) %>%
-  mutate(score_smc = score - mean(score, na.rm = TRUE))
+  mutate(score_smc = score - mean(score, na.rm = TRUE)) %>% 
+  ungroup()
 ```
+
+<div class="warning">
+<p>Use <code>ungroup()</code> as soon as you are done with grouped functions, otherwise the data table will still be grouped when you use it in the future.</p>
+</div>
+
+
+
+Table: (\#tab:unnamed-chunk-5)Rows 1-6 from `disgust_smc`
+
+|    id| user_id|date       |question | score|  score_smc|
+|-----:|-------:|:----------|:--------|-----:|----------:|
+|  1199|       0|2008-10-07 |moral1   |     5|  0.9523810|
+|     1|       1|2008-07-10 |moral1   |     2|  0.0476190|
+|  1599|       2|2008-10-27 |moral1   |     1|  0.0000000|
+| 13332|    2118|2012-01-02 |moral1   |     0| -3.0000000|
+|    23|    2311|2008-07-15 |moral1   |     4|  0.6190476|
+|  1160|    3630|2008-10-06 |moral1   |     1| -1.2500000|
+
+
 
 
 ### All Together
 
 A lot of what we did above would be easier if the data were tidy, so let's do that first. Then we can use `group_by` to calculate the domain scores.
 
-<div class="warning">
-<p>It is good practice to use <code>ungroup()</code> after using <code>group_by</code> and <code>summarise</code>. Forgetting to ungroup the dataset won’t affect some further processing, but can really mess up other things.</p>
-</div>
-
-Then we can spread out the 3 domains, calculate the total score, remove any rows with a missing (`NA`) total, and calculate mean values by year.
+After that, we can spread out the 3 domains, calculate the total score, remove any rows with a missing (`NA`) total, and calculate mean values by year.
 
 
 ```r
-disgust_tidy <- read_csv("data/disgust.csv") %>%
+disgust_tidy <- dataskills::disgust %>%
   gather("question", "score", moral1:pathogen7) %>%
   separate(question, c("domain","q_num"), sep = -1) %>%
   group_by(id, user_id, date, domain) %>%
-  summarise(score = mean(score)) %>%
-  ungroup() 
+  summarise(score = mean(score), .groups = "drop")
 ```
 
-```
-## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   date = col_date(format = "")
-## )
-```
 
-```
-## See spec(...) for full column specifications.
-```
 
-```
-## `summarise()` regrouping output by 'id', 'user_id', 'date' (override with `.groups` argument)
-```
+Table: (\#tab:all-tidy)Rows 1-6 from `disgust_tidy`
+
+| id| user_id|date       |domain   |    score|
+|--:|-------:|:----------|:--------|--------:|
+|  1|       1|2008-07-10 |moral    | 1.428571|
+|  1|       1|2008-07-10 |pathogen | 2.714286|
+|  1|       1|2008-07-10 |sexual   | 1.714286|
+|  3|  155324|2008-07-11 |moral    | 3.000000|
+|  3|  155324|2008-07-11 |pathogen | 2.571429|
+|  3|  155324|2008-07-11 |sexual   | 1.857143|
+
+
+
 
 ```r
-disgust_tidy2 <- disgust_tidy %>%
+disgust_scored <- disgust_tidy %>%
   spread(domain, score) %>%
   mutate(
     total = moral + sexual + pathogen,
@@ -517,8 +552,26 @@ disgust_tidy2 <- disgust_tidy %>%
   ) %>%
   filter(!is.na(total)) %>%
   arrange(user_id) 
+```
 
-disgust_tidy3 <- disgust_tidy2 %>%
+
+
+Table: (\#tab:all-scored)Rows 1-6 from `disgust_scored`
+
+|    id| user_id|date       |    moral| pathogen|   sexual|     total| year|
+|-----:|-------:|:----------|--------:|--------:|--------:|---------:|----:|
+|  1199|       0|2008-10-07 | 5.285714| 4.714286| 2.142857| 12.142857| 2008|
+|     1|       1|2008-07-10 | 1.428571| 2.714286| 1.714286|  5.857143| 2008|
+| 13332|    2118|2012-01-02 | 1.000000| 5.000000| 3.000000|  9.000000| 2012|
+|    23|    2311|2008-07-15 | 4.000000| 4.285714| 1.857143| 10.142857| 2008|
+|  7980|    4458|2011-09-05 | 3.428571| 3.571429| 3.000000| 10.000000| 2011|
+|   552|    4651|2008-08-23 | 3.857143| 4.857143| 4.285714| 13.000000| 2008|
+
+
+
+
+```r
+disgust_summarised <- disgust_scored %>%
   group_by(year) %>%
   summarise(
     n = n(),
@@ -526,13 +579,29 @@ disgust_tidy3 <- disgust_tidy2 %>%
     avg_moral = mean(moral),
     avg_sexual = mean(sexual),
     first_user = first(user_id),
-    last_user = last(user_id)
+    last_user = last(user_id),
+    .groups = "drop"
   )
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
+
+
+Table: (\#tab:all-summarised)Rows 1-6 from `disgust_summarised`
+
+| year|    n| avg_pathogen| avg_moral| avg_sexual| first_user| last_user|
+|----:|----:|------------:|---------:|----------:|----------:|---------:|
+| 2008| 2392|     3.697265|  3.806259|   2.539298|          0|    188708|
+| 2009| 2410|     3.674333|  3.760937|   2.528275|       6093|    251959|
+| 2010| 1418|     3.731412|  3.843139|   2.510075|       5469|    319641|
+| 2011| 5586|     3.756918|  3.806506|   2.628612|       4458|    406569|
+| 2012| 5375|     3.740465|  3.774591|   2.545701|       2118|    458194|
+| 2013| 1222|     3.771920|  3.906944|   2.549100|       7646|    462428|
+| 2014|   54|     3.759259|  4.000000|   2.306878|      11090|    461307|
+| 2015|   19|     3.781955|  4.451128|   2.375940|     102699|    460283|
+| 2016|    8|     3.696429|  3.625000|   2.375000|       4976|    453237|
+| 2017|    6|     3.071429|  3.690476|   1.404762|      48303|    370464|
+
+
 
 ## Additional dplyr one-table verbs
 
@@ -540,20 +609,28 @@ Use the code examples below and the help pages to figure out what the following 
 
 ### rename() {#rename}
 
+You can rename columns with `rename()`. Set the argument name to the new name, and the value to the old name. You need to put a name in quotes or backticks if it doesn't follow the rules for a good variable name (contains only letter, numbers, underscores, and full stops; and doesn't start with a number).
+
 
 ```r
-iris_underscore <- iris %>%
-  rename(sepal_length = Sepal.Length,
-         sepal_width = Sepal.Width,
-         petal_length = Petal.Length,
-         petal_width = Petal.Width)
+sw <- starwars %>%
+  rename(Name = name,
+         Height = height,
+         Mass = mass,
+         `Hair Colour` = hair_color,
+         `Skin Colour` = skin_color,
+         `Eye Colour` = eye_color,
+         `Birth Year` = birth_year)
 
-names(iris_underscore)
+names(sw)
 ```
 
 ```
-## [1] "sepal_length" "sepal_width"  "petal_length" "petal_width"  "Species"
+##  [1] "Name"        "Height"      "Mass"        "Hair Colour" "Skin Colour"
+##  [6] "Eye Colour"  "Birth Year"  "sex"         "gender"      "homeworld"  
+## [11] "species"     "films"       "vehicles"    "starships"
 ```
+
 
 <div class="try">
 <p>Almost everyone gets confused at some point with <code>rename()</code> and tries to put the original names on the left and the new names on the right. Try it and see what the error message looks like.</p>
@@ -561,41 +638,65 @@ names(iris_underscore)
 
 ### distinct() {#distinct}
 
+Get rid of exactly duplicate rows with `distinct()`. This can be helpful if, for example, you are merging data from multiple computers and some of the data got copied from one computer to another, creating duplicate rows.
+
 
 ```r
 # create a data table with duplicated values
 dupes <- tibble(
-  id = rep(1:5, 2),
-  dv = rep(LETTERS[1:5], 2)
+  id = c( 1,   2,   1,   2,   1,   2),
+  dv = c("A", "B", "C", "D", "A", "B")
 )
 
 distinct(dupes)
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 4 x 2
 ##      id dv   
-##   <int> <chr>
+##   <dbl> <chr>
 ## 1     1 A    
 ## 2     2 B    
-## 3     3 C    
-## 4     4 D    
-## 5     5 E
+## 3     1 C    
+## 4     2 D
 ```
 
 ### count() {#count}
 
+The function `count()` is a quick shortcut for the common combination of `group_by()` and `summarise()` used to count the number of rows per group.
+
 
 ```r
-# how many observations from each species are in iris?
-count(iris, Species)
+starwars %>%
+  group_by(sex) %>%
+  summarise(n = n(), .groups = "drop")
 ```
 
 ```
-##      Species  n
-## 1     setosa 50
-## 2 versicolor 50
-## 3  virginica 50
+## # A tibble: 5 x 2
+##   sex                n
+##   <chr>          <int>
+## 1 female            16
+## 2 hermaphroditic     1
+## 3 male              60
+## 4 none               6
+## 5 <NA>               4
+```
+
+
+```r
+count(starwars, sex)
+```
+
+```
+## # A tibble: 5 x 2
+##   sex                n
+##   <chr>          <int>
+## 1 female            16
+## 2 hermaphroditic     1
+## 3 male              60
+## 4 none               6
+## 5 <NA>               4
 ```
 
 
@@ -603,37 +704,32 @@ count(iris, Species)
 
 
 ```r
-tibble(
-  id = 1:10,
-  condition = rep(c("A","B"), 5)
-) %>%
-  slice(3:6, 9)
+slice(starwars, 1:3, 10)
 ```
 
 ```
-## # A tibble: 5 x 2
-##      id condition
-##   <int> <chr>    
-## 1     3 A        
-## 2     4 B        
-## 3     5 A        
-## 4     6 B        
-## 5     9 A
+## # A tibble: 4 x 14
+##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+## 1 Luke…    172    77 blond      fair       blue              19 male  mascu…
+## 2 C-3PO    167    75 <NA>       gold       yellow           112 none  mascu…
+## 3 R2-D2     96    32 <NA>       white, bl… red               33 none  mascu…
+## 4 Obi-…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
+## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
+## #   vehicles <list>, starships <list>
 ```
-
 
 ### pull() {#pull}
 
 
 ```r
-iris %>%
-  group_by(Species) %>%
-  summarise_all(mean) %>%
-  pull(Sepal.Length)
+starwars %>%
+  filter(species == "Droid") %>%
+  pull(name)
 ```
 
 ```
-## [1] 5.006 5.936 6.588
+## [1] "C-3PO"  "R2-D2"  "R5-D4"  "IG-88"  "R4-P17" "BB8"
 ```
 
 
@@ -647,7 +743,7 @@ The [dplyr window functions vignette](https://dplyr.tidyverse.org/articles/windo
 
 
 ```r
-tibble(
+grades <- tibble(
   id = 1:5,
   "Data Skills" = c(16, 17, 17, 19, 20), 
   "Statistics"  = c(14, 16, 18, 18, 19)
@@ -662,22 +758,24 @@ tibble(
          percentile = ntile(grade, 100))
 ```
 
-```
-## # A tibble: 10 x 9
-## # Groups:   class [2]
-##       id class    grade row_number  rank min_rank dense_rank quartile percentile
-##    <int> <chr>    <dbl>      <int> <dbl>    <int>      <int>    <int>      <int>
-##  1     1 Data Sk…    16          1   1          1          1        1          1
-##  2     2 Data Sk…    17          2   2.5        2          2        1          2
-##  3     3 Data Sk…    17          3   2.5        2          2        2          3
-##  4     4 Data Sk…    19          4   4          4          3        3          4
-##  5     5 Data Sk…    20          5   5          5          4        4          5
-##  6     1 Statist…    14          1   1          1          1        1          1
-##  7     2 Statist…    16          2   2          2          2        1          2
-##  8     3 Statist…    18          3   3.5        3          3        2          3
-##  9     4 Statist…    18          4   3.5        3          3        3          4
-## 10     5 Statist…    19          5   5          5          4        4          5
-```
+
+
+Table: (\#tab:unnamed-chunk-7)All rows from `grades`
+
+| id|class       | grade| row_number| rank| min_rank| dense_rank| quartile| percentile|
+|--:|:-----------|-----:|----------:|----:|--------:|----------:|--------:|----------:|
+|  1|Data Skills |    16|          1|  1.0|        1|          1|        1|          1|
+|  2|Data Skills |    17|          2|  2.5|        2|          2|        1|          2|
+|  3|Data Skills |    17|          3|  2.5|        2|          2|        2|          3|
+|  4|Data Skills |    19|          4|  4.0|        4|          3|        3|          4|
+|  5|Data Skills |    20|          5|  5.0|        5|          4|        4|          5|
+|  1|Statistics  |    14|          1|  1.0|        1|          1|        1|          1|
+|  2|Statistics  |    16|          2|  2.0|        2|          2|        1|          2|
+|  3|Statistics  |    18|          3|  3.5|        3|          3|        2|          3|
+|  4|Statistics  |    18|          4|  3.5|        3|          3|        3|          4|
+|  5|Statistics  |    19|          5|  5.0|        5|          4|        4|          5|
+
+
 
 <div class="try">
 <ul>
@@ -695,54 +793,94 @@ You can use window functions to group your data into quantiles.
 
 
 ```r
-iris %>%
-  group_by(tertile = ntile(Sepal.Length, 3)) %>%
-  summarise(mean.Sepal.Length = mean(Sepal.Length))
+sw_mass <- starwars %>%
+  group_by(tertile = ntile(mass, 3)) %>%
+  summarise(min = min(mass),
+            max = max(mass),
+            mean = mean(mass),
+            .groups = "drop")
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
 
-```
-## # A tibble: 3 x 2
-##   tertile mean.Sepal.Length
-##     <int>             <dbl>
-## 1       1              4.94
-## 2       2              5.81
-## 3       3              6.78
-```
+
+Table: (\#tab:unnamed-chunk-9)All rows from `sw_mass`
+
+| tertile| min|  max|     mean|
+|-------:|---:|----:|--------:|
+|       1|  15|   68|  45.6600|
+|       2|  74|   82|  78.4100|
+|       3|  83| 1358| 171.5789|
+|      NA|  NA|   NA|       NA|
+
+
+
+<div class="try">
+<p>Why is there a row of <code>NA</code> values? How would you get rid of them?</p>
+</div>
+
 
 ### Offset functions
 
+The function `lag()` gives a previous row's value. It defaults to 1 row back, but you can change that with the `n` argument. The function `lead()` gives values ahead of the current row.
+
 
 ```r
-tibble(
-  trial = 1:10,
-  cond = rep(c("exp", "ctrl"), c(6, 4)),
+lag_lead <- tibble(x = 1:6) %>%
+  mutate(lag = lag(x),
+         lag2 = lag(x, n = 2),
+         lead = lead(x, default = 0))
+```
+
+
+
+Table: (\#tab:unnamed-chunk-11)All rows from `lag_lead`
+
+|  x| lag| lag2| lead|
+|--:|---:|----:|----:|
+|  1|  NA|   NA|    2|
+|  2|   1|   NA|    3|
+|  3|   2|    1|    4|
+|  4|   3|    2|    5|
+|  5|   4|    3|    6|
+|  6|   5|    4|    0|
+
+
+
+You can use offset functions to calculate change between trials or where a value changes. Use the `order_by` argument to specify the order of the rows. Alternatively, you can use `arrange()` before the offset functions.
+
+
+```r
+trials <- tibble(
+  trial = sample(1:10, 10),
+  cond = sample(c("exp", "ctrl"), 10, T),
   score = rpois(10, 4)
 ) %>%
   mutate(
     score_change = score - lag(score, order_by = trial),
-    last_cond_trial = cond != lead(cond, default = "last")
-  )
+    change_cond = cond != lag(cond, order_by = trial, 
+                              default = "no condition")
+  ) %>%
+  arrange(trial)
 ```
 
-```
-## # A tibble: 10 x 5
-##    trial cond  score score_change last_cond_trial
-##    <int> <chr> <int>        <int> <lgl>          
-##  1     1 exp       2           NA FALSE          
-##  2     2 exp       4            2 FALSE          
-##  3     3 exp       5            1 FALSE          
-##  4     4 exp       5            0 FALSE          
-##  5     5 exp       3           -2 FALSE          
-##  6     6 exp       5            2 TRUE           
-##  7     7 ctrl      9            4 FALSE          
-##  8     8 ctrl      6           -3 FALSE          
-##  9     9 ctrl      6            0 FALSE          
-## 10    10 ctrl      4           -2 TRUE
-```
+
+
+Table: (\#tab:offset-adv)All rows from `trials`
+
+| trial|cond | score| score_change|change_cond |
+|-----:|:----|-----:|------------:|:-----------|
+|     1|ctrl |     8|           NA|TRUE        |
+|     2|ctrl |     4|           -4|FALSE       |
+|     3|exp  |     6|            2|TRUE        |
+|     4|ctrl |     2|           -4|TRUE        |
+|     5|ctrl |     3|            1|FALSE       |
+|     6|ctrl |     6|            3|FALSE       |
+|     7|ctrl |     2|           -4|FALSE       |
+|     8|exp  |     4|            2|TRUE        |
+|     9|ctrl |     4|            0|TRUE        |
+|    10|exp  |     3|           -1|TRUE        |
+
+
 
 <div class="try">
 <p>Look at the help pages for <code>lag()</code> and <code>lead()</code>.</p>
@@ -755,13 +893,13 @@ tibble(
 
 ### Cumulative aggregates
 
-`cumsum()`, `cummin()`, and `cummax()` are base R functions for calcumaling cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
+`cumsum()`, `cummin()`, and `cummax()` are base R functions for calculating cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
 
 
 ```r
-tibble(
+cumulative <- tibble(
   time = 1:10,
-  obs = c(1, 0, 1, 2, 4, 3, 1, 0, 3, 5)
+  obs = c(2, 2, 1, 2, 4, 3, 1, 0, 3, 5)
 ) %>%
   mutate(
     cumsum = cumsum(obs),
@@ -772,21 +910,24 @@ tibble(
   )
 ```
 
-```
-## # A tibble: 10 x 7
-##     time   obs cumsum cummin cummax cumany cumall
-##    <int> <dbl>  <dbl>  <dbl>  <dbl> <lgl>  <lgl> 
-##  1     1     1      1      1      1 FALSE  TRUE  
-##  2     2     0      1      0      1 FALSE  TRUE  
-##  3     3     1      2      0      1 FALSE  TRUE  
-##  4     4     2      4      0      2 FALSE  TRUE  
-##  5     5     4      8      0      4 FALSE  FALSE 
-##  6     6     3     11      0      4 TRUE   FALSE 
-##  7     7     1     12      0      4 TRUE   FALSE 
-##  8     8     0     12      0      4 TRUE   FALSE 
-##  9     9     3     15      0      4 TRUE   FALSE 
-## 10    10     5     20      0      5 TRUE   FALSE
-```
+
+
+Table: (\#tab:unnamed-chunk-13)All rows from `cumulative`
+
+| time| obs| cumsum| cummin| cummax|cumany |cumall |
+|----:|---:|------:|------:|------:|:------|:------|
+|    1|   2|      2|      2|      2|FALSE  |TRUE   |
+|    2|   2|      4|      2|      2|FALSE  |TRUE   |
+|    3|   1|      5|      1|      2|FALSE  |TRUE   |
+|    4|   2|      7|      1|      2|FALSE  |TRUE   |
+|    5|   4|     11|      1|      4|FALSE  |FALSE  |
+|    6|   3|     14|      1|      4|TRUE   |FALSE  |
+|    7|   1|     15|      1|      4|TRUE   |FALSE  |
+|    8|   0|     15|      0|      4|TRUE   |FALSE  |
+|    9|   3|     18|      0|      4|TRUE   |FALSE  |
+|   10|   5|     23|      0|      5|TRUE   |FALSE  |
+
+
 
 <div class="try">
 <ul>
@@ -795,6 +936,16 @@ tibble(
 <li>Can you think of circumstances in your own data where you might need to use <code>cumany()</code> or <code>cumall()</code>?</li>
 </ul>
 </div>
+
+## Glossary {#glossary5}
+
+
+
+|term                                                                                                                |definition                                                                |
+|:-------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.wrangling'>data wrangling</a> |The process of preparing data for visualisation and statistical analysis. |
+
+
 
 ## Exercises
 

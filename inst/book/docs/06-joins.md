@@ -60,8 +60,7 @@ subject <- tibble(
 
 
 
-`exp` has subject id and the score from an experiment. Some subjects are missing, 
-some completed twice, and some are not in the subject table.
+`exp` has subject id and the score from an experiment. Some subjects are missing, some completed twice, and some are not in the subject table.
 
 
 ```r
@@ -90,7 +89,7 @@ exp <- tibble(
 
 ## Mutating Joins
 
-All the mutating joins have this basic syntax:
+All the <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/m#mutating-joins'>mutating joins</a> have this basic syntax:
 
 `****_join(x, y, by = NULL, suffix = c(".x", ".y")`
 
@@ -381,9 +380,7 @@ bind_rows(subject, new_subjects)
 
 The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
 
-If a row is duplicated between the two tables (like id 5 below), the row will also
-be duplicated in the resulting table. If your tables have the exact same columns, 
-you can use `union()` (see below) to avoid duplicates.
+If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use `union()` (see below) to avoid duplicates.
 
 
 ```r
@@ -522,6 +519,15 @@ setdiff(new_subjects, subject)
 ## 3     8    20 f    
 ## 4     9    19 f
 ```
+
+## Glossary {#glossary6}
+
+
+
+|term                                                                                                                |definition |
+|:-------------------------------------------------------------------------------------------------------------------|:----------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#mutating.joins'>mutating joins</a> |NA         |
+
 
 
 ## Exercises

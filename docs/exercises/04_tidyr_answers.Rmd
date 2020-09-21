@@ -6,29 +6,171 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
-set.seed(42) # makes sure random numbers are reproducible
 ```
+
+## Tidy data
+
+The following data table is not tidy. Use `tibble()` or `tribble()`to manually create the tidy version of this table.
+
+```{r untidy}
+# do not edit this chunk
+untidy <- tribble(
+  ~id, ~stats, ~p.value, ~conf.int,
+  "A", "t(26) = -0.424", 0.6749,  "[-0.444, 0.292]",
+  "B", "t(19) =  0.754", 0.4600,  "[-0.287, 0.610]",
+  "C", "t(19) =  4.289", 0.0004,  "[ 0.374, 1.088]"
+) %>% print()
+```
+
+```{r tidy}
+# your version can have different column names in a different order
+tidy <- tribble(
+  ~id, ~df, ~t.value, ~p.value, ~conf.int.low, ~conf.int.high,
+  "A",  26,   -0.424,   0.6749,        -0.444,          0.292,
+  "B",  19,    0.754,   0.4600,        -0.287,          0.610,
+  "C",  19,    4.289,   0.0004,         0.374,          1.088
+) %>% print()
+```
+
+
+## Pivot functions
+
+The questions in this section all have errors. Fix the errors.
+
+### Load data
+
+Load the data from `dataskills::sensation_seeking` as `ss` (or from <https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv>).
+
+```{r data-error}
+ss <- read_csv(dataskills::sensation_seeking)
+```
+
+```{r data}
+ss <- dataskills::sensation_seeking
+
+## alternatively
+
+ss <- read_csv("https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv")
+```
+
+
+### pivot_longer
+
+Convert from wide to long format.
+
+```{r pivot-longer-error}
+ss_long <- ss %>%
+  pivot_longer(names_to = "question", 
+               values_to = "score")
+```
+
+```{r pivot-longer}
+ss_long <- ss %>%
+  pivot_longer(sss1:sss14, 
+               names_to = "question", 
+               values_to = "score")
+```
+
+
+### pivot_wider
+
+Convert back to wide format. Make sure `ss_wide` is the same as `ss`.
+
+```{r pivot-wider-error}
+ss_wide <- ss_long %>%
+  pivot_wider(question, score)
+```
+
+```{r pivot-wider}
+ss_wide <- ss_long %>%
+  pivot_wider(names_from = question, 
+              values_from = score)
+```
+
+
+## Tidy verbs
+
+The questions in this section all have errors. Fix the errors.
+
+### gather
+
+Use the `gather()` function to convert `ss` from wide to long.
+
+```{r gather-error}
+ss_long <- gather(ss, "question", "score")
+```
+
+```{r gather}
+ss_long <- gather(ss, "question", "score", sss1:sss14)
+```
+
+
+### separate
+
+Split the `question` column from `ss_long` into two columns: `domain` and `qnumber`.
+
+```{r separate-error}
+ss_sep <- ss_long %>%
+  separate(question, domain, qnumber, sep = 3)
+```
+
+```{r separate}
+ss_sep <- ss_long %>%
+  separate(question, c("domain", "qnumber"), sep = 3)
+```
+
+
+### unite
+
+Put the `id` and `user_id` columns together into a new column named `super_id`. Make it in a format like "id-user_id".
+
+```{r unite-error}
+ss_unite <- ss_sep %>%
+  unite(id, user_id, "super_id", sep = "-")
+```
+
+```{r unite}
+ss_unite <- ss_sep %>%
+  unite("super_id", id, user_id, sep = "-")
+```
+
+
+### spread
+
+Convert back to wide format. (N.B. the new question columns headers will just be numbers, not "sss#")
+
+```{r spread-error}
+ss_wide <- ss_unite %>%
+  spreadr(qnumber, score, )
+```
+
+```{r spread}
+ss_wide <- ss_unite %>%
+  spread(qnumber, score)
+```
+
 
 ## Pipes
 
-### Question 1
+### Connect with pipes
 
 Re-write the following sequence of commands into a single 'pipeline'.
 
 ```{r ex_pipe1}
 # do not edit this chunk
-x <- 1:20 # integers from 1:20
+x <- 1:20      # integers from 1:20
 y <- rep(x, 2) # then repeat them twice
-z <- sum(y) # and then take the sum
+z <- sum(y)    # and then take the sum
 ```
 
-```{r ex_pipe1_ans}
+```{r pipe1}
 x <- 1:20 %>% rep(2) %>% sum()
 ```
 
-### Question 2
+
+### Deconnect pipes
 
 Deconstruct the pipeline below back into separate commands.
 
@@ -39,153 +181,52 @@ lager <- LETTERS[c(18, 5, 7, 1, 12)] %>%
   paste(collapse = "")
 ```
 
-```{r ex_pipe2_ans}
+```{r pipe2}
 regal <- LETTERS[c(18, 5, 7, 1, 12)]
 reversed <- rev(regal)
 lager <- paste(reversed, collapse = "") # make it into a string
 ```
 
 
-## Sensation Seeking 
-
-Questions 3-7 all have errors. Fix the errors in the code blocks below them.
-
-### Question 3
-
-Load the data from [sensation_seeking.csv](https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv).
-
-```{r Q3-error, error=TRUE}
-ss <- read_csv(https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv)
-```
-
-```{r Q3}
-ss <- read_csv("https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv")
-```
-
-
-### Question 4
-
-Convert from wide to long format.
-```{r Q4-error, error=TRUE}
-ss_long <- gather(ss, "question", "score")
-```
-
-    
-```{r Q4}
-ss_long <- gather(ss, "question", "score", sss1:sss14)
-```
-
-    
-### Question 5
-
-Split the `question` column into two columns: `domain` and `qnumber`.
-```{r Q5-error, error = TRUE}
-ss_sep <- ss_long %>%
-  separate(question, domain, qnumber, sep = 3)
-```
-
-```{r Q5}
-ss_sep <- ss_long %>%
-  separate(question, c("domain", "qnumber"), sep = 3)
-```
-
-    
-### Question 6
-
-Put the `id` and `user_id` columns together into a new column named `super_id`. Make it in a format like "id-user_id".
-```{r Q6-error, error=TRUE}
-ss_unite <- ss_sep %>%
-  unite(id, user_id, "super_id", sep = "-")
-```
-
-```{r Q6}
-ss_unite <- ss_sep %>%
-  unite("super_id", id, user_id, sep = "-")
-```
-
- 
-### Question 7
-
-Convert back to wide format.
-```{r Q7-error, error=TRUE}
-ss_wide <- ss_unite %>%
-  spreadr(qnumber, score)
-```
-
-```{r Q7}
-ss_wide <- ss_unite %>%
-  spread(qnumber, score)
-```
-
-## Family Composition
-
-### Question 8
+## Pivot vs tidy verbs
 
 Load the dataset [family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv).
 
 The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (`sibage` = old, young, twin) and sex (`sibsex` = bro, sis).
 
-```{r Q8}
+### Use pivot functions
 
-family <- read_csv("https://psyteachr.github.io/msc-data-skills/data/family_composition.csv") %>%
-  gather("sibtype", "n", oldbro:twinsis) %>%
-  separate(sibtype, c("sibage", "sibsex"), sep = -3)
-
+```{r family-pivot}
+family_pivot <- read_csv("https://psyteachr.github.io/msc-data-skills/data/family_composition.csv") %>%
+  pivot_longer(cols = oldbro:twinsis,
+               names_to = c("sibage", "sibsex"),
+               names_sep = -3,
+               values_to = "n")
 ```
 
 
-## Eye Descriptions
+### Use tidy verbs
 
-### Question 9
+```{r family-tidy}
+family_tidy <- read_csv("https://psyteachr.github.io/msc-data-skills/data/family_composition.csv") %>%
+  gather("sibtype", "n", oldbro:twinsis) %>%
+  separate(sibtype, c("sibage", "sibsex"), sep = -3)
+```
 
-Tidy the data from [eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
+
+## Multiple steps
+
+Tidy the data from `dataskills::eye_descriptions` ([eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv)). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
 
 Create a dataset with separate columns for `face_id`, `description`, and description number (`desc_n`). Hint: to separate a string by tildes or slashes, you would set the `sep` argument to `"(~|\\/)+"`.
-    
-```{r Q9}
 
-eyes <- read_csv("https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv") %>%
+```{r eyes}
+eyes <- dataskills::eye_descriptions %>%
   gather("face_id", "description", t1:t50) %>%
   separate(description, c("d1", "d2", "d3", "d4"), sep = "(,|;|\\/)+", fill = "right") %>%
   gather("desc_n", "description", d1:d4) %>%
   filter(!is.na(description))  # gets rid of rows with no description
-
 ```
 
-## Answer Checks
-
-You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
-
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- list()
-Q["1"] <- all.equal(x, 420)
-Q["2"] <- c(all.equal(regal, c("R", "E", "G", "A", "L")),
-          all.equal(reversed, c("L", "A", "G", "E", "R")),
-          all.equal(lager, "LAGER")) %>% all()
-Q["3"] <- c(all.equal(nrow(ss), 27021L),
-          all.equal(ncol(ss), 17L)) %>% all()
-Q["4"] <- c(all.equal(nrow(ss_long), 378294L),
-          all.equal(ncol(ss_long), 5L)) %>% all()
-Q["5"] <- c(all.equal(nrow(ss_sep), 378294L),
-          all.equal(ncol(ss_sep), 6L),
-          all.equal(names(ss_sep), c("id", "user_id", "date", "domain", "qnumber", "score"))) %>% all()
-Q["6"] <- c(all.equal(nrow(ss_unite), 378294L),
-          all.equal(ncol(ss_unite), 5L),
-          all.equal(names(ss_unite), c("super_id", "date", "domain", "qnumber", "score"))) %>% all()
-Q["7"] <- c(all.equal(nrow(ss_wide), 27021L),
-          all.equal(ncol(ss_wide), 17L)) %>% all()
-Q["8"] <- c(c("sibage", "sibsex") %in% names(family), 
-          nrow(family) == 115014) %>% all()
-Q["9"] <- c(c("face_id", "description") %in% names(eyes),
-          if(is.data.frame(eyes)) count(eyes, description) %>% filter(n == max(n)) %>% pull(description) == "brown" else FALSE) %>% all()
-  
-ans <- sapply(Q, isTRUE)
-
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
-```
 
 

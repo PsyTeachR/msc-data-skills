@@ -43,7 +43,7 @@ set.seed(30250) # makes sure random numbers are reproducible
 
 ### What is the GLM?
 
-The General Linear Model (GLM) a general mathematical framework for expressing relationships among variables that can express or test linear relationships between a numerical **dependent variable** and any combination of categorical or continuous **independent variables**.
+The <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/g#general-linear-model'>General Linear Model</a> (GLM) is a general mathematical framework for expressing relationships among variables that can express or test <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/l#linear'>linear</a> relationships between a numerical <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/d#dependent-variable'>dependent variable</a> and any combination of <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> or <a class='glossary' target='_blank' title='Data that can take on any values between other existing values.' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a> <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/i#independent-variable'>independent variables</a>.
 
 ### Components {#glm-components}
 
@@ -68,7 +68,7 @@ Don't worry if this doesn't make sense until we walk through a concrete example.
 
 ### Simulating data from GLM {#sim-glm}
 
-A good way to learn about linear models is to simulate data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.
+A good way to learn about linear models is to <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#simulate'>simulate</a> data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.
 
 We'll start with a very simple linear model that just has a single categorical factor with two levels. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (`mu`) is 800ms, and is 50ms faster for congruent than incongruent trials (`effect`). 
 
@@ -78,11 +78,11 @@ A **factor** is a categorical variable that is used to divide subjects into grou
 In the example above, trial type is a <select class='solveme' name='q_1' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' name='q_2' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' name='q_3' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.
 </div>
 
-You need to represent categorical factors with numbers. The numbers, or **coding** you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will **effect code** the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
+You need to represent <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> factors with numbers. The numbers, or <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#coding'>coding</a> you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/e#effect-code'>effect code</a> the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
 
-A person won't always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an **error term** to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution. 
+A person won't always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/e#error-term'>error term</a> to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution. 
 
-Here, we'll assume the error term is sampled from a normal distribution with a standard deviation of 100 ms (the mean of the error term distribution is always 0). We'll also sample 100 trials of each type, so we can see a range of variation.
+Here, we'll assume the error term is sampled from a <a class='glossary' target='_blank' title='A symmetric distribution of data where values near the centre are most probable.' href='https://psyteachr.github.io/glossary/n#normal-distribution'>normal distribution</a> with a <a class='glossary' target='_blank' title='A statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of 100 ms (the mean of the error term distribution is always 0). We'll also sample 100 trials of each type, so we can see a range of variation.
 
 So first create variables for all of the parameters that describe your data.
 
@@ -167,7 +167,7 @@ Notice how the **estimate** for the `(Intercept)` is close to the value we set f
 
 ### Residuals {#residuals}
 
-You can use the `residuals()` function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the residuals below and compare it to the normal distribution we used for the error term.
+You can use the `residuals()` function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/r#residuals'>residuals</a> below and compare it to the normal distribution we used for the error term.
 
 
 ```r
@@ -550,6 +550,27 @@ aov(Y ~ grp, data = dat) %>% summary(intercept = TRUE)
 <div class="try">
 <p>Using the code above, write your own function that takes a table of data and returns the ANOVA results table like above.</p>
 </div>
+
+
+## Glossary {#glossary9}
+
+
+
+|term                                                                                                                            |definition                                                                       |
+|:-------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a>                   |Data that can only take certain values, such as types of pet.                    |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#coding'>coding</a>                             |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a>                     |Data that can take on any values between other existing values.                  |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#dependent.variable'>dependent variable</a>     |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#effect.code'>effect code</a>                   |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#error.term'>error term</a>                     |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/g#general.linear.model'>general linear model</a> |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#independent.variable'>independent variable</a> |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/l#linear'>linear</a>                             |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/n#normal.distribution'>normal distribution</a>   |A symmetric distribution of data where values near the centre are most probable. |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#residuals'>residuals</a>                       |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#simulate'>simulate</a>                         |NA                                                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a>     |A statistic that measures how spread out data are relative to the mean.          |
 
 
 

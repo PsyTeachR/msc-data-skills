@@ -256,6 +256,29 @@ write_csv(data, "data-raw/eq_data.csv")
 make_dataset("eq_data", "Empathizing Quotient", 
              "Reverse coded (Q#R) questions coded and strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.\nWakabayashi, A., Baron-Cohen, S., Wheelwright, S., Goldenfeld, N., Delaney, J., Fine, D., Smith, R., & Weil, L. (2006). Development of short forms of the Empathy Quotient (EQ-Short) and the Systemizing Quotient (SQ-Short). Personality and Individual Differences, 41(5), 929–940. https://doi.org/10.1016/j.paid.2006.03.017", vardesc)
 
+# family ----
+
+vardesc <- list(
+  description = list(
+    user_id = "Each participant's unique ID",
+    sex = "The participant's sex",
+    age = "The participant's age in years",
+    momage = "How old was your female parent when you were born?",
+    dadage = "How old was your male parent when you were born?",
+    oldbro = "How many older brothers do you have?",
+    oldsis = "How many older sisters do you have?",
+    youngbro = "How many younger brothers do you have?",
+    youngsis = "How many younger sisters do you have?",
+    twinbro = "How many same-age (e.g. twin) brothers do you have?",
+    twinsis = "How many same-age (e.g. twin) sisters do you have?"
+  )
+)
+
+make_dataset("family_composition", "Family Composition", 
+             "Responses to a brief questionnaire about family composition.",
+             vardesc)
+
+
 # eye_descriptions ----
 vardesc <- list(
   description = list(
@@ -298,7 +321,34 @@ make_dataset("matmort", "Maternal Mortality",
              "Maternal mortality by country and year from the World Health Organisation.", vardesc, filetype = "xls", source = "https://apps.who.int/gho/data/node.main.15?lang=en")
 
 
+# sensation_seeking ----
+
+vardesc <- list(
+  description = list(
+    id = "Each questionnaire completion's unique ID",
+    user_id = "Each participant's unique ID",
+    date = "Date of completion (YYY-mm-dd)",
+    sss1 = "1:I would like a job that requires a lot of traveling. vs 0:I would prefer a job in one location.",
+    sss2 = "1:I am invigorated by a brisk, cold day. vs 0:I cannot wait to get indoors on a cold day.",
+    sss3 = "1:I get bored seeing the same old faces. vs 0:I like the comfortable familiarity of everyday friends.",
+    sss4 = "0:I would prefer living in an ideal society in which everyone is safe, secure, and happy. vs 1:I would have preferred living in the unsettled days of our history.",
+    sss5 = "1:I sometimes like to do things that are a little frightening. vs 0:A sensible person avoids activities that are dangerous.",
+    sss6 = "0:I would not like to be hypnotized. vs 1:I would like to have the experience of being hypnotized.",
+    sss7 = "1:The most important goal of life is to live it to the fullest and experience as much as possible. vs 0:The most important goal of life is to find peace and happiness.",
+    sss8 = "1:I would like to try parachute jumping. vs 0:I would never want to try jumping out of a plane, with or without a parachute.",
+    sss9 = "0:I enter cold water gradually, giving myself time to get used to it. vs 1:I like to dive or jump right in to the ocean or a cold pool.",
+    sss10 = "0:When I go on vacation, I prefer the comfort of a good room and bed. vs 1:When I go on vacation, I prefer the change of camping out.",
+    sss11 = "1:I prefer people who are emotionally expressive even if they are a bit unstable. vs 0:I prefer people who are calm and even-tempered.",
+    sss12 = "1:A good painting should shock or jolt the senses. vs 0:A good painting should give one a feeling of peace and security.",
+    sss13 = "0:People who ride motorcycles must have some kind of unconscious need to hurt themselves. vs 1:I would like to drive or ride a motorcycle.",
+    sss14 = "0:In a good sexual relationship, people never get bored with each other. vs 1:It is normal to get bored after a time with the same sexual partner."
+  )
+)
+
+make_dataset("sensation_seeking", "Sensation Seeking Scale", "Zuckerman M. (1984). Sensation seeking: a comparative approach to a human trait. Behavioral and Brain Sciences. 7: 413-471.", vardesc)
+
 # stroop ----
+set.seed(8675309)
 cc <- c("blue", "purple", "green", "red", "brown")
 sub <- faux::sim_design(id = "sub_id", dv = "sub_i", 
                         mu = 0, sd = 50, n= 50, plot = FALSE)
@@ -486,6 +536,52 @@ vardesc <- list(
 make_dataset("pets", "Pets",
              "A simulated dataset with one random factor (id), two categorical factors (pet, country) and three continuous variables (score, age, weight). This dataset is useful for practicing plotting.", vardesc, ct = "cffiid")
 
+# psa001_agg ----
+
+vardesc <- list(
+  description = list(
+    region = "world region (Africa; Asia; Australia & New Zealand; Central America & Mexico; Eastern Europe; Middle East; Scandanavia; South America; UK; USA & Canada; Western Europe)",
+    stim_id = "target image - first character designates race, second character designates gender, followed by a unique identifier that matches Target in [psa001_cfd_faces]",	
+    aggressive = "average rated aggression (1 to 9)",
+    attractive = "average rated attractiveness (1 to 9)",
+    caring = "average rated caringness (1 to 9)",
+    confident = "average rated confidence (1 to 9)",
+    dominant = "average rated dominance (1 to 9)",
+    emostable = "average rated emotional stability (1 to 9)",
+    intelligent = "average rated intelligence (1 to 9)",
+    mean = "average rated meanness (1 to 9)",
+    responsible = "average rated responsibility (1 to 9)",
+    sociable = "average rated sociability (1 to 9)",
+    trustworthy = "average rated trustworthiness (1 to 9)",
+    unhappy = "average rated unhappiness (1 to 9)",
+    weird = "average rated weirdness (1 to 9)"
+  )
+)
+
+make_dataset("psa001_agg", "First Impressions of Faces (Aggregated)",
+             "Aggregated data from Psychological Science Accelerator project: To Which World Regions Does the Valence-Dominance Model of Social Perception Apply? <https://psyarxiv.com/n26dy>. Mean ratings on 13 traits for each of 120 faces shown in 10 world regions. Face characteristics at [psa001_cfd_faces]. \n\n Full data and analysis scripts at <https://osf.io/jfwtr/>", vardesc,
+             source = "https://osf.io/jkt29/")
+
+# psa001_cfd_faces ----
+
+psa_faces <- read_csv("data-raw/psa001_cfd_faces.csv")
+
+vardesc <- list(
+  description = list(
+    Target = "target image - first character designates race, second character designates gender, followed by a unique identifier that matches Target in the CFD dataset",
+    Race = "target self-identified race (A = asian; B = black; L = latinx; W = white)",
+    Gender = "target sex (F = female; M = male)",
+    Age = "Estimate the approximate age of this person (in years) ranges 18.7 to 34.9"
+  )
+)
+
+make_dataset("psa001_cfd_faces", "Face Characteristics",
+             "Face stimulus characteristics from Psychological Science Accelerator project: To Which World Regions Does the Valence-Dominance Model of Social Perception Apply? <https://psyarxiv.com/n26dy>. To be used with [psa001_agg]. \n\n Faces from Ma, Correll, & Wittenbrink (2015). The Chicago Face Database: A Free Stimulus Set of Faces and Norming Data. Behavior Research Methods, 47, 1122-1135.\n\n Full data and analysis scripts at <https://osf.io/jfwtr/>", vardesc,
+             source = "https://osf.io/rzgh2/")
+
+    
+    
+
 # mess ----
 set.seed(8675309)
 mess <- data.frame(
@@ -527,6 +623,32 @@ make_dataset("mess", "Messy Data",
 
 ## add bad header rows
 write(paste0("This is my messy dataset\n\n", messtxt), "data-raw/mess.csv")
+
+# users ----
+
+vardesc <- list(
+  description = list(
+    user_id = "Each participant's unique ID",
+    sex = "The participant's sex",
+    birthyear = "The participant's year of birth"
+  )
+)
+
+make_dataset("users", "User Demographics",
+             "A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [user].", vardesc)
+
+# users2 ----
+
+vardesc <- list(
+  description = list(
+    user_id = "Each participant's unique ID",
+    birthyear = "The participant's year of birth",
+    sex = "The participant's sex"
+  )
+)
+
+make_dataset("users2", "User Demographics 2",
+             "A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [user].", vardesc)
 
 ## update documentation -----
 devtools::document()

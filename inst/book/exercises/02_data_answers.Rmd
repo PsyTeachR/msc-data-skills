@@ -10,48 +10,87 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
 ```
 
-## Vectors
+## Load built-in datasets
 
-The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
+List the packages in `dplyr`.
 
 ```{r Q1}
-cat <- letters[c(3, 1, 20)]
+data(package = "dplyr")
 ```
 
 
-The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
+Load the built-in dataset `starwars`.
 
 ```{r Q2}
-col_length <- length(colors())
+data("starwars")
 ```
 
 
-The function call `runif(n, min, max)` will draw `n` numbers from a uniform distribution from `min` to `max`. If you set `n` to 1000, `min` to 0 and `max` to 1, this simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Create the following objects:
-
-* `pvals`: 1000 simulated p-values using `runif()`
-* `is_sig`: a logical vector that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise
-* `sig_vals`: a vector of just the significant p-values
-* `prop_sig`: the proportion of those p-values that were significant
+Convert the built-in base R `mtcars` dataset to a tibble, and store it in the object `mt`.
 
 ```{r Q3}
-set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
-
-pvals    <- runif(1000, 0, 1)
-is_sig   <- pvals < .05
-sig_vals <- pvals[is_sig]
-prop_sig <- length(sig_vals) / length(pvals)
-
-# alternatively:
-prop_sig <- mean(is_sig)
-prop_sig <- mean(pvals < .05)
+mt <- as_tibble(mtcars)
 ```
 
 
-## Tabular Data 
+## Import data from CSV and Excel files
+
+Using the data directory created by `dataskills::getdata()` (or download [the zip file](https://psyteachr.github.io/msc-data-skills/data/data.zip), read "disgust_scores.csv" into a table.
+
+```{r Q4}
+disgust <- read_csv("data/disgust_scores.csv")
+```
+
+Override the default column specifications to skip the `id` column.
+
+```{r Q5}
+my_cols <- cols(
+  id = col_skip()
+)
+
+disgust_skip <- read_csv("data/disgust_scores.csv", col_types = my_cols)
+```
+
+
+How many rows and columns are in the `disgust` dataset?
+
+```{r Q6}
+
+## dim() returns a vector c(rows, cols)
+dimensions <- dim(disgust)
+disgust_rows <- dimensions[1]
+disgust_cols <- dimensions[2]
+
+## nrow() returns the number of rows
+disgust_rows <- nrow(disgust)
+
+## ncol() returns the number of columns
+disgust_cols <- ncol(disgust)
+```
+
+
+Load the data in "data/stroop.csv" as `stroop1` and "data/stroop.xlsx" as `stroop2`.
+
+```{r Q7}
+stroop1 <- read_csv("data/stroop.csv")
+stroop2 <- readxl::read_xlsx("data/stroop.xlsx")
+```
+
+Use `glimpse()` to figure out the difference between the two data tables and fix the problem.
+
+```{r Q8}
+glimpse(stroop1)
+glimpse(stroop2)
+
+stroop2b <- readxl::read_xlsx("data/stroop.xlsx", na = "NA")
+```
+
+
+## Create a data table
 
 Create a tibble with the columns `name`, `age`, and `country` of origin for 2 people you know.
 
-```{r Q4}
+```{r Q9}
 
 # you can do this with the tibble function
 people <- tibble(name = c("Lisa", "Robbie"),
@@ -67,14 +106,6 @@ people <- tribble(~name,  ~age, ~country,
 
 ```
 
-
-Convert the built-in base R `mtcars` dataset to a tibble, and store it in the variable `mt`.
-
-```{r Q5}
-mt <- as_tibble(mtcars)
-```
-
-
 Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: `rep()`).  Store it in the variable `my_tbl`.
 
 ID |  A | B   | C
@@ -88,47 +119,140 @@ ID |  A | B   | C
 7	| A2	| B1	| C1	
 8	| A2	| B2	| C1
 
-```{r Q6}
+```{r Q10}
 my_tbl <- tibble(ID = 1:8,
                  A = rep(c("A1", "A2"), each = 4),
                  B = rep(c("B1", "B2"), 4),
                  C = "C1")    
 ```
 
+## Understand the use the basic data types
 
-## Data Import
+Set the following objects to the number 1 with the indicated data type:
 
-Download the dataset [disgust_scores.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv) and read it into a table.
+* `one_int` (integer)
+* `one_dbl` (double)
+* `one_chr` (character)
 
-```{r Q7}
-# change to the location to where you put your csv file
-disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv")
+```{r Q11}
+one_int <- 1L
+one_dbl <- 1.0
+one_chr <- "1"
+```
+
+Set the objects `T_log`, `T_chr`, `T_int` and `T_dbl` to logical, character, integer and double values that will all be equal to `TRUE`. 
+
+```{r Q12}
+T_log <- TRUE
+T_chr <- "TRUE"
+T_int <- 1L
+T_dbl <- 1.0
+```
+
+Check your answers with this code:
+
+```{r Q12-check}
+# these should all evaluate to TRUE
+c(
+  T_log == TRUE,
+  T_chr == TRUE,
+  T_int == TRUE,
+  T_dbl == TRUE,
+  is.logical(T_log),
+  is.character(T_chr),
+  is.integer(T_int),
+  is.double(T_dbl)
+)
 ```
 
 
-Override the default column specifications to skip the `id` column.
+## Understand and use the basic container types
 
-```{r Q8}
-my_cols <- cols(
-  id = col_skip()
+Create a vector of the numbers 3, 6, and 9.
+
+```{r Q13}
+threes <- c(3, 6, 9)
+```
+
+
+The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
+
+```{r Q14}
+cat <- letters[c(3, 1, 20)]
+```
+
+
+The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
+
+```{r Q15}
+col_length <- length(colors())
+```
+
+
+Create a named list called `col_types` where the name is each column in the built-in dataset `table1` and the value is the column data type (e.g., "double", "character", "integer", "logical").
+
+```{r Q16}
+# you can do this manually
+col_types <- list(
+  country = "character",
+  year = "integer",
+  cases  = "integer",
+  population = "integer"
 )
 
-disgust_skip <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv", col_types = my_cols)
+# or with coding
+col_types <- list(
+  typeof(table1[[1]]),
+  typeof(table1[[2]]),
+  typeof(table1[[3]]),
+  typeof(table1[[4]])
+)
+names(col_types) <- names(table1)
+
+# here is a shortcut to do it all in one step.
+col_types <- lapply(table1, typeof)
 ```
 
 
-How many rows and columns are in the dataset from question 7?
+## Use vectorized operations
 
-```{r Q9}
+Set the object `x` to the integers 1 to 100. Use vectorised operations to set `y` to `x` squared. Use `plot(x, y)` to visualise the relationship between these two numbers.
 
-## dim() returns a vector c(rows, cols)
-dimensions <- dim(disgust)
-disgust_rows <- dimensions[1]
-disgust_cols <- dimensions[2]
+```{r Q17}
+x <- -100:100
+y <- x^2
 
-## nrow() returns the number of rows
-disgust_rows <- nrow(disgust)
-
-## ncol() returns the number of columns
-disgust_cols <- ncol(disgust)
+plot(x, y)
 ```
+
+Set `t` to the numbers 0 to 100 in increments of 0.1. Set `x` to the sine of `t` and `y` to the cosine of `t`. Plot `x` against `y`.
+
+```{r Q18}
+t <- seq(0, 100, 0.1)
+
+x <- sin(t)
+y <- cos(t)
+plot(x, y)
+```
+
+
+The function call `runif(n, min, max)` will draw `n` numbers from a uniform distribution from `min` to `max`. If you set `n` to 10000, `min` to 0 and `max` to 1, this simulates the p-values that you would get from 10000 experiments where the null hypothesis is true. Create the following objects:
+
+* `pvals`: 10000 simulated p-values using `runif()`
+* `is_sig`: a logical vector that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise
+* `sig_vals`: a vector of just the significant p-values
+* `prop_sig`: the proportion of those p-values that were significant
+
+```{r Q19}
+set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
+
+pvals    <- runif(10000, 0, 1)
+is_sig   <- pvals < .05
+sig_vals <- pvals[is_sig]
+prop_sig <- length(sig_vals) / length(pvals)
+
+# alternatively:
+prop_sig <- mean(is_sig)
+prop_sig <- mean(pvals < .05)
+```
+

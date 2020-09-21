@@ -1,6 +1,6 @@
 --- 
 title: Data Skills for Reproducible Science
-date: "2020-09-02"
+date: "2020-09-17"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -50,18 +50,20 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     4. Understand the use the [basic data types](#data_types)
     5. Understand and use the [basic container types](#containers) (list, vector)
     6. Use [vectorized operations](#vectorized_ops)
+    7. Be able to [troubleshoot](#Troubleshooting) common data import problems
 
 3. [Data Visualisation](#ggplot)
     1. Understand what types of graphs are best for [different types of data](#vartypes)
-    2. Create common types of graphs with ggplot2: [`geom_bar()`](#geom_bar), [`geom_density()`](#geom_density), [`geom_freqpoly()`](#geom_freqpoly), [`geom_histogram()`](#geom_histogram), [`geom_violin()`](#geom_violin), [`geom_boxplot()`](#geom_boxplot), [`geom_col()`](#geom_col), [`geom_point()`](#geom_point), [`geom_smooth()`](#geom_smooth)
-    3. Set custom [labels](#custom-labels) and [colours](#custom-colours)
-    4. Represent factorial designs with different colours or facets
+    2. Create common types of graphs with ggplot2
+    3. Set custom [labels](#custom-labels),  [colours](#custom-colours), and [themes](#themes)
+    4. [Combine plots](combo_plots) on the same plot, as facets, or as a grid using cowplot
     5. [Save plots](#ggsave) as an image file
 
 4. [Tidy Data](#tidyr)
     1. Understand the concept of [tidy data](#tidy-data)
-    2. Be able to use the 4 basic `tidyr` verbs: [`gather()`](#gather), [`separate()`](#separate), [`spread()`](#spread), [`unite()`](#unite)
-    3. Be able to chain functions using [pipes](#pipes)
+  2. Be able to convert between long and wide formats using [pivot functions](#pivot)
+  3. Be able to use the 4 basic [`tidyr` verbs](#tidy-verbs)
+  4. Be able to chain functions using [pipes](#pipes)
 
 5. [Data Wrangling](#dplyr)
     1. Be able to use the 6 main dplyr one-table verbs: [`select()`](#select), [`filter()`](#filter), [`arrange()`](#arrange), [`mutate()`](#mutate), [`summarise()`](#summarise), [`group_by()`](#group_by)

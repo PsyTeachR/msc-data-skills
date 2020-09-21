@@ -1,12 +1,13 @@
 # Probability & Simulation {#sim}
 
-<img src="images/memes/sim.jpg" class="meme right">
+<img src="images/memes/sim.jpg" class="meme right"
+     alt="Morpheus from The Matrix. Top text: What if I told you; Bottom text: Ur in a simulation, inside a simulation, inside another simulation, inside a taco, inside a taco cat, inside a Taco Bell, inside an Arby's. Inside another simulation">
 
 ## Learning Objectives
 
 ### Basic
 
-1. Understand what types of data are best modeled by different distributions
+1. Understand what types of data are best modelled by different distributions
     + [uniform](#uniform)
     + [binomial](#binomial)
     + [normal](#normal)
@@ -49,7 +50,7 @@
 
 ## Distributions
 
-Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use simulations to learn the basics of probability.
+Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use `r glossary("simulation", "simulations")` to learn the basics of `r glossary("probability")`.
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
@@ -60,7 +61,7 @@ set.seed(8675309) # makes sure random numbers are reproducible
 
 ### Uniform Distribution {#uniform}
 
-The uniform distribution is the simplest distribution. All numbers in the range have an equal probability of being sampled.
+The `r glossary("uniform distribution")` is the simplest distribution. All numbers in the range have an equal probability of being sampled.
 
 ```{block type="try"}
 Take a minute to think of things in your own research that are uniformly distributed.
@@ -85,7 +86,7 @@ ggplot() +
 
 `sample(x, size, replace = FALSE, prob = NULL)`
 
-Use `sample()` to sample from a discrete distribution.
+Use `sample()` to sample from a `r glossary("discrete distribution")`.
 
 You can use `sample()` to simulate events like rolling dice or choosing from a deck of cards. The code below simulates rolling a 6-sided die 10000 times. We set `replace` to `TRUE` so that each event is independent. See what happens if you set `replace` to `FALSE`.
 
@@ -116,7 +117,7 @@ sample(pet_types, 10, replace = TRUE, prob = pet_prob)
 
 ### Binomial Distribution {#binomial}
 
-The binomial distribution is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails. 
+The `r glossary("binomial distribution")` is useful for modeling binary data, where each observation can have one of two outcomes, like success/failure, yes/no or head/tails. 
 
 #### Sample distribution
 
@@ -206,25 +207,25 @@ Run the code above several times, noting the p-values for the fair and biased co
 
 #### Statistical terms {#stat-terms}
 
-The **effect** is some measure of your data. This will depend on the type of data you have and the type of statistical test you are using. For example, if you flipped a coin 100 times and it landed heads 66 times, the effect would be 66/100. You can then use the exact binomial test to compare this effect to the **null effect** you would expect from a fair coin (50/100) or to any other effect you choose. The **effect size** refers to the difference between the effect in your data and the null effect (usually a chance value).
+The `r glossary("effect")` is some measure of your data. This will depend on the type of data you have and the type of statistical test you are using. For example, if you flipped a coin 100 times and it landed heads 66 times, the effect would be 66/100. You can then use the exact binomial test to compare this effect to the `r glossary("null effect")` you would expect from a fair coin (50/100) or to any other effect you choose. The `r glossary("effect size")` refers to the difference between the effect in your data and the null effect (usually a chance value).
 
 <img src="images/memes/p-value.jpg" class="meme right">
 
 {#p-value}
-The **p-value** of a test is the probability of seeing an effect at least as extreme as what you have, if the real effect was the value you are testing against (e.g., a null effect). So if you used a binomial test to test against a chance probability of 1/6 (e.g., the probability of rolling 1 with a 6-sided die), then a p-value of 0.17 means that you could expect to see effects at least as extreme as your data 17% of the time just by chance alone. 
+The `r glossary("p-value")` of a test is the probability of seeing an effect at least as extreme as what you have, if the real effect was the value you are testing against (e.g., a null effect). So if you used a binomial test to test against a chance probability of 1/6 (e.g., the probability of rolling 1 with a 6-sided die), then a p-value of 0.17 means that you could expect to see effects at least as extreme as your data 17% of the time just by chance alone. 
 
 {#alpha}
-If you are using null hypothesis significance testing (**NHST**), then you need to decide on a cutoff value (**alpha**) for making a decision to reject the null hypothesis. We call p-values below the alpha cutoff **significant**. In psychology, alpha is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html). 
+If you are using null hypothesis significance testing (`r glossary("NHST")`), then you need to decide on a cutoff value (`r glossary("alpha")`) for making a decision to reject the null hypothesis. We call p-values below the alpha cutoff `r glossary("significant")`. In psychology, alpha is traditionally set at 0.05, but there are good arguments for [setting a different criterion in some circumstances](http://daniellakens.blogspot.com/2019/05/justifying-your-alpha-by-minimizing-or.html). 
 
 {#false-pos}{#false-neg}
-The probability that a test concludes there is an effect when there is really no effect (e.g., concludes a fair coin is biased) is called the **false positive rate** (or _Type I Error Rate_). The alpha is the false positive rate we accept for a test. The probability that a test concludes there is no effect when there really is one (e.g., concludes a biased coin is fair) is called the **false negative rate** (or _Type II Error Rate_). The **beta** is the false negative rate we accept for a test.
+The probability that a test concludes there is an effect when there is really no effect (e.g., concludes a fair coin is biased) is called the `r glossary("false positive")` rate (or `r glossary("Type I Error")` Rate). The `r glossary("alpha")` is the false positive rate we accept for a test. The probability that a test concludes there is no effect when there really is one (e.g., concludes a biased coin is fair) is called the `r glossary("false negative")` rate (or `r glossary("Type II Error")` Rate). The `r glossary("beta")` is the false negative rate we accept for a test.
 
 ```{block type="info"}
 The false positive rate is not the overall probability of getting a false positive, but the probability of a false positive *under the null hypothesis*. Similarly, the false negative rate is the probability of a false negative *under the alternative hypothesis*. Unless we know the probability that we are testing a null effect, we can't say anything about the overall probability of false positives or negatives. If 100% of the hypotheses we test are false, then all significant effects are false positives, but if all of the hypotheses we test are true, then all of the positives are true positives and the overall false positive rate is 0.
 ```
 
 {#power}{#sesoi}
-**Power** is equal to 1 minus beta (i.e., the **true positive rate**), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last. The effect size you use in power calculations should be the smallest effect size of interest (**SESOI**). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
+`r glossary("Power")` is equal to 1 minus beta (i.e., the `r glossary("true positive")` rate), and depends on the effect size, how many samples we take (n), and what we set alpha to. For any test, if you specify all but one of these values, you can calculate the last. The effect size you use in power calculations should be the smallest effect size of interest (`r glossary("SESOI")`). See [@TOSTtutorial](https://doi.org/10.1177/2515245918770963) for a tutorial on methods for choosing an SESOI. 
 
 <div class="try">
 Let's say you want to be able to detect at least a 15% difference from chance (50%) in a coin's fairness, and you want your test to have a 5% chance of false positives and a 10% chance of false negatives. What are the following values?
@@ -238,7 +239,7 @@ Let's say you want to be able to detect at least a 15% difference from chance (5
 </div>
 
 {#conf-int}
-The **confidence interval** is a range around some value (such as a mean) that has some probability (usually 95%, but you can calculate CIs for any percentage) of containing the parameter, if you repeated the process many times. 
+The `r glossary("confidence interval")` is a range around some value (such as a mean) that has some probability (usually 95%, but you can calculate CIs for any percentage) of containing the parameter, if you repeated the process many times. 
 
 <div class="info">
 A 95% CI does *not* mean that there is a 95% probability that the true mean lies within this range, but that, if you repeated the study many times and calculated the CI this same way every time, you'd expect the true mean to be inside the CI in 95% of the studies. This seems like a subtle distinction, but can lead to some misunderstandings. See [@Morey2016](https://link.springer.com/article/10.3758/s13423-015-0947-8) for more detailed discussion.
@@ -247,8 +248,7 @@ A 95% CI does *not* mean that there is a 95% probability that the true mean lies
 
 #### Sampling function
 
-To estimate these rates, we need to repeat the sampling above many times. 
-A function is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:
+To estimate these rates, we need to repeat the sampling above many times. A `r glossary("function")` is ideal for repeating the exact same procedure over and over. Set the arguments of the function to variables that you might want to change. Here, we will want to estimate power for:
 
 * different sample sizes (`n`)
 * different effects (`bias`)
@@ -275,7 +275,7 @@ sim_binom_test(100, 0.6)
 
 #### Calculate power {#calc-power}
 
-Then you can use the `replicate()` function to run it many times and save all the output values. You can calculate the *power* of your analysis by checking the proportion of your simulated analyses that have a p-value less than your _alpha_ (the probability of rejecting the null hypothesis when the null hypothesis is true).
+Then you can use the `replicate()` function to run it many times and save all the output values. You can calculate the `r glossary("power")` of your analysis by checking the proportion of your simulated analyses that have a p-value less than your `r glossary("alpha")` (the probability of rejecting the null hypothesis when the null hypothesis is true).
 
 ```{r replicate}
 
@@ -297,7 +297,7 @@ mean(my_reps < alpha)
 
 `rnorm(n, mean, sd)`
 
-We can simulate a normal distribution of size `n` if we know the `mean` and standard deviation (`sd`). A density plot is usually the best way to visualise this type of data if your `n` is large.
+We can simulate a `r glossary("normal distribution")` of size `n` if we know the `mean` and standard deviation (`sd`). A density plot is usually the best way to visualise this type of data if your `n` is large.
 
 ```{r rnorm}
 dv <- rnorm(1e5, 10, 2)
@@ -331,14 +331,9 @@ Run the simulation above several times, noting how the density plot changes. Wha
 
 `t.test(x, y, alternative, mu, paired)`
 
-Use a t-test to compare the mean of one distribution to a null hypothesis 
-(one-sample t-test), compare the means of two samples (independent-samples t-test), 
-or compare pairs of values (paired-samples t-test).
+Use a t-test to compare the mean of one distribution to a null hypothesis (one-sample t-test), compare the means of two samples (independent-samples t-test), or compare pairs of values (paired-samples t-test).
 
-You can run a one-sample t-test comparing the mean of your data to `mu`. Here is 
-a simulated distribution with a mean of 0.5 and an SD of 1, creating an effect 
-size of 0.5 SD when tested against a `mu` of 0. Run the simulation a few times to 
-see how often the t-test returns a significant p-value (or run it in the [shiny app](http://shiny.psy.gla.ac.uk/debruine/normsim/)).
+You can run a one-sample t-test comparing the mean of your data to `mu`. Here is a simulated distribution with a mean of 0.5 and an SD of 1, creating an effect size of 0.5 SD when tested against a `mu` of 0. Run the simulation a few times to see how often the t-test returns a significant p-value (or run it in the [shiny app](http://shiny.psy.gla.ac.uk/debruine/normsim/)).
 
 ```{r sim_norm}
 sim_norm <- rnorm(100, 0.5, 1)
@@ -442,6 +437,8 @@ Make sure the `boundary` argument is set to `0` for p-value histograms. See what
 
 ### Bivariate Normal
 
+A `r glossary("bivariate normal")` distribution is two normally distributed distributions that have a specified relationship, or `r glossary("correlation")` to each other.
+
 #### Correlation {#correlation}
 
 You can test if two continuous variables are related to each other using the `cor()` function.
@@ -470,7 +467,7 @@ cor(x, y, method = "spearman")
 
 #### Sample distribution {#bvn}
 
-What if we want to sample from a population with specific relationships between variables? We can sample from a **bivariate normal distribution** using `mvrnorm()` from the `MASS` package. 
+What if we want to sample from a population with specific relationships between variables? We can sample from a `r glossary("bivariate normal distribution")` using `mvrnorm()` from the `MASS` package. 
 
 ```{r bvn}
 n   <- 1000 # number of random samples
@@ -529,7 +526,7 @@ bvn3 <- MASS::mvrnorm(n, mu, sigma)
 cor(bvn3) # check correlation matrix
 ```
 
-Alternatively, you can use the (in-development) package faux to generate any number of correlated variables. It also allows to to easily name the variables and has a function for checking the parameters of your new simulated data (`check_sim_stats()`).
+Alternatively, you can use the package faux to generate any number of correlated variables. It also allows to to easily name the variables and has a function for checking the parameters of your new simulated data (`check_sim_stats()`).
 
 ```{r}
 #devtools::install_github("debruine/faux")
@@ -575,8 +572,7 @@ bvn3 %>%
 
 ## Example
 
-This example uses the [Growth Chart Data Tables](https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv) 
-from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm). The data consist of height in centimeters for the z-scores of –2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, and 2 by sex (1=male; 2=female) and half-month of age (from 24.0 to 240.5 months).
+This example uses the [Growth Chart Data Tables](https://www.cdc.gov/growthcharts/data/zscore/zstatage.csv) from the [US CDC](https://www.cdc.gov/growthcharts/zscore.htm). The data consist of height in centimeters for the z-scores of –2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, and 2 by sex (1=male; 2=female) and half-month of age (from 24.0 to 240.5 months).
 
 ### Load & wrangle
 

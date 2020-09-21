@@ -1,0 +1,77 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Family Composition",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Responses to a brief questionnaire about family composition.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sex",
+            "description": "The participant's sex",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "age",
+            "description": "The participant's age in years",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "momage",
+            "description": "How old was your female parent when you were born?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "dadage",
+            "description": "How old was your male parent when you were born?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "oldbro",
+            "description": "How many older brothers do you have?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "oldsis",
+            "description": "How many older sisters do you have?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "youngbro",
+            "description": "How many younger brothers do you have?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "youngsis",
+            "description": "How many younger sisters do you have?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "twinbro",
+            "description": "How many same-age (e.g. twin) brothers do you have?",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "twinsis",
+            "description": "How many same-age (e.g. twin) sisters do you have?",
+            "dataType": "float"
+        }
+    ]
+}

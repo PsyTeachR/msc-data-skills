@@ -1,0 +1,101 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "First Impressions of Faces (Aggregated)",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Aggregated data from Psychological Science Accelerator project: To Which World Regions Does the Valence-Dominance Model of Social Perception Apply? <https://psyarxiv.com/n26dy>. Mean ratings on 13 traits for each of 120 faces shown in 10 world regions. Face characteristics at [psa001_cfd_faces].    Full data and analysis scripts at <https://osf.io/jfwtr/>",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "region",
+            "description": "world region (Africa; Asia; Australia & New Zealand; Central America & Mexico; Eastern Europe; Middle East; Scandanavia; South America; UK; USA & Canada; Western Europe)",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "stim_id",
+            "description": "target image - first character designates race, second character designates gender, followed by a unique identifier that matches Target in [psa001_cfd_faces]",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "aggressive",
+            "description": "average rated aggression (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "attractive",
+            "description": "average rated attractiveness (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "caring",
+            "description": "average rated caringness (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "confident",
+            "description": "average rated confidence (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "dominant",
+            "description": "average rated dominance (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "emostable",
+            "description": "average rated emotional stability (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "intelligent",
+            "description": "average rated intelligence (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "mean",
+            "description": "average rated meanness (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "responsible",
+            "description": "average rated responsibility (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sociable",
+            "description": "average rated sociability (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "trustworthy",
+            "description": "average rated trustworthiness (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "unhappy",
+            "description": "average rated unhappiness (1 to 9)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "weird",
+            "description": "average rated weirdness (1 to 9)",
+            "dataType": "float"
+        }
+    ]
+}

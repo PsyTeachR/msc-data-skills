@@ -1,6 +1,7 @@
 # Data Wrangling {#dplyr}
 
-<img src="images/memes/real_world_data.jpg" class="meme right">
+<img src="images/memes/real_world_data.jpg" class="meme right" 
+     alt="A cute golden retriever labelled 'iris & mtcars' and a scary werewolf labelled 'Real world data'">
 
 ## Learning Objectives
 
@@ -13,76 +14,54 @@
     + [`mutate()`](#mutate)
     + [`summarise()`](#summarise)
     + [`group_by()`](#group_by)
-
-### Intermediate
-
 2. Also know these additional one-table verbs:
     + [`rename()`](#rename)
     + [`distinct()`](#distinct)
     + [`count()`](#count)
     + [`slice()`](#slice)
     + [`pull()`](#pull)
-    
-### Advanced
+
+### Intermediate
 
 3. Fine control of [`select()` operations](#select_helpers)
+
+### Advanced
+
 4. Use [window functions](#window)
 
 ## Resources
 
 * [Chapter 5: Data Transformation](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
 * [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
-* [Lecture slides on dplyr one-table verbs](slides/04_dplyr_slides.pdf)
 * [Chapter 16: Date and times](http://r4ds.had.co.nz/dates-and-times.html) in *R for Data Science*
 
 ## Setup
 
 You'll need the following packages. 
 
-```{r, results = 'hide', warning = FALSE, message = FALSE}
+```{r setup, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
 library(tidyverse)
 library(lubridate)
+library(dataskills)
 set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 
-## The `disgust` dataset {#data-disgust}
+### The `disgust` dataset {#data-disgust}
 
-These examples will use data from [disgust.csv](/data/disgust.csv), which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
+These examples will use data from `dataskills::disgust`, which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`. Look at the Help for this dataset to see the individual questions.
 
-```{r, message = FALSE}
-disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
+```{r disgust-data, message = FALSE}
+data("disgust", package = "dataskills")
+
+#disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
 ```
 
-*Questionnaire Instructions*: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.
 
-| colname   | question                                                                          |
-|----------:|:----------------------------------------------------------------------------------|
-| moral1 	  | Shoplifting a candy bar from a convenience store                                  |
-| moral2	  | Stealing from a neighbor                                                          |
-| moral3	  | A student cheating to get good grades                                             |
-| moral4	  | Deceiving a friend                                                                |
-| moral5	  | Forging someone's signature on a legal document                                   |
-| moral6	  | Cutting to the front of a line to purchase the last few tickets to a show         |
-| moral7	  | Intentionally lying during a business transaction                                 |
-| sexual1	  | Hearing two strangers having sex                                                  |
-| sexual2	  | Performing oral sex                                                               |
-| sexual3	  | Watching a pornographic video                                                     |
-| sexual4	  | Finding out that someone you don't like has sexual fantasies about you            |
-| sexual5	  | Bringing someone you just met back to your room to have sex                       |
-| sexual6	  | A stranger of the opposite sex intentionally rubbing your thigh in an elevator    |
-| sexual7	  | Having anal sex with someone of the opposite sex                                  |
-| pathogen1	| Stepping on dog poop                                                              |
-| pathogen2	| Sitting next to someone who has red sores on their arm                            |
-| pathogen3	| Shaking hands with a stranger who has sweaty palms                                |
-| pathogen4	| Seeing some mold on old leftovers in your refrigerator                            |
-| pathogen5	| Standing close to a person who has body odor                                      |
-| pathogen6	| Seeing a cockroach run across the floor                                           |
-| pathogen7	| Accidentally touching a person's bloody cut                                       |
 ## Six main dplyr verbs
 
-Most of the data wrangling you'll want to do with psychological data will involve the `tidyr` verbs you learned in [Chapter 3](#tidyr) and the six main `dplyr` verbs: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`.
+Most of the `r glossary("data wrangling")` you'll want to do with psychological data will involve the `tidyr` functions you learned in [Chapter 4](#tidyr) and the six main `dplyr` verbs: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`.
 
 ### select() {#select}
 
@@ -90,59 +69,61 @@ Select columns by name or number.
 
 You can select each column individually, separated by commas (e.g., `col1, col2`). You can also select all columns between two columns by separating them with a colon (e.g., `start_col:end_col`).
 
-```{r}
+```{r select-name}
 moral <- disgust %>% select(user_id, moral1:moral7)
 names(moral)
 ```
 
 You can select columns by number, which is useful when the column names are long or complicated.
 
-```{r}
+```{r select-number}
 sexual <- disgust %>% select(2, 11:17)
 names(sexual)
 ```
 
 You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first (e.g., `-(moral1:moral7)`, not `-moral1:moral7`).
 
-```{r}
+```{r select-unselect}
 pathogen <- disgust %>% select(-id, -date, -(moral1:sexual7))
 names(pathogen)
 ```
 
-You can select columns based on criteria about the column names.{#select_helpers}
+#### Select helpers {#select_helpers}
 
-#### `starts_with()` {#starts_with}
+You can select columns based on criteria about the column names.
+
+##### `starts_with()` {#starts_with}
 
 Select columns that start with a character string.
 
-```{r}
+```{r starts-with}
 u <- disgust %>% select(starts_with("u"))
 names(u)
 ```
 
-#### `ends_with()` {#ends_with}
+##### `ends_with()` {#ends_with}
 
 Select columns that end with a character string.
 
-```{r}
+```{r ends-with}
 firstq <- disgust %>% select(ends_with("1"))
 names(firstq)
 ```
 
-#### `contains()` {#contains}
+##### `contains()` {#contains}
 
 Select columns that contain a character string.
 
-```{r}
+```{r contains}
 pathogen <- disgust %>% select(contains("pathogen"))
 names(pathogen)
 ```
 
-#### `num_range()` {#num_range}
+##### `num_range()` {#num_range}
 
 Select columns with a name that matches the pattern `prefix`.
 
-```{r}
+```{r num-range}
 moral2_4 <- disgust %>% select(num_range("moral", 2:4))
 names(moral2_4)
 ```
@@ -158,7 +139,7 @@ Select rows by matching column criteria.
 
 Select all rows where the user_id is 1 (that's Lisa). 
 
-```{r}
+```{r filter}
 disgust %>% filter(user_id == 1)
 ```
 
@@ -168,7 +149,7 @@ Remember to use `==` and not `=` to check if two things are equivalent. A single
 
 You can select on multiple criteria by separating them with commas.
 
-```{r}
+```{r filter-multiple}
 amoral <- disgust %>% filter(
   moral1 == 0, 
   moral2 == 0,
@@ -182,7 +163,7 @@ amoral <- disgust %>% filter(
 
 You can use the symbols `&`, `|`, and `!` to mean "and", "or", and "not". You can also use other operators to make equations.
 
-```{r}
+```{r filter-symbols}
 
 # everyone who chose either 0 or 7 for question moral1
 moral_extremes <- disgust %>% 
@@ -192,11 +173,11 @@ moral_extremes <- disgust %>%
 moral_consistent <- disgust %>% 
   filter(
     moral2 == moral1 & 
-      moral3 == moral1 & 
-      moral4 == moral1 &
-      moral5 == moral1 &
-      moral6 == moral1 &
-      moral7 == moral1
+    moral3 == moral1 & 
+    moral4 == moral1 &
+    moral5 == moral1 &
+    moral6 == moral1 &
+    moral7 == moral1
   )
 
 # everyone who did not answer 7 for all 7 moral questions
@@ -205,25 +186,31 @@ moral_no_ceiling <- disgust %>%
 
 ```
 
-Sometimes you need to exclude some participant IDs for reasons that can't be described in code. the `%in%` operator is useful here for testing if a column value is in a list. Surround the equation with parentheses and put `!` in front to test that a value is not in the list.
+#### Match operator (%in%) {#match-operator}
 
-```{r}
+Sometimes you need to exclude some participant IDs for reasons that can't be described in code. The match operator (`%in%`) is useful here for testing if a column value is in a list. Surround the equation with parentheses and put `!` in front to test that a value is not in the list.
+
+```{r match-operator}
 no_researchers <- disgust %>%
   filter(!(user_id %in% c(1,2)))
 ```
+
 
 #### Dates {#dates}
 
 You can use the `lubridate` package to work with dates. For example, you can use the `year()` function to return just the year from the `date` column and then select only data collected in 2010.
 
-```{r}
-disgust2010 <- disgust  %>%
+```{r dates-year}
+disgust2010 <- disgust %>%
   filter(year(date) == 2010)
 ```
 
-Or select data from at least 5 years ago. You can use the `range` function to check the minimum and maxiumum dates in the resulting dataset.
+`r showtbl(disgust2010)`
 
-```{r}
+
+Or select data from at least 5 years ago. You can use the `range` function to check the minimum and maximum dates in the resulting dataset.
+
+```{r dates-today}
 disgust_5ago <- disgust %>%
   filter(date < today() - dyears(5))
 
@@ -233,32 +220,32 @@ range(disgust_5ago$date)
 
 ### arrange() {#arrange}
 
-Sort your dataset using `arrange()`.
+Sort your dataset using `arrange()`. You will find yourself needing to sort data in R much less than you do in Excel, since you don't need to have rows next to each other in order to, for example, calculate group means. But `arrange()` can be useful when preparing data from display in tables.
 
-```{r}
+```{r arrange}
 disgust_order <- disgust %>%
-  arrange(id)
-
-head(disgust_order)
+  arrange(date, moral1)
 ```
+
+`r showtbl(disgust_order)`
 
 Reverse the order using `desc()`
 
-```{r}
-disgust_order <- disgust %>%
-  arrange(desc(id))
-
-head(disgust_order)
+```{r arrange-desc}
+disgust_order_desc <- disgust %>%
+  arrange(desc(date))
 ```
+
+`r showtbl(disgust_order_desc)`
 
 
 ### mutate() {#mutate}
 
 Add new columns. This is one of the most useful functions in the tidyverse.
 
-Refer to other columns by their names (unquoted). You can add more than one column, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., `total` below).
+Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., `total` below).
 
-```{r}
+```{r mutate}
 disgust_total <- disgust %>%
   mutate(
     pathogen = pathogen1 + pathogen2 + pathogen3 + pathogen4 + pathogen5 + pathogen6 + pathogen7,
@@ -269,17 +256,19 @@ disgust_total <- disgust %>%
   )
 ```
 
+`r showtbl(disgust_total)`
+
 ```{block, type="warning"}
-You can overwrite a column by giving a new column 
-the same name as the old column. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
+You can overwrite a column by giving a new column the same name as the old column (see `user_id`) above. Make sure that you mean to do this and that you aren't trying to use the old column value after you redefine it.
 ```
+
 
 ### summarise() {#summarise}
 
 Create summary statistics for the dataset. Check the [Data Wrangling Cheat Sheet](https://www.rstudio.org/links/data_wrangling_cheat_sheet) or the [Data Transformation Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf) for various summary functions. Some common ones are: `mean()`, `sd()`, `n()`, `sum()`, and `quantile()`.
 
-```{r}
-disgust_total %>%
+```{r summarise}
+disgust_summary<- disgust_total %>%
   summarise(
     n = n(),
     q25 = quantile(total, .25, na.rm = TRUE),
@@ -292,6 +281,8 @@ disgust_total %>%
   )
 ```
 
+`r showtbl(disgust_summary)`
+
 
 ### group_by() {#group_by}
 
@@ -300,8 +291,8 @@ like the mean value for all of your experimental groups.
 
 Here, we'll use `mutate` to create a new column called `year`, group by `year`, and calculate the average scores.
 
-```{r}
-disgust_total %>%
+```{r group-by}
+disgust_groups <- disgust_total %>%
   mutate(year = year(date)) %>%
   group_by(year) %>%
   summarise(
@@ -309,54 +300,69 @@ disgust_total %>%
     avg_total = mean(total, na.rm = TRUE),
     sd_total  = sd(total, na.rm = TRUE),
     min_total = min(total, na.rm = TRUE),
-    max_total = max(total, na.rm = TRUE)
+    max_total = max(total, na.rm = TRUE),
+    .groups = "drop"
   )
 ```
 
-You can use `filter` after `group_by`. The following example returns the lowest total score from each year.
+`r showtbl(disgust_groups, 10)`
 
-```{r}
+```{block, type = "warning"}
+If you don't add `.groups = "drop"` at the end of the `summarise()` function, you will get the following message: "`summarise()` ungrouping output (override with `.groups` argument)". This just reminds you that the groups are still in effect and any further functions will also be grouped. 
 
-disgust_total %>%
+Older versions of dplyr didn't do this, so older code will generate this warning if you run it with newer version of dplyr. Older code might  `ungroup()` after `summarise()` to indicate that groupings should be dropped. The default behaviour is usually correct, so you don't need to worry, but it's best to explicitly set `.groups` in a `summarise()` function after `group_by()` if you want to "keep" or "drop" the groupings. 
+```
+
+You can use `filter` after `group_by`. The following example returns the lowest total score from each year (i.e., the row where the `rank()` of the value in the column `total` is equivalent to `1`).
+
+```{r group-by-filter}
+disgust_lowest <- disgust_total %>%
   mutate(year = year(date)) %>%
   select(user_id, year, total) %>%
   group_by(year) %>%
   filter(rank(total) == 1) %>%
   arrange(year)
-
 ```
+
+`r showtbl(disgust_lowest, 7)`
 
 You can also use `mutate` after `group_by`. The following example calculates subject-mean-centered scores by grouping the scores by `user_id` and then subtracting the group-specific mean from each score. <span class="text-warning">Note the use of `gather` to tidy the data into a long format first.</span>
 
-```{r}
+```{r group-by-mutate}
 
 disgust_smc <- disgust %>%
   gather("question", "score", moral1:pathogen7) %>%
   group_by(user_id) %>%
-  mutate(score_smc = score - mean(score, na.rm = TRUE))
+  mutate(score_smc = score - mean(score, na.rm = TRUE)) %>% 
+  ungroup()
 
 ```
+
+```{block type="warning"}
+Use `ungroup()` as soon as you are done with grouped functions, otherwise the data table will still be grouped when you use it in the future.
+```
+
+`r showtbl(disgust_smc)`
 
 
 ### All Together
 
 A lot of what we did above would be easier if the data were tidy, so let's do that first. Then we can use `group_by` to calculate the domain scores.
 
-```{block, type="warning"}
-It is good practice to use `ungroup()` after using `group_by` and `summarise`. Forgetting to ungroup the dataset won't affect some further processing, but can really mess up other things.
-```
+After that, we can spread out the 3 domains, calculate the total score, remove any rows with a missing (`NA`) total, and calculate mean values by year.
 
-Then we can spread out the 3 domains, calculate the total score, remove any rows with a missing (`NA`) total, and calculate mean values by year.
-
-```{r}
-disgust_tidy <- read_csv("data/disgust.csv") %>%
+```{r all-tidy}
+disgust_tidy <- dataskills::disgust %>%
   gather("question", "score", moral1:pathogen7) %>%
   separate(question, c("domain","q_num"), sep = -1) %>%
   group_by(id, user_id, date, domain) %>%
-  summarise(score = mean(score)) %>%
-  ungroup() 
+  summarise(score = mean(score), .groups = "drop")
+```
 
-disgust_tidy2 <- disgust_tidy %>%
+`r showtbl(disgust_tidy)`
+
+```{r all-scored}
+disgust_scored <- disgust_tidy %>%
   spread(domain, score) %>%
   mutate(
     total = moral + sexual + pathogen,
@@ -364,8 +370,12 @@ disgust_tidy2 <- disgust_tidy %>%
   ) %>%
   filter(!is.na(total)) %>%
   arrange(user_id) 
+```
 
-disgust_tidy3 <- disgust_tidy2 %>%
+`r showtbl(disgust_scored)`
+
+```{r all-summarised}
+disgust_summarised <- disgust_scored %>%
   group_by(year) %>%
   summarise(
     n = n(),
@@ -373,10 +383,12 @@ disgust_tidy3 <- disgust_tidy2 %>%
     avg_moral = mean(moral),
     avg_sexual = mean(sexual),
     first_user = first(user_id),
-    last_user = last(user_id)
+    last_user = last(user_id),
+    .groups = "drop"
   )
-
 ```
+
+`r showtbl(disgust_summarised)`
 
 ## Additional dplyr one-table verbs
 
@@ -384,27 +396,35 @@ Use the code examples below and the help pages to figure out what the following 
 
 ### rename() {#rename}
 
-```{r rename}
-iris_underscore <- iris %>%
-  rename(sepal_length = Sepal.Length,
-         sepal_width = Sepal.Width,
-         petal_length = Petal.Length,
-         petal_width = Petal.Width)
+You can rename columns with `rename()`. Set the argument name to the new name, and the value to the old name. You need to put a name in quotes or backticks if it doesn't follow the rules for a good variable name (contains only letter, numbers, underscores, and full stops; and doesn't start with a number).
 
-names(iris_underscore)
+```{r rename}
+sw <- starwars %>%
+  rename(Name = name,
+         Height = height,
+         Mass = mass,
+         `Hair Colour` = hair_color,
+         `Skin Colour` = skin_color,
+         `Eye Colour` = eye_color,
+         `Birth Year` = birth_year)
+
+names(sw)
 ```
 
-```{block type="try"}
+
+```{block, type="try"}
 Almost everyone gets confused at some point with `rename()` and tries to put the original names on the left and the new names on the right. Try it and see what the error message looks like.
 ```
 
 ### distinct() {#distinct}
 
+Get rid of exactly duplicate rows with `distinct()`. This can be helpful if, for example, you are merging data from multiple computers and some of the data got copied from one computer to another, creating duplicate rows.
+
 ```{r distinct}
 # create a data table with duplicated values
 dupes <- tibble(
-  id = rep(1:5, 2),
-  dv = rep(LETTERS[1:5], 2)
+  id = c( 1,   2,   1,   2,   1,   2),
+  dv = c("A", "B", "C", "D", "A", "B")
 )
 
 distinct(dupes)
@@ -412,34 +432,31 @@ distinct(dupes)
 
 ### count() {#count}
 
+The function `count()` is a quick shortcut for the common combination of `group_by()` and `summarise()` used to count the number of rows per group.
+
+```{r group-by-summarise-n}
+starwars %>%
+  group_by(sex) %>%
+  summarise(n = n(), .groups = "drop")
+```
+
 ```{r count}
-# how many observations from each species are in iris?
-count(iris, Species)
+count(starwars, sex)
 ```
 
 
 ### slice() {#slice}
 
 ```{r slice}
-
-tibble(
-  id = 1:10,
-  condition = rep(c("A","B"), 5)
-) %>%
-  slice(3:6, 9)
-
+slice(starwars, 1:3, 10)
 ```
-
 
 ### pull() {#pull}
 
 ```{r pull}
-
-iris %>%
-  group_by(Species) %>%
-  summarise_all(mean) %>%
-  pull(Sepal.Length)
-
+starwars %>%
+  filter(species == "Droid") %>%
+  pull(name)
 ```
 
 
@@ -452,7 +469,7 @@ The [dplyr window functions vignette](https://dplyr.tidyverse.org/articles/windo
 ### Ranking functions
 
 ```{r}
-tibble(
+grades <- tibble(
   id = 1:5,
   "Data Skills" = c(16, 17, 17, 19, 20), 
   "Statistics"  = c(14, 16, 18, 18, 19)
@@ -467,7 +484,9 @@ tibble(
          percentile = ntile(grade, 100))
 ```
 
-```{block type="try"}
+`r showtbl(grades, 10)`
+
+```{block, type="try"}
 * What are the differences among `row_number()`, `rank()`, `min_rank()`, `dense_rank()`, and `ntile()`? 
 * Why doesn't `row_number()` need an argument? 
 * What would happen if you gave it the argument `grade` or `class`? 
@@ -480,26 +499,52 @@ tibble(
 You can use window functions to group your data into quantiles.
 
 ```{r}
-iris %>%
-  group_by(tertile = ntile(Sepal.Length, 3)) %>%
-  summarise(mean.Sepal.Length = mean(Sepal.Length))
-
+sw_mass <- starwars %>%
+  group_by(tertile = ntile(mass, 3)) %>%
+  summarise(min = min(mass),
+            max = max(mass),
+            mean = mean(mass),
+            .groups = "drop")
 ```
+
+`r showtbl(sw_mass, 4)`
+
+```{block type="try"}
+Why is there a row of `NA` values? How would you get rid of them? 
+```
+
 
 ### Offset functions
 
+The function `lag()` gives a previous row's value. It defaults to 1 row back, but you can change that with the `n` argument. The function `lead()` gives values ahead of the current row.
+
 ```{r}
-tibble(
-  trial = 1:10,
-  cond = rep(c("exp", "ctrl"), c(6, 4)),
+lag_lead <- tibble(x = 1:6) %>%
+  mutate(lag = lag(x),
+         lag2 = lag(x, n = 2),
+         lead = lead(x, default = 0))
+```
+
+`r showtbl(lag_lead)`
+
+You can use offset functions to calculate change between trials or where a value changes. Use the `order_by` argument to specify the order of the rows. Alternatively, you can use `arrange()` before the offset functions.
+
+```{r offset-adv}
+trials <- tibble(
+  trial = sample(1:10, 10),
+  cond = sample(c("exp", "ctrl"), 10, T),
   score = rpois(10, 4)
 ) %>%
   mutate(
     score_change = score - lag(score, order_by = trial),
-    last_cond_trial = cond != lead(cond, default = "last")
-  )
+    change_cond = cond != lag(cond, order_by = trial, 
+                              default = "no condition")
+  ) %>%
+  arrange(trial)
 
 ```
+
+`r showtbl(trials, 10)`
 
 ```{block type="try"}
 Look at the help pages for `lag()` and `lead()`.
@@ -511,12 +556,12 @@ Look at the help pages for `lag()` and `lead()`.
 
 ### Cumulative aggregates
 
-`cumsum()`, `cummin()`, and `cummax()` are base R functions for calcumaling cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
+`cumsum()`, `cummin()`, and `cummax()` are base R functions for calculating cumulative means, minimums, and maximums. The dplyr package introduces `cumany()` and `cumall()`, which return `TRUE` if any or all of the previous values meet their criteria.
 
 ```{r}
-tibble(
+cumulative <- tibble(
   time = 1:10,
-  obs = c(1, 0, 1, 2, 4, 3, 1, 0, 3, 5)
+  obs = c(2, 2, 1, 2, 4, 3, 1, 0, 3, 5)
 ) %>%
   mutate(
     cumsum = cumsum(obs),
@@ -527,7 +572,9 @@ tibble(
   )
 ```
 
-```{block type="try"}
+`r showtbl(cumulative, 10)`
+
+```{block, type="try"}
 * What would happen if you change `cumany(obs == 3)` to `cumany(obs > 2)`?
 * What would happen if you change `cumall(obs < 4)` to `cumall(obs < 2)`?
 * Can you think of circumstances in your own data where you might need to use `cumany()` or `cumall()`?

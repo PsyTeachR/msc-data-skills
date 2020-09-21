@@ -1,0 +1,117 @@
+/* colours */
+:root {
+  --pink: #983E82;   /* hsl(315, 42%, 42%) */
+  --orange: #E2A458; /* hsl( 33, 70%, 62%) */
+  --yellow: #F5DC70; /* hsl( 49, 87%, 70%) */
+  --green: #59935B;  /* hsl(122, 25%, 46%) */
+  --blue: #467AAC;   /* hsl(209, 42%, 47%) */
+  --purple: #61589C; /* hsl(248, 28%, 48%) */
+  --tpink:   hsla(315, 42%, 42%, .2);
+  --torange: hsla( 33, 70%, 62%, .2);
+  --tyellow: hsla( 49, 87%, 70%, .2);
+  --tgreen:  hsla(122, 25%, 46%, .2);
+  --tblue:   hsla(209, 42%, 47%, .2);
+  --tpurple: hsla(248, 28%, 48%, .2);
+}
+/* styles for solveme */
+.solveme:focus { outline: none; }
+.solveme + label { 
+    border: 2px solid rgba(0,0,0,0); 
+    padding: 0 0.25em;
+    font-weight: normal;
+}
+.solveme, .reveal .solveme + label 
+    { border: 2px dotted pink; }
+.solveme.correct,
+.reveal .solveme.correct + label
+    { border: 2px solid green; }
+form.webex_form.hide_answers .solveme,
+form.webex_form.hide_answers .solveme.correct
+    { border: 2px solid rgba(0,0,0,0.2); }
+
+/* styles for hidden solutions */
+.solution {
+    height: 2.5em;
+    overflow-y: hidden;
+    padding: 0.5em;
+}
+.solution.open {
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+input { 
+    outline: none; 
+    border: 2px solid rgba(0,0,0,0.2);
+    min-width: 2em;
+}
+button {
+    border-radius: 0.5em;
+    border: 1px solid rgba(0,0,0,1);
+    color: black;
+    background-color: rgba(0,0,0,0.2);
+    outline: none;
+}
+button:active {
+    color: white;
+    border-color: white;
+    background-color: rgba(0,0,0,1);
+}
+.solution button {
+    height: 2em;
+    margin-bottom: 0.5em;
+}
+.solution button.red {
+    border-color: var(--pink);
+    background-color: var(--tpink);
+}
+.solution button.red:active {
+    background-color: var(--pink);
+}
+.solution button.orange {
+    border-color: var(--orange);
+    background-color: var(--torange);
+}
+.solution button.orange:active {
+    background-color: var(--orange);
+}
+.solution button.yellow {
+    border-color: var(--yellow);
+    background-color: var(--tyellow);
+}
+.solution button.yellow:active {
+    background-color: var(--yellow);
+}
+.solution button.green {
+    border-color: var(--green);
+    background-color: var(--tgreen);
+}
+.solution button.green:active {
+    background-color: var(--green);
+}
+.solution button.blue {
+    border-color: var(--blue);
+    background-color: var(--tblue);
+}
+.solution button.blue:active {
+    background-color: var(--blue);
+}
+.solution button.purple {
+    border-color: var(--purple);
+    background-color: var(--tpurple);
+}
+.solution button.purple:active {
+    background-color: var(--purple);
+}
+.solution pre.sourceCode {
+    border-color: green;
+}
+
+ul.cb {
+    list-style-type: none;
+}
+
+form.webex_form.hide_answers #total_correct,
+form.webex_form .cb > button {
+    display: none;
+}

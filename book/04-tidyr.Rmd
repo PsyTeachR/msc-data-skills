@@ -1,21 +1,22 @@
 # Tidy Data {#tidyr}
 
-<img src="images/memes/messy_data.jpg" class="meme right">
+<img src="images/memes/messy_data.jpg" class="meme right"
+     alt="A giant demon emerging from fire labelled 'messy data'; in front is a tiny human labelled 'R User'">
 
 ## Learning Objectives
 
 ### Basic
 
-1. Understand the concept of [tidy data](#tidy-data)
-2. Be able to convert between long and wide formats using pivot functions
+1. Understand the concept of [tidy data](#tidy-data) [(video)](https://youtu.be/EsSN4OdsNpc){class="video"}
+2. Be able to convert between long and wide formats using pivot functions [(video)](https://youtu.be/4dvLmjhwN8I){class="video"}
     + [`pivot_longer()`](#pivot_longer)
     + [`pivot_wider()`](#pivot_wider)
-3. Be able to use the 4 basic `tidyr` verbs
+3. Be able to use the 4 basic `tidyr` verbs [(video)](https://youtu.be/oUWjb0JC8zM){class="video"}
     + [`gather()`](#gather)
     + [`separate()`](#separate)
     + [`spread()`](#spread)
     + [`unite()`](#unite)
-4. Be able to chain functions using [pipes](#pipes)
+4. Be able to chain functions using [pipes](#pipes) [(video)](https://youtu.be/itfrlLaN4SE){class="video"}
 
 ### Advanced
 

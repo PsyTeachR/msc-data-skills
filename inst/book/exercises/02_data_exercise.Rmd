@@ -10,54 +10,75 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
 ```
 
-## Vectors
+## Load built-in datasets
 
-The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
+List the packages in `dplyr`.
 
 ```{r Q1}
-cat <- NULL
+# put code here
+
 ```
 
 
-The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
+Load the built-in dataset `starwars`.
 
 ```{r Q2}
-col_length <- NULL
+# put code here
+
 ```
 
 
-The function call `runif(n, min, max)` will draw `n` numbers from a uniform distribution from `min` to `max`. If you set `n` to 1000, `min` to 0 and `max` to 1, this simulates the p-values that you would get from 1000 experiments where the null hypothesis is true. Create the following objects:
-
-* `pvals`: 1000 simulated p-values using `runif()`
-* `is_sig`: a logical vector that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise
-* `sig_vals`: a vector of just the significant p-values
-* `prop_sig`: the proportion of those p-values that were significant
+Convert the built-in base R `mtcars` dataset to a tibble, and store it in the object `mt`.
 
 ```{r Q3}
-set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
-
-pvals    <- NULL
-is_sig   <- NULL
-sig_vals <- NULL
-prop_sig <- NULL
-```
-
-
-## Tabular Data 
-
-Create a tibble with the columns `name`, `age`, and `country` of origin for 2 people you know.
-
-```{r Q4}
-people <- NULL
-```
-
-
-Convert the built-in base R `mtcars` dataset to a tibble, and store it in the variable `mt`.
-
-```{r Q5}
 mt <- NULL
 ```
 
+
+## Import data from CSV and Excel files
+
+Using the data directory created by `dataskills::getdata()` (or download [the zip file](https://psyteachr.github.io/msc-data-skills/data/data.zip), read "disgust_scores.csv" into a table.
+
+```{r Q4}
+disgust <- NULL
+```
+
+Override the default column specifications to skip the `id` column.
+
+```{r Q5}
+disgust_skip <- NULL
+```
+
+
+How many rows and columns are in the `disgust` dataset?
+
+```{r Q6}
+disgust_rows <- NULL
+disgust_cols <- NULL
+```
+
+
+Load the data in "data/stroop.csv" as `stroop1` and "data/stroop.xlsx" as `stroop2`.
+
+```{r Q7}
+stroop1 <- NULL
+stroop2 <- NULL
+```
+
+Use `glimpse()` to figure out the difference between the two data tables and fix the problem.
+
+```{r Q8}
+stroop2b <- NULL
+```
+
+
+## Create a data table
+
+Create a tibble with the columns `name`, `age`, and `country` of origin for 2 people you know.
+
+```{r Q9}
+people <- NULL
+```
 
 Create a tibble that has the structure of the table below, using the minimum typing possible. (Hint: `rep()`).  Store it in the variable `my_tbl`.
 
@@ -72,30 +93,111 @@ ID |  A | B   | C
 7	| A2	| B1	| C1	
 8	| A2	| B2	| C1
 
-```{r Q6}
-my_tbl <- NULL
+```{r Q10}
+my_tbl <- NULL  
+```
+
+## Understand the use the basic data types
+
+Set the following objects to the number 1 with the indicated data type:
+
+* `one_int` (integer)
+* `one_dbl` (double)
+* `one_chr` (character)
+
+```{r Q11}
+one_int <- NULL
+one_dbl <- NULL
+one_chr <- NULL
+```
+
+Set the objects `T_log`, `T_chr`, `T_int` and `T_dbl` to logical, character, integer and double values that will all be equal to `TRUE`. 
+
+```{r Q12}
+T_log <- NULL
+T_chr <- NULL
+T_int <- NULL
+T_dbl <- NULL
+```
+
+Check your answers with this code:
+
+```{r Q12-check}
+# these should all evaluate to TRUE
+c(
+  T_log == TRUE,
+  T_chr == TRUE,
+  T_int == TRUE,
+  T_dbl == TRUE,
+  is.logical(T_log),
+  is.character(T_chr),
+  is.integer(T_int),
+  is.double(T_dbl)
+)
 ```
 
 
-## Data Import
+## Understand and use the basic container types
 
-Download the dataset [disgust_scores.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv) and read it into a table.
+Create a vector of the numbers 3, 6, and 9.
 
-```{r Q7}
-disgust <- NULL
+```{r Q13}
+threes <- NULL
 ```
 
 
-Override the default column specifications to skip the `id` column.
+The built-in vector `letters` contains the letters of the English alphabet.  Use an indexing vector of integers to extract the letters that spell 'cat'.
 
-```{r Q8}
-disgust_skip <- NULL
+```{r Q14}
+cat <- NULL
 ```
 
 
-How many rows and columns are in the dataset from question 7?
+The function `colors()` returns all of the color names that R is aware of. What is the length of the vector returned by this function? (Use code to find the answer.)
 
-```{r Q9}
-disgust_rows <- NULL
-disgust_cols <- NULL
+```{r Q15}
+col_length <- NULL
 ```
+
+
+Create a named list called `col_types` where the name is each column in the built-in dataset `table1` and the value is the column data type (e.g., "double", "character", "integer", "logical").
+
+```{r Q16}
+col_types <- NULL
+```
+
+
+## Use vectorized operations
+
+Set the object `x` to the integers 1 to 100. Use vectorised operations to set `y` to `x` squared. Use `plot(x, y)` to visualise the relationship between these two numbers.
+
+```{r Q17}
+x <- NULL
+y <- NULL
+```
+
+Set `t` to the numbers 0 to 100 in increments of 0.1. Set `x` to the sine of `t` and `y` to the cosine of `t`. Plot `x` against `y`.
+
+```{r Q18}
+t <- NULL
+x <- NULL
+y <- NULL
+```
+
+
+The function call `runif(n, min, max)` will draw `n` numbers from a uniform distribution from `min` to `max`. If you set `n` to 10000, `min` to 0 and `max` to 1, this simulates the p-values that you would get from 10000 experiments where the null hypothesis is true. Create the following objects:
+
+* `pvals`: 10000 simulated p-values using `runif()`
+* `is_sig`: a logical vector that is `TRUE` if the corresponding element of `pvals` is less than .05, `FALSE` otherwise
+* `sig_vals`: a vector of just the significant p-values
+* `prop_sig`: the proportion of those p-values that were significant
+
+```{r Q19}
+set.seed(8675309) # ensures you get the same random numbers each time you run this code chunk
+
+pvals    <- NULL
+is_sig   <- NULL
+sig_vals <- NULL
+prop_sig <- NULL
+```
+

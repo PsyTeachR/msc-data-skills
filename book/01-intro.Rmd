@@ -1,6 +1,7 @@
 # Getting Started {#intro}
 
-<img src="images/memes/rstudio.png" class="meme right">
+<img src="images/memes/rstudio.png" class="meme right"
+     alt="A line drawing of a person looking at a computer with a magnifying glass. The text reads 'I just installed RStudio. I'm a data scientist now.'">
 
 ## Learning Objectives
 

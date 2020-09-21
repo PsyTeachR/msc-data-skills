@@ -1,6 +1,7 @@
 # Iteration & Functions {#func}
 
-<img src="images/memes/functions.jpg" class="meme right">
+<img src="images/memes/functions.jpg" class="meme right"
+     alt="History channel aliens conspiracy guy. Top text: I've got function inside functions...; Bottom text: ... inside functions.">
 
 ## Learning Objectives
 
@@ -36,7 +37,7 @@ The topics below are not (yet) covered in these materials, but they are directio
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 * [Stub for this lesson](stubs/7_func.Rmd)
 
-In the next two lectures, we are going to learn more about *iteration* (doing the same commands over and over) and *custom functions* through a data simulation exercise, which will also lead us into more traditional statistical topics. Along the way you will also learn more about how to create vectors and tables in R.
+In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#custom-functions'>custom functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.
 
 
 ```r
@@ -48,6 +49,8 @@ set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
 ## Iteration functions {#iteration-functions}
+
+We first learned about the two basic iteration functions, `rep()` and `seq()` in the [Working with Data](#rep_seq) chapter.
 
 ### `rep()`
 
@@ -670,6 +673,17 @@ Calculate power via simulation and `power.t.test` for the following tests:
 * 20 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 40 subjects/group, A: m = 0, SD = 1; B: m = 0.2, SD = 1
 * 20 subjects/group, A: m = 10, SD = 1; B: m = 12, SD = 1.5
+
+## Glossary {#glossary7}
+
+
+
+|term                                                                                                                    |definition |
+|:-----------------------------------------------------------------------------------------------------------------------|:----------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#custom.functions'>custom functions</a> |NA         |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a>               |NA         |
+
+
 
 ## Exercises
 

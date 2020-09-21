@@ -1,19 +1,20 @@
 # Data Visualisation {#ggplot}
 
-<img src="images/memes/better_graphs.png" class="meme right">
+<img src="images/memes/better_graphs.png" class="meme right"
+     alt = "xkcd comic titled 'General quality of charts and graphs in scientific papers'; y-axis: BAD on the bottom to GOOD on the top; x-axis: 1950s to 2010s; Line graph increases with time except for a dip between 1990 and 2010 labelled POWERPOINT/MSPAINT ERA">
 
 ## Learning Objectives
 
 ### Basic
 
-1. Understand what types of graphs are best for [different types of data](#vartypes)
+1. Understand what types of graphs are best for [different types of data](#vartypes) [(video)](https://youtu.be/tOFQFPRgZ3M){class="video"}
     + 1 discrete
     + 1 continuous
     + 2 discrete
     + 2 continuous
     + 1 discrete, 1 continuous
     + 3 continuous
-2. Create common types of graphs with ggplot2
+2. Create common types of graphs with ggplot2 [(video)](https://youtu.be/kKlQupjD__g){class="video"}
     + [`geom_bar()`](#geom_bar)
     + [`geom_density()`](#geom_density)
     + [`geom_freqpoly()`](#geom_freqpoly)
@@ -28,9 +29,9 @@
         + `geom_pointrange()`
     + [`geom_point()`](#geom_point)
     + [`geom_smooth()`](#geom_smooth)
-3. Set custom [labels](#custom-labels),  [colours](#custom-colours), and [themes](#themes)
-4. [Combine plots](combo_plots) on the same plot, as facets, or as a grid using cowplot
-5. [Save plots](#ggsave) as an image file
+3. Set custom [labels](#custom-labels),  [colours](#custom-colours), and [themes](#themes) [(video)](https://youtu.be/6pHuCbOh86s){class="video"}
+4. [Combine plots](combo_plots) on the same plot, as facets, or as a grid using cowplot [(video)](https://youtu.be/AnqlfuU-VZk){class="video"}
+5. [Save plots](#ggsave) as an image file [(video)](https://youtu.be/f1Y53mjEli0){class="video"}
     
 ### Intermediate
 

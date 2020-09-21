@@ -31,7 +31,7 @@
 ## Resources
 
 * [Chapter 5: Data Transformation](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
-* [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf)
+* [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Lecture slides on dplyr one-table verbs](slides/04_dplyr_slides.pdf)
 * [Chapter 16: Date and times](http://r4ds.had.co.nz/dates-and-times.html) in *R for Data Science*
 
@@ -50,11 +50,13 @@ set.seed(8675309) # makes sure random numbers are reproducible
 
 ## The `disgust` dataset {#data-disgust}
 
-These examples will use data from [disgust.csv](/data/disgust.csv), which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
+These examples will use data from `dataskills::disgust`, which contains data from the [Three Domain Disgust Scale](http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&context=psy_etds). Each participant is identified by a unique `user_id` and each questionnaire completion has a unique `id`.
 
 
 ```r
-disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
+data("disgust", package = "dataskills")
+
+#disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.csv")
 ```
 
 *Questionnaire Instructions*: The following items describe a variety of concepts. Please rate how disgusting you find the concepts described in the items, where 0 means that you do not find the concept disgusting at all, and 6 means that you find the concept extremely disgusting.
@@ -84,7 +86,7 @@ disgust <- read_csv("https://psyteachr.github.io/msc-data-skills/data/disgust.cs
 | pathogen7	| Accidentally touching a person's bloody cut                                       |
 ## Six main dplyr verbs
 
-Most of the data wrangling you'll want to do with psychological data will involve the `tidyr` verbs you learned in [Chapter 3](#tidyr) and the six main `dplyr` verbs: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`.
+Most of the <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> you'll want to do with psychological data will involve the `tidyr` verbs you learned in [Chapter 3](#tidyr) and the six main `dplyr` verbs: `select`, `filter`, `arrange`, `mutate`, `summarise`, and `group_by`.
 
 ### select() {#select}
 
@@ -286,7 +288,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2015-08-18"
+## [1] "2008-07-10" "2015-09-15"
 ```
 
 
@@ -795,6 +797,16 @@ tibble(
 <li>Can you think of circumstances in your own data where you might need to use <code>cumany()</code> or <code>cumall()</code>?</li>
 </ul>
 </div>
+
+## Glossary {#glossary5}
+
+
+
+|term                                                                                                                |definition                                                                |
+|:-------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.wrangling'>data wrangling</a> |The process of preparing data for visualisation and statistical analysis. |
+
+
 
 ## Exercises
 
