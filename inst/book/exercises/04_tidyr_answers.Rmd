@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
 ```
 
+Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
+
 ## Tidy data
 
 The following data table is not tidy. Use `tibble()` or `tribble()`to manually create the tidy version of this table.
@@ -63,14 +65,16 @@ Convert from wide to long format.
 ```{r pivot-longer-error}
 ss_long <- ss %>%
   pivot_longer(names_to = "question", 
-               values_to = "score")
+               values_to = "score") %>%
+  glimpse()
 ```
 
 ```{r pivot-longer}
 ss_long <- ss %>%
   pivot_longer(sss1:sss14, 
                names_to = "question", 
-               values_to = "score")
+               values_to = "score") %>%
+  glimpse()
 ```
 
 
@@ -80,13 +84,15 @@ Convert back to wide format. Make sure `ss_wide` is the same as `ss`.
 
 ```{r pivot-wider-error}
 ss_wide <- ss_long %>%
-  pivot_wider(question, score)
+  pivot_wider(question, score) %>%
+  glimpse()
 ```
 
 ```{r pivot-wider}
 ss_wide <- ss_long %>%
   pivot_wider(names_from = question, 
-              values_from = score)
+              values_from = score) %>%
+  glimpse()
 ```
 
 
@@ -99,11 +105,13 @@ The questions in this section all have errors. Fix the errors.
 Use the `gather()` function to convert `ss` from wide to long.
 
 ```{r gather-error}
-ss_long <- gather(ss, "question", "score")
+ss_long <- gather(ss, "question", "score") %>%
+  glimpse()
 ```
 
 ```{r gather}
-ss_long <- gather(ss, "question", "score", sss1:sss14)
+ss_long <- gather(ss, "question", "score", sss1:sss14) %>%
+  glimpse()
 ```
 
 
@@ -113,12 +121,14 @@ Split the `question` column from `ss_long` into two columns: `domain` and `qnumb
 
 ```{r separate-error}
 ss_sep <- ss_long %>%
-  separate(question, domain, qnumber, sep = 3)
+  separate(question, domain, qnumber, sep = 3) %>%
+  glimpse()
 ```
 
 ```{r separate}
 ss_sep <- ss_long %>%
-  separate(question, c("domain", "qnumber"), sep = 3)
+  separate(question, c("domain", "qnumber"), sep = 3) %>%
+  glimpse()
 ```
 
 
@@ -128,12 +138,14 @@ Put the `id` and `user_id` columns together into a new column named `super_id`. 
 
 ```{r unite-error}
 ss_unite <- ss_sep %>%
-  unite(id, user_id, "super_id", sep = "-")
+  unite(id, user_id, "super_id", sep = "-") %>%
+  glimpse()
 ```
 
 ```{r unite}
 ss_unite <- ss_sep %>%
-  unite("super_id", id, user_id, sep = "-")
+  unite("super_id", id, user_id, sep = "-") %>%
+  glimpse()
 ```
 
 
@@ -143,12 +155,14 @@ Convert back to wide format. (N.B. the new question columns headers will just be
 
 ```{r spread-error}
 ss_wide <- ss_unite %>%
-  spreadr(qnumber, score, )
+  spreadr(qnumber, score, ) %>%
+  glimpse()
 ```
 
 ```{r spread}
 ss_wide <- ss_unite %>%
-  spread(qnumber, score)
+  spread(qnumber, score) %>%
+  glimpse()
 ```
 
 
@@ -163,10 +177,11 @@ Re-write the following sequence of commands into a single 'pipeline'.
 x <- 1:20      # integers from 1:20
 y <- rep(x, 2) # then repeat them twice
 z <- sum(y)    # and then take the sum
+z
 ```
 
 ```{r pipe1}
-x <- 1:20 %>% rep(2) %>% sum()
+x <- 1:20 %>% rep(2) %>% sum() %>% print()
 ```
 
 
@@ -178,45 +193,50 @@ Deconstruct the pipeline below back into separate commands.
 # do not edit this chunk
 lager <- LETTERS[c(18, 5, 7, 1, 12)] %>%
   rev() %>%
-  paste(collapse = "")
+  paste(collapse = "") %>%
+  print()
 ```
 
 ```{r pipe2}
 regal <- LETTERS[c(18, 5, 7, 1, 12)]
 reversed <- rev(regal)
 lager <- paste(reversed, collapse = "") # make it into a string
+lager
 ```
 
 
 ## Pivot vs tidy verbs
 
-Load the dataset [family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv).
+Load the dataset [dataskills::family_composition](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv).
 
 The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (`sibage` = old, young, twin) and sex (`sibsex` = bro, sis).
 
 ### Use pivot functions
 
 ```{r family-pivot}
-family_pivot <- read_csv("https://psyteachr.github.io/msc-data-skills/data/family_composition.csv") %>%
+
+family_pivot <- dataskills::family_composition %>%
   pivot_longer(cols = oldbro:twinsis,
                names_to = c("sibage", "sibsex"),
                names_sep = -3,
-               values_to = "n")
+               values_to = "n") %>%
+  glimpse()
 ```
 
 
 ### Use tidy verbs
 
 ```{r family-tidy}
-family_tidy <- read_csv("https://psyteachr.github.io/msc-data-skills/data/family_composition.csv") %>%
+family_tidy <- dataskills::family_composition %>%
   gather("sibtype", "n", oldbro:twinsis) %>%
-  separate(sibtype, c("sibage", "sibsex"), sep = -3)
+  separate(sibtype, c("sibage", "sibsex"), sep = -3) %>%
+  glimpse()
 ```
 
 
 ## Multiple steps
 
-Tidy the data from `dataskills::eye_descriptions` ([eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv)). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
+Tidy the data from [dataskills::eye_descriptions](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
 
 Create a dataset with separate columns for `face_id`, `description`, and description number (`desc_n`). Hint: to separate a string by tildes or slashes, you would set the `sep` argument to `"(~|\\/)+"`.
 
@@ -225,7 +245,8 @@ eyes <- dataskills::eye_descriptions %>%
   gather("face_id", "description", t1:t50) %>%
   separate(description, c("d1", "d2", "d3", "d4"), sep = "(,|;|\\/)+", fill = "right") %>%
   gather("desc_n", "description", d1:d4) %>%
-  filter(!is.na(description))  # gets rid of rows with no description
+  filter(!is.na(description)) %>%  # gets rid of rows with no description
+  glimpse()
 ```
 
 

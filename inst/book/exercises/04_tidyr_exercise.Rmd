@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
 ```
 
+Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
+
 ## Tidy data
 
 The following data table is not tidy. Use `tibble()` or `tribble()`to manually create the tidy version of this table.
@@ -48,7 +50,8 @@ Convert from wide to long format.
 ```{r pivot-longer}
 ss_long <- ss %>%
   pivot_longer(names_to = "question", 
-               values_to = "score")
+               values_to = "score") %>%
+  glimpse()
 ```
 
 
@@ -56,9 +59,10 @@ ss_long <- ss %>%
 
 Convert back to wide format. Make sure `ss_wide` is the same as `ss`.
 
-```{r pivot-wider, error=TRUE}
+```{r pivot-wider}
 ss_wide <- ss_long %>%
-  pivot_wider(question, score)
+  pivot_wider(question, score) %>%
+  glimpse()
 ```
 
 
@@ -71,7 +75,8 @@ The questions in this section all have errors. Fix the errors.
 Use the `gather()` function to convert `ss` from wide to long.
 
 ```{r gather}
-ss_long <- gather(ss, "question", "score")
+ss_long <- gather(ss, "question", "score") %>%
+  glimpse()
 ```
 
 
@@ -81,7 +86,8 @@ Split the `question` column from `ss_long` into two columns: `domain` and `qnumb
 
 ```{r separate}
 ss_sep <- ss_long %>%
-  separate(question, domain, qnumber, sep = 3)
+  separate(question, domain, qnumber, sep = 3) %>%
+  glimpse()
 ```
 
 
@@ -91,7 +97,8 @@ Put the `id` and `user_id` columns together into a new column named `super_id`. 
 
 ```{r unite}
 ss_unite <- ss_sep %>%
-  unite(id, user_id, "super_id", sep = "-")
+  unite(id, user_id, "super_id", sep = "-") %>%
+  glimpse()
 ```
 
 
@@ -101,7 +108,8 @@ Convert back to wide format. (N.B. the new question columns headers will just be
 
 ```{r spread}
 ss_wide <- ss_unite %>%
-  spreadr(qnumber, score, )
+  spreadr(qnumber, score, ) %>%
+  glimpse()
 ```
 
 
@@ -116,6 +124,7 @@ Re-write the following sequence of commands into a single 'pipeline'.
 x <- 1:20      # integers from 1:20
 y <- rep(x, 2) # then repeat them twice
 z <- sum(y)    # and then take the sum
+z
 ```
 
 ```{r pipe1}
@@ -130,7 +139,8 @@ Deconstruct the pipeline below back into separate commands.
 # do not edit this chunk
 lager <- LETTERS[c(18, 5, 7, 1, 12)] %>%
   rev() %>%
-  paste(collapse = "")
+  paste(collapse = "") %>%
+  print()
 ```
 
 ```{r pipe2}
@@ -140,7 +150,7 @@ lager <- NULL
 
 ## Pivot vs tidy verbs
 
-Load the dataset [family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv).
+Load the dataset [dataskills::family_composition](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv).
 
 The columns `oldbro` through `twinsis` give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (`sibage` = old, young, twin) and sex (`sibsex` = bro, sis).
 
@@ -159,7 +169,7 @@ family_tidy <- NULL
 
 ## Multiple steps
 
-Tidy the data from `dataskills::eye_descriptions` ([eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv)). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
+Tidy the data from [dataskills::eye_descriptions](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
 
 Create a dataset with separate columns for `face_id`, `description`, and description number (`desc_n`). Hint: to separate a string by tildes or slashes, you would set the `sep` argument to `"(~|\\/)+"`.
     

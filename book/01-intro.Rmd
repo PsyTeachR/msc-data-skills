@@ -15,11 +15,13 @@
 
 ## Resources
 
+* [Glasgow Psychology RStudio](https://rstudio.psy.gla.ac.uk){target="_blank"}
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 * [R Markdown Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
 * [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+* [RStudio Cloud](https://rstudio.cloud/){target="_blank"}
 
 
 ## What is R?
@@ -66,9 +68,10 @@ RStudio is arranged with four window `r glossary("panes")`. By default, the uppe
 
 ### Configure RStudio
 
-In this class, you will be learning how to develop **reproducible scripts**.  This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. 
+In this class, you will be learning how to do `r glossary("reproducible research")`.  This involves writing scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. 
 
-<img src="images/memes/forgetting.jpg"  class="right meme">
+<img src="images/memes/forgetting.jpg"  class="right meme"
+     alt="Fry from Futurama squinting; top text: Not sure if I have a bad memory; bottom text: Or a bad memory">
 
 When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
@@ -89,11 +92,12 @@ Your settings should have:
 
 ### Console commands {#console}
 
-We are first going to learn about how to interact with the console. In general, you will be developing R `r glossary("scripts", "script")` or `r glossary("R Markdown")` files, rather than working directly in the console window. However, you can consider the console a kind of "sandbox" where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
+We are first going to learn about how to interact with the `r glossary("console")`. In general, you will be developing R `r glossary("scripts", "script")` or `r glossary("R Markdown")` files, rather than working directly in the console window. However, you can consider the console a kind of "sandbox" where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
 
 Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.
 
-<img src="images/memes/typos.jpg" class="right meme">
+<img src="images/memes/typos.jpg" class="right meme"
+     alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon">
 
 One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first).
 

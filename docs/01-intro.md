@@ -15,11 +15,13 @@
 
 ## Resources
 
+* [Glasgow Psychology RStudio](https://rstudio.psy.gla.ac.uk){target="_blank"}
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 * [R Markdown Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
 * [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+* [RStudio Cloud](https://rstudio.cloud/){target="_blank"}
 
 
 ## What is R?
@@ -67,9 +69,10 @@ RStudio is arranged with four window <a class='glossary' target='_blank' title='
 
 ### Configure RStudio
 
-In this class, you will be learning how to develop **reproducible scripts**.  This means scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. 
+In this class, you will be learning how to do <a class='glossary' target='_blank' title='Research that documents all of the steps between raw data and results in a way that can be verified.' href='https://psyteachr.github.io/glossary/r#reproducible-research'>reproducible research</a>.  This involves writing scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the "trust but verify" motto. 
 
-<img src="images/memes/forgetting.jpg"  class="right meme">
+<img src="images/memes/forgetting.jpg"  class="right meme"
+     alt="Fry from Futurama squinting; top text: Not sure if I have a bad memory; bottom text: Or a bad memory">
 
 When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
@@ -91,11 +94,12 @@ Your settings should have:
 
 ### Console commands {#console}
 
-We are first going to learn about how to interact with the console. In general, you will be developing R <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#scripts'>script</a> or <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> files, rather than working directly in the console window. However, you can consider the console a kind of "sandbox" where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
+We are first going to learn about how to interact with the <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a>. In general, you will be developing R <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#scripts'>script</a> or <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> files, rather than working directly in the console window. However, you can consider the console a kind of "sandbox" where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.
 
 Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.
 
-<img src="images/memes/typos.jpg" class="right meme">
+<img src="images/memes/typos.jpg" class="right meme"
+     alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon">
 
 One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first).
 
@@ -353,8 +357,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.08349219  1.13924252 -1.96647972  0.17702228 -1.15038453  0.37958911
-##  [7] -1.40844706 -0.47612969  3.14978445 -0.54941041
+##  [1] -0.71465408  1.23828797 -0.03082233  2.60177059  0.61793582 -0.48690263
+##  [7] -0.88500739 -0.96486887 -1.18809008 -0.51941074
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -365,8 +369,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.77386 100.78324  98.65096  98.02613  99.59834  99.29937 101.08817
-##  [8] 101.39113 100.11434 100.18820
+##  [1]  99.76343 100.21125 100.70687 100.46082 100.12646  98.75895  98.41497
+##  [8]  99.55510  98.52295 101.82934
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -377,8 +381,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.10951  99.92660  99.87843 100.49827 100.29589 100.61439  99.24580
-##  [8]  99.76343 101.00423  99.66712
+##  [1] 100.25260 100.92288 101.15410  99.54221  99.59891  98.22255  99.26415
+##  [8] 100.98846  99.33417  99.72322
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -389,8 +393,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  69.362296  42.530216  -6.130613  -2.287352  89.157976 -63.829362
-##  [7] 140.632545  -2.900878 -25.886640 156.450496
+##  [1]  -77.88707   45.59842 -193.74325   87.42587 -141.40729  109.67319
+##  [7]  -61.53293  105.44313  -10.17261   23.92956
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -665,6 +669,7 @@ Each chapter ends with a glossary table defining the jargon introduced in this c
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>                           |A variable that provides input to a function.                                                                                                                              |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#assignment.operator'>assignment operator</a>     |The symbol <-, which functions like = and assigns the value on the right to the object on the left                                                                         |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#base.r'>base r</a>                               |The set of R functions that come with a basic installation of R, before you add external packages                                                                          |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#console'>console</a>                             |The pane in RStudio where you can type in commands and view output messages.                                                                                               |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#cran'>cran</a>                                   |The Comprehensive R Archive Network: a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.         |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#escape'>escape</a>                               |Include special characters like " inside of a string by prefacing them with a backslash.                                                                                   |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#function.'>function </a>                         |A named section of code that can be reused.                                                                                                                                |

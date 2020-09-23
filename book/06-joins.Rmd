@@ -5,25 +5,18 @@
 
 ## Learning Objectives
 
-### Beginner
-
-1. Be able to use the 4 mutating join verbs:
+1. Be able to use the 4 mutating join verbs: [(video)](https://youtu.be/WV0yg6f3DNM){class="video"}
     + [`left_join()`](#left_join)
     + [`right_join()`](#right_join)
     + [`inner_join()`](#inner_join)
     + [`full_join()`](#full_join)
-2. Use the [`by`](#join-by) argument to set the join columns
-
-### Intermediate
-
-3. Use the [`suffix`](#join-suffix) argument to distinguish columns with the same name
-4. Be able to use the 2 filtering join verbs:
+2. Be able to use the 2 filtering join verbs: [(video)](https://youtu.be/ijoCEKifefQ){class="video"}
     + [`semi_join()`](#semi_join)
     + [`anti_join()`](#anti_join)
-5. Be able to use the 2 binding join verbs:
+3. Be able to use the 2 binding join verbs: [(video)](https://youtu.be/8RWdNhbVZ4I){class="video"}
     + [`bind_rows()`](#bind_rows)
     + [`bind_cols()`](#bind_cols)
-6. Be able to use the 3 set operations:
+4. Be able to use the 3 set operations: [(video)](https://youtu.be/c3V33ElWUYI){class="video"}
     + [`intersect()`](#intersect)
     + [`union()`](#union)
     + [`setdiff()`](#setdiff)
@@ -34,16 +27,23 @@
 * [Cheatsheet for dplyr join functions](http://stat545.com/bit001_dplyr-cheatsheet.html)
 * [Lecture slides on dplyr two-table verbs](slides/05_joins_slides.pdf)
 
+## Setup
+
+```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
+# libraries needed
+library(tidyverse)
+```
+
 ## Data
 
 First, we'll create two small data tables. 
 
-`subject` has id, sex and age for subjects 1-5. Age and sex are missing for subject 3.
+`subject` has id, gender and age for subjects 1-5. Age and gender are missing for subject 3.
 
 ```{r subject}
 subject <- tibble(
-  id = seq(1,5),
-  sex = c("m", "m", NA, "f", "f"),
+  id = 1:5,
+  gender = c("m", "m", NA, "nb", "f"),
   age = c(19, 22, NA, 19, 18)
 )
 ```
@@ -64,14 +64,16 @@ exp <- tibble(
 
 ## Mutating Joins
 
-All the `r glossary("mutating joins")` have this basic syntax:
+`r glossary("Mutating joins")` act like the `mutate()` function in that they add new columns to one table based on values in another table.  
+
+All the mutating joins have this basic syntax:
 
 `****_join(x, y, by = NULL, suffix = c(".x", ".y")`
 
 * `x` = the first (left) table
 * `y` = the second (right) table
-* {#join-by} `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
-* {#join-suffix} `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
+* `by` = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.
+* `suffix` = if columns have the same name in the two tables, but you aren't joining by them, they get a suffix to make them unambiguous. This defaults to ".x" and ".y", but you can change it to something more meaningful.
 
 ```{block, type="info"}
 You can leave out the `by` argument if you're matching on all of the columns with the same name, but it's good practice to always specify it so your code is robust to changes in the loaded data.
@@ -105,18 +107,15 @@ left_join(exp, subject, by = "id")
 knitr::include_graphics("images/joins/right_join.png")
 ```
 
-A `right_join` keeps all the data from the second (right) table and joins anything 
-that matches from the first (left) table. 
+A `right_join` keeps all the data from the second (right) table and joins anything that matches from the first (left) table. 
 
 ```{r right_join}
 right_join(subject, exp, by = "id")
 ```
 
-```{block, type="info"}
-This table has the same information as 
-`left_join(exp, subject, by = "id")`, but the columns are in a different order 
-(left table, then right table).
-```
+<div class="info">
+This table has the same information as `left_join(exp, subject, by = "id")`, but the columns are in a different order (left table, then right table).
+</div>
 
 ### inner_join() {#inner_join}
 
@@ -146,6 +145,8 @@ full_join(subject, exp, by = "id")
 
 ## Filtering Joins
 
+`r glossary("Filtering joins")` act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
+
 ### semi_join() {#semi_join}
 
 ```{r img-semi-join, echo=FALSE, fig.width=4, fig.cap="Semi Join", class="join"}
@@ -159,7 +160,7 @@ semi_join(subject, exp, by = "id")
 ```
 
 ```{block, type="info"}
-Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one maching row in the right table.
+Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
 ```
 
 ```{r img-semi-join-rev, echo=FALSE, fig.width=4, fig.cap="Semi Join (Reversed)", class="join"}
@@ -177,8 +178,8 @@ semi_join(exp, subject, by = "id")
 ```{r img-anti-join, echo=FALSE, fig.width=4, fig.cap="Anti Join", class="join"}
 knitr::include_graphics("images/joins/anti_join.png")
 ```
-A `anti_join` return all rows from the left table where there are *not* matching 
-values in the right table, keeping just columns from the left table.
+
+An `anti_join` return all rows from the left table where there are *not* matching values in the right table, keeping just columns from the left table.
 
 ```{r anti_join}
 anti_join(subject, exp, by = "id")
@@ -196,6 +197,8 @@ anti_join(exp, subject, by = "id")
 
 ## Binding Joins
 
+`r glossary("Binding joins")` bind one table to another by adding their rows or columns together.
+
 ### bind_rows() {#bind_rows}
 
 You can combine the rows of two tables with `bind_rows`.
@@ -204,8 +207,8 @@ Here we'll add subject data for subjects 6-9 and bind that to the original subje
 
 ```{r bind_rows}
 new_subjects <- tibble(
-  id = seq(6, 9),
-  sex = c("m", "m", "f", "f"),
+  id = 6:9,
+  gender = c("nb", "m", "f", "f"),
   age = c(19, 16, 20, 19)
 )
 
@@ -218,9 +221,9 @@ If a row is duplicated between the two tables (like id 5 below), the row will al
 
 ```{r bind-rows-union}
 new_subjects <- tibble(
-  id = seq(5, 9),
+  id = 5:9,
   age = c(18, 19, 16, 20, 19),
-  sex = c("f", "m", "m", "f", "f"),
+  gender = c("f", "nb", "m", "f", "f"),
   new = c(1,2,3,4,5)
 )
 
@@ -241,30 +244,48 @@ bind_cols(subject, new_info)
 
 ## Set Operations
 
+`r glossary("Set operations")` compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).
+
 ### intersect() {#intersect}
 
-`intersect()` returns all rows in two tables that match exactly. The columns 
-don't have to be in the same order.
+`intersect()` returns all rows in two tables that match exactly. The columns don't have to be in the same order.
 
 ```{r intersect}
 new_subjects <- tibble(
   id = seq(4, 9),
   age = c(19, 18, 19, 16, 20, 19),
-  sex = c("f", "f", "m", "m", "f", "f")
+  gender = c("f", "f", "m", "m", "f", "f")
 )
 
-dplyr::intersect(subject, new_subjects)
+intersect(subject, new_subjects)
 
 ```
 
+<div class="warning">
+
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has an `intersect()` function. The error message can be confusing and looks something like this:
+
+```{r base-intersect, error = TRUE}
+base::intersect(subject, new_subjects)
+```
+</div>
 
 ### union() {#union}
 
 `union()` returns all the rows from both tables, removing duplicate rows.
 
 ```{r union}
-dplyr::union(subject, new_subjects)
+union(subject, new_subjects)
 ```
+
+
+<div class="warning">
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `union()` function. You usually won't get an error message, but the output won't be what you expect.
+
+```{r base-union}
+base::union(subject, new_subjects)
+```
+</div> 
 
 ### setdiff() {#setdiff}
 
@@ -279,6 +300,14 @@ Order matters for `setdiff`.
 ```{r setdiff-order}
 setdiff(new_subjects, subject)
 ```
+
+<div class="warning">
+If you've forgotten to load dplyr or the tidyverse, `r glossary("base R")` also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
+
+```{r base-setdiff}
+base::setdiff(subject, new_subjects)
+```
+</div>
 
 ## Glossary {#glossary6}
 

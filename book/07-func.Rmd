@@ -21,7 +21,8 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Advanced
 
-<img src="images/memes/purrr.gif" class="meme right">
+<img src="images/memes/purrr.gif" class="meme right"
+     alt="Jacobim Mugatu (Will Ferrell) and Katinka Ingabogovinanana (Mila Jojovich) from Zoolander, sitting in a theatre with a small dog; bottom text: purrr::map so hot right now">
 
 The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
@@ -109,46 +110,7 @@ seq(0, 100, length.out = 13)
 ```
 
 
-<!--
-Use `tibble::tibble()` to create a table including the vector `err` created in question 4 as a column.  Your table should mimic the structure of the table below (your values for `err` will differ), with the constraint that `Y = mu + eff + err`.  Store this table in `dat`.
-
-```{r eQ5, echo = TRUE}
-dat <- tibble(
-  mu = 100,
-  eff = rep(c(-3, 3), each = 5),
-  A = rep(c("A1", "A2"), each = 5),
-  err = rnorm(10),
-  Y = mu + eff + err
-) %>%
-select(Y, mu:err)
-```
-
-### `aov()`, `summary()`, and `broom::tidy()`
-
-The table you created above is what is known as a *decomposition matrix* for a linear model where `Y` is the dependent variable and `A` is the independent variable with two levels.  The main effects of `A` are `-3` for `A1` and `3` for `A2`; a 6 unit difference.  `mu` ( $\mu$ ) is the grand mean and `err` is the residual.  Run a one-factor ANOVA on the above data using the `aov()` function.  Run `summary()` on the result.
-
-```{r}
-mod <- aov(Y ~ A, dat)
-
-summary(mod)
-```    
-
-Now tidy the results into a table using `broom::tidy()`, pull out the $p$-value and store it in `pval`.
-
-```{r}
-pval <- mod %>%
-  broom::tidy() %>% 
-  pull(p.value) %>% 
-  pluck(1)
-pval
-```    
--->
-
 ## Custom functions {#custom-functions}
-
-<!--
-Now we are going to wrap up the code we created above into two custom functions: `sim_data()`, which will generate a `tibble()` with randomly generated two group data; and `run_anova()` which will run an anova on a data table.  But let's first get some practice creating functions.
--->
 
 In addition to the built-in functions and functions you can access from packages, you can also write your own functions (and eventually even packages!).
 

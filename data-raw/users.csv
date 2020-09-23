@@ -50205,7 +50205,7 @@ user_id,sex,birthyear
 456762,female,1994
 456766,female,1986
 456769,female,1991
-456770,intersex,1994
+456770,nonbinary,1994
 456776,male,1970
 456777,female,1975
 456781,female,1992
@@ -50584,7 +50584,7 @@ user_id,sex,birthyear
 458603,female,1994
 458609,female,1993
 458610,female,1989
-458611,intersex,1960
+458611,nonbinary,1960
 458614,female,1984
 458616,female,1971
 458626,male,1968
@@ -50736,7 +50736,7 @@ user_id,sex,birthyear
 459385,female,1989
 459395,male,1987
 459400,male,1974
-459401,intersex,1994
+459401,nonbinary,1994
 459411,male,1989
 459412,male,1989
 459423,male,1981
@@ -51569,7 +51569,7 @@ user_id,sex,birthyear
 488955,female,1995
 489021,male,1986
 489046,female,1997
-489082,intersex,1969
+489082,nonbinary,1969
 489339,female,1970
 489346,female,1989
 489381,female,1997

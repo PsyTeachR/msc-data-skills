@@ -368,6 +368,7 @@ summary {
 </div>
 
 
+<p>Edit the code chunks below and knit the document. You can pipe your objects to <code>glimpse()</code> or <code>print()</code> to display them.</p>
 <div id="tidy-data" class="section level2">
 <h2>Tidy data</h2>
 <p>The following data table is not tidy. Use <code>tibble()</code> or <code>tribble()</code>to manually create the tidy version of this table.</p>
@@ -400,14 +401,17 @@ untidy &lt;- tribble(
 <p>Convert from wide to long format.</p>
 <pre class="r"><code>ss_long &lt;- ss %&gt;%
   pivot_longer(names_to = &quot;question&quot;, 
-               values_to = &quot;score&quot;)</code></pre>
-<pre><code>## Error: `cols` must select at least one column.</code></pre>
+               values_to = &quot;score&quot;) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss&#39; not found</code></pre>
 </div>
 <div id="pivot_wider" class="section level3">
 <h3>pivot_wider</h3>
 <p>Convert back to wide format. Make sure <code>ss_wide</code> is the same as <code>ss</code>.</p>
 <pre class="r"><code>ss_wide &lt;- ss_long %&gt;%
-  pivot_wider(question, score)</code></pre>
+  pivot_wider(question, score) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_long&#39; not found</code></pre>
 </div>
 </div>
 <div id="tidy-verbs" class="section level2">
@@ -416,31 +420,33 @@ untidy &lt;- tribble(
 <div id="gather" class="section level3">
 <h3>gather</h3>
 <p>Use the <code>gather()</code> function to convert <code>ss</code> from wide to long.</p>
-<pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;)</code></pre>
-<pre><code>## Warning: attributes are not identical across measure variables;
-## they will be dropped</code></pre>
+<pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Error in gather(ss, &quot;question&quot;, &quot;score&quot;): object &#39;ss&#39; not found</code></pre>
 </div>
 <div id="separate" class="section level3">
 <h3>separate</h3>
 <p>Split the <code>question</code> column from <code>ss_long</code> into two columns: <code>domain</code> and <code>qnumber</code>.</p>
 <pre class="r"><code>ss_sep &lt;- ss_long %&gt;%
-  separate(question, domain, qnumber, sep = 3)</code></pre>
-<pre><code>## Error in str_separate(value, into = into, sep = sep, convert = convert, : object &#39;domain&#39; not found</code></pre>
+  separate(question, domain, qnumber, sep = 3) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_long&#39; not found</code></pre>
 </div>
 <div id="unite" class="section level3">
 <h3>unite</h3>
 <p>Put the <code>id</code> and <code>user_id</code> columns together into a new column named <code>super_id</code>. Make it in a format like “id-user_id”.</p>
 <pre class="r"><code>ss_unite &lt;- ss_sep %&gt;%
-  unite(id, user_id, &quot;super_id&quot;, sep = &quot;-&quot;)</code></pre>
-<pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
-## [31mx[39m Column `super_id` doesn&#39;t exist.</code></pre>
+  unite(id, user_id, &quot;super_id&quot;, sep = &quot;-&quot;) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_sep&#39; not found</code></pre>
 </div>
 <div id="spread" class="section level3">
 <h3>spread</h3>
 <p>Convert back to wide format. (N.B. the new question columns headers will just be numbers, not “sss#”)</p>
 <pre class="r"><code>ss_wide &lt;- ss_unite %&gt;%
-  spreadr(qnumber, score, )</code></pre>
-<pre><code>## Error in spreadr(., qnumber, score, ): could not find function &quot;spreadr&quot;</code></pre>
+  spreadr(qnumber, score, ) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_unite&#39; not found</code></pre>
 </div>
 </div>
 <div id="pipes" class="section level2">
@@ -451,7 +457,9 @@ untidy &lt;- tribble(
 <pre class="r"><code># do not edit this chunk
 x &lt;- 1:20      # integers from 1:20
 y &lt;- rep(x, 2) # then repeat them twice
-z &lt;- sum(y)    # and then take the sum</code></pre>
+z &lt;- sum(y)    # and then take the sum
+z</code></pre>
+<pre><code>## [1] 420</code></pre>
 <pre class="r"><code>x &lt;- NULL</code></pre>
 </div>
 <div id="deconnect-pipes" class="section level3">
@@ -460,13 +468,15 @@ z &lt;- sum(y)    # and then take the sum</code></pre>
 <pre class="r"><code># do not edit this chunk
 lager &lt;- LETTERS[c(18, 5, 7, 1, 12)] %&gt;%
   rev() %&gt;%
-  paste(collapse = &quot;&quot;)</code></pre>
+  paste(collapse = &quot;&quot;) %&gt;%
+  print()</code></pre>
+<pre><code>## [1] &quot;LAGER&quot;</code></pre>
 <pre class="r"><code>lager &lt;- NULL</code></pre>
 </div>
 </div>
 <div id="pivot-vs-tidy-verbs" class="section level2">
 <h2>Pivot vs tidy verbs</h2>
-<p>Load the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/family_composition.csv">family_composition.csv</a>.</p>
+<p>Load the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/family_composition.csv">dataskills::family_composition</a>.</p>
 <p>The columns <code>oldbro</code> through <code>twinsis</code> give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (<code>sibage</code> = old, young, twin) and sex (<code>sibsex</code> = bro, sis).</p>
 <div id="use-pivot-functions" class="section level3">
 <h3>Use pivot functions</h3>
@@ -479,7 +489,7 @@ lager &lt;- LETTERS[c(18, 5, 7, 1, 12)] %&gt;%
 </div>
 <div id="multiple-steps" class="section level2">
 <h2>Multiple steps</h2>
-<p>Tidy the data from <code>dataskills::eye_descriptions</code> (<a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">eye_descriptions.csv</a>). This dataset contains descriptions of the eyes of 50 people by 220 raters (<code>user_id</code>). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
+<p>Tidy the data from <a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">dataskills::eye_descriptions</a>. This dataset contains descriptions of the eyes of 50 people by 220 raters (<code>user_id</code>). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
 <p>Create a dataset with separate columns for <code>face_id</code>, <code>description</code>, and description number (<code>desc_n</code>). Hint: to separate a string by tildes or slashes, you would set the <code>sep</code> argument to <code>&quot;(~|\\/)+&quot;</code>.</p>
 <pre class="r"><code>eyes &lt;- NULL</code></pre>
 </div>

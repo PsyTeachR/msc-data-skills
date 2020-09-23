@@ -6,11 +6,13 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library("ukbabynames")
 library("tidyverse")
 set.seed(777) # makes sure random numbers are reproducible
 ```
+
+Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
 
 ## UK Baby Names
 
@@ -31,7 +33,7 @@ nrecords <- nrow(ukb)
 
 ## or: 
 
-nrecords <- count(ukb) %>% pull(n) 
+nrecords <- count(ukb) %>% pull(n) %>% print()
 ```
 
 ### Question 2
@@ -40,7 +42,8 @@ Remove the column `rank` from the dataset.
 
 ```{r Q2}
 norank <- ukb %>%
-  select(-rank)
+  select(-rank) %>%
+  glimpse()
 ```
 
 ### Question 3
@@ -50,7 +53,8 @@ What is the range of birth years contained in the dataset? Use `summarise` to ma
 ```{r Q3}
 birth_range <- ukb %>%
   summarise(minyear = min(year),
-            maxyear = max(year))
+            maxyear = max(year)) %>%
+  print()
 ```
 
 ### Question 4
@@ -59,7 +63,8 @@ Make a table of only the data from babies named Hermione.
 
 ```{r Q4}
 hermiones <- ukb %>%
-  filter(name == "Hermione")
+  filter(name == "Hermione") %>%
+  print()
 ```
 
 ### Question 5
@@ -68,7 +73,8 @@ Sort the dataset by sex and then by year (descending) and then by rank (descendi
 
 ```{r Q5}
 sorted_babies <- ukb %>%
-  arrange(sex, desc(year), desc(rank))
+  arrange(sex, desc(year), desc(rank)) %>%
+  glimpse()
 ```
 
 ### Question 6
@@ -77,7 +83,8 @@ Create a new column, `decade`, that contains the decade of birth (1990, 2000, 20
 
 ```{r Q6}
 ukb_decade <- ukb %>%
-  mutate(decade = floor(year / 10) * 10)
+  mutate(decade = floor(year / 10) * 10) %>%
+  glimpse()
 ```
 
 ### Question 7
@@ -87,7 +94,8 @@ Make a table of only the data from male babies named Courtney that were born bet
 ```{r Q7}
 courtney <- ukb %>%
   filter(name == "Courtney", sex == "M",
-         year >= 1998, year <= 2001)
+         year >= 1998, year <= 2001) %>%
+  print()
 ```
 
 
@@ -96,7 +104,6 @@ courtney <- ukb %>%
 How many distinct names are represented in the dataset? Make sure `distinct_names` is an integer, not a data table.
 
 ```{r Q8}
-
 distinct_names <- n_distinct(ukb$name)
 
 # or
@@ -104,8 +111,8 @@ distinct_names <- n_distinct(ukb$name)
 distinct_names <- ukb %>%
   distinct(name) %>%
   count() %>%
-  pull()
-
+  pull() %>%
+  print()
 ```
 
 ### Question 9
@@ -116,7 +123,8 @@ Make a table of only the data from the female babies named Frankie that were bor
 frankie <- ukb %>%
   filter(name == "Frankie", 
          sex == "F",
-         (year < 1999) | (year > 2010))
+         (year < 1999) | (year > 2010)) %>%
+  print()
 ```
 
 ### Question 10
@@ -127,7 +135,8 @@ How many total babies in the dataset were named 'Emily'? Make sure `emily` is an
 emily <- ukb %>%
   filter(name == "Emily") %>%
   summarise(tot = sum(n)) %>%
-  pull(tot)
+  pull(tot) %>%
+  print()
 ```
 
 ### Question 11
@@ -138,7 +147,8 @@ How many distinct names are there for each sex?
 names_per_sex <- ukb %>% 
   group_by(sex) %>%
   distinct(name) %>%
-  count()
+  count %>%
+  print()
 ```
 
 ### Question 12
@@ -148,10 +158,19 @@ What is the most popular name in the dataset?
 ```{r Q12}
 most_popular <- ukb %>%
   group_by(name) %>%
-  summarise(tot = sum(n)) %>%
+  summarise(tot = sum(n), .groups = "drop") %>%
   arrange(desc(tot)) %>%
   slice(1) %>%
   pull(name)
+
+## alternatively, this will give you all the top names if there are ties
+most_popular <- ukb %>%
+  group_by(name) %>%
+  summarise(tot = sum(n), .groups = "drop") %>%
+  filter(rank(tot) == max(rank(tot))) %>%
+  pull(name) %>%
+  print()
+
 ```
 
 ### Question 13
@@ -161,7 +180,7 @@ How many babies were born each year for each sex?  Make a plot.
 ```{r Q13}
 babies_per_year <- ukb %>%
   group_by(year, sex) %>%
-  summarise(tot = sum(n))
+  summarise(tot = sum(n), .groups = "drop")
 
 ggplot(babies_per_year, aes(year, tot, color = sex)) +
   geom_line()
@@ -169,24 +188,24 @@ ggplot(babies_per_year, aes(year, tot, color = sex)) +
 
 ## Advanced Questions
 
-There are several ways to complete the following two tasks. Different people will solve them different ways, so they cannot be automatically checked, but you should be able to tell if your answers make sense.
+There are several ways to complete the following two tasks. Different people will solve them different ways, but you should be able to tell if your answers make sense.
 
 ### Question 14
 
-Load the dataset [family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv) from last week's exercise.
+Load the dataset `dataskills::family_composition` ([family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv)) from last week's exercise.
 
 Calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
 
     
 ```{r Q14a}
 
-family <- read_csv("https://psyteachr.github.io/msc-data-skills/data/family_composition.csv") %>%
+family <- dataskills::family_composition %>%
   gather("sibtype", "n", oldbro:twinsis) %>%
   separate(sibtype, c("sibage", "sibsex"), sep = -3)
 
 sib6 <- family %>%
   group_by(user_id, sex, sibsex) %>%
-  summarise(n = sum(n)) %>%
+  summarise(n = sum(n), .groups = "drop") %>%
   group_by(user_id) %>%
   filter(sex %in% c("male", "female"), sum(n) < 6)
 
@@ -198,7 +217,7 @@ ggplot(sib6, aes(n, fill = sibsex)) +
 ```{r Q14b}
 sib6 <- family %>%
   group_by(user_id, sex, sibsex) %>%
-  summarise(n = sum(n)) %>%
+  summarise(n = sum(n), .groups = "drop") %>%
   filter(sex %in% c("male", "female")) %>%
   spread(sibsex, n) %>%
   filter(bro + sis < 6)
@@ -218,83 +237,30 @@ ggplot(sib6, aes(bro, sis)) +
 
 ### Question 15
 
-Use the data from [eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv) from last week's exercise.
+Use the dataset `dataskills::eye_descriptions` ([eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv)) from last week's exercise.
 
 Create a list of the 10 most common descriptions from the eyes dataset. Remove useless descriptions and merge redundant descriptions.
     
-```{r Q15, results='asis'}
+```{r Q15}
 
-eyes <- read_csv("https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv") %>%
+eyes <- dataskills::eye_descriptions %>%
   gather("face_id", "description", t1:t50) %>%
   separate(description, c("d1", "d2", "d3", "d4"), sep = "(,|;|\\/)+", extra = "merge", fill = "right") %>%
   gather("desc_n", "description", d1:d4) %>%
-  filter(!is.na(description)) %>% # gets rid of rows with no description
+  filter(!is.na(description)) %>%          # gets rid of rows with no description
   mutate(
-    description = trimws(description), # get rid of white space around string
-    description = tolower(description) # make all characters lowercase
+    description = trimws(description),     # get rid of white space around string
+    description = tolower(description)     # make all characters lowercase
   ) %>%
   group_by(description) %>%
-  summarise(n = n()) %>%               # count occurances of each description
-  arrange(desc(n)) %>%                 # sort by count (descending)
-  filter(nchar(description) > 1) %>%   # get rid of 1-character descriptions
+  summarise(n = n(), .groups = "drop") %>% # count occurrences of each description
+  arrange(desc(n)) %>%                     # sort by count (descending)
+  filter(nchar(description) > 1) %>%       # get rid of 1-character descriptions
   filter(row_number() < 11)
-
-knitr::kable(eyes) # displays the table in a nice format
 ```
 
-## Answer Checks
-
-You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
-
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- list()
-Q["1"] <- all.equal(nrecords, 227449)
-Q["2"] <- c(is.data.frame(norank),
-          !(c("rank") %in% names(norank))) %>% all()
-Q["3"] <- c(is.data.frame(birth_range),
-          all.equal(birth_range$minyear, 1996),
-          all.equal(birth_range$maxyear, 2015)) %>% all()
-Q["4"] <- ifelse(is.data.frame(hermiones),
-          c(all.equal(n_distinct(hermiones$name), 1),
-          all.equal(nrow(hermiones), 20L)),
-          FALSE) %>% all()
-Q["5"] <- c(is.data.frame(sorted_babies),
-          all.equal(sorted_babies[[1,1]], 2015),
-          all.equal(sorted_babies[[1,2]], "F"),
-          all.equal(sorted_babies[[1,3]], "Aabidah"),
-          all.equal(sorted_babies[[1,4]], 3),
-          all.equal(sorted_babies[[1,5]], 5730)) %>% all()
-Q["6"] <- c(is.data.frame(ukb_decade),
-          all.equal(ukb_decade$decade[[1]], 1990)) %>% all()
-Q["7"] <- ifelse(is.data.frame(courtney),
-          c(all.equal(n_distinct(courtney$name), 1),
-          all.equal(min(courtney$year), 1998),
-          all.equal(max(courtney$year), 2001),
-          all.equal(nrow(courtney), 4L)),
-          FALSE) %>% all()
-Q["8"] <- all.equal(distinct_names, 31272L)
-Q["9"] <- if(is.data.frame(frankie)) {
-          c(all.equal(n_distinct(frankie$name), 1),
-          all.equal(min(frankie$year), 1996),
-          all.equal(max(frankie$year), 2015),
-          all.equal(nrow(frankie), 8L))
-          } else { FALSE } %>% all()
-Q["10"] <- all.equal(emily, 102250)
-Q["11"] <- if(is.data.frame(names_per_sex)) {
-          c(all.equal(filter(names_per_sex, sex == "F") %>% pull(n), 18823),
-          all.equal(filter(names_per_sex, sex == "M") %>% pull(n), 14378))
-          } else { FALSE } %>% all()
-Q["12"] <- all.equal(most_popular, "Jack")
-Q["13"] <- c(is.data.frame(babies_per_year),
-             all.equal(nrow(babies_per_year), 40)) %>% all()
-  
-ans <- sapply(Q, isTRUE)
-
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
+```{r Q15-print, results='asis'}
+# displays the table in a nice format
+knitr::kable(eyes) 
 ```
-
 

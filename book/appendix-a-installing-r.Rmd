@@ -26,3 +26,10 @@ You can install the LaTeX typesetting system to produce PDF reports from RStudio
     - Mac OS: [MacTex](https://tug.org/mactex/downloading.html) (3.2GB download) or [BasicTeX](http://ww.tug.org/mactex/morepackages.html) (78MB download, but should work fine)
     - Linux: [TeX Live](https://www.tug.org/texlive/)
 
+## RStudio Online
+
+You may need to access R and RStudio online if you use a tablet or chromebook that can't install R.
+
+Students in the Institute of Neuroscience and Psychology at the University of Glasgow can access [Glasgow Psychology RStudio](https://rstudio.psy.gla.ac.uk){target="_blank"} with their GUID and password.
+
+[RStudio Cloud](https://rstudio.cloud/){target="_blank"} is a free online service that allows access to R and RStudio. 

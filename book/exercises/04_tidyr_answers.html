@@ -368,6 +368,7 @@ summary {
 </div>
 
 
+<p>Edit the code chunks below and knit the document. You can pipe your objects to <code>glimpse()</code> or <code>print()</code> to display them.</p>
 <div id="tidy-data" class="section level2">
 <h2>Tidy data</h2>
 <p>The following data table is not tidy. Use <code>tibble()</code> or <code>tribble()</code>to manually create the tidy version of this table.</p>
@@ -417,21 +418,54 @@ ss &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/sensati
 <p>Convert from wide to long format.</p>
 <pre class="r"><code>ss_long &lt;- ss %&gt;%
   pivot_longer(names_to = &quot;question&quot;, 
-               values_to = &quot;score&quot;)</code></pre>
+               values_to = &quot;score&quot;) %&gt;%
+  glimpse()</code></pre>
 <pre><code>## Error: `cols` must select at least one column.</code></pre>
 <pre class="r"><code>ss_long &lt;- ss %&gt;%
   pivot_longer(sss1:sss14, 
                names_to = &quot;question&quot;, 
-               values_to = &quot;score&quot;)</code></pre>
+               values_to = &quot;score&quot;) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 378,294
+## Columns: 5
+## $ id       &lt;dbl&gt; 3144, 3144, 3144, 3144, 3144, 3144, 3144, 3144, 3144, 3144, …
+## $ user_id  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, …
+## $ date     &lt;date&gt; 2006-05-07, 2006-05-07, 2006-05-07, 2006-05-07, 2006-05-07,…
+## $ question &lt;chr&gt; &quot;sss1&quot;, &quot;sss2&quot;, &quot;sss3&quot;, &quot;sss4&quot;, &quot;sss5&quot;, &quot;sss6&quot;, &quot;sss7&quot;, &quot;sss…
+## $ score    &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, …</code></pre>
 </div>
 <div id="pivot_wider" class="section level3">
 <h3>pivot_wider</h3>
 <p>Convert back to wide format. Make sure <code>ss_wide</code> is the same as <code>ss</code>.</p>
 <pre class="r"><code>ss_wide &lt;- ss_long %&gt;%
-  pivot_wider(question, score)</code></pre>
+  pivot_wider(question, score) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 14
+## Columns: 1
+## $ question &lt;chr&gt; &quot;sss1&quot;, &quot;sss2&quot;, &quot;sss3&quot;, &quot;sss4&quot;, &quot;sss5&quot;, &quot;sss6&quot;, &quot;sss7&quot;, &quot;sss…</code></pre>
 <pre class="r"><code>ss_wide &lt;- ss_long %&gt;%
   pivot_wider(names_from = question, 
-              values_from = score)</code></pre>
+              values_from = score) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 27,021
+## Columns: 17
+## $ id      &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 11, 13, …
+## $ user_id &lt;dbl&gt; 0, 1, 2, 5, 8, 9, 10, 17, 19, 20, 21, 22, 23, 24, 27, 30, 31,…
+## $ date    &lt;date&gt; 2006-05-07, 2004-12-08, 2005-01-14, 2005-02-22, 2004-09-29, …
+## $ sss1    &lt;dbl&gt; 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0…
+## $ sss2    &lt;dbl&gt; 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1…
+## $ sss3    &lt;dbl&gt; 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0…
+## $ sss4    &lt;dbl&gt; 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0…
+## $ sss5    &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0…
+## $ sss6    &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0…
+## $ sss7    &lt;dbl&gt; 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0…
+## $ sss8    &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0…
+## $ sss9    &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1…
+## $ sss10   &lt;dbl&gt; 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…
+## $ sss11   &lt;dbl&gt; 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1…
+## $ sss12   &lt;dbl&gt; 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1…
+## $ sss13   &lt;dbl&gt; 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0…
+## $ sss14   &lt;dbl&gt; 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0…</code></pre>
 </div>
 </div>
 <div id="tidy-verbs" class="section level2">
@@ -440,38 +474,91 @@ ss &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/sensati
 <div id="gather" class="section level3">
 <h3>gather</h3>
 <p>Use the <code>gather()</code> function to convert <code>ss</code> from wide to long.</p>
-<pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;)</code></pre>
+<pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;) %&gt;%
+  glimpse()</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;, sss1:sss14)</code></pre>
+<pre><code>## Rows: 459,357
+## Columns: 2
+## $ question &lt;chr&gt; &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, …
+## $ score    &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 11, 13,…</code></pre>
+<pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;, sss1:sss14) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 378,294
+## Columns: 5
+## $ id       &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 11, 13,…
+## $ user_id  &lt;dbl&gt; 0, 1, 2, 5, 8, 9, 10, 17, 19, 20, 21, 22, 23, 24, 27, 30, 31…
+## $ date     &lt;date&gt; 2006-05-07, 2004-12-08, 2005-01-14, 2005-02-22, 2004-09-29,…
+## $ question &lt;chr&gt; &quot;sss1&quot;, &quot;sss1&quot;, &quot;sss1&quot;, &quot;sss1&quot;, &quot;sss1&quot;, &quot;sss1&quot;, &quot;sss1&quot;, &quot;sss…
+## $ score    &lt;dbl&gt; 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, …</code></pre>
 </div>
 <div id="separate" class="section level3">
 <h3>separate</h3>
 <p>Split the <code>question</code> column from <code>ss_long</code> into two columns: <code>domain</code> and <code>qnumber</code>.</p>
 <pre class="r"><code>ss_sep &lt;- ss_long %&gt;%
-  separate(question, domain, qnumber, sep = 3)</code></pre>
+  separate(question, domain, qnumber, sep = 3) %&gt;%
+  glimpse()</code></pre>
 <pre><code>## Error in str_separate(value, into = into, sep = sep, convert = convert, : object &#39;domain&#39; not found</code></pre>
 <pre class="r"><code>ss_sep &lt;- ss_long %&gt;%
-  separate(question, c(&quot;domain&quot;, &quot;qnumber&quot;), sep = 3)</code></pre>
+  separate(question, c(&quot;domain&quot;, &quot;qnumber&quot;), sep = 3) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 378,294
+## Columns: 6
+## $ id      &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 11, 13, …
+## $ user_id &lt;dbl&gt; 0, 1, 2, 5, 8, 9, 10, 17, 19, 20, 21, 22, 23, 24, 27, 30, 31,…
+## $ date    &lt;date&gt; 2006-05-07, 2004-12-08, 2005-01-14, 2005-02-22, 2004-09-29, …
+## $ domain  &lt;chr&gt; &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;…
+## $ qnumber &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;…
+## $ score   &lt;dbl&gt; 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0…</code></pre>
 </div>
 <div id="unite" class="section level3">
 <h3>unite</h3>
 <p>Put the <code>id</code> and <code>user_id</code> columns together into a new column named <code>super_id</code>. Make it in a format like “id-user_id”.</p>
 <pre class="r"><code>ss_unite &lt;- ss_sep %&gt;%
-  unite(id, user_id, &quot;super_id&quot;, sep = &quot;-&quot;)</code></pre>
+  unite(id, user_id, &quot;super_id&quot;, sep = &quot;-&quot;) %&gt;%
+  glimpse()</code></pre>
 <pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
 ## [31mx[39m Column `super_id` doesn&#39;t exist.</code></pre>
 <pre class="r"><code>ss_unite &lt;- ss_sep %&gt;%
-  unite(&quot;super_id&quot;, id, user_id, sep = &quot;-&quot;)</code></pre>
+  unite(&quot;super_id&quot;, id, user_id, sep = &quot;-&quot;) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 378,294
+## Columns: 5
+## $ super_id &lt;chr&gt; &quot;3144-0&quot;, &quot;133-1&quot;, &quot;175-2&quot;, &quot;285-5&quot;, &quot;1-8&quot;, &quot;3-9&quot;, &quot;4-10&quot;, &quot;…
+## $ date     &lt;date&gt; 2006-05-07, 2004-12-08, 2005-01-14, 2005-02-22, 2004-09-29,…
+## $ domain   &lt;chr&gt; &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss…
+## $ qnumber  &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, …
+## $ score    &lt;dbl&gt; 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, …</code></pre>
 </div>
 <div id="spread" class="section level3">
 <h3>spread</h3>
 <p>Convert back to wide format. (N.B. the new question columns headers will just be numbers, not “sss#”)</p>
 <pre class="r"><code>ss_wide &lt;- ss_unite %&gt;%
-  spreadr(qnumber, score, )</code></pre>
+  spreadr(qnumber, score, ) %&gt;%
+  glimpse()</code></pre>
 <pre><code>## Error in spreadr(., qnumber, score, ): could not find function &quot;spreadr&quot;</code></pre>
 <pre class="r"><code>ss_wide &lt;- ss_unite %&gt;%
-  spread(qnumber, score)</code></pre>
+  spread(qnumber, score) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 27,021
+## Columns: 17
+## $ super_id &lt;chr&gt; &quot;1-8&quot;, &quot;10-23&quot;, &quot;100-426&quot;, &quot;10000-64553&quot;, &quot;10001-64554&quot;, &quot;10…
+## $ date     &lt;date&gt; 2004-09-29, 2004-10-08, 2004-11-25, 2007-01-25, 2007-01-25,…
+## $ domain   &lt;chr&gt; &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss&quot;, &quot;sss…
+## $ `1`      &lt;dbl&gt; 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, …
+## $ `10`     &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, …
+## $ `11`     &lt;dbl&gt; 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, …
+## $ `12`     &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, …
+## $ `13`     &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, …
+## $ `14`     &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, …
+## $ `2`      &lt;dbl&gt; 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, …
+## $ `3`      &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, …
+## $ `4`      &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, …
+## $ `5`      &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, …
+## $ `6`      &lt;dbl&gt; 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, …
+## $ `7`      &lt;dbl&gt; 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, …
+## $ `8`      &lt;dbl&gt; 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, …
+## $ `9`      &lt;dbl&gt; 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, …</code></pre>
 </div>
 </div>
 <div id="pipes" class="section level2">
@@ -482,8 +569,11 @@ ss &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/sensati
 <pre class="r"><code># do not edit this chunk
 x &lt;- 1:20      # integers from 1:20
 y &lt;- rep(x, 2) # then repeat them twice
-z &lt;- sum(y)    # and then take the sum</code></pre>
-<pre class="r"><code>x &lt;- 1:20 %&gt;% rep(2) %&gt;% sum()</code></pre>
+z &lt;- sum(y)    # and then take the sum
+z</code></pre>
+<pre><code>## [1] 420</code></pre>
+<pre class="r"><code>x &lt;- 1:20 %&gt;% rep(2) %&gt;% sum() %&gt;% print()</code></pre>
+<pre><code>## [1] 420</code></pre>
 </div>
 <div id="deconnect-pipes" class="section level3">
 <h3>Deconnect pipes</h3>
@@ -491,40 +581,75 @@ z &lt;- sum(y)    # and then take the sum</code></pre>
 <pre class="r"><code># do not edit this chunk
 lager &lt;- LETTERS[c(18, 5, 7, 1, 12)] %&gt;%
   rev() %&gt;%
-  paste(collapse = &quot;&quot;)</code></pre>
+  paste(collapse = &quot;&quot;) %&gt;%
+  print()</code></pre>
+<pre><code>## [1] &quot;LAGER&quot;</code></pre>
 <pre class="r"><code>regal &lt;- LETTERS[c(18, 5, 7, 1, 12)]
 reversed &lt;- rev(regal)
-lager &lt;- paste(reversed, collapse = &quot;&quot;) # make it into a string</code></pre>
+lager &lt;- paste(reversed, collapse = &quot;&quot;) # make it into a string
+lager</code></pre>
+<pre><code>## [1] &quot;LAGER&quot;</code></pre>
 </div>
 </div>
 <div id="pivot-vs-tidy-verbs" class="section level2">
 <h2>Pivot vs tidy verbs</h2>
-<p>Load the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/family_composition.csv">family_composition.csv</a>.</p>
+<p>Load the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/family_composition.csv">dataskills::family_composition</a>.</p>
 <p>The columns <code>oldbro</code> through <code>twinsis</code> give the number of siblings of that age and sex. Put this into long format and create separate columns for sibling age (<code>sibage</code> = old, young, twin) and sex (<code>sibsex</code> = bro, sis).</p>
 <div id="use-pivot-functions" class="section level3">
 <h3>Use pivot functions</h3>
-<pre class="r"><code>family_pivot &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/family_composition.csv&quot;) %&gt;%
+<pre class="r"><code>family_pivot &lt;- dataskills::family_composition %&gt;%
   pivot_longer(cols = oldbro:twinsis,
                names_to = c(&quot;sibage&quot;, &quot;sibsex&quot;),
                names_sep = -3,
-               values_to = &quot;n&quot;)</code></pre>
+               values_to = &quot;n&quot;) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 115,014
+## Columns: 8
+## $ user_id &lt;dbl&gt; 8, 8, 8, 8, 8, 8, 67, 67, 67, 67, 67, 67, 98, 98, 98, 98, 98,…
+## $ sex     &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;fe…
+## $ age     &lt;dbl&gt; 38.1, 38.1, 38.1, 38.1, 38.1, 38.1, 19.7, 19.7, 19.7, 19.7, 1…
+## $ momage  &lt;dbl&gt; 25, 25, 25, 25, 25, 25, 29, 29, 29, 29, 29, 29, NA, NA, NA, N…
+## $ dadage  &lt;dbl&gt; 27, 27, 27, 27, 27, 27, 31, 31, 31, 31, 31, 31, NA, NA, NA, N…
+## $ sibage  &lt;chr&gt; &quot;old&quot;, &quot;old&quot;, &quot;young&quot;, &quot;young&quot;, &quot;twin&quot;, &quot;twin&quot;, &quot;old&quot;, &quot;old&quot;,…
+## $ sibsex  &lt;chr&gt; &quot;bro&quot;, &quot;sis&quot;, &quot;bro&quot;, &quot;sis&quot;, &quot;bro&quot;, &quot;sis&quot;, &quot;bro&quot;, &quot;sis&quot;, &quot;bro&quot;…
+## $ n       &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 2, 0, 0…</code></pre>
 </div>
 <div id="use-tidy-verbs" class="section level3">
 <h3>Use tidy verbs</h3>
-<pre class="r"><code>family_tidy &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/family_composition.csv&quot;) %&gt;%
+<pre class="r"><code>family_tidy &lt;- dataskills::family_composition %&gt;%
   gather(&quot;sibtype&quot;, &quot;n&quot;, oldbro:twinsis) %&gt;%
-  separate(sibtype, c(&quot;sibage&quot;, &quot;sibsex&quot;), sep = -3)</code></pre>
+  separate(sibtype, c(&quot;sibage&quot;, &quot;sibsex&quot;), sep = -3) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Rows: 115,014
+## Columns: 8
+## $ user_id &lt;dbl&gt; 8, 67, 98, 103, 164, 233, 235, 253, 256, 271, 298, 332, 426, …
+## $ sex     &lt;chr&gt; &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;ma…
+## $ age     &lt;dbl&gt; 38.1, 19.7, 19.4, 20.6, 20.3, 19.3, 18.7, 19.5, 19.7, 24.5, 1…
+## $ momage  &lt;dbl&gt; 25, 29, NA, NA, 24, NA, NA, 24, NA, 21, 28, NA, NA, NA, NA, N…
+## $ dadage  &lt;dbl&gt; 27, 31, NA, NA, NA, NA, NA, 25, NA, 22, NA, NA, NA, NA, NA, N…
+## $ sibage  &lt;chr&gt; &quot;old&quot;, &quot;old&quot;, &quot;old&quot;, &quot;old&quot;, &quot;old&quot;, &quot;old&quot;, &quot;old&quot;, &quot;old&quot;, &quot;old&quot;…
+## $ sibsex  &lt;chr&gt; &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;, &quot;bro&quot;…
+## $ n       &lt;dbl&gt; 0, 1, 1, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 2, 0, 1, 0, 0, 0…</code></pre>
 </div>
 </div>
 <div id="multiple-steps" class="section level2">
 <h2>Multiple steps</h2>
-<p>Tidy the data from <code>dataskills::eye_descriptions</code> (<a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">eye_descriptions.csv</a>). This dataset contains descriptions of the eyes of 50 people by 220 raters (<code>user_id</code>). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
+<p>Tidy the data from <a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">dataskills::eye_descriptions</a>. This dataset contains descriptions of the eyes of 50 people by 220 raters (<code>user_id</code>). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
 <p>Create a dataset with separate columns for <code>face_id</code>, <code>description</code>, and description number (<code>desc_n</code>). Hint: to separate a string by tildes or slashes, you would set the <code>sep</code> argument to <code>&quot;(~|\\/)+&quot;</code>.</p>
 <pre class="r"><code>eyes &lt;- dataskills::eye_descriptions %&gt;%
   gather(&quot;face_id&quot;, &quot;description&quot;, t1:t50) %&gt;%
   separate(description, c(&quot;d1&quot;, &quot;d2&quot;, &quot;d3&quot;, &quot;d4&quot;), sep = &quot;(,|;|\\/)+&quot;, fill = &quot;right&quot;) %&gt;%
   gather(&quot;desc_n&quot;, &quot;description&quot;, d1:d4) %&gt;%
-  filter(!is.na(description))  # gets rid of rows with no description</code></pre>
+  filter(!is.na(description)) %&gt;%  # gets rid of rows with no description
+  glimpse()</code></pre>
+<pre><code>## Rows: 12,304
+## Columns: 6
+## $ user_id     &lt;dbl&gt; 508844, 508966, 508976, 509196, 509286, 509400, 509503, 5…
+## $ sex         &lt;chr&gt; &quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;…
+## $ age         &lt;dbl&gt; 19.0, 20.4, 24.8, 14.6, 16.7, NA, 36.2, 20.7, 5.0, 18.2, …
+## $ face_id     &lt;chr&gt; &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1&quot;, &quot;t1…
+## $ desc_n      &lt;chr&gt; &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1&quot;, &quot;d1…
+## $ description &lt;chr&gt; &quot;empty&quot;, &quot;bored&quot;, &quot;Dark high on drugs&quot;, &quot;soft brown&quot;, &quot;br…</code></pre>
 </div>
 
 

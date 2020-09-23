@@ -31,6 +31,15 @@ By the end of this course students will be able to:
 *	Explain basics of probability and its role in statistical inference
 *	Critically analyse data and report descriptive and inferential statistics in a reproducible manner
 
+## Course Resources
+
+Each chapter has several short video lectures for the main learning outcomes at the playlist [Data Skills](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are available on the course Moodle and by request from the instructor.
+
+There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills). You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
+
+```{r, eval = FALSE}
+devtools::install_github("psyteachr/msc-data-skills")
+```
 
 ## Course Outline
 
@@ -68,10 +77,14 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 5. [Data Wrangling](#dplyr)
     1. Be able to use the 6 main dplyr one-table verbs: [`select()`](#select), [`filter()`](#filter), [`arrange()`](#arrange), [`mutate()`](#mutate), [`summarise()`](#summarise), [`group_by()`](#group_by)
+    2. Be able to [wrangle data by chaining tidyr and dplyr functions](#all-together)
+    3. Be able to use these additional one-table verbs: [`rename()`](#rename), [`distinct()`](#distinct), [`count()`](#count), [`slice()`](#slice), [`pull()`](#pull)
 
 6. [Data Relations](#joins)
     1. Be able to use the 4 mutating join verbs: [`left_join()`](#left_join), [`right_join()`](#right_join), [`inner_join()`](#inner_join), [`full_join()`](#full_join)
-    2. Use the [`by`](#join-by) argument to set the join columns
+    2. Be able to use the 2 filtering join verbs: [`semi_join()`](#semi_join), [`anti_join()`](#anti_join)
+    3. Be able to use the 2 binding join verbs: [`bind_rows()`](#bind_rows), [`bind_cols()`](#bind_cols)
+    4. Be able to use the 3 set operations: [`intersect()`](#intersect), [`union()`](#union), [`setdiff()`](#setdiff)
 
 7. [Iteration & Functions](#func)
     1. Work with [iteration functions](#iteration-functions): `rep()`, `seq()`, and `replicate()`
@@ -102,15 +115,6 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     5. Use `source()` to include code from an external file 
     6. Report the output of an analysis using inline R
 
-## Course Resources
-
-Each chapter has several short video lectures for the main learning outcomes at the playlist [Data Skills](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are avilable on the course Moodle and by request from the instructor.
-
-There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills). You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
-
-```{r, eval = FALSE}
-devtools::install_github("psyteachr/msc-data-skills")
-```
 
 
 ## Formative Exercises
@@ -131,14 +135,13 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 * [09 glm](exercises/09_glm_exercise.Rmd): GLM
 
 
-## Resources
+## Other Resources
 
 Miscellanous materials added throughout the semester, such as tips on installation, or the results of live-coding demos, can be found in the Appendices.
 
 <img src="images/memes/changing-stuff.jpg" class="right meme"
      alt="Fake O'Reilly-style book cover, line drawing of a kitten; title: Changing Stuff and Seeing What Happens; top text: How to actually learn any new programming concept"/>
 
-- <a href="http://rstudio1.psy.gla.ac.uk" target="_blank">Glasgow Psychology RStudio</a> 
 - [Learning Statistics with R](https://learningstatisticswithr-bookdown.netlify.com) by Navarro
 - [R for Data Science](http://r4ds.had.co.nz) by Grolemund and Wickham
 

@@ -12,6 +12,8 @@ library("tidyverse")
 set.seed(777) # makes sure random numbers are reproducible
 ```
 
+Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
+
 ## UK Baby Names
 
 Here we will convert the data table from the ukbabynames package to a tibble and assign it the variable name `ukb`. Use this data tibble for questions 1-13.

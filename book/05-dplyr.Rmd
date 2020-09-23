@@ -7,14 +7,15 @@
 
 ### Basic
 
-1. Be able to use the 6 main dplyr one-table verbs:
+1. Be able to use the 6 main dplyr one-table verbs: [(video)](https://youtu.be/l12tNKClTR0){class="video"}
     + [`select()`](#select)
     + [`filter()`](#filter)
     + [`arrange()`](#arrange)
     + [`mutate()`](#mutate)
     + [`summarise()`](#summarise)
     + [`group_by()`](#group_by)
-2. Also know these additional one-table verbs:
+2. Be able to [wrangle data by chaining tidyr and dplyr functions](#all-together) [(video)](https://youtu.be/hzFFAkwrkqA){class="video"} 
+3. Be able to use these additional one-table verbs: [(video)](https://youtu.be/GmfF162mq4g){class="video"}
     + [`rename()`](#rename)
     + [`distinct()`](#distinct)
     + [`count()`](#count)
@@ -23,11 +24,8 @@
 
 ### Intermediate
 
-3. Fine control of [`select()` operations](#select_helpers)
-
-### Advanced
-
-4. Use [window functions](#window)
+4. Fine control of [`select()` operations](#select_helpers) [(video)](https://youtu.be/R1bi1QwF9t0){class="video"}
+5. Use [window functions](#window) [(video)](https://youtu.be/uo4b0W9mqPc){class="video"}
 
 ## Resources
 
@@ -345,7 +343,7 @@ Use `ungroup()` as soon as you are done with grouped functions, otherwise the da
 `r showtbl(disgust_smc)`
 
 
-### All Together
+### All Together {#all-together}
 
 A lot of what we did above would be easier if the data were tidy, so let's do that first. Then we can use `group_by` to calculate the domain scores.
 

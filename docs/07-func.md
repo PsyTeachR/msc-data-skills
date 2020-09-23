@@ -21,7 +21,8 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Advanced
 
-<img src="images/memes/purrr.gif" class="meme right">
+<img src="images/memes/purrr.gif" class="meme right"
+     alt="Jacobim Mugatu (Will Ferrell) and Katinka Ingabogovinanana (Mila Jojovich) from Zoolander, sitting in a theatre with a small dog; bottom text: purrr::map so hot right now">
 
 The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
@@ -155,61 +156,7 @@ seq(0, 100, length.out = 13)
 ```
 
 
-<!--
-Use `tibble::tibble()` to create a table including the vector `err` created in question 4 as a column.  Your table should mimic the structure of the table below (your values for `err` will differ), with the constraint that `Y = mu + eff + err`.  Store this table in `dat`.
-
-
-```r
-dat <- tibble(
-  mu = 100,
-  eff = rep(c(-3, 3), each = 5),
-  A = rep(c("A1", "A2"), each = 5),
-  err = rnorm(10),
-  Y = mu + eff + err
-) %>%
-select(Y, mu:err)
-```
-
-### `aov()`, `summary()`, and `broom::tidy()`
-
-The table you created above is what is known as a *decomposition matrix* for a linear model where `Y` is the dependent variable and `A` is the independent variable with two levels.  The main effects of `A` are `-3` for `A1` and `3` for `A2`; a 6 unit difference.  `mu` ( $\mu$ ) is the grand mean and `err` is the residual.  Run a one-factor ANOVA on the above data using the `aov()` function.  Run `summary()` on the result.
-
-
-```r
-mod <- aov(Y ~ A, dat)
-
-summary(mod)
-```
-
-```
-##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## A            1  95.85   95.85   113.6 5.26e-06 ***
-## Residuals    8   6.75    0.84                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
-Now tidy the results into a table using `broom::tidy()`, pull out the $p$-value and store it in `pval`.
-
-
-```r
-pval <- mod %>%
-  broom::tidy() %>% 
-  pull(p.value) %>% 
-  pluck(1)
-pval
-```
-
-```
-## [1] 5.258951e-06
-```
--->
-
 ## Custom functions {#custom-functions}
-
-<!--
-Now we are going to wrap up the code we created above into two custom functions: `sim_data()`, which will generate a `tibble()` with randomly generated two group data; and `run_anova()` which will run an anova on a data table.  But let's first get some practice creating functions.
--->
 
 In addition to the built-in functions and functions you can access from packages, you can also write your own functions (and eventually even packages!).
 
@@ -450,13 +397,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = -1.5937, df = 36.528, p-value = 0.1196
+## t = 0.029301, df = 37.27, p-value = 0.9768
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9559243  0.1144139
+##  -0.4829147  0.4970899
 ## sample estimates:
 ## mean of x mean of y 
-##  4.965341  5.386096
+##  5.251942  5.244854
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `dv_column~grouping_column`.
@@ -473,13 +420,13 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = -1.5937, df = 36.528, p-value = 0.1196
+## t = 0.029301, df = 37.27, p-value = 0.9768
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9559243  0.1144139
+##  -0.4829147  0.4970899
 ## sample estimates:
 ## mean in group A mean in group B 
-##        4.965341        5.386096
+##        5.251942        5.244854
 ```
 
 ### `broom::tidy()`
@@ -501,7 +448,7 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>     <dbl>
-## 1   -0.578      4.97      5.54     -1.84  0.0747      34.3    -1.22    0.0606
+## 1   -0.903      4.86      5.76     -2.82 0.00787      34.9    -1.55    -0.253
 ## # … with 2 more variables: method <chr>, alternative <chr>
 ```
 
@@ -520,7 +467,7 @@ tibble(
 ```
 
 ```
-## [1] 0.256199
+## [1] 0.008093479
 ```
 
 ### Turn into a function
@@ -549,7 +496,7 @@ t_sim()
 ```
 
 ```
-## [1] 0.0558203
+## [1] 0.1648184
 ```
 
 ### `replicate()`
@@ -562,12 +509,12 @@ replicate(3, rnorm(5))
 ```
 
 ```
-##            [,1]      [,2]        [,3]
-## [1,]  0.2398579 1.0060960 -0.08836476
-## [2,] -1.7685708 0.8362997  0.08114036
-## [3,]  0.1457033 0.4557277  1.38814525
-## [4,]  0.4462924 0.5616177 -0.02341062
-## [5,]  0.5916637 1.4850093  0.98759269
+##             [,1]         [,2]       [,3]
+## [1,]  1.91462881  0.001485622  0.2398579
+## [2,]  1.44031617 -2.489158885 -1.7685708
+## [3,]  0.16631568 -0.827165692  0.1457033
+## [4,] -1.60541710 -1.903075964  0.4462924
+## [5,] -0.06774035  0.989914817  0.5916637
 ```
 
 Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
@@ -581,7 +528,7 @@ power
 ```
 
 ```
-## [1] 0.304
+## [1] 0.334
 ```
 
 ### Set seed {#seed}
