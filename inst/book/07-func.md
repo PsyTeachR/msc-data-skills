@@ -9,8 +9,8 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Basic
 
-1. Work with [iteration functions](#iteration-functions) `rep`, `seq`, and `replicate`
-2. Use [arguments](#arguments) by order or name
+1. Work with basic [iteration functions](#iteration-functions) `rep`, `seq`, `replicate`
+2. Use [`map()` and `apply()` functions](#map-apply) 
 3. Write your own [custom functions](#custom-functions) with `function()`
 4. Set [default values](#defaults) for the arguments in your functions
 
@@ -26,11 +26,10 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 The topics below are not (yet) covered in these materials, but they are directions for independent learning.
 
-7. Repeat commands and handle result using `purrr::rerun()`, `purrr::map_*()`, `purrr::walk()`
-8. Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
-9. Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
-10. Work with **nested data frames** in `dplyr`
-11. Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
+7. Repeat commands having multiple arguments using `purrr::map2_*()` and `purrr::pmap_*()`
+8. Create **nested data frames** using `dplyr::group_by()` and `tidyr::nest()`
+9. Work with **nested data frames** in `dplyr`
+10. Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
 
 ## Resources
 
@@ -53,7 +52,7 @@ set.seed(8675309) # makes sure random numbers are reproducible
 
 We first learned about the two basic iteration functions, `rep()` and `seq()` in the [Working with Data](#rep_seq) chapter.
 
-### `rep()`
+### rep()
 
 The function `rep()` lets you repeat the first argument a number of times.
 
@@ -116,7 +115,7 @@ rep(c("A", "B"), times = 3, each = 2)
 ```
 
 
-### `seq()`
+### seq()
 
 The function `seq()` is useful for generating a sequence of numbers with some pattern.
 
@@ -155,6 +154,173 @@ seq(0, 100, length.out = 13)
 ## [13] 100.000000
 ```
 
+### replicate() 
+
+You can use the `replicate()` function to run a function `n` times.
+
+For example, you can get 3 sets of 5 numbers from a random normal distribution by setting `n` to `3` and `expr` to `rnorm(5)`.
+
+
+```r
+replicate(n = 3, expr = rnorm(5))
+```
+
+```
+##            [,1]       [,2]       [,3]
+## [1,] -0.9965824 0.98721974 -1.5495524
+## [2,]  0.7218241 0.02745393  1.0226378
+## [3,] -0.6172088 0.67287232  0.1500832
+## [4,]  2.0293916 0.57206650 -0.6599640
+## [5,]  1.0654161 0.90367770 -0.9945890
+```
+
+By default, `replicate()` simplifies your result into a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you'd rather have a list of vectors, set `simplify = FALSE`.
+
+
+```r
+replicate(n = 3, expr = rnorm(5), simplify = FALSE)
+```
+
+```
+## [[1]]
+## [1]  1.9724587 -0.4418016 -0.9006372 -0.1505882 -0.8278942
+## 
+## [[2]]
+## [1]  1.98582582  0.04400503 -0.40428231 -0.47299855 -0.41482324
+## 
+## [[3]]
+## [1]  0.6832342  0.6902011  0.5334919 -0.1861048  0.3829458
+```
+
+
+### map() and apply() functions {#map-apply}
+
+`purrr::map()` and `lapply()` return a list of the same length as a vector or list, each element of which is the result of applying a function to the corresponding element. They function much the same, but purrr functions have some optimisations for working with the tidyverse. We'll be working mostly with purrr functions in this course, but apply functions are very common in code that you might see in examples on the web.
+
+Imagine you want to calculate the power for a two-sample t-test with a mean difference of 0.2 and SD of 1, for all the sample sizes 100 to 1000 (by 100s). You could run the `power.t.test()` function 20 times and extract the values for "power" from the resulting list and put it in a table.
+
+
+```r
+p100 <- power.t.test(n = 100, delta = 0.2, sd = 1, type="two.sample")
+# 18 more lines
+p1000 <- power.t.test(n = 500, delta = 0.2, sd = 1, type="two.sample")
+
+tibble(
+  n = c(100, "...", 1000),
+  power = c(p100$power, "...", p1000$power)
+)
+```
+
+```
+## # A tibble: 3 x 2
+##   n     power            
+##   <chr> <chr>            
+## 1 100   0.290266404572217
+## 2 ...   ...              
+## 3 1000  0.884788352886661
+```
+
+However, the `apply()` and `map()` functions allow you to perform a function on each item in a vector or list. First make an object `n` that is the vector of the sample sizes you want to test, then use `lapply()` or `map()` to run the function `power.t.test()` on each item. You can set other arguments to `power.t.test()` after the function argument.
+
+
+```r
+n <- seq(100, 1000, 100)
+pcalc <- lapply(n, power.t.test, 
+                delta = 0.2, sd = 1, type="two.sample")
+# or
+pcalc <- purrr::map(n, power.t.test, 
+                delta = 0.2, sd = 1, type="two.sample")
+```
+
+These functions return a list where each item is the result of `power.t.test()`, which returns a list of results that includes the named item "power". This is a special list that has a summary format if you just print it directly:
+
+
+```r
+pcalc[[1]]
+```
+
+```
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 100
+##           delta = 0.2
+##              sd = 1
+##       sig.level = 0.05
+##           power = 0.2902664
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+```
+
+But you can see the individual items using the `str()` function.
+
+
+```r
+pcalc[[1]] %>% str()
+```
+
+```
+## List of 8
+##  $ n          : num 100
+##  $ delta      : num 0.2
+##  $ sd         : num 1
+##  $ sig.level  : num 0.05
+##  $ power      : num 0.29
+##  $ alternative: chr "two.sided"
+##  $ note       : chr "n is number in *each* group"
+##  $ method     : chr "Two-sample t test power calculation"
+##  - attr(*, "class")= chr "power.htest"
+```
+
+
+`sapply()` is a version of `lapply()` that returns a vector or array instead of a list, where appropriate. The corresponding purrr functions are `map_dbl()`, `map_chr()`, `map_int()` and `map_lgl()`, which return vectors with the corresponding <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data type</a>.
+
+You can extract a value from a list with the function `[[`. You usually see this written as `pcalc[[1]]`, but if you put it inside backticks, you can use it in apply and map functions.
+
+
+```r
+sapply(pcalc, `[[`, "power")
+```
+
+```
+##  [1] 0.2902664 0.5140434 0.6863712 0.8064964 0.8847884 0.9333687 0.9623901
+##  [8] 0.9792066 0.9887083 0.9939638
+```
+
+We use `map_dbl()` here because the value for "power" is a <a class='glossary' target='_blank' title='A data type representing a real decimal number' href='https://psyteachr.github.io/glossary/d#double'>double</a>.
+
+
+```r
+purrr::map_dbl(pcalc, `[[`, "power")
+```
+
+```
+##  [1] 0.2902664 0.5140434 0.6863712 0.8064964 0.8847884 0.9333687 0.9623901
+##  [8] 0.9792066 0.9887083 0.9939638
+```
+
+We can use the `map()` functions inside a `mutate()` function to run the `power.t.test()` function on the value of `n` from each row of a table, then extract the value for "power", and delete the column with the power calculations.
+
+
+```r
+mypower <- tibble(
+  n = seq(100, 1000, 100)) %>%
+  mutate(pcalc = purrr::map(n, power.t.test, 
+                            delta = 0.2, 
+                            sd = 1, 
+                            type="two.sample"),
+         power = purrr::map_dbl(pcalc, `[[`, "power")) %>%
+  select(-pcalc)
+```
+
+
+<div class="figure" style="text-align: center">
+<img src="07-func_files/figure-html/purrr-plot-1.png" alt="Power for a two-sample t-test with d = 0.2" width="100%" />
+<p class="caption">(\#fig:purrr-plot)Power for a two-sample t-test with d = 0.2</p>
+</div>
+
+
 
 ## Custom functions {#custom-functions}
 
@@ -187,7 +353,7 @@ add1(10)
 ## [1] 11
 ```
 
-Let's make a function that reports p-values in APA format (with "p = rounded value" when p >= .001 and "p < .001" when p < .001).
+Let's make a function that reports p-values in APA format (with "p = [rounded value]" when p >= .001 and "p < .001" when p < .001).
 
 First, we have to name the function. You can name it anything, but try not to duplicate existing functions or you will overwrite them. For example, if you call your function `rep`, then you will need to use `base::rep()` to access the normal `rep` function. Let's call our p-value function `report_p` and set up the framework of the function.
 
@@ -199,7 +365,7 @@ report_p <- function() {
 
 ### Arguments {#arguments}
 
-We need to add one *argument*, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses after `function` in the order you want them to default (just like the built-in functions you've used before). 
+We need to add one <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>, the p-value you want to report. The names you choose for the arguments are private to that argument, so it is not a problem if they conflict with other variables in your script. You put the arguments in the parentheses of `function()` in the order you want them to default (just like the built-in functions you've used before). 
 
 
 ```r
@@ -209,7 +375,7 @@ report_p <- function(p) {
 
 ### Argument defaults {#defaults}
 
-You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn't make sense to run this function without specifying the p-value, but we can add a second argument called `digits` that defaults to 3, so we can round p-values to 3 digits.
+You can add a default value to any argument. If that argument is skipped, then the function uses the default argument. It probably doesn't make sense to run this function without specifying the p-value, but we can add a second argument called `digits` that defaults to 3, so we can round p-values to any number of digits.
 
 
 ```r
@@ -268,24 +434,17 @@ What happens in a function stays in a function. You can change the value of a va
 
 
 ```r
-half <- function(x) {
-  x <- x/2
-  return(x)
-}
+reported <- "not changed"
 
-x <- 10
-list(
-  "half(x)" = half(x),
-  "x" = x
-)
+# inside this function, reported == "p = 0.002"
+report_p(0.0023) 
+
+reported # still "not changed"
 ```
 
 ```
-## $`half(x)`
-## [1] 5
-## 
-## $x
-## [1] 10
+## [1] "p = 0.002"
+## [1] "not changed"
 ```
 
 
@@ -360,7 +519,7 @@ report_p(2)
 
 First, let's build up the code that we want to iterate.
 
-### `rnorm()`
+### rnorm()
 
 Create a vector of 20 random numbers drawn from a normal distribution with a mean of 5 and standard deviation of 1 using the `rnorm()` function and store them in the variable `A`.
 
@@ -369,7 +528,7 @@ Create a vector of 20 random numbers drawn from a normal distribution with a mea
 A <- rnorm(20, mean = 5, sd = 1)
 ```
 
-### `tibble::tibble()`
+### tibble::tibble()
 
 A `tibble` is a type of table or `data.frame`. The function `tibble::tibble()` creates a tibble with a column for each argument. Each argument takes the form `column_name = data_vector`.
 
@@ -383,7 +542,7 @@ dat <- tibble(
 )
 ```
 
-### `t.test`
+### t.test()
 
 You can run a Welch two-sample t-test by including the two samples you made as the first two arguments to the function `t.test`. You can reference one column of a table by its names using the format `table_name$column_name`
 
@@ -397,13 +556,13 @@ t.test(dat$A, dat$B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  dat$A and dat$B
-## t = 0.029301, df = 37.27, p-value = 0.9768
+## t = -1.7716, df = 36.244, p-value = 0.08487
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.4829147  0.4970899
+##  -1.2445818  0.0838683
 ## sample estimates:
 ## mean of x mean of y 
-##  5.251942  5.244854
+##  4.886096  5.466453
 ```
 
 You can also convert the table to long format using the `gather` function and specify the t-test using the format `dv_column~grouping_column`.
@@ -420,16 +579,16 @@ t.test(score~group, data = longdat)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  score by group
-## t = 0.029301, df = 37.27, p-value = 0.9768
+## t = -1.7716, df = 36.244, p-value = 0.08487
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.4829147  0.4970899
+##  -1.2445818  0.0838683
 ## sample estimates:
 ## mean in group A mean in group B 
-##        5.251942        5.244854
+##        4.886096        5.466453
 ```
 
-### `broom::tidy()`
+### broom::tidy()
 
 You can use the function `broom::tidy()` to extract the data from a statistical test in a table format. The example below pipes everything together.
 
@@ -448,9 +607,13 @@ tibble(
 ## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
 ##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>     <dbl>
-## 1   -0.903      4.86      5.76     -2.82 0.00787      34.9    -1.55    -0.253
+## 1   -0.642      5.04      5.69     -2.31  0.0265      37.3    -1.21   -0.0792
 ## # … with 2 more variables: method <chr>, alternative <chr>
 ```
+
+<div class="info">
+<p>In the pipeline above, <code>t.test(score~group, data = .)</code> uses the <code>.</code> notation to change the location of the piped-in data table from it’s default position as the first argument to a different position.</p>
+</div>
 
 Finally, we can extract a single value from this results table using `pull()`.
 
@@ -467,10 +630,10 @@ tibble(
 ```
 
 ```
-## [1] 0.008093479
+## [1] 0.7075268
 ```
 
-### Turn into a function
+### Custom function: t_sim()
 
 First, name your function `t_sim` and wrap the code above in a function with no arguments. 
 
@@ -496,26 +659,10 @@ t_sim()
 ```
 
 ```
-## [1] 0.1648184
+## [1] 0.00997552
 ```
 
-### `replicate()`
-
-You can use the `replicate` function to run a function any number of times.
-
-
-```r
-replicate(3, rnorm(5))
-```
-
-```
-##             [,1]         [,2]       [,3]
-## [1,]  1.91462881  0.001485622  0.2398579
-## [2,]  1.44031617 -2.489158885 -1.7685708
-## [3,]  0.16631568 -0.827165692  0.1457033
-## [4,] -1.60541710 -1.903075964  0.4462924
-## [5,] -0.06774035  0.989914817  0.5916637
-```
+### Iterate t_sim()
 
 Let's run the `t_sim` function 1000 times, assign the resulting p-values to a vector called `reps`, and check what proportion of p-values are lower than alpha (e.g., .05). This number is the power for this analysis.
 
@@ -528,7 +675,7 @@ power
 ```
 
 ```
-## [1] 0.334
+## [1] 0.328
 ```
 
 ### Set seed {#seed}
@@ -625,10 +772,14 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 
 
-|term                                                                                                                    |definition |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------|
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#custom.functions'>custom functions</a> |NA         |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a>               |NA         |
+|term                                                                                                                    |definition                                     |
+|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>                 |A variable that provides input to a function.  |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#custom.functions'>custom functions</a> |NA                                             |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a>               |The kind of data represented by an object.     |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>                     |A data type representing a real decimal number |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a>               |NA                                             |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a>                     |NA                                             |
 
 
 

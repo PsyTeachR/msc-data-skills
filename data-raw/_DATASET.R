@@ -162,7 +162,7 @@ vardesc <- list(
   maxValue = list(moral = 6, pathogen = 6, sexual = 6)
 )
 make_dataset("disgust_scores", "Three Domain Disgust Questionnaire (scores)", 
-             "A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.)", vardesc)
+             "A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.), calculated from [disgust].", vardesc)
 
 
 # EMBU_mother ----
@@ -299,7 +299,7 @@ vardesc <- list(
   description = list(
     Country = "The full country name",
     Year = "The year the statistic was calculated for (yyyy)",
-    "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)" = "Infant mortality rate (the probability of dying between birth and age 1 per 1000 live births) and confidence interval in the format \"rate [lowCI-highCI]\""
+    "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)" = "Infant mortality rate (the probability of dying between birth and age 1 per 1000 live births) and confidence interval in the format \"rate \[lowCI-highCI\]\""
   )
 )
 
@@ -311,9 +311,9 @@ make_dataset("infmort", "Infant Mortality",
 vardesc <- list(
   description = list(
     Country = "The full country name",
-    "1990" = "Maternal mortality for 1990 (format: \"rate [lowCI-highCI])",
-    "2000" = "Maternal mortality for 2000 (format: \"rate [lowCI-highCI]\")",
-    "2015" = "Maternal mortality for 2015 (format: \"rate [lowCI-highCI]\")"
+    "1990" = "Maternal mortality for 1990 (format: \"rate \[lowCI-highCI\])",
+    "2000" = "Maternal mortality for 2000 (format: \"rate \[lowCI-highCI\]\")",
+    "2015" = "Maternal mortality for 2015 (format: \"rate \[lowCI-highCI\]\")"
   )
 )
 
@@ -498,6 +498,22 @@ vardesc <- list(
 
 make_dataset("personality", "5-Factor Personality Items", "Archival data from the Face Research Lab of a 5-factor personality questionnaire. Each question is labelled with the domain (Op = openness, Co = conscientiousness, Ex = extroversion, Ag = agreeableness, and Ne = neuroticism) and the question number. Participants rate each statement on a Likert scale from 0 (Never) to 6 (Always). Questions with REV have already been reverse-coded (0 = Always, 6 = Never). \n\nInstructions: A number of statements which people have used to describe themselves are given below. Read each statement and then click on of the seven options to indicate how frequently this statement applies to you. There are no right or wrong answers. Do not spend too much time on any one statement, but give the answer which seems to describe how you generally feel or behave.", vardesc)
 
+# personality_scores ----
+
+vardesc <- list(
+  description = list(
+    user_id = "Each participant's unique ID",
+    date = "The date this questionnaire was completed",
+    Ag = "Mean score on Agreeableness items",
+    Co = "Mean score on Conscientiousness items",
+    Ex = "Mean score on Extraversion items",
+    Ne = "Mean score on Neuroticism items",
+    Op = "Mean score on Openness items"
+  )
+)
+
+make_dataset("personality_scores", "5-Factor Personality Scores", "Archival data from the Face Research Lab of a 5-factor personality questionnaire, with factor score calculated from [personality].", vardesc)
+
 # pets ----
 set.seed(8675309)
 dog_r <- c(.25, .25, .5)
@@ -635,7 +651,7 @@ vardesc <- list(
 )
 
 make_dataset("users", "User Demographics",
-             "A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [user].", vardesc)
+             "A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users2].", vardesc)
 
 # users2 ----
 
@@ -648,7 +664,7 @@ vardesc <- list(
 )
 
 make_dataset("users2", "User Demographics 2",
-             "A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [user].", vardesc)
+             "A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users].", vardesc)
 
 ## update documentation -----
 devtools::document()

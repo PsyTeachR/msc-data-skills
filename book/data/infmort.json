@@ -10,19 +10,19 @@
         {
             "@type": "PropertyValue",
             "name": "Country",
-            "description": "The full country name",
+            "description": "Country",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "Year",
-            "description": "The year the statistic was calculated for (yyyy)",
+            "description": "Year",
             "dataType": "int"
         },
         {
             "@type": "PropertyValue",
             "name": "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)",
-            "description": "Infant mortality rate (the probability of dying between birth and age 1 per 1000 live births) and confidence interval in the format \"rate [lowCI-highCI]\"",
+            "description": "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)",
             "dataType": "string"
         }
     ]

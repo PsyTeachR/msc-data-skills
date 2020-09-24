@@ -15,9 +15,3 @@ A list of the paths of the new data files
 \description{
 Save the data files used in this class to a directory
 }
-\examples{
-\dontrun() { 
-  getdata("mydata") 
-}
-
-}

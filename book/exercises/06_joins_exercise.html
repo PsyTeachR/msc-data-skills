@@ -368,39 +368,39 @@ summary {
 </div>
 
 
-<p>This file contains some answer checks after each question. Do not edit this text. When you knit your Rmd file, the checks will give you some information about whether your code created the correct objects.</p>
+<p>Edit the code chunks below and knit the document. You can pipe your objects to <code>glimpse()</code> or <code>print()</code> to display them.</p>
 <div id="mutating-joins" class="section level2">
 <h2>Mutating joins</h2>
 <div id="question-1a" class="section level3">
 <h3>Question 1A</h3>
-<p>Load data from <a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv">disgust_scores.csv</a> (<code>disgust</code>), <a href="https://psyteachr.github.io/msc-data-skills/data/personality_scores.csv">personality_scores.csv</a> (<code>ocean</code>) and <a href="https://psyteachr.github.io/msc-data-skills/data/users.csv">users.csv</a> (<code>user</code>). Each participant is identified by a unique <code>user_id</code>.</p>
-<pre class="r"><code>disgust &lt;- NULL
-ocean &lt;- NULL
-user &lt;- NULL</code></pre>
+<p>Load the following data from the dataskills package (or access the linked CSV files online). Each participant is identified by a unique <code>user_id</code>.</p>
+<ul>
+<li><a href="https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv"><code>disgust_scores</code></a></li>
+<li><a href="https://psyteachr.github.io/msc-data-skills/data/personality_scores.csv"><code>personality_scores</code></a></li>
+<li><a href="https://psyteachr.github.io/msc-data-skills/data/users.csv"><code>users</code></a></li>
+</ul>
+<pre class="r"><code>disgust_scores &lt;- NULL
+personality_scores &lt;- NULL
+users &lt;- NULL</code></pre>
 </div>
 <div id="question-1b" class="section level3">
 <h3>Question 1B</h3>
-<p>Add participant data to the disgust table.</p>
+<p>Add participant data to the disgust_scores table.</p>
 <pre class="r"><code>study1 &lt;- NULL</code></pre>
 </div>
 <div id="question-1c" class="section level3">
 <h3>Question 1C</h3>
-<p><em>Intermediate</em>: Calculate the age of each participant on the date they did the disgust questionnaire and put this in a column called <code>age_years</code> in a new table called <code>study1_ages</code>. Round to the nearest tenth of a year.</p>
+<p>Calculate the approximate age of each participant on the date they did the disgust_scores questionnaire and put this in a column called <code>age_years</code> in a new table called <code>study1_ages</code>.</p>
 <pre class="r"><code>study1_ages &lt;- NULL</code></pre>
-<p>Answer Checks:</p>
-<ul>
-<li>Your table <code>study1_ages</code> <strong>does not</strong> have a column called <code>age_years</code></li>
-<li>The mean age should be 25.39, your mean age is NA</li>
-</ul>
 </div>
 <div id="question-2a" class="section level3">
 <h3>Question 2A</h3>
-<p>Add the participant data to the disgust data, but have the columns from the participant table first.</p>
+<p>Add the participant data to the disgust_scores data, but have the columns from the participant table first.</p>
 <pre class="r"><code>study2 &lt;- NULL</code></pre>
 </div>
 <div id="question-2b" class="section level3">
 <h3>Question 2B</h3>
-<p><em>Intermediate</em>: How many times was the disgust questionnaire completed by each sex? Create a table called <code>study2_by_sex</code> that has two columns: <code>sex</code> and <code>n</code>.</p>
+<p>How many times was the disgust_scores questionnaire completed by each sex? Create a table called <code>study2_by_sex</code> that has two columns: <code>sex</code> and <code>n</code>.</p>
 <pre class="r"><code>study2_by_sex &lt;- NULL</code></pre>
 </div>
 <div id="question-2c" class="section level3">
@@ -411,17 +411,17 @@ user &lt;- NULL</code></pre>
 </div>
 <div id="question-3a" class="section level3">
 <h3>Question 3A</h3>
-<p>Create a table with only disgust and personality data from the same <code>user_id</code> collected on the same <code>date</code>.</p>
+<p>Create a table with only disgust_scores and personality_scores data from the same <code>user_id</code> collected on the same <code>date</code>.</p>
 <pre class="r"><code>study3 &lt;- NULL</code></pre>
 </div>
 <div id="question-3b" class="section level3">
 <h3>Question 3B</h3>
-<p><em>Intermediate</em>: Join data from the same <code>user_id</code>, regardless of <code>date</code>. Does this give you the same data table as above?</p>
+<p>Join data from the same <code>user_id</code>, regardless of <code>date</code>. Does this give you the same data table as above?</p>
 <pre class="r"><code>study3_nodate &lt;- NULL</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
-<p>Create a table of the disgust and personality data with each <code>user_id:date</code> on a single row, containing <em>all</em> of the data from both tables.</p>
+<p>Create a table of the disgust_scores and personality_scores data with each <code>user_id:date</code> on a single row, containing <em>all</em> of the data from both tables.</p>
 <pre class="r"><code>study4 &lt;- NULL</code></pre>
 </div>
 </div>
@@ -429,12 +429,12 @@ user &lt;- NULL</code></pre>
 <h2>Filtering joins</h2>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
-<p>Create a table of just the data from the disgust table for users who completed the personality questionnaire that same day.</p>
+<p>Create a table of just the data from the disgust_scores table for users who completed the personality_scores questionnaire that same day.</p>
 <pre class="r"><code>study5 &lt;- NULL</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
-<p>Create a table of data from users who did not complete either the personality questionnaire or the disgust questionnaire. (<em>Hint: this will require two steps; use pipes.</em>)</p>
+<p>Create a table of data from users who did not complete either the personality_scores questionnaire or the disgust_scores questionnaire. (<em>Hint: this will require two steps; use pipes.</em>)</p>
 <pre class="r"><code>study6 &lt;- NULL</code></pre>
 </div>
 </div>
@@ -442,9 +442,8 @@ user &lt;- NULL</code></pre>
 <h2>Binding and sets</h2>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
-<p>Load new user data from <a href="https://psyteachr.github.io/msc-data-skills/data/users2.csv">users2.csv</a>. Bind them into a single table called <code>users_all</code>.</p>
-<pre class="r"><code>user2 &lt;- NULL
-users_all &lt;- NULL</code></pre>
+<p>Load new user data from <a href="https://psyteachr.github.io/msc-data-skills/data/users2.csv">dataskills::users2</a>. Bind them into a single table called <code>users_all</code>.</p>
+<pre class="r"><code>users_all &lt;- NULL</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>

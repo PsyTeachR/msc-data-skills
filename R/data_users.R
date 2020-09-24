@@ -1,7 +1,7 @@
 # users ----
 #' User Demographics
 #'
-#' A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [user].
+#' A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users2].
 #'
 #' @format A data frame with 52043 rows and 3 variables:
 #' \describe{

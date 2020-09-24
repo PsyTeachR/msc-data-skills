@@ -368,27 +368,55 @@ summary {
 </div>
 
 
+<p>Edit the code chunks below and knit the document. You can pipe your objects to <code>glimpse()</code> or <code>print()</code> to display them.</p>
 <div id="question-1" class="section level3">
 <h3>Question 1</h3>
 <p>Set the vector <code>v1</code> equal to the following: 11, 13, 15, 17, 19, …, 99, 101 (use a function; don’t just type all the numbers).</p>
-<pre class="r"><code>v1 &lt;- seq(11, 101, by = 2)</code></pre>
+<pre class="r"><code>v1 &lt;- seq(11, 101, by = 2) %&gt;% print()</code></pre>
+<pre><code>##  [1]  11  13  15  17  19  21  23  25  27  29  31  33  35  37
+## [15]  39  41  43  45  47  49  51  53  55  57  59  61  63  65
+## [29]  67  69  71  73  75  77  79  81  83  85  87  89  91  93
+## [43]  95  97  99 101</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
 <p>Set the vector <code>v2</code> equal to the following: “A” “A” “B” “B” “C” “C” “D” “D” “E” “E” (note the letters are all uppercase).</p>
-<pre class="r"><code>v2 &lt;- rep(LETTERS[1:5], each = 2)</code></pre>
+<pre class="r"><code>v2 &lt;- rep(LETTERS[1:5], each = 2) %&gt;% print()</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;C&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; &quot;E&quot; &quot;E&quot;</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
-<p>Set the vector <code>v3</code> equal to the following: “a” “b” “c” “d” “e” “a” “b” “c” “d” “e” (note the letters are all lowercase)</p>
-<pre class="r"><code>v3 &lt;- rep(letters[1:5], 2)</code></pre>
-</div>
-<div id="question-4" class="section level3">
-<h3>Question 4</h3>
-<p>Set the vector <code>v4</code> equal to the words “dog” 10 times, “cat” 9 times, “fish” 6 times, and “ferret” 1 time.</p>
+<p>Set the vector <code>v3</code> equal to the words “dog” 10 times, “cat” 9 times, “fish” 6 times, and “ferret” 1 time.</p>
 <pre class="r"><code>pets &lt;- c(&quot;dog&quot;, &quot;cat&quot;, &quot;fish&quot;, &quot;ferret&quot;)
 pet_n &lt;- c(10, 9, 6, 1)
-v4 &lt;- rep(pets, times = pet_n)</code></pre>
+v3 &lt;- rep(pets, times = pet_n) %&gt;% print()</code></pre>
+<pre><code>##  [1] &quot;dog&quot;    &quot;dog&quot;    &quot;dog&quot;    &quot;dog&quot;    &quot;dog&quot;    &quot;dog&quot;   
+##  [7] &quot;dog&quot;    &quot;dog&quot;    &quot;dog&quot;    &quot;dog&quot;    &quot;cat&quot;    &quot;cat&quot;   
+## [13] &quot;cat&quot;    &quot;cat&quot;    &quot;cat&quot;    &quot;cat&quot;    &quot;cat&quot;    &quot;cat&quot;   
+## [19] &quot;cat&quot;    &quot;fish&quot;   &quot;fish&quot;   &quot;fish&quot;   &quot;fish&quot;   &quot;fish&quot;  
+## [25] &quot;fish&quot;   &quot;ferret&quot;</code></pre>
+</div>
+<div id="question-4a" class="section level3">
+<h3>Question 4a</h3>
+<p>Use <code>apply()</code> or <code>map()</code> functions to create a list of 11 vectors of 100 numbers sampled from 11 random normal distributions with means of 0 to 1.0 (in steps of 0.1) and SDs of 1. Assign this list to the object <code>samples</code>. Set the seed to <code>321</code> before you generate the random numbers to ensure reproducibility.</p>
+<pre class="r"><code>set.seed(321)
+mu &lt;- seq(0, 1, 0.1)
+samples &lt;- map(mu, rnorm, n = 100)
+
+# alternatively
+samples &lt;- lapply(mu, rnorm, n = 100)</code></pre>
+</div>
+<div id="question-4b" class="section level3">
+<h3>Question 4b</h3>
+<p>Use <code>apply()</code> or <code>map()</code> functions to create a vector of the sample means from the list <code>samples</code> in the previous question.</p>
+<pre class="r"><code>sample_means &lt;- map_dbl(samples, mean)
+
+## alternatively
+
+sample_means &lt;- sapply(samples, mean) %&gt;% print()</code></pre>
+<pre><code>##  [1] 0.08304484 0.21226580 0.16840128 0.12930317 0.53216771
+##  [6] 0.40842952 0.72589166 0.63446436 0.81040369 1.02317536
+## [11] 0.91126680</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -412,63 +440,62 @@ v4 &lt;- rep(pets, times = pet_n)</code></pre>
   id = 101:120,
   pre = rnorm(20),
   post = rnorm(20)
-)</code></pre>
+) %&gt;% print()</code></pre>
+<pre><code>## # A tibble: 20 x 3
+##       id     pre    post
+##    &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1   101 -1.25   -0.0868
+##  2   102 -0.606   0.521 
+##  3   103 -0.315  -2.04  
+##  4   104 -1.17    0.780 
+##  5   105  0.558  -0.669 
+##  6   106 -1.36    1.86  
+##  7   107  1.91    0.352 
+##  8   108 -0.682   0.403 
+##  9   109 -0.966  -1.13  
+## 10   110  0.952   0.279 
+## 11   111  0.0392  0.431 
+## 12   112 -0.437   0.732 
+## 13   113 -0.381  -1.48  
+## 14   114 -0.128   0.795 
+## 15   115 -0.0911 -1.24  
+## 16   116 -0.673   0.0243
+## 17   117  1.07    2.07  
+## 18   118  1.27    0.819 
+## 19   119  0.726  -1.32  
+## 20   120  0.507   1.88</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
 <p>Run a two-tailed, <em>paired-samples</em> t-test comparing <code>pre</code> and <code>post</code>. (check the help for <code>t.test</code>)</p>
-<pre class="r"><code>t &lt;- t.test(dat$post, dat$pre, paired = TRUE)
-
-t # prints results of t-test</code></pre>
+<pre class="r"><code>t &lt;- t.test(dat$post, dat$pre, paired = TRUE) %&gt;% print()</code></pre>
 <pre><code>## 
 ##  Paired t-test
 ## 
 ## data:  dat$post and dat$pre
-## t = 1.3139, df = 19, p-value = 0.2045
+## t = 0.64228, df = 19, p-value = 0.5284
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.246168  1.076479
+##  -0.4540730  0.8561294
 ## sample estimates:
 ## mean of the differences 
-##               0.4151557</code></pre>
+##               0.2010282</code></pre>
 </div>
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
 <p>Use <code>broom::tidy</code> to save the results of the t-test in question 8 in a table called <code>stats</code>.</p>
 <pre class="r"><code>stats &lt;- t.test(dat$post, dat$pre, paired = TRUE) %&gt;%
-  broom::tidy()
-
-knitr::kable(stats) # display the table</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="right">estimate</th>
-<th align="right">statistic</th>
-<th align="right">p.value</th>
-<th align="right">parameter</th>
-<th align="right">conf.low</th>
-<th align="right">conf.high</th>
-<th align="left">method</th>
-<th align="left">alternative</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">0.4151557</td>
-<td align="right">1.313927</td>
-<td align="right">0.2045149</td>
-<td align="right">19</td>
-<td align="right">-0.246168</td>
-<td align="right">1.076479</td>
-<td align="left">Paired t-test</td>
-<td align="left">two.sided</td>
-</tr>
-</tbody>
-</table>
+  broom::tidy() %&gt;%
+  print()</code></pre>
+<pre><code>## # A tibble: 1 x 8
+##   estimate statistic p.value parameter conf.low conf.high
+##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1    0.201     0.642   0.528        19   -0.454     0.856
+## # … with 2 more variables: method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
 </div>
 <div id="question-10" class="section level3">
 <h3>Question 10</h3>
-<p>Create a function called <code>report_t</code> that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns <code>pre</code> and <code>post</code> in the following format: “The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###].” Hint: look at the function <code>paste0</code> (simpler) or <code>sprintf</code> (complicated but more powerful).</p>
+<p>Create a function called <code>report_t</code> that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns <code>pre</code> and <code>post</code> in the following format: “The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###].” Hint: look at the function <code>paste0()</code> (simpler) or <code>sprintf()</code> (complicated but more powerful).</p>
 <p>NB: Make sure all numbers are reported to three decimal places (except degrees of freedom).</p>
 <pre class="r"><code>report_t &lt;- function(data) {
   stats &lt;- t.test(data$post, data$pre, paired = TRUE) %&gt;%
@@ -501,61 +528,7 @@ report_t &lt;- function(data) {
           pull(stats, conf.high)
   )
 }</code></pre>
-<p>The mean increase from pre-test to post-test was 0.415: t(19) = 1.314, p = 0.205, 95% CI = [-0.246, 1.076].</p>
-</div>
-<div id="answer-checks" class="section level2">
-<h2>Answer Checks</h2>
-<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Question</th>
-<th align="left">Answer</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="#question-1">Question 1</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-2">Question 2</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-3">Question 3</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-4">Question 4</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-5">Question 5</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-6">Question 6</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-7">Question 7</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-8">Question 8</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-9">Question 9</a></td>
-<td align="left">correct</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-10">Question 10</a></td>
-<td align="left">correct</td>
-</tr>
-</tbody>
-</table>
+<p>The mean increase from pre-test to post-test was 0.201: t(19) = 0.642, p = 0.528, 95% CI = [-0.454, 0.856].</p>
 </div>
 
 

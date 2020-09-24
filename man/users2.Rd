@@ -19,6 +19,6 @@ A data frame with 60000 rows and 3 variables:
 users2
 }
 \description{
-A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from \link{disgust}, \link{disgust_scores}, \link{personality}, \link{personality_scores}, and \link{user}.
+A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from \link{disgust}, \link{disgust_scores}, \link{personality}, \link{personality_scores}, and \link{users}.
 }
 \keyword{datasets}

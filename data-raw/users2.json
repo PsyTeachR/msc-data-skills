@@ -4,7 +4,7 @@
     "name": "User Demographics 2",
     "schemaVersion": "Psych-DS 0.1.0",
     "author": "Lisa DeBruine",
-    "description": "A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [user].",
+    "description": "A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users].",
     "license": "CC-BY 4.0",
     "variableMeasured": [
         {

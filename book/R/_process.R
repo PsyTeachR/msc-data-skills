@@ -3,7 +3,7 @@ setwd(rstudioapi::getActiveProject())
 setwd("book")
 
 # render a chapter or the whole book
-browseURL(bookdown::preview_chapter("06-joins.Rmd"))
+browseURL(bookdown::preview_chapter("07-func.Rmd"))
 bookdown::render_book("index.Rmd")
 
 
@@ -31,3 +31,4 @@ R.utils::copyDirectory(
   recursive = TRUE)
 
 unlink("inst/book/.nojekyll")
+unlink("inst/book/docs/.nojekyll")

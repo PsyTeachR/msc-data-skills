@@ -368,6 +368,7 @@ summary {
 </div>
 
 
+<p>Edit the code chunks below and knit the document. You can pipe your objects to <code>glimpse()</code> or <code>print()</code> to display them.</p>
 <div id="question-1" class="section level3">
 <h3>Question 1</h3>
 <p>Set the vector <code>v1</code> equal to the following: 11, 13, 15, 17, 19, …, 99, 101 (use a function; don’t just type all the numbers).</p>
@@ -380,13 +381,18 @@ summary {
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
-<p>Set the vector <code>v3</code> equal to the following: “a” “b” “c” “d” “e” “a” “b” “c” “d” “e” (note the letters are all lowercase)</p>
+<p>Set the vector <code>v3</code> equal to the words “dog” 10 times, “cat” 9 times, “fish” 6 times, and “ferret” 1 time.</p>
 <pre class="r"><code>v3 &lt;- NULL</code></pre>
 </div>
-<div id="question-4" class="section level3">
-<h3>Question 4</h3>
-<p>Set the vector <code>v4</code> equal to the words “dog” 10 times, “cat” 9 times, “fish” 6 times, and “ferret” 1 time.</p>
-<pre class="r"><code>v4 &lt;- NULL</code></pre>
+<div id="question-4a" class="section level3">
+<h3>Question 4a</h3>
+<p>Use <code>apply()</code> or <code>map()</code> functions to create a list of 11 vectors of 100 numbers sampled from 11 random normal distributions with means of 0 to 1.0 (in steps of 0.1) and SDs of 1. Assign this list to the object <code>samples</code>. Set the seed to <code>321</code> before you generate the random numbers to ensure reproducibility.</p>
+<pre class="r"><code>samples &lt;- NULL</code></pre>
+</div>
+<div id="question-4b" class="section level3">
+<h3>Question 4b</h3>
+<p>Use <code>apply()</code> or <code>map()</code> functions to create a vector of the sample means from the list <code>samples</code> in the previous question.</p>
+<pre class="r"><code>sample_means &lt;- NULL</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
@@ -406,80 +412,18 @@ summary {
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>
 <p>Run a two-tailed, <em>paired-samples</em> t-test comparing <code>pre</code> and <code>post</code>. (check the help for <code>t.test</code>)</p>
-<pre class="r"><code>t &lt;- NULL
-
-t # prints results of t-test</code></pre>
-<pre><code>## NULL</code></pre>
+<pre class="r"><code>t &lt;- NULL</code></pre>
 </div>
 <div id="question-9" class="section level3">
 <h3>Question 9</h3>
 <p>Use <code>broom::tidy</code> to save the results of the t-test in question 8 in a table called <code>stats</code>.</p>
-<pre class="r"><code>stats &lt;- NULL
-
-knitr::kable(stats) # display the table</code></pre>
-<pre><code>## Warning in kable_pipe(x = structure(character(0), .Dim = c(0L,
-## 0L), .Dimnames = list(: The table should have a header (column names)</code></pre>
-<p>|| || || ||</p>
+<pre class="r"><code>stats &lt;- NULL</code></pre>
 </div>
 <div id="question-10" class="section level3">
 <h3>Question 10</h3>
-<p>Create a function called <code>report_t</code> that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns <code>pre</code> and <code>post</code> in the following format: “The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###].” Hint: look at the function <code>paste0</code> (simpler) or <code>sprintf</code> (complicated but more powerful).</p>
+<p>Create a function called <code>report_t</code> that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns <code>pre</code> and <code>post</code> in the following format: “The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###].” Hint: look at the function <code>paste0()</code> (simpler) or <code>sprintf()</code> (complicated but more powerful).</p>
 <p>NB: Make sure all numbers are reported to three decimal places (except degrees of freedom).</p>
-<pre class="r"><code>report_t &lt;- function(x) {}</code></pre>
-</div>
-<div id="answer-checks" class="section level2">
-<h2>Answer Checks</h2>
-<p>You’ve made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Question</th>
-<th align="left">Answer</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="#question-1">Question 1</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-2">Question 2</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-3">Question 3</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-4">Question 4</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-5">Question 5</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-6">Question 6</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-7">Question 7</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-8">Question 8</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="#question-9">Question 9</a></td>
-<td align="left">incorrect</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="#question-10">Question 10</a></td>
-<td align="left">incorrect</td>
-</tr>
-</tbody>
-</table>
+<pre class="r"><code>report_t &lt;- NULL</code></pre>
 </div>
 
 

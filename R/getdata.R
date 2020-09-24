@@ -7,11 +7,6 @@
 #' @return A list of the paths of the new data files
 #' @export
 #' 
-#' @examples 
-#' \dontrun() { 
-#'   getdata("mydata") 
-#' }
-#'
 getdata <- function(dir = "data") {
   if (!dir.exists(dir)) {
     dir.create(dir)

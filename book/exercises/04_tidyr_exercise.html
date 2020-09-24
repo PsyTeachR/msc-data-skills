@@ -403,7 +403,7 @@ untidy &lt;- tribble(
   pivot_longer(names_to = &quot;question&quot;, 
                values_to = &quot;score&quot;) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss&#39; not found</code></pre>
+<pre><code>## Error: `cols` must select at least one column.</code></pre>
 </div>
 <div id="pivot_wider" class="section level3">
 <h3>pivot_wider</h3>
@@ -411,7 +411,9 @@ untidy &lt;- tribble(
 <pre class="r"><code>ss_wide &lt;- ss_long %&gt;%
   pivot_wider(question, score) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_long&#39; not found</code></pre>
+<pre><code>## Rows: 14
+## Columns: 1
+## $ question &lt;chr&gt; &quot;sss1&quot;, &quot;sss2&quot;, &quot;sss3&quot;, &quot;sss4&quot;, &quot;sss5&quot;, &quot;ss…</code></pre>
 </div>
 </div>
 <div id="tidy-verbs" class="section level2">
@@ -422,7 +424,12 @@ untidy &lt;- tribble(
 <p>Use the <code>gather()</code> function to convert <code>ss</code> from wide to long.</p>
 <pre class="r"><code>ss_long &lt;- gather(ss, &quot;question&quot;, &quot;score&quot;) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Error in gather(ss, &quot;question&quot;, &quot;score&quot;): object &#39;ss&#39; not found</code></pre>
+<pre><code>## Warning: attributes are not identical across measure variables;
+## they will be dropped</code></pre>
+<pre><code>## Rows: 459,357
+## Columns: 2
+## $ question &lt;chr&gt; &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;…
+## $ score    &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8, 9…</code></pre>
 </div>
 <div id="separate" class="section level3">
 <h3>separate</h3>
@@ -430,7 +437,7 @@ untidy &lt;- tribble(
 <pre class="r"><code>ss_sep &lt;- ss_long %&gt;%
   separate(question, domain, qnumber, sep = 3) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_long&#39; not found</code></pre>
+<pre><code>## Error in str_separate(value, into = into, sep = sep, convert = convert, : object &#39;domain&#39; not found</code></pre>
 </div>
 <div id="unite" class="section level3">
 <h3>unite</h3>
@@ -438,7 +445,8 @@ untidy &lt;- tribble(
 <pre class="r"><code>ss_unite &lt;- ss_sep %&gt;%
   unite(id, user_id, &quot;super_id&quot;, sep = &quot;-&quot;) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_sep&#39; not found</code></pre>
+<pre><code>## Error: Can&#39;t subset columns that don&#39;t exist.
+## [31mx[39m Column `super_id` doesn&#39;t exist.</code></pre>
 </div>
 <div id="spread" class="section level3">
 <h3>spread</h3>
@@ -446,7 +454,7 @@ untidy &lt;- tribble(
 <pre class="r"><code>ss_wide &lt;- ss_unite %&gt;%
   spreadr(qnumber, score, ) %&gt;%
   glimpse()</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;ss_unite&#39; not found</code></pre>
+<pre><code>## Error in spreadr(., qnumber, score, ): could not find function &quot;spreadr&quot;</code></pre>
 </div>
 </div>
 <div id="pipes" class="section level2">

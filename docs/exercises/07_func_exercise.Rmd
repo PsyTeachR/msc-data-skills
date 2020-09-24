@@ -7,18 +7,19 @@ output: html_document
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
-library("tidyverse")
+library(tidyverse)
+library(broom)
 set.seed(1618034) # makes sure random numbers are reproducible
 ```
+
+Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
 
 ### Question 1
 
 Set the vector `v1` equal to the following: 11, 13, 15, 17, 19, ..., 99, 101 (use a function; don't just type all the numbers).
 
 ```{r Q1}
-
 v1 <- NULL
-
 ```
 
 ### Question 2
@@ -26,29 +27,32 @@ v1 <- NULL
 Set the vector `v2` equal to the following: "A" "A" "B" "B" "C" "C" "D" "D" "E" "E" (note the letters are all uppercase).
 
 ```{r Q2}
-
 v2 <- NULL
-
 ```
 
 ### Question 3
 
-Set the vector `v3` equal to the following: "a" "b" "c" "d" "e" "a" "b" "c" "d" "e" (note the letters are all lowercase)
+Set the vector `v3` equal to the words "dog" 10 times, "cat" 9 times, "fish" 6 times, and "ferret" 1 time. 
 
 ```{r Q3}
-
 v3 <- NULL
-
 ```
 
-### Question 4
+### Question 4a
 
-Set the vector `v4` equal to the words "dog" 10 times, "cat" 9 times, "fish" 6 times, and "ferret" 1 time. 
+Use `apply()` or `map()` functions to create a list of 11 vectors of 100 numbers sampled from 11 random normal distributions with means of 0 to 1.0 (in steps of 0.1) and SDs of 1. Assign this list to the object `samples`. Set the seed to `321` before you generate the random numbers to ensure reproducibility.
 
-```{r}
 
-v4 <- NULL
+```{r Q4a}
+samples <- NULL
+```
 
+### Question 4b
+
+Use `apply()` or `map()` functions to create a vector of the sample means from the list `samples` in the previous question.
+
+```{r Q4b}
+sample_means <- NULL
 ```
 
 ### Question 5
@@ -72,9 +76,7 @@ my_add <- NULL
 Create a tibble called `dat` that contains 20 rows and three columns: `id` (integers 101 through 120), `pre` and `post` (both 20-item vectors of random numbers from a normal distribution with mean = 0 and sd = 1).
 
 ```{r Q7}
-
 dat <- NULL
-
 ```
 
 ### Question 8
@@ -82,76 +84,24 @@ dat <- NULL
 Run a two-tailed, *paired-samples* t-test comparing `pre` and `post`. (check the help for `t.test`)
 
 ```{r Q8}
-
 t <- NULL
-
-t # prints results of t-test
-
 ```
 
 ### Question 9
 
 Use `broom::tidy` to save the results of the t-test in question 8 in a table called `stats`.
 
-```{r Q9, results='asis'}
+```{r Q9}
 stats <- NULL
-
-knitr::kable(stats) # display the table
 ```
 
 ### Question 10
 
-Create a function called `report_t` that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns `pre` and `post` in the following format: "The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###]." Hint: look at the function `paste0` (simpler) or `sprintf` (complicated but more powerful).
+Create a function called `report_t` that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns `pre` and `post` in the following format: "The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###]." Hint: look at the function `paste0()` (simpler) or `sprintf()` (complicated but more powerful).
 
 NB: Make sure all numbers are reported to three decimal places (except degrees of freedom).
 
 ```{r Q10}
-
-report_t <- function(x) {}
-
-```
-
-`r report_t(dat)`
-
-## Answer Checks
-
-You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
-
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- list()
-Q["1"] <- c(all.equal(length(v1), 46),
-            all.equal(v1[6], 21)) %>% all()
-Q["2"] <- c(all.equal(length(v2), 10),
-            all.equal(v2[6], "C")) %>% all()
-Q["3"] <- c(all.equal(length(v3), 10),
-            all.equal(v3[6], "a")) %>% all()
-Q["4"] <- c(all.equal(length(v4), 26),
-            all.equal(sum(v4 == "dog"), 10),
-            all.equal(sum(v4 == "cat"), 9),
-            all.equal(sum(v4 == "fish"), 6),
-            all.equal(sum(v4 == "ferret"), 1)) %>% all()
-Q["5"] <- ifelse(is.function(my_add),
-            all.equal(my_add(10, -3), 7), FALSE)
-Q["6"] <- if (is.function(my_add)) {
-  c(all.equal(tryCatch(my_add("a", 1), error = function(e) {e$message}),"x and y must be numbers"), 
-            all.equal(tryCatch(my_add(1.55, "a"), error = function(e) {e$message}), "x and y must be numbers")) } else { FALSE } %>% all()
-Q["7"] <- c(is.data.frame(dat),
-            all.equal(nrow(dat), 20),
-            all.equal(sum(dat$id), 2210),
-            names(dat) %in% c("id", "pre", "post")) %>% all()
-Q["8"] <- c(is.list(t),
-            all.equal(t$p.value, 0.2045149, tolerance = 1e-6)) %>% all()
-Q["9"] <- c(is.data.frame(stats),
-            all.equal(stats$p.value, 0.2045149, tolerance = 1e-6)) %>% all()
-Q["10"] <- ifelse(is.function(report_t),
-             all.equal(report_t(dat), "The mean increase from pre-test to post-test was 0.415: t(19) = 1.314, p = 0.205, 95% CI = [-0.246, 1.076]."), FALSE)
-  
-ans <- sapply(Q, isTRUE)
-
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
+report_t <- NULL
 ```
 

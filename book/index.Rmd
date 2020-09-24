@@ -88,7 +88,7 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
 
 7. [Iteration & Functions](#func)
     1. Work with [iteration functions](#iteration-functions): `rep()`, `seq()`, and `replicate()`
-    2. Use [arguments](#arguments) by order or name
+    2. Use [`map()` and `apply()` functions](#map-apply) 
     3. Write your own [custom functions](#custom-functions) with `function()`
     4. Set [default values](#defaults) for the arguments in your functions
 

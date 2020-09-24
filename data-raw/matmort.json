@@ -10,25 +10,25 @@
         {
             "@type": "PropertyValue",
             "name": "Country",
-            "description": "The full country name",
+            "description": "Country",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "1990",
-            "description": "Maternal mortality for 1990 (format: \"rate [lowCI-highCI])",
+            "description": "1990",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "2000",
-            "description": "Maternal mortality for 2000 (format: \"rate [lowCI-highCI]\")",
+            "description": "2000",
             "dataType": "string"
         },
         {
             "@type": "PropertyValue",
             "name": "2015",
-            "description": "Maternal mortality for 2015 (format: \"rate [lowCI-highCI]\")",
+            "description": "2015",
             "dataType": "string"
         }
     ]

@@ -22,6 +22,6 @@ A data frame with 20000 rows and 6 variables:
 disgust_scores
 }
 \description{
-A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.)
+A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.), calculated from \link{disgust}.
 }
 \keyword{datasets}

@@ -4,7 +4,7 @@
     "name": "Three Domain Disgust Questionnaire (scores)",
     "schemaVersion": "Psych-DS 0.1.0",
     "author": "Lisa DeBruine",
-    "description": "A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.)",
+    "description": "A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.), calculated from [disgust].",
     "license": "CC-BY 4.0",
     "variableMeasured": [
         {

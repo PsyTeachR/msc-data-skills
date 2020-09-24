@@ -1,7 +1,7 @@
 # disgust_scores ----
 #' Three Domain Disgust Questionnaire (scores)
 #'
-#' A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.)
+#' A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.), calculated from [disgust].
 #'
 #' @format A data frame with 20000 rows and 6 variables:
 #' \describe{
