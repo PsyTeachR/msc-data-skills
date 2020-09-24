@@ -20,20 +20,20 @@ Edit the code chunks below and knit the document. You can pipe your objects to `
 
 Load the following data from the dataskills package (or access the linked CSV files online). Each participant is identified by a unique `user_id`.
 
-* [`disgust`](https://psyteachr.github.io/msc-data-skills/data/disgust.csv)
-* [`personality`](https://psyteachr.github.io/msc-data-skills/data/personality.csv)
-* [`user`](https://psyteachr.github.io/msc-data-skills/data/users.csv)
+* [`disgust_scores`](https://psyteachr.github.io/msc-data-skills/data/disgust_scores.csv)
+* [`personality_scores`](https://psyteachr.github.io/msc-data-skills/data/personality_scores.csv)
+* [`users`](https://psyteachr.github.io/msc-data-skills/data/users.csv)
 
 
 ```{r ex-1a}
-data("disgust", package = "dataskills")
-data("personality", package = "dataskills")
-data("users", package = "dataskills")
+disgust_scores <- NULL
+personality_scores <- NULL
+users <- NULL
 ```
 
 ### Question 1B
 
-Add participant data to the disgust table.
+Add participant data to the disgust_scores table.
 
 ```{r ex-1b}
 study1 <- NULL
@@ -42,7 +42,7 @@ study1 <- NULL
 
 ### Question 1C
 
-Calculate the approximate age of each participant on the date they did the disgust questionnaire and put this in a column called `age_years` in a new table called `study1_ages`. 
+Calculate the approximate age of each participant on the date they did the disgust_scores questionnaire and put this in a column called `age_years` in a new table called `study1_ages`. 
 
 ```{r ex-1-i}
 study1_ages <- NULL
@@ -50,7 +50,7 @@ study1_ages <- NULL
 
 ### Question 2A
 
-Add the participant data to the disgust data, but have the columns from the participant table first.
+Add the participant data to the disgust_scores data, but have the columns from the participant table first.
 
 ```{r ex-2}
 study2 <- NULL
@@ -59,7 +59,7 @@ study2 <- NULL
 
 ### Question 2B
 
-How many times was the disgust questionnaire completed by each sex? Create a table called `study2_by_sex` that has two columns: `sex` and `n`.
+How many times was the disgust_scores questionnaire completed by each sex? Create a table called `study2_by_sex` that has two columns: `sex` and `n`.
 
 ```{r ex-2-i}
 study2_by_sex <- NULL
@@ -77,7 +77,7 @@ ggplot()
 
 ### Question 3A
 
-Create a table with only disgust and personality data from the same `user_id` collected on the same `date`.
+Create a table with only disgust_scores and personality_scores data from the same `user_id` collected on the same `date`.
 
 ```{r ex-3}
 study3 <- NULL
@@ -95,7 +95,7 @@ study3_nodate <- NULL
 
 ### Question 4
 
-Create a table of the disgust and personality data with each `user_id:date` on a single row, containing _all_ of the data from both tables.
+Create a table of the disgust_scores and personality_scores data with each `user_id:date` on a single row, containing _all_ of the data from both tables.
 
     
 ```{r ex-4}
@@ -106,7 +106,7 @@ study4 <- NULL
 
 ### Question 5
 
-Create a table of just the data from the disgust table for users who completed the personality questionnaire that same day.
+Create a table of just the data from the disgust_scores table for users who completed the personality_scores questionnaire that same day.
     
 ```{r ex-5}
 study5 <- NULL
@@ -115,7 +115,7 @@ study5 <- NULL
     
 ### Question 6
 
-Create a table of data from users who did not complete either the personality questionnaire or the disgust questionnaire. (_Hint: this will require two steps; use pipes._)
+Create a table of data from users who did not complete either the personality_scores questionnaire or the disgust_scores questionnaire. (_Hint: this will require two steps; use pipes._)
 
     
 ```{r ex-6}

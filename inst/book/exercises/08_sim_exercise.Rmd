@@ -180,32 +180,3 @@ Make a new function that calculates power for `cor.test` through simulation.
 power.cor.test <- function(){}
 ```
 
-## Answer Checks
-
-You've made it to the end. Make sure you are able to knit this document to HTML. You can check your answers below in the knit document.
-
-```{r answer-checks, echo = FALSE, warning=FALSE, results='asis'}
-# do not edit
-Q <- list()
-Q["1"] <- c(all.equal(length(a), 50),
-            all.equal(mean(a), 0, tolerance = 0.1),
-            all.equal(sd(a), 1, tolerance = 0.1)) %>% all()
-Q["2"] <- c(all.equal(length(b), 50),
-            all.equal(mean(b), 0.5, tolerance = 0.1)) %>% all()
-Q["3"] <- c(is.list(t),
-            all.equal(t$parameter, c(df=49)),
-            all.equal(t$method, "Paired t-test"),
-            all.equal(t$alternative, "two.sided")) %>% all()
-Q["4"] <- all.equal(power.sim, 0.325, tolerance = 1e-3)
-Q["5"] <- all.equal(power.analytic, 0.3175171, tolerance = 1e-6)
-Q["6"] <- all.equal(power6, 0.68, tolerance = 0.1)
-Q["7"] <- all.equal(power7, 0.71, tolerance = 0.1)
-Q["8"] <- all.equal(mean(pois), 4, tolerance = 0.1)
-  
-ans <- sapply(Q, isTRUE)
-
-knitr::kable(data.frame(
-  Question = paste0("<a href='#question-", names(Q), "'>Question ", names(Q), "</a>"),
-  Answer = ifelse(ans, "correct", "incorrect")
-))
-```
