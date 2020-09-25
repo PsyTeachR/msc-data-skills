@@ -35,7 +35,6 @@ The topics below are not (yet) covered in these materials, but they are directio
 
 * Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
-* [Stub for this lesson](stubs/7_func.Rmd)
 
 In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#custom-functions'>custom functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.
 

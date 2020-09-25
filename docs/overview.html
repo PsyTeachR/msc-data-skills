@@ -150,11 +150,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="overview.html"><a href="overview.html#course-resources"><i class="fa fa-check"></i><b>0.3</b> Course Resources</a></li>
 <li class="chapter" data-level="0.4" data-path="overview.html"><a href="overview.html#course-outline"><i class="fa fa-check"></i><b>0.4</b> Course Outline</a></li>
 <li class="chapter" data-level="0.5" data-path="overview.html"><a href="overview.html#formative-exercises"><i class="fa fa-check"></i><b>0.5</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.6" data-path="overview.html"><a href="overview.html#other-resources"><i class="fa fa-check"></i><b>0.6</b> Other Resources</a><ul>
-<li class="chapter" data-level="0.6.1" data-path="overview.html"><a href="overview.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.6.2" data-path="overview.html"><a href="overview.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.6.3" data-path="overview.html"><a href="overview.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
-</ul></li>
+<li class="chapter" data-level="0.6" data-path="overview.html"><a href="overview.html#i-found-a-bug"><i class="fa fa-check"></i><b>0.6</b> I found a bug!</a></li>
+<li class="chapter" data-level="0.7" data-path="overview.html"><a href="overview.html#other-resources"><i class="fa fa-check"></i><b>0.7</b> Other Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
@@ -511,6 +508,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="intended-learning-outcomes" class="section level2">
 <h2><span class="header-section-number">0.2</span> Intended Learning Outcomes</h2>
+<p><img src="images/memes/changing-stuff.jpg" class="right meme"
+     alt="Fake O'Reilly-style book cover, line drawing of a kitten; title: Changing Stuff and Seeing What Happens; top text: How to actually learn any new programming concept"/></p>
 <p>By the end of this course students will be able to:</p>
 <ul>
 <li>Draw on a range of specialised skills and techniques to formulate a research design appropriate to various kinds of questions in psychology and neuroscience</li>
@@ -521,9 +520,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="course-resources" class="section level2">
 <h2><span class="header-section-number">0.3</span> Course Resources</h2>
-<p>Each chapter has several short video lectures for the main learning outcomes at the playlist <a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt" target="_blank">Data Skills</a>. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are available on the course Moodle and by request from the instructor.</p>
-<p>There is a custom package for this course called <a href="https://github.com/psyteachr/msc-data-skills" target="_blank">dataskills</a>. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="overview.html#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
+<ul>
+<li><p><a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt" target="_blank">Data Skills Videos</a>
+Each chapter has several short video lectures for the main learning outcomes at the playlist . The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are available on the course Teams and Moodle sites or by request from the instructor.</p></li>
+<li><p><a href="https://github.com/psyteachr/msc-data-skills" target="_blank">dataskills</a>
+This is a custom package R for this course. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="overview.html#cb1-1"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://github.com/psyteachr/glossary" target="_blank">glossary</a>
+Coding and statistics both have a lot of specialist terms. Throughout this book, jargon will be linked to the glossary.</p></li>
+</ul>
 </div>
 <div id="course-outline" class="section level2">
 <h2><span class="header-section-number">0.4</span> Course Outline</h2>
@@ -618,7 +623,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="exercises/01_intro_exercise.Rmd">01 intro</a>: Intro to R, functions, R markdown</li>
 <li><a href="exercises/02_data_exercise.Rmd">02 data</a>: Vectors, tabular data, data import, pipes</li>
-<li><a href="exercises/essential_skills_exercise.Rmd">Essential Skills</a>: You must be able to complete these exercises to advance in the class beyond the first two lectures</li>
 <li><a href="exercises/03_ggplot_exercise.Rmd">03 ggplot</a>: Data visualisation</li>
 <li><a href="exercises/04_tidyr_exercise.Rmd">04 tidyr</a>: Tidy Data</li>
 <li><a href="exercises/05_dplyr_exercise.Rmd">05 dplyr</a>: Data wrangling</li>
@@ -628,40 +632,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="exercises/09_glm_exercise.Rmd">09 glm</a>: GLM</li>
 </ul>
 </div>
+<div id="i-found-a-bug" class="section level2">
+<h2><span class="header-section-number">0.6</span> I found a bug!</h2>
+<p>This book is a work in progress, so you might find errors. Please help me fix them! The best way is to open an <a href="https://github.com/PsyTeachR/msc-data-skills/issues" target="_blank">issue on github</a> that describes the error
+, but you can also mention it on the class Teams forum or <a href="mailto:lisa.debruine@glasgow.ac.uk?subject=msc-data-skills">email Lisa</a>.</p>
+</div>
 <div id="other-resources" class="section level2">
-<h2><span class="header-section-number">0.6</span> Other Resources</h2>
-<p>Miscellanous materials added throughout the semester, such as tips on installation, or the results of live-coding demos, can be found in the Appendices.</p>
-<p><img src="images/memes/changing-stuff.jpg" class="right meme"
-     alt="Fake O'Reilly-style book cover, line drawing of a kitten; title: Changing Stuff and Seeing What Happens; top text: How to actually learn any new programming concept"/></p>
+<h2><span class="header-section-number">0.7</span> Other Resources</h2>
 <ul>
 <li><a href="https://learningstatisticswithr-bookdown.netlify.com">Learning Statistics with R</a> by Navarro</li>
 <li><a href="http://r4ds.had.co.nz">R for Data Science</a> by Grolemund and Wickham</li>
-</ul>
-<div id="online-tutorials" class="section level3">
-<h3><span class="header-section-number">0.6.1</span> Online tutorials</h3>
-<ul>
 <li><a href="http://swirlstats.com">swirl</a></li>
 <li><a href="http://swcarpentry.github.io/r-novice-gapminder/">R for Reproducible Scientific Analysis</a></li>
 <li><a href="http://tryr.codeschool.com">codeschool.com</a></li>
 <li><a href="https://www.datacamp.com/courses/free-introduction-to-r">datacamp</a></li>
 <li><a href="https://www.coursera.org/learn/statistical-inferences/">Improving your statistical inferences</a> on Coursera</li>
-</ul>
-</div>
-<div id="cheat-sheets" class="section level3">
-<h3><span class="header-section-number">0.6.2</span> Cheat sheets</h3>
-<ul>
-<li>You can access several cheatsheets in RStudio under the <code>Help</code> menu</li>
-<li>Or get the most recent <a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheat Sheets</a></li>
-</ul>
-</div>
-<div id="other" class="section level3">
-<h3><span class="header-section-number">0.6.3</span> Other</h3>
-<ul>
+<li>You can access several cheatsheets in RStudio under the <code>Help</code> menu, or get the most recent <a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheat Sheets</a></li>
 <li><a href="http://style.tidyverse.org">Style guide for R programming</a></li>
 <li><a href="https://twitter.com/search?q=%2523rstats">#rstats on twitter</a> highly recommended!</li>
 </ul>
 
-</div>
 </div>
 </div>
 <div class="psyteachr_footer">

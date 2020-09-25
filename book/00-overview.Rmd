@@ -13,6 +13,9 @@ This course aims to teach students the basic principles of reproducible research
 
 ## Intended Learning Outcomes
 
+<img src="images/memes/changing-stuff.jpg" class="right meme"
+     alt="Fake O'Reilly-style book cover, line drawing of a kitten; title: Changing Stuff and Seeing What Happens; top text: How to actually learn any new programming concept"/>
+
 By the end of this course students will be able to:
 
 *	Draw on a range of specialised skills and techniques to formulate a research design appropriate to various kinds of questions in psychology and neuroscience
@@ -22,13 +25,19 @@ By the end of this course students will be able to:
 
 ## Course Resources
 
-Each chapter has several short video lectures for the main learning outcomes at the playlist [Data Skills](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}. The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are available on the course Moodle and by request from the instructor.
+* [Data Skills Videos](https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt){target="_blank"}
+    Each chapter has several short video lectures for the main learning outcomes at the playlist . The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are available on the course Teams and Moodle sites or by request from the instructor.
 
-There is a custom package for this course called [dataskills](https://github.com/psyteachr/msc-data-skills){target="_blank"}. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
+* [dataskills](https://github.com/psyteachr/msc-data-skills){target="_blank"}
+    This is a custom package R for this course. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
+    
+    ```{r, eval = FALSE}
+    devtools::install_github("psyteachr/msc-data-skills")
+    ```
 
-```{r, eval = FALSE}
-devtools::install_github("psyteachr/msc-data-skills")
-```
+* [glossary](https://github.com/psyteachr/glossary){target="_blank"}
+    Coding and statistics both have a lot of specialist terms. Throughout this book, jargon will be linked to the glossary.
+
 
 ## Course Outline
 
@@ -114,7 +123,6 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 
 * [01 intro](exercises/01_intro_exercise.Rmd): Intro to R, functions, R markdown
 * [02 data](exercises/02_data_exercise.Rmd): Vectors, tabular data, data import, pipes
-* [Essential Skills](exercises/essential_skills_exercise.Rmd): You must be able to complete these exercises to advance in the class beyond the first two lectures
 * [03 ggplot](exercises/03_ggplot_exercise.Rmd): Data visualisation
 * [04 tidyr](exercises/04_tidyr_exercise.Rmd): Tidy Data
 * [05 dplyr](exercises/05_dplyr_exercise.Rmd): Data wrangling
@@ -124,32 +132,20 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 * [09 glm](exercises/09_glm_exercise.Rmd): GLM
 
 
-## Other Resources
+## I found a bug!
 
-Miscellanous materials added throughout the semester, such as tips on installation, or the results of live-coding demos, can be found in the Appendices.
+This book is a work in progress, so you might find errors. Please help me fix them! The best way is to open an [issue on github](https://github.com/PsyTeachR/msc-data-skills/issues){target="_blank"} that describes the error
+, but you can also mention it on the class Teams forum or [email Lisa](mailto:lisa.debruine@glasgow.ac.uk?subject=msc-data-skills).
 
-<img src="images/memes/changing-stuff.jpg" class="right meme"
-     alt="Fake O'Reilly-style book cover, line drawing of a kitten; title: Changing Stuff and Seeing What Happens; top text: How to actually learn any new programming concept"/>
+## Other Resources 
 
 - [Learning Statistics with R](https://learningstatisticswithr-bookdown.netlify.com) by Navarro
 - [R for Data Science](http://r4ds.had.co.nz) by Grolemund and Wickham
-
-### Online tutorials
-
 - [swirl](http://swirlstats.com)
 - [R for Reproducible Scientific Analysis](http://swcarpentry.github.io/r-novice-gapminder/)
 - [codeschool.com](http://tryr.codeschool.com)
 - [datacamp](https://www.datacamp.com/courses/free-introduction-to-r)
 - [Improving your statistical inferences](https://www.coursera.org/learn/statistical-inferences/) on Coursera
-
-### Cheat sheets
-  
-- You can access several cheatsheets in RStudio under the `Help` menu
-- Or get the most recent [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) 
-
-### Other
-
+- You can access several cheatsheets in RStudio under the `Help` menu, or get the most recent [RStudio Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/) 
 - [Style guide for R programming](http://style.tidyverse.org)
 - [#rstats on twitter](https://twitter.com/search?q=%2523rstats) highly recommended!
-
-
