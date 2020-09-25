@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-09-24" />
+<meta name="date" content="2020-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,11 +150,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.3" data-path="overview.html"><a href="overview.html#course-resources"><i class="fa fa-check"></i><b>0.3</b> Course Resources</a></li>
 <li class="chapter" data-level="0.4" data-path="overview.html"><a href="overview.html#course-outline"><i class="fa fa-check"></i><b>0.4</b> Course Outline</a></li>
 <li class="chapter" data-level="0.5" data-path="overview.html"><a href="overview.html#formative-exercises"><i class="fa fa-check"></i><b>0.5</b> Formative Exercises</a></li>
-<li class="chapter" data-level="0.6" data-path="overview.html"><a href="overview.html#other-resources"><i class="fa fa-check"></i><b>0.6</b> Other Resources</a><ul>
-<li class="chapter" data-level="0.6.1" data-path="overview.html"><a href="overview.html#online-tutorials"><i class="fa fa-check"></i><b>0.6.1</b> Online tutorials</a></li>
-<li class="chapter" data-level="0.6.2" data-path="overview.html"><a href="overview.html#cheat-sheets"><i class="fa fa-check"></i><b>0.6.2</b> Cheat sheets</a></li>
-<li class="chapter" data-level="0.6.3" data-path="overview.html"><a href="overview.html#other"><i class="fa fa-check"></i><b>0.6.3</b> Other</a></li>
-</ul></li>
+<li class="chapter" data-level="0.6" data-path="overview.html"><a href="overview.html#i-found-a-bug"><i class="fa fa-check"></i><b>0.6</b> I found a bug!</a></li>
+<li class="chapter" data-level="0.7" data-path="overview.html"><a href="overview.html#other-resources"><i class="fa fa-check"></i><b>0.7</b> Other Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
@@ -593,7 +590,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>You need to represent <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> factors with numbers. The numbers, or <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#coding'>coding</a> you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/e#effect-code'>effect code</a> the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.</p>
 <p>A person won’t always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/e#error-term'>error term</a> to each trial. We can’t know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
-<p>Here, we’ll assume the error term is sampled from a <a class='glossary' target='_blank' title='A symmetric distribution of data where values near the centre are most probable.' href='https://psyteachr.github.io/glossary/n#normal-distribution'>normal distribution</a> with a <a class='glossary' target='_blank' title='A statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
+<p>Here, we’ll assume the error term is sampled from a <a class='glossary' target='_blank' title='A symmetric distribution of data where values near the centre are most probable.' href='https://psyteachr.github.io/glossary/n#normal-distribution'>normal distribution</a> with a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
 <p>So first create variables for all of the parameters that describe your data.</p>
 <div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="glm.html#cb485-1"></a>n_per_grp &lt;-<span class="st"> </span><span class="dv">100</span></span>
 <span id="cb485-2"><a href="glm.html#cb485-2"></a>mu &lt;-<span class="st"> </span><span class="dv">800</span> <span class="co"># average RT</span></span>
@@ -1088,7 +1085,7 @@ Using the code above, write your own function that takes a table of data and ret
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a></td>
-<td align="left">A statistic that measures how spread out data are relative to the mean.</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
