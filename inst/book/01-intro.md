@@ -15,7 +15,6 @@
 
 ## Resources
 
-* [Glasgow Psychology RStudio](https://rstudio.psy.gla.ac.uk){target="_blank"}
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
@@ -76,7 +75,7 @@ In this class, you will be learning how to do <a class='glossary' target='_blank
 
 When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
-There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
+There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to **`Global Options...`** under the **`Tools`** menu (&#8984;,), and uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
 <div class="figure" style="text-align: center">
 <img src="images/01/repro.png" alt="Alter these settings for increased reproducibility." width="66%" />
@@ -357,8 +356,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.965050765  0.003852698 -0.281254963 -1.082159102  0.751487055
-##  [6]  1.662504839  0.364231433  0.083029775 -1.080437055  0.727595100
+##  [1] -1.73372320 -0.07622138  0.94363702 -0.06764451  1.00989773  0.47124037
+##  [7] -0.23269305 -1.56027924 -2.32446262 -0.64180330
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -369,8 +368,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.40047  98.35473 102.53880 100.98311  98.57918  99.84344 100.12540
-##  [8]  99.24385 100.38887 101.68376
+##  [1]  99.22986 100.67627  99.39748 100.72322  98.82514 100.20923  98.35366
+##  [8]  99.22259  98.05329 100.73582
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -381,8 +380,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.68178 101.50769  98.70355 101.15863 100.30308 100.22261  99.80568
-##  [8]  99.99572  98.60836  98.93159
+##  [1] 101.13429 101.16763  98.72370  97.80986  98.69374 101.46845 101.39905
+##  [8]  99.13266 100.22403  98.56735
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -393,8 +392,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]   1.831709   2.010187  65.307799 -60.861455  96.226542  28.994329
-##  [7]  -7.975792 -53.145247 -42.570079 -95.311860
+##  [1] -113.29493  111.13969 -178.86622   54.06715   42.93562 -141.00324
+##  [7]  -98.69901 -163.26111  -76.61275  -66.43730
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -591,7 +590,7 @@ You can add comments to an R script by with the hash symbol (`#`). The R interpr
 ```
 
 <div class="info">
-<p>If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (shift-cmd-O).</p>
+<p>If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (⇧⌘O).</p>
 </div>
 
 ### Reproducible reports with R Markdown {#rmarkdown}

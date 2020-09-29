@@ -15,7 +15,6 @@
 
 ## Resources
 
-* [Glasgow Psychology RStudio](https://rstudio.psy.gla.ac.uk){target="_blank"}
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
 * [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
@@ -75,7 +74,7 @@ In this class, you will be learning how to do `r glossary("reproducible research
 
 When you do things reproducibly, others can understand and check your work. This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off.
 
-There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to the preferences/settings menu, and uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
+There are two tweaks that you should do to your RStudio installation to maximize reproducibility. Go to **`Global Options...`** under the **`Tools`** menu (&#8984;,), and uncheck the box that says **`Restore .RData into workspace at startup`**.  If you keep things around in your workspace, things will get messy, and unexpected things will happen. You should always start with a clear workspace. This also means that you never want to save your workspace when you exit, so set this to **`Never`**. The only thing you want to save are your scripts.
 
 ```{r img-repro, echo=FALSE, out.width='66%', fig.cap="Alter these settings for increased reproducibility."}
 knitr::include_graphics("images/01/repro.png")
@@ -488,7 +487,7 @@ You can add comments to an R script by with the hash symbol (`#`). The R interpr
 ```
 
 ```{block, type="info"}
-If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (shift-cmd-O).
+If you add 4 or more dashes to the end of a comment, it acts like a header and creates an outline that you can see in the document outline (&#8679;&#8984;O).
 ```
 
 ### Reproducible reports with R Markdown {#rmarkdown}
