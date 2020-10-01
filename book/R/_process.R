@@ -3,7 +3,7 @@ setwd(rstudioapi::getActiveProject())
 setwd("book")
 
 # render a chapter or the whole book
-browseURL(bookdown::preview_chapter("07-func.Rmd"))
+browseURL(bookdown::preview_chapter("01-intro.Rmd"))
 bookdown::render_book("index.Rmd")
 
 
