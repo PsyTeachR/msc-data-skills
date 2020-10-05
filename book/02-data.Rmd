@@ -3,7 +3,7 @@
 <img src="images/memes/read_csv.png" class="meme right"
      alt = "Top left: Pooh Bear in a red shirt looking sad; Top right: read.csv() in outline font; Bottom left: Pooh Bear in a tuxedo looking smug; Bottom right: read_csv() in handwritten font">
 
-## Learning Objectives
+## Learning Objectives {#ilo2}
 
 1. Load [built-in datasets](#builtin) [(video)](https://youtu.be/Z5fK5VGmzlY){class="video"}
 2. [Import data](#import_data) from CSV and Excel files [(video)](https://youtu.be/a7Ra-hnB8l8){class="video"}
@@ -15,7 +15,7 @@
 
 
 
-## Resources
+## Resources {#resources2}
 
 * [Chapter 11: Data Import](http://r4ds.had.co.nz/data-import.html) in *R for Data Science*
 * [RStudio Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
@@ -23,9 +23,7 @@
 * [Developing an analysis in R/RStudio: Scottish babynames (1/2)](https://www.youtube.com/watch?v=lAaVPMcMs1w)
 * [Developing an analysis in R/RStudio: Scottish babynames (2/2)](https://www.youtube.com/watch?v=lzdTHCcClqo)
 
-## Setup
-
-You'll need the following packages. 
+## Setup {#setup2}
 
 ```{r, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
@@ -604,7 +602,7 @@ tidiest
 
 `r glossary_table()`
 
-## Exercises
+## Exercises {#exercises2}
 
 Download the [exercises](exercises/02_data_exercise.Rmd). See the [answers](exercises/02_data_answers.Rmd) only after you've attempted all the questions.
 

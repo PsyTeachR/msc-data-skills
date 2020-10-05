@@ -3,7 +3,7 @@
 <img src="images/memes/rstudio.png" class="meme right"
      alt="A line drawing of a person looking at a computer with a magnifying glass. The text reads 'I just installed RStudio. I'm a data scientist now.'">
 
-## Learning Objectives
+## Learning Objectives {#ilo1}
 
 1. Understand the components of the [RStudio IDE](#rstudio_ide) [(video)](https://youtu.be/CbA6ZVlJE78){class="video"}
 2. Type commands into the [console](#console) [(video)](https://youtu.be/wbI4c_7y0kE){class="video"}
@@ -13,7 +13,7 @@
 6. Create and compile an [Rmarkdown document](#rmarkdown) [(video)](https://youtu.be/EqJiAlJAl8Y ){class="video"}
 
 
-## Resources
+## Resources {#resources1}
 
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
@@ -558,7 +558,7 @@ Each chapter ends with a glossary table defining the jargon introduced in this c
 `r glossary_table()`
 
 
-## Exercises
+## Exercises {#exercises1}
 
 Download the first set of [exercises](exercises/01_intro_exercise.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
 

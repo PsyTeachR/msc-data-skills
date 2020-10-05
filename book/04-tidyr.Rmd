@@ -3,7 +3,7 @@
 <img src="images/memes/messy_data.jpg" class="meme right"
      alt="A giant demon emerging from fire labelled 'messy data'; in front is a tiny human labelled 'R User'">
 
-## Learning Objectives
+## Learning Objectives {#ilo4}
 
 ### Basic
 
@@ -23,7 +23,7 @@
 5. Be able to use [regular expressions](#regex) to separate complex columns
 
 
-## Resources
+## Resources {#resources4}
 
 * [Tidy Data](http://vita.had.co.nz/papers/tidy-data.html)
 * [Chapter 12: Tidy Data](http://r4ds.had.co.nz/tidy-data.html) in *R for Data Science*
@@ -31,7 +31,7 @@
 * [Data wrangling cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 
-## Setup
+## Setup {#setup4}
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 
@@ -665,7 +665,7 @@ The responses in the `dv` column have multiple types (e.g., `r glossary("integer
 `r glossary_table()`
 
 
-## Exercises
+## Exercises {#exercises4}
 
 Download the [exercises](exercises/04_tidyr_exercise.Rmd). See the [answers](exercises/04_tidyr_answers.Rmd) only after you've attempted all the questions.
 

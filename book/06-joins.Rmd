@@ -3,7 +3,7 @@
 <img src="images/memes/joins.png" class="meme right"
      alt="3-panel meme. 1: dog looks at a baby in a chair, text reads 'An SQL query goes into a bar, walks up to two tables and asks...'; 2: baby looks at dog, text reads 'Can I join you?'; 3: dog and baby look at camera, no text">
 
-## Learning Objectives
+## Learning Objectives {#ilo6}
 
 1. Be able to use the 4 mutating join verbs: [(video)](https://youtu.be/WV0yg6f3DNM){class="video"}
     + [`left_join()`](#left_join)
@@ -21,13 +21,13 @@
     + [`union()`](#union)
     + [`setdiff()`](#setdiff)
 
-## Resources
+## Resources {#resources6}
 
 * [Chapter 13: Relational Data](http://r4ds.had.co.nz/relational-data.html) in *R for Data Science*
 * [Cheatsheet for dplyr join functions](http://stat545.com/bit001_dplyr-cheatsheet.html)
 * [Lecture slides on dplyr two-table verbs](slides/05_joins_slides.pdf)
 
-## Setup
+## Setup {#setup6}
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed
@@ -313,7 +313,7 @@ base::setdiff(subject, new_subjects)
 
 `r glossary_table()`
 
-## Exercises
+## Exercises {#exercises6}
 
 Download the [exercises](exercises/06_joins_exercise.Rmd). See the [answers](exercises/06_joins_answers.Rmd) only after you've attempted all the questions.
 

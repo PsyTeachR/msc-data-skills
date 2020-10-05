@@ -3,7 +3,7 @@
 <img src="images/memes/repro_reports.jpg" class="meme right"
      alt="Top left: young spongebob; top right: Using Base R for your analysis and copy pasting yur results into tables in Word; middle left: older angry spongebob in workout clothes; middle right: learning how to use dplyr visualize data with ggplot2 and report your analysis in rmarkdown documents; bottom left: muscular spongebob shirtless in a boxing ring; bottom right: wielding the entire might of the tidyverse (with 50 hex stikers)">
 
-## Learning Objectives
+## Learning Objectives {#ilo10}
 
 ### Basic
 
@@ -25,7 +25,7 @@
 10. Create a computationally reproducible project in Code Ocean
 
 
-## Resources
+## Resources {#resources10}
 
 * [Chapter 27: R Markdown](http://r4ds.had.co.nz/r-markdown.html) in *R for Data Science*
 * [R Markdown Cheat Sheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
@@ -36,15 +36,17 @@
 * [Code Ocean](https://codeocean.com/) for Computational Reproducibility
 
 
-## R Markdown
+## Setup {#setup10}
 
 
 ```r
 library(tidyverse)
+library(knitr)
+library(broom)
+set.seed(8675309)
 ```
 
-
-
+## R Markdown
 
 By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/r#reproducible'>reproducible</a> manuscript.
 

@@ -11,80 +11,37 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 
 Edit the code chunks below and knit the document.
 
-## Creating and manipulating variables
 
-Create objects called `a` and `b` containing the numbers 10 and 12. Use the addition operator (`+`) to add them and assign the results of that to an object called `c`.
+## Type commands into the console
 
-```{r Q1a}
-a <- NULL
-b <- NULL
-c <- NULL
+In the console, type the following:
+
+```
+1 + 2
+a <- 1
+b <- 2
+a + b
+```
+
+Look at the Environment tab in the upper right pane. Set the variable `how_many_objects` below to the number of objects listed in the environment.
+
+```{r Q1}
+how_many_objects <- NULL
 ```
 
 
-Create objects called `first_name` and `last_name` containing your first and last names. Use the `paste()` function to combine them and assign the results of that to an object called `full_name`.
+## Understand function syntax
 
-```{r Q1b}
-first_name <- NULL
-last_name  <- NULL
-full_name  <- NULL
-```
+Use the `rnorm()` function to generate 10 random values from a normal distribution with a mean of 800 and a standard deviation of 20, and store the resulting vector in the object `random_vals`.
 
-
-## Vectors
-
-Variables can be more than one value. This is called a "vector". Use the function `c()` to group values into a vector. 
-
-The chunk below creates a vector called `ages` with the ages of five people. Use functions and operations on `ages` to answer the following questions:
-
-* `ages_10`: How old will each person be in 10 years?
-* `mean_ages`: What is the mean age of the 5 people?
-* `sd_ages`: What is the standard deviation of `ages`?
-* `n_ages`: How many ages are listed in the vector `ages`?
-
-```{r Q2a}
-ages <- c(26, 13, 47, 62, 18)
-
-ages_10   <- NULL
-mean_ages <- NULL
-sd_ages   <- NULL
-n_ages    <- NULL
-```
-
-
-Replace {?} below with inline R to describe the sample from `ages2`. Knit to see the result.
-
-There are `r n_ages` people with a mean age of `r mean_ages` years (SD = `r sd_ages`).
-
-
-## Installing Packages
-
-Install the CRAN package called "fortunes". Run the code to do and include it in the code chunk below, but comment it out. It is bad practice to write a script that installs a package without the user having the option to cancel. Also, some packages take a long time to load, so you won't want to install them every time you run a script.
-
-```{r Q3a}
-# comment out the installation code
-```
-
-
-The code below has an error and won't run. Fix the code.
-
-```{r Q3b}
-fortune()
-```
-
-
-## Functions and Help
-
-Call the `rnorm()` function to generate 10 random values from a normal distribution with a mean of 800 and a standard deviation of 20, and store the resulting vector in the object `random_vals`.
-
-```{r Q4a}
+```{r Q2}
 random_vals <- NULL
 ```
 
 
 Use the help function to figure out what argument you need to set to ignore `NA` values when calculating the mean of `the_values`. Change the function below to store the mean of `the_values` in the variable `the_mean`.
 
-```{r Q4b}
+```{r Q3}
 the_values <- c(1,1,1,2,3,4,6,8,9,9, NA) # do not alter this line
 the_mean   <- NULL
 ```
@@ -92,7 +49,7 @@ the_mean   <- NULL
 
 Figure out what the function `seq()` does. Use the function to set `tens` to the vector `c(0, 10, 20, 30, 40, 50 ,60, 70 ,80 ,90, 100)`. Set `bins6` to the cutoffs if you wanted to divide the numbers 0 to 100 into 6 bins. For example, dividing 0 to 100 into 4 bins results in the cutoffs `c(0, 25, 50, 75, 100)`,
 
-```{r Q4c}
+```{r Q4}
 tens  <- NULL
 bins6 <- NULL
 ```
@@ -100,6 +57,37 @@ bins6 <- NULL
 
 Figure out how to use the `paste()` function to paste together strings with forward slashes ("/") instead of spaces. Use `paste()` to set `my_dir` to "my/project/directory".
 
-```{r Q4d}
+```{r Q5}
 my_dir <- NULL
 ```
+
+
+## Install a package
+
+Install the CRAN package called "fortunes". Run the code to do and include it in the code chunk below, but comment it out. It is bad practice to write a script that installs a package without the user having the option to cancel. Also, some packages take a long time to load, so you won't want to install them every time you run a script.
+
+```{r Q6}
+# comment out the installation code
+
+```
+
+
+The code below has an error and won't run. Fix the code.
+
+```{r Q7}
+fortune()
+```
+
+## Organise a project
+
+Create a new project called "website".
+
+## Create and compile an Rmarkdown document
+
+In the "website" project, create a new Rmarkdown document called "index.Rmd". Do the following in this document:
+
+* Write a short paragraph describing your research interest. 
+* Include a bullet-point list of links to websites that are useful for your research. 
+* Add an image of anything relevant.
+* Include a code chunk at the end that displays a fortune from the fortunes package. 
+* Knit this document to html.

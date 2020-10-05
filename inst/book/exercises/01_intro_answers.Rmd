@@ -11,10 +11,6 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 
 Edit the code chunks below and knit the document.
 
-## Understand the components of the RStudio IDE 
-
-
-
 
 ## Type commands into the console
 
@@ -29,7 +25,7 @@ a + b
 
 Look at the Environment tab in the upper right pane. Set the variable `how_many_objects` below to the number of objects listed in the environment.
 
-```{r}
+```{r Q1}
 how_many_objects <- 2
 ```
 
@@ -38,14 +34,14 @@ how_many_objects <- 2
 
 Use the `rnorm()` function to generate 10 random values from a normal distribution with a mean of 800 and a standard deviation of 20, and store the resulting vector in the object `random_vals`.
 
-```{r Q4a}
+```{r Q2}
 random_vals <- rnorm(10, 800, 20)
 ```
 
 
 Use the help function to figure out what argument you need to set to ignore `NA` values when calculating the mean of `the_values`. Change the function below to store the mean of `the_values` in the variable `the_mean`.
 
-```{r Q4b}
+```{r Q3}
 the_values <- c(1,1,1,2,3,4,6,8,9,9, NA) # do not alter this line
 the_mean   <- mean(the_values, na.rm = TRUE)
 ```
@@ -53,7 +49,7 @@ the_mean   <- mean(the_values, na.rm = TRUE)
 
 Figure out what the function `seq()` does. Use the function to set `tens` to the vector `c(0, 10, 20, 30, 40, 50 ,60, 70 ,80 ,90, 100)`. Set `bins6` to the cutoffs if you wanted to divide the numbers 0 to 100 into 6 bins. For example, dividing 0 to 100 into 4 bins results in the cutoffs `c(0, 25, 50, 75, 100)`,
 
-```{r Q4c}
+```{r Q4}
 tens  <- seq(from = 0, to = 100, by = 10)
 bins6 <- seq(0, 100, length.out = 7)
 ```
@@ -61,7 +57,7 @@ bins6 <- seq(0, 100, length.out = 7)
 
 Figure out how to use the `paste()` function to paste together strings with forward slashes ("/") instead of spaces. Use `paste()` to set `my_dir` to "my/project/directory".
 
-```{r Q4d}
+```{r Q5}
 my_dir <- paste("my", "project", "directory", sep = "/")
 ```
 
@@ -70,7 +66,7 @@ my_dir <- paste("my", "project", "directory", sep = "/")
 
 Install the CRAN package called "fortunes". Run the code to do and include it in the code chunk below, but comment it out. It is bad practice to write a script that installs a package without the user having the option to cancel. Also, some packages take a long time to load, so you won't want to install them every time you run a script.
 
-```{r Q3a}
+```{r Q6}
 # comment out the installation code
 # install.packages("fortunes")
 ```
@@ -78,7 +74,7 @@ Install the CRAN package called "fortunes". Run the code to do and include it in
 
 The code below has an error and won't run. Fix the code.
 
-```{r Q3b}
+```{r Q7}
 # alternatively, you could load the library first: library(fortunes)
 
 fortunes::fortune()

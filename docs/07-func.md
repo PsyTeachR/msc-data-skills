@@ -3,7 +3,7 @@
 <img src="images/memes/functions.jpg" class="meme right"
      alt="History channel aliens conspiracy guy. Top text: I've got function inside functions...; Bottom text: ... inside functions.">
 
-## Learning Objectives
+## Learning Objectives {#ilo7}
 
 You will learn about functions and iteration by using simulation to calculate a power analysis for an independent samples t-test.
 
@@ -31,12 +31,14 @@ The topics below are not (yet) covered in these materials, but they are directio
 9. Work with **nested data frames** in `dplyr`
 10. Capture and deal with errors using 'adverb' functions `purrr::safely()` and `purrr::possibly()`
 
-## Resources
+## Resources {#resources7}
 
 * Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
 In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#custom-functions'>custom functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.
+
+## Setup  {#setup7}
 
 
 ```r
@@ -782,7 +784,7 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 
 
-## Exercises
+## Exercises {#exercises7}
 
 Download the [exercises](exercises/07_func_exercise.Rmd). See the [answers](exercises/07_func_answers.Rmd) only after you've attempted all the questions.
 

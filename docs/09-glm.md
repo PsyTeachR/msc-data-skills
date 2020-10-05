@@ -3,7 +3,7 @@
 <img src="images/memes/linear_regression.jpg" class="meme right"
      alt="Woody and Buzz from Toy Story. Top text: Linear Regression; Bottom text: Linear regression everywhere">
 
-## Learning Objectives
+## Learning Objectives {#ilo9}
 
 ### Basic
 
@@ -19,7 +19,7 @@
 7. Demonstrate the [relationships](#test-rels) among two-sample t-test, one-way ANOVA, and linear regression
 8. Given data and a GLM, [generate a decomposition matrix](#decomp) and calculate sums of squares, mean squares, and F ratios for a one-way ANOVA
 
-## Resources
+## Resources {#resources9}
 
 * [Stub for this lesson](stubs/9_glm.Rmd)
 * [Jeff Miller and Patricia Haden, Statistical Analysis with the Linear Model (free online textbook)](http://www.otago.ac.nz/psychology/otago039309.pdf)
@@ -27,9 +27,7 @@
 * [GLM shiny app](http://rstudio2.psy.gla.ac.uk/Dale/GLM)
 * [F distribution](http://rstudio2.psy.gla.ac.uk/Dale/fdist)
 
-## Setup
-
-You'll need the following packages. 
+## Setup {#setup9}
 
 
 ```r
@@ -575,7 +573,7 @@ aov(Y ~ grp, data = dat) %>% summary(intercept = TRUE)
 
 
 
-## Exercises
+## Exercises {#exercises9}
 
 Download the [exercises](exercises/09_glm_exercise.Rmd). See the [answers](exercises/09_glm_answers.Rmd) only after you've attempted all the questions.
 

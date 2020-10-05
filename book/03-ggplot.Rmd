@@ -3,7 +3,7 @@
 <img src="images/memes/better_graphs.png" class="meme right"
      alt = "xkcd comic titled 'General quality of charts and graphs in scientific papers'; y-axis: BAD on the bottom to GOOD on the top; x-axis: 1950s to 2010s; Line graph increases with time except for a dip between 1990 and 2010 labelled POWERPOINT/MSPAINT ERA">
 
-## Learning Objectives
+## Learning Objectives {#ilo3}
 
 ### Basic
 
@@ -47,7 +47,7 @@
 10. Create interactive graphs with [`plotly`](#plotly)
 
 
-## Resources
+## Resources {#resources3}
 
 * [Chapter 3: Data Visualisation](http://r4ds.had.co.nz/data-visualisation.html) of *R for Data Science*
 * [ggplot2 cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
@@ -64,7 +64,7 @@
 * [plotly](https://plot.ly/ggplot2/) for creating interactive graphs
 
 
-## Setup
+## Setup {#setup3}
 
 ```{r setup, results = 'hide', warning = FALSE, message = FALSE}
 
@@ -707,7 +707,7 @@ Hover over the data points above and click on the legend items.
 `r glossary_table()`
 
 
-## Exercises
+## Exercises {#exercises3}
 
 Download the [exercises](exercises/03_ggplot_exercise.Rmd). See the [plots](exercises/03_ggplot_answers.html) to see what your plots should look like (this doesn't contain the answer code). See the [answers](exercises/03_ggplot_answers.Rmd) only after you've attempted all the questions.
 

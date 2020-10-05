@@ -3,7 +3,7 @@
 <img src="images/memes/sim.jpg" class="meme right"
      alt="Morpheus from The Matrix. Top text: What if I told you; Bottom text: Ur in a simulation, inside a simulation, inside another simulation, inside a taco, inside a taco cat, inside a Taco Bell, inside an Arby's. Inside another simulation">
 
-## Learning Objectives
+## Learning Objectives {#ilo8}
 
 ### Basic
 
@@ -36,7 +36,7 @@
 7. Calculate the minimum sample size for a specific power level and design
 
 
-## Resources
+## Resources {#resources8}
 
 * [Stub for this lesson](stubs/8_sim.Rmd)
 * [Distribution Shiny App](http://shiny.psy.gla.ac.uk/debruine/simulate/) (or run `dataskills::app("simulate")`
@@ -47,10 +47,7 @@
 * [Simulation-Based Power-Analysis for Factorial ANOVA Designs](https://psyarxiv.com/baxsf) [@lakens_caldwell_2019]
 * [Understanding mixed effects models through data simulation](https://psyarxiv.com/xp5cy/) [@debruine_barr_2019]
 
-
-## Distributions
-
-Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use `r glossary("simulation", "simulations")` to learn the basics of `r glossary("probability")`.
+## Setup {#setup8}
 
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
@@ -58,6 +55,11 @@ library(tidyverse)
 library(MASS)
 set.seed(8675309) # makes sure random numbers are reproducible
 ```
+
+## Distributions
+
+Simulating data is a very powerful way to test your understanding of statistical concepts. We are going to use `r glossary("simulation", "simulations")` to learn the basics of `r glossary("probability")`.
+
 
 ### Uniform Distribution {#uniform}
 
@@ -743,7 +745,7 @@ power_table <- tibble(
 
 `r glossary_table()`
 
-## Exercises
+## Exercises {#exercises8}
 
 Download the [exercises](exercises/08_sim_exercise.Rmd). See the [answers](exercises/08_sim_answers.Rmd) only after you've attempted all the questions.
 

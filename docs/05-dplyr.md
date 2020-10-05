@@ -3,7 +3,7 @@
 <img src="images/memes/real_world_data.jpg" class="meme right" 
      alt="A cute golden retriever labelled 'iris & mtcars' and a scary werewolf labelled 'Real world data'">
 
-## Learning Objectives
+## Learning Objectives {#ilo5}
 
 ### Basic
 
@@ -27,15 +27,13 @@
 4. Fine control of [`select()` operations](#select_helpers) [(video)](https://youtu.be/R1bi1QwF9t0){class="video"}
 5. Use [window functions](#window) [(video)](https://youtu.be/uo4b0W9mqPc){class="video"}
 
-## Resources
+## Resources {#resources5}
 
 * [Chapter 5: Data Transformation](http://r4ds.had.co.nz/transform.html) in *R for Data Science*
 * [Data transformation cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 * [Chapter 16: Date and times](http://r4ds.had.co.nz/dates-and-times.html) in *R for Data Science*
 
-## Setup
-
-You'll need the following packages. 
+## Setup {#setup5}
 
 
 ```r
@@ -945,7 +943,7 @@ Table: (\#tab:unnamed-chunk-13)All rows from `cumulative`
 
 
 
-## Exercises
+## Exercises {#exercises5}
 
 Download the [exercises](exercises/05_dplyr_exercise.Rmd). See the [answers](exercises/05_dplyr_answers.Rmd) only after you've attempted all the questions.
 

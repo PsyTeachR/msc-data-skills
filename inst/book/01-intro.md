@@ -3,7 +3,7 @@
 <img src="images/memes/rstudio.png" class="meme right"
      alt="A line drawing of a person looking at a computer with a magnifying glass. The text reads 'I just installed RStudio. I'm a data scientist now.'">
 
-## Learning Objectives
+## Learning Objectives {#ilo1}
 
 1. Understand the components of the [RStudio IDE](#rstudio_ide) [(video)](https://youtu.be/CbA6ZVlJE78){class="video"}
 2. Type commands into the [console](#console) [(video)](https://youtu.be/wbI4c_7y0kE){class="video"}
@@ -13,7 +13,7 @@
 6. Create and compile an [Rmarkdown document](#rmarkdown) [(video)](https://youtu.be/EqJiAlJAl8Y ){class="video"}
 
 
-## Resources
+## Resources {#resources1}
 
 * [Chapter 1: Introduction](http://r4ds.had.co.nz/introduction.html) in *R for Data Science*
 * [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
@@ -356,8 +356,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -1.73372320 -0.07622138  0.94363702 -0.06764451  1.00989773  0.47124037
-##  [7] -0.23269305 -1.56027924 -2.32446262 -0.64180330
+##  [1] -0.6670828  1.2027739 -1.4333676 -0.4090680  0.6095121  1.1466471
+##  [7] -0.2513419 -0.7586160 -0.7580511  0.8744506
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -368,8 +368,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.22986 100.67627  99.39748 100.72322  98.82514 100.20923  98.35366
-##  [8]  99.22259  98.05329 100.73582
+##  [1]  99.42838  99.94418  99.05314 100.12360 100.55482  99.69166  99.17199
+##  [8] 101.02331  98.84275 100.32484
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -380,8 +380,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 101.13429 101.16763  98.72370  97.80986  98.69374 101.46845 101.39905
-##  [8]  99.13266 100.22403  98.56735
+##  [1] 101.72136 101.92356 100.17992 100.80644  99.80814 100.26460  99.04552
+##  [8]  97.89863 100.04249 101.32809
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -392,8 +392,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -113.29493  111.13969 -178.86622   54.06715   42.93562 -141.00324
-##  [7]  -98.69901 -163.26111  -76.61275  -66.43730
+##  [1]  -79.322576    6.413963   97.314253  -16.911590  104.773360  -24.772987
+##  [7]  108.978456 -159.660831  -38.062964  -54.362860
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -696,7 +696,7 @@ Each chapter ends with a glossary table defining the jargon introduced in this c
 
 
 
-## Exercises
+## Exercises {#exercises1}
 
 Download the first set of [exercises](exercises/01_intro_exercise.Rmd) and put it in the project directory you created earlier for today's exercises. See the [answers](exercises/01_intro_answers.Rmd) only after you've attempted all the questions.
 
