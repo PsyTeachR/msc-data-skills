@@ -1,0 +1,77 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Country Codes",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Multiple country, subregion, and region codes for 249 countries. From https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "name",
+            "description": "Full country name",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "alpha-2",
+            "description": "2-character country code",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "alpha-3",
+            "description": "3-character country code",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "country-code",
+            "description": "3-digit country code",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "iso_3166-2",
+            "description": "ISO code",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "region",
+            "description": "World region",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sub-region",
+            "description": "Sub-region",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "intermediate-region",
+            "description": "Intermediate region",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "region-code",
+            "description": "World region code",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sub-region-code",
+            "description": "Sub-region code",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "intermediate-region-code",
+            "description": "Intermediate region code",
+            "dataType": "string"
+        }
+    ]
+}

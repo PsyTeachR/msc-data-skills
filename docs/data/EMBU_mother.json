@@ -1,0 +1,155 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Parental Attachment (Mothers)",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Items starting with r, p and e are for the rejection (r), overprotection (p), and emotional warmth (e) subscales. Arrindell et al. (1999). The development of a short form of the EMBU: Its appraisal with students in Greece, Guatemala, Hungary and Italy. Personality and Individual Differences, 27, 613-628.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "id",
+            "description": "A unique ID for each questionnaire completion",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r1",
+            "description": "It happened that my mother was sour or angry with me without letting me know the cause",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "e1",
+            "description": "My mother praised me",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p1",
+            "description": "It happened that I wished my mother would worry less about what I was doing",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r2",
+            "description": "It happened that my mother gave me more corporal punishment than I deserved",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p2",
+            "description": "When I came home, I then had to account for what I had been doing, to my mother",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "e2",
+            "description": "I think that my mother tried to make my adolescence stimulating, interesting and instructive (for instance by giving me good books, arranging for me to go on camps, taking me to clubs)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r3",
+            "description": "My mother criticized me and told me how lazy and useless I was in front of others",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p3",
+            "description": "It happened that my mother forbade me to do things other children were allowed to do because she was afraid that something might happen to me",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "no_subscale",
+            "description": "My mother tried to spur me to become the best",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p4",
+            "description": "My mother would look sad or in some other way show that I had behaved badly so that I got real feelings of guilt",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p5",
+            "description": "I think that my mother's anxiety that something might happen to me was exaggerated",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "e3",
+            "description": "If things went badly for me, I then felt that my mother tried to comfort and encourage me",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r4",
+            "description": "I was treated as the ‘black sheep' or ‘scapegoat' of the family",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "e4",
+            "description": "My mother showed with words and gestures that he liked me",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r5",
+            "description": "I felt that my mother liked my brother(s) and/or sister(s) more than she liked me",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r6",
+            "description": "My mother treated me in such a way that I felt ashamed",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p6",
+            "description": "I was allowed to go where I liked without my mother caring too much",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p7",
+            "description": "I felt that my mother interfered with everything I did",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "e5",
+            "description": "I felt that warmth and tenderness existed between me and my mother",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p8",
+            "description": "My mother put decisive limits for what I was and was not allowed to do, to which she then adhered rigorously",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r7",
+            "description": "My mother would punish me hard, even for triffles (small offenses)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "p9",
+            "description": "My mother wanted to decide how I should be dressed or how I should look",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "e6",
+            "description": "I felt that my mother was proud when I succeeded in something I had undertaken",
+            "dataType": "float"
+        }
+    ]
+}

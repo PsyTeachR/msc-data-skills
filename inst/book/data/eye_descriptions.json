@@ -1,0 +1,329 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Descriptions of Eyes",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Participant's written descriptions of the eyes of 50 people",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sex",
+            "description": "The participant's sex",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "age",
+            "description": "The participant's age in years",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t1",
+            "description": "The description for face 1",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t2",
+            "description": "The description for face 2",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t3",
+            "description": "The description for face 3",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t4",
+            "description": "The description for face 4",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t5",
+            "description": "The description for face 5",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t6",
+            "description": "The description for face 6",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t7",
+            "description": "The description for face 7",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t8",
+            "description": "The description for face 8",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t9",
+            "description": "The description for face 9",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t10",
+            "description": "The description for face 10",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t11",
+            "description": "The description for face 11",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t12",
+            "description": "The description for face 12",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t13",
+            "description": "The description for face 13",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t14",
+            "description": "The description for face 14",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t15",
+            "description": "The description for face 15",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t16",
+            "description": "The description for face 16",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t17",
+            "description": "The description for face 17",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t18",
+            "description": "The description for face 18",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t19",
+            "description": "The description for face 19",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t20",
+            "description": "The description for face 20",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t21",
+            "description": "The description for face 21",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t22",
+            "description": "The description for face 22",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t23",
+            "description": "The description for face 23",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t24",
+            "description": "The description for face 24",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t25",
+            "description": "The description for face 25",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t26",
+            "description": "The description for face 26",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t27",
+            "description": "The description for face 27",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t28",
+            "description": "The description for face 28",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t29",
+            "description": "The description for face 29",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t30",
+            "description": "The description for face 30",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t31",
+            "description": "The description for face 31",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t32",
+            "description": "The description for face 32",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t33",
+            "description": "The description for face 33",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t34",
+            "description": "The description for face 34",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t35",
+            "description": "The description for face 35",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t36",
+            "description": "The description for face 36",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t37",
+            "description": "The description for face 37",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t38",
+            "description": "The description for face 38",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t39",
+            "description": "The description for face 39",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t40",
+            "description": "The description for face 40",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t41",
+            "description": "The description for face 41",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t42",
+            "description": "The description for face 42",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t43",
+            "description": "The description for face 43",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t44",
+            "description": "The description for face 44",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t45",
+            "description": "The description for face 45",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t46",
+            "description": "The description for face 46",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t47",
+            "description": "The description for face 47",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t48",
+            "description": "The description for face 48",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t49",
+            "description": "The description for face 49",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "t50",
+            "description": "The description for face 50",
+            "dataType": "string"
+        }
+    ]
+}

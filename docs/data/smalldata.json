@@ -1,0 +1,35 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Small Factorial Design: 2w*2b",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Small simulated dataset (n = 5) with one within-subject factor (time) having 2 levels (pre and post) and one beteen-subject factor (group) having two levels(control and experimental). The dataset is in wide format and created with faux.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "id",
+            "description": "Subject ID",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "group",
+            "description": "Between-subject factor (control vs experimental group)",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pre",
+            "description": "Score before the intervention",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "post",
+            "description": "Score after the intervention",
+            "dataType": "float"
+        }
+    ]
+}

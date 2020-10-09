@@ -1,0 +1,269 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "5-Factor Personality Items",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Archival data from the Face Research Lab of a 5-factor personality questionnaire. Each question is labelled with the domain (Op = openness, Co = conscientiousness, Ex = extroversion, Ag = agreeableness, and Ne = neuroticism) and the question number. Participants rate each statement on a Likert scale from 0 (Never) to 6 (Always). Questions with REV have already been reverse-coded (0 = Always, 6 = Never).   Instructions: A number of statements which people have used to describe themselves are given below. Read each statement and then click on of the seven options to indicate how frequently this statement applies to you. There are no right or wrong answers. Do not spend too much time on any one statement, but give the answer which seems to describe how you generally feel or behave.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "date",
+            "description": "The date this questionnaire was completed",
+            "dataType": "double"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op1",
+            "description": "Tend to vote for conservative political candidates (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne1",
+            "description": "Have frequent mood swings (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne2",
+            "description": "Am not easily bothered by things (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op2",
+            "description": "Believe in the importance of art (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex1",
+            "description": "Am the life of the party (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex2",
+            "description": "Am skilled in handling social situations (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co1",
+            "description": "Am always prepared (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co2",
+            "description": "Make plans and stick to them (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne3",
+            "description": "Dislike myself (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag1",
+            "description": "Respect others (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag2",
+            "description": "Insult people (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne4",
+            "description": "Seldom feel blue (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex3",
+            "description": "Don't like to draw attention to myself (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co3",
+            "description": "Carry out my plans (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op3",
+            "description": "Am not interested in abstract ideas (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex4",
+            "description": "Make friends easily (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op4",
+            "description": "Tend to vote for liberal political candidates (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex5",
+            "description": "Know how to captivate people (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag3",
+            "description": "Believe that others have good intentions (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co4",
+            "description": "Do just enough work to get by (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co5",
+            "description": "Find it difficult to get down to work (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne5",
+            "description": "Panic easily (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op5",
+            "description": "Avoid philosophical discussions (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag4",
+            "description": "Accept people as they are (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op6",
+            "description": "Do not enjoy going to art museums (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co6",
+            "description": "Pay attention to details (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex6",
+            "description": "Keep in the background (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne6",
+            "description": "Feel comfortable with myself (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co7",
+            "description": "Waste my time (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag5",
+            "description": "Get back at others (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co8",
+            "description": "Get chores done right away (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex7",
+            "description": "Don't talk a lot (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne7",
+            "description": "Am often down in the dumps (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co9",
+            "description": "Shirk my duties (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op7",
+            "description": "Do not like art (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne8",
+            "description": "Often feel blue (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag6",
+            "description": "Cut others to pieces (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag7",
+            "description": "Have a good word for everyone (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co10",
+            "description": "Don't see things through (REV)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex8",
+            "description": "Feel comfortable around people (FWD)",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex9",
+            "description": "Have little to say (REV)",
+            "dataType": "float"
+        }
+    ]
+}
