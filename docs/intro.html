@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-10-05" />
+<meta name="date" content="2020-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -736,20 +736,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a normal distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.6670828  1.2027739 -1.4333676 -0.4090680  0.6095121  1.1466471
-##  [7] -0.2513419 -0.7586160 -0.7580511  0.8744506</code></pre>
+<pre><code>##  [1]  1.38189677  0.02738417 -0.46643333 -0.73002248 -1.05697700  0.28162748
+##  [7] -0.57126425 -0.30496948  0.49116183  1.26498455</code></pre>
 <p>If you want 10 numbers from a normal distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.42838  99.94418  99.05314 100.12360 100.55482  99.69166  99.17199
-##  [8] 101.02331  98.84275 100.32484</code></pre>
+<pre><code>##  [1]  99.60827  98.74450  99.79200  99.97694 100.29598  98.20048  99.88277
+##  [8]  98.94875 101.06943 100.15908</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 101.72136 101.92356 100.17992 100.80644  99.80814 100.26460  99.04552
-##  [8]  97.89863 100.04249 101.32809</code></pre>
+<pre><code>##  [1] 101.18012  99.97659  99.70150  98.41951 101.08184  99.78026 100.96169
+##  [8] 101.88545 100.45029  99.45872</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  -79.322576    6.413963   97.314253  -16.911590  104.773360  -24.772987
-##  [7]  108.978456 -159.660831  -38.062964  -54.362860</code></pre>
+<pre><code>##  [1]   54.99515 -160.79118   42.83398   60.82183   60.88103  -87.13132
+##  [7]   69.96817  -98.25798 -185.10741   45.78071</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb34-2"><a href="intro.html#cb34-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>

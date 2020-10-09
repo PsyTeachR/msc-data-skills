@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## Load built-in datasets
 
-List the packages in `dplyr`.
+List the datasets in `dplyr`.
 
 ```{r Q1}
 data(package = "dplyr")
