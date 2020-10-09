@@ -683,3 +683,17 @@ f <- list.files("book/data", full.names = TRUE)
 zipfile <- "book/data/data.zip"
 unlink(zipfile)
 zip(zipfile, f)
+
+unlink("docs/data", recursive = TRUE)
+file.copy(
+  from = "book/data",
+  to = "docs", 
+  overwrite = TRUE, 
+  recursive = TRUE)
+
+unlink("inst/book/data", recursive = TRUE)
+file.copy(
+  from = "book/data",
+  to = "inst/book", 
+  overwrite = TRUE, 
+  recursive = TRUE)
