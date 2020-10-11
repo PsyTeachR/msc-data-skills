@@ -8,6 +8,11 @@ output: html_document
 # please do not alter this code chunk
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
+
+# install the class package dataskills to access built-in data
+# devtools::install_github("psyteachr/msc-data-skills)
+# or download data from the website
+# https://psyteachr.github.io/msc-data-skills/data/data.zip
 ```
 
 Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
@@ -43,7 +48,7 @@ The questions in this section all have errors. Fix the errors.
 
 ### Load data
 
-Load the data from `dataskills::sensation_seeking` as `ss` (or from <https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv>).
+Load the dataset [dataskills::sensation_seeking](https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv) as `ss`.
 
 ```{r data-error}
 ss <- read_csv(dataskills::sensation_seeking)
@@ -238,7 +243,9 @@ family_tidy <- dataskills::family_composition %>%
 
 Tidy the data from [dataskills::eye_descriptions](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv). This dataset contains descriptions of the eyes of 50 people by 220 raters (`user_id`). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes. 
 
-Create a dataset with separate columns for `face_id`, `description`, and description number (`desc_n`). Hint: to separate a string by tildes or slashes, you would set the `sep` argument to `"(~|\\/)+"`.
+Create a dataset with separate columns for `face_id`, `description`, and description number (`desc_n`).
+
+Hint: to separate a string by tildes or commas, you would set the `sep` argument to `"(~|,)+"`.
 
 ```{r eyes}
 eyes <- dataskills::eye_descriptions %>%

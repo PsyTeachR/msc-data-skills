@@ -8,11 +8,16 @@ output: html_document
 # please do not alter this code chunk
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
 library(tidyverse)
+
+# install the class package dataskills to access built-in data
+# devtools::install_github("psyteachr/msc-data-skills)
+# or download data from the website
+# https://psyteachr.github.io/msc-data-skills/data/data.zip
 ```
 
 ## Load built-in datasets
 
-List the packages in `dplyr`.
+List the datasets in `dplyr`.
 
 ```{r Q1}
 data(package = "dplyr")

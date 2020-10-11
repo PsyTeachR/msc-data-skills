@@ -1,0 +1,58 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Pets",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "A simulated dataset with one random factor (id), two categorical factors (pet, country) and three continuous variables (score, age, weight). This dataset is useful for practicing plotting.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "id",
+            "description": "Subject ID",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pet",
+            "description": "Type of pet (dog, cat, ferret)",
+            "dataType": "string",
+            "levels": {
+                "dog": "dog",
+                "cat": "cat",
+                "ferret": "ferret"
+            },
+            "levelsOrdered": false
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "country",
+            "description": "What country the pet is from (UK or NL)",
+            "dataType": "string",
+            "levels": {
+                "UK": "UK",
+                "NL": "NL"
+            },
+            "levelsOrdered": false
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "score",
+            "description": "Score on some test (integers around 100)",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "age",
+            "description": "Age of the pet in years",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "weight",
+            "description": "Weight of the pet in kilograms",
+            "dataType": "float"
+        }
+    ]
+}

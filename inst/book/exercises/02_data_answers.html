@@ -370,7 +370,7 @@ summary {
 
 <div id="load-built-in-datasets" class="section level2">
 <h2>Load built-in datasets</h2>
-<p>List the packages in <code>dplyr</code>.</p>
+<p>List the datasets in <code>dplyr</code>.</p>
 <pre class="r"><code>data(package = &quot;dplyr&quot;)</code></pre>
 <p>Load the built-in dataset <code>starwars</code>.</p>
 <pre class="r"><code>data(&quot;starwars&quot;)</code></pre>
@@ -405,19 +405,19 @@ stroop2 &lt;- readxl::read_xlsx(&quot;data/stroop.xlsx&quot;)</code></pre>
 <pre class="r"><code>glimpse(stroop1)</code></pre>
 <pre><code>## Rows: 1,000
 ## Columns: 5
-## $ sub_id     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,…
-## $ word       &lt;chr&gt; &quot;blue&quot;, &quot;purple&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;red&quot;, &quot;gree…
-## $ ink_colour &lt;chr&gt; &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;pu…
-## $ response   &lt;chr&gt; &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;pu…
-## $ rt         &lt;dbl&gt; 665, 614, 802, 755, 716, 893, 672, 512, 921, 68…</code></pre>
+## $ sub_id     [3m[38;5;246m&lt;dbl&gt;[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, …
+## $ word       [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;blue&quot;, &quot;purple&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;red&quot;, &quot;green&quot;, …
+## $ ink_colour [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;purple…
+## $ response   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;purple…
+## $ rt         [3m[38;5;246m&lt;dbl&gt;[39m[23m 665, 614, 802, 755, 716, 893, 672, 512, 921, 684, 6…</code></pre>
 <pre class="r"><code>glimpse(stroop2)</code></pre>
 <pre><code>## Rows: 1,000
 ## Columns: 5
-## $ sub_id     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,…
-## $ word       &lt;chr&gt; &quot;blue&quot;, &quot;purple&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;red&quot;, &quot;gree…
-## $ ink_colour &lt;chr&gt; &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;pu…
-## $ response   &lt;chr&gt; &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;pu…
-## $ rt         &lt;chr&gt; &quot;665&quot;, &quot;614&quot;, &quot;802&quot;, &quot;755&quot;, &quot;716&quot;, &quot;893&quot;, &quot;672&quot;…</code></pre>
+## $ sub_id     [3m[38;5;246m&lt;dbl&gt;[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, …
+## $ word       [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;blue&quot;, &quot;purple&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;red&quot;, &quot;green&quot;, …
+## $ ink_colour [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;purple…
+## $ response   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;blue&quot;, &quot;purple&quot;, &quot;brown&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;purple…
+## $ rt         [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;665&quot;, &quot;614&quot;, &quot;802&quot;, &quot;755&quot;, &quot;716&quot;, &quot;893&quot;, &quot;672&quot;, &quot;5…</code></pre>
 <pre class="r"><code>stroop2b &lt;- readxl::read_xlsx(&quot;data/stroop.xlsx&quot;, na = &quot;NA&quot;)</code></pre>
 </div>
 <div id="create-a-data-table" class="section level2">

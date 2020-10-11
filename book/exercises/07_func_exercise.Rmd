@@ -6,13 +6,16 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE, 
+                      error = TRUE)
 library(tidyverse)
 library(broom)
-set.seed(1618034) # makes sure random numbers are reproducible
 ```
 
 Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
+
+## Basic Iteration Functions
 
 ### Question 1
 
@@ -38,6 +41,8 @@ Set the vector `v3` equal to the words "dog" 10 times, "cat" 9 times, "fish" 6 t
 v3 <- NULL
 ```
 
+## map and apply functions
+
 ### Question 4a
 
 Use `apply()` or `map()` functions to create a list of 11 vectors of 100 numbers sampled from 11 random normal distributions with means of 0 to 1.0 (in steps of 0.1) and SDs of 1. Assign this list to the object `samples`. Set the seed to `321` before you generate the random numbers to ensure reproducibility.
@@ -47,6 +52,7 @@ Use `apply()` or `map()` functions to create a list of 11 vectors of 100 numbers
 samples <- NULL
 ```
 
+
 ### Question 4b
 
 Use `apply()` or `map()` functions to create a vector of the sample means from the list `samples` in the previous question.
@@ -55,13 +61,26 @@ Use `apply()` or `map()` functions to create a vector of the sample means from t
 sample_means <- NULL
 ```
 
-### Question 5
+## Custom functions
+
+### Question 5a
 
 Write a function called `my_add` that adds two numbers (`x` and `y`) together and returns the results.
 
-```{r Q5}
+```{r Q5a}
 my_add <- NULL
 ```
+
+### Question 5b
+
+Create a vector testing your function `my_add`. Every item in the vector should evaluate to `TRUE` if your function is working correctly.
+
+```{r Q5b}
+# Hint: what does `my_add(1, 2) == 4` equal?
+my_add_test <- NULL
+```
+
+## Error handling
 
 ### Question 6
 
@@ -71,9 +90,11 @@ Copy the function `my_add` above and add an error message that returns "x and y 
 my_add <- NULL
 ```
 
+## Building up a custom function
+
 ### Question 7
 
-Create a tibble called `dat` that contains 20 rows and three columns: `id` (integers 101 through 120), `pre` and `post` (both 20-item vectors of random numbers from a normal distribution with mean = 0 and sd = 1).
+Create a tibble called `dat` that contains 20 rows and three columns: `id` (integers 101 through 120), `pre` and `post` (both 20-item vectors of random numbers from a normal distribution with mean = 0 and sd = 1). Set seed to `90210` to ensure reproducible values.
 
 ```{r Q7}
 dat <- NULL
@@ -97,11 +118,21 @@ stats <- NULL
 
 ### Question 10
 
-Create a function called `report_t` that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns `pre` and `post` in the following format: "The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###]." Hint: look at the function `paste0()` (simpler) or `sprintf()` (complicated but more powerful).
+Create a function called `report_t` that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns `pre` and `post` in the following format: 
+
+"The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###]." 
+
+Hint: look at the function `paste0()` (simpler) or `sprintf()` (complicated but more powerful).
 
 NB: Make sure all numbers are reported to three decimal places (except degrees of freedom).
 
 ```{r Q10}
 report_t <- NULL
 ```
+
+### Question 11
+
+Use inline R to include the results of `report_t()` on the `dat` data table in a paragraph below.
+
+{inline r here}
 

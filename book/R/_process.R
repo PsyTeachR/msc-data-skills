@@ -4,7 +4,7 @@ setwd("book")
 
 # render a chapter or the whole book
 browseURL(bookdown::preview_chapter("01-intro.Rmd"))
-bookdown::render_book("index.Rmd")
+browseURL(bookdown::render_book("index.Rmd"))
 
 
 

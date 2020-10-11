@@ -6,11 +6,17 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, error = TRUE)
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE, 
+                      error = TRUE)
 library(tidyverse)
 library(cowplot)
+
+# install the class package dataskills
 # devtools::install_github("psyteachr/msc-data-skills)
-library(dataskills) 
+# or download data from the website
+# https://psyteachr.github.io/msc-data-skills/data/data.zip
 ```
 
 
@@ -36,7 +42,7 @@ dogs <- tibble(
 
 ## Violin Plot
 
-Make a violin plot with `breed` on the x-axis and `weight` on the y-axis. Make each violin white, 50% transparent, and outlined in a different coloour, but omit the legend.
+Make a violin plot with `breed` on the x-axis and `weight` on the y-axis. Make each breed white, 50% transparent, and outlined in a different colour, but omit the legend.
 
 ```{r exercise-violin}
 dog_violin <- ggplot(dogs, aes(breed, weight, colour = breed)) +
@@ -48,7 +54,7 @@ dog_violin # prints the plot below
 
 ## Boxplot
 
-Make a boxplot with `breed` on the x-axis and `weight` on the y-axis. Make each violin white, 50% transparent, and outlined in a different coloour, but omit the legend.
+Make a boxplot with `breed` on the x-axis and `weight` on the y-axis. Make each breed white, 50% transparent, and outlined in a different colour, but omit the legend.
 
 ```{r exercise-boxplot}
 dog_boxplot <- ggplot(dogs, aes(breed, weight, colour = breed)) +
@@ -59,7 +65,7 @@ dog_boxplot # prints the plot below
 
 ## Density plot
 
-Make a density with `weight` on the x-axis. Make each breed white, 50% transparent, and outlined in a different colour, but omit the legend.
+Make a density plot with `weight` on the x-axis. Make each breed white, 50% transparent, and outlined in a different colour, but omit the legend.
 
 ```{r exercise-density}
 dog_density <- ggplot(dogs, aes(weight, colour = breed)) +
@@ -71,12 +77,12 @@ dog_density # prints the plot below
 
 ## Column Plot
 
-Use `stat_summary` to create a column plot with error bars showing 1 standard error. Make each column white with a black border, but omit the legend.
+Use `stat_summary` to create a column plot with `breed` on the x-axis and `weight` on the y-axis and error bars showing 1 standard error. Make each breed white, 50% transparent, and outlined in a different colour, but have the error bars be black. Omit the legend.
 
 ```{r exercise-column}
 dog_column <- ggplot(dogs, aes(breed, weight, colour = breed)) +
   stat_summary(geom = "col", fill = "white", alpha = .5) +
-  stat_summary(geom = "errorbar", width = 0) +
+  stat_summary(geom = "errorbar", width = 0, colour = "black") +
   theme(legend.position = "none")
 
 dog_column # prints the plot below
@@ -112,21 +118,21 @@ Save each plot as a PNG file with the names "dog_violin.png", "dog_boxplot.png",
 colours <- scale_colour_manual(values = c("orange", "dodgerblue", "hotpink"))
 labs <- labs(x = "Breed of Dog", y = "Weight of Dog")
 
-dog_violin + colours + labs +
+v <- dog_violin + colours + labs +
   ggtitle("Violin Plot")
 ggsave("dog_violin.png")
 
-dog_boxplot + colours + labs +
+b <- dog_boxplot + colours + labs +
   ggtitle("Box Plot")
 ggsave("dog_boxplot.png")
 
-dog_density + colours +
+d <- dog_density + colours +
   labs(title = "Density Plot",
        x = "Weight of Dog",
        y = "Density of Dogs")
 ggsave("dog_density.png")
 
-dog_column + colours + labs +
+c <- dog_column + colours + labs +
   ggtitle("Column Plot")
 ggsave("dog_column.png")
 
@@ -150,6 +156,8 @@ Represent the relationships among disgust subscales from the dataset [disgust_sc
 Graph the linear relationship between moral and pathogen disgust. Make sure the axes run from the minimum to maximum possible scores on both axes. Give the graph an appropriate title and axis labels.
   
 ```{r exercise-lineplot}
+data("disgust_scores", package = "dataskills")
+
 disgust_lineplot <- ggplot(disgust_scores, aes(moral, pathogen)) +
   geom_smooth(formula = y~x, method = lm)
 
@@ -159,11 +167,13 @@ disgust_lineplot # prints the plot below
 
 ## Many correlated variables
 
-Create a heatmap of the relationships among all the questions in [disgust_cors.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv)  (or `dataskills::disgust_cors`). The correlations have already been calculated for you. 
+Create a heatmap of the relationships among all the questions in [disgust_cors.csv](https://psyteachr.github.io/msc-data-skills/data/disgust_cors.csv) (or `dataskills::disgust_cors`). The correlations have already been calculated for you. 
 
 *Bonus*: Figure out how to rotate the text on the x-axis so it's readable.
 
 ```{r exercise-heatmap}
+data("disgust_cors", package = "dataskills")
+
 disgust_heatmap <- ggplot(disgust_cors, aes(V1, V2, fill = r)) +
   geom_tile() +
   scale_fill_viridis_c() +
@@ -172,14 +182,13 @@ disgust_heatmap <- ggplot(disgust_cors, aes(V1, V2, fill = r)) +
 disgust_heatmap # prints the plot below
 ```
 
-## Density plot
+## 2D Density plot
 
 Create a 2d density plot of the relationship between pathogen and sexual disgust for `disgust_scores`. 
 
-Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = n)`, set n to a value that makes the graph look good, and 
-figure out what it represents.
+Use `stat_density_2d(aes(fill = ..level..), geom = "polygon", n = n)`, set n to a value that makes the graph look good, and figure out what it represents.
 
-```{r exercise-density2d, warning=FALSE}
+```{r exercise-density2d}
 disgust_density <- ggplot(disgust_scores, aes(pathogen, sexual)) +
   stat_density_2d(aes(fill = ..level..), geom = "polygon", n = 50)
 
@@ -189,15 +198,21 @@ disgust_density # prints the plot below
 
 ## Facets
 
-Create a grid of plots for the `stroop` dataset from dataskills using faceting. Plot `rt` for each combination of `word` and `ink` to make a 5x5 grid of density plots. Make each plot line the same colour as the ink. For bonus points, make the lines for plots where the ink colour matches the word colour thicker than the other lines.
+Create a grid of plots for the [stroop.csv](https://psyteachr.github.io/msc-data-skills/data/stroop.csv) dataset (or `dataskills::stroop`) using faceting. 
+
+Plot `rt` for each combination of `word` and `ink` to make a 5x5 grid of density plots. Make each plot line the same colour as the ink. For bonus points, make the lines for plots where the ink colour matches the word colour thicker than the other lines.
 
 ```{r facets}
+data("stroop", package = "dataskills")
+
 word_by_ink <- ggplot(stroop, aes(rt, colour = ink, 
-                   size = ink == word)) +
+                      size = ink == word)) +
   geom_density(show.legend = FALSE) +
   facet_grid(word~ink, labeller = label_both) +
+  # sets the colour palette to custom values
   scale_colour_manual(values = c("blue", "brown","green", "purple", "red")) +
-  scale_size_manual(values = c(.5, 2))
+  # you may have chosen different sizes for line thickness
+  scale_size_manual(values = c(.5, 1.5))
 
 word_by_ink # prints the plot below
 ```
@@ -215,7 +230,7 @@ Create a 3x3 grid of linear line plots from `disgust_scores` with columns repres
 | **pathogen** | line    | line    | density  |
 
 
-```{r exercise-cor-advanced, message = FALSE, warning = FALSE}
+```{r exercise-cor-advanced}
 # Hint: set up your 9 separate plots first
 
 my_geom <- geom_smooth(formula = y~x, method = lm)

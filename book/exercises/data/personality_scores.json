@@ -1,0 +1,53 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "5-Factor Personality Scores",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Archival data from the Face Research Lab of a 5-factor personality questionnaire, with factor score calculated from [personality].",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "date",
+            "description": "The date this questionnaire was completed",
+            "dataType": "double"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ag",
+            "description": "Mean score on Agreeableness items",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Co",
+            "description": "Mean score on Conscientiousness items",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ex",
+            "description": "Mean score on Extraversion items",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Ne",
+            "description": "Mean score on Neuroticism items",
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Op",
+            "description": "Mean score on Openness items",
+            "dataType": "float"
+        }
+    ]
+}

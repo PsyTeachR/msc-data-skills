@@ -1,0 +1,29 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Three Domain Disgust Questionnaire (correlations)",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Correlations among questions on the Three Domain Disgust Questionnaire (Tybur et al.)",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "V1",
+            "description": "The first correalted item",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "V2",
+            "description": "The second correlated item",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "r",
+            "description": "The Pearson's correlation between the first and second item",
+            "dataType": "float"
+        }
+    ]
+}

@@ -392,7 +392,7 @@ untidy &lt;- tribble(
 <p>The questions in this section all have errors. Fix the errors.</p>
 <div id="load-data" class="section level3">
 <h3>Load data</h3>
-<p>Load the data from <code>dataskills::sensation_seeking</code> as <code>ss</code> (or from <a href="https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv" class="uri">https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv</a>).</p>
+<p>Load the dataset <a href="https://psyteachr.github.io/msc-data-skills/data/sensation_seeking.csv">dataskills::sensation_seeking</a> as <code>ss</code>.</p>
 <pre class="r"><code>ss &lt;- read_csv(dataskills::sensation_seeking)</code></pre>
 <pre><code>## Error: `file` must be a string, raw vector or a connection.</code></pre>
 </div>
@@ -413,7 +413,7 @@ untidy &lt;- tribble(
   glimpse()</code></pre>
 <pre><code>## Rows: 14
 ## Columns: 1
-## $ question &lt;chr&gt; &quot;sss1&quot;, &quot;sss2&quot;, &quot;sss3&quot;, &quot;sss4&quot;, &quot;sss5&quot;, &quot;sss6&quot;, &quot;…</code></pre>
+## $ question &lt;chr&gt; &quot;sss1&quot;, &quot;sss2&quot;, &quot;sss3&quot;, &quot;sss4&quot;, &quot;sss5&quot;, &quot;…</code></pre>
 </div>
 </div>
 <div id="tidy-verbs" class="section level2">
@@ -428,8 +428,8 @@ untidy &lt;- tribble(
 ## they will be dropped</code></pre>
 <pre><code>## Rows: 459,357
 ## Columns: 2
-## $ question &lt;chr&gt; &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;…
-## $ score    &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8, 9, 10, …</code></pre>
+## $ question &lt;chr&gt; &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;, &quot;id&quot;,…
+## $ score    &lt;dbl&gt; 3144, 133, 175, 285, 1, 3, 4, 5, 6, 7, 8,…</code></pre>
 </div>
 <div id="separate" class="section level3">
 <h3>separate</h3>
@@ -498,7 +498,8 @@ lager &lt;- LETTERS[c(18, 5, 7, 1, 12)] %&gt;%
 <div id="multiple-steps" class="section level2">
 <h2>Multiple steps</h2>
 <p>Tidy the data from <a href="https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv">dataskills::eye_descriptions</a>. This dataset contains descriptions of the eyes of 50 people by 220 raters (<code>user_id</code>). Some raters wrote more than one description per face (maximum 4), separated by commas, semicolons, or slashes.</p>
-<p>Create a dataset with separate columns for <code>face_id</code>, <code>description</code>, and description number (<code>desc_n</code>). Hint: to separate a string by tildes or slashes, you would set the <code>sep</code> argument to <code>&quot;(~|\\/)+&quot;</code>.</p>
+<p>Create a dataset with separate columns for <code>face_id</code>, <code>description</code>, and description number (<code>desc_n</code>).</p>
+<p>Hint: to separate a string by tildes or commas, you would set the <code>sep</code> argument to <code>&quot;(~|,)+&quot;</code>.</p>
 <pre class="r"><code>eyes &lt;- NULL</code></pre>
 </div>
 

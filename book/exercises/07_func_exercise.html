@@ -369,6 +369,8 @@ summary {
 
 
 <p>Edit the code chunks below and knit the document. You can pipe your objects to <code>glimpse()</code> or <code>print()</code> to display them.</p>
+<div id="basic-iteration-functions" class="section level2">
+<h2>Basic Iteration Functions</h2>
 <div id="question-1" class="section level3">
 <h3>Question 1</h3>
 <p>Set the vector <code>v1</code> equal to the following: 11, 13, 15, 17, 19, …, 99, 101 (use a function; don’t just type all the numbers).</p>
@@ -384,6 +386,9 @@ summary {
 <p>Set the vector <code>v3</code> equal to the words “dog” 10 times, “cat” 9 times, “fish” 6 times, and “ferret” 1 time.</p>
 <pre class="r"><code>v3 &lt;- NULL</code></pre>
 </div>
+</div>
+<div id="map-and-apply-functions" class="section level2">
+<h2>map and apply functions</h2>
 <div id="question-4a" class="section level3">
 <h3>Question 4a</h3>
 <p>Use <code>apply()</code> or <code>map()</code> functions to create a list of 11 vectors of 100 numbers sampled from 11 random normal distributions with means of 0 to 1.0 (in steps of 0.1) and SDs of 1. Assign this list to the object <code>samples</code>. Set the seed to <code>321</code> before you generate the random numbers to ensure reproducibility.</p>
@@ -394,19 +399,34 @@ summary {
 <p>Use <code>apply()</code> or <code>map()</code> functions to create a vector of the sample means from the list <code>samples</code> in the previous question.</p>
 <pre class="r"><code>sample_means &lt;- NULL</code></pre>
 </div>
-<div id="question-5" class="section level3">
-<h3>Question 5</h3>
+</div>
+<div id="custom-functions" class="section level2">
+<h2>Custom functions</h2>
+<div id="question-5a" class="section level3">
+<h3>Question 5a</h3>
 <p>Write a function called <code>my_add</code> that adds two numbers (<code>x</code> and <code>y</code>) together and returns the results.</p>
 <pre class="r"><code>my_add &lt;- NULL</code></pre>
 </div>
+<div id="question-5b" class="section level3">
+<h3>Question 5b</h3>
+<p>Create a vector testing your function <code>my_add</code>. Every item in the vector should evaluate to <code>TRUE</code> if your function is working correctly.</p>
+<pre class="r"><code># Hint: what does `my_add(1, 2) == 4` equal?
+my_add_test &lt;- NULL</code></pre>
+</div>
+</div>
+<div id="error-handling" class="section level2">
+<h2>Error handling</h2>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
 <p>Copy the function <code>my_add</code> above and add an error message that returns “x and y must be numbers” if <code>x</code> or <code>y</code> are not both numbers.</p>
 <pre class="r"><code>my_add &lt;- NULL</code></pre>
 </div>
+</div>
+<div id="building-up-a-custom-function" class="section level2">
+<h2>Building up a custom function</h2>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
-<p>Create a tibble called <code>dat</code> that contains 20 rows and three columns: <code>id</code> (integers 101 through 120), <code>pre</code> and <code>post</code> (both 20-item vectors of random numbers from a normal distribution with mean = 0 and sd = 1).</p>
+<p>Create a tibble called <code>dat</code> that contains 20 rows and three columns: <code>id</code> (integers 101 through 120), <code>pre</code> and <code>post</code> (both 20-item vectors of random numbers from a normal distribution with mean = 0 and sd = 1). Set seed to <code>90210</code> to ensure reproducible values.</p>
 <pre class="r"><code>dat &lt;- NULL</code></pre>
 </div>
 <div id="question-8" class="section level3">
@@ -421,9 +441,17 @@ summary {
 </div>
 <div id="question-10" class="section level3">
 <h3>Question 10</h3>
-<p>Create a function called <code>report_t</code> that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns <code>pre</code> and <code>post</code> in the following format: “The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###].” Hint: look at the function <code>paste0()</code> (simpler) or <code>sprintf()</code> (complicated but more powerful).</p>
+<p>Create a function called <code>report_t</code> that takes a data table as an argument and returns the result of a two-tailed, paired-samples t-test between the columns <code>pre</code> and <code>post</code> in the following format:</p>
+<p>“The mean increase from pre-test to post-test was #.###: t(#) = #.###, p = 0.###, 95% CI = [#.###, #.###].”</p>
+<p>Hint: look at the function <code>paste0()</code> (simpler) or <code>sprintf()</code> (complicated but more powerful).</p>
 <p>NB: Make sure all numbers are reported to three decimal places (except degrees of freedom).</p>
 <pre class="r"><code>report_t &lt;- NULL</code></pre>
+</div>
+<div id="question-11" class="section level3">
+<h3>Question 11</h3>
+<p>Use inline R to include the results of <code>report_t()</code> on the <code>dat</code> data table in a paragraph below.</p>
+<p>{inline r here}</p>
+</div>
 </div>
 
 

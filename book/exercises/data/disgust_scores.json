@@ -1,0 +1,53 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Three Domain Disgust Questionnaire (scores)",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.), calculated from [disgust].",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "id",
+            "description": "Each questionnaire completion's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "date",
+            "description": "Date of completion (YYY-mm-dd)",
+            "dataType": "double"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "moral",
+            "description": "The mean value for the 7 moral items",
+            "minValue": 0,
+            "maxValue": 6,
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "pathogen",
+            "description": "The mean value for the 7 pathogen items",
+            "minValue": 0,
+            "maxValue": 6,
+            "dataType": "float"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sexual",
+            "description": "The mean value for the 7 sexual items",
+            "minValue": 0,
+            "maxValue": 6,
+            "dataType": "float"
+        }
+    ]
+}

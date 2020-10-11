@@ -1,0 +1,29 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "User Demographics",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users2].",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "user_id",
+            "description": "Each participant's unique ID",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "sex",
+            "description": "The participant's sex",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "birthyear",
+            "description": "The participant's year of birth",
+            "dataType": "float"
+        }
+    ]
+}

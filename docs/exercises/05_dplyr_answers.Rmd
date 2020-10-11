@@ -6,10 +6,16 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, error = TRUE)
-library("ukbabynames")
-library("tidyverse")
-set.seed(777) # makes sure random numbers are reproducible
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE, 
+                      error = TRUE)
+library(tidyverse)
+library(ukbabynames)
+
+# install the class package dataskills to access built-in data
+# devtools::install_github("psyteachr/msc-data-skills)
+# or download data from the website
+# https://psyteachr.github.io/msc-data-skills/data/data.zip
 ```
 
 Edit the code chunks below and knit the document. You can pipe your objects to `glimpse()` or `print()` to display them.
@@ -186,18 +192,85 @@ ggplot(babies_per_year, aes(year, tot, color = sex)) +
   geom_line()
 ```
 
+## Select helpers
+
+Load the dataset [dataskills::personality](https://psyteachr.github.io/msc-data-skills/data/personality.csv).
+
+Select only the personality question columns (not the user_id or date).
+
+```{r SH1}
+q_only <- dataskills::personality %>%
+  select(-user_id, -date) %>%
+  glimpse()
+```
+
+Select the `user_id` column and all of the columns with questions about openness.
+
+```{r SH2}
+openness <- dataskills::personality %>%
+  select(user_id, starts_with("Op")) %>%
+  glimpse()
+```
+
+Select the `user_id` column and all of the columns with the first question for each personality trait.
+
+```{r SH3}
+q1 <- dataskills::personality %>%
+  select(user_id, ends_with("1")) %>%
+  glimpse()
+```
+
+
+## Window fuctions
+
+The code below sets up a fake dataset where 10 subjects respond to 20 trials with a `dv` on a 5-point Likert scale. 
+
+```{r window-setup}
+set.seed(10)
+
+fake_data <- tibble(
+  subj_id = rep(1:10, each = 20),
+  trial = rep(1:20, times = 10),
+  dv = sample.int(5, 10*20, TRUE)
+)
+```
+
+### Question 14
+
+You want to know how many times each subject responded with the same dv as their last trial. For example, if someone responded 2,3,3,3,4 for five trials they would have repeated their last response on the third and fourth trials. Use an offset function to determine how many times each subject repeated a response.
+
+```{r window}
+repeated_data <- fake_data %>%
+  group_by(subj_id) %>%
+  mutate(repeated = dv == lag(dv)) %>%
+  summarise(repeats = sum(repeated, na.rm = TRUE),
+            .groups = "drop") %>%
+  print()
+```
+
+### Question 15
+
+Create a table `too_many_repeats` with the top two repeaters from `repeated_data` (and anyone who might be tied with them) using ranking functions. 
+
+```{r}
+too_many_repeats <- repeated_data %>%
+  mutate(rank = dense_rank(repeats)) %>%
+  filter(rank == max(rank) | rank == max(rank)-1) %>%
+  print()
+```
+
+
 ## Advanced Questions
 
 There are several ways to complete the following two tasks. Different people will solve them different ways, but you should be able to tell if your answers make sense.
 
-### Question 14
+### Question 16
 
-Load the dataset `dataskills::family_composition` ([family_composition.csv](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv)) from last week's exercise.
+Load the dataset [dataskills::family_composition](https://psyteachr.github.io/msc-data-skills/data/family_composition.csv) from last week's exercise.
 
 Calculate how many siblings of each sex each person has, narrow the dataset down to people with fewer than 6 siblings, and generate at least two different ways to graph this.
 
-    
-```{r Q14a}
+```{r Q16a}
 
 family <- dataskills::family_composition %>%
   gather("sibtype", "n", oldbro:twinsis) %>%
@@ -214,7 +287,7 @@ ggplot(sib6, aes(n, fill = sibsex)) +
 
 ```
     
-```{r Q14b}
+```{r Q16b}
 sib6 <- family %>%
   group_by(user_id, sex, sibsex) %>%
   summarise(n = sum(n), .groups = "drop") %>%
@@ -226,7 +299,7 @@ ggplot(sib6, aes(bro, sis)) +
   geom_count()
 ```
 
-```{r}
+```{r Q16c}
 # or
 ggplot(sib6, aes(bro, sis)) +
   geom_bin2d(binwidth = c(1,1)) +
@@ -235,14 +308,13 @@ ggplot(sib6, aes(bro, sis)) +
 ```   
 
 
-### Question 15
+### Question 17
 
-Use the dataset `dataskills::eye_descriptions` ([eye_descriptions.csv](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv)) from last week's exercise.
+Use the dataset [dataskills::eye_descriptions](https://psyteachr.github.io/msc-data-skills/data/eye_descriptions.csv) from last week's exercise.
 
 Create a list of the 10 most common descriptions from the eyes dataset. Remove useless descriptions and merge redundant descriptions.
     
-```{r Q15}
-
+```{r Q17}
 eyes <- dataskills::eye_descriptions %>%
   gather("face_id", "description", t1:t50) %>%
   separate(description, c("d1", "d2", "d3", "d4"), sep = "(,|;|\\/)+", extra = "merge", fill = "right") %>%
@@ -259,7 +331,7 @@ eyes <- dataskills::eye_descriptions %>%
   filter(row_number() < 11)
 ```
 
-```{r Q15-print, results='asis'}
+```{r Q17-print, results='asis'}
 # displays the table in a nice format
 knitr::kable(eyes) 
 ```

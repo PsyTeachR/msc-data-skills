@@ -1,0 +1,29 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Infant Mortality",
+    "schemaVersion": "Psych-DS 0.1.0",
+    "author": "Lisa DeBruine",
+    "description": "Infant mortality by country and year from the World Health Organisation.",
+    "license": "CC-BY 4.0",
+    "variableMeasured": [
+        {
+            "@type": "PropertyValue",
+            "name": "Country",
+            "description": "Country",
+            "dataType": "string"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Year",
+            "description": "Year",
+            "dataType": "int"
+        },
+        {
+            "@type": "PropertyValue",
+            "name": "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)",
+            "description": "Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)",
+            "dataType": "string"
+        }
+    ]
+}

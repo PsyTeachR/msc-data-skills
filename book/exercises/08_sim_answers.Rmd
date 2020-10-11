@@ -6,10 +6,10 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,
+                      error = TRUE)
 library("tidyverse")
-library("MASS")
-set.seed(1980) # makes sure random numbers are reproducible
 ```
 
 ## Generate Data
@@ -192,7 +192,7 @@ bvn2 <- function(n = 10, rho = 0, m1 = 0, m2 = 0, sd1 = 1, sd2 = 1) {
   sigma <- (stdevs %*% t(stdevs)) * cor_mat
   
   # sample from bivariate normal distribution
-  m <- mvrnorm(n, mu, sigma) 
+  m <- MASS::mvrnorm(n, mu, sigma) 
   
   # convert to a tibble to make it easier to deal with in further steps
   colnames(m) <- c("x", "y")

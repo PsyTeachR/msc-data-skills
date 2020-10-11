@@ -697,3 +697,10 @@ file.copy(
   to = "inst/book", 
   overwrite = TRUE, 
   recursive = TRUE)
+
+unlink("book/exercises/data", recursive = TRUE)
+file.copy(
+  from = "book/data",
+  to = "book/exercises/", 
+  overwrite = TRUE, 
+  recursive = TRUE)

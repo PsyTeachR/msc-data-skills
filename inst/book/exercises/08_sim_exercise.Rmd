@@ -6,10 +6,10 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # please do not alter this code chunk
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,
+                      error = TRUE)
 library("tidyverse")
-library("MASS")
-set.seed(1980) # makes sure random numbers are reproducible
 ```
 
 ## Generate Data
