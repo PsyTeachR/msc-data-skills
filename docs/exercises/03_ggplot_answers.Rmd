@@ -139,13 +139,12 @@ ggsave("dog_column.png")
 ```
 
 
-
 ```{r}
 # do not change; displays the images saved above
 knitr::include_graphics("dog_violin.png")
 knitr::include_graphics("dog_boxplot.png")
+knitr::include_graphics("dog_density.png")
 knitr::include_graphics("dog_column.png")
-knitr::include_graphics("dog_violin.png")
 ```
 
 
