@@ -677,26 +677,7 @@ file.copy(
   overwrite = TRUE, 
   recursive = TRUE)
 file.rename("book/data-raw", "book/data")
-
-# make zip file ----
-f <- list.files("book/data", full.names = TRUE)
-zipfile <- "book/data/data.zip"
-unlink(zipfile)
-zip(zipfile, f)
-
-unlink("docs/data", recursive = TRUE)
-file.copy(
-  from = "book/data",
-  to = "docs", 
-  overwrite = TRUE, 
-  recursive = TRUE)
-
-unlink("inst/book/data", recursive = TRUE)
-file.copy(
-  from = "book/data",
-  to = "inst/book", 
-  overwrite = TRUE, 
-  recursive = TRUE)
+unlink("book/data/_DATASET.R")
 
 unlink("book/exercises/data", recursive = TRUE)
 file.copy(
@@ -704,3 +685,13 @@ file.copy(
   to = "book/exercises/", 
   overwrite = TRUE, 
   recursive = TRUE)
+
+# make zip file ----
+setwd(rstudioapi::getActiveProject())
+setwd("book")
+f <- list.files("data", full.names = TRUE)
+zipfile <- "data/data.zip"
+unlink(zipfile)
+zip(zipfile, f)
+
+

@@ -397,7 +397,8 @@ summary(iris_mod) #print out the model summary</code></pre>
 ## (Intercept)  -3.20022    0.25689  -12.46   &lt;2e-16 ***
 ## Sepal.Length  0.75292    0.04353   17.30   &lt;2e-16 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.44 on 148 degrees of freedom
 ## Multiple R-squared:  0.669,  Adjusted R-squared:  0.6668 
@@ -435,8 +436,9 @@ err &lt;- rnorm(10, sd = 2)
 Yi &lt;- 3 - 7 * X + err
 
 Yi # print the values of Yi</code></pre>
-<pre><code>##  [1]  -0.7426784  -7.7594656 -20.9941041 -22.8379955 -31.3152752
-##  [6] -40.3503036 -45.3260546 -51.4067219 -60.7134652 -68.6375608</code></pre>
+<pre><code>##  [1]  -0.7426784  -7.7594656 -20.9941041 -22.8379955
+##  [5] -31.3152752 -40.3503036 -45.3260546 -51.4067219
+##  [9] -60.7134652 -68.6375608</code></pre>
 </div>
 </div>
 <div id="advanced" class="section level2">
@@ -545,7 +547,8 @@ summary(mod7) # print summary</code></pre>
 ## (Intercept) 80.00069    0.02015 3970.43   &lt;2e-16 ***
 ## X            0.51867    0.02012   25.77   &lt;2e-16 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 2.015 on 9998 degrees of freedom
 ## Multiple R-squared:  0.0623, Adjusted R-squared:  0.06221 

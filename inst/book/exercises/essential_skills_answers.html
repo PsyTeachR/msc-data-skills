@@ -438,56 +438,14 @@ a_to_e_1 &lt;- paste0(a_to_e, 1:5)</code></pre>
 <li><code>infmort</code>: load data in the CSV file “<a href="https://psyteachr.github.io/msc-data-skills/data/infmort.csv" class="uri">https://psyteachr.github.io/msc-data-skills/data/infmort.csv</a>” using the URL</li>
 <li><code>matmort</code>: download the excel file <a href="https://psyteachr.github.io/msc-data-skills/data/matmort.xls">matmort.xls</a> into a directory called <code>data</code> in the same directory as this file and load the local file using a function from the package <code>readxl</code></li>
 </ul>
-<pre class="r"><code>infmort &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/infmort.csv&quot;)
-matmort &lt;- read_xls(&quot;data/matmort.xls&quot;)</code></pre>
-</div>
-<div id="checks" class="section level2">
-<h2>Checks</h2>
-<p>The sections below let you check your work. There is no need to change anything. Knit this file to HTML. If you did everything right, all the answers should be appear as <code>correct</code> in the HTML report.</p>
-<p>The following sections let you check your work. If you did everything right, all the answers should be TRUE.</p>
-<div id="assigning-variables-and-data-types-1" class="section level3">
-<h3>Assigning Variables and Data Types</h3>
-<ul>
-<li><code>four</code>: correct</li>
-<li><code>one_plus_3</code>: correct</li>
-<li><code>double_four</code>: correct</li>
-<li><code>lower</code>: correct</li>
-<li><code>UPPER</code>: correct</li>
-</ul>
-</div>
-<div id="comparison-1" class="section level3">
-<h3>Comparison</h3>
-<ul>
-<li><code>comp_1_eq_2</code>: correct</li>
-<li><code>comp_a_eq_A</code>: correct</li>
-<li><code>comp_10_lt_20</code>: correct</li>
-<li><code>comp_four_gte_one_plus_3</code>: correct</li>
-</ul>
-</div>
-<div id="forming-a-vector-1" class="section level3">
-<h3>Forming a vector</h3>
-<ul>
-<li><code>beatles</code>: correct</li>
-<li><code>one_to_ten</code>: correct</li>
-<li><code>evens</code>: correct</li>
-<li><code>a_to_e</code>: correct</li>
-</ul>
-</div>
-<div id="vectorised-operations-1" class="section level3">
-<h3>Vectorised Operations</h3>
-<ul>
-<li><code>by_tens</code>: correct</li>
-<li><code>squares</code>: correct</li>
-<li><code>a_to_e_1</code>: correct</li>
-</ul>
-</div>
-<div id="loading-data-1" class="section level3">
-<h3>Loading Data</h3>
-<ul>
-<li><code>infmort</code>: correct</li>
-<li><code>matmort</code>: correct</li>
-</ul>
-</div>
+<pre class="r"><code>infmort &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/infmort.csv&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Country = col_character(),
+##   Year = col_double(),
+##   `Infant mortality rate (probability of dying between birth and age 1 per 1000 live births)` = col_character()
+## )</code></pre>
+<pre class="r"><code>matmort &lt;- read_xls(&quot;data/matmort.xls&quot;)</code></pre>
 </div>
 
 

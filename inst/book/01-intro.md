@@ -356,8 +356,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.33209096  0.17798514 -1.50143540  0.02520046  0.61365585 -0.18810480
-##  [7]  0.56473333 -1.45832017  0.97909560 -1.90200877
+##  [1]  1.26805190 -1.11607983  1.20597552 -1.68381828  1.59957596 -0.17019763
+##  [7] -0.01259189  0.96486323  1.20670932  1.35215272
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -368,8 +368,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.11511 100.82642 100.77255  99.63410  99.12436  98.65514  98.92609
-##  [8]  98.55353 100.25424 100.62855
+##  [1] 100.39237 100.09715 100.09022 100.47149  99.44287  99.53906  98.66711
+##  [8]  99.37695 100.45540 100.77515
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -380,8 +380,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 101.12643  99.92867  99.95339  98.81863  99.51707  99.70870 100.74900
-##  [8] 102.20166 100.23240  98.84115
+##  [1]  99.21405 100.52492 100.58784  99.72824  99.44543 101.44009 100.06809
+##  [8]  99.26637  99.09334 100.59184
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -392,8 +392,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -23.293755 -35.545860  -3.125931  20.032167 248.174146  -7.693114
-##  [7]  33.970485 -87.029177 -59.693231  49.114090
+##  [1]  -88.32641  170.60935  214.57845 -162.27169   41.84924  -91.53293
+##  [7]  -26.51385  -67.00296  -68.89044  163.96821
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:

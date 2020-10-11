@@ -59,70 +59,6 @@
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
@@ -498,79 +434,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="datasets" class="section level1">
 <h1><span class="header-section-number">D</span> Datasets</h1>
+<p>You can download a <a href="data/data.zip">zip file of the datasets</a> or access them from the class package with <code>getdata()</code>. The help files for each data table describe the data and each column. Each data table comes with a codebook in <a href="https://psych-ds.github.io/">Psych-DS</a> format.</p>
 <ul>
-<li><a href="data/disgust.csv">disgust.csv</a><br />
-Three domain disgust questionnaire
-<ul>
-<li><a href="dplyr.html#data-disgust">dplyr lesson</a></li>
-</ul></li>
-<li><a href="data/disgust_cors.csv">disgust_cors.csv</a><br />
-Correlations between questions on the three domain disgust questionnaire (calculated from <a href="data/disgust.csv">disgust.csv</a>)
-<ul>
-<li><a href="exercises/03_ggplot_exercise.Rmd">ggplot exercise</a></li>
-</ul></li>
-<li><a href="data/disgust_scores.csv">disgust_scores.csv</a><br />
-Subscale scores for the three domain disgust questionnaire (calculated from <a href="data/disgust.csv">disgust.csv</a>)
-<ul>
-<li><a href="exercises/02_data_exercise.Rmd">data exercise</a></li>
-<li><a href="exercises/03_ggplot_exercise.Rmd">ggplot exercise</a></li>
-<li><a href="exercises/06_joins_exercise.Rmd">joins exercise</a></li>
-</ul></li>
-<li><a href="data/EMBU_mother.csv">EMBU_mother.csv</a><br />
-EMBU parenting questionnaire (not used in chapters yet)</li>
-<li><a href="data/empathizing.csv">empathizing.csv</a><br />
-Empathizing questionnaire (not used in chapters yet)</li>
-<li><a href="data/eye_descriptions.csv">eye_descriptions.csv</a><br />
-Text descriptions of eyes
-<ul>
-<li><a href="exercises/04_tidyr_exercise.Rmd">tidyr exercise</a></li>
-<li><a href="exercises/05_dplyr_exercise.Rmd">dplyr exercise</a></li>
-</ul></li>
-<li><a href="data/family_composition.csv">family_composition.csv</a><br />
-Parents’ ages and number of siblings of different types
-<ul>
-<li><a href="exercises/04_tidyr_exercise.Rmd">tidyr exercise</a></li>
-<li><a href="exercises/05_dplyr_exercise.Rmd">dplyr exercise</a></li>
-</ul></li>
-<li><a href="data/infmort.csv">infmort.csv</a><br />
-Infant mortality by country and year
-<ul>
-<li><a href="#data-infmort">tidyr lesson</a></li>
-</ul></li>
-<li><a href="data/matmort.xls">matmort.xls</a><br />
-Maternal mortality by country and year
-<ul>
-<li><a href="#data-matmort">tidyr lesson</a></li>
-</ul></li>
-<li><a href="data/personality.csv">personality.csv</a><br />
-Five-factor personality questionnaire
-<ul>
-<li><a href="#data-personality">tidyr lesson</a></li>
-</ul></li>
-<li><a href="data/personality_scores.csv">personality_scores.csv</a><br />
-Subscale scores on the five-factor personality questionnaire (calculated from <a href="data/personality.csv">personality.csv</a>)
-<ul>
-<li><a href="exercises/06_joins_exercise.Rmd">joins exercise</a></li>
-</ul></li>
-<li><a href="data/sensation_seeking.csv">sensation_seeking.csv</a><br />
-Sensation-seeking questionnaire
-<ul>
-<li><a href="exercises/04_tidyr_exercise.Rmd">tidyr exercise</a></li>
-</ul></li>
-<li><a href="data/sortmasc.csv">sortmasc.csv</a><br />
-Data for face sorting task where 5 versions of averaged faces of varying masculinity are sorted in order of preference (not used in chapters yet)</li>
-<li><a href="data/systemizing.csv">systemizing.csv</a><br />
-Systemizing questionnaire (not used in chapters yet)</li>
-<li><a href="data/users.csv">users.csv</a><br />
-ID, sex, and birthday for participants in most questionnaires
-<ul>
-<li><a href="exercises/06_joins_exercise.Rmd">joins exercise</a></li>
-</ul></li>
-<li><a href="data/users2.csv">users2.csv</a><br />
-ID, sex, and birthday for participants in other questionnaires
-<ul>
-<li><a href="exercises/06_joins_exercise.Rmd">joins exercise</a></li>
-</ul></li>
+<li><a href="data/country_codes.csv">Country Codes</a> Multiple country, subregion, and region codes for 249 countries.</li>
+<li><a href="data/disgust_cors.csv">Three Domain Disgust Questionnaire (correlations)</a> Correlations among questions on the Three Domain Disgust Questionnaire (Tybur et al.)</li>
+<li><a href="data/disgust_scores.csv">Three Domain Disgust Questionnaire (scores)</a> A dataset containing subscale scores for to the Three Domain Disgust Questionnaire (Tybur et al.), calculated from [disgust].</li>
+<li><a href="data/disgust.csv">Three Domain Disgust Questionnaire (items)</a> A dataset containing responses to the 21 items in the Three Domain Disgust Questionnaire (Tybur et al.)</li>
+<li><a href="data/EMBU_mother.csv">Parental Attachment (Mothers)</a> Items starting with r, p and e are for the rejection (r), overprotection (p), and emotional warmth (e) subscales.</li>
+<li><a href="data/eq_data.csv">Empathizing Quotient</a> Reverse coded (Q#R) questions coded and strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.</li>
+<li><a href="data/experimentum_exps.csv">Experimentum Project Experiments</a> Data from a demo experiment on Experimentum <a href="https://debruine.github.io/experimentum/" class="uri">https://debruine.github.io/experimentum/</a>. Subjects are shown pairs of upright and inverted Mooney faces and asked to click on the upright face.</li>
+<li><a href="data/experimentum_quests.csv">Experimentum Project Questionnaires</a> Data from a demo questionnaire on Experimentum <a href="https://debruine.github.io/experimentum/" class="uri">https://debruine.github.io/experimentum/</a>. Subjects are asked questions about dogs to test the different questionnaire response types.</li>
+<li><a href="data/eye_descriptions.csv">Descriptions of Eyes</a> Participant’s written descriptions of the eyes of 50 people</li>
+<li><a href="data/family_composition.csv">Family Composition</a> Responses to a brief questionnaire about family composition.</li>
+<li><a href="data/infmort.csv">Infant Mortality</a> Infant mortality by country and year from the World Health Organisation.</li>
+<li><a href="data/matmort.xls">Maternal Mortality</a> Maternal mortality by country and year from the World Health Organisation.</li>
+<li><a href="data/mess.csv">Messy Data</a> A dataset with missing values, blank rows, incorrect data types, multiple values in one column, and multiple date types for practicing data import.</li>
+<li><a href="data/personality_scores.csv">5-Factor Personality Scores</a> Archival data from the Face Research Lab of a 5-factor personality questionnaire, with factor score calculated from [personality].</li>
+<li><a href="data/personality.csv">5-Factor Personality Items</a> Archival data from the Face Research Lab of a 5-factor personality questionnaire. Each question is labelled with the domain (Op = openness, Co = conscientiousness, Ex = extroversion, Ag = agreeableness, and Ne = neuroticism) and the question number. Participants rate each statement on a Likert scale from 0 (Never) to 6 (Always). Questions with REV have already been reverse-coded (0 = Always, 6 = Never).</li>
+<li><a href="data/pets.csv">Pets</a> A simulated dataset with one random factor (id), two categorical factors (pet, country) and three continuous variables (score, age, weight). This dataset is useful for practicing plotting.</li>
+<li><a href="data/psa001_agg.csv">First Impressions of Faces (Aggregated)</a> Aggregated data from Psychological Science Accelerator project: To Which World Regions Does the Valence-Dominance Model of Social Perception Apply? <a href="https://psyarxiv.com/n26dy" class="uri">https://psyarxiv.com/n26dy</a>. Mean ratings on 13 traits for each of 120 faces shown in 10 world regions. Face characteristics at [psa001_cfd_faces].</li>
+<li><a href="data/psa001_cfd_faces.csv">Face Characteristics</a> Face stimulus characteristics from Psychological Science Accelerator project: To Which World Regions Does the Valence-Dominance Model of Social Perception Apply? <a href="https://psyarxiv.com/n26dy" class="uri">https://psyarxiv.com/n26dy</a>. To be used with [psa001_agg].</li>
+<li><a href="data/sensation_seeking.csv">Sensation Seeking Scale</a> Zuckerman M. (1984). Sensation seeking: a comparative approach to a human trait. Behavioral and Brain Sciences. 7: 413-471.</li>
+<li><a href="data/smalldata.csv">Small Factorial Design: 2w*2b</a> Small simulated dataset (n = 5) with one within-subject factor (time) having 2 levels (pre and post) and one beteen-subject factor (group) having two levels(control and experimental). The dataset is in wide format and created with faux.</li>
+<li><a href="data/sq_data.csv">Systemizing Quotient</a> Reverse coded (Q#R) questions coded as strongly disagree = 2, slightly disagree = 1, else = 0. The other questions are coded as strongly agree = 2, slightly agree = 1, else = 0.
+c(“* <a href="data/stroop.csv">Stroop Task</a> 50 simulated subject in a stroop task viewing all combinations of word and ink colours blue, purple, green, red, and brown, 5 times each. Subjects respond with the ink colour. Subjects who do not respond in time have NA for response and rt.”, “* <a href="data/stroop.xlsx">Stroop Task</a> 50 simulated subject in a stroop task viewing all combinations of word and ink colours blue, purple, green, red, and brown, 5 times each. Subjects respond with the ink colour. Subjects who do not respond in time have NA for response and rt.”
+)</li>
+<li><a href="data/users.csv">User Demographics</a> A dataset with unique participant ID, sex and birth year. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users2].</li>
+<li><a href="data/users2.csv">User Demographics 2</a> A dataset with unique participant ID, birth year, and sex. To be used in conjunction with data from [disgust], [disgust_scores], [personality], [personality_scores], and [users].</li>
 </ul>
 
 </div>
@@ -737,20 +627,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
