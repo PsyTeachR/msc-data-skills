@@ -736,20 +736,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a normal distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] -0.33209096  0.17798514 -1.50143540  0.02520046  0.61365585 -0.18810480
-##  [7]  0.56473333 -1.45832017  0.97909560 -1.90200877</code></pre>
+<pre><code>##  [1]  0.2669165  1.0605590 -1.3915531 -0.8553797 -0.8003345  0.7677925
+##  [7] -0.4860294 -0.9112184  0.0322516 -0.4516594</code></pre>
 <p>If you want 10 numbers from a normal distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.11511 100.82642 100.77255  99.63410  99.12436  98.65514  98.92609
-##  [8]  98.55353 100.25424 100.62855</code></pre>
+<pre><code>##  [1]  98.62457 100.36135  99.61130  99.62508  97.82082 100.72101 101.23708
+##  [8]  99.07587  99.08824  99.46339</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 101.12643  99.92867  99.95339  98.81863  99.51707  99.70870 100.74900
-##  [8] 102.20166 100.23240  98.84115</code></pre>
+<pre><code>##  [1] 100.15748  99.57601  99.77144  98.37403 100.33573 101.04012 101.45168
+##  [8] 100.56424  99.06296  98.54100</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] -23.293755 -35.545860  -3.125931  20.032167 248.174146  -7.693114
-##  [7]  33.970485 -87.029177 -59.693231  49.114090</code></pre>
+<pre><code>##  [1]   -7.419780 -105.288808  111.463803  -47.098296   68.481231  139.118715
+##  [7]  -32.386512   39.090563   64.405717   -2.217438</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb34-2"><a href="intro.html#cb34-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>

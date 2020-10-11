@@ -2,13 +2,6 @@
 setwd(rstudioapi::getActiveProject())
 setwd("book")
 
-# render a chapter or the whole book
-browseURL(bookdown::preview_chapter("01-intro.Rmd"))
-browseURL(bookdown::render_book("index.Rmd"))
-
-
-
-
 # knit all exercise and answer Rmd files
 input <- list.files("exercises", "*.Rmd", full.names = TRUE)
 purrr::map(input, rmarkdown::render)
@@ -20,8 +13,9 @@ zipfile <- "exercises/msc-data-skills-exercises.zip"
 if (file.exists(zipfile)) file.remove(zipfile)
 zip(zipfile, c(f.zip, d.zip))
 
-
-
+# render a chapter or the whole book
+#browseURL(bookdown::preview_chapter("01-intro.Rmd"))
+browseURL(bookdown::render_book("index.Rmd"))
 
 # copies dir
 R.utils::copyDirectory(
