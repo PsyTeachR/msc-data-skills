@@ -1,7 +1,13 @@
 # Introduction to GLM {#glm}
 
+
+<img src="images/memes/glm_meme.png" class="meme right"
+     alt="Top panel: Fred from Scooby Doo, about to unmask a bound villain, with the text 't-test, ANOVA, Correlation, Regression, etc.'; Bottom panel: Villain unmasked, with the text: 'The general linear model'; credit: Stuart Ritchie">
+
+<!--
 <img src="images/memes/linear_regression.jpg" class="meme right"
      alt="Woody and Buzz from Toy Story. Top text: Linear Regression; Bottom text: Linear regression everywhere">
+     -->
 
 ## Learning Objectives {#ilo9}
 

@@ -197,7 +197,8 @@ csv_data <- read_csv("data/5factor.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   subj_id = col_character(),
 ##   O = col_double(),
@@ -741,7 +742,8 @@ mess <- read_csv("data/mess.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   `This is my messy dataset` = col_character()
 ## )
@@ -782,7 +784,8 @@ mess <- read_csv("data/mess.csv", skip = 2)
 ```
 
 ```
-## Parsed with column specification:
+## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   junk = col_character(),
 ##   order = col_character(),
