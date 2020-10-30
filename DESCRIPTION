@@ -32,6 +32,7 @@ Imports:
     readr,
     lubridate,
     purrr,
+    stringr,
     plotly,
     pwr,
     MASS,
@@ -53,7 +54,6 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 Depends: 
-    tidyverse,
     R (>= 2.10)
 URL: https://github.com/psyteachr/msc-data-skills
 BugReports: https://github.com/psyteachr/msc-data-skills/issues
