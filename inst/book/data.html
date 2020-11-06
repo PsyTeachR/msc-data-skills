@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-10-11" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -471,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>E</b> References</a></li>
+<li class="chapter" data-level="E" data-path="bookrefs.html"><a href="bookrefs.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -650,7 +650,8 @@ S05,5.428571429,4.4,2.444444444,4.714285714,1.625
 <p>There are six variables in this dataset, and their names are given in the first line of the file: <code>subj_id</code>, <code>O</code>, <code>C</code>, <code>E</code>, <code>A</code>, and <code>N</code>. You can see that the values for each of these variables are given in order, separated by commas, on each subsequent line of the file.</p>
 <p>When you read in CSV files, it is best practice to use the <code>readr::read_csv()</code> function. The <code>readr</code> package is automatically loaded as part of the <code>tidyverse</code> package, which we will be using in almost every script. Note that you would normally want to store the result of the <code>read_csv()</code> function to an object, as so:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="data.html#cb62-1"></a>csv_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/5factor.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   subj_id = col_character(),
 ##   O = col_double(),
@@ -969,7 +970,8 @@ We can get the vector of names using the <code>names()</code> function, and we c
 <p>What if you import some data and it guesses the wrong column type? The most common reason is that a numeric column has some non-numbers in it somewhere. Maybe someone wrote a note in an otherwise numeric column. Columns have to be all one data type, so if there are any characters, the whole column is converted to character strings, and numbers like <code>1.2</code> get represented as “1.2”, which will cause very weird errors like <code>"100" &lt; "9" == TRUE</code>. You can catch this by looking at the output from <code>read_csv()</code> or using <code>glimpse()</code> to check your data.</p>
 <p>The data directory you created with <code>dataskills::getdata()</code> contains a file called “mess.csv”. Let’s try loading this dataset.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data.html#cb116-1"></a>mess &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/mess.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   `This is my messy dataset` = col_character()
 ## )</code></pre>
@@ -995,7 +997,8 @@ junk,3,-0.62,c,FALSE,3 - 4,2020-01-3
 junk,4,2.03,d,T,4 - 5,2020-01-4</code></pre>
 <p>First, the file starts with a note: “This is my messy dataset”. We want to skip the first two lines. You can do this with the argument <code>skip</code> in <code>read_csv()</code>.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data.html#cb120-1"></a>mess &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/mess.csv&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   junk = col_character(),
 ##   order = col_character(),

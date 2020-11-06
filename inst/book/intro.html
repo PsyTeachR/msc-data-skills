@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-10-11" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -471,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>E</b> References</a></li>
+<li class="chapter" data-level="E" data-path="bookrefs.html"><a href="bookrefs.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -736,20 +736,20 @@ In the upper right corner of the Environment tab, change <strong><code>List</cod
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a normal distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1]  0.08877150 -1.23441487 -0.42843038 -0.98608816 -0.95120282  0.99698681
-##  [7]  2.11013509  0.39493163  1.13820501 -0.04419267</code></pre>
+<pre><code>##  [1] -0.56112761 -0.44184442  0.14384483  0.77863521  0.05948786 -1.81244784
+##  [7] -1.20741260 -0.11152577  0.22974702  0.85112654</code></pre>
 <p>If you want 10 numbers from a normal distribution with a mean of 100:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.94714  99.06014  99.92988 100.14409  99.10735 102.09732 100.62694
-##  [8] 103.16369 100.32037  99.43715</code></pre>
+<pre><code>##  [1]  99.72448  99.45198 100.23569 101.14009 101.05781 100.94718  99.98066
+##  [8] 100.15129 101.33158  99.74002</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1]  99.80613  97.97728 100.05279 101.02021  99.02472  99.22307  97.82903
-##  [8]  99.30728 100.67078  99.56119</code></pre>
+<pre><code>##  [1]  99.61813 100.10229  99.61647  99.51016 101.25204  99.28591  99.30795
+##  [8]  99.21735  99.55424  99.90630</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] -72.497408  85.935685 116.504099 -80.433652 -13.262055 236.855888
-##  [7] 139.703818 -25.094336 -81.042344  -2.241003</code></pre>
+<pre><code>##  [1]  161.82293 -107.48266   56.05834   12.27462   15.53552   31.27492
+##  [7]  -62.32577  192.50257   12.27538 -186.02131</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
 <span id="cb34-2"><a href="intro.html#cb34-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>

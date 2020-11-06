@@ -52,7 +52,6 @@
 ```{r libraries, results = 'hide', warning = FALSE, message = FALSE}
 # libraries needed for these examples
 library(tidyverse)
-library(MASS)
 set.seed(8675309) # makes sure random numbers are reproducible
 ```
 
@@ -590,11 +589,11 @@ height_age <- orig_height_age %>%
     age = as.numeric(Agemos)/12,
     sd = `1` - `0`
   ) %>%
-  dplyr::select(sex, age, mean = `0`, sd)
+  select(sex, age, mean = `0`, sd)
 ```
 
 ```{block, type="warning"}
-If you run the code above without putting `dplyr::` before the `select()` function, you might get an error message. This is because the `MASS` package also has a function called `select()` and, since we loaded `MASS` after `tidyverse`, the `MASS` function becomes the default. When you loaded `MASS`, you should have seen a warning like "The following object is masked from ‘package:dplyr’: select". You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.
+If you loaded the {MASS} package and run the code above without putting `dplyr::` before the `select()` function, you might get an error message. This is because the `MASS` package also has a function called `select()` and, if you loaded `MASS` after `tidyverse`, the `MASS` version of the function becomes the default. After loading `MASS`, you should see a warning like "The following object is masked from ‘package:dplyr’: select". You can use functions with the same name from different packages by specifying the package before the function name, separated by two colons.
 ```
 
 ### Plot

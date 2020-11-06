@@ -9,9 +9,9 @@ You will learn about functions and iteration by using simulation to calculate a 
 
 ### Basic
 
-1. Work with basic [iteration functions](#iteration-functions) `rep`, `seq`, `replicate`
-2. Use [`map()` and `apply()` functions](#map-apply) 
-3. Write your own [custom functions](#custom-functions) with `function()`
+1. Work with basic [iteration functions](#iteration-functions) `rep`, `seq`, `replicate` [(video)](https://youtu.be/X3zFA71JzgE){class="video"}
+2. Use [`map()` and `apply()` functions](#map-apply) [(video)](https://youtu.be/HcZxQZwJ8T4){class="video"}
+3. Write your own [custom functions](#custom-functions) with `function()` [(video)](https://youtu.be/Qqjva0xgYC4){class="video"}
 4. Set [default values](#defaults) for the arguments in your functions
 
 ### Intermediate

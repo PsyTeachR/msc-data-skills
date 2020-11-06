@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-10-11" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -471,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B" data-path="symbols.html"><a href="symbols.html"><i class="fa fa-check"></i><b>B</b> Symbols</a></li>
 <li class="chapter" data-level="C" data-path="exercise-answers.html"><a href="exercise-answers.html"><i class="fa fa-check"></i><b>C</b> Exercise Answers</a></li>
 <li class="chapter" data-level="D" data-path="datasets.html"><a href="datasets.html"><i class="fa fa-check"></i><b>D</b> Datasets</a></li>
-<li class="chapter" data-level="E" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>E</b> References</a></li>
+<li class="chapter" data-level="E" data-path="bookrefs.html"><a href="bookrefs.html"><i class="fa fa-check"></i><b>E</b> References</a></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -542,10 +542,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="setup10" class="section level2">
 <h2><span class="header-section-number">10.3</span> Setup</h2>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="repro.html#cb522-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb522-2"><a href="repro.html#cb522-2"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb522-3"><a href="repro.html#cb522-3"></a><span class="kw">library</span>(broom)</span>
-<span id="cb522-4"><a href="repro.html#cb522-4"></a><span class="kw">set.seed</span>(<span class="dv">8675309</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="repro.html#cb521-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb521-2"><a href="repro.html#cb521-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb521-3"><a href="repro.html#cb521-3"></a><span class="kw">library</span>(broom)</span>
+<span id="cb521-4"><a href="repro.html#cb521-4"></a><span class="kw">set.seed</span>(<span class="dv">8675309</span>)</span></code></pre></div>
 </div>
 <div id="r-markdown" class="section level2">
 <h2><span class="header-section-number">10.4</span> R Markdown</h2>
@@ -556,21 +556,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When you create a new R Markdown file in RStudio, a setup chunk is automatically created.</p>
 <div class="verbatim">
 <p><code>```{r setup, include=FALSE}</code></p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="repro.html#cb523-1"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="repro.html#cb522-1"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <code>```</code>
 </div>
 <p>You can set more default options for code chunks here. See the <a href="https://yihui.name/knitr/options/">knitr options documentation</a> for explanations of the possible options.</p>
 <div class="verbatim">
 <p><code>```{r setup, include=FALSE}</code></p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="repro.html#cb524-1"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</span>
-<span id="cb524-2"><a href="repro.html#cb524-2"></a>  <span class="dt">fig.width  =</span> <span class="dv">8</span>, </span>
-<span id="cb524-3"><a href="repro.html#cb524-3"></a>  <span class="dt">fig.height =</span> <span class="dv">5</span>, </span>
-<span id="cb524-4"><a href="repro.html#cb524-4"></a>  <span class="dt">fig.path   =</span> <span class="st">&#39;images/&#39;</span>,</span>
-<span id="cb524-5"><a href="repro.html#cb524-5"></a>  <span class="dt">echo       =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb524-6"><a href="repro.html#cb524-6"></a>  <span class="dt">warning    =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb524-7"><a href="repro.html#cb524-7"></a>  <span class="dt">message    =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb524-8"><a href="repro.html#cb524-8"></a>  <span class="dt">cache      =</span> <span class="ot">FALSE</span></span>
-<span id="cb524-9"><a href="repro.html#cb524-9"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="repro.html#cb523-1"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</span>
+<span id="cb523-2"><a href="repro.html#cb523-2"></a>  <span class="dt">fig.width  =</span> <span class="dv">8</span>, </span>
+<span id="cb523-3"><a href="repro.html#cb523-3"></a>  <span class="dt">fig.height =</span> <span class="dv">5</span>, </span>
+<span id="cb523-4"><a href="repro.html#cb523-4"></a>  <span class="dt">fig.path   =</span> <span class="st">&#39;images/&#39;</span>,</span>
+<span id="cb523-5"><a href="repro.html#cb523-5"></a>  <span class="dt">echo       =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb523-6"><a href="repro.html#cb523-6"></a>  <span class="dt">warning    =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb523-7"><a href="repro.html#cb523-7"></a>  <span class="dt">message    =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb523-8"><a href="repro.html#cb523-8"></a>  <span class="dt">cache      =</span> <span class="ot">FALSE</span></span>
+<span id="cb523-9"><a href="repro.html#cb523-9"></a>)</span></code></pre></div>
 <code>```</code>
 </div>
 <p>The code above sets the following options:</p>
@@ -648,22 +648,22 @@ What does it all mean?
 <p class="alert alert-info">
 This function was modified to add sex and effect-code both sex and group. Using the <code>recode</code> function to set effect or difference coding makes it clearer which value corresponds to which level. There is no effect of sex or interaction with group in these simulated data.
 </p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="repro.html#cb527-1"></a>two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {</span>
-<span id="cb527-2"><a href="repro.html#cb527-2"></a>  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb527-3"><a href="repro.html#cb527-3"></a>               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),</span>
-<span id="cb527-4"><a href="repro.html#cb527-4"></a>         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),</span>
-<span id="cb527-5"><a href="repro.html#cb527-5"></a>         <span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="dt">times =</span> n_per_group))</span>
-<span id="cb527-6"><a href="repro.html#cb527-6"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb527-7"><a href="repro.html#cb527-7"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
-<span id="cb527-8"><a href="repro.html#cb527-8"></a>      <span class="dt">grp_e =</span> <span class="kw">recode</span>(grp, <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>),</span>
-<span id="cb527-9"><a href="repro.html#cb527-9"></a>      <span class="dt">sex_e =</span> <span class="kw">recode</span>(sex, <span class="st">&quot;female&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;male&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>)</span>
-<span id="cb527-10"><a href="repro.html#cb527-10"></a>    )</span>
-<span id="cb527-11"><a href="repro.html#cb527-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="repro.html#cb526-1"></a>two_sample &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">diff =</span> <span class="fl">0.5</span>, <span class="dt">n_per_group =</span> <span class="dv">20</span>) {</span>
+<span id="cb526-2"><a href="repro.html#cb526-2"></a>  <span class="kw">tibble</span>(<span class="dt">Y =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n_per_group, <span class="fl">-.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb526-3"><a href="repro.html#cb526-3"></a>               <span class="kw">rnorm</span>(n_per_group, <span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>diff, <span class="dt">sd =</span> <span class="dv">1</span>)),</span>
+<span id="cb526-4"><a href="repro.html#cb526-4"></a>         <span class="dt">grp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">each =</span> n_per_group)),</span>
+<span id="cb526-5"><a href="repro.html#cb526-5"></a>         <span class="dt">sex =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>), <span class="dt">times =</span> n_per_group))</span>
+<span id="cb526-6"><a href="repro.html#cb526-6"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb526-7"><a href="repro.html#cb526-7"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb526-8"><a href="repro.html#cb526-8"></a>      <span class="dt">grp_e =</span> <span class="kw">recode</span>(grp, <span class="st">&quot;a&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>),</span>
+<span id="cb526-9"><a href="repro.html#cb526-9"></a>      <span class="dt">sex_e =</span> <span class="kw">recode</span>(sex, <span class="st">&quot;female&quot;</span> =<span class="st"> </span><span class="fl">-0.5</span>, <span class="st">&quot;male&quot;</span> =<span class="st"> </span><span class="fl">0.5</span>)</span>
+<span id="cb526-10"><a href="repro.html#cb526-10"></a>    )</span>
+<span id="cb526-11"><a href="repro.html#cb526-11"></a>}</span></code></pre></div>
 <p class="alert alert-warning">
 This function requires the <code>tibble</code> and <code>dplyr</code> packages, so remember to load the whole tidyverse package at the top of this script (e.g., in the setup chunk).
 </p>
 <p>Now we can make a separate code chunk to create our simulated dataset <code>dat</code>.</p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="repro.html#cb528-1"></a>dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dt">diff =</span> <span class="fl">0.75</span>, <span class="dt">n_per_group =</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="repro.html#cb527-1"></a>dat &lt;-<span class="st"> </span><span class="kw">two_sample</span>(<span class="dt">diff =</span> <span class="fl">0.75</span>, <span class="dt">n_per_group =</span> <span class="dv">100</span>)</span></code></pre></div>
 <div id="tables" class="section level4">
 <h4><span class="header-section-number">10.4.4.1</span> Tables</h4>
 <p>Next, create a code chunk where you want to display a table of the descriptives (e.g., Participants section of the Methods). We’ll use tidyverse functions you learned in the <a href="04_wrangling.html">data wrangling lectures</a> to create summary statistics for each group.</p>
@@ -768,27 +768,27 @@ Figure 10.1: Figure 1. Scores by group and sex.
 <li>Move the code for creating <code>dat</code> to this file.</li>
 <li>Add the following code to the end of the setup chunk:</li>
 </ul>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="repro.html#cb532-1"></a><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span>
-<span id="cb532-2"><a href="repro.html#cb532-2"></a><span class="kw">source</span>(<span class="st">&quot;analysis.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="repro.html#cb531-1"></a><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</span>
+<span id="cb531-2"><a href="repro.html#cb531-2"></a><span class="kw">source</span>(<span class="st">&quot;analysis.R&quot;</span>)</span></code></pre></div>
 <p>The <code>source</code> function lets you include code from an external file. This is really useful for making your documents readable. Just make sure you call your source files in the right order (e.g., include function definitions before you use the functions).</p>
 <p>In the “analysis.R” file, we’re going to run the analysis code and save any numbers we might want to use in our manuscript to variables.</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="repro.html#cb533-1"></a>grp_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>grp_e <span class="op">*</span><span class="st"> </span>sex_e, <span class="dt">data =</span> dat)</span>
-<span id="cb533-2"><a href="repro.html#cb533-2"></a></span>
-<span id="cb533-3"><a href="repro.html#cb533-3"></a>stats &lt;-<span class="st"> </span>grp_lm <span class="op">%&gt;%</span></span>
-<span id="cb533-4"><a href="repro.html#cb533-4"></a><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></span>
-<span id="cb533-5"><a href="repro.html#cb533-5"></a><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="repro.html#cb532-1"></a>grp_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>grp_e <span class="op">*</span><span class="st"> </span>sex_e, <span class="dt">data =</span> dat)</span>
+<span id="cb532-2"><a href="repro.html#cb532-2"></a></span>
+<span id="cb532-3"><a href="repro.html#cb532-3"></a>stats &lt;-<span class="st"> </span>grp_lm <span class="op">%&gt;%</span></span>
+<span id="cb532-4"><a href="repro.html#cb532-4"></a><span class="st">  </span>broom<span class="op">::</span><span class="kw">tidy</span>() <span class="op">%&gt;%</span></span>
+<span id="cb532-5"><a href="repro.html#cb532-5"></a><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</span></code></pre></div>
 <p>The code above runs our analysis predicting <code>Y</code> from the effect-coded group variable <code>grp_e</code>, the effect-coded sex variable <code>sex_e</code> and their intereaction. The <code>tidy</code> function from the <code>broom</code> package turns the output into a tidy table. The <code>mutate_if</code> function uses the function <code>is.numeric</code> to check if each column should be mutated, adn if it is numeric, applies the <code>round</code> function with the digits argument set to 3.</p>
 <p>If you want to report the results of the analysis in a paragraph istead of a table, you need to know how to refer to each number in the table. Like with everything in R, there are many wways to do this. One is by specifying the column and row number like this:</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="repro.html#cb534-1"></a>stats<span class="op">$</span>p.value[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="repro.html#cb533-1"></a>stats<span class="op">$</span>p.value[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>Another way is to create variables for each row like this:</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="repro.html#cb536-1"></a>grp_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e&quot;</span>)</span>
-<span id="cb536-2"><a href="repro.html#cb536-2"></a>sex_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;sex_e&quot;</span>)</span>
-<span id="cb536-3"><a href="repro.html#cb536-3"></a>ixn_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e:sex_e&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="repro.html#cb535-1"></a>grp_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e&quot;</span>)</span>
+<span id="cb535-2"><a href="repro.html#cb535-2"></a>sex_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;sex_e&quot;</span>)</span>
+<span id="cb535-3"><a href="repro.html#cb535-3"></a>ixn_stats &lt;-<span class="st"> </span><span class="kw">filter</span>(stats, term <span class="op">==</span><span class="st"> &quot;grp_e:sex_e&quot;</span>)</span></code></pre></div>
 <p>Add the above code to the end of your analysis.R file. Then you can refer to columns by name like this:</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="repro.html#cb537-1"></a>grp_stats<span class="op">$</span>p.value</span>
-<span id="cb537-2"><a href="repro.html#cb537-2"></a>sex_stats<span class="op">$</span>statistic</span>
-<span id="cb537-3"><a href="repro.html#cb537-3"></a>ixn_stats<span class="op">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="repro.html#cb536-1"></a>grp_stats<span class="op">$</span>p.value</span>
+<span id="cb536-2"><a href="repro.html#cb536-2"></a>sex_stats<span class="op">$</span>statistic</span>
+<span id="cb536-3"><a href="repro.html#cb536-3"></a>ixn_stats<span class="op">$</span>estimate</span></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 0.197
 ## [1] -0.099</code></pre>
@@ -823,21 +823,21 @@ p = 0.717).</p>
 Remember, line breaks are ignored when you render the file (unless you add two spaces at the end of lines), so you can use line breaks to make it easier to read your text with inline R code.
 </p>
 <p>The p-values aren’t formatted in APA style. We wrote a function to deal with this in the <a href="07_functions.html">function lecture</a>. Add this function to the “functions.R” file and change the inline text to use the <code>report_p</code> function.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="repro.html#cb539-1"></a>report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</span>
-<span id="cb539-2"><a href="repro.html#cb539-2"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)</span>
-<span id="cb539-3"><a href="repro.html#cb539-3"></a>  <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)</span>
-<span id="cb539-4"><a href="repro.html#cb539-4"></a>  <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)</span>
-<span id="cb539-5"><a href="repro.html#cb539-5"></a>  </span>
-<span id="cb539-6"><a href="repro.html#cb539-6"></a>  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</span>
-<span id="cb539-7"><a href="repro.html#cb539-7"></a>    reported =<span class="st"> &quot;p &lt; .001&quot;</span></span>
-<span id="cb539-8"><a href="repro.html#cb539-8"></a>  } <span class="cf">else</span> {</span>
-<span id="cb539-9"><a href="repro.html#cb539-9"></a>    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</span>
-<span id="cb539-10"><a href="repro.html#cb539-10"></a>    fmt &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;p = %.&quot;</span>, digits, <span class="st">&quot;f&quot;</span>)</span>
-<span id="cb539-11"><a href="repro.html#cb539-11"></a>    reported =<span class="st"> </span><span class="kw">sprintf</span>(fmt, roundp)</span>
-<span id="cb539-12"><a href="repro.html#cb539-12"></a>  }</span>
-<span id="cb539-13"><a href="repro.html#cb539-13"></a>  </span>
-<span id="cb539-14"><a href="repro.html#cb539-14"></a>  reported</span>
-<span id="cb539-15"><a href="repro.html#cb539-15"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="repro.html#cb538-1"></a>report_p &lt;-<span class="st"> </span><span class="cf">function</span>(p, <span class="dt">digits =</span> <span class="dv">3</span>) {</span>
+<span id="cb538-2"><a href="repro.html#cb538-2"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.numeric</span>(p)) <span class="kw">stop</span>(<span class="st">&quot;p must be a number&quot;</span>)</span>
+<span id="cb538-3"><a href="repro.html#cb538-3"></a>  <span class="cf">if</span> (p <span class="op">&lt;=</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally greater than 0&quot;</span>)</span>
+<span id="cb538-4"><a href="repro.html#cb538-4"></a>  <span class="cf">if</span> (p <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">warning</span>(<span class="st">&quot;p-values are normally less than 1&quot;</span>)</span>
+<span id="cb538-5"><a href="repro.html#cb538-5"></a>  </span>
+<span id="cb538-6"><a href="repro.html#cb538-6"></a>  <span class="cf">if</span> (p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>) {</span>
+<span id="cb538-7"><a href="repro.html#cb538-7"></a>    reported =<span class="st"> &quot;p &lt; .001&quot;</span></span>
+<span id="cb538-8"><a href="repro.html#cb538-8"></a>  } <span class="cf">else</span> {</span>
+<span id="cb538-9"><a href="repro.html#cb538-9"></a>    roundp &lt;-<span class="st"> </span><span class="kw">round</span>(p, digits)</span>
+<span id="cb538-10"><a href="repro.html#cb538-10"></a>    fmt &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;p = %.&quot;</span>, digits, <span class="st">&quot;f&quot;</span>)</span>
+<span id="cb538-11"><a href="repro.html#cb538-11"></a>    reported =<span class="st"> </span><span class="kw">sprintf</span>(fmt, roundp)</span>
+<span id="cb538-12"><a href="repro.html#cb538-12"></a>  }</span>
+<span id="cb538-13"><a href="repro.html#cb538-13"></a>  </span>
+<span id="cb538-14"><a href="repro.html#cb538-14"></a>  reported</span>
+<span id="cb538-15"><a href="repro.html#cb538-15"></a>}</span></code></pre></div>
 <pre><code>Scores were higher in group B than group A 
 (B = &#96;r grp_stats$estimate&#96;, 
 t = &#96;r grp_stats$statistic&#96;, 
@@ -865,22 +865,22 @@ and the effect of group was not qualified by an interaction with sex
 t = -0.363,
 p = 0.717).</p>
 <p>You might also want to report the statistics for the regression. There are a lot of numbers to format and insert, so it is easier to do this in the analysis script using <code>sprintf</code> for formatting.</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="repro.html#cb540-1"></a>s &lt;-<span class="st"> </span><span class="kw">summary</span>(grp_lm)</span>
-<span id="cb540-2"><a href="repro.html#cb540-2"></a></span>
-<span id="cb540-3"><a href="repro.html#cb540-3"></a><span class="co"># calculate p value from fstatistic</span></span>
-<span id="cb540-4"><a href="repro.html#cb540-4"></a>fstat.p &lt;-<span class="st"> </span><span class="kw">pf</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], </span>
-<span id="cb540-5"><a href="repro.html#cb540-5"></a>              s<span class="op">$</span>fstatistic[<span class="dv">2</span>], </span>
-<span id="cb540-6"><a href="repro.html#cb540-6"></a>              s<span class="op">$</span>fstatistic[<span class="dv">3</span>], </span>
-<span id="cb540-7"><a href="repro.html#cb540-7"></a>              <span class="dt">lower=</span><span class="ot">FALSE</span>)</span>
-<span id="cb540-8"><a href="repro.html#cb540-8"></a></span>
-<span id="cb540-9"><a href="repro.html#cb540-9"></a>adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(</span>
-<span id="cb540-10"><a href="repro.html#cb540-10"></a>  <span class="st">&quot;The regression equation had an adjusted $R^{2}$ of %.3f ($F_{(%i, %i)}$ = %.3f, %s).&quot;</span>,</span>
-<span id="cb540-11"><a href="repro.html#cb540-11"></a>  <span class="kw">round</span>(s<span class="op">$</span>adj.r.squared, <span class="dv">3</span>),</span>
-<span id="cb540-12"><a href="repro.html#cb540-12"></a>  s<span class="op">$</span>fstatistic[<span class="dv">2</span>],</span>
-<span id="cb540-13"><a href="repro.html#cb540-13"></a>  s<span class="op">$</span>fstatistic[<span class="dv">3</span>],</span>
-<span id="cb540-14"><a href="repro.html#cb540-14"></a>  <span class="kw">round</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], <span class="dv">3</span>),</span>
-<span id="cb540-15"><a href="repro.html#cb540-15"></a>  <span class="kw">report_p</span>(fstat.p, <span class="dv">3</span>)</span>
-<span id="cb540-16"><a href="repro.html#cb540-16"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="repro.html#cb539-1"></a>s &lt;-<span class="st"> </span><span class="kw">summary</span>(grp_lm)</span>
+<span id="cb539-2"><a href="repro.html#cb539-2"></a></span>
+<span id="cb539-3"><a href="repro.html#cb539-3"></a><span class="co"># calculate p value from fstatistic</span></span>
+<span id="cb539-4"><a href="repro.html#cb539-4"></a>fstat.p &lt;-<span class="st"> </span><span class="kw">pf</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], </span>
+<span id="cb539-5"><a href="repro.html#cb539-5"></a>              s<span class="op">$</span>fstatistic[<span class="dv">2</span>], </span>
+<span id="cb539-6"><a href="repro.html#cb539-6"></a>              s<span class="op">$</span>fstatistic[<span class="dv">3</span>], </span>
+<span id="cb539-7"><a href="repro.html#cb539-7"></a>              <span class="dt">lower=</span><span class="ot">FALSE</span>)</span>
+<span id="cb539-8"><a href="repro.html#cb539-8"></a></span>
+<span id="cb539-9"><a href="repro.html#cb539-9"></a>adj_r &lt;-<span class="st"> </span><span class="kw">sprintf</span>(</span>
+<span id="cb539-10"><a href="repro.html#cb539-10"></a>  <span class="st">&quot;The regression equation had an adjusted $R^{2}$ of %.3f ($F_{(%i, %i)}$ = %.3f, %s).&quot;</span>,</span>
+<span id="cb539-11"><a href="repro.html#cb539-11"></a>  <span class="kw">round</span>(s<span class="op">$</span>adj.r.squared, <span class="dv">3</span>),</span>
+<span id="cb539-12"><a href="repro.html#cb539-12"></a>  s<span class="op">$</span>fstatistic[<span class="dv">2</span>],</span>
+<span id="cb539-13"><a href="repro.html#cb539-13"></a>  s<span class="op">$</span>fstatistic[<span class="dv">3</span>],</span>
+<span id="cb539-14"><a href="repro.html#cb539-14"></a>  <span class="kw">round</span>(s<span class="op">$</span>fstatistic[<span class="dv">1</span>], <span class="dv">3</span>),</span>
+<span id="cb539-15"><a href="repro.html#cb539-15"></a>  <span class="kw">report_p</span>(fstat.p, <span class="dv">3</span>)</span>
+<span id="cb539-16"><a href="repro.html#cb539-16"></a>)</span></code></pre></div>
 <p>Then you can just insert the text in your manuscript like this: ` adj_r`:</p>
 <p>The regression equation had an adjusted <span class="math inline">\(R^{2}\)</span> of 0.090 (<span class="math inline">\(F_{(3, 196)}\)</span> = 7.546, p &lt; .001).</p>
 </div>
@@ -907,19 +907,23 @@ p = 0.717).</p>
 <div id="citing-r-packages" class="section level4">
 <h4><span class="header-section-number">10.4.5.2</span> Citing R packages</h4>
 <p>You can get the citation for an R package using the function <code>citation</code>. You can paste the bibtex entry into your bibliography.bib file. Make sure to add a short name (e.g., “rmarkdown”) before the first comma to refer to the reference.</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="repro.html#cb542-1"></a><span class="kw">citation</span>(<span class="dt">package=</span><span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="repro.html#cb541-1"></a><span class="kw">citation</span>(<span class="dt">package=</span><span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## To cite the &#39;rmarkdown&#39; package in publications, please use:
 ## 
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi
 ##   and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and
 ##   Winston Chang and Richard Iannone (2020). rmarkdown: Dynamic
-##   Documents for R. R package version 2.3. URL
+##   Documents for R. R package version 2.4. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown:
 ##   The Definitive Guide. Chapman and Hall/CRC. ISBN 9781138359338. URL
 ##   https://bookdown.org/yihui/rmarkdown.
+## 
+##   Yihui Xie and Christophe Dervieux and Emily Riederer (2020). R
+##   Markdown Cookbook. Chapman and Hall/CRC. ISBN 9780367563837. URL
+##   https://bookdown.org/yihui/rmarkdown-cookbook.
 ## 
 ## To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;,
 ## bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set

@@ -14,8 +14,8 @@ if (file.exists(zipfile)) file.remove(zipfile)
 zip(zipfile, c(f.zip, d.zip))
 
 # render a chapter or the whole book
-browseURL(bookdown::preview_chapter("09-glm.Rmd"))
-browseURL(bookdown::render_book("index.Rmd"))
+#browseURL(bookdown::preview_chapter("09-glm.Rmd"))
+browseURL(bookdown::render_book("index.Rmd", new_session = TRUE))
 
 # copies dir
 R.utils::copyDirectory(
