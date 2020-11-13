@@ -36,7 +36,7 @@ The topics below are not (yet) covered in these materials, but they are directio
 * Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
-In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#custom-functions'>custom functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.
+In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='Repeating a process or function' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and custom <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.
 
 ## Setup  {#setup7}
 
@@ -175,7 +175,7 @@ replicate(n = 3, expr = rnorm(5))
 ## [5,]  1.0654161 0.90367770 -0.9945890
 ```
 
-By default, `replicate()` simplifies your result into a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you'd rather have a list of vectors, set `simplify = FALSE`.
+By default, `replicate()` simplifies your result into a <a class='glossary' target='_blank' title='A collection of numbers arranged into a fixed number of rows and columns' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you'd rather have a list of vectors, set `simplify = FALSE`.
 
 
 ```r
@@ -773,14 +773,14 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 
 
-|term                                                                                                                    |definition                                     |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>                 |A variable that provides input to a function.  |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#custom.functions'>custom functions</a> |NA                                             |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a>               |The kind of data represented by an object.     |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>                     |A data type representing a real decimal number |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a>               |NA                                             |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a>                     |NA                                             |
+|term                                                                                                      |definition                                                               |
+|:---------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>   |A variable that provides input to a function.                            |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a> |The kind of data represented by an object.                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>       |A data type representing a real decimal number                           |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#function.'>function </a> |A named section of code that can be reused.                              |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> |Repeating a process or function                                          |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a>       |A collection of numbers arranged into a fixed number of rows and columns |
 
 
 

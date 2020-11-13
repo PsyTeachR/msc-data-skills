@@ -21,7 +21,7 @@
     + [false positive](#false-pos) (type I error)
     + [false negative](#false-neg) (type II error)
     + confidence interval ([CI](#conf-inf))
-3. Test sampled distributions against a null hypothesis
+3. Test sampled distributions against a null hypothesis [(video)](https://youtu.be/Am3G6rA2S1s){class="video"} 
     + [exact binomial test](#exact-binom)
     + [t-test](#t-test) (1-sample, independent samples, paired samples)
     + [correlation](#correlation) (pearson, kendall and spearman)

@@ -36,7 +36,7 @@ The topics below are not (yet) covered in these materials, but they are directio
 * Chapters 19 and 21 of [R for Data Science](http://r4ds.had.co.nz)
 * [RStudio Apply Functions Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
-In the next two lectures, we are going to learn more about `r glossary("iteration")` (doing the same commands over and over) and `r glossary("custom functions")` through a data simulation exercise, which will also lead us into more traditional statistical topics.
+In the next two lectures, we are going to learn more about `r glossary("iteration")` (doing the same commands over and over) and custom `r glossary("function", "functions")` through a data simulation exercise, which will also lead us into more traditional statistical topics.
 
 ## Setup  {#setup7}
 

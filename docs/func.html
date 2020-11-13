@@ -553,7 +553,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Chapters 19 and 21 of <a href="http://r4ds.had.co.nz">R for Data Science</a></li>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf">RStudio Apply Functions Cheatsheet</a></li>
 </ul>
-<p>In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#custom-functions'>custom functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.</p>
+<p>In the next two lectures, we are going to learn more about <a class='glossary' target='_blank' title='Repeating a process or function' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> (doing the same commands over and over) and custom <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>functions</a> through a data simulation exercise, which will also lead us into more traditional statistical topics.</p>
 </div>
 <div id="setup7" class="section level2">
 <h2><span class="header-section-number">7.3</span> Setup</h2>
@@ -614,7 +614,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [3,] -0.6172088 0.67287232  0.1500832
 ## [4,]  2.0293916 0.57206650 -0.6599640
 ## [5,]  1.0654161 0.90367770 -0.9945890</code></pre>
-<p>By default, <code>replicate()</code> simplifies your result into a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you’d rather have a list of vectors, set <code>simplify = FALSE</code>.</p>
+<p>By default, <code>replicate()</code> simplifies your result into a <a class='glossary' target='_blank' title='A collection of numbers arranged into a fixed number of rows and columns' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you’d rather have a list of vectors, set <code>simplify = FALSE</code>.</p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="func.html#cb344-1"></a><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">expr =</span> <span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1]  1.9724587 -0.4418016 -0.9006372 -0.1505882 -0.8278942
@@ -976,6 +976,10 @@ Figure 7.2: @KellyBodwin
 <div id="glossary7" class="section level2">
 <h2><span class="header-section-number">7.7</span> Glossary</h2>
 <table>
+<colgroup>
+<col width="59%" />
+<col width="40%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">term</th>
@@ -988,24 +992,24 @@ Figure 7.2: @KellyBodwin
 <td align="left">A variable that provides input to a function.</td>
 </tr>
 <tr class="even">
-<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#custom.functions'>custom functions</a></td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a></td>
 <td align="left">The kind of data represented by an object.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a></td>
 <td align="left">A data type representing a real decimal number</td>
 </tr>
+<tr class="even">
+<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#function.'>function </a></td>
+<td align="left">A named section of code that can be reused.</td>
+</tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a></td>
-<td align="left">NA</td>
+<td align="left">Repeating a process or function</td>
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a></td>
-<td align="left">NA</td>
+<td align="left">A collection of numbers arranged into a fixed number of rows and columns</td>
 </tr>
 </tbody>
 </table>
