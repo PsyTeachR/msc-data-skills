@@ -137,7 +137,7 @@ You can break up mathematical expressions over multiple lines; R waits for a com
 ## [1] 55
 ```
 
-Text inside quotes is called a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#string'>string</a>.
+Text inside quotes is called a <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>string</a>.
 
 
 ```r
@@ -325,7 +325,7 @@ cat("3, 6, 9, the goose drank wine",
 
 A lot of what you do in R involves calling a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> and storing the results. A function is a named section of code that can be reused. 
 
-For example, `sd` is a function that returns the <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this: 
+For example, `sd` is a function that returns the <a class='glossary' target='_blank' title='A statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this: 
 
 `function_name(argument1, argument2 = "value")`. 
 
@@ -356,8 +356,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.56112761 -0.44184442  0.14384483  0.77863521  0.05948786 -1.81244784
-##  [7] -1.20741260 -0.11152577  0.22974702  0.85112654
+##  [1] -0.3248683  1.7088299  0.5226078 -0.5106658  1.5316343  1.3256852
+##  [7] -1.0510133 -1.0521228  1.6267299  0.5011562
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -368,8 +368,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1]  99.72448  99.45198 100.23569 101.14009 101.05781 100.94718  99.98066
-##  [8] 100.15129 101.33158  99.74002
+##  [1]  98.09492  99.44136  99.14546  99.62576 101.59536  98.63840  99.63883
+##  [8] 100.88232 101.62631  99.39642
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -380,8 +380,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1]  99.61813 100.10229  99.61647  99.51016 101.25204  99.28591  99.30795
-##  [8]  99.21735  99.55424  99.90630
+##  [1]  99.22145  98.28467 100.21616  99.94435 100.62183  98.98085 100.47637
+##  [8]  99.88511  99.18036 102.36374
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -392,8 +392,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1]  161.82293 -107.48266   56.05834   12.27462   15.53552   31.27492
-##  [7]  -62.32577  192.50257   12.27538 -186.02131
+##  [1]  -31.332076  170.947481   -7.784054   -2.845013  -85.592641   19.605922
+##  [7]  -37.882424   97.495099 -103.150735   47.185008
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -686,8 +686,8 @@ Each chapter ends with a glossary table defining the jargon introduced in this c
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#reproducible.research'>reproducible research</a> |Research that documents all of the steps between raw data and results in a way that can be verified.                                                                       |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#script'>script</a>                               |A plain-text file that contains commands in a coding language, such as R.                                                                                                  |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#scripts'>scripts</a>                             |NA                                                                                                                                                                         |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a>       |NA                                                                                                                                                                         |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#string'>string</a>                               |NA                                                                                                                                                                         |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a>       |A statistic that measures how spread out data are relative to the mean.                                                                                                    |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#string'>string</a>                               |A piece of text inside of quotes.                                                                                                                                          |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#variable'>variable</a>                           |A word that identifies and stores the value of some data for later use.                                                                                                    |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#vector'>vector</a>                               |A type of data structure that is basically a list of things like T/F values, numbers, or strings.                                                                          |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a>                       |Spaces, tabs and line breaks                                                                                                                                               |

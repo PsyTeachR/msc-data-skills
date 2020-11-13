@@ -102,11 +102,11 @@ The overview below lists the beginner learning outcomes only. Some lessons have 
     4. Set [default values](#defaults) for the arguments in your functions
 
 8. [Probability & Simulation](#sim)
-    1. Understand what types of data are best modeled by different distributions: uniform, binomial, normal, poisson
-    2. Generate and plot data randomly sampled from the above distributions
-    3. Test sampled distributions against a null hypothesis using: exact binomial test, t-test (1-sample, independent samples, paired samples), correlation (pearson, kendall and spearman)
-    4. Define the following statistical terms: [p-value](#p-value), [alpha](#alpha), [power](#power), smallest effect size of interest ([SESOI](#sesoi)), [false positive](#false-pos) (type I error), [false negative](#false-neg) (type II error), confidence interval ([CI](#conf-inf))
-    5. [Calculate power](#calc-power) using iteration and a sampling function
+    1. Generate and plot data randomly sampled from common distributions: uniform, binomial, normal, poisson
+    2. Generate related variables from a [multivariate](#mvdist) distribution
+    3. Define the following statistical terms: [p-value](#p-value), [alpha](#alpha), [power](#power), smallest effect size of interest ([SESOI](#sesoi)), [false positive](#false-pos) (type I error), [false negative](#false-neg) (type II error), confidence interval ([CI](#conf-inf))
+    4. Test sampled distributions against a null hypothesis using: [exact binomial test](#exact-binom), [t-test](#t-test) (1-sample, independent samples, paired samples), [correlation](#correlation) (pearson, kendall and spearman)
+    5. [Calculate power](#calc-power-binom) using iteration and a sampling function
 
 9. [Introduction to GLM](#glm)
     1. Define the [components](#glm-components) of the GLM

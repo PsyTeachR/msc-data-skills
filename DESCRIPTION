@@ -1,7 +1,7 @@
 Package: dataskills
 Title: Data Skills for Reproducible Science
-Version: 2.10
-Date: 2020-11-06
+Version: 2.11
+Date: 2020-11-13
 Authors@R: 
   c(
     person(
