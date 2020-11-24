@@ -14,11 +14,11 @@
 ### Basic
 
 1. Define the [components](#glm-components) of the GLM
-2. [Simulate data](#sim-glm) using GLM equations
+2. [Simulate data](#sim-glm) using GLM equations [(video)](https://youtu.be/JQ90LnVCbKc){class="video"}
 3. Identify the model parameters that correspond to the data-generation parameters
-4. Understand and plot [residuals](#residuals)
-5. [Predict new values](#predict) using the model
-6. Explain the differences among [coding schemes](#coding-schemes) 
+4. Understand and plot [residuals](#residuals) [(video)](https://youtu.be/sr-NtxiH2Qk){class="video"}
+5. [Predict new values](#predict) using the model [(video)](https://youtu.be/0o4LEbVVWfM){class="video"}
+6. Explain the differences among [coding schemes](#coding-schemes) [(video)](https://youtu.be/SqL28AbLj3g){class="video"}
 
 ### Intermediate
 
