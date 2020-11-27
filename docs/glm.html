@@ -603,13 +603,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="sim-glm" class="section level3">
 <h3><span class="header-section-number">9.4.3</span> Simulating data from GLM</h3>
-<p>A good way to learn about linear models is to <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#simulate'>simulate</a> data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.</p>
+<p>A good way to learn about linear models is to <a class='glossary' target='_blank' title='Generating data from summary parameters' href='https://psyteachr.github.io/glossary/s#simulation'>simulate</a> data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.</p>
 <p>We’ll start with a very simple linear model that just has a single categorical factor with two levels. Let’s say we’re predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (<code>mu</code>) is 800ms, and is 50ms faster for congruent than incongruent trials (<code>effect</code>).</p>
 <div class="warning">
 <p>A <strong>factor</strong> is a categorical variable that is used to divide subjects into groups, usually to draw some comparison. Factors are composed of different <strong>levels</strong>. Do not confuse factors with levels!</p>
 <p>In the example above, trial type is a <select class='solveme' name='q_1' data-answer='["factor"]'> <option></option> <option>factor</option> <option>level</option></select>, incongrunt is a <select class='solveme' name='q_2' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>, and congruent is a <select class='solveme' name='q_3' data-answer='["level"]'> <option></option> <option>factor</option> <option>level</option></select>.</p>
 </div>
-<p>You need to represent <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> factors with numbers. The numbers, or <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#coding'>coding</a> you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/e#effect-code'>effect code</a> the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.</p>
+<p>You need to represent <a class='glossary' target='_blank' title='Data that can only take certain values, such as types of pet.' href='https://psyteachr.github.io/glossary/c#categorical'>categorical</a> factors with numbers. The numbers, or <a class='glossary' target='_blank' title='How to represent categorical variables with numbers for use in models.' href='https://psyteachr.github.io/glossary/c#coding-scheme'>coding scheme</a> you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will <a class='glossary' target='_blank' title='A coding scheme for categorical variables that contrasts each group mean with the mean of all the group means.' href='https://psyteachr.github.io/glossary/e#effect-code'>effect code</a> the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.</p>
 <p>A person won’t always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/e#error-term'>error term</a> to each trial. We can’t know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution.</p>
 <p>Here, we’ll assume the error term is sampled from a <a class='glossary' target='_blank' title='A symmetric distribution of data where values near the centre are most probable.' href='https://psyteachr.github.io/glossary/n#normal-distribution'>normal distribution</a> with a <a class='glossary' target='_blank' title='A statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of 100 ms (the mean of the error term distribution is always 0). We’ll also sample 100 trials of each type, so we can see a range of variation.</p>
 <p>So first create variables for all of the parameters that describe your data.</p>
@@ -1046,8 +1046,8 @@ Using the code above, write your own function that takes a table of data and ret
 <h2><span class="header-section-number">9.7</span> Glossary</h2>
 <table>
 <colgroup>
-<col width="56%" />
-<col width="43%" />
+<col width="53%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1061,8 +1061,8 @@ Using the code above, write your own function that takes a table of data and ret
 <td align="left">Data that can only take certain values, such as types of pet.</td>
 </tr>
 <tr class="even">
-<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#coding'>coding</a></td>
-<td align="left">NA</td>
+<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#coding.scheme'>coding scheme</a></td>
+<td align="left">How to represent categorical variables with numbers for use in models.</td>
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#continuous'>continuous</a></td>
@@ -1074,7 +1074,7 @@ Using the code above, write your own function that takes a table of data and ret
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#effect.code'>effect code</a></td>
-<td align="left">NA</td>
+<td align="left">A coding scheme for categorical variables that contrasts each group mean with the mean of all the group means.</td>
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#error.term'>error term</a></td>
@@ -1101,8 +1101,8 @@ Using the code above, write your own function that takes a table of data and ret
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#simulate'>simulate</a></td>
-<td align="left">NA</td>
+<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#simulation'>simulation</a></td>
+<td align="left">Generating data from summary parameters</td>
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a></td>

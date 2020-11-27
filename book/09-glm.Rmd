@@ -72,7 +72,7 @@ Don't worry if this doesn't make sense until we walk through a concrete example.
 
 ### Simulating data from GLM {#sim-glm}
 
-A good way to learn about linear models is to `r glossary("simulate")` data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.
+A good way to learn about linear models is to `r glossary("simulation", "simulate")` data where you know exactly how the variables are related, and then analyse this simulated data to see where the parameters show up in the analysis.
 
 We'll start with a very simple linear model that just has a single categorical factor with two levels. Let's say we're predicting reaction times for congruent and incongruent trials in a Stroop task for a single participant. Average reaction time (`mu`) is 800ms, and is 50ms faster for congruent than incongruent trials (`effect`). 
 
@@ -82,7 +82,7 @@ A **factor** is a categorical variable that is used to divide subjects into grou
 In the example above, trial type is a `r mcq(c(answer = "factor", "level"))`, incongrunt is a `r mcq(c("factor", answer = "level"))`, and congruent is a `r mcq(c("factor", answer = "level"))`.
 </div>
 
-You need to represent `r glossary("categorical")` factors with numbers. The numbers, or `r glossary("coding")` you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will `r glossary("effect code")` the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
+You need to represent `r glossary("categorical")` factors with numbers. The numbers, or `r glossary("coding scheme")` you choose will affect the numbers you get out of the analysis and how you need to interpret them. Here, we will `r glossary("effect code")` the trial types so that congruent trials are coded as +0.5, and incongruent trials are coded as -0.5.
 
 A person won't always respond exactly the same way. They might be a little faster on some trials than others, due to random fluctuations in attention, learning about the task, or fatigue. So we can add an `r glossary("error term")` to each trial. We can't know how much any specific trial will differ, but we can characterise the distribution of how much trials differ from average and then sample from this distribution. 
 
