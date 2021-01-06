@@ -47,7 +47,7 @@ set.seed(30250) # makes sure random numbers are reproducible
 
 ### What is the GLM?
 
-The `r glossary("General Linear Model")` (GLM) is a general mathematical framework for expressing relationships among variables that can express or test `r glossary("linear")` relationships between a numerical `r glossary("dependent variable")` and any combination of `r glossary("categorical")` or `r glossary("continuous")` `r glossary("independent variable", "independent variables")`.
+The `r glossary("General Linear Model")` (GLM) is a general mathematical framework for expressing relationships among variables that can express or test linear relationships between a numerical `r glossary("dependent variable")` and any combination of `r glossary("categorical")` or `r glossary("continuous")` `r glossary("independent variable", "independent variables")`.
 
 ### Components {#glm-components}
 
@@ -141,7 +141,7 @@ Change the values of `mu` and `effect`, resimulate the data, and re-run the line
 
 ### Residuals {#residuals}
 
-You can use the `residuals()` function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the `r glossary("residuals")` below and compare it to the normal distribution we used for the error term.
+You can use the `residuals()` function to extract the error term for each each data point. This is the DV values, minus the estimates for the intercept and trial type. We'll make a density plot of the `r glossary("residual-error", "residuals")` below and compare it to the normal distribution we used for the error term.
 
 ```{r res-density-plot, fig.cap="Model residuals should be approximately normally distributed for each group"}
 res <- residuals(my_lm)

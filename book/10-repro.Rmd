@@ -47,7 +47,7 @@ set.seed(8675309)
 
 ## R Markdown
 
-By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a `r glossary("reproducible")` manuscript.
+By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a `r glossary("reproducibility", "reproducible")` manuscript.
 
 First, make a new R Markdown document.
 
@@ -149,7 +149,7 @@ What does it all mean?
 
 ### Code Chunks
 
-You can include `r glossary("code chunk", "code chunks")` that create and display images, tables, or computations to include in your text. Let's start by simulating some data.
+You can include `r glossary("chunk", "code chunks")` that create and display images, tables, or computations to include in your text. Let's start by simulating some data.
 
 First, create a code chunk in your document. You can put this before the abstract, since we won't be showing the code in this document. We'll use a modified version of the `two_sample` function from the [GLM lecture](09_glm.html) to create two groups with a difference of 0.75 and 100 observations per group. 
 

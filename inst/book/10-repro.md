@@ -48,7 +48,7 @@ set.seed(8675309)
 
 ## R Markdown
 
-By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/r#reproducible'>reproducible</a> manuscript.
+By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we'll explore some of the more advanced options and create an R Markdown document that produces a <a class='glossary' target='_blank' title='The extent to which the findings of a study can be repeated in some other context' href='https://psyteachr.github.io/glossary/r#reproducibility'>reproducible</a> manuscript.
 
 First, make a new R Markdown document.
 
@@ -94,7 +94,7 @@ The code above sets the following options:
 
 ### YAML Header
 
-The <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is where you can set several options. 
+The <a class='glossary' target='_blank' title='A structured format for information' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is where you can set several options. 
 
 ```
 ---
@@ -158,7 +158,7 @@ What does it all mean?
 
 ### Code Chunks
 
-You can include <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#code-chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. Let's start by simulating some data.
+You can include <a class='glossary' target='_blank' title='A block of R code in an R Markdown file.' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. Let's start by simulating some data.
 
 First, create a code chunk in your document. You can put this before the abstract, since we won't be showing the code in this document. We'll use a modified version of the `two_sample` function from the [GLM lecture](09_glm.html) to create two groups with a difference of 0.75 and 100 observations per group. 
 
@@ -475,7 +475,7 @@ citation(package="rmarkdown")
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi
 ##   and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and
 ##   Winston Chang and Richard Iannone (2020). rmarkdown: Dynamic
-##   Documents for R. R package version 2.4. URL
+##   Documents for R. R package version 2.6. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown:
@@ -565,12 +565,12 @@ Computational reproducibility refers to making all aspects of your analysis repr
 
 
 
-|term                                                                                                            |definition                                                                           |
-|:---------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#code.chunk'>code chunk</a>     |NA                                                                                   |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>         |A way to specify formatting, such as headers, paragraphs, lists, bolding, and links. |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#reproducible'>reproducible</a> |NA                                                                                   |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/y#yaml'>yaml</a>                 |NA                                                                                   |
+|term                                                                                                                  |definition                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a>                     |A block of R code in an R Markdown file.                                             |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>               |A way to specify formatting, such as headers, paragraphs, lists, bolding, and links. |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#reproducibility'>reproducibility</a> |The extent to which the findings of a study can be repeated in some other context    |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/y#yaml'>yaml</a>                       |A structured format for information                                                  |
 
 
 

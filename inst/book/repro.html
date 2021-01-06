@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-11-13" />
+<meta name="date" content="2021-01-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,7 +50,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -564,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="r-markdown" class="section level2">
 <h2><span class="header-section-number">10.4</span> R Markdown</h2>
-<p>By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we’ll explore some of the more advanced options and create an R Markdown document that produces a <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/r#reproducible'>reproducible</a> manuscript.</p>
+<p>By now you should be pretty comfortable working with R Markdown files from the weekly formative exercises and set exercises. Here, we’ll explore some of the more advanced options and create an R Markdown document that produces a <a class='glossary' target='_blank' title='The extent to which the findings of a study can be repeated in some other context' href='https://psyteachr.github.io/glossary/r#reproducibility'>reproducible</a> manuscript.</p>
 <p>First, make a new R Markdown document.</p>
 <div id="knitr-options" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> knitr options</h3>
@@ -601,7 +601,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="yaml-header" class="section level3">
 <h3><span class="header-section-number">10.4.2</span> YAML Header</h3>
-<p>The <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is where you can set several options.</p>
+<p>The <a class='glossary' target='_blank' title='A structured format for information' href='https://psyteachr.github.io/glossary/y#yaml'>YAML</a> header is where you can set several options.</p>
 <pre><code>---
 title: &quot;My Demo Document&quot;
 author: &quot;Me&quot;
@@ -658,7 +658,7 @@ What does it all mean?
 </div>
 <div id="code-chunks" class="section level3">
 <h3><span class="header-section-number">10.4.4</span> Code Chunks</h3>
-<p>You can include <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/c#code-chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. Let’s start by simulating some data.</p>
+<p>You can include <a class='glossary' target='_blank' title='A block of R code in an R Markdown file.' href='https://psyteachr.github.io/glossary/c#chunk'>code chunks</a> that create and display images, tables, or computations to include in your text. Let’s start by simulating some data.</p>
 <p>First, create a code chunk in your document. You can put this before the abstract, since we won’t be showing the code in this document. We’ll use a modified version of the <code>two_sample</code> function from the <a href="09_glm.html">GLM lecture</a> to create two groups with a difference of 0.75 and 100 observations per group.</p>
 <p class="alert alert-info">
 This function was modified to add sex and effect-code both sex and group. Using the <code>recode</code> function to set effect or difference coding makes it clearer which value corresponds to which level. There is no effect of sex or interaction with group in these simulated data.
@@ -929,7 +929,7 @@ p = 0.717).</p>
 ##   JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi
 ##   and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and
 ##   Winston Chang and Richard Iannone (2020). rmarkdown: Dynamic
-##   Documents for R. R package version 2.4. URL
+##   Documents for R. R package version 2.6. URL
 ##   https://rmarkdown.rstudio.com.
 ## 
 ##   Yihui Xie and J.J. Allaire and Garrett Grolemund (2018). R Markdown:
@@ -1005,8 +1005,8 @@ Add some citations to your bibliography.bib file, reference them in your text, a
 <h2><span class="header-section-number">10.5</span> Glossary</h2>
 <table>
 <colgroup>
-<col width="56%" />
-<col width="43%" />
+<col width="58%" />
+<col width="41%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1016,20 +1016,20 @@ Add some citations to your bibliography.bib file, reference them in your text, a
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#code.chunk'>code chunk</a></td>
-<td align="left">NA</td>
+<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a></td>
+<td align="left">A block of R code in an R Markdown file.</td>
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a></td>
 <td align="left">A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</td>
 </tr>
 <tr class="odd">
-<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#reproducible'>reproducible</a></td>
-<td align="left">NA</td>
+<td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#reproducibility'>reproducibility</a></td>
+<td align="left">The extent to which the findings of a study can be repeated in some other context</td>
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/y#yaml'>yaml</a></td>
-<td align="left">NA</td>
+<td align="left">A structured format for information</td>
 </tr>
 </tbody>
 </table>
