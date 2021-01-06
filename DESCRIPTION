@@ -45,7 +45,8 @@ Imports:
     ukbabynames,
     cowplot,
     rio,
-    rstudioapi
+    rstudioapi, 
+    tidyverse
 Suggests: 
     rmarkdown,
     zip,
