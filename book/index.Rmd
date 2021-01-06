@@ -29,7 +29,6 @@ This course aims to teach students the basic principles of reproducible research
 
 By the end of this course students will be able to:
 
-*	Draw on a range of specialised skills and techniques to formulate a research design appropriate to various kinds of questions in psychology and neuroscience
 *	Write scripts in R to organise and transform data sets using best accepted practices
 *	Explain basics of probability and its role in statistical inference
 *	Critically analyse data and report descriptive and inferential statistics in a reproducible manner
@@ -40,7 +39,7 @@ By the end of this course students will be able to:
     Each chapter has several short video lectures for the main learning outcomes at the playlist . The videos are captioned and watching with the captioning on is a useful way to learn the jargon of computational reproducibility. If you cannot access YouTube, the videos are available on the course Teams and Moodle sites or by request from the instructor.
 
 * [dataskills](https://github.com/psyteachr/msc-data-skills){target="_blank"}
-    This is a custom package R for this course. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
+    This is a custom R package for this course. You can install it with the code below. It will download all of the packages that are used in the book, along with an offline copy of this book, the shiny apps used in the book, and the exercises.
     
     ```{r, eval = FALSE}
     devtools::install_github("psyteachr/msc-data-skills")
@@ -145,8 +144,7 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 
 ## I found a bug!
 
-This book is a work in progress, so you might find errors. Please help me fix them! The best way is to open an [issue on github](https://github.com/PsyTeachR/msc-data-skills/issues){target="_blank"} that describes the error
-, but you can also mention it on the class Teams forum or [email Lisa](mailto:lisa.debruine@glasgow.ac.uk?subject=msc-data-skills).
+This book is a work in progress, so you might find errors. Please help me fix them! The best way is to open an [issue on github](https://github.com/PsyTeachR/msc-data-skills/issues){target="_blank"} that describes the error, but you can also mention it on the class Teams forum or [email Lisa](mailto:lisa.debruine@glasgow.ac.uk?subject=msc-data-skills).
 
 ## Other Resources 
 
