@@ -21,5 +21,9 @@ exercise <- function(chapter, filename = NULL, answers = FALSE) {
   }
   
   file.copy(f, filename)
-  utils::browseURL(filename)
+  
+  #open file for editing
+  if(rstudioapi::hasFun("navigateToFile")){
+    rstudioapi::navigateToFile(filename)
+  }
 }
