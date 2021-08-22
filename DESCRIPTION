@@ -44,7 +44,9 @@ Imports:
     shinydashboard,
     ukbabynames,
     cowplot,
-    rio
+    rio,
+    rstudioapi, 
+    tidyverse
 Suggests: 
     rmarkdown,
     zip,
