@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data Relations | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data Relations | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-01-06" />
+<meta name="date" content="2021-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="dplyr.html"/>
 <link rel="next" href="func.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.9.4/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,29 +50,47 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<meta property="og:title" content="Chapter 6 Data Relations | Data Skills for Reproducible Science">
+<meta property="og:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
+<meta property="og:image" content="https://psyteachr.github.io/images/twitter/msc_ds.png">
+<meta property="og:url" content="https://psyteachr.github.io/msc-data-skills">
+<meta property="twitter:card" content="summary_large_image">
+
+<link rel="shortcut icon" href="https://psyteachr.github.io/images/msc_ds.png">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6NP3MF25W3');
+</script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -91,7 +110,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -124,6 +143,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 <link rel="stylesheet" href="include/webex.css" type="text/css" />
@@ -140,11 +182,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
+<li><a href="https://psyteachr.github.io/reprores/" style="color: red;">Access the most up-to-date version</a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 <li><a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt">Video Playlist</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-resources"><i class="fa fa-check"></i><b>0.3</b> Course Resources</a></li>
@@ -153,15 +197,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#i-found-a-bug"><i class="fa fa-check"></i><b>0.6</b> I found a bug!</a></li>
 <li class="chapter" data-level="0.7" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i><b>0.7</b> Other Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#ilo1"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
 <li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
 <li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Objects</a></li>
 <li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
@@ -169,12 +216,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
 <li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
@@ -182,22 +231,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#glossary1"><i class="fa fa-check"></i><b>1.7</b> Glossary</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#exercises1"><i class="fa fa-check"></i><b>1.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a><ul>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#ilo2"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#resources2"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
 <li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#setup2"><i class="fa fa-check"></i><b>2.3</b> Setup</a></li>
-<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a><ul>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#builtin"><i class="fa fa-check"></i><b>2.4.1</b> Built-in data</a></li>
 <li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.4.2</b> Importing data</a></li>
 <li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#creating-data"><i class="fa fa-check"></i><b>2.4.3</b> Creating data</a></li>
 <li class="chapter" data-level="2.4.4" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.4.4</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#numeric-data"><i class="fa fa-check"></i><b>2.5.1</b> Numeric data</a></li>
 <li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#character-data"><i class="fa fa-check"></i><b>2.5.2</b> Character data</a></li>
 <li class="chapter" data-level="2.5.3" data-path="data.html"><a href="data.html#logical-data"><i class="fa fa-check"></i><b>2.5.3</b> Logical Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a><ul>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>2.6.2</b> Lists</a></li>
 <li class="chapter" data-level="2.6.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>2.6.3</b> Tables</a></li>
@@ -206,8 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="data.html"><a href="data.html#glossary2"><i class="fa fa-check"></i><b>2.8</b> Glossary</a></li>
 <li class="chapter" data-level="2.9" data-path="data.html"><a href="data.html#exercises2"><i class="fa fa-check"></i><b>2.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
-<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#ilo3"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#ilo3"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>3.1.1</b> Basic</a></li>
 <li class="chapter" data-level="3.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>3.1.2</b> Intermediate</a></li>
 </ul></li>
@@ -216,7 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#ggplots"><i class="fa fa-check"></i><b>3.6</b> GGplots</a></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#common-plot-types"><i class="fa fa-check"></i><b>3.7</b> Common Plot Types</a><ul>
+<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#common-plot-types"><i class="fa fa-check"></i><b>3.7</b> Common Plot Types</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.7.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#geom_density"><i class="fa fa-check"></i><b>3.7.2</b> Density plot</a></li>
 <li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#geom_freqpoly"><i class="fa fa-check"></i><b>3.7.3</b> Frequency polygons</a></li>
@@ -228,24 +284,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.9" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.7.9</b> Scatter plot</a></li>
 <li class="chapter" data-level="3.7.10" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.7.10</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.8</b> Customisation</a><ul>
+<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.8</b> Customisation</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.8.1</b> Labels</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.8.2</b> Colours</a></li>
 <li class="chapter" data-level="3.8.3" data-path="ggplot.html"><a href="ggplot.html#themes"><i class="fa fa-check"></i><b>3.8.3</b> Themes</a></li>
 <li class="chapter" data-level="3.8.4" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.8.4</b> Save as file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#combo_plots"><i class="fa fa-check"></i><b>3.9</b> Combination Plots</a><ul>
+<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#combo_plots"><i class="fa fa-check"></i><b>3.9</b> Combination Plots</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.9.1</b> Violinbox plot</a></li>
 <li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.9.2</b> Violin-point-range plot</a></li>
 <li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#violin-jitter-plot"><i class="fa fa-check"></i><b>3.9.3</b> Violin-jitter plot</a></li>
 <li class="chapter" data-level="3.9.4" data-path="ggplot.html"><a href="ggplot.html#scatter-line-graph"><i class="fa fa-check"></i><b>3.9.4</b> Scatter-line graph</a></li>
 <li class="chapter" data-level="3.9.5" data-path="ggplot.html"><a href="ggplot.html#cowplot"><i class="fa fa-check"></i><b>3.9.5</b> Grid of plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.10</b> Overlapping Discrete Data</a><ul>
+<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.10</b> Overlapping Discrete Data</a>
+<ul>
 <li class="chapter" data-level="3.10.1" data-path="ggplot.html"><a href="ggplot.html#reducing-opacity"><i class="fa fa-check"></i><b>3.10.1</b> Reducing Opacity</a></li>
 <li class="chapter" data-level="3.10.2" data-path="ggplot.html"><a href="ggplot.html#geom_count"><i class="fa fa-check"></i><b>3.10.2</b> Proportional Dot Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.11</b> Overlapping Continuous Data</a><ul>
+<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.11</b> Overlapping Continuous Data</a>
+<ul>
 <li class="chapter" data-level="3.11.1" data-path="ggplot.html"><a href="ggplot.html#geom_density2d"><i class="fa fa-check"></i><b>3.11.1</b> 2D Density Plot</a></li>
 <li class="chapter" data-level="3.11.2" data-path="ggplot.html"><a href="ggplot.html#geom_bin2d"><i class="fa fa-check"></i><b>3.11.2</b> 2D Histogram</a></li>
 <li class="chapter" data-level="3.11.3" data-path="ggplot.html"><a href="ggplot.html#geom_hex"><i class="fa fa-check"></i><b>3.11.3</b> Hexagonal Heatmap</a></li>
@@ -255,30 +315,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#glossary3"><i class="fa fa-check"></i><b>3.13</b> Glossary</a></li>
 <li class="chapter" data-level="3.14" data-path="ggplot.html"><a href="ggplot.html#exercises3"><i class="fa fa-check"></i><b>3.14</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#ilo4"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
+<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#ilo4"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
 <li class="chapter" data-level="4.1.2" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>4.1.2</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup4"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Tidy Data</a><ul>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Tidy Data</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="tidyr.html"><a href="tidyr.html#three-rules"><i class="fa fa-check"></i><b>4.4.1</b> Three Rules</a></li>
 <li class="chapter" data-level="4.4.2" data-path="tidyr.html"><a href="tidyr.html#wide_long"><i class="fa fa-check"></i><b>4.4.2</b> Wide versus long</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pivot"><i class="fa fa-check"></i><b>4.5</b> Pivot Functions</a><ul>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pivot"><i class="fa fa-check"></i><b>4.5</b> Pivot Functions</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.5.1</b> Load Data</a></li>
 <li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#pivot_longer"><i class="fa fa-check"></i><b>4.5.2</b> pivot_longer()</a></li>
 <li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#pivot_wider"><i class="fa fa-check"></i><b>4.5.3</b> pivot_wider()</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#tidy-verbs"><i class="fa fa-check"></i><b>4.6</b> Tidy Verbs</a><ul>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#tidy-verbs"><i class="fa fa-check"></i><b>4.6</b> Tidy Verbs</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6.1</b> gather()</a></li>
 <li class="chapter" data-level="4.6.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.6.2</b> separate()</a></li>
 <li class="chapter" data-level="4.6.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.6.3</b> unite()</a></li>
 <li class="chapter" data-level="4.6.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.6.4</b> spread()</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.7</b> Pipes</a></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.8</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.8</b> More Complex Example</a>
+<ul>
 <li class="chapter" data-level="4.8.1" data-path="tidyr.html"><a href="tidyr.html#load-data-1"><i class="fa fa-check"></i><b>4.8.1</b> Load Data</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.8.2</b> Wide to Long</a></li>
 <li class="chapter" data-level="4.8.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.8.3</b> One Piece of Data per Column</a></li>
@@ -289,16 +355,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#glossary4"><i class="fa fa-check"></i><b>4.9</b> Glossary</a></li>
 <li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#exercises4"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
-<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#ilo5"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
-<li class="chapter" data-level="5.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#ilo5"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="dplyr.html"><a href="dplyr.html#basic-2"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-1"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html#resources5"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
-<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup5"><i class="fa fa-check"></i><b>5.3</b> Setup</a><ul>
+<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup5"><i class="fa fa-check"></i><b>5.3</b> Setup</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="dplyr.html"><a href="dplyr.html#data-disgust"><i class="fa fa-check"></i><b>5.3.1</b> The <code>disgust</code> dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.4</b> Six main dplyr verbs</a><ul>
+<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.4</b> Six main dplyr verbs</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.4.1</b> select()</a></li>
 <li class="chapter" data-level="5.4.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.4.2</b> filter()</a></li>
 <li class="chapter" data-level="5.4.3" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.4.3</b> arrange()</a></li>
@@ -307,14 +377,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.6" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.4.6</b> group_by()</a></li>
 <li class="chapter" data-level="5.4.7" data-path="dplyr.html"><a href="dplyr.html#all-together"><i class="fa fa-check"></i><b>5.4.7</b> All Together</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.5</b> Additional dplyr one-table verbs</a><ul>
+<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.5</b> Additional dplyr one-table verbs</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.5.1</b> rename()</a></li>
 <li class="chapter" data-level="5.5.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.5.2</b> distinct()</a></li>
 <li class="chapter" data-level="5.5.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.5.3</b> count()</a></li>
 <li class="chapter" data-level="5.5.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.5.4</b> slice()</a></li>
 <li class="chapter" data-level="5.5.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.5.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.6</b> Window functions</a><ul>
+<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.6</b> Window functions</a>
+<ul>
 <li class="chapter" data-level="5.6.1" data-path="dplyr.html"><a href="dplyr.html#ranking-functions"><i class="fa fa-check"></i><b>5.6.1</b> Ranking functions</a></li>
 <li class="chapter" data-level="5.6.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>5.6.2</b> Offset functions</a></li>
 <li class="chapter" data-level="5.6.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>5.6.3</b> Cumulative aggregates</a></li>
@@ -322,26 +394,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#glossary5"><i class="fa fa-check"></i><b>5.7</b> Glossary</a></li>
 <li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html#exercises5"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
+<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#ilo6"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#setup6"><i class="fa fa-check"></i><b>6.3</b> Setup</a></li>
-<li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>6.4</b> Data</a></li>
-<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.5</b> Mutating Joins</a><ul>
+<li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.4</b> Data</a></li>
+<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.5</b> Mutating Joins</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.5.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.5.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.5.2</b> right_join()</a></li>
 <li class="chapter" data-level="6.5.3" data-path="joins.html"><a href="joins.html#inner_join"><i class="fa fa-check"></i><b>6.5.3</b> inner_join()</a></li>
 <li class="chapter" data-level="6.5.4" data-path="joins.html"><a href="joins.html#full_join"><i class="fa fa-check"></i><b>6.5.4</b> full_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.6</b> Filtering Joins</a><ul>
+<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.6</b> Filtering Joins</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="joins.html"><a href="joins.html#semi_join"><i class="fa fa-check"></i><b>6.6.1</b> semi_join()</a></li>
 <li class="chapter" data-level="6.6.2" data-path="joins.html"><a href="joins.html#anti_join"><i class="fa fa-check"></i><b>6.6.2</b> anti_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.7</b> Binding Joins</a><ul>
+<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.7</b> Binding Joins</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="joins.html"><a href="joins.html#bind_rows"><i class="fa fa-check"></i><b>6.7.1</b> bind_rows()</a></li>
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#bind_cols"><i class="fa fa-check"></i><b>6.7.2</b> bind_cols()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.8</b> Set Operations</a><ul>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.8</b> Set Operations</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#intersect"><i class="fa fa-check"></i><b>6.8.1</b> intersect()</a></li>
 <li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.8.2</b> union()</a></li>
 <li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.8.3</b> setdiff()</a></li>
@@ -349,28 +426,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.9" data-path="joins.html"><a href="joins.html#glossary6"><i class="fa fa-check"></i><b>6.9</b> Glossary</a></li>
 <li class="chapter" data-level="6.10" data-path="joins.html"><a href="joins.html#exercises6"><i class="fa fa-check"></i><b>6.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
-<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#ilo7"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#ilo7"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-2"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-1"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#setup7"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
-<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.4</b> Iteration functions</a><ul>
+<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.4</b> Iteration functions</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.4.1</b> rep()</a></li>
 <li class="chapter" data-level="7.4.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.4.2</b> seq()</a></li>
 <li class="chapter" data-level="7.4.3" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.4.3</b> replicate()</a></li>
 <li class="chapter" data-level="7.4.4" data-path="func.html"><a href="func.html#map-apply"><i class="fa fa-check"></i><b>7.4.4</b> map() and apply() functions</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom functions</a><ul>
+<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom functions</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.5.1</b> Structuring a function</a></li>
 <li class="chapter" data-level="7.5.2" data-path="func.html"><a href="func.html#arguments"><i class="fa fa-check"></i><b>7.5.2</b> Arguments</a></li>
 <li class="chapter" data-level="7.5.3" data-path="func.html"><a href="func.html#defaults"><i class="fa fa-check"></i><b>7.5.3</b> Argument defaults</a></li>
 <li class="chapter" data-level="7.5.4" data-path="func.html"><a href="func.html#scope"><i class="fa fa-check"></i><b>7.5.4</b> Scope</a></li>
 <li class="chapter" data-level="7.5.5" data-path="func.html"><a href="func.html#warnings-errors"><i class="fa fa-check"></i><b>7.5.5</b> Warnings and errors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.6</b> Iterating your own functions</a><ul>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.6</b> Iterating your own functions</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="func.html"><a href="func.html#rnorm"><i class="fa fa-check"></i><b>7.6.1</b> rnorm()</a></li>
 <li class="chapter" data-level="7.6.2" data-path="func.html"><a href="func.html#tibbletibble"><i class="fa fa-check"></i><b>7.6.2</b> tibble::tibble()</a></li>
 <li class="chapter" data-level="7.6.3" data-path="func.html"><a href="func.html#t.test"><i class="fa fa-check"></i><b>7.6.3</b> t.test()</a></li>
@@ -383,25 +465,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="func.html"><a href="func.html#glossary7"><i class="fa fa-check"></i><b>7.7</b> Glossary</a></li>
 <li class="chapter" data-level="7.8" data-path="func.html"><a href="func.html#exercises7"><i class="fa fa-check"></i><b>7.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
-<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#ilo8"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#ilo8"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-3"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#setup8"><i class="fa fa-check"></i><b>8.3</b> Setup</a></li>
-<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#univariate-distributions"><i class="fa fa-check"></i><b>8.4</b> Univariate Distributions</a><ul>
+<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#univariate-distributions"><i class="fa fa-check"></i><b>8.4</b> Univariate Distributions</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.4.1</b> Uniform Distribution</a></li>
 <li class="chapter" data-level="8.4.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.4.2</b> Binomial Distribution</a></li>
 <li class="chapter" data-level="8.4.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.4.3</b> Normal Distribution</a></li>
 <li class="chapter" data-level="8.4.4" data-path="sim.html"><a href="sim.html#poisson"><i class="fa fa-check"></i><b>8.4.4</b> Poisson Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#mvdist"><i class="fa fa-check"></i><b>8.5</b> Multivariate Distributions</a><ul>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#mvdist"><i class="fa fa-check"></i><b>8.5</b> Multivariate Distributions</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="sim.html"><a href="sim.html#bvn"><i class="fa fa-check"></i><b>8.5.1</b> Bivariate Normal</a></li>
 <li class="chapter" data-level="8.5.2" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.5.2</b> Multivariate Normal</a></li>
 <li class="chapter" data-level="8.5.3" data-path="sim.html"><a href="sim.html#faux"><i class="fa fa-check"></i><b>8.5.3</b> Faux</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="sim.html"><a href="sim.html#stat-terms"><i class="fa fa-check"></i><b>8.6</b> Statistical terms</a><ul>
+<li class="chapter" data-level="8.6" data-path="sim.html"><a href="sim.html#stat-terms"><i class="fa fa-check"></i><b>8.6</b> Statistical terms</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="sim.html"><a href="sim.html#effect"><i class="fa fa-check"></i><b>8.6.1</b> Effect</a></li>
 <li class="chapter" data-level="8.6.2" data-path="sim.html"><a href="sim.html#p-value"><i class="fa fa-check"></i><b>8.6.2</b> P-value</a></li>
 <li class="chapter" data-level="8.6.3" data-path="sim.html"><a href="sim.html#alpha"><i class="fa fa-check"></i><b>8.6.3</b> Alpha</a></li>
@@ -409,12 +496,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6.5" data-path="sim.html"><a href="sim.html#power"><i class="fa fa-check"></i><b>8.6.5</b> Power and SESOI</a></li>
 <li class="chapter" data-level="8.6.6" data-path="sim.html"><a href="sim.html#conf-int"><i class="fa fa-check"></i><b>8.6.6</b> Confidence Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="sim.html"><a href="sim.html#tests"><i class="fa fa-check"></i><b>8.7</b> Tests</a><ul>
+<li class="chapter" data-level="8.7" data-path="sim.html"><a href="sim.html#tests"><i class="fa fa-check"></i><b>8.7</b> Tests</a>
+<ul>
 <li class="chapter" data-level="8.7.1" data-path="sim.html"><a href="sim.html#exact-binom"><i class="fa fa-check"></i><b>8.7.1</b> Exact binomial test</a></li>
 <li class="chapter" data-level="8.7.2" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>8.7.2</b> T-test</a></li>
 <li class="chapter" data-level="8.7.3" data-path="sim.html"><a href="sim.html#correlation"><i class="fa fa-check"></i><b>8.7.3</b> Correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a><ul>
+<li class="chapter" data-level="8.8" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a>
+<ul>
 <li class="chapter" data-level="8.8.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.8.1</b> Load &amp; wrangle</a></li>
 <li class="chapter" data-level="8.8.2" data-path="sim.html"><a href="sim.html#plot"><i class="fa fa-check"></i><b>8.8.2</b> Plot</a></li>
 <li class="chapter" data-level="8.8.3" data-path="sim.html"><a href="sim.html#simulate-a-population"><i class="fa fa-check"></i><b>8.8.3</b> Simulate a population</a></li>
@@ -426,14 +515,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.9" data-path="sim.html"><a href="sim.html#glossary8"><i class="fa fa-check"></i><b>8.9</b> Glossary</a></li>
 <li class="chapter" data-level="8.10" data-path="sim.html"><a href="sim.html#exercises8"><i class="fa fa-check"></i><b>8.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
-<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#ilo9"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
-<li class="chapter" data-level="9.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#ilo9"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
+<li class="chapter" data-level="9.1.2" data-path="glm.html"><a href="glm.html#intermediate-4"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup9"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -442,26 +534,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.6" data-path="glm.html"><a href="glm.html#predict"><i class="fa fa-check"></i><b>9.4.6</b> Predict New Values</a></li>
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="glm.html"><a href="glm.html#means-variability-and-deviation-scores"><i class="fa fa-check"></i><b>9.6.1</b> Means, Variability, and Deviation Scores</a></li>
 <li class="chapter" data-level="9.6.2" data-path="glm.html"><a href="glm.html#decomp"><i class="fa fa-check"></i><b>9.6.2</b> Decomposition matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#glossary9"><i class="fa fa-check"></i><b>9.7</b> Glossary</a></li>
 <li class="chapter" data-level="9.8" data-path="glm.html"><a href="glm.html#exercises9"><i class="fa fa-check"></i><b>9.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
-<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#ilo10"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#ilo10"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-5"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-2"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#setup10"><i class="fa fa-check"></i><b>10.3</b> Setup</a></li>
-<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.4</b> R Markdown</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>10.4.1</b> knitr options</a></li>
 <li class="chapter" data-level="10.4.2" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>10.4.2</b> YAML Header</a></li>
 <li class="chapter" data-level="10.4.3" data-path="repro.html"><a href="repro.html#toc-and-document-headers"><i class="fa fa-check"></i><b>10.4.3</b> TOC and Document Headers</a></li>
@@ -473,11 +570,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="repro.html"><a href="repro.html#glossary10"><i class="fa fa-check"></i><b>10.5</b> Glossary</a></li>
 <li class="chapter" data-level="10.6" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>10.6</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a>
+<ul>
 <li class="chapter" data-level="10.7" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>10.7</b> Contributors</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a><ul>
+<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="installingr.html"><a href="installingr.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
 <li class="chapter" data-level="A.2" data-path="installingr.html"><a href="installingr.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="A.3" data-path="installingr.html"><a href="installingr.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
@@ -511,11 +610,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="joins" class="section level1">
+<div id="joins" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data Relations</h1>
 <p><img src="images/memes/joins.png" class="meme right"
      alt="3-panel meme. 1: dog looks at a baby in a chair, text reads 'An SQL query goes into a bar, walks up to two tables and asks...'; 2: baby looks at dog, text reads 'Can I join you?'; 3: dog and baby look at camera, no text"></p>
-<div id="ilo6" class="section level2">
+<div id="ilo6" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Learning Objectives</h2>
 <ol style="list-style-type: decimal">
 <li>Be able to use the 4 mutating join verbs: <a href="https://youtu.be/WV0yg6f3DNM" class="video">(video)</a>
@@ -543,7 +642,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 </div>
-<div id="resources6" class="section level2">
+<div id="resources6" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Resources</h2>
 <ul>
 <li><a href="http://r4ds.had.co.nz/relational-data.html">Chapter 13: Relational Data</a> in <em>R for Data Science</em></li>
@@ -551,20 +650,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="slides/05_joins_slides.pdf">Lecture slides on dplyr two-table verbs</a></li>
 </ul>
 </div>
-<div id="setup6" class="section level2">
+<div id="setup6" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Setup</h2>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="joins.html#cb283-1"></a><span class="co"># libraries needed</span></span>
-<span id="cb283-2"><a href="joins.html#cb283-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="joins.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries needed</span></span>
+<span id="cb269-2"><a href="joins.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
-<div id="data" class="section level2">
+<div id="data-1" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Data</h2>
 <p>First, we’ll create two small data tables.</p>
 <p><code>subject</code> has id, gender and age for subjects 1-5. Age and gender are missing for subject 3.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="joins.html#cb284-1"></a>subject &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb284-2"><a href="joins.html#cb284-2"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
-<span id="cb284-3"><a href="joins.html#cb284-3"></a>  <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;nb&quot;</span>, <span class="st">&quot;f&quot;</span>),</span>
-<span id="cb284-4"><a href="joins.html#cb284-4"></a>  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="ot">NA</span>, <span class="dv">19</span>, <span class="dv">18</span>)</span>
-<span id="cb284-5"><a href="joins.html#cb284-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="joins.html#cb270-1" aria-hidden="true" tabindex="-1"></a>subject <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb270-2"><a href="joins.html#cb270-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb270-3"><a href="joins.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;nb&quot;</span>, <span class="st">&quot;f&quot;</span>),</span>
+<span id="cb270-4"><a href="joins.html#cb270-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">22</span>, <span class="cn">NA</span>, <span class="dv">19</span>, <span class="dv">18</span>)</span>
+<span id="cb270-5"><a href="joins.html#cb270-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -602,10 +701,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><code>exp</code> has subject id and the score from an experiment. Some subjects are missing, some completed twice, and some are not in the subject table.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="joins.html#cb285-1"></a>exp &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb285-2"><a href="joins.html#cb285-2"></a>  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
-<span id="cb285-3"><a href="joins.html#cb285-3"></a>  <span class="dt">score =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)</span>
-<span id="cb285-4"><a href="joins.html#cb285-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="joins.html#cb271-1" aria-hidden="true" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb271-2"><a href="joins.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
+<span id="cb271-3"><a href="joins.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">3</span>)</span>
+<span id="cb271-4"><a href="joins.html#cb271-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -653,7 +752,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div id="mutating-joins" class="section level2">
+<div id="mutating-joins" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Mutating Joins</h2>
 <p><a class='glossary' target='_blank' title='Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.' href='https://psyteachr.github.io/glossary/m#mutating-joins'>Mutating joins</a> act like the <code>mutate()</code> function in that they add new columns to one table based on values in another table.</p>
 <p>All the mutating joins have this basic syntax:</p>
@@ -662,14 +761,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>x</code> = the first (left) table</li>
 <li><code>y</code> = the second (right) table</li>
 <li><code>by</code> = what columns to match on. If you leave this blank, it will match on all columns with the same names in the two tables.</li>
-<li><code>suffix</code> = if columns have the same name in the two tables, but you aren’t joining by them, they get a suffix to make them unambiguous. This defaults to “.x” and “.y”, but you can change it to something more meaningful.</li>
+<li><code>suffix</code> = if columns have the same name in the two tables, but you aren’t joining by them, they get a suffix to make them unambiguous. This defaults to “.x” and “.y,” but you can change it to something more meaningful.</li>
 </ul>
 <div class="info">
 <p>
 You can leave out the <code>by</code> argument if you’re matching on all of the columns with the same name, but it’s good practice to always specify it so your code is robust to changes in the loaded data.
 </p>
 </div>
-<div id="left_join" class="section level3">
+<div id="left_join" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> left_join()</h3>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-left-join"></span>
@@ -680,17 +779,63 @@ Figure 6.1: Left Join
 </div>
 </div>
 <p>A <code>left_join</code> keeps all the data from the first (left) table and joins anything that matches from the second (right) table. If the right table has more than one match for a row in the right table, there will be more than one row in the joined table (see ids 4 and 5).</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="joins.html#cb286-1"></a><span class="kw">left_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 4
-##      id gender   age score
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1     1 m         19    NA
-## 2     2 m         22    10
-## 3     3 &lt;NA&gt;      NA    18
-## 4     4 nb        19    21
-## 5     4 nb        19    23
-## 6     5 f         18     9
-## 7     5 f         18    11</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="joins.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(subject, exp, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">11</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-left-join-rev"></span>
 <img src="images/joins/left_join_rev.png" alt="Left Join (reversed)" width="100%" />
@@ -700,21 +845,77 @@ Figure 6.2: Left Join (reversed)
 </div>
 </div>
 <p>The order of tables is swapped here, so the result is all rows from the <code>exp</code> table joined to any matching rows from the <code>subject</code> table.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="joins.html#cb288-1"></a><span class="kw">left_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 9 x 4
-##      id score gender   age
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     2    10 m         22
-## 2     3    18 &lt;NA&gt;      NA
-## 3     4    21 nb        19
-## 4     4    23 nb        19
-## 5     5     9 f         18
-## 6     5    11 f         18
-## 7     6    11 &lt;NA&gt;      NA
-## 8     6    12 &lt;NA&gt;      NA
-## 9     7     3 &lt;NA&gt;      NA</code></pre>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="joins.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(exp, subject, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">score</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="left">m</td>
+<td align="right">22</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">18</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">21</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">23</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">9</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">11</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">11</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">12</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="right_join" class="section level3">
+</div>
+<div id="right_join" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> right_join()</h3>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-right-join"></span>
@@ -725,24 +926,80 @@ Figure 6.3: Right Join
 </div>
 </div>
 <p>A <code>right_join</code> keeps all the data from the second (right) table and joins anything that matches from the first (left) table.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="joins.html#cb290-1"></a><span class="kw">right_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 9 x 4
-##      id gender   age score
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1     2 m         22    10
-## 2     3 &lt;NA&gt;      NA    18
-## 3     4 nb        19    21
-## 4     4 nb        19    23
-## 5     5 f         18     9
-## 6     5 f         18    11
-## 7     6 &lt;NA&gt;      NA    11
-## 8     6 &lt;NA&gt;      NA    12
-## 9     7 &lt;NA&gt;      NA     3</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="joins.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(subject, exp, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="info">
 <p>This table has the same information as <code>left_join(exp, subject, by = "id")</code>, but the columns are in a different order (left table, then right table).</p>
 </div>
 </div>
-<div id="inner_join" class="section level3">
+<div id="inner_join" class="section level3" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> inner_join()</h3>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-inner-join"></span>
@@ -753,18 +1010,59 @@ Figure 6.4: Inner Join
 </div>
 </div>
 <p>An <code>inner_join</code> returns all the rows that have a match in the other table.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="joins.html#cb292-1"></a><span class="kw">inner_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
-##      id gender   age score
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1     2 m         22    10
-## 2     3 &lt;NA&gt;      NA    18
-## 3     4 nb        19    21
-## 4     4 nb        19    23
-## 5     5 f         18     9
-## 6     5 f         18    11</code></pre>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="joins.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(subject, exp, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">11</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="full_join" class="section level3">
+</div>
+<div id="full_join" class="section level3" number="6.5.4">
 <h3><span class="header-section-number">6.5.4</span> full_join()</h3>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-full-join"></span>
@@ -775,26 +1073,87 @@ Figure 6.5: Full Join
 </div>
 </div>
 <p>A <code>full_join</code> lets you join up rows in two tables while keeping all of the information from both tables. If a row doesn’t have a match in the other table, the other table’s column values are set to <code>NA</code>.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="joins.html#cb294-1"></a><span class="kw">full_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 4
-##       id gender   age score
-##    &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1     1 m         19    NA
-##  2     2 m         22    10
-##  3     3 &lt;NA&gt;      NA    18
-##  4     4 nb        19    21
-##  5     4 nb        19    23
-##  6     5 f         18     9
-##  7     5 f         18    11
-##  8     6 &lt;NA&gt;      NA    11
-##  9     6 &lt;NA&gt;      NA    12
-## 10     7 &lt;NA&gt;      NA     3</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="joins.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(subject, exp, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="filtering-joins" class="section level2">
+</div>
+<div id="filtering-joins" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Filtering Joins</h2>
-<p><a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the <code>filter()</code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table.</p>
-<div id="semi_join" class="section level3">
+<p><a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the <code>filter()</code> function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table.</p>
+<div id="semi_join" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> semi_join()</h3>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-semi-join"></span>
@@ -805,14 +1164,40 @@ Figure 6.6: Semi Join
 </div>
 </div>
 <p>A <code>semi_join</code> returns all rows from the left table where there are matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="joins.html#cb296-1"></a><span class="kw">semi_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 3
-##      id gender   age
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     2 m         22
-## 2     3 &lt;NA&gt;      NA
-## 3     4 nb        19
-## 4     5 f         18</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="joins.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(subject, exp, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="info">
 <p>
 Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.
@@ -827,18 +1212,45 @@ Figure 6.7: Semi Join (Reversed)
 </div>
 </div>
 <p>Order matters in a semi join.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="joins.html#cb298-1"></a><span class="kw">semi_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 2
-##      id score
-##   &lt;dbl&gt; &lt;dbl&gt;
-## 1     2    10
-## 2     3    18
-## 3     4    21
-## 4     4    23
-## 5     5     9
-## 6     5    11</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="joins.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semi_join</span>(exp, subject, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">11</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="anti_join" class="section level3">
+</div>
+<div id="anti_join" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> anti_join()</h3>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-anti-join"></span>
@@ -849,11 +1261,25 @@ Figure 6.8: Anti Join
 </div>
 </div>
 <p>An <code>anti_join</code> return all rows from the left table where there are <em>not</em> matching values in the right table, keeping just columns from the left table.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="joins.html#cb300-1"></a><span class="kw">anti_join</span>(subject, exp, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##      id gender   age
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     1 m         19</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="joins.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(subject, exp, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="join">
 <div class="figure" style="text-align: center"><span id="fig:img-anti-join-rev"></span>
 <img src="images/joins/anti_join_rev.png" alt="Anti Join (Reversed)" width="100%" />
@@ -863,128 +1289,353 @@ Figure 6.9: Anti Join (Reversed)
 </div>
 </div>
 <p>Order matters in an anti join.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="joins.html#cb302-1"></a><span class="kw">anti_join</span>(exp, subject, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##      id score
-##   &lt;dbl&gt; &lt;dbl&gt;
-## 1     6    11
-## 2     6    12
-## 3     7     3</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="joins.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anti_join</span>(exp, subject, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="binding-joins" class="section level2">
+</div>
+<div id="binding-joins" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Binding Joins</h2>
 <p><a class='glossary' target='_blank' title='Joins that bind one table to another by adding their rows or columns together.' href='https://psyteachr.github.io/glossary/b#binding-joins'>Binding joins</a> bind one table to another by adding their rows or columns together.</p>
-<div id="bind_rows" class="section level3">
+<div id="bind_rows" class="section level3" number="6.7.1">
 <h3><span class="header-section-number">6.7.1</span> bind_rows()</h3>
 <p>You can combine the rows of two tables with <code>bind_rows</code>.</p>
 <p>Here we’ll add subject data for subjects 6-9 and bind that to the original subject table.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="joins.html#cb304-1"></a>new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb304-2"><a href="joins.html#cb304-2"></a>  <span class="dt">id =</span> <span class="dv">6</span><span class="op">:</span><span class="dv">9</span>,</span>
-<span id="cb304-3"><a href="joins.html#cb304-3"></a>  <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;nb&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</span>
-<span id="cb304-4"><a href="joins.html#cb304-4"></a>  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>)</span>
-<span id="cb304-5"><a href="joins.html#cb304-5"></a>)</span>
-<span id="cb304-6"><a href="joins.html#cb304-6"></a></span>
-<span id="cb304-7"><a href="joins.html#cb304-7"></a><span class="kw">bind_rows</span>(subject, new_subjects)</span></code></pre></div>
-<pre><code>## # A tibble: 9 x 3
-##      id gender   age
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     1 m         19
-## 2     2 m         22
-## 3     3 &lt;NA&gt;      NA
-## 4     4 nb        19
-## 5     5 f         18
-## 6     6 nb        19
-## 7     7 m         16
-## 8     8 f         20
-## 9     9 f         19</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="joins.html#cb281-1" aria-hidden="true" tabindex="-1"></a>new_subjects <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb281-2"><a href="joins.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb281-3"><a href="joins.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;nb&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</span>
+<span id="cb281-4"><a href="joins.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>)</span>
+<span id="cb281-5"><a href="joins.html#cb281-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb281-6"><a href="joins.html#cb281-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-7"><a href="joins.html#cb281-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(subject, new_subjects)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">m</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">f</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">f</td>
+<td align="right">19</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>The columns just have to have the same names, they don’t have to be in the same order. Any columns that differ between the two tables will just have <code>NA</code> values for entries from the other table.</p>
 <p>If a row is duplicated between the two tables (like id 5 below), the row will also be duplicated in the resulting table. If your tables have the exact same columns, you can use <code>union()</code> (see below) to avoid duplicates.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="joins.html#cb306-1"></a>new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb306-2"><a href="joins.html#cb306-2"></a>  <span class="dt">id =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">9</span>,</span>
-<span id="cb306-3"><a href="joins.html#cb306-3"></a>  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</span>
-<span id="cb306-4"><a href="joins.html#cb306-4"></a>  <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;nb&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</span>
-<span id="cb306-5"><a href="joins.html#cb306-5"></a>  <span class="dt">new =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb306-6"><a href="joins.html#cb306-6"></a>)</span>
-<span id="cb306-7"><a href="joins.html#cb306-7"></a></span>
-<span id="cb306-8"><a href="joins.html#cb306-8"></a><span class="kw">bind_rows</span>(subject, new_subjects)</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 4
-##       id gender   age   new
-##    &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1     1 m         19    NA
-##  2     2 m         22    NA
-##  3     3 &lt;NA&gt;      NA    NA
-##  4     4 nb        19    NA
-##  5     5 f         18    NA
-##  6     5 f         18     1
-##  7     6 nb        19     2
-##  8     7 m         16     3
-##  9     8 f         20     4
-## 10     9 f         19     5</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="joins.html#cb282-1" aria-hidden="true" tabindex="-1"></a>new_subjects <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb282-2"><a href="joins.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb282-3"><a href="joins.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</span>
+<span id="cb282-4"><a href="joins.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;nb&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>),</span>
+<span id="cb282-5"><a href="joins.html#cb282-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">new =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb282-6"><a href="joins.html#cb282-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb282-7"><a href="joins.html#cb282-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-8"><a href="joins.html#cb282-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(subject, new_subjects)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">new</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">m</td>
+<td align="right">16</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">f</td>
+<td align="right">20</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="left">f</td>
+<td align="right">19</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="bind_cols" class="section level3">
+</div>
+<div id="bind_cols" class="section level3" number="6.7.2">
 <h3><span class="header-section-number">6.7.2</span> bind_cols()</h3>
 <p>You can merge two tables with the same number of rows using <code>bind_cols</code>. This is only useful if the two tables have their rows in the exact same order. The only advantage over a left join is when the tables don’t have any IDs to join by and you have to rely solely on their order.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="joins.html#cb308-1"></a>new_info &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb308-2"><a href="joins.html#cb308-2"></a>  <span class="dt">colour =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb308-3"><a href="joins.html#cb308-3"></a>)</span>
-<span id="cb308-4"><a href="joins.html#cb308-4"></a></span>
-<span id="cb308-5"><a href="joins.html#cb308-5"></a><span class="kw">bind_cols</span>(subject, new_info)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 4
-##      id gender   age colour
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; 
-## 1     1 m         19 red   
-## 2     2 m         22 orange
-## 3     3 &lt;NA&gt;      NA yellow
-## 4     4 nb        19 green 
-## 5     5 f         18 blue</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="joins.html#cb283-1" aria-hidden="true" tabindex="-1"></a>new_info <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb283-2"><a href="joins.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">colour =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb283-3"><a href="joins.html#cb283-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb283-4"><a href="joins.html#cb283-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-5"><a href="joins.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(subject, new_info)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="left">colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+<td align="left">orange</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">yellow</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+<td align="left">green</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+<td align="left">blue</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="set-operations" class="section level2">
+</div>
+<div id="set-operations" class="section level2" number="6.8">
 <h2><span class="header-section-number">6.8</span> Set Operations</h2>
 <p><a class='glossary' target='_blank' title='Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).' href='https://psyteachr.github.io/glossary/s#set-operations'>Set operations</a> compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).</p>
-<div id="intersect" class="section level3">
+<div id="intersect" class="section level3" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> intersect()</h3>
 <p><code>intersect()</code> returns all rows in two tables that match exactly. The columns don’t have to be in the same order.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="joins.html#cb310-1"></a>new_subjects &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb310-2"><a href="joins.html#cb310-2"></a>  <span class="dt">id =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="dv">9</span>),</span>
-<span id="cb310-3"><a href="joins.html#cb310-3"></a>  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</span>
-<span id="cb310-4"><a href="joins.html#cb310-4"></a>  <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)</span>
-<span id="cb310-5"><a href="joins.html#cb310-5"></a>)</span>
-<span id="cb310-6"><a href="joins.html#cb310-6"></a></span>
-<span id="cb310-7"><a href="joins.html#cb310-7"></a><span class="kw">intersect</span>(subject, new_subjects)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##      id gender   age
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     5 f         18</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="joins.html#cb284-1" aria-hidden="true" tabindex="-1"></a>new_subjects <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb284-2"><a href="joins.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">9</span>),</span>
+<span id="cb284-3"><a href="joins.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">19</span>),</span>
+<span id="cb284-4"><a href="joins.html#cb284-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)</span>
+<span id="cb284-5"><a href="joins.html#cb284-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb284-6"><a href="joins.html#cb284-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-7"><a href="joins.html#cb284-7" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(subject, new_subjects)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="warning">
 <p>If you’ve forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has an <code>intersect()</code> function. The error message can be confusing and looks something like this:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="joins.html#cb312-1"></a>base<span class="op">::</span><span class="kw">intersect</span>(subject, new_subjects)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="joins.html#cb285-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">intersect</span>(subject, new_subjects)</span></code></pre></div>
 <pre><code>## Error: Must subset rows with a valid subscript vector.
-## [34mℹ[39m Logical subscripts must match the size of the indexed input.
-## [31mx[39m Input has size 6 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.</code></pre>
+## ℹ Logical subscripts must match the size of the indexed input.
+## x Input has size 6 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.</code></pre>
 </div>
 </div>
-<div id="union" class="section level3">
+<div id="union" class="section level3" number="6.8.2">
 <h3><span class="header-section-number">6.8.2</span> union()</h3>
 <p><code>union()</code> returns all the rows from both tables, removing duplicate rows.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="joins.html#cb314-1"></a><span class="kw">union</span>(subject, new_subjects)</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 3
-##       id gender   age
-##    &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-##  1     1 m         19
-##  2     2 m         22
-##  3     3 &lt;NA&gt;      NA
-##  4     4 nb        19
-##  5     5 f         18
-##  6     4 f         19
-##  7     6 m         19
-##  8     7 m         16
-##  9     8 f         20
-## 10     9 f         19</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="joins.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(subject, new_subjects)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">f</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="left">m</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">m</td>
+<td align="right">16</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">f</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="left">f</td>
+<td align="right">19</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="warning">
 <p>If you’ve forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a <code>union()</code> function. You usually won’t get an error message, but the output won’t be what you expect.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="joins.html#cb316-1"></a>base<span class="op">::</span><span class="kw">union</span>(subject, new_subjects)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="joins.html#cb288-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">union</span>(subject, new_subjects)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1 2 3 4 5
 ## 
@@ -1004,47 +1655,133 @@ Figure 6.9: Anti Join (Reversed)
 ## [1] &quot;f&quot; &quot;f&quot; &quot;m&quot; &quot;m&quot; &quot;f&quot; &quot;f&quot;</code></pre>
 </div>
 </div>
-<div id="setdiff" class="section level3">
+<div id="setdiff" class="section level3" number="6.8.3">
 <h3><span class="header-section-number">6.8.3</span> setdiff()</h3>
 <p><code>setdiff</code> returns rows that are in the first table, but not in the second table.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="joins.html#cb318-1"></a><span class="kw">setdiff</span>(subject, new_subjects)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 3
-##      id gender   age
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     1 m         19
-## 2     2 m         22
-## 3     3 &lt;NA&gt;      NA
-## 4     4 nb        19</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="joins.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(subject, new_subjects)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Order matters for <code>setdiff</code>.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="joins.html#cb320-1"></a><span class="kw">setdiff</span>(new_subjects, subject)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
-##      id   age gender
-##   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; 
-## 1     4    19 f     
-## 2     6    19 m     
-## 3     7    16 m     
-## 4     8    20 f     
-## 5     9    19 f</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="joins.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(new_subjects, subject)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">age</th>
+<th align="left">gender</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">19</td>
+<td align="left">f</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">19</td>
+<td align="left">m</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">16</td>
+<td align="left">m</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">20</td>
+<td align="left">f</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">19</td>
+<td align="left">f</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="warning">
 <p>If you’ve forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a <code>setdiff()</code> function. You usually won’t get an error message, but the output might not be what you expect because the base R <code>setdiff()</code> expects columns to be in the same order, so id 5 here registers as different between the two tables.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="joins.html#cb322-1"></a>base<span class="op">::</span><span class="kw">setdiff</span>(subject, new_subjects)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
-##      id gender   age
-##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     1 m         19
-## 2     2 m         22
-## 3     3 &lt;NA&gt;      NA
-## 4     4 nb        19
-## 5     5 f         18</code></pre>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="joins.html#cb292-1" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">setdiff</span>(subject, new_subjects)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">m</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">nb</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">f</td>
+<td align="right">18</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
-<div id="glossary6" class="section level2">
+</div>
+<div id="glossary6" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> Glossary</h2>
 <table>
 <colgroup>
-<col width="30%" />
-<col width="69%" />
+<col width="43%" />
+<col width="56%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1063,7 +1800,7 @@ Figure 6.9: Anti Join (Reversed)
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#filtering.joins'>filtering joins</a></td>
-<td align="left">Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table.</td>
+<td align="left">Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.</td>
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#mutating.joins'>mutating joins</a></td>
@@ -1076,14 +1813,14 @@ Figure 6.9: Anti Join (Reversed)
 </tbody>
 </table>
 </div>
-<div id="exercises6" class="section level2">
+<div id="exercises6" class="section level2" number="6.10">
 <h2><span class="header-section-number">6.10</span> Exercises</h2>
 <p>Download the <a href="exercises/06_joins_exercise.Rmd">exercises</a>. See the <a href="exercises/06_joins_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="joins.html#cb324-1"></a><span class="co"># run this to access the exercise</span></span>
-<span id="cb324-2"><a href="joins.html#cb324-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">6</span>)</span>
-<span id="cb324-3"><a href="joins.html#cb324-3"></a></span>
-<span id="cb324-4"><a href="joins.html#cb324-4"></a><span class="co"># run this to access the answers</span></span>
-<span id="cb324-5"><a href="joins.html#cb324-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">6</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="joins.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to access the exercise</span></span>
+<span id="cb293-2"><a href="joins.html#cb293-2" aria-hidden="true" tabindex="-1"></a>dataskills<span class="sc">::</span><span class="fu">exercise</span>(<span class="dv">6</span>)</span>
+<span id="cb293-3"><a href="joins.html#cb293-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-4"><a href="joins.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to access the answers</span></span>
+<span id="cb293-5"><a href="joins.html#cb293-5" aria-hidden="true" tabindex="-1"></a>dataskills<span class="sc">::</span><span class="fu">exercise</span>(<span class="dv">6</span>, <span class="at">answers =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -1221,6 +1958,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
 "google": false
 },

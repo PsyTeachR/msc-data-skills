@@ -180,16 +180,13 @@ Select all rows where the user_id is 1 (that's Lisa).
 disgust %>% filter(user_id == 1)
 ```
 
-```
-## # A tibble: 1 x 24
-##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
-##   <dbl>   <dbl> <date>      <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
-## 1     1       1 2008-07-10      2      2      1      2      1      1      1
-## # … with 14 more variables: sexual1 <dbl>, sexual2 <dbl>, sexual3 <dbl>,
-## #   sexual4 <dbl>, sexual5 <dbl>, sexual6 <dbl>, sexual7 <dbl>,
-## #   pathogen1 <dbl>, pathogen2 <dbl>, pathogen3 <dbl>, pathogen4 <dbl>,
-## #   pathogen5 <dbl>, pathogen6 <dbl>, pathogen7 <dbl>
-```
+<div class="kable-table">
+
+| id| user_id|date       | moral1| moral2| moral3| moral4| moral5| moral6| moral7| sexual1| sexual2| sexual3| sexual4| sexual5| sexual6| sexual7| pathogen1| pathogen2| pathogen3| pathogen4| pathogen5| pathogen6| pathogen7|
+|--:|-------:|:----------|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|
+|  1|       1|2008-07-10 |      2|      2|      1|      2|      1|      1|      1|       3|       1|       1|       2|       1|       2|       2|         3|         2|         3|         3|         2|         3|         3|
+
+</div>
 
 <div class="warning">
 <p>Remember to use <code>==</code> and not <code>=</code> to check if two things are equivalent. A single <code>=</code> assigns the righthand value to the lefthand variable and (usually) evaluates to <code>TRUE</code>.</p>
@@ -282,7 +279,7 @@ range(disgust_5ago$date)
 ```
 
 ```
-## [1] "2008-07-10" "2015-11-13"
+## [1] "2008-07-10" "2016-08-04"
 ```
 
 
@@ -647,15 +644,16 @@ dupes <- tibble(
 distinct(dupes)
 ```
 
-```
-## # A tibble: 4 x 2
-##      id dv   
-##   <dbl> <chr>
-## 1     1 A    
-## 2     2 B    
-## 3     1 C    
-## 4     2 D
-```
+<div class="kable-table">
+
+| id|dv |
+|--:|:--|
+|  1|A  |
+|  2|B  |
+|  1|C  |
+|  2|D  |
+
+</div>
 
 ### count() {#count}
 
@@ -668,32 +666,34 @@ starwars %>%
   summarise(n = n(), .groups = "drop")
 ```
 
-```
-## # A tibble: 5 x 2
-##   sex                n
-##   <chr>          <int>
-## 1 female            16
-## 2 hermaphroditic     1
-## 3 male              60
-## 4 none               6
-## 5 <NA>               4
-```
+<div class="kable-table">
+
+|sex            |  n|
+|:--------------|--:|
+|female         | 16|
+|hermaphroditic |  1|
+|male           | 60|
+|none           |  6|
+|NA             |  4|
+
+</div>
 
 
 ```r
 count(starwars, sex)
 ```
 
-```
-## # A tibble: 5 x 2
-##   sex                n
-##   <chr>          <int>
-## 1 female            16
-## 2 hermaphroditic     1
-## 3 male              60
-## 4 none               6
-## 5 <NA>               4
-```
+<div class="kable-table">
+
+|sex            |  n|
+|:--------------|--:|
+|female         | 16|
+|hermaphroditic |  1|
+|male           | 60|
+|none           |  6|
+|NA             |  4|
+
+</div>
 
 
 ### slice() {#slice}
@@ -703,17 +703,16 @@ count(starwars, sex)
 slice(starwars, 1:3, 10)
 ```
 
-```
-## # A tibble: 4 x 14
-##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##   <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-## 1 Luke…    172    77 blond      fair       blue              19 male  mascu…
-## 2 C-3PO    167    75 <NA>       gold       yellow           112 none  mascu…
-## 3 R2-D2     96    32 <NA>       white, bl… red               33 none  mascu…
-## 4 Obi-…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
-## # … with 5 more variables: homeworld <chr>, species <chr>, films <list>,
-## #   vehicles <list>, starships <list>
-```
+<div class="kable-table">
+
+|name           | height| mass|hair_color    |skin_color  |eye_color | birth_year|sex  |gender    |homeworld |species |films                                                                                                                                                                   |vehicles                                     |starships                                                                                                                        |
+|:--------------|------:|----:|:-------------|:-----------|:---------|----------:|:----|:---------|:---------|:-------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
+|Luke Skywalker |    172|   77|blond         |fair        |blue      |         19|male |masculine |Tatooine  |Human   |The Empire Strikes Back, Revenge of the Sith    , Return of the Jedi     , A New Hope             , The Force Awakens                                                   |Snowspeeder          , Imperial Speeder Bike |X-wing          , Imperial shuttle                                                                                               |
+|C-3PO          |    167|   75|NA            |gold        |yellow    |        112|none |masculine |Tatooine  |Droid   |The Empire Strikes Back, Attack of the Clones   , The Phantom Menace     , Revenge of the Sith    , Return of the Jedi     , A New Hope                                 |                                             |                                                                                                                                 |
+|R2-D2          |     96|   32|NA            |white, blue |red       |         33|none |masculine |Naboo     |Droid   |The Empire Strikes Back, Attack of the Clones   , The Phantom Menace     , Revenge of the Sith    , Return of the Jedi     , A New Hope             , The Force Awakens |                                             |                                                                                                                                 |
+|Obi-Wan Kenobi |    182|   77|auburn, white |fair        |blue-gray |         57|male |masculine |Stewjon   |Human   |The Empire Strikes Back, Attack of the Clones   , The Phantom Menace     , Revenge of the Sith    , Return of the Jedi     , A New Hope                                 |Tribubble bongo                              |Jedi starfighter        , Trade Federation cruiser, Naboo star skiff        , Jedi Interceptor        , Belbullab-22 starfighter |
+
+</div>
 
 ### pull() {#pull}
 

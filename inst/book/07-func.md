@@ -175,7 +175,7 @@ replicate(n = 3, expr = rnorm(5))
 ## [5,]  1.0654161 0.90367770 -0.9945890
 ```
 
-By default, `replicate()` simplifies your result into a <a class='glossary' target='_blank' title='A collection of numbers arranged into a fixed number of rows and columns' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you'd rather have a list of vectors, set `simplify = FALSE`.
+By default, `replicate()` simplifies your result into a <a class='glossary' target='_blank' title='A container data type consisting of numbers arranged into a fixed number of rows and columns' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a> that is easy to convert into a table if your function returns vectors that are the same length. If you'd rather have a list of vectors, set `simplify = FALSE`.
 
 
 ```r
@@ -212,14 +212,15 @@ tibble(
 )
 ```
 
-```
-## # A tibble: 3 x 2
-##   n     power            
-##   <chr> <chr>            
-## 1 100   0.290266404572217
-## 2 ...   ...              
-## 3 1000  0.884788352886661
-```
+<div class="kable-table">
+
+|n    |power             |
+|:----|:-----------------|
+|100  |0.290266404572217 |
+|...  |...               |
+|1000 |0.884788352886661 |
+
+</div>
 
 However, the `apply()` and `map()` functions allow you to perform a function on each item in a vector or list. First make an object `n` that is the vector of the sample sizes you want to test, then use `lapply()` or `map()` to run the function `power.t.test()` on each item. You can set other arguments to `power.t.test()` after the function argument.
 
@@ -581,7 +582,7 @@ t.test(score~group, data = longdat)
 ## 
 ## data:  score by group
 ## t = -1.7716, df = 36.244, p-value = 0.08487
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group A and group B is not equal to 0
 ## 95 percent confidence interval:
 ##  -1.2445818  0.0838683
 ## sample estimates:
@@ -604,13 +605,13 @@ tibble(
   broom::tidy()
 ```
 
-```
-## # A tibble: 1 x 10
-##   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
-##      <dbl>     <dbl>     <dbl>     <dbl>   <dbl>     <dbl>    <dbl>     <dbl>
-## 1   -0.642      5.04      5.69     -2.31  0.0265      37.3    -1.21   -0.0792
-## # … with 2 more variables: method <chr>, alternative <chr>
-```
+<div class="kable-table">
+
+|   estimate| estimate1| estimate2| statistic|   p.value| parameter|  conf.low|  conf.high|method                  |alternative |
+|----------:|---------:|---------:|---------:|---------:|---------:|---------:|----------:|:-----------------------|:-----------|
+| -0.6422108|  5.044009|   5.68622| -2.310591| 0.0264905|  37.27083| -1.205237| -0.0791844|Welch Two Sample t-test |two.sided   |
+
+</div>
 
 <div class="info">
 <p>In the pipeline above, <code>t.test(score~group, data = .)</code> uses the <code>.</code> notation to change the location of the piped-in data table from it’s default position as the first argument to a different position.</p>
@@ -773,14 +774,14 @@ Calculate power via simulation and `power.t.test` for the following tests:
 
 
 
-|term                                                                                                      |definition                                                               |
-|:---------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------|
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>   |A variable that provides input to a function.                            |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a> |The kind of data represented by an object.                               |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>       |A data type representing a real decimal number                           |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#function.'>function </a> |A named section of code that can be reused.                              |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> |Repeating a process or function                                          |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a>       |A collection of numbers arranged into a fixed number of rows and columns |
+|term                                                                                                      |definition                                                                                   |
+|:---------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>   |A variable that provides input to a function.                                                |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a> |The kind of data represented by an object.                                                   |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>       |A data type representing a real decimal number                                               |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#function.'>function </a> |A named section of code that can be reused.                                                  |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#iteration'>iteration</a> |Repeating a process or function                                                              |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#matrix'>matrix</a>       |A container data type consisting of numbers arranged into a fixed number of rows and columns |
 
 
 

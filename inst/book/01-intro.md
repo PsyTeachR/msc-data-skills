@@ -59,7 +59,7 @@ You can close R and never open it again. We'll be working entirely in RStudio in
 <p class="caption">(\#fig:img-rstudio)The RStudio IDE</p>
 </div>
 
-RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes”.' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
+RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes.”' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the **source pane**, where you view and edit source code from files. The bottom left pane is usually the **console pane**, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under **`Preferences > Pane Layout`**.
 
 <video width="640" height="480" controls>
   <source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
@@ -85,8 +85,8 @@ There are two tweaks that you should do to your RStudio installation to maximize
 <div class="try">
 Your settings should have:
 
-* Restore .RData into workspace at startup: <select class='solveme' name='q_1' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select>
-* Save workspace to .RData on exit: <select class='solveme' name='q_2' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select>
+* Restore .RData into workspace at startup: <select class='webex-solveme' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select>
+* Save workspace to .RData on exit: <select class='webex-solveme' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select>
 </div>
 
 ## Getting Started
@@ -250,9 +250,9 @@ this_year <- 2020
 <div class="try">
 After all the code above is run:
 
-* `this_year` = <select class='solveme' name='q_3' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
-* `my_birth_year` = <select class='solveme' name='q_4' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
-* `my_age` = <select class='solveme' name='q_5' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `this_year` = <select class='webex-solveme' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `my_birth_year` = <select class='webex-solveme' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
+* `my_age` = <select class='webex-solveme' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select>
 
 </div>
 
@@ -325,7 +325,7 @@ cat("3, 6, 9, the goose drank wine",
 
 A lot of what you do in R involves calling a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> and storing the results. A function is a named section of code that can be reused. 
 
-For example, `sd` is a function that returns the <a class='glossary' target='_blank' title='A statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this: 
+For example, `sd` is a function that returns the <a class='glossary' target='_blank' title='A descriptive statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this: 
 
 `function_name(argument1, argument2 = "value")`. 
 
@@ -356,8 +356,8 @@ rnorm(10)
 ```
 
 ```
-##  [1]  0.29834419  1.53603718 -0.38469001 -0.20710725  0.37780132  1.05581866
-##  [7]  0.09612264 -0.17648901 -0.60471814 -0.50825921
+##  [1] -1.3538528 -0.5689956 -1.3773205 -2.1431520  0.8950921  1.1005615
+##  [7] -0.9475025 -0.4003843  0.2602966  0.8493458
 ```
 
 If you want 10 numbers from a normal distribution with a mean of 100:
@@ -368,8 +368,8 @@ rnorm(10, 100)
 ```
 
 ```
-##  [1] 100.31067  98.47599 100.11132 101.77708  99.49242  99.44733 100.98681
-##  [8]  99.13058 100.75033 101.27956
+##  [1]  99.93713  97.80654  97.87596 100.58246  99.31895 100.89539 100.67656
+##  [8]  99.27151  97.75020  99.84467
 ```
 
 This would be an equivalent but less efficient way of calling the function:
@@ -380,8 +380,8 @@ rnorm(n = 10, mean = 100)
 ```
 
 ```
-##  [1] 100.48178  97.53783  98.47544 100.69126 101.42734 101.21458  99.95839
-##  [8]  97.45617 100.19050 101.03798
+##  [1] 100.39631  98.95611 101.43154 101.71322  99.70540  99.69147  99.58547
+##  [8] 100.87473 100.78744  99.09814
 ```
 
 We don't need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default `mean = 0` but change the standard deviation to 100 we would do it this way:
@@ -392,8 +392,8 @@ rnorm(10, sd = 100)
 ```
 
 ```
-##  [1] -121.96304   22.04691   47.80238  -78.83536   72.58272   10.65445
-##  [7] -304.45118   42.88734  -65.81395  -89.32137
+##  [1] -60.952499   8.609648 -50.108168  44.992404  76.185434  -5.066664
+##  [7]  64.220027  52.676197 -42.899655 236.274359
 ```
 
 Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the `power.t.test()` function looks like this:
@@ -408,9 +408,9 @@ power.t.test(n = NULL, delta = NULL, sd = 1, sig.level = 0.05,
 ```
 
 <div class="try">
-* What is the default value for `sd`? <select class='solveme' name='q_6' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select>
-* What is the default value for `type`? <select class='solveme' name='q_7' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select>
-* Which is equivalent to `power.t.test(100, 0.5)`? <select class='solveme' name='q_8' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select>
+* What is the default value for `sd`? <select class='webex-solveme' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select>
+* What is the default value for `type`? <select class='webex-solveme' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select>
+* Which is equivalent to `power.t.test(100, 0.5)`? <select class='webex-solveme' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select>
 </div>
 
 ### Getting help {#help}
@@ -430,8 +430,8 @@ help("rnorm", package="stats")
 When the package isn't loaded or you aren't sure what package the function is in, use the shortcut `??function_name`.
 
 <div class="try">
-* What is the first argument to the `mean` function? <select class='solveme' name='q_9' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select>
-* What package is `read_excel` in? <select class='solveme' name='q_10' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select>
+* What is the first argument to the `mean` function? <select class='webex-solveme' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select>
+* What package is `read_excel` in? <select class='webex-solveme' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select>
 </div>
 
 ## Add-on packages {#install-package}
@@ -679,14 +679,14 @@ Each chapter ends with a glossary table defining the jargon introduced in this c
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/n#normal.distribution'>normal distribution</a>     |A symmetric distribution of data where values near the centre are most probable.                                                                                           |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/o#object'>object</a>                               |A word that identifies and stores the value of some data for later use.                                                                                                    |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/p#package'>package</a>                             |A group of R functions.                                                                                                                                                    |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>                                 |RStudio is arranged with four window “panes”.                                                                                                                              |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>                                 |RStudio is arranged with four window “panes.”                                                                                                                              |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/p#project'>project</a>                             |A way to organise related files in RStudio                                                                                                                                 |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#r.markdown'>r markdown</a>                       |The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.           |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#relative.path'>relative path</a>                 |The location of a file in relation to the working directory.                                                                                                               |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/r#reproducible.research'>reproducible research</a> |Research that documents all of the steps between raw data and results in a way that can be verified.                                                                       |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#script'>script</a>                               |A plain-text file that contains commands in a coding language, such as R.                                                                                                  |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#scripts'>scripts</a>                             |NA                                                                                                                                                                         |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a>       |A statistic that measures how spread out data are relative to the mean.                                                                                                    |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a>       |A descriptive statistic that measures how spread out data are relative to the mean.                                                                                        |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#string'>string</a>                               |A piece of text inside of quotes.                                                                                                                                          |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#variable'>variable</a>                           |A word that identifies and stores the value of some data for later use.                                                                                                    |
 |<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#vector'>vector</a>                               |A type of data structure that is basically a list of things like T/F values, numbers, or strings.                                                                          |

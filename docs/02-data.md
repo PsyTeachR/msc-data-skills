@@ -51,21 +51,22 @@ Type the name of a dataset into the console to see the data. Type `?smalldata` i
 smalldata
 ```
 
-```
-## # A tibble: 10 x 4
-##    id    group     pre  post
-##    <chr> <chr>   <dbl> <dbl>
-##  1 S01   control  98.5 107. 
-##  2 S02   control 104.   89.1
-##  3 S03   control 105.  124. 
-##  4 S04   control  92.4  70.7
-##  5 S05   control 124.  125. 
-##  6 S06   exp      97.5 102. 
-##  7 S07   exp      87.8 126. 
-##  8 S08   exp      77.2  72.3
-##  9 S09   exp      97.0 109. 
-## 10 S10   exp     102.  114.
-```
+<div class="kable-table">
+
+|id  |group   |       pre|      post|
+|:---|:-------|---------:|---------:|
+|S01 |control |  98.46606| 106.70508|
+|S02 |control | 104.39774|  89.09030|
+|S03 |control | 105.13377| 123.67230|
+|S04 |control |  92.42574|  70.70178|
+|S05 |control | 123.53268| 124.95526|
+|S06 |exp     |  97.48676| 101.61697|
+|S07 |exp     |  87.75594| 126.30077|
+|S08 |exp     |  77.15375|  72.31229|
+|S09 |exp     |  97.00283| 108.80713|
+|S10 |exp     | 102.32338| 113.74732|
+
+</div>
 
 You can also use the `data()` function to load a dataset into your <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>.
 
@@ -87,21 +88,22 @@ Let's look at the `smalldata` table that we made above.
 smalldata
 ```
 
-```
-## # A tibble: 10 x 4
-##    id    group     pre  post
-##    <chr> <chr>   <dbl> <dbl>
-##  1 S01   control  98.5 107. 
-##  2 S02   control 104.   89.1
-##  3 S03   control 105.  124. 
-##  4 S04   control  92.4  70.7
-##  5 S05   control 124.  125. 
-##  6 S06   exp      97.5 102. 
-##  7 S07   exp      87.8 126. 
-##  8 S08   exp      77.2  72.3
-##  9 S09   exp      97.0 109. 
-## 10 S10   exp     102.  114.
-```
+<div class="kable-table">
+
+|id  |group   |       pre|      post|
+|:---|:-------|---------:|---------:|
+|S01 |control |  98.46606| 106.70508|
+|S02 |control | 104.39774|  89.09030|
+|S03 |control | 105.13377| 123.67230|
+|S04 |control |  92.42574|  70.70178|
+|S05 |control | 123.53268| 124.95526|
+|S06 |exp     |  97.48676| 101.61697|
+|S07 |exp     |  87.75594| 126.30077|
+|S08 |exp     |  77.15375|  72.31229|
+|S09 |exp     |  97.00283| 108.80713|
+|S10 |exp     | 102.32338| 113.74732|
+
+</div>
 
 The function `glimpse()` gives a sideways version of the tibble. This is useful if the table is very wide and you can't see all of the columns. It also tells you the data type of each column in angled brackets after each column name. We'll learn about [data types](#data_types) below.
 
@@ -113,10 +115,10 @@ glimpse(smalldata)
 ```
 ## Rows: 10
 ## Columns: 4
-## $ id    <chr> "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", …
-## $ group <chr> "control", "control", "control", "control", "control", "exp", "…
-## $ pre   <dbl> 98.46606, 104.39774, 105.13377, 92.42574, 123.53268, 97.48676, …
-## $ post  <dbl> 106.70508, 89.09030, 123.67230, 70.70178, 124.95526, 101.61697,…
+## $ id    <chr> "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "…
+## $ group <chr> "control", "control", "control", "control", "control", "exp", "e…
+## $ pre   <dbl> 98.46606, 104.39774, 105.13377, 92.42574, 123.53268, 97.48676, 8…
+## $ post  <dbl> 106.70508, 89.09030, 123.67230, 70.70178, 124.95526, 101.61697, …
 ```
 
 The other way to look at the table is a more graphical spreadsheet-like version given by `View()` (capital 'V').  It can be useful in the console, but don't ever put this one in a script because it will create an annoying pop-up window when the user runs it.
@@ -250,14 +252,15 @@ avatar <- tibble(
 avatar
 ```
 
-```
-## # A tibble: 3 x 3
-##   name   bends friendly
-##   <chr>  <chr> <lgl>   
-## 1 Katara water TRUE    
-## 2 Toph   earth TRUE    
-## 3 Sokka  <NA>  TRUE
-```
+<div class="kable-table">
+
+|name   |bends |friendly |
+|:------|:-----|:--------|
+|Katara |water |TRUE     |
+|Toph   |earth |TRUE     |
+|Sokka  |NA    |TRUE     |
+
+</div>
 
 
 ### Writing Data
@@ -284,7 +287,7 @@ We'll be working with <a class='glossary' target='_blank' title='Data in a recta
 
 ## Basic data types {#data_types}
 
-Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data types</a> in R: <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a>, <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a>, and <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a> There is also a specific data type called a <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels' href='https://psyteachr.github.io/glossary/f#factor'>factor</a>, which will probably give you a headache sooner or later, but we can ignore it for now.
+Data can be numbers, words, true/false values or combinations of these. In order to understand some later concepts, it's useful to have a basic understanding of <a class='glossary' target='_blank' title='The kind of data represented by an object.' href='https://psyteachr.github.io/glossary/d#data-type'>data types</a> in R: <a class='glossary' target='_blank' title='A data type representing a real decimal number or integer.' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a>, <a class='glossary' target='_blank' title='A data type representing strings of text.' href='https://psyteachr.github.io/glossary/c#character'>character</a>, and <a class='glossary' target='_blank' title='A data type representing TRUE or FALSE values.' href='https://psyteachr.github.io/glossary/l#logical'>logical</a> There is also a specific data type called a <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factor</a>, which will probably give you a headache sooner or later, but we can ignore it for now.
 
 ### Numeric data
 
@@ -386,16 +389,16 @@ is.logical(10 > 5)
 <div class="try">
 What data types are these:
 
-* `100` <select class='solveme' name='q_1' data-answer='["double"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `100L` <select class='solveme' name='q_2' data-answer='["integer"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `"100"` <select class='solveme' name='q_3' data-answer='["character"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `100.0` <select class='solveme' name='q_4' data-answer='["double"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `-100L` <select class='solveme' name='q_5' data-answer='["integer"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `factor(100)` <select class='solveme' name='q_6' data-answer='["factor"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `TRUE` <select class='solveme' name='q_7' data-answer='["logical"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `"TRUE"` <select class='solveme' name='q_8' data-answer='["character"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `FALSE` <select class='solveme' name='q_9' data-answer='["logical"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
-* `1 == 2` <select class='solveme' name='q_10' data-answer='["logical"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `100` <select class='webex-solveme' data-answer='["double"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `100L` <select class='webex-solveme' data-answer='["integer"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `"100"` <select class='webex-solveme' data-answer='["character"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `100.0` <select class='webex-solveme' data-answer='["double"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `-100L` <select class='webex-solveme' data-answer='["integer"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `factor(100)` <select class='webex-solveme' data-answer='["factor"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `TRUE` <select class='webex-solveme' data-answer='["logical"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `"TRUE"` <select class='webex-solveme' data-answer='["character"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `FALSE` <select class='webex-solveme' data-answer='["logical"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
+* `1 == 2` <select class='webex-solveme' data-answer='["logical"]'> <option></option> <option>integer</option> <option>double</option> <option>character</option> <option>logical</option> <option>factor</option></select>
 
 </div>
 
@@ -801,22 +804,38 @@ mess <- read_csv("data/mess.csv", skip = 2)
 mess
 ```
 
-```
-## # A tibble: 26 x 7
-##    junk  order    score letter good  min_max date      
-##    <chr> <chr>    <dbl> <chr>  <chr> <chr>   <chr>     
-##  1 junk  1       -1     a      1     1 - 2   2020-01-1 
-##  2 junk  missing  0.72  b      1     2 - 3   2020-01-2 
-##  3 junk  3       -0.62  c      FALSE 3 - 4   2020-01-3 
-##  4 junk  4        2.03  d      T     4 - 5   2020-01-4 
-##  5 junk  5       NA     e      1     5 - 6   2020-01-5 
-##  6 junk  6        0.99  f      0     6 - 7   2020-01-6 
-##  7 junk  7        0.03  g      T     7 - 8   2020-01-7 
-##  8 junk  8        0.67  h      TRUE  8 - 9   2020-01-8 
-##  9 junk  9        0.570 i      1     9 - 10  2020-01-9 
-## 10 junk  10       0.9   j      T     10 - 11 2020-01-10
-## # … with 16 more rows
-```
+<div class="kable-table">
+
+|junk |order   | score|letter |good  |min_max |date       |
+|:----|:-------|-----:|:------|:-----|:-------|:----------|
+|junk |1       | -1.00|a      |1     |1 - 2   |2020-01-1  |
+|junk |missing |  0.72|b      |1     |2 - 3   |2020-01-2  |
+|junk |3       | -0.62|c      |FALSE |3 - 4   |2020-01-3  |
+|junk |4       |  2.03|d      |T     |4 - 5   |2020-01-4  |
+|junk |5       |    NA|e      |1     |5 - 6   |2020-01-5  |
+|junk |6       |  0.99|f      |0     |6 - 7   |2020-01-6  |
+|junk |7       |  0.03|g      |T     |7 - 8   |2020-01-7  |
+|junk |8       |  0.67|h      |TRUE  |8 - 9   |2020-01-8  |
+|junk |9       |  0.57|i      |1     |9 - 10  |2020-01-9  |
+|junk |10      |  0.90|j      |T     |10 - 11 |2020-01-10 |
+|junk |11      | -1.55|k      |F     |11 - 12 |2020-01-11 |
+|junk |12      |    NA|l      |FALSE |12 - 13 |2020-01-12 |
+|junk |13      |  0.15|m      |T     |13 - 14 |2020-01-13 |
+|junk |14      | -0.66|n      |TRUE  |14 - 15 |2020-01-14 |
+|junk |15      | -0.99|o      |1     |15 - 16 |2020-01-15 |
+|junk |16      |  1.97|p      |T     |16 - 17 |2020-01-16 |
+|junk |17      | -0.44|q      |TRUE  |17 - 18 |2020-01-17 |
+|junk |18      | -0.90|r      |F     |18 - 19 |2020-01-18 |
+|junk |19      | -0.15|s      |FALSE |19 - 20 |2020-01-19 |
+|junk |20      | -0.83|t      |0     |20 - 21 |2020-01-20 |
+|junk |21      |  1.99|u      |T     |21 - 22 |2020-01-21 |
+|junk |22      |  0.04|v      |F     |22 - 23 |2020-01-22 |
+|junk |23      | -0.40|w      |F     |23 - 24 |2020-01-23 |
+|junk |24      | -0.47|x      |0     |24 - 25 |2020-01-24 |
+|junk |25      | -0.41|y      |TRUE  |25 - 26 |2020-01-25 |
+|junk |26      |  0.68|z      |0     |26 - 27 |2020-01-26 |
+
+</div>
 
 OK, that's a little better, but this table is still a serious mess in several ways:
 
@@ -883,51 +902,67 @@ Now `order` is an integer where "missing" is now `NA`, `good` is a logical value
 tidiest
 ```
 
-```
-## # A tibble: 26 x 6
-##    order score letter good  min_max date      
-##    <int> <chr> <chr>  <lgl> <chr>   <date>    
-##  1     1 -1    a      TRUE  1 - 2   2020-01-01
-##  2    NA 0.72  b      TRUE  2 - 3   2020-01-02
-##  3     3 -0.62 c      FALSE 3 - 4   2020-01-03
-##  4     4 2.03  d      TRUE  4 - 5   2020-01-04
-##  5     5 NA    e      TRUE  5 - 6   2020-01-05
-##  6     6 0.99  f      FALSE 6 - 7   2020-01-06
-##  7     7 0.03  g      TRUE  7 - 8   2020-01-07
-##  8     8 0.67  h      TRUE  8 - 9   2020-01-08
-##  9     9 0.57  i      TRUE  9 - 10  2020-01-09
-## 10    10 0.9   j      TRUE  10 - 11 2020-01-10
-## # … with 16 more rows
-```
+<div class="kable-table">
+
+| order|score |letter |good  |min_max |date       |
+|-----:|:-----|:------|:-----|:-------|:----------|
+|     1|-1    |a      |TRUE  |1 - 2   |2020-01-01 |
+|    NA|0.72  |b      |TRUE  |2 - 3   |2020-01-02 |
+|     3|-0.62 |c      |FALSE |3 - 4   |2020-01-03 |
+|     4|2.03  |d      |TRUE  |4 - 5   |2020-01-04 |
+|     5|NA    |e      |TRUE  |5 - 6   |2020-01-05 |
+|     6|0.99  |f      |FALSE |6 - 7   |2020-01-06 |
+|     7|0.03  |g      |TRUE  |7 - 8   |2020-01-07 |
+|     8|0.67  |h      |TRUE  |8 - 9   |2020-01-08 |
+|     9|0.57  |i      |TRUE  |9 - 10  |2020-01-09 |
+|    10|0.9   |j      |TRUE  |10 - 11 |2020-01-10 |
+|    11|-1.55 |k      |FALSE |11 - 12 |2020-01-11 |
+|    12|NA    |l      |FALSE |12 - 13 |2020-01-12 |
+|    13|0.15  |m      |TRUE  |13 - 14 |2020-01-13 |
+|    14|-0.66 |n      |TRUE  |14 - 15 |2020-01-14 |
+|    15|-0.99 |o      |TRUE  |15 - 16 |2020-01-15 |
+|    16|1.97  |p      |TRUE  |16 - 17 |2020-01-16 |
+|    17|-0.44 |q      |TRUE  |17 - 18 |2020-01-17 |
+|    18|-0.9  |r      |FALSE |18 - 19 |2020-01-18 |
+|    19|-0.15 |s      |FALSE |19 - 20 |2020-01-19 |
+|    20|-0.83 |t      |FALSE |20 - 21 |2020-01-20 |
+|    21|1.99  |u      |TRUE  |21 - 22 |2020-01-21 |
+|    22|0.04  |v      |FALSE |22 - 23 |2020-01-22 |
+|    23|-0.4  |w      |FALSE |23 - 24 |2020-01-23 |
+|    24|-0.47 |x      |FALSE |24 - 25 |2020-01-24 |
+|    25|-0.41 |y      |TRUE  |25 - 26 |2020-01-25 |
+|    26|0.68  |z      |FALSE |26 - 27 |2020-01-26 |
+
+</div>
 
 
 ## Glossary {#glossary2}
 
 
 
-|term                                                                                                                        |definition                                                                                                             |
-|:---------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#base.r'>base r</a>                         |The set of R functions that come with a basic installation of R, before you add external packages                      |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#character'>character</a>                   |A data type representing strings of text.                                                                              |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#csv'>csv</a>                               |Comma-separated variable: a file type for representing data where each variable is separated from the next by a comma. |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a>                   |The kind of data represented by an object.                                                                             |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#deviation.score'>deviation score</a>       |A score minus the mean                                                                                                 |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>                         |A data type representing a real decimal number                                                                         |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#escape'>escape</a>                         |Include special characters like " inside of a string by prefacing them with a backslash.                               |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#extension'>extension</a>                   |The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).                                 |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#extract.operator'>extract operator</a>     |A symbol used to get values from a container object, such as [, [[, or $                                               |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#factor'>factor</a>                         |A data type where a specific set of values are stored with labels                                                      |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/g#global.environment'>global environment</a> |The interactive workspace where your script runs                                                                       |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#integer'>integer</a>                       |A data type representing whole numbers.                                                                                |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/l#list'>list</a>                             |A container data type that allows items with different data types to be grouped together.                              |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/l#logical'>logical</a>                       |A data type representing TRUE or FALSE values.                                                                         |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a>                       |A data type representing a real decimal number or integer.                                                             |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/o#operator'>operator</a>                     |A symbol that performs a mathematical operation, such as +, -, *, /                                                    |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/t#tabular.data'>tabular data</a>             |Data in a rectangular table format, where each row has an entry for each column.                                       |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/t#tidy.data'>tidy data</a>                   |A format for data that maps the meaning onto the structure.                                                            |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a>                   |A set of R packages that help you create and work with tidy data                                                       |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#vector'>vector</a>                         |A type of data structure that is basically a list of things like T/F values, numbers, or strings.                      |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#vectorized'>vectorized</a>                 |An operator or function that acts on each element in a vector                                                          |
+|term                                                                                                                        |definition                                                                                                                 |
+|:---------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#base.r'>base r</a>                         |The set of R functions that come with a basic installation of R, before you add external packages                          |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#character'>character</a>                   |A data type representing strings of text.                                                                                  |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/c#csv'>csv</a>                               |Comma-separated variable: a file type for representing data where each variable is separated from the next by a comma.     |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#data.type'>data type</a>                   |The kind of data represented by an object.                                                                                 |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#deviation.score'>deviation score</a>       |A score minus the mean                                                                                                     |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/d#double'>double</a>                         |A data type representing a real decimal number                                                                             |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#escape'>escape</a>                         |Include special characters like " inside of a string by prefacing them with a backslash.                                   |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#extension'>extension</a>                   |The end part of a file name that tells you what type of file it is (e.g., .R or .Rmd).                                     |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/e#extract.operator'>extract operator</a>     |A symbol used to get values from a container object, such as [, [[, or $                                                   |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#factor'>factor</a>                         |A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/g#global.environment'>global environment</a> |The interactive workspace where your script runs                                                                           |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/i#integer'>integer</a>                       |A data type representing whole numbers.                                                                                    |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/l#list'>list</a>                             |A container data type that allows items with different data types to be grouped together.                                  |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/l#logical'>logical</a>                       |A data type representing TRUE or FALSE values.                                                                             |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/n#numeric'>numeric</a>                       |A data type representing a real decimal number or integer.                                                                 |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/o#operator'>operator</a>                     |A symbol that performs a mathematical operation, such as +, -, *, /                                                        |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/t#tabular.data'>tabular data</a>             |Data in a rectangular table format, where each row has an entry for each column.                                           |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/t#tidy.data'>tidy data</a>                   |A format for data that maps the meaning onto the structure.                                                                |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/t#tidyverse'>tidyverse</a>                   |A set of R packages that help you create and work with tidy data                                                           |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#vector'>vector</a>                         |A type of data structure that is basically a list of things like T/F values, numbers, or strings.                          |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/v#vectorized'>vectorized</a>                 |An operator or function that acts on each element in a vector                                                              |
 
 
 

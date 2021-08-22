@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Getting Started | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Getting Started | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-01-06" />
+<meta name="date" content="2021-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="data.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.9.4/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,29 +50,47 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<meta property="og:title" content="Chapter 1 Getting Started | Data Skills for Reproducible Science">
+<meta property="og:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
+<meta property="og:image" content="https://psyteachr.github.io/images/twitter/msc_ds.png">
+<meta property="og:url" content="https://psyteachr.github.io/msc-data-skills">
+<meta property="twitter:card" content="summary_large_image">
+
+<link rel="shortcut icon" href="https://psyteachr.github.io/images/msc_ds.png">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6NP3MF25W3');
+</script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -91,7 +110,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -124,6 +143,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 <link rel="stylesheet" href="include/webex.css" type="text/css" />
@@ -140,11 +182,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
+<li><a href="https://psyteachr.github.io/reprosci" style="color: red;">Access the most up-to-date version</a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 <li><a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt">Video Playlist</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-resources"><i class="fa fa-check"></i><b>0.3</b> Course Resources</a></li>
@@ -153,15 +197,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#i-found-a-bug"><i class="fa fa-check"></i><b>0.6</b> I found a bug!</a></li>
 <li class="chapter" data-level="0.7" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i><b>0.7</b> Other Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#ilo1"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
 <li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
 <li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Objects</a></li>
 <li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
@@ -169,12 +216,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
 <li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
@@ -182,22 +231,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#glossary1"><i class="fa fa-check"></i><b>1.7</b> Glossary</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#exercises1"><i class="fa fa-check"></i><b>1.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a><ul>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#ilo2"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#resources2"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
 <li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#setup2"><i class="fa fa-check"></i><b>2.3</b> Setup</a></li>
-<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a><ul>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#builtin"><i class="fa fa-check"></i><b>2.4.1</b> Built-in data</a></li>
 <li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.4.2</b> Importing data</a></li>
 <li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#creating-data"><i class="fa fa-check"></i><b>2.4.3</b> Creating data</a></li>
 <li class="chapter" data-level="2.4.4" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.4.4</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#numeric-data"><i class="fa fa-check"></i><b>2.5.1</b> Numeric data</a></li>
 <li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#character-data"><i class="fa fa-check"></i><b>2.5.2</b> Character data</a></li>
 <li class="chapter" data-level="2.5.3" data-path="data.html"><a href="data.html#logical-data"><i class="fa fa-check"></i><b>2.5.3</b> Logical Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a><ul>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>2.6.2</b> Lists</a></li>
 <li class="chapter" data-level="2.6.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>2.6.3</b> Tables</a></li>
@@ -206,8 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="data.html"><a href="data.html#glossary2"><i class="fa fa-check"></i><b>2.8</b> Glossary</a></li>
 <li class="chapter" data-level="2.9" data-path="data.html"><a href="data.html#exercises2"><i class="fa fa-check"></i><b>2.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
-<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#ilo3"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#ilo3"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>3.1.1</b> Basic</a></li>
 <li class="chapter" data-level="3.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>3.1.2</b> Intermediate</a></li>
 </ul></li>
@@ -216,7 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#ggplots"><i class="fa fa-check"></i><b>3.6</b> GGplots</a></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#common-plot-types"><i class="fa fa-check"></i><b>3.7</b> Common Plot Types</a><ul>
+<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#common-plot-types"><i class="fa fa-check"></i><b>3.7</b> Common Plot Types</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.7.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#geom_density"><i class="fa fa-check"></i><b>3.7.2</b> Density plot</a></li>
 <li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#geom_freqpoly"><i class="fa fa-check"></i><b>3.7.3</b> Frequency polygons</a></li>
@@ -228,24 +284,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.9" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.7.9</b> Scatter plot</a></li>
 <li class="chapter" data-level="3.7.10" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.7.10</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.8</b> Customisation</a><ul>
+<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.8</b> Customisation</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.8.1</b> Labels</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.8.2</b> Colours</a></li>
 <li class="chapter" data-level="3.8.3" data-path="ggplot.html"><a href="ggplot.html#themes"><i class="fa fa-check"></i><b>3.8.3</b> Themes</a></li>
 <li class="chapter" data-level="3.8.4" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.8.4</b> Save as file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#combo_plots"><i class="fa fa-check"></i><b>3.9</b> Combination Plots</a><ul>
+<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#combo_plots"><i class="fa fa-check"></i><b>3.9</b> Combination Plots</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.9.1</b> Violinbox plot</a></li>
 <li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.9.2</b> Violin-point-range plot</a></li>
 <li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#violin-jitter-plot"><i class="fa fa-check"></i><b>3.9.3</b> Violin-jitter plot</a></li>
 <li class="chapter" data-level="3.9.4" data-path="ggplot.html"><a href="ggplot.html#scatter-line-graph"><i class="fa fa-check"></i><b>3.9.4</b> Scatter-line graph</a></li>
 <li class="chapter" data-level="3.9.5" data-path="ggplot.html"><a href="ggplot.html#cowplot"><i class="fa fa-check"></i><b>3.9.5</b> Grid of plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.10</b> Overlapping Discrete Data</a><ul>
+<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.10</b> Overlapping Discrete Data</a>
+<ul>
 <li class="chapter" data-level="3.10.1" data-path="ggplot.html"><a href="ggplot.html#reducing-opacity"><i class="fa fa-check"></i><b>3.10.1</b> Reducing Opacity</a></li>
 <li class="chapter" data-level="3.10.2" data-path="ggplot.html"><a href="ggplot.html#geom_count"><i class="fa fa-check"></i><b>3.10.2</b> Proportional Dot Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.11</b> Overlapping Continuous Data</a><ul>
+<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.11</b> Overlapping Continuous Data</a>
+<ul>
 <li class="chapter" data-level="3.11.1" data-path="ggplot.html"><a href="ggplot.html#geom_density2d"><i class="fa fa-check"></i><b>3.11.1</b> 2D Density Plot</a></li>
 <li class="chapter" data-level="3.11.2" data-path="ggplot.html"><a href="ggplot.html#geom_bin2d"><i class="fa fa-check"></i><b>3.11.2</b> 2D Histogram</a></li>
 <li class="chapter" data-level="3.11.3" data-path="ggplot.html"><a href="ggplot.html#geom_hex"><i class="fa fa-check"></i><b>3.11.3</b> Hexagonal Heatmap</a></li>
@@ -255,30 +315,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#glossary3"><i class="fa fa-check"></i><b>3.13</b> Glossary</a></li>
 <li class="chapter" data-level="3.14" data-path="ggplot.html"><a href="ggplot.html#exercises3"><i class="fa fa-check"></i><b>3.14</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#ilo4"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
+<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#ilo4"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
 <li class="chapter" data-level="4.1.2" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>4.1.2</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup4"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Tidy Data</a><ul>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Tidy Data</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="tidyr.html"><a href="tidyr.html#three-rules"><i class="fa fa-check"></i><b>4.4.1</b> Three Rules</a></li>
 <li class="chapter" data-level="4.4.2" data-path="tidyr.html"><a href="tidyr.html#wide_long"><i class="fa fa-check"></i><b>4.4.2</b> Wide versus long</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pivot"><i class="fa fa-check"></i><b>4.5</b> Pivot Functions</a><ul>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pivot"><i class="fa fa-check"></i><b>4.5</b> Pivot Functions</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.5.1</b> Load Data</a></li>
 <li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#pivot_longer"><i class="fa fa-check"></i><b>4.5.2</b> pivot_longer()</a></li>
 <li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#pivot_wider"><i class="fa fa-check"></i><b>4.5.3</b> pivot_wider()</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#tidy-verbs"><i class="fa fa-check"></i><b>4.6</b> Tidy Verbs</a><ul>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#tidy-verbs"><i class="fa fa-check"></i><b>4.6</b> Tidy Verbs</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6.1</b> gather()</a></li>
 <li class="chapter" data-level="4.6.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.6.2</b> separate()</a></li>
 <li class="chapter" data-level="4.6.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.6.3</b> unite()</a></li>
 <li class="chapter" data-level="4.6.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.6.4</b> spread()</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.7</b> Pipes</a></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.8</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.8</b> More Complex Example</a>
+<ul>
 <li class="chapter" data-level="4.8.1" data-path="tidyr.html"><a href="tidyr.html#load-data-1"><i class="fa fa-check"></i><b>4.8.1</b> Load Data</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.8.2</b> Wide to Long</a></li>
 <li class="chapter" data-level="4.8.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.8.3</b> One Piece of Data per Column</a></li>
@@ -289,16 +355,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#glossary4"><i class="fa fa-check"></i><b>4.9</b> Glossary</a></li>
 <li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#exercises4"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
-<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#ilo5"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
-<li class="chapter" data-level="5.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#ilo5"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="dplyr.html"><a href="dplyr.html#basic-2"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-1"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html#resources5"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
-<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup5"><i class="fa fa-check"></i><b>5.3</b> Setup</a><ul>
+<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup5"><i class="fa fa-check"></i><b>5.3</b> Setup</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="dplyr.html"><a href="dplyr.html#data-disgust"><i class="fa fa-check"></i><b>5.3.1</b> The <code>disgust</code> dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.4</b> Six main dplyr verbs</a><ul>
+<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.4</b> Six main dplyr verbs</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.4.1</b> select()</a></li>
 <li class="chapter" data-level="5.4.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.4.2</b> filter()</a></li>
 <li class="chapter" data-level="5.4.3" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.4.3</b> arrange()</a></li>
@@ -307,14 +377,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.6" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.4.6</b> group_by()</a></li>
 <li class="chapter" data-level="5.4.7" data-path="dplyr.html"><a href="dplyr.html#all-together"><i class="fa fa-check"></i><b>5.4.7</b> All Together</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.5</b> Additional dplyr one-table verbs</a><ul>
+<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.5</b> Additional dplyr one-table verbs</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.5.1</b> rename()</a></li>
 <li class="chapter" data-level="5.5.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.5.2</b> distinct()</a></li>
 <li class="chapter" data-level="5.5.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.5.3</b> count()</a></li>
 <li class="chapter" data-level="5.5.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.5.4</b> slice()</a></li>
 <li class="chapter" data-level="5.5.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.5.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.6</b> Window functions</a><ul>
+<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.6</b> Window functions</a>
+<ul>
 <li class="chapter" data-level="5.6.1" data-path="dplyr.html"><a href="dplyr.html#ranking-functions"><i class="fa fa-check"></i><b>5.6.1</b> Ranking functions</a></li>
 <li class="chapter" data-level="5.6.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>5.6.2</b> Offset functions</a></li>
 <li class="chapter" data-level="5.6.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>5.6.3</b> Cumulative aggregates</a></li>
@@ -322,26 +394,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#glossary5"><i class="fa fa-check"></i><b>5.7</b> Glossary</a></li>
 <li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html#exercises5"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
+<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#ilo6"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#setup6"><i class="fa fa-check"></i><b>6.3</b> Setup</a></li>
-<li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>6.4</b> Data</a></li>
-<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.5</b> Mutating Joins</a><ul>
+<li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.4</b> Data</a></li>
+<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.5</b> Mutating Joins</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.5.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.5.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.5.2</b> right_join()</a></li>
 <li class="chapter" data-level="6.5.3" data-path="joins.html"><a href="joins.html#inner_join"><i class="fa fa-check"></i><b>6.5.3</b> inner_join()</a></li>
 <li class="chapter" data-level="6.5.4" data-path="joins.html"><a href="joins.html#full_join"><i class="fa fa-check"></i><b>6.5.4</b> full_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.6</b> Filtering Joins</a><ul>
+<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.6</b> Filtering Joins</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="joins.html"><a href="joins.html#semi_join"><i class="fa fa-check"></i><b>6.6.1</b> semi_join()</a></li>
 <li class="chapter" data-level="6.6.2" data-path="joins.html"><a href="joins.html#anti_join"><i class="fa fa-check"></i><b>6.6.2</b> anti_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.7</b> Binding Joins</a><ul>
+<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.7</b> Binding Joins</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="joins.html"><a href="joins.html#bind_rows"><i class="fa fa-check"></i><b>6.7.1</b> bind_rows()</a></li>
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#bind_cols"><i class="fa fa-check"></i><b>6.7.2</b> bind_cols()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.8</b> Set Operations</a><ul>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.8</b> Set Operations</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#intersect"><i class="fa fa-check"></i><b>6.8.1</b> intersect()</a></li>
 <li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.8.2</b> union()</a></li>
 <li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.8.3</b> setdiff()</a></li>
@@ -349,28 +426,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.9" data-path="joins.html"><a href="joins.html#glossary6"><i class="fa fa-check"></i><b>6.9</b> Glossary</a></li>
 <li class="chapter" data-level="6.10" data-path="joins.html"><a href="joins.html#exercises6"><i class="fa fa-check"></i><b>6.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
-<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#ilo7"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#ilo7"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-2"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-1"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#setup7"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
-<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.4</b> Iteration functions</a><ul>
+<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.4</b> Iteration functions</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.4.1</b> rep()</a></li>
 <li class="chapter" data-level="7.4.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.4.2</b> seq()</a></li>
 <li class="chapter" data-level="7.4.3" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.4.3</b> replicate()</a></li>
 <li class="chapter" data-level="7.4.4" data-path="func.html"><a href="func.html#map-apply"><i class="fa fa-check"></i><b>7.4.4</b> map() and apply() functions</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom functions</a><ul>
+<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom functions</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.5.1</b> Structuring a function</a></li>
 <li class="chapter" data-level="7.5.2" data-path="func.html"><a href="func.html#arguments"><i class="fa fa-check"></i><b>7.5.2</b> Arguments</a></li>
 <li class="chapter" data-level="7.5.3" data-path="func.html"><a href="func.html#defaults"><i class="fa fa-check"></i><b>7.5.3</b> Argument defaults</a></li>
 <li class="chapter" data-level="7.5.4" data-path="func.html"><a href="func.html#scope"><i class="fa fa-check"></i><b>7.5.4</b> Scope</a></li>
 <li class="chapter" data-level="7.5.5" data-path="func.html"><a href="func.html#warnings-errors"><i class="fa fa-check"></i><b>7.5.5</b> Warnings and errors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.6</b> Iterating your own functions</a><ul>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.6</b> Iterating your own functions</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="func.html"><a href="func.html#rnorm"><i class="fa fa-check"></i><b>7.6.1</b> rnorm()</a></li>
 <li class="chapter" data-level="7.6.2" data-path="func.html"><a href="func.html#tibbletibble"><i class="fa fa-check"></i><b>7.6.2</b> tibble::tibble()</a></li>
 <li class="chapter" data-level="7.6.3" data-path="func.html"><a href="func.html#t.test"><i class="fa fa-check"></i><b>7.6.3</b> t.test()</a></li>
@@ -383,25 +465,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="func.html"><a href="func.html#glossary7"><i class="fa fa-check"></i><b>7.7</b> Glossary</a></li>
 <li class="chapter" data-level="7.8" data-path="func.html"><a href="func.html#exercises7"><i class="fa fa-check"></i><b>7.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
-<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#ilo8"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#ilo8"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-3"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#setup8"><i class="fa fa-check"></i><b>8.3</b> Setup</a></li>
-<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#univariate-distributions"><i class="fa fa-check"></i><b>8.4</b> Univariate Distributions</a><ul>
+<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#univariate-distributions"><i class="fa fa-check"></i><b>8.4</b> Univariate Distributions</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.4.1</b> Uniform Distribution</a></li>
 <li class="chapter" data-level="8.4.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.4.2</b> Binomial Distribution</a></li>
 <li class="chapter" data-level="8.4.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.4.3</b> Normal Distribution</a></li>
 <li class="chapter" data-level="8.4.4" data-path="sim.html"><a href="sim.html#poisson"><i class="fa fa-check"></i><b>8.4.4</b> Poisson Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#mvdist"><i class="fa fa-check"></i><b>8.5</b> Multivariate Distributions</a><ul>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#mvdist"><i class="fa fa-check"></i><b>8.5</b> Multivariate Distributions</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="sim.html"><a href="sim.html#bvn"><i class="fa fa-check"></i><b>8.5.1</b> Bivariate Normal</a></li>
 <li class="chapter" data-level="8.5.2" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.5.2</b> Multivariate Normal</a></li>
 <li class="chapter" data-level="8.5.3" data-path="sim.html"><a href="sim.html#faux"><i class="fa fa-check"></i><b>8.5.3</b> Faux</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="sim.html"><a href="sim.html#stat-terms"><i class="fa fa-check"></i><b>8.6</b> Statistical terms</a><ul>
+<li class="chapter" data-level="8.6" data-path="sim.html"><a href="sim.html#stat-terms"><i class="fa fa-check"></i><b>8.6</b> Statistical terms</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="sim.html"><a href="sim.html#effect"><i class="fa fa-check"></i><b>8.6.1</b> Effect</a></li>
 <li class="chapter" data-level="8.6.2" data-path="sim.html"><a href="sim.html#p-value"><i class="fa fa-check"></i><b>8.6.2</b> P-value</a></li>
 <li class="chapter" data-level="8.6.3" data-path="sim.html"><a href="sim.html#alpha"><i class="fa fa-check"></i><b>8.6.3</b> Alpha</a></li>
@@ -409,12 +496,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6.5" data-path="sim.html"><a href="sim.html#power"><i class="fa fa-check"></i><b>8.6.5</b> Power and SESOI</a></li>
 <li class="chapter" data-level="8.6.6" data-path="sim.html"><a href="sim.html#conf-int"><i class="fa fa-check"></i><b>8.6.6</b> Confidence Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="sim.html"><a href="sim.html#tests"><i class="fa fa-check"></i><b>8.7</b> Tests</a><ul>
+<li class="chapter" data-level="8.7" data-path="sim.html"><a href="sim.html#tests"><i class="fa fa-check"></i><b>8.7</b> Tests</a>
+<ul>
 <li class="chapter" data-level="8.7.1" data-path="sim.html"><a href="sim.html#exact-binom"><i class="fa fa-check"></i><b>8.7.1</b> Exact binomial test</a></li>
 <li class="chapter" data-level="8.7.2" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>8.7.2</b> T-test</a></li>
 <li class="chapter" data-level="8.7.3" data-path="sim.html"><a href="sim.html#correlation"><i class="fa fa-check"></i><b>8.7.3</b> Correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a><ul>
+<li class="chapter" data-level="8.8" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a>
+<ul>
 <li class="chapter" data-level="8.8.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.8.1</b> Load &amp; wrangle</a></li>
 <li class="chapter" data-level="8.8.2" data-path="sim.html"><a href="sim.html#plot"><i class="fa fa-check"></i><b>8.8.2</b> Plot</a></li>
 <li class="chapter" data-level="8.8.3" data-path="sim.html"><a href="sim.html#simulate-a-population"><i class="fa fa-check"></i><b>8.8.3</b> Simulate a population</a></li>
@@ -426,14 +515,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.9" data-path="sim.html"><a href="sim.html#glossary8"><i class="fa fa-check"></i><b>8.9</b> Glossary</a></li>
 <li class="chapter" data-level="8.10" data-path="sim.html"><a href="sim.html#exercises8"><i class="fa fa-check"></i><b>8.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
-<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#ilo9"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
-<li class="chapter" data-level="9.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#ilo9"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
+<li class="chapter" data-level="9.1.2" data-path="glm.html"><a href="glm.html#intermediate-4"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup9"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -442,26 +534,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.6" data-path="glm.html"><a href="glm.html#predict"><i class="fa fa-check"></i><b>9.4.6</b> Predict New Values</a></li>
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="glm.html"><a href="glm.html#means-variability-and-deviation-scores"><i class="fa fa-check"></i><b>9.6.1</b> Means, Variability, and Deviation Scores</a></li>
 <li class="chapter" data-level="9.6.2" data-path="glm.html"><a href="glm.html#decomp"><i class="fa fa-check"></i><b>9.6.2</b> Decomposition matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#glossary9"><i class="fa fa-check"></i><b>9.7</b> Glossary</a></li>
 <li class="chapter" data-level="9.8" data-path="glm.html"><a href="glm.html#exercises9"><i class="fa fa-check"></i><b>9.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
-<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#ilo10"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#ilo10"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-5"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-2"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#setup10"><i class="fa fa-check"></i><b>10.3</b> Setup</a></li>
-<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.4</b> R Markdown</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>10.4.1</b> knitr options</a></li>
 <li class="chapter" data-level="10.4.2" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>10.4.2</b> YAML Header</a></li>
 <li class="chapter" data-level="10.4.3" data-path="repro.html"><a href="repro.html#toc-and-document-headers"><i class="fa fa-check"></i><b>10.4.3</b> TOC and Document Headers</a></li>
@@ -473,11 +570,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="repro.html"><a href="repro.html#glossary10"><i class="fa fa-check"></i><b>10.5</b> Glossary</a></li>
 <li class="chapter" data-level="10.6" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>10.6</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a>
+<ul>
 <li class="chapter" data-level="10.7" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>10.7</b> Contributors</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a><ul>
+<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="installingr.html"><a href="installingr.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
 <li class="chapter" data-level="A.2" data-path="installingr.html"><a href="installingr.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="A.3" data-path="installingr.html"><a href="installingr.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
@@ -511,11 +610,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
+<div id="intro" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Getting Started</h1>
 <p><img src="images/memes/rstudio.png" class="meme right"
      alt="A line drawing of a person looking at a computer with a magnifying glass. The text reads 'I just installed RStudio. I'm a data scientist now.'"></p>
-<div id="ilo1" class="section level2">
+<div id="ilo1" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
 <ol style="list-style-type: decimal">
 <li>Understand the components of the <a href="intro.html#rstudio_ide">RStudio IDE</a> <a href="https://youtu.be/CbA6ZVlJE78" class="video">(video)</a></li>
@@ -526,7 +625,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create and compile an <a href="intro.html#rmarkdown">Rmarkdown document</a> <a href="https://youtu.be/EqJiAlJAl8Y" class="video">(video)</a></li>
 </ol>
 </div>
-<div id="resources1" class="section level2">
+<div id="resources1" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Resources</h2>
 <ul>
 <li><a href="http://r4ds.had.co.nz/introduction.html">Chapter 1: Introduction</a> in <em>R for Data Science</em></li>
@@ -537,14 +636,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://rstudio.cloud/" target="_blank">RStudio Cloud</a></li>
 </ul>
 </div>
-<div id="what-is-r" class="section level2">
+<div id="what-is-r" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> What is R?</h2>
 <p><img src="images/01/new_R_logo.png"  class="left meme"></p>
 <p>R is a programming environment for data processing and statistical analysis. We use R in Psychology at the University of Glasgow to promote <a class='glossary' target='_blank' title='Research that documents all of the steps between raw data and results in a way that can be verified.' href='https://psyteachr.github.io/glossary/r#reproducible-research'>reproducible research</a>. This refers to being able to document and reproduce all of the steps between raw data and results. R allows you to write <a class='glossary' target='_blank' title='A plain-text file that contains commands in a coding language, such as R.' href='https://psyteachr.github.io/glossary/s#script'>scripts</a> that combine data files, clean data, and run analyses. There are many other ways to do this, including writing SPSS syntax files, but we find R to be a useful tool that is free, open source, and commonly used by research psychologists.</p>
 <div class="info">
 <p>See Appendix <a href="installingr.html#installingr">A</a> for more information on on how to install R and associated programs.</p>
 </div>
-<div id="rconsole" class="section level3">
+<div id="rconsole" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> The Base R Console</h3>
 <p>If you open up the application called R, you will see an “R Console” window that looks something like this.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-repl"></span>
@@ -563,7 +662,7 @@ Launch <img src="images/01/rstudio_icon.png" style="height: 2em; vertical-align:
 </p>
 </div>
 </div>
-<div id="rstudio_ide" class="section level3">
+<div id="rstudio_ide" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> RStudio</h3>
 <p><a href="http://www.rstudio.com">RStudio</a> is an Integrated Development Environment (<a class='glossary' target='_blank' title='Integrated Development Environment: a program that serves as a text editor, file manager, and provides functions to help you read and write code. RStudio is an IDE for R.' href='https://psyteachr.github.io/glossary/i#ide'>IDE</a>). This is a program that serves as a text editor, file manager, and provides many functions to help you read and write R code.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-rstudio"></span>
@@ -572,13 +671,13 @@ Launch <img src="images/01/rstudio_icon.png" style="height: 2em; vertical-align:
 Figure 1.2: The RStudio IDE
 </p>
 </div>
-<p>RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes”.' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the <strong>source pane</strong>, where you view and edit source code from files. The bottom left pane is usually the <strong>console pane</strong>, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under <strong><code>Preferences &gt; Pane Layout</code></strong>.</p>
+<p>RStudio is arranged with four window <a class='glossary' target='_blank' title='RStudio is arranged with four window “panes.”' href='https://psyteachr.github.io/glossary/p#panes'>panes</a>. By default, the upper left pane is the <strong>source pane</strong>, where you view and edit source code from files. The bottom left pane is usually the <strong>console pane</strong>, where you can type in commands and view output messages. The right panes have several different tabs that show you information about your code. You can change the location of panes and what tabs are shown under <strong><code>Preferences &gt; Pane Layout</code></strong>.</p>
 <video width="640" height="480" controls>
 <source src="http://www.psy.gla.ac.uk/~lisad/r_movies/panes.mov" type="video/mp4">
 <p>Your browser does not support the video tag.
 </video></p>
 </div>
-<div id="configure-rstudio" class="section level3">
+<div id="configure-rstudio" class="section level3" number="1.3.3">
 <h3><span class="header-section-number">1.3.3</span> Configure RStudio</h3>
 <p>In this class, you will be learning how to do <a class='glossary' target='_blank' title='Research that documents all of the steps between raw data and results in a way that can be verified.' href='https://psyteachr.github.io/glossary/r#reproducible-research'>reproducible research</a>. This involves writing scripts that completely and transparently perform some analysis from start to finish in a way that yields the same result for different people using the same software on different computers. Transparency is a key value of science, as embodied in the “trust but verify” motto.</p>
 <p><img src="images/memes/forgetting.jpg"  class="right meme"
@@ -594,48 +693,48 @@ Figure 1.3: Alter these settings for increased reproducibility.
 <div class="try">
 <p>Your settings should have:</p>
 <ul>
-<li>Restore .RData into workspace at startup: <select class='solveme' name='q_1' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select></li>
-<li>Save workspace to .RData on exit: <select class='solveme' name='q_2' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select></li>
+<li>Restore .RData into workspace at startup: <select class='webex-solveme' data-answer='["Not Checked"]'> <option></option> <option>Checked</option> <option>Not Checked</option></select></li>
+<li>Save workspace to .RData on exit: <select class='webex-solveme' data-answer='["Never"]'> <option></option> <option>Always</option> <option>Never</option> <option>Ask</option></select></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="getting-started" class="section level2">
+<div id="getting-started" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Getting Started</h2>
-<div id="console" class="section level3">
+<div id="console" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Console commands</h3>
 <p>We are first going to learn about how to interact with the <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a>. In general, you will be developing R <a class='glossary' target='_blank' title='NA' href='https://psyteachr.github.io/glossary/s#scripts'>script</a> or <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> files, rather than working directly in the console window. However, you can consider the console a kind of “sandbox” where you can try out lines of code and adapt them until you get them to do what you want. Then you can copy them back into the script editor.</p>
 <p>Mostly, however, you will be typing into the script editor window (either into an R script or an R Markdown file) and then sending the commands to the console by placing the cursor on the line and holding down the Ctrl key while you press Enter. The Ctrl+Enter key sequence sends the command in the script to the console.</p>
 <p><img src="images/memes/typos.jpg" class="right meme"
      alt="Morpehus from The Matrix; top text: What if I told you; bottom text: Typos are accidents nd accidents happon"></p>
 <p>One simple way to learn about the R console is to use it as a calculator. Enter the lines of code below and see if your results match. Be prepared to make lots of typos (at first).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>The R console remembers a history of the commands you typed in the past. Use the up and down arrow keys on your keyboard to scroll backwards and forwards through your history. It’s a lot faster than re-typing.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>You can break up mathematical expressions over multiple lines; R waits for a complete expression before processing it.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1"></a><span class="co">## here comes a long expression</span></span>
-<span id="cb6-2"><a href="intro.html#cb6-2"></a><span class="co">## let&#39;s break it over multiple lines</span></span>
-<span id="cb6-3"><a href="intro.html#cb6-3"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">+</span></span>
-<span id="cb6-4"><a href="intro.html#cb6-4"></a><span class="st">    </span><span class="dv">7</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span> <span class="op">+</span><span class="st"> </span><span class="dv">9</span> <span class="op">+</span></span>
-<span id="cb6-5"><a href="intro.html#cb6-5"></a><span class="st">    </span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## here comes a long expression</span></span>
+<span id="cb6-2"><a href="intro.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## let&#39;s break it over multiple lines</span></span>
+<span id="cb6-3"><a href="intro.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">+</span></span>
+<span id="cb6-4"><a href="intro.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">9</span> <span class="sc">+</span></span>
+<span id="cb6-5"><a href="intro.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span></span></code></pre></div>
 <pre><code>## [1] 55</code></pre>
 <p>Text inside quotes is called a <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>string</a>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1"></a><span class="st">&quot;Good afternoon&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Good afternoon&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;Good afternoon&quot;</code></pre>
 <p>You can break up text over multiple lines; R waits for a close quote before processing it. If you want to include a double quote inside this quoted string, <a class='glossary' target='_blank' title='Include special characters like " inside of a string by prefacing them with a backslash.' href='https://psyteachr.github.io/glossary/e#escape'>escape</a> it with a backslash.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1"></a>africa &lt;-<span class="st"> &quot;I hear the drums echoing tonight  </span></span>
-<span id="cb10-2"><a href="intro.html#cb10-2"></a><span class="st">But she hears only whispers of some quiet conversation  </span></span>
-<span id="cb10-3"><a href="intro.html#cb10-3"></a><span class="st">She&#39;s coming in, 12:30 flight  </span></span>
-<span id="cb10-4"><a href="intro.html#cb10-4"></a><span class="st">The moonlit wings reflect the stars that guide me towards salvation  </span></span>
-<span id="cb10-5"><a href="intro.html#cb10-5"></a><span class="st">I stopped an old man along the way  </span></span>
-<span id="cb10-6"><a href="intro.html#cb10-6"></a><span class="st">Hoping to find some old forgotten words or ancient melodies  </span></span>
-<span id="cb10-7"><a href="intro.html#cb10-7"></a><span class="st">He turned to me as if to say, </span><span class="ch">\&quot;</span><span class="st">Hurry boy, it&#39;s waiting there for you</span><span class="ch">\&quot;</span></span>
-<span id="cb10-8"><a href="intro.html#cb10-8"></a></span>
-<span id="cb10-9"><a href="intro.html#cb10-9"></a><span class="st">- Toto&quot;</span></span>
-<span id="cb10-10"><a href="intro.html#cb10-10"></a></span>
-<span id="cb10-11"><a href="intro.html#cb10-11"></a><span class="kw">cat</span>(africa) <span class="co"># cat() prints the string</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a>africa <span class="ot">&lt;-</span> <span class="st">&quot;I hear the drums echoing tonight  </span></span>
+<span id="cb10-2"><a href="intro.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">But she hears only whispers of some quiet conversation  </span></span>
+<span id="cb10-3"><a href="intro.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">She&#39;s coming in, 12:30 flight  </span></span>
+<span id="cb10-4"><a href="intro.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">The moonlit wings reflect the stars that guide me towards salvation  </span></span>
+<span id="cb10-5"><a href="intro.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">I stopped an old man along the way  </span></span>
+<span id="cb10-6"><a href="intro.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">Hoping to find some old forgotten words or ancient melodies  </span></span>
+<span id="cb10-7"><a href="intro.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">He turned to me as if to say, </span><span class="sc">\&quot;</span><span class="st">Hurry boy, it&#39;s waiting there for you</span><span class="sc">\&quot;</span></span>
+<span id="cb10-8"><a href="intro.html#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="intro.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="st">- Toto&quot;</span></span>
+<span id="cb10-10"><a href="intro.html#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="intro.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(africa) <span class="co"># cat() prints the string</span></span></code></pre></div>
 <pre><code>## I hear the drums echoing tonight  
 ## But she hears only whispers of some quiet conversation  
 ## She&#39;s coming in, 12:30 flight  
@@ -646,7 +745,7 @@ Figure 1.3: Alter these settings for increased reproducibility.
 ## 
 ## - Toto</code></pre>
 </div>
-<div id="vars" class="section level3">
+<div id="vars" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Objects</h3>
 <p>Often you want to store the result of some computation for later use. You can store it in an <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/o#object'>object</a> (also sometimes called a <a class='glossary' target='_blank' title='A word that identifies and stores the value of some data for later use.' href='https://psyteachr.github.io/glossary/v#variable'>variable</a>). An object in R:</p>
 <ul>
@@ -672,137 +771,137 @@ Figure 1.3: Alter these settings for increased reproducibility.
 <li>song-data</li>
 </ul>
 <p>Use the <a class='glossary' target='_blank' title='The symbol <-, which functions like = and assigns the value on the right to the object on the left' href='https://psyteachr.github.io/glossary/a#assignment-operator'>assignment operator</a>&lt;-` to assign the value on the right to the object named on the left.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1"></a><span class="co">## use the assignment operator &#39;&lt;-&#39;</span></span>
-<span id="cb12-2"><a href="intro.html#cb12-2"></a><span class="co">## R stores the number in the object</span></span>
-<span id="cb12-3"><a href="intro.html#cb12-3"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## use the assignment operator &#39;&lt;-&#39;</span></span>
+<span id="cb12-2"><a href="intro.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## R stores the number in the object</span></span>
+<span id="cb12-3"><a href="intro.html#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
 <p>Now that we have set <code>x</code> to a value, we can do something with it:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1"></a>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb13-2"><a href="intro.html#cb13-2"></a></span>
-<span id="cb13-3"><a href="intro.html#cb13-3"></a><span class="co">## R evaluates the expression and stores the result in the object boring_calculation</span></span>
-<span id="cb13-4"><a href="intro.html#cb13-4"></a>boring_calculation &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="intro.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## R evaluates the expression and stores the result in the object boring_calculation</span></span>
+<span id="cb13-4"><a href="intro.html#cb13-4" aria-hidden="true" tabindex="-1"></a>boring_calculation <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>Note that it doesn’t print the result back at you when it’s stored. To view the result, just type the object name on a blank line.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1"></a>boring_calculation</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true" tabindex="-1"></a>boring_calculation</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Once an object is assigned a value, its value doesn’t change unless you reassign the object, even if the objects you used to calculate it change. Predict what the code below does and test yourself:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1"></a>this_year &lt;-<span class="st"> </span><span class="dv">2019</span></span>
-<span id="cb17-2"><a href="intro.html#cb17-2"></a>my_birth_year &lt;-<span class="st"> </span><span class="dv">1976</span></span>
-<span id="cb17-3"><a href="intro.html#cb17-3"></a>my_age &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>my_birth_year</span>
-<span id="cb17-4"><a href="intro.html#cb17-4"></a>this_year &lt;-<span class="st"> </span><span class="dv">2020</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1" aria-hidden="true" tabindex="-1"></a>this_year <span class="ot">&lt;-</span> <span class="dv">2019</span></span>
+<span id="cb17-2"><a href="intro.html#cb17-2" aria-hidden="true" tabindex="-1"></a>my_birth_year <span class="ot">&lt;-</span> <span class="dv">1976</span></span>
+<span id="cb17-3"><a href="intro.html#cb17-3" aria-hidden="true" tabindex="-1"></a>my_age <span class="ot">&lt;-</span> this_year <span class="sc">-</span> my_birth_year</span>
+<span id="cb17-4"><a href="intro.html#cb17-4" aria-hidden="true" tabindex="-1"></a>this_year <span class="ot">&lt;-</span> <span class="dv">2020</span></span></code></pre></div>
 <div class="try">
 <p>After all the code above is run:</p>
 <ul>
-<li><code>this_year</code> = <select class='solveme' name='q_3' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
-<li><code>my_birth_year</code> = <select class='solveme' name='q_4' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
-<li><code>my_age</code> = <select class='solveme' name='q_5' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
+<li><code>this_year</code> = <select class='webex-solveme' data-answer='["2020"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
+<li><code>my_birth_year</code> = <select class='webex-solveme' data-answer='["1976"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
+<li><code>my_age</code> = <select class='webex-solveme' data-answer='["43"]'> <option></option> <option>43</option> <option>44</option> <option>1976</option> <option>2019</option> <option>2020</option></select></li>
 </ul>
 </div>
 </div>
-<div id="the-environment" class="section level3">
+<div id="the-environment" class="section level3" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> The environment</h3>
 <p>Anytime you assign something to a new object, R creates a new entry in the <a class='glossary' target='_blank' title='The interactive workspace where your script runs' href='https://psyteachr.github.io/glossary/g#global-environment'>global environment</a>. Objects in the global environment exist until you end your session; then they disappear forever (unless you save them).</p>
 <p>Look at the <strong>Environment</strong> tab in the upper right pane. It lists all of the objects you have created. Click the broom icon to clear all of the objects and start fresh. You can also use the following functions in the console to view all objects, remove one object, or remove all objects.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1"></a><span class="kw">ls</span>()            <span class="co"># print the objects in the global environment</span></span>
-<span id="cb18-2"><a href="intro.html#cb18-2"></a><span class="kw">rm</span>(<span class="st">&quot;x&quot;</span>)         <span class="co"># remove the object named x from the global environment</span></span>
-<span id="cb18-3"><a href="intro.html#cb18-3"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>()) <span class="co"># clear out the global environment</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()            <span class="co"># print the objects in the global environment</span></span>
+<span id="cb18-2"><a href="intro.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">&quot;x&quot;</span>)         <span class="co"># remove the object named x from the global environment</span></span>
+<span id="cb18-3"><a href="intro.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>()) <span class="co"># clear out the global environment</span></span></code></pre></div>
 <div class="info">
 <p>
 In the upper right corner of the Environment tab, change <strong><code>List</code></strong> to <strong><code>Grid</code></strong>. Now you can see the type, length, and size of your objects, and reorder the list by any of these attributes.
 </p>
 </div>
 </div>
-<div id="whitespace" class="section level3">
+<div id="whitespace" class="section level3" number="1.4.4">
 <h3><span class="header-section-number">1.4.4</span> Whitespace</h3>
 <p>R mostly ignores <a class='glossary' target='_blank' title='Spaces, tabs and line breaks' href='https://psyteachr.github.io/glossary/w#whitespace'>whitespace</a>: spaces, tabs, and line breaks. This means that you can use whitespace to help you organise your code.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1"></a><span class="co"># a and b are identical</span></span>
-<span id="cb19-2"><a href="intro.html#cb19-2"></a>a &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">ctl =</span> <span class="st">&quot;Control Condition&quot;</span>, <span class="dt">exp1 =</span> <span class="st">&quot;Experimental Condition 1&quot;</span>, <span class="dt">exp2 =</span> <span class="st">&quot;Experimental Condition 2&quot;</span>)</span>
-<span id="cb19-3"><a href="intro.html#cb19-3"></a></span>
-<span id="cb19-4"><a href="intro.html#cb19-4"></a><span class="co"># but b is much easier to read</span></span>
-<span id="cb19-5"><a href="intro.html#cb19-5"></a>b &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">ctl  =</span> <span class="st">&quot;Control Condition&quot;</span>, </span>
-<span id="cb19-6"><a href="intro.html#cb19-6"></a>          <span class="dt">exp1 =</span> <span class="st">&quot;Experimental Condition 1&quot;</span>, </span>
-<span id="cb19-7"><a href="intro.html#cb19-7"></a>          <span class="dt">exp2 =</span> <span class="st">&quot;Experimental Condition 2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a and b are identical</span></span>
+<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ctl =</span> <span class="st">&quot;Control Condition&quot;</span>, <span class="at">exp1 =</span> <span class="st">&quot;Experimental Condition 1&quot;</span>, <span class="at">exp2 =</span> <span class="st">&quot;Experimental Condition 2&quot;</span>)</span>
+<span id="cb19-3"><a href="intro.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="intro.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># but b is much easier to read</span></span>
+<span id="cb19-5"><a href="intro.html#cb19-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ctl  =</span> <span class="st">&quot;Control Condition&quot;</span>, </span>
+<span id="cb19-6"><a href="intro.html#cb19-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">exp1 =</span> <span class="st">&quot;Experimental Condition 1&quot;</span>, </span>
+<span id="cb19-7"><a href="intro.html#cb19-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">exp2 =</span> <span class="st">&quot;Experimental Condition 2&quot;</span>)</span></code></pre></div>
 <p>When you see <code>&gt;</code> at the beginning of a line, that means R is waiting for you to start a new command. However, if you see a <code>+</code> instead of <code>&gt;</code> at the start of the line, that means R is waiting for you to finish a command you started on a previous line. If you want to cancel whatever command you started, just press the Esc key in the console window and you’ll get back to the <code>&gt;</code> command prompt.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1"></a><span class="co"># R waits until next line for evaluation</span></span>
-<span id="cb20-2"><a href="intro.html#cb20-2"></a>(<span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span></span>
-<span id="cb20-3"><a href="intro.html#cb20-3"></a><span class="st">     </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R waits until next line for evaluation</span></span>
+<span id="cb20-2"><a href="intro.html#cb20-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span></span>
+<span id="cb20-3"><a href="intro.html#cb20-3" aria-hidden="true" tabindex="-1"></a>     <span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <p>It is often useful to break up long functions onto several lines.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1"></a><span class="kw">cat</span>(<span class="st">&quot;3, 6, 9, the goose drank wine&quot;</span>,</span>
-<span id="cb22-2"><a href="intro.html#cb22-2"></a>    <span class="st">&quot;The monkey chewed tobacco on the streetcar line&quot;</span>,</span>
-<span id="cb22-3"><a href="intro.html#cb22-3"></a>    <span class="st">&quot;The line broke, the monkey got choked&quot;</span>,</span>
-<span id="cb22-4"><a href="intro.html#cb22-4"></a>    <span class="st">&quot;And they all went to heaven in a little rowboat&quot;</span>,</span>
-<span id="cb22-5"><a href="intro.html#cb22-5"></a>    <span class="dt">sep =</span> <span class="st">&quot;  </span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;3, 6, 9, the goose drank wine&quot;</span>,</span>
+<span id="cb22-2"><a href="intro.html#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;The monkey chewed tobacco on the streetcar line&quot;</span>,</span>
+<span id="cb22-3"><a href="intro.html#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;The line broke, the monkey got choked&quot;</span>,</span>
+<span id="cb22-4"><a href="intro.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;And they all went to heaven in a little rowboat&quot;</span>,</span>
+<span id="cb22-5"><a href="intro.html#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;  </span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## 3, 6, 9, the goose drank wine  
 ## The monkey chewed tobacco on the streetcar line  
 ## The line broke, the monkey got choked  
 ## And they all went to heaven in a little rowboat</code></pre>
 </div>
-<div id="function_syx" class="section level3">
+<div id="function_syx" class="section level3" number="1.4.5">
 <h3><span class="header-section-number">1.4.5</span> Function syntax</h3>
 <p>A lot of what you do in R involves calling a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> and storing the results. A function is a named section of code that can be reused.</p>
-<p>For example, <code>sd</code> is a function that returns the <a class='glossary' target='_blank' title='A statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this:</p>
+<p>For example, <code>sd</code> is a function that returns the <a class='glossary' target='_blank' title='A descriptive statistic that measures how spread out data are relative to the mean.' href='https://psyteachr.github.io/glossary/s#standard-deviation'>standard deviation</a> of the <a class='glossary' target='_blank' title='A type of data structure that is basically a list of things like T/F values, numbers, or strings.' href='https://psyteachr.github.io/glossary/v#vector'>vector</a> of numbers that you provide as the input <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>argument</a>. Functions are set up like this:</p>
 <p><code>function_name(argument1, argument2 = "value")</code>.</p>
 <p>The arguments in parentheses can be named (like, <code>argument1 = 10</code>) or you can skip the names if you put them in the exact same order that they’re defined in the function. You can check this by typing <code>?sd</code> (or whatever function name you’re looking up) into the console and the Help pane will show you the default order under <strong>Usage</strong>. You can also skip arguments that have a default value specified.</p>
 <p>Most functions return a value, but may also produce side effects like printing to the console.</p>
 <p>To illustrate, the function <code>rnorm()</code> generates random numbers from the standard <a class='glossary' target='_blank' title='A symmetric distribution of data where values near the centre are most probable.' href='https://psyteachr.github.io/glossary/n#normal-distribution'>normal distribution</a>. The help page for <code>rnorm()</code> (accessed by typing <code>?rnorm</code> in the console) shows that it has the syntax</p>
 <p><code>rnorm(n, mean = 0, sd = 1)</code></p>
 <p>where <code>n</code> is the number of randomly generated numbers you want, <code>mean</code> is the mean of the distribution, and <code>sd</code> is the standard deviation. The default mean is 0, and the default standard deviation is 1. There is no default for <code>n</code>, which means you’ll get an error if you don’t specify it:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1"></a><span class="kw">rnorm</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>()</span></code></pre></div>
 <pre><code>## Error in rnorm(): argument &quot;n&quot; is missing, with no default</code></pre>
 <p>If you want 10 random numbers from a normal distribution with mean of 0 and standard deviation, you can just use the defaults.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1]  0.29834419  1.53603718 -0.38469001 -0.20710725  0.37780132  1.05581866
-##  [7]  0.09612264 -0.17648901 -0.60471814 -0.50825921</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] -1.3538528 -0.5689956 -1.3773205 -2.1431520  0.8950921  1.1005615
+##  [7] -0.9475025 -0.4003843  0.2602966  0.8493458</code></pre>
 <p>If you want 10 numbers from a normal distribution with a mean of 100:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 100.31067  98.47599 100.11132 101.77708  99.49242  99.44733 100.98681
-##  [8]  99.13058 100.75033 101.27956</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>##  [1]  99.93713  97.80654  97.87596 100.58246  99.31895 100.89539 100.67656
+##  [8]  99.27151  97.75020  99.84467</code></pre>
 <p>This would be an equivalent but less efficient way of calling the function:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] 100.48178  97.53783  98.47544 100.69126 101.42734 101.21458  99.95839
-##  [8]  97.45617 100.19050 101.03798</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>##  [1] 100.39631  98.95611 101.43154 101.71322  99.70540  99.69147  99.58547
+##  [8] 100.87473 100.78744  99.09814</code></pre>
 <p>We don’t need to name the arguments because R will recognize that we intended to fill in the first and second arguments by their position in the function call. However, if we want to change the default for an argument coming later in the list, then we need to name it. For instance, if we wanted to keep the default <code>mean = 0</code> but change the standard deviation to 100 we would do it this way:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1"></a><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>##  [1] -121.96304   22.04691   47.80238  -78.83536   72.58272   10.65445
-##  [7] -304.45118   42.88734  -65.81395  -89.32137</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>##  [1] -60.952499   8.609648 -50.108168  44.992404  76.185434  -5.066664
+##  [7]  64.220027  52.676197 -42.899655 236.274359</code></pre>
 <p>Some functions give a list of options after an argument; this means the default value is the first option. The usage entry for the <code>power.t.test()</code> function looks like this:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="kw">power.t.test</span>(<span class="dt">n =</span> <span class="ot">NULL</span>, <span class="dt">delta =</span> <span class="ot">NULL</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>,</span>
-<span id="cb34-2"><a href="intro.html#cb34-2"></a>             <span class="dt">power =</span> <span class="ot">NULL</span>,</span>
-<span id="cb34-3"><a href="intro.html#cb34-3"></a>             <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;two.sample&quot;</span>, <span class="st">&quot;one.sample&quot;</span>, <span class="st">&quot;paired&quot;</span>),</span>
-<span id="cb34-4"><a href="intro.html#cb34-4"></a>             <span class="dt">alternative =</span> <span class="kw">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;one.sided&quot;</span>),</span>
-<span id="cb34-5"><a href="intro.html#cb34-5"></a>             <span class="dt">strict =</span> <span class="ot">FALSE</span>, <span class="dt">tol =</span> .Machine<span class="op">$</span>double.eps<span class="op">^</span><span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n =</span> <span class="cn">NULL</span>, <span class="at">delta =</span> <span class="cn">NULL</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb34-2"><a href="intro.html#cb34-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">power =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-3"><a href="intro.html#cb34-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;two.sample&quot;</span>, <span class="st">&quot;one.sample&quot;</span>, <span class="st">&quot;paired&quot;</span>),</span>
+<span id="cb34-4"><a href="intro.html#cb34-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">alternative =</span> <span class="fu">c</span>(<span class="st">&quot;two.sided&quot;</span>, <span class="st">&quot;one.sided&quot;</span>),</span>
+<span id="cb34-5"><a href="intro.html#cb34-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">strict =</span> <span class="cn">FALSE</span>, <span class="at">tol =</span> .Machine<span class="sc">$</span>double.eps<span class="sc">^</span><span class="fl">0.25</span>)</span></code></pre></div>
 <div class="try">
 <ul>
-<li>What is the default value for <code>sd</code>? <select class='solveme' name='q_6' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select></li>
-<li>What is the default value for <code>type</code>? <select class='solveme' name='q_7' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select></li>
-<li>Which is equivalent to <code>power.t.test(100, 0.5)</code>? <select class='solveme' name='q_8' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select></li>
+<li>What is the default value for <code>sd</code>? <select class='webex-solveme' data-answer='["1"]'> <option></option> <option>NULL</option> <option>1</option> <option>0.05</option> <option>two.sample</option></select></li>
+<li>What is the default value for <code>type</code>? <select class='webex-solveme' data-answer='["two.sample"]'> <option></option> <option>NULL</option> <option>two.sample</option> <option>one.sample</option> <option>paired</option></select></li>
+<li>Which is equivalent to <code>power.t.test(100, 0.5)</code>? <select class='webex-solveme' data-answer='["power.t.test(delta = 0.5, n = 100)"]'> <option></option> <option>power.t.test(100, 0.5, sig.level = 1, sd = 0.05)</option> <option>power.t.test()</option> <option>power.t.test(n = 100)</option> <option>power.t.test(delta = 0.5, n = 100)</option></select></li>
 </ul>
 </div>
 </div>
-<div id="help" class="section level3">
+<div id="help" class="section level3" number="1.4.6">
 <h3><span class="header-section-number">1.4.6</span> Getting help</h3>
 <p>Start up help in a browser using the function <code>help.start()</code>.</p>
 <p>If a function is in <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> or a loaded <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>package</a>, you can use the <code>help("function_name")</code> function or the <code>?function_name</code> shortcut to access the help file. If the package isn’t loaded, specify the package name as the second argument to the help function.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1"></a><span class="co"># these methods are all equivalent ways of getting help</span></span>
-<span id="cb35-2"><a href="intro.html#cb35-2"></a><span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>)</span>
-<span id="cb35-3"><a href="intro.html#cb35-3"></a>?rnorm</span>
-<span id="cb35-4"><a href="intro.html#cb35-4"></a><span class="kw">help</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="dt">package=</span><span class="st">&quot;stats&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># these methods are all equivalent ways of getting help</span></span>
+<span id="cb35-2"><a href="intro.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">&quot;rnorm&quot;</span>)</span>
+<span id="cb35-3"><a href="intro.html#cb35-3" aria-hidden="true" tabindex="-1"></a>?rnorm</span>
+<span id="cb35-4"><a href="intro.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">&quot;rnorm&quot;</span>, <span class="at">package=</span><span class="st">&quot;stats&quot;</span>) </span></code></pre></div>
 <p>When the package isn’t loaded or you aren’t sure what package the function is in, use the shortcut <code>??function_name</code>.</p>
 <div class="try">
 <ul>
-<li>What is the first argument to the <code>mean</code> function? <select class='solveme' name='q_9' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select></li>
-<li>What package is <code>read_excel</code> in? <select class='solveme' name='q_10' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select></li>
+<li>What is the first argument to the <code>mean</code> function? <select class='webex-solveme' data-answer='["x"]'> <option></option> <option>trim</option> <option>na.rm</option> <option>mean</option> <option>x</option></select></li>
+<li>What package is <code>read_excel</code> in? <select class='webex-solveme' data-answer='["readxl"]'> <option></option> <option>readr</option> <option>readxl</option> <option>base</option> <option>stats</option></select></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="install-package" class="section level2">
+<div id="install-package" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Add-on packages</h2>
 <p>One of the great things about R is that it is <strong>user extensible</strong>: anyone can create a new add-on software package that extends its functionality. There are currently thousands of add-on packages that R users have created to solve many different kinds of problems, or just simply to have fun. There are packages for data visualisation, machine learning, neuroimaging, eyetracking, web scraping, and playing games such as Sudoku.</p>
 <p>Add-on packages are not distributed with base R, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install a fitness app on your smartphone.</p>
 <p>The main repository where packages reside is called CRAN, the Comprehensive R Archive Network. A package has to pass strict tests devised by the R core team to be allowed to be part of the CRAN archive. You can install from the CRAN archive through R using the <code>install.packages()</code> function.</p>
 <p>There is an important distinction between <strong>installing</strong> a package and <strong>loading</strong> a package.</p>
-<div id="installing-a-package" class="section level3">
+<div id="installing-a-package" class="section level3" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> Installing a package</h3>
 <p><img src="images/memes/pokemon.gif" class="meme right"></p>
 <p>This is done using <code>install.packages()</code>. This is like installing an app on your phone: you only have to do it once and the app will remain installed until you remove it. For instance, if you want to use PokemonGo on your phone, you install it once from the App Store or Play Store, and you don’t have to re-install it each time you want to use it. Once you launch the app, it will run in the background until you close it or restart your phone. Likewise, when you install a package, the package will be available (but not <em>loaded</em>) every time you open up R.</p>
@@ -812,14 +911,14 @@ You may only be able to permanently install packages if you are using R on your 
 </p>
 </div>
 <p>Install the <code>ggExtra</code> package on your system. This package lets you create plots with marginal histograms.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggExtra&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggExtra&quot;</span>)</span></code></pre></div>
 <p>If you don’t already have packages like ggplot2 and shiny installed, it will also install these <strong>dependencies</strong> for you. If you don’t get an error message at the end, the installation was successful.</p>
 </div>
-<div id="loading-a-package" class="section level3">
+<div id="loading-a-package" class="section level3" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> Loading a package</h3>
 <p>This is done using <code>library(packagename)</code>. This is like <strong>launching</strong> an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. Likewise, when you run <code>library(packagename)</code> within a session, the functionality of the package referred to by <code>packagename</code> will be made available for your R session. The next time you start R, you will need to run the <code>library()</code> function again if you want to access its functionality.</p>
 <p>You can load the functions in <code>ggExtra</code> for your current R session as follows:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1"></a><span class="kw">library</span>(ggExtra)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intro.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span></code></pre></div>
 <p>You might get some red text when you load a package, this is normal. It is usually warning you that this package has functions that have the same name as other packages you’ve already loaded.</p>
 <div class="info">
 <p>
@@ -827,9 +926,9 @@ You can use the convention <code>package::function()</code> to indicate in which
 </p>
 </div>
 <p>Now you can run the function <code>ggExtra::runExample()</code>, which runs an interactive example of marginal plots using shiny.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1"></a>ggExtra<span class="op">::</span><span class="kw">runExample</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro.html#cb38-1" aria-hidden="true" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">runExample</span>()</span></code></pre></div>
 </div>
-<div id="install-from-github" class="section level3">
+<div id="install-from-github" class="section level3" number="1.5.3">
 <h3><span class="header-section-number">1.5.3</span> Install from GitHub</h3>
 <p>Many R packages are not yet on <a class='glossary' target='_blank' title='The Comprehensive R Archive Network: a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.' href='https://psyteachr.github.io/glossary/c#cran'>CRAN</a> because they are still in development. Increasingly, datasets and code for papers are available as packages you can download from github. You’ll need to install the devtools package to be able to install packages from github. Check if you have a package installed by trying to load it (e.g., if you don’t have devtools installed, <code>library("devtools")</code> will display an error message) or by searching for it in the packages tab in the lower right pane. All listed packages are installed; all checked packages are currently loaded.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-packages"></span>
@@ -838,10 +937,10 @@ You can use the convention <code>package::function()</code> to indicate in which
 Figure 1.4: Check installed and loaded packages in the packages tab in the lower right pane.
 </p>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intro.html#cb39-1"></a><span class="co"># install devtools if you get</span></span>
-<span id="cb39-2"><a href="intro.html#cb39-2"></a><span class="co"># Error in loadNamespace(name) : there is no package called ‘devtools’</span></span>
-<span id="cb39-3"><a href="intro.html#cb39-3"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb39-4"><a href="intro.html#cb39-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intro.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install devtools if you get</span></span>
+<span id="cb39-2"><a href="intro.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Error in loadNamespace(name) : there is no package called ‘devtools’</span></span>
+<span id="cb39-3"><a href="intro.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb39-4"><a href="intro.html#cb39-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;psyteachr/msc-data-skills&quot;</span>)</span></code></pre></div>
 <p>After you install the dataskills package, load it using the <code>library()</code> function. You can then try out some of the functions below.</p>
 <ul>
 <li><code>book()</code> opens a local copy of this book in your web browser.</li>
@@ -849,11 +948,11 @@ Figure 1.4: Check installed and loaded packages in the packages tab in the lower
 <li><code>exercise(1)</code> creates and opens a file containing the exercises for this chapter</li>
 <li><code>?disgust</code> shows you the documentation for the built-in dataset <code>disgust</code>, which we will be using in future lessons</li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1"></a><span class="kw">library</span>(dataskills)</span>
-<span id="cb40-2"><a href="intro.html#cb40-2"></a><span class="kw">book</span>()</span>
-<span id="cb40-3"><a href="intro.html#cb40-3"></a><span class="kw">app</span>(<span class="st">&quot;plotdemo&quot;</span>)</span>
-<span id="cb40-4"><a href="intro.html#cb40-4"></a><span class="kw">exercise</span>(<span class="dv">1</span>)</span>
-<span id="cb40-5"><a href="intro.html#cb40-5"></a>?disgust</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intro.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dataskills)</span>
+<span id="cb40-2"><a href="intro.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span>()</span>
+<span id="cb40-3"><a href="intro.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">app</span>(<span class="st">&quot;plotdemo&quot;</span>)</span>
+<span id="cb40-4"><a href="intro.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exercise</span>(<span class="dv">1</span>)</span>
+<span id="cb40-5"><a href="intro.html#cb40-5" aria-hidden="true" tabindex="-1"></a>?disgust</span></code></pre></div>
 <div class="try">
 <p>
 How many different ways can you find to discover what functions are available in the dataskills package?
@@ -861,7 +960,7 @@ How many different ways can you find to discover what functions are available in
 </div>
 </div>
 </div>
-<div id="projects" class="section level2">
+<div id="projects" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Organising a project</h2>
 <p><a class='glossary' target='_blank' title='A way to organise related files in RStudio' href='https://psyteachr.github.io/glossary/p#project'>Projects</a> in RStudio are a way to group all of the files you need for one project. Most projects include scripts, data files, and output files like the PDF version of the script or images.</p>
 <div class="try">
@@ -872,31 +971,31 @@ Make a new directory where you will keep all of your materials for this class. I
 Choose <strong><code>New Project…</code></strong> under the <strong><code>File</code></strong> menu to create a new project called <code>01-intro</code> in this directory.
 </p>
 </div>
-<div id="structure" class="section level3">
+<div id="structure" class="section level3" number="1.6.1">
 <h3><span class="header-section-number">1.6.1</span> Structure</h3>
 <p>Here is what an R script looks like. Don’t worry about the details for now.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="intro.html#cb41-1"></a><span class="co"># load add-on packages</span></span>
-<span id="cb41-2"><a href="intro.html#cb41-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb41-3"><a href="intro.html#cb41-3"></a></span>
-<span id="cb41-4"><a href="intro.html#cb41-4"></a><span class="co"># set object ----</span></span>
-<span id="cb41-5"><a href="intro.html#cb41-5"></a>n &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb41-6"><a href="intro.html#cb41-6"></a></span>
-<span id="cb41-7"><a href="intro.html#cb41-7"></a><span class="co"># simulate data ----</span></span>
-<span id="cb41-8"><a href="intro.html#cb41-8"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb41-9"><a href="intro.html#cb41-9"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span>n,</span>
-<span id="cb41-10"><a href="intro.html#cb41-10"></a>  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="kw">rnorm</span>(n<span class="op">/</span><span class="dv">2</span>, <span class="dv">1</span>)),</span>
-<span id="cb41-11"><a href="intro.html#cb41-11"></a>  <span class="dt">condition =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> n<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb41-12"><a href="intro.html#cb41-12"></a>)</span>
-<span id="cb41-13"><a href="intro.html#cb41-13"></a></span>
-<span id="cb41-14"><a href="intro.html#cb41-14"></a><span class="co"># plot data ----</span></span>
-<span id="cb41-15"><a href="intro.html#cb41-15"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(condition, dv)) <span class="op">+</span></span>
-<span id="cb41-16"><a href="intro.html#cb41-16"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb41-17"><a href="intro.html#cb41-17"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, </span>
-<span id="cb41-18"><a href="intro.html#cb41-18"></a>               <span class="kw">aes</span>(<span class="dt">fill =</span> condition),</span>
-<span id="cb41-19"><a href="intro.html#cb41-19"></a>               <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb41-20"><a href="intro.html#cb41-20"></a></span>
-<span id="cb41-21"><a href="intro.html#cb41-21"></a><span class="co"># save plot ----</span></span>
-<span id="cb41-22"><a href="intro.html#cb41-22"></a><span class="kw">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="dt">width =</span> <span class="dv">8</span>, <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="intro.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load add-on packages</span></span>
+<span id="cb41-2"><a href="intro.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb41-3"><a href="intro.html#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="intro.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set object ----</span></span>
+<span id="cb41-5"><a href="intro.html#cb41-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb41-6"><a href="intro.html#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="intro.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data ----</span></span>
+<span id="cb41-8"><a href="intro.html#cb41-8" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-9"><a href="intro.html#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb41-10"><a href="intro.html#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">dv =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n<span class="sc">/</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="fu">rnorm</span>(n<span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span>)),</span>
+<span id="cb41-11"><a href="intro.html#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">each =</span> n<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb41-12"><a href="intro.html#cb41-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-13"><a href="intro.html#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="intro.html#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plot data ----</span></span>
+<span id="cb41-15"><a href="intro.html#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(condition, dv)) <span class="sc">+</span></span>
+<span id="cb41-16"><a href="intro.html#cb41-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb41-17"><a href="intro.html#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.25</span>, </span>
+<span id="cb41-18"><a href="intro.html#cb41-18" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">fill =</span> condition),</span>
+<span id="cb41-19"><a href="intro.html#cb41-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb41-20"><a href="intro.html#cb41-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-21"><a href="intro.html#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="co"># save plot ----</span></span>
+<span id="cb41-22"><a href="intro.html#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;sim_data.png&quot;</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
 <p>It’s best if you follow the following structure when developing your own scripts:</p>
 <ul>
 <li>load in any add-on packages you need to use</li>
@@ -907,8 +1006,8 @@ Choose <strong><code>New Project…</code></strong> under the <strong><code>File
 </ul>
 <p>Often when you are working on a script, you will realize that you need to load another add-on package. Don’t bury the call to <code>library(package_I_need)</code> way down in the script. Put it in the top, so the user has an overview of what packages are needed.</p>
 <p>You can add comments to an R script by with the hash symbol (<code>#</code>). The R interpreter will ignore characters from the hash to the end of the line.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intro.html#cb42-1"></a><span class="co">## comments: any text from &#39;#&#39; on is ignored until end of line</span></span>
-<span id="cb42-2"><a href="intro.html#cb42-2"></a><span class="dv">22</span> <span class="op">/</span><span class="st"> </span><span class="dv">7</span>  <span class="co"># approximation to pi</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intro.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="do">## comments: any text from &#39;#&#39; on is ignored until end of line</span></span>
+<span id="cb42-2"><a href="intro.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span> <span class="sc">/</span> <span class="dv">7</span>  <span class="co"># approximation to pi</span></span></code></pre></div>
 <pre><code>## [1] 3.142857</code></pre>
 <div class="info">
 <p>
@@ -916,7 +1015,7 @@ If you add 4 or more dashes to the end of a comment, it acts like a header and c
 </p>
 </div>
 </div>
-<div id="rmarkdown" class="section level3">
+<div id="rmarkdown" class="section level3" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> Reproducible reports with R Markdown</h3>
 <p>We will make reproducible reports following the principles of <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>. The basic idea is to have the text of the report together in a single document along with the code needed to perform all analyses and generate the tables. The report is then “compiled” from the original format into some other, more portable format, such as HTML or PDF. This is different from traditional cutting and pasting approaches where, for instance, you create a graph in Microsoft Excel or a statistics program like SPSS and then paste it into Microsoft Word.</p>
 <p>We will use <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> to create reproducible reports, which enables mixing of text and code. A reproducible script will contain sections of code in code blocks. A code block starts and ends with backtick symbols in a row, with some infomation about the code between curly brackets, such as <code>{r chunk-name, echo=FALSE}</code> (this runs the code, but does not show the text of the code block in the compiled document). The text outside of code blocks is written in <a class='glossary' target='_blank' title='A way to specify formatting, such as headers, paragraphs, lists, bolding, and links.' href='https://psyteachr.github.io/glossary/m#markdown'>markdown</a>, which is a way to specify formatting, such as headers, paragraphs, lists, bolding, and links.</p>
@@ -933,7 +1032,7 @@ Create a new R Markdown file from the <strong><code>File &gt; New File &gt; R Ma
 </p>
 </div>
 </div>
-<div id="working-directory" class="section level3">
+<div id="working-directory" class="section level3" number="1.6.3">
 <h3><span class="header-section-number">1.6.3</span> Working Directory</h3>
 <p>Where should you put all of your files? When developing an analysis, you usually want to have all of your scripts and data files in one subtree of your computer’s directory structure. Usually there is a single <a class='glossary' target='_blank' title='The filepath where R is currently reading and writing files.' href='https://psyteachr.github.io/glossary/w#working-directory'>working directory</a> where your data and scripts are stored.</p>
 <p>Your script should only reference files in three locations, using the appropriate format.</p>
@@ -980,9 +1079,9 @@ When manually setting the working directory, always do so by using the <strong><
 </p>
 </div>
 <p>If your script needs a file in a subdirectory of <code>new_analysis</code>, say, <code>data/questionnaire.csv</code>, load it in using a <a class='glossary' target='_blank' title='The location of a file in relation to the working directory.' href='https://psyteachr.github.io/glossary/r#relative-path'>relative path</a> so that it is accessible if you move the folder <code>new_analysis</code> to another location or computer:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># correct</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intro.html#cb44-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/questionnaire.csv&quot;</span>)  <span class="co"># correct</span></span></code></pre></div>
 <p>Do not load it in using an <a class='glossary' target='_blank' title='A file path that starts with / and is not appended to the working directory' href='https://psyteachr.github.io/glossary/a#absolute-path'>absolute path</a>:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="intro.html#cb45-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="intro.html#cb45-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;C:/Carla&#39;s_files/thesis22/my_thesis/new_analysis/data/questionnaire.csv&quot;</span>)   <span class="co"># wrong</span></span></code></pre></div>
 <div class="info">
 <p>
 Also note the convention of using forward slashes, unlike the Windows-specific convention of using backward slashes. This is to make references to files platform independent.
@@ -990,7 +1089,7 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 </div>
 </div>
 </div>
-<div id="glossary1" class="section level2">
+<div id="glossary1" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> Glossary</h2>
 <p>Each chapter ends with a glossary table defining the jargon introduced in this chapter. The links below take you to the <a href="https://psyteachr.github.io/glossary">glossary book</a>, which you can also download for offline use with <code>devtools::install_github("psyteachr/glossary")</code> and access the glossary offline with <code>glossary::book()</code>.</p>
 <table>
@@ -1067,7 +1166,7 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/p#panes'>panes</a></td>
-<td align="left">RStudio is arranged with four window “panes”.</td>
+<td align="left">RStudio is arranged with four window “panes.”</td>
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/p#project'>project</a></td>
@@ -1095,7 +1194,7 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 </tr>
 <tr class="odd">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#standard.deviation'>standard deviation</a></td>
-<td align="left">A statistic that measures how spread out data are relative to the mean.</td>
+<td align="left">A descriptive statistic that measures how spread out data are relative to the mean.</td>
 </tr>
 <tr class="even">
 <td align="left"><a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#string'>string</a></td>
@@ -1120,14 +1219,14 @@ Also note the convention of using forward slashes, unlike the Windows-specific c
 </tbody>
 </table>
 </div>
-<div id="exercises1" class="section level2">
+<div id="exercises1" class="section level2" number="1.8">
 <h2><span class="header-section-number">1.8</span> Exercises</h2>
 <p>Download the first set of <a href="exercises/01_intro_exercise.Rmd">exercises</a> and put it in the project directory you created earlier for today’s exercises. See the <a href="exercises/01_intro_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intro.html#cb46-1"></a><span class="co"># run this to access the exercise</span></span>
-<span id="cb46-2"><a href="intro.html#cb46-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">1</span>)</span>
-<span id="cb46-3"><a href="intro.html#cb46-3"></a></span>
-<span id="cb46-4"><a href="intro.html#cb46-4"></a><span class="co"># run this to access the answers</span></span>
-<span id="cb46-5"><a href="intro.html#cb46-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">1</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intro.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to access the exercise</span></span>
+<span id="cb46-2"><a href="intro.html#cb46-2" aria-hidden="true" tabindex="-1"></a>dataskills<span class="sc">::</span><span class="fu">exercise</span>(<span class="dv">1</span>)</span>
+<span id="cb46-3"><a href="intro.html#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="intro.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to access the answers</span></span>
+<span id="cb46-5"><a href="intro.html#cb46-5" aria-hidden="true" tabindex="-1"></a>dataskills<span class="sc">::</span><span class="fu">exercise</span>(<span class="dv">1</span>, <span class="at">answers =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -1265,6 +1364,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
 "google": false
 },

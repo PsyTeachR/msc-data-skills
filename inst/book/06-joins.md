@@ -120,18 +120,19 @@ A `left_join` keeps all the data from the first (left) table and joins anything 
 left_join(subject, exp, by = "id")
 ```
 
-```
-## # A tibble: 7 x 4
-##      id gender   age score
-##   <dbl> <chr>  <dbl> <dbl>
-## 1     1 m         19    NA
-## 2     2 m         22    10
-## 3     3 <NA>      NA    18
-## 4     4 nb        19    21
-## 5     4 nb        19    23
-## 6     5 f         18     9
-## 7     5 f         18    11
-```
+<div class="kable-table">
+
+| id|gender | age| score|
+|--:|:------|---:|-----:|
+|  1|m      |  19|    NA|
+|  2|m      |  22|    10|
+|  3|NA     |  NA|    18|
+|  4|nb     |  19|    21|
+|  4|nb     |  19|    23|
+|  5|f      |  18|     9|
+|  5|f      |  18|    11|
+
+</div>
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/left_join_rev.png" alt="Left Join (reversed)" width="100%" />
@@ -145,20 +146,21 @@ The order of tables is swapped here, so the result is all rows from the `exp` ta
 left_join(exp, subject, by = "id")
 ```
 
-```
-## # A tibble: 9 x 4
-##      id score gender   age
-##   <dbl> <dbl> <chr>  <dbl>
-## 1     2    10 m         22
-## 2     3    18 <NA>      NA
-## 3     4    21 nb        19
-## 4     4    23 nb        19
-## 5     5     9 f         18
-## 6     5    11 f         18
-## 7     6    11 <NA>      NA
-## 8     6    12 <NA>      NA
-## 9     7     3 <NA>      NA
-```
+<div class="kable-table">
+
+| id| score|gender | age|
+|--:|-----:|:------|---:|
+|  2|    10|m      |  22|
+|  3|    18|NA     |  NA|
+|  4|    21|nb     |  19|
+|  4|    23|nb     |  19|
+|  5|     9|f      |  18|
+|  5|    11|f      |  18|
+|  6|    11|NA     |  NA|
+|  6|    12|NA     |  NA|
+|  7|     3|NA     |  NA|
+
+</div>
 
 ### right_join() {#right_join}
 
@@ -174,20 +176,21 @@ A `right_join` keeps all the data from the second (right) table and joins anythi
 right_join(subject, exp, by = "id")
 ```
 
-```
-## # A tibble: 9 x 4
-##      id gender   age score
-##   <dbl> <chr>  <dbl> <dbl>
-## 1     2 m         22    10
-## 2     3 <NA>      NA    18
-## 3     4 nb        19    21
-## 4     4 nb        19    23
-## 5     5 f         18     9
-## 6     5 f         18    11
-## 7     6 <NA>      NA    11
-## 8     6 <NA>      NA    12
-## 9     7 <NA>      NA     3
-```
+<div class="kable-table">
+
+| id|gender | age| score|
+|--:|:------|---:|-----:|
+|  2|m      |  22|    10|
+|  3|NA     |  NA|    18|
+|  4|nb     |  19|    21|
+|  4|nb     |  19|    23|
+|  5|f      |  18|     9|
+|  5|f      |  18|    11|
+|  6|NA     |  NA|    11|
+|  6|NA     |  NA|    12|
+|  7|NA     |  NA|     3|
+
+</div>
 
 <div class="info">
 This table has the same information as `left_join(exp, subject, by = "id")`, but the columns are in a different order (left table, then right table).
@@ -207,17 +210,18 @@ An `inner_join` returns all the rows that have a match in the other table.
 inner_join(subject, exp, by = "id")
 ```
 
-```
-## # A tibble: 6 x 4
-##      id gender   age score
-##   <dbl> <chr>  <dbl> <dbl>
-## 1     2 m         22    10
-## 2     3 <NA>      NA    18
-## 3     4 nb        19    21
-## 4     4 nb        19    23
-## 5     5 f         18     9
-## 6     5 f         18    11
-```
+<div class="kable-table">
+
+| id|gender | age| score|
+|--:|:------|---:|-----:|
+|  2|m      |  22|    10|
+|  3|NA     |  NA|    18|
+|  4|nb     |  19|    21|
+|  4|nb     |  19|    23|
+|  5|f      |  18|     9|
+|  5|f      |  18|    11|
+
+</div>
 
 
 ### full_join() {#full_join}
@@ -234,26 +238,27 @@ A `full_join` lets you join up rows in two tables while keeping all of the infor
 full_join(subject, exp, by = "id")
 ```
 
-```
-## # A tibble: 10 x 4
-##       id gender   age score
-##    <dbl> <chr>  <dbl> <dbl>
-##  1     1 m         19    NA
-##  2     2 m         22    10
-##  3     3 <NA>      NA    18
-##  4     4 nb        19    21
-##  5     4 nb        19    23
-##  6     5 f         18     9
-##  7     5 f         18    11
-##  8     6 <NA>      NA    11
-##  9     6 <NA>      NA    12
-## 10     7 <NA>      NA     3
-```
+<div class="kable-table">
+
+| id|gender | age| score|
+|--:|:------|---:|-----:|
+|  1|m      |  19|    NA|
+|  2|m      |  22|    10|
+|  3|NA     |  NA|    18|
+|  4|nb     |  19|    21|
+|  4|nb     |  19|    23|
+|  5|f      |  18|     9|
+|  5|f      |  18|    11|
+|  6|NA     |  NA|    11|
+|  6|NA     |  NA|    12|
+|  7|NA     |  NA|     3|
+
+</div>
 
 
 ## Filtering Joins
 
-<a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
+<a class='glossary' target='_blank' title='Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.' href='https://psyteachr.github.io/glossary/f#filtering-joins'>Filtering joins</a> act like the `filter()` function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. 
 
 ### semi_join() {#semi_join}
 
@@ -269,15 +274,16 @@ A `semi_join` returns all rows from the left table where there are matching valu
 semi_join(subject, exp, by = "id")
 ```
 
-```
-## # A tibble: 4 x 3
-##      id gender   age
-##   <int> <chr>  <dbl>
-## 1     2 m         22
-## 2     3 <NA>      NA
-## 3     4 nb        19
-## 4     5 f         18
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  2|m      |  22|
+|  3|NA     |  NA|
+|  4|nb     |  19|
+|  5|f      |  18|
+
+</div>
 
 <div class="info">
 <p>Unlike an inner join, a semi join will never duplicate the rows in the left table if there is more than one matching row in the right table.</p>
@@ -295,17 +301,18 @@ Order matters in a semi join.
 semi_join(exp, subject, by = "id")
 ```
 
-```
-## # A tibble: 6 x 2
-##      id score
-##   <dbl> <dbl>
-## 1     2    10
-## 2     3    18
-## 3     4    21
-## 4     4    23
-## 5     5     9
-## 6     5    11
-```
+<div class="kable-table">
+
+| id| score|
+|--:|-----:|
+|  2|    10|
+|  3|    18|
+|  4|    21|
+|  4|    23|
+|  5|     9|
+|  5|    11|
+
+</div>
 
 ### anti_join() {#anti_join}
 
@@ -321,12 +328,13 @@ An `anti_join` return all rows from the left table where there are *not* matchin
 anti_join(subject, exp, by = "id")
 ```
 
-```
-## # A tibble: 1 x 3
-##      id gender   age
-##   <int> <chr>  <dbl>
-## 1     1 m         19
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  1|m      |  19|
+
+</div>
 
 <div class = 'join'><div class="figure" style="text-align: center">
 <img src="images/joins/anti_join_rev.png" alt="Anti Join (Reversed)" width="100%" />
@@ -340,14 +348,15 @@ Order matters in an anti join.
 anti_join(exp, subject, by = "id")
 ```
 
-```
-## # A tibble: 3 x 2
-##      id score
-##   <dbl> <dbl>
-## 1     6    11
-## 2     6    12
-## 3     7     3
-```
+<div class="kable-table">
+
+| id| score|
+|--:|-----:|
+|  6|    11|
+|  6|    12|
+|  7|     3|
+
+</div>
 
 ## Binding Joins
 
@@ -370,20 +379,21 @@ new_subjects <- tibble(
 bind_rows(subject, new_subjects)
 ```
 
-```
-## # A tibble: 9 x 3
-##      id gender   age
-##   <int> <chr>  <dbl>
-## 1     1 m         19
-## 2     2 m         22
-## 3     3 <NA>      NA
-## 4     4 nb        19
-## 5     5 f         18
-## 6     6 nb        19
-## 7     7 m         16
-## 8     8 f         20
-## 9     9 f         19
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  1|m      |  19|
+|  2|m      |  22|
+|  3|NA     |  NA|
+|  4|nb     |  19|
+|  5|f      |  18|
+|  6|nb     |  19|
+|  7|m      |  16|
+|  8|f      |  20|
+|  9|f      |  19|
+
+</div>
 
 The columns just have to have the same names, they don't have to be in the same order. Any columns that differ between the two tables will just have `NA` values for entries from the other table.
 
@@ -401,21 +411,22 @@ new_subjects <- tibble(
 bind_rows(subject, new_subjects)
 ```
 
-```
-## # A tibble: 10 x 4
-##       id gender   age   new
-##    <int> <chr>  <dbl> <dbl>
-##  1     1 m         19    NA
-##  2     2 m         22    NA
-##  3     3 <NA>      NA    NA
-##  4     4 nb        19    NA
-##  5     5 f         18    NA
-##  6     5 f         18     1
-##  7     6 nb        19     2
-##  8     7 m         16     3
-##  9     8 f         20     4
-## 10     9 f         19     5
-```
+<div class="kable-table">
+
+| id|gender | age| new|
+|--:|:------|---:|---:|
+|  1|m      |  19|  NA|
+|  2|m      |  22|  NA|
+|  3|NA     |  NA|  NA|
+|  4|nb     |  19|  NA|
+|  5|f      |  18|  NA|
+|  5|f      |  18|   1|
+|  6|nb     |  19|   2|
+|  7|m      |  16|   3|
+|  8|f      |  20|   4|
+|  9|f      |  19|   5|
+
+</div>
 
 ### bind_cols() {#bind_cols}
 
@@ -430,16 +441,17 @@ new_info <- tibble(
 bind_cols(subject, new_info)
 ```
 
-```
-## # A tibble: 5 x 4
-##      id gender   age colour
-##   <int> <chr>  <dbl> <chr> 
-## 1     1 m         19 red   
-## 2     2 m         22 orange
-## 3     3 <NA>      NA yellow
-## 4     4 nb        19 green 
-## 5     5 f         18 blue
-```
+<div class="kable-table">
+
+| id|gender | age|colour |
+|--:|:------|---:|:------|
+|  1|m      |  19|red    |
+|  2|m      |  22|orange |
+|  3|NA     |  NA|yellow |
+|  4|nb     |  19|green  |
+|  5|f      |  18|blue   |
+
+</div>
 
 ## Set Operations
 
@@ -460,12 +472,13 @@ new_subjects <- tibble(
 intersect(subject, new_subjects)
 ```
 
-```
-## # A tibble: 1 x 3
-##      id gender   age
-##   <int> <chr>  <dbl>
-## 1     5 f         18
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  5|f      |  18|
+
+</div>
 
 <div class="warning">
 
@@ -478,8 +491,8 @@ base::intersect(subject, new_subjects)
 
 ```
 ## Error: Must subset rows with a valid subscript vector.
-## [34mℹ[39m Logical subscripts must match the size of the indexed input.
-## [31mx[39m Input has size 6 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
+## ℹ Logical subscripts must match the size of the indexed input.
+## x Input has size 6 but subscript `!duplicated(x, fromLast = fromLast, ...)` has size 0.
 ```
 </div>
 
@@ -492,21 +505,22 @@ base::intersect(subject, new_subjects)
 union(subject, new_subjects)
 ```
 
-```
-## # A tibble: 10 x 3
-##       id gender   age
-##    <int> <chr>  <dbl>
-##  1     1 m         19
-##  2     2 m         22
-##  3     3 <NA>      NA
-##  4     4 nb        19
-##  5     5 f         18
-##  6     4 f         19
-##  7     6 m         19
-##  8     7 m         16
-##  9     8 f         20
-## 10     9 f         19
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  1|m      |  19|
+|  2|m      |  22|
+|  3|NA     |  NA|
+|  4|nb     |  19|
+|  5|f      |  18|
+|  4|f      |  19|
+|  6|m      |  19|
+|  7|m      |  16|
+|  8|f      |  20|
+|  9|f      |  19|
+
+</div>
 
 
 <div class="warning">
@@ -547,15 +561,16 @@ base::union(subject, new_subjects)
 setdiff(subject, new_subjects)
 ```
 
-```
-## # A tibble: 4 x 3
-##      id gender   age
-##   <int> <chr>  <dbl>
-## 1     1 m         19
-## 2     2 m         22
-## 3     3 <NA>      NA
-## 4     4 nb        19
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  1|m      |  19|
+|  2|m      |  22|
+|  3|NA     |  NA|
+|  4|nb     |  19|
+
+</div>
 
 Order matters for `setdiff`.
 
@@ -564,16 +579,17 @@ Order matters for `setdiff`.
 setdiff(new_subjects, subject)
 ```
 
-```
-## # A tibble: 5 x 3
-##      id   age gender
-##   <int> <dbl> <chr> 
-## 1     4    19 f     
-## 2     6    19 m     
-## 3     7    16 m     
-## 4     8    20 f     
-## 5     9    19 f
-```
+<div class="kable-table">
+
+| id| age|gender |
+|--:|---:|:------|
+|  4|  19|f      |
+|  6|  19|m      |
+|  7|  16|m      |
+|  8|  20|f      |
+|  9|  19|f      |
+
+</div>
 
 <div class="warning">
 If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> also has a `setdiff()` function. You usually won't get an error message, but the output might not be what you expect because the base R `setdiff()` expects columns to be in the same order, so id 5 here registers as different between the two tables.
@@ -583,29 +599,30 @@ If you've forgotten to load dplyr or the tidyverse, <a class='glossary' target='
 base::setdiff(subject, new_subjects)
 ```
 
-```
-## # A tibble: 5 x 3
-##      id gender   age
-##   <int> <chr>  <dbl>
-## 1     1 m         19
-## 2     2 m         22
-## 3     3 <NA>      NA
-## 4     4 nb        19
-## 5     5 f         18
-```
+<div class="kable-table">
+
+| id|gender | age|
+|--:|:------|---:|
+|  1|m      |  19|
+|  2|m      |  22|
+|  3|NA     |  NA|
+|  4|nb     |  19|
+|  5|f      |  18|
+
+</div>
 </div>
 
 ## Glossary {#glossary6}
 
 
 
-|term                                                                                                                  |definition                                                                                                                                                                                                                                                                       |
-|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#base.r'>base r</a>                   |The set of R functions that come with a basic installation of R, before you add external packages                                                                                                                                                                                |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#binding.joins'>binding joins</a>     |Joins that bind one table to another by adding their rows or columns together.                                                                                                                                                                                                   |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#filtering.joins'>filtering joins</a> |Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table. The result of a filtering join will only contain rows from the left table and have the same number or fewer rows than the left table. |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#mutating.joins'>mutating joins</a>   |Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.                                                                                                                                                     |
-|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#set.operations'>set operations</a>   |Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff).                                                                                                                          |
+|term                                                                                                                  |definition                                                                                                                                              |
+|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#base.r'>base r</a>                   |The set of R functions that come with a basic installation of R, before you add external packages                                                       |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/b#binding.joins'>binding joins</a>     |Joins that bind one table to another by adding their rows or columns together.                                                                          |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/f#filtering.joins'>filtering joins</a> |Joins that act like the dplyr::filter() function in that they remove rows from the data in one table based on the values in another table.              |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/m#mutating.joins'>mutating joins</a>   |Joins that act like the dplyr::mutate() function in that they add new columns to one table based on values in another table.                            |
+|<a class='glossary' target='_blank' href='https://psyteachr.github.io/glossary/s#set.operations'>set operations</a>   |Functions that compare two tables and return rows that match (intersect), are in either table (union), or are in one table but not the other (setdiff). |
 
 
 

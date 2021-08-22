@@ -1,7 +1,9 @@
 bookdown::gitbook: 
   default: true
   smart: false
+  df_print: kable
   includes:
+    in_header: include/header.html
     after_body: [include/footer.html, include/webex.js]
   css: [include/psyteachr.css, include/style.css, include/webex.css]
   config:
@@ -10,6 +12,7 @@ bookdown::gitbook:
       scroll_highlight: yes
       before: |
         <li><a href="./">Data Skills for Reproducible Science</a></li>
+        <li><a href="https://psyteachr.github.io/reprores/" style="color: red;">Access the most up-to-date version</a></li>
         <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
         <li><a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt">Video Playlist</a></li>
       after: |

@@ -1,6 +1,6 @@
 --- 
 title: Data Skills for Reproducible Science
-date: "2021-01-06"
+date: "2021-08-22"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -145,8 +145,7 @@ Download all [exercises and data files](exercises/msc-data-skills-exercises.zip)
 
 ## I found a bug!
 
-This book is a work in progress, so you might find errors. Please help me fix them! The best way is to open an [issue on github](https://github.com/PsyTeachR/msc-data-skills/issues){target="_blank"} that describes the error
-, but you can also mention it on the class Teams forum or [email Lisa](mailto:lisa.debruine@glasgow.ac.uk?subject=msc-data-skills).
+This book is a work in progress, so you might find errors. Please help me fix them! The best way is to open an [issue on github](https://github.com/PsyTeachR/msc-data-skills/issues){target="_blank"} that describes the error, but you can also mention it on the class Teams forum or [email Lisa](mailto:lisa.debruine@glasgow.ac.uk?subject=msc-data-skills).
 
 ## Other Resources 
 

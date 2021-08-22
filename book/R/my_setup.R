@@ -19,3 +19,5 @@ showtbl <- function(data, n = 6) {
     slice(1:n) %>%
     knitr::kable(caption = cp)
 }
+
+cat('<a href="https://psyteachr.github.io/reprores/" style="color: red;">Access the most up-to-date version</a>')

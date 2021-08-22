@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Data Wrangling | Data Skills for Reproducible Science</title>
   <meta name="description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Data Wrangling | Data Skills for Reproducible Science" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-01-06" />
+<meta name="date" content="2021-08-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="tidyr.html"/>
 <link rel="next" href="joins.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.9.4/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,29 +50,47 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<meta property="og:title" content="Chapter 5 Data Wrangling | Data Skills for Reproducible Science">
+<meta property="og:description" content="This course provides an overview of skills needed for reproducible research and open science using the statistical programming language R. Students will learn about data visualisation, data tidying and wrangling, archiving, iteration and functions, probability and data simulations, general linear models, and reproducible workflows. Learning is reinforced through weekly assignments that involve working with different types of data.">
+<meta property="og:image" content="https://psyteachr.github.io/images/twitter/msc_ds.png">
+<meta property="og:url" content="https://psyteachr.github.io/msc-data-skills">
+<meta property="twitter:card" content="summary_large_image">
+
+<link rel="shortcut icon" href="https://psyteachr.github.io/images/msc_ds.png">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6NP3MF25W3');
+</script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -91,7 +110,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -124,6 +143,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 <link rel="stylesheet" href="include/webex.css" type="text/css" />
@@ -140,11 +182,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li><a href="./">Data Skills for Reproducible Science</a></li>
+<li><a href="https://psyteachr.github.io/reprores/" style="color: red;">Access the most up-to-date version</a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/166541547"><img src="https://zenodo.org/badge/166541547.svg" alt="DOI"></a></li>
 <li><a href="https://www.youtube.com/playlist?list=PLA2iRWVwbpTIweEBHD2dOKjZHK1atRmXt">Video Playlist</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-aims"><i class="fa fa-check"></i><b>0.1</b> Course Aims</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#course-resources"><i class="fa fa-check"></i><b>0.3</b> Course Resources</a></li>
@@ -153,15 +197,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#i-found-a-bug"><i class="fa fa-check"></i><b>0.6</b> I found a bug!</a></li>
 <li class="chapter" data-level="0.7" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i><b>0.7</b> Other Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a><ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#ilo1"><i class="fa fa-check"></i><b>1.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#resources1"><i class="fa fa-check"></i><b>1.2</b> Resources</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a><ul>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#what-is-r"><i class="fa fa-check"></i><b>1.3</b> What is R?</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rconsole"><i class="fa fa-check"></i><b>1.3.1</b> The Base R Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#rstudio_ide"><i class="fa fa-check"></i><b>1.3.2</b> RStudio</a></li>
 <li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#configure-rstudio"><i class="fa fa-check"></i><b>1.3.3</b> Configure RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a><ul>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#getting-started"><i class="fa fa-check"></i><b>1.4</b> Getting Started</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console commands</a></li>
 <li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#vars"><i class="fa fa-check"></i><b>1.4.2</b> Objects</a></li>
 <li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#the-environment"><i class="fa fa-check"></i><b>1.4.3</b> The environment</a></li>
@@ -169,12 +216,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.5" data-path="intro.html"><a href="intro.html#function_syx"><i class="fa fa-check"></i><b>1.4.5</b> Function syntax</a></li>
 <li class="chapter" data-level="1.4.6" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4.6</b> Getting help</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#install-package"><i class="fa fa-check"></i><b>1.5</b> Add-on packages</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#installing-a-package"><i class="fa fa-check"></i><b>1.5.1</b> Installing a package</a></li>
 <li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#loading-a-package"><i class="fa fa-check"></i><b>1.5.2</b> Loading a package</a></li>
 <li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#install-from-github"><i class="fa fa-check"></i><b>1.5.3</b> Install from GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a><ul>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#projects"><i class="fa fa-check"></i><b>1.6</b> Organising a project</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#structure"><i class="fa fa-check"></i><b>1.6.1</b> Structure</a></li>
 <li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#rmarkdown"><i class="fa fa-check"></i><b>1.6.2</b> Reproducible reports with R Markdown</a></li>
 <li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#working-directory"><i class="fa fa-check"></i><b>1.6.3</b> Working Directory</a></li>
@@ -182,22 +231,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#glossary1"><i class="fa fa-check"></i><b>1.7</b> Glossary</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#exercises1"><i class="fa fa-check"></i><b>1.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a><ul>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Working with Data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#ilo2"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#resources2"><i class="fa fa-check"></i><b>2.2</b> Resources</a></li>
 <li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#setup2"><i class="fa fa-check"></i><b>2.3</b> Setup</a></li>
-<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a><ul>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#data-tables"><i class="fa fa-check"></i><b>2.4</b> Data tables</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="data.html"><a href="data.html#builtin"><i class="fa fa-check"></i><b>2.4.1</b> Built-in data</a></li>
 <li class="chapter" data-level="2.4.2" data-path="data.html"><a href="data.html#import_data"><i class="fa fa-check"></i><b>2.4.2</b> Importing data</a></li>
 <li class="chapter" data-level="2.4.3" data-path="data.html"><a href="data.html#creating-data"><i class="fa fa-check"></i><b>2.4.3</b> Creating data</a></li>
 <li class="chapter" data-level="2.4.4" data-path="data.html"><a href="data.html#writing-data"><i class="fa fa-check"></i><b>2.4.4</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a><ul>
+<li class="chapter" data-level="2.5" data-path="data.html"><a href="data.html#data_types"><i class="fa fa-check"></i><b>2.5</b> Basic data types</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="data.html"><a href="data.html#numeric-data"><i class="fa fa-check"></i><b>2.5.1</b> Numeric data</a></li>
 <li class="chapter" data-level="2.5.2" data-path="data.html"><a href="data.html#character-data"><i class="fa fa-check"></i><b>2.5.2</b> Character data</a></li>
 <li class="chapter" data-level="2.5.3" data-path="data.html"><a href="data.html#logical-data"><i class="fa fa-check"></i><b>2.5.3</b> Logical Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a><ul>
+<li class="chapter" data-level="2.6" data-path="data.html"><a href="data.html#containers"><i class="fa fa-check"></i><b>2.6</b> Basic container types</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="data.html"><a href="data.html#vectors"><i class="fa fa-check"></i><b>2.6.1</b> Vectors</a></li>
 <li class="chapter" data-level="2.6.2" data-path="data.html"><a href="data.html#lists"><i class="fa fa-check"></i><b>2.6.2</b> Lists</a></li>
 <li class="chapter" data-level="2.6.3" data-path="data.html"><a href="data.html#tables"><i class="fa fa-check"></i><b>2.6.3</b> Tables</a></li>
@@ -206,8 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="data.html"><a href="data.html#glossary2"><i class="fa fa-check"></i><b>2.8</b> Glossary</a></li>
 <li class="chapter" data-level="2.9" data-path="data.html"><a href="data.html#exercises2"><i class="fa fa-check"></i><b>2.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a><ul>
-<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#ilo3"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a><ul>
+<li class="chapter" data-level="3" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>3</b> Data Visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot.html"><a href="ggplot.html#ilo3"><i class="fa fa-check"></i><b>3.1</b> Learning Objectives</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>3.1.1</b> Basic</a></li>
 <li class="chapter" data-level="3.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>3.1.2</b> Intermediate</a></li>
 </ul></li>
@@ -216,7 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="ggplot.html"><a href="ggplot.html#vartypes"><i class="fa fa-check"></i><b>3.4</b> Common Variable Combinations</a></li>
 <li class="chapter" data-level="3.5" data-path="ggplot.html"><a href="ggplot.html#basic-plots"><i class="fa fa-check"></i><b>3.5</b> Basic Plots</a></li>
 <li class="chapter" data-level="3.6" data-path="ggplot.html"><a href="ggplot.html#ggplots"><i class="fa fa-check"></i><b>3.6</b> GGplots</a></li>
-<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#common-plot-types"><i class="fa fa-check"></i><b>3.7</b> Common Plot Types</a><ul>
+<li class="chapter" data-level="3.7" data-path="ggplot.html"><a href="ggplot.html#common-plot-types"><i class="fa fa-check"></i><b>3.7</b> Common Plot Types</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="ggplot.html"><a href="ggplot.html#geom_bar"><i class="fa fa-check"></i><b>3.7.1</b> Bar plot</a></li>
 <li class="chapter" data-level="3.7.2" data-path="ggplot.html"><a href="ggplot.html#geom_density"><i class="fa fa-check"></i><b>3.7.2</b> Density plot</a></li>
 <li class="chapter" data-level="3.7.3" data-path="ggplot.html"><a href="ggplot.html#geom_freqpoly"><i class="fa fa-check"></i><b>3.7.3</b> Frequency polygons</a></li>
@@ -228,24 +284,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.9" data-path="ggplot.html"><a href="ggplot.html#geom_point"><i class="fa fa-check"></i><b>3.7.9</b> Scatter plot</a></li>
 <li class="chapter" data-level="3.7.10" data-path="ggplot.html"><a href="ggplot.html#geom_smooth"><i class="fa fa-check"></i><b>3.7.10</b> Line graph</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.8</b> Customisation</a><ul>
+<li class="chapter" data-level="3.8" data-path="ggplot.html"><a href="ggplot.html#customisation"><i class="fa fa-check"></i><b>3.8</b> Customisation</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="ggplot.html"><a href="ggplot.html#custom-labels"><i class="fa fa-check"></i><b>3.8.1</b> Labels</a></li>
 <li class="chapter" data-level="3.8.2" data-path="ggplot.html"><a href="ggplot.html#custom-colours"><i class="fa fa-check"></i><b>3.8.2</b> Colours</a></li>
 <li class="chapter" data-level="3.8.3" data-path="ggplot.html"><a href="ggplot.html#themes"><i class="fa fa-check"></i><b>3.8.3</b> Themes</a></li>
 <li class="chapter" data-level="3.8.4" data-path="ggplot.html"><a href="ggplot.html#ggsave"><i class="fa fa-check"></i><b>3.8.4</b> Save as file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#combo_plots"><i class="fa fa-check"></i><b>3.9</b> Combination Plots</a><ul>
+<li class="chapter" data-level="3.9" data-path="ggplot.html"><a href="ggplot.html#combo_plots"><i class="fa fa-check"></i><b>3.9</b> Combination Plots</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="ggplot.html"><a href="ggplot.html#violinbox-plot"><i class="fa fa-check"></i><b>3.9.1</b> Violinbox plot</a></li>
 <li class="chapter" data-level="3.9.2" data-path="ggplot.html"><a href="ggplot.html#violin-point-range-plot"><i class="fa fa-check"></i><b>3.9.2</b> Violin-point-range plot</a></li>
 <li class="chapter" data-level="3.9.3" data-path="ggplot.html"><a href="ggplot.html#violin-jitter-plot"><i class="fa fa-check"></i><b>3.9.3</b> Violin-jitter plot</a></li>
 <li class="chapter" data-level="3.9.4" data-path="ggplot.html"><a href="ggplot.html#scatter-line-graph"><i class="fa fa-check"></i><b>3.9.4</b> Scatter-line graph</a></li>
 <li class="chapter" data-level="3.9.5" data-path="ggplot.html"><a href="ggplot.html#cowplot"><i class="fa fa-check"></i><b>3.9.5</b> Grid of plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.10</b> Overlapping Discrete Data</a><ul>
+<li class="chapter" data-level="3.10" data-path="ggplot.html"><a href="ggplot.html#overlap"><i class="fa fa-check"></i><b>3.10</b> Overlapping Discrete Data</a>
+<ul>
 <li class="chapter" data-level="3.10.1" data-path="ggplot.html"><a href="ggplot.html#reducing-opacity"><i class="fa fa-check"></i><b>3.10.1</b> Reducing Opacity</a></li>
 <li class="chapter" data-level="3.10.2" data-path="ggplot.html"><a href="ggplot.html#geom_count"><i class="fa fa-check"></i><b>3.10.2</b> Proportional Dot Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.11</b> Overlapping Continuous Data</a><ul>
+<li class="chapter" data-level="3.11" data-path="ggplot.html"><a href="ggplot.html#overlapping-continuous-data"><i class="fa fa-check"></i><b>3.11</b> Overlapping Continuous Data</a>
+<ul>
 <li class="chapter" data-level="3.11.1" data-path="ggplot.html"><a href="ggplot.html#geom_density2d"><i class="fa fa-check"></i><b>3.11.1</b> 2D Density Plot</a></li>
 <li class="chapter" data-level="3.11.2" data-path="ggplot.html"><a href="ggplot.html#geom_bin2d"><i class="fa fa-check"></i><b>3.11.2</b> 2D Histogram</a></li>
 <li class="chapter" data-level="3.11.3" data-path="ggplot.html"><a href="ggplot.html#geom_hex"><i class="fa fa-check"></i><b>3.11.3</b> Hexagonal Heatmap</a></li>
@@ -255,30 +315,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.13" data-path="ggplot.html"><a href="ggplot.html#glossary3"><i class="fa fa-check"></i><b>3.13</b> Glossary</a></li>
 <li class="chapter" data-level="3.14" data-path="ggplot.html"><a href="ggplot.html#exercises3"><i class="fa fa-check"></i><b>3.14</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#ilo4"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
+<li class="chapter" data-level="4" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>4</b> Tidy Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tidyr.html"><a href="tidyr.html#ilo4"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="tidyr.html"><a href="tidyr.html#basic-1"><i class="fa fa-check"></i><b>4.1.1</b> Basic</a></li>
 <li class="chapter" data-level="4.1.2" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>4.1.2</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="tidyr.html"><a href="tidyr.html#resources4"><i class="fa fa-check"></i><b>4.2</b> Resources</a></li>
 <li class="chapter" data-level="4.3" data-path="tidyr.html"><a href="tidyr.html#setup4"><i class="fa fa-check"></i><b>4.3</b> Setup</a></li>
-<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Tidy Data</a><ul>
+<li class="chapter" data-level="4.4" data-path="tidyr.html"><a href="tidyr.html#tidy-data"><i class="fa fa-check"></i><b>4.4</b> Tidy Data</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="tidyr.html"><a href="tidyr.html#three-rules"><i class="fa fa-check"></i><b>4.4.1</b> Three Rules</a></li>
 <li class="chapter" data-level="4.4.2" data-path="tidyr.html"><a href="tidyr.html#wide_long"><i class="fa fa-check"></i><b>4.4.2</b> Wide versus long</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pivot"><i class="fa fa-check"></i><b>4.5</b> Pivot Functions</a><ul>
+<li class="chapter" data-level="4.5" data-path="tidyr.html"><a href="tidyr.html#pivot"><i class="fa fa-check"></i><b>4.5</b> Pivot Functions</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="tidyr.html"><a href="tidyr.html#load-data"><i class="fa fa-check"></i><b>4.5.1</b> Load Data</a></li>
 <li class="chapter" data-level="4.5.2" data-path="tidyr.html"><a href="tidyr.html#pivot_longer"><i class="fa fa-check"></i><b>4.5.2</b> pivot_longer()</a></li>
 <li class="chapter" data-level="4.5.3" data-path="tidyr.html"><a href="tidyr.html#pivot_wider"><i class="fa fa-check"></i><b>4.5.3</b> pivot_wider()</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#tidy-verbs"><i class="fa fa-check"></i><b>4.6</b> Tidy Verbs</a><ul>
+<li class="chapter" data-level="4.6" data-path="tidyr.html"><a href="tidyr.html#tidy-verbs"><i class="fa fa-check"></i><b>4.6</b> Tidy Verbs</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="tidyr.html"><a href="tidyr.html#gather"><i class="fa fa-check"></i><b>4.6.1</b> gather()</a></li>
 <li class="chapter" data-level="4.6.2" data-path="tidyr.html"><a href="tidyr.html#separate"><i class="fa fa-check"></i><b>4.6.2</b> separate()</a></li>
 <li class="chapter" data-level="4.6.3" data-path="tidyr.html"><a href="tidyr.html#unite"><i class="fa fa-check"></i><b>4.6.3</b> unite()</a></li>
 <li class="chapter" data-level="4.6.4" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>4.6.4</b> spread()</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="tidyr.html"><a href="tidyr.html#pipes"><i class="fa fa-check"></i><b>4.7</b> Pipes</a></li>
-<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.8</b> More Complex Example</a><ul>
+<li class="chapter" data-level="4.8" data-path="tidyr.html"><a href="tidyr.html#more-complex-example"><i class="fa fa-check"></i><b>4.8</b> More Complex Example</a>
+<ul>
 <li class="chapter" data-level="4.8.1" data-path="tidyr.html"><a href="tidyr.html#load-data-1"><i class="fa fa-check"></i><b>4.8.1</b> Load Data</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidyr.html"><a href="tidyr.html#wide-to-long"><i class="fa fa-check"></i><b>4.8.2</b> Wide to Long</a></li>
 <li class="chapter" data-level="4.8.3" data-path="tidyr.html"><a href="tidyr.html#one-piece-of-data-per-column"><i class="fa fa-check"></i><b>4.8.3</b> One Piece of Data per Column</a></li>
@@ -289,16 +355,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="tidyr.html"><a href="tidyr.html#glossary4"><i class="fa fa-check"></i><b>4.9</b> Glossary</a></li>
 <li class="chapter" data-level="4.10" data-path="tidyr.html"><a href="tidyr.html#exercises4"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
-<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#ilo5"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
-<li class="chapter" data-level="5.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="5" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dplyr.html"><a href="dplyr.html#ilo5"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="dplyr.html"><a href="dplyr.html#basic-2"><i class="fa fa-check"></i><b>5.1.1</b> Basic</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dplyr.html"><a href="dplyr.html#intermediate-1"><i class="fa fa-check"></i><b>5.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="dplyr.html"><a href="dplyr.html#resources5"><i class="fa fa-check"></i><b>5.2</b> Resources</a></li>
-<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup5"><i class="fa fa-check"></i><b>5.3</b> Setup</a><ul>
+<li class="chapter" data-level="5.3" data-path="dplyr.html"><a href="dplyr.html#setup5"><i class="fa fa-check"></i><b>5.3</b> Setup</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="dplyr.html"><a href="dplyr.html#data-disgust"><i class="fa fa-check"></i><b>5.3.1</b> The <code>disgust</code> dataset</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.4</b> Six main dplyr verbs</a><ul>
+<li class="chapter" data-level="5.4" data-path="dplyr.html"><a href="dplyr.html#six-main-dplyr-verbs"><i class="fa fa-check"></i><b>5.4</b> Six main dplyr verbs</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>5.4.1</b> select()</a></li>
 <li class="chapter" data-level="5.4.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>5.4.2</b> filter()</a></li>
 <li class="chapter" data-level="5.4.3" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>5.4.3</b> arrange()</a></li>
@@ -307,14 +377,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.6" data-path="dplyr.html"><a href="dplyr.html#group_by"><i class="fa fa-check"></i><b>5.4.6</b> group_by()</a></li>
 <li class="chapter" data-level="5.4.7" data-path="dplyr.html"><a href="dplyr.html#all-together"><i class="fa fa-check"></i><b>5.4.7</b> All Together</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.5</b> Additional dplyr one-table verbs</a><ul>
+<li class="chapter" data-level="5.5" data-path="dplyr.html"><a href="dplyr.html#additional-dplyr-one-table-verbs"><i class="fa fa-check"></i><b>5.5</b> Additional dplyr one-table verbs</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="dplyr.html"><a href="dplyr.html#rename"><i class="fa fa-check"></i><b>5.5.1</b> rename()</a></li>
 <li class="chapter" data-level="5.5.2" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>5.5.2</b> distinct()</a></li>
 <li class="chapter" data-level="5.5.3" data-path="dplyr.html"><a href="dplyr.html#count"><i class="fa fa-check"></i><b>5.5.3</b> count()</a></li>
 <li class="chapter" data-level="5.5.4" data-path="dplyr.html"><a href="dplyr.html#slice"><i class="fa fa-check"></i><b>5.5.4</b> slice()</a></li>
 <li class="chapter" data-level="5.5.5" data-path="dplyr.html"><a href="dplyr.html#pull"><i class="fa fa-check"></i><b>5.5.5</b> pull()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.6</b> Window functions</a><ul>
+<li class="chapter" data-level="5.6" data-path="dplyr.html"><a href="dplyr.html#window"><i class="fa fa-check"></i><b>5.6</b> Window functions</a>
+<ul>
 <li class="chapter" data-level="5.6.1" data-path="dplyr.html"><a href="dplyr.html#ranking-functions"><i class="fa fa-check"></i><b>5.6.1</b> Ranking functions</a></li>
 <li class="chapter" data-level="5.6.2" data-path="dplyr.html"><a href="dplyr.html#offset-functions"><i class="fa fa-check"></i><b>5.6.2</b> Offset functions</a></li>
 <li class="chapter" data-level="5.6.3" data-path="dplyr.html"><a href="dplyr.html#cumulative-aggregates"><i class="fa fa-check"></i><b>5.6.3</b> Cumulative aggregates</a></li>
@@ -322,26 +394,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="dplyr.html"><a href="dplyr.html#glossary5"><i class="fa fa-check"></i><b>5.7</b> Glossary</a></li>
 <li class="chapter" data-level="5.8" data-path="dplyr.html"><a href="dplyr.html#exercises5"><i class="fa fa-check"></i><b>5.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a><ul>
+<li class="chapter" data-level="6" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6</b> Data Relations</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="joins.html"><a href="joins.html#ilo6"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
 <li class="chapter" data-level="6.2" data-path="joins.html"><a href="joins.html#resources6"><i class="fa fa-check"></i><b>6.2</b> Resources</a></li>
 <li class="chapter" data-level="6.3" data-path="joins.html"><a href="joins.html#setup6"><i class="fa fa-check"></i><b>6.3</b> Setup</a></li>
-<li class="chapter" data-level="6.4" data-path="data.html"><a href="data.html#data"><i class="fa fa-check"></i><b>6.4</b> Data</a></li>
-<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.5</b> Mutating Joins</a><ul>
+<li class="chapter" data-level="6.4" data-path="joins.html"><a href="joins.html#data-1"><i class="fa fa-check"></i><b>6.4</b> Data</a></li>
+<li class="chapter" data-level="6.5" data-path="joins.html"><a href="joins.html#mutating-joins"><i class="fa fa-check"></i><b>6.5</b> Mutating Joins</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="joins.html"><a href="joins.html#left_join"><i class="fa fa-check"></i><b>6.5.1</b> left_join()</a></li>
 <li class="chapter" data-level="6.5.2" data-path="joins.html"><a href="joins.html#right_join"><i class="fa fa-check"></i><b>6.5.2</b> right_join()</a></li>
 <li class="chapter" data-level="6.5.3" data-path="joins.html"><a href="joins.html#inner_join"><i class="fa fa-check"></i><b>6.5.3</b> inner_join()</a></li>
 <li class="chapter" data-level="6.5.4" data-path="joins.html"><a href="joins.html#full_join"><i class="fa fa-check"></i><b>6.5.4</b> full_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.6</b> Filtering Joins</a><ul>
+<li class="chapter" data-level="6.6" data-path="joins.html"><a href="joins.html#filtering-joins"><i class="fa fa-check"></i><b>6.6</b> Filtering Joins</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="joins.html"><a href="joins.html#semi_join"><i class="fa fa-check"></i><b>6.6.1</b> semi_join()</a></li>
 <li class="chapter" data-level="6.6.2" data-path="joins.html"><a href="joins.html#anti_join"><i class="fa fa-check"></i><b>6.6.2</b> anti_join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.7</b> Binding Joins</a><ul>
+<li class="chapter" data-level="6.7" data-path="joins.html"><a href="joins.html#binding-joins"><i class="fa fa-check"></i><b>6.7</b> Binding Joins</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="joins.html"><a href="joins.html#bind_rows"><i class="fa fa-check"></i><b>6.7.1</b> bind_rows()</a></li>
 <li class="chapter" data-level="6.7.2" data-path="joins.html"><a href="joins.html#bind_cols"><i class="fa fa-check"></i><b>6.7.2</b> bind_cols()</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.8</b> Set Operations</a><ul>
+<li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html#set-operations"><i class="fa fa-check"></i><b>6.8</b> Set Operations</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="joins.html"><a href="joins.html#intersect"><i class="fa fa-check"></i><b>6.8.1</b> intersect()</a></li>
 <li class="chapter" data-level="6.8.2" data-path="joins.html"><a href="joins.html#union"><i class="fa fa-check"></i><b>6.8.2</b> union()</a></li>
 <li class="chapter" data-level="6.8.3" data-path="joins.html"><a href="joins.html#setdiff"><i class="fa fa-check"></i><b>6.8.3</b> setdiff()</a></li>
@@ -349,28 +426,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.9" data-path="joins.html"><a href="joins.html#glossary6"><i class="fa fa-check"></i><b>6.9</b> Glossary</a></li>
 <li class="chapter" data-level="6.10" data-path="joins.html"><a href="joins.html#exercises6"><i class="fa fa-check"></i><b>6.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a><ul>
-<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#ilo7"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
-<li class="chapter" data-level="7.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="7.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="7" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>7</b> Iteration &amp; Functions</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="func.html"><a href="func.html#ilo7"><i class="fa fa-check"></i><b>7.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="func.html"><a href="func.html#basic-3"><i class="fa fa-check"></i><b>7.1.1</b> Basic</a></li>
+<li class="chapter" data-level="7.1.2" data-path="func.html"><a href="func.html#intermediate-2"><i class="fa fa-check"></i><b>7.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="7.1.3" data-path="func.html"><a href="func.html#advanced-1"><i class="fa fa-check"></i><b>7.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="func.html"><a href="func.html#resources7"><i class="fa fa-check"></i><b>7.2</b> Resources</a></li>
 <li class="chapter" data-level="7.3" data-path="func.html"><a href="func.html#setup7"><i class="fa fa-check"></i><b>7.3</b> Setup</a></li>
-<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.4</b> Iteration functions</a><ul>
+<li class="chapter" data-level="7.4" data-path="func.html"><a href="func.html#iteration-functions"><i class="fa fa-check"></i><b>7.4</b> Iteration functions</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="func.html"><a href="func.html#rep"><i class="fa fa-check"></i><b>7.4.1</b> rep()</a></li>
 <li class="chapter" data-level="7.4.2" data-path="func.html"><a href="func.html#seq"><i class="fa fa-check"></i><b>7.4.2</b> seq()</a></li>
 <li class="chapter" data-level="7.4.3" data-path="func.html"><a href="func.html#replicate"><i class="fa fa-check"></i><b>7.4.3</b> replicate()</a></li>
 <li class="chapter" data-level="7.4.4" data-path="func.html"><a href="func.html#map-apply"><i class="fa fa-check"></i><b>7.4.4</b> map() and apply() functions</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom functions</a><ul>
+<li class="chapter" data-level="7.5" data-path="func.html"><a href="func.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom functions</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="func.html"><a href="func.html#structure-function"><i class="fa fa-check"></i><b>7.5.1</b> Structuring a function</a></li>
 <li class="chapter" data-level="7.5.2" data-path="func.html"><a href="func.html#arguments"><i class="fa fa-check"></i><b>7.5.2</b> Arguments</a></li>
 <li class="chapter" data-level="7.5.3" data-path="func.html"><a href="func.html#defaults"><i class="fa fa-check"></i><b>7.5.3</b> Argument defaults</a></li>
 <li class="chapter" data-level="7.5.4" data-path="func.html"><a href="func.html#scope"><i class="fa fa-check"></i><b>7.5.4</b> Scope</a></li>
 <li class="chapter" data-level="7.5.5" data-path="func.html"><a href="func.html#warnings-errors"><i class="fa fa-check"></i><b>7.5.5</b> Warnings and errors</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.6</b> Iterating your own functions</a><ul>
+<li class="chapter" data-level="7.6" data-path="func.html"><a href="func.html#iterating-your-own-functions"><i class="fa fa-check"></i><b>7.6</b> Iterating your own functions</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="func.html"><a href="func.html#rnorm"><i class="fa fa-check"></i><b>7.6.1</b> rnorm()</a></li>
 <li class="chapter" data-level="7.6.2" data-path="func.html"><a href="func.html#tibbletibble"><i class="fa fa-check"></i><b>7.6.2</b> tibble::tibble()</a></li>
 <li class="chapter" data-level="7.6.3" data-path="func.html"><a href="func.html#t.test"><i class="fa fa-check"></i><b>7.6.3</b> t.test()</a></li>
@@ -383,25 +465,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="func.html"><a href="func.html#glossary7"><i class="fa fa-check"></i><b>7.7</b> Glossary</a></li>
 <li class="chapter" data-level="7.8" data-path="func.html"><a href="func.html#exercises7"><i class="fa fa-check"></i><b>7.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a><ul>
-<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#ilo8"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
-<li class="chapter" data-level="8.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="8" data-path="sim.html"><a href="sim.html"><i class="fa fa-check"></i><b>8</b> Probability &amp; Simulation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sim.html"><a href="sim.html#ilo8"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sim.html"><a href="sim.html#basic-4"><i class="fa fa-check"></i><b>8.1.1</b> Basic</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sim.html"><a href="sim.html#intermediate-3"><i class="fa fa-check"></i><b>8.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="sim.html"><a href="sim.html#resources8"><i class="fa fa-check"></i><b>8.2</b> Resources</a></li>
 <li class="chapter" data-level="8.3" data-path="sim.html"><a href="sim.html#setup8"><i class="fa fa-check"></i><b>8.3</b> Setup</a></li>
-<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#univariate-distributions"><i class="fa fa-check"></i><b>8.4</b> Univariate Distributions</a><ul>
+<li class="chapter" data-level="8.4" data-path="sim.html"><a href="sim.html#univariate-distributions"><i class="fa fa-check"></i><b>8.4</b> Univariate Distributions</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="sim.html"><a href="sim.html#uniform"><i class="fa fa-check"></i><b>8.4.1</b> Uniform Distribution</a></li>
 <li class="chapter" data-level="8.4.2" data-path="sim.html"><a href="sim.html#binomial"><i class="fa fa-check"></i><b>8.4.2</b> Binomial Distribution</a></li>
 <li class="chapter" data-level="8.4.3" data-path="sim.html"><a href="sim.html#normal"><i class="fa fa-check"></i><b>8.4.3</b> Normal Distribution</a></li>
 <li class="chapter" data-level="8.4.4" data-path="sim.html"><a href="sim.html#poisson"><i class="fa fa-check"></i><b>8.4.4</b> Poisson Distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#mvdist"><i class="fa fa-check"></i><b>8.5</b> Multivariate Distributions</a><ul>
+<li class="chapter" data-level="8.5" data-path="sim.html"><a href="sim.html#mvdist"><i class="fa fa-check"></i><b>8.5</b> Multivariate Distributions</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="sim.html"><a href="sim.html#bvn"><i class="fa fa-check"></i><b>8.5.1</b> Bivariate Normal</a></li>
 <li class="chapter" data-level="8.5.2" data-path="sim.html"><a href="sim.html#mvnorm"><i class="fa fa-check"></i><b>8.5.2</b> Multivariate Normal</a></li>
 <li class="chapter" data-level="8.5.3" data-path="sim.html"><a href="sim.html#faux"><i class="fa fa-check"></i><b>8.5.3</b> Faux</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="sim.html"><a href="sim.html#stat-terms"><i class="fa fa-check"></i><b>8.6</b> Statistical terms</a><ul>
+<li class="chapter" data-level="8.6" data-path="sim.html"><a href="sim.html#stat-terms"><i class="fa fa-check"></i><b>8.6</b> Statistical terms</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="sim.html"><a href="sim.html#effect"><i class="fa fa-check"></i><b>8.6.1</b> Effect</a></li>
 <li class="chapter" data-level="8.6.2" data-path="sim.html"><a href="sim.html#p-value"><i class="fa fa-check"></i><b>8.6.2</b> P-value</a></li>
 <li class="chapter" data-level="8.6.3" data-path="sim.html"><a href="sim.html#alpha"><i class="fa fa-check"></i><b>8.6.3</b> Alpha</a></li>
@@ -409,12 +496,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6.5" data-path="sim.html"><a href="sim.html#power"><i class="fa fa-check"></i><b>8.6.5</b> Power and SESOI</a></li>
 <li class="chapter" data-level="8.6.6" data-path="sim.html"><a href="sim.html#conf-int"><i class="fa fa-check"></i><b>8.6.6</b> Confidence Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="sim.html"><a href="sim.html#tests"><i class="fa fa-check"></i><b>8.7</b> Tests</a><ul>
+<li class="chapter" data-level="8.7" data-path="sim.html"><a href="sim.html#tests"><i class="fa fa-check"></i><b>8.7</b> Tests</a>
+<ul>
 <li class="chapter" data-level="8.7.1" data-path="sim.html"><a href="sim.html#exact-binom"><i class="fa fa-check"></i><b>8.7.1</b> Exact binomial test</a></li>
 <li class="chapter" data-level="8.7.2" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>8.7.2</b> T-test</a></li>
 <li class="chapter" data-level="8.7.3" data-path="sim.html"><a href="sim.html#correlation"><i class="fa fa-check"></i><b>8.7.3</b> Correlation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a><ul>
+<li class="chapter" data-level="8.8" data-path="sim.html"><a href="sim.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a>
+<ul>
 <li class="chapter" data-level="8.8.1" data-path="sim.html"><a href="sim.html#load-wrangle"><i class="fa fa-check"></i><b>8.8.1</b> Load &amp; wrangle</a></li>
 <li class="chapter" data-level="8.8.2" data-path="sim.html"><a href="sim.html#plot"><i class="fa fa-check"></i><b>8.8.2</b> Plot</a></li>
 <li class="chapter" data-level="8.8.3" data-path="sim.html"><a href="sim.html#simulate-a-population"><i class="fa fa-check"></i><b>8.8.3</b> Simulate a population</a></li>
@@ -426,14 +515,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.9" data-path="sim.html"><a href="sim.html#glossary8"><i class="fa fa-check"></i><b>8.9</b> Glossary</a></li>
 <li class="chapter" data-level="8.10" data-path="sim.html"><a href="sim.html#exercises8"><i class="fa fa-check"></i><b>8.10</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a><ul>
-<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#ilo9"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
-<li class="chapter" data-level="9.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="9" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>9</b> Introduction to GLM</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="glm.html"><a href="glm.html#ilo9"><i class="fa fa-check"></i><b>9.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="glm.html"><a href="glm.html#basic-5"><i class="fa fa-check"></i><b>9.1.1</b> Basic</a></li>
+<li class="chapter" data-level="9.1.2" data-path="glm.html"><a href="glm.html#intermediate-4"><i class="fa fa-check"></i><b>9.1.2</b> Intermediate</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="glm.html"><a href="glm.html#resources9"><i class="fa fa-check"></i><b>9.2</b> Resources</a></li>
 <li class="chapter" data-level="9.3" data-path="glm.html"><a href="glm.html#setup9"><i class="fa fa-check"></i><b>9.3</b> Setup</a></li>
-<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a><ul>
+<li class="chapter" data-level="9.4" data-path="glm.html"><a href="glm.html#glm-1"><i class="fa fa-check"></i><b>9.4</b> GLM</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="glm.html"><a href="glm.html#what-is-the-glm"><i class="fa fa-check"></i><b>9.4.1</b> What is the GLM?</a></li>
 <li class="chapter" data-level="9.4.2" data-path="glm.html"><a href="glm.html#glm-components"><i class="fa fa-check"></i><b>9.4.2</b> Components</a></li>
 <li class="chapter" data-level="9.4.3" data-path="glm.html"><a href="glm.html#sim-glm"><i class="fa fa-check"></i><b>9.4.3</b> Simulating data from GLM</a></li>
@@ -442,26 +534,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.6" data-path="glm.html"><a href="glm.html#predict"><i class="fa fa-check"></i><b>9.4.6</b> Predict New Values</a></li>
 <li class="chapter" data-level="9.4.7" data-path="glm.html"><a href="glm.html#coding-schemes"><i class="fa fa-check"></i><b>9.4.7</b> Coding Categorical Variables</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="sim.html"><a href="sim.html#t-test"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
+<li class="chapter" data-level="9.5" data-path="glm.html"><a href="glm.html#test-rels"><i class="fa fa-check"></i><b>9.5</b> Relationships among tests</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="glm.html"><a href="glm.html#t-test-1"><i class="fa fa-check"></i><b>9.5.1</b> T-test</a></li>
 <li class="chapter" data-level="9.5.2" data-path="glm.html"><a href="glm.html#anova"><i class="fa fa-check"></i><b>9.5.2</b> ANOVA</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a><ul>
+<li class="chapter" data-level="9.6" data-path="glm.html"><a href="glm.html#understanding-anova"><i class="fa fa-check"></i><b>9.6</b> Understanding ANOVA</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="glm.html"><a href="glm.html#means-variability-and-deviation-scores"><i class="fa fa-check"></i><b>9.6.1</b> Means, Variability, and Deviation Scores</a></li>
 <li class="chapter" data-level="9.6.2" data-path="glm.html"><a href="glm.html#decomp"><i class="fa fa-check"></i><b>9.6.2</b> Decomposition matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="glm.html"><a href="glm.html#glossary9"><i class="fa fa-check"></i><b>9.7</b> Glossary</a></li>
 <li class="chapter" data-level="9.8" data-path="glm.html"><a href="glm.html#exercises9"><i class="fa fa-check"></i><b>9.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a><ul>
-<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#ilo10"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="ggplot.html"><a href="ggplot.html#basic"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
-<li class="chapter" data-level="10.1.2" data-path="ggplot.html"><a href="ggplot.html#intermediate"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
-<li class="chapter" data-level="10.1.3" data-path="tidyr.html"><a href="tidyr.html#advanced"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
+<li class="chapter" data-level="10" data-path="repro.html"><a href="repro.html"><i class="fa fa-check"></i><b>10</b> Reproducible Workflows</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="repro.html"><a href="repro.html#ilo10"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="repro.html"><a href="repro.html#basic-6"><i class="fa fa-check"></i><b>10.1.1</b> Basic</a></li>
+<li class="chapter" data-level="10.1.2" data-path="repro.html"><a href="repro.html#intermediate-5"><i class="fa fa-check"></i><b>10.1.2</b> Intermediate</a></li>
+<li class="chapter" data-level="10.1.3" data-path="repro.html"><a href="repro.html#advanced-2"><i class="fa fa-check"></i><b>10.1.3</b> Advanced</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="repro.html"><a href="repro.html#resources10"><i class="fa fa-check"></i><b>10.2</b> Resources</a></li>
 <li class="chapter" data-level="10.3" data-path="repro.html"><a href="repro.html#setup10"><i class="fa fa-check"></i><b>10.3</b> Setup</a></li>
-<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.4</b> R Markdown</a><ul>
+<li class="chapter" data-level="10.4" data-path="repro.html"><a href="repro.html#r-markdown"><i class="fa fa-check"></i><b>10.4</b> R Markdown</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="repro.html"><a href="repro.html#knitr-options"><i class="fa fa-check"></i><b>10.4.1</b> knitr options</a></li>
 <li class="chapter" data-level="10.4.2" data-path="repro.html"><a href="repro.html#yaml-header"><i class="fa fa-check"></i><b>10.4.2</b> YAML Header</a></li>
 <li class="chapter" data-level="10.4.3" data-path="repro.html"><a href="repro.html#toc-and-document-headers"><i class="fa fa-check"></i><b>10.4.3</b> TOC and Document Headers</a></li>
@@ -473,11 +570,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="repro.html"><a href="repro.html#glossary10"><i class="fa fa-check"></i><b>10.5</b> Glossary</a></li>
 <li class="chapter" data-level="10.6" data-path="repro.html"><a href="repro.html#references"><i class="fa fa-check"></i><b>10.6</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a><ul>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a>
+<ul>
 <li class="chapter" data-level="10.7" data-path="acknowledgements.html"><a href="acknowledgements.html#contributors"><i class="fa fa-check"></i><b>10.7</b> Contributors</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a><ul>
+<li class="chapter" data-level="A" data-path="installingr.html"><a href="installingr.html"><i class="fa fa-check"></i><b>A</b> Installing R</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="installingr.html"><a href="installingr.html#installing-base-r"><i class="fa fa-check"></i><b>A.1</b> Installing Base R</a></li>
 <li class="chapter" data-level="A.2" data-path="installingr.html"><a href="installingr.html#installing-rstudio"><i class="fa fa-check"></i><b>A.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="A.3" data-path="installingr.html"><a href="installingr.html#installing-latex"><i class="fa fa-check"></i><b>A.3</b> Installing LaTeX</a></li>
@@ -511,13 +610,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dplyr" class="section level1">
+<div id="dplyr" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Data Wrangling</h1>
 <p><img src="images/memes/real_world_data.jpg" class="meme right" 
      alt="A cute golden retriever labelled 'iris & mtcars' and a scary werewolf labelled 'Real world data'"></p>
-<div id="ilo5" class="section level2">
+<div id="ilo5" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Learning Objectives</h2>
-<div id="basic" class="section level3">
+<div id="basic-2" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Basic</h3>
 <ol style="list-style-type: decimal">
 <li>Be able to use the 6 main dplyr one-table verbs: <a href="https://youtu.be/l12tNKClTR0" class="video">(video)</a>
@@ -540,7 +639,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 </div>
-<div id="intermediate" class="section level3">
+<div id="intermediate-1" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Intermediate</h3>
 <ol start="4" style="list-style-type: decimal">
 <li>Fine control of <a href="dplyr.html#select_helpers"><code>select()</code> operations</a> <a href="https://youtu.be/R1bi1QwF9t0" class="video">(video)</a></li>
@@ -548,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </div>
 </div>
-<div id="resources5" class="section level2">
+<div id="resources5" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Resources</h2>
 <ul>
 <li><a href="http://r4ds.had.co.nz/transform.html">Chapter 5: Data Transformation</a> in <em>R for Data Science</em></li>
@@ -556,139 +655,217 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="http://r4ds.had.co.nz/dates-and-times.html">Chapter 16: Date and times</a> in <em>R for Data Science</em></li>
 </ul>
 </div>
-<div id="setup5" class="section level2">
+<div id="setup5" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Setup</h2>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="dplyr.html#cb231-1"></a><span class="co"># libraries needed for these examples</span></span>
-<span id="cb231-2"><a href="dplyr.html#cb231-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb231-3"><a href="dplyr.html#cb231-3"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb231-4"><a href="dplyr.html#cb231-4"></a><span class="kw">library</span>(dataskills)</span>
-<span id="cb231-5"><a href="dplyr.html#cb231-5"></a><span class="kw">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
-<div id="data-disgust" class="section level3">
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries needed for these examples</span></span>
+<span id="cb222-2"><a href="dplyr.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb222-3"><a href="dplyr.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb222-4"><a href="dplyr.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dataskills)</span>
+<span id="cb222-5"><a href="dplyr.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8675309</span>) <span class="co"># makes sure random numbers are reproducible</span></span></code></pre></div>
+<div id="data-disgust" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> The <code>disgust</code> dataset</h3>
 <p>These examples will use data from <code>dataskills::disgust</code>, which contains data from the <a href="http://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1139&amp;context=psy_etds">Three Domain Disgust Scale</a>. Each participant is identified by a unique <code>user_id</code> and each questionnaire completion has a unique <code>id</code>. Look at the Help for this dataset to see the individual questions.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="dplyr.html#cb232-1"></a><span class="kw">data</span>(<span class="st">&quot;disgust&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dataskills&quot;</span>)</span>
-<span id="cb232-2"><a href="dplyr.html#cb232-2"></a></span>
-<span id="cb232-3"><a href="dplyr.html#cb232-3"></a><span class="co">#disgust &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/disgust.csv&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="dplyr.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;disgust&quot;</span>, <span class="at">package =</span> <span class="st">&quot;dataskills&quot;</span>)</span>
+<span id="cb223-2"><a href="dplyr.html#cb223-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-3"><a href="dplyr.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="co">#disgust &lt;- read_csv(&quot;https://psyteachr.github.io/msc-data-skills/data/disgust.csv&quot;)</span></span></code></pre></div>
 </div>
 </div>
-<div id="six-main-dplyr-verbs" class="section level2">
+<div id="six-main-dplyr-verbs" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Six main dplyr verbs</h2>
 <p>Most of the <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> you’ll want to do with psychological data will involve the <code>tidyr</code> functions you learned in <a href="tidyr.html#tidyr">Chapter 4</a> and the six main <code>dplyr</code> verbs: <code>select</code>, <code>filter</code>, <code>arrange</code>, <code>mutate</code>, <code>summarise</code>, and <code>group_by</code>.</p>
-<div id="select" class="section level3">
+<div id="select" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> select()</h3>
 <p>Select columns by name or number.</p>
 <p>You can select each column individually, separated by commas (e.g., <code>col1, col2</code>). You can also select all columns between two columns by separating them with a colon (e.g., <code>start_col:end_col</code>).</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="dplyr.html#cb233-1"></a>moral &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(user_id, moral1<span class="op">:</span>moral7)</span>
-<span id="cb233-2"><a href="dplyr.html#cb233-2"></a><span class="kw">names</span>(moral)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="dplyr.html#cb224-1" aria-hidden="true" tabindex="-1"></a>moral <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(user_id, moral1<span class="sc">:</span>moral7)</span>
+<span id="cb224-2"><a href="dplyr.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(moral)</span></code></pre></div>
 <pre><code>## [1] &quot;user_id&quot; &quot;moral1&quot;  &quot;moral2&quot;  &quot;moral3&quot;  &quot;moral4&quot;  &quot;moral5&quot;  &quot;moral6&quot; 
 ## [8] &quot;moral7&quot;</code></pre>
 <p>You can select columns by number, which is useful when the column names are long or complicated.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="dplyr.html#cb235-1"></a>sexual &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">2</span>, <span class="dv">11</span><span class="op">:</span><span class="dv">17</span>)</span>
-<span id="cb235-2"><a href="dplyr.html#cb235-2"></a><span class="kw">names</span>(sexual)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="dplyr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>sexual <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">2</span>, <span class="dv">11</span><span class="sc">:</span><span class="dv">17</span>)</span>
+<span id="cb226-2"><a href="dplyr.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sexual)</span></code></pre></div>
 <pre><code>## [1] &quot;user_id&quot; &quot;sexual1&quot; &quot;sexual2&quot; &quot;sexual3&quot; &quot;sexual4&quot; &quot;sexual5&quot; &quot;sexual6&quot;
 ## [8] &quot;sexual7&quot;</code></pre>
 <p>You can use a minus symbol to unselect columns, leaving all of the other columns. If you want to exclude a span of columns, put parentheses around the span first (e.g., <code>-(moral1:moral7)</code>, not <code>-moral1:moral7</code>).</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="dplyr.html#cb237-1"></a>pathogen &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>id, <span class="op">-</span>date, <span class="op">-</span>(moral1<span class="op">:</span>sexual7))</span>
-<span id="cb237-2"><a href="dplyr.html#cb237-2"></a><span class="kw">names</span>(pathogen)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="dplyr.html#cb228-1" aria-hidden="true" tabindex="-1"></a>pathogen <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>id, <span class="sc">-</span>date, <span class="sc">-</span>(moral1<span class="sc">:</span>sexual7))</span>
+<span id="cb228-2"><a href="dplyr.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pathogen)</span></code></pre></div>
 <pre><code>## [1] &quot;user_id&quot;   &quot;pathogen1&quot; &quot;pathogen2&quot; &quot;pathogen3&quot; &quot;pathogen4&quot; &quot;pathogen5&quot;
 ## [7] &quot;pathogen6&quot; &quot;pathogen7&quot;</code></pre>
-<div id="select_helpers" class="section level4">
+<div id="select_helpers" class="section level4" number="5.4.1.1">
 <h4><span class="header-section-number">5.4.1.1</span> Select helpers</h4>
 <p>You can select columns based on criteria about the column names.</p>
-<div id="starts_with" class="section level5">
+<div id="starts_with" class="section level5" number="5.4.1.1.1">
 <h5><span class="header-section-number">5.4.1.1.1</span> <code>starts_with()</code></h5>
 <p>Select columns that start with a character string.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="dplyr.html#cb239-1"></a>u &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;u&quot;</span>))</span>
-<span id="cb239-2"><a href="dplyr.html#cb239-2"></a><span class="kw">names</span>(u)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="dplyr.html#cb230-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;u&quot;</span>))</span>
+<span id="cb230-2"><a href="dplyr.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(u)</span></code></pre></div>
 <pre><code>## [1] &quot;user_id&quot;</code></pre>
 </div>
-<div id="ends_with" class="section level5">
+<div id="ends_with" class="section level5" number="5.4.1.1.2">
 <h5><span class="header-section-number">5.4.1.1.2</span> <code>ends_with()</code></h5>
 <p>Select columns that end with a character string.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="dplyr.html#cb241-1"></a>firstq &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;1&quot;</span>))</span>
-<span id="cb241-2"><a href="dplyr.html#cb241-2"></a><span class="kw">names</span>(firstq)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="dplyr.html#cb232-1" aria-hidden="true" tabindex="-1"></a>firstq <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&quot;1&quot;</span>))</span>
+<span id="cb232-2"><a href="dplyr.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(firstq)</span></code></pre></div>
 <pre><code>## [1] &quot;moral1&quot;    &quot;sexual1&quot;   &quot;pathogen1&quot;</code></pre>
 </div>
-<div id="contains" class="section level5">
+<div id="contains" class="section level5" number="5.4.1.1.3">
 <h5><span class="header-section-number">5.4.1.1.3</span> <code>contains()</code></h5>
 <p>Select columns that contain a character string.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="dplyr.html#cb243-1"></a>pathogen &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;pathogen&quot;</span>))</span>
-<span id="cb243-2"><a href="dplyr.html#cb243-2"></a><span class="kw">names</span>(pathogen)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="dplyr.html#cb234-1" aria-hidden="true" tabindex="-1"></a>pathogen <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;pathogen&quot;</span>))</span>
+<span id="cb234-2"><a href="dplyr.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pathogen)</span></code></pre></div>
 <pre><code>## [1] &quot;pathogen1&quot; &quot;pathogen2&quot; &quot;pathogen3&quot; &quot;pathogen4&quot; &quot;pathogen5&quot; &quot;pathogen6&quot;
 ## [7] &quot;pathogen7&quot;</code></pre>
 </div>
-<div id="num_range" class="section level5">
+<div id="num_range" class="section level5" number="5.4.1.1.4">
 <h5><span class="header-section-number">5.4.1.1.4</span> <code>num_range()</code></h5>
 <p>Select columns with a name that matches the pattern <code>prefix</code>.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="dplyr.html#cb245-1"></a>moral2_<span class="dv">4</span> &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">num_range</span>(<span class="st">&quot;moral&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>))</span>
-<span id="cb245-2"><a href="dplyr.html#cb245-2"></a><span class="kw">names</span>(moral2_<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dplyr.html#cb236-1" aria-hidden="true" tabindex="-1"></a>moral2_4 <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">num_range</span>(<span class="st">&quot;moral&quot;</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>))</span>
+<span id="cb236-2"><a href="dplyr.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(moral2_4)</span></code></pre></div>
 <pre><code>## [1] &quot;moral2&quot; &quot;moral3&quot; &quot;moral4&quot;</code></pre>
 <div class="info">
 <p>
-Use <code>width</code> to set the number of digits with leading zeros. For example, <code>num_range(‘var_’, 8:10, width=2)</code> selects columns <code>var_08</code>, <code>var_09</code>, and <code>var_10</code>.
+Use <code>width</code> to set the number of digits with leading zeros. For example, <code>num_range(‘var_,’ 8:10, width=2)</code> selects columns <code>var_08</code>, <code>var_09</code>, and <code>var_10</code>.
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="filter" class="section level3">
+<div id="filter" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> filter()</h3>
 <p>Select rows by matching column criteria.</p>
 <p>Select all rows where the user_id is 1 (that’s Lisa).</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="dplyr.html#cb247-1"></a>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(user_id <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 24
-##      id user_id date       moral1 moral2 moral3 moral4 moral5 moral6 moral7
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     1       1 2008-07-10      2      2      1      2      1      1      1
-## # … with 14 more variables: sexual1 &lt;dbl&gt;, sexual2 &lt;dbl&gt;, sexual3 &lt;dbl&gt;,
-## #   sexual4 &lt;dbl&gt;, sexual5 &lt;dbl&gt;, sexual6 &lt;dbl&gt;, sexual7 &lt;dbl&gt;,
-## #   pathogen1 &lt;dbl&gt;, pathogen2 &lt;dbl&gt;, pathogen3 &lt;dbl&gt;, pathogen4 &lt;dbl&gt;,
-## #   pathogen5 &lt;dbl&gt;, pathogen6 &lt;dbl&gt;, pathogen7 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dplyr.html#cb238-1" aria-hidden="true" tabindex="-1"></a>disgust <span class="sc">%&gt;%</span> <span class="fu">filter</span>(user_id <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="kable-table">
+<table style="width:100%;">
+<colgroup>
+<col width="1%" />
+<col width="4%" />
+<col width="5%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">user_id</th>
+<th align="left">date</th>
+<th align="right">moral1</th>
+<th align="right">moral2</th>
+<th align="right">moral3</th>
+<th align="right">moral4</th>
+<th align="right">moral5</th>
+<th align="right">moral6</th>
+<th align="right">moral7</th>
+<th align="right">sexual1</th>
+<th align="right">sexual2</th>
+<th align="right">sexual3</th>
+<th align="right">sexual4</th>
+<th align="right">sexual5</th>
+<th align="right">sexual6</th>
+<th align="right">sexual7</th>
+<th align="right">pathogen1</th>
+<th align="right">pathogen2</th>
+<th align="right">pathogen3</th>
+<th align="right">pathogen4</th>
+<th align="right">pathogen5</th>
+<th align="right">pathogen6</th>
+<th align="right">pathogen7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">2008-07-10</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="warning">
 <p>
 Remember to use <code>==</code> and not <code>=</code> to check if two things are equivalent. A single <code>=</code> assigns the righthand value to the lefthand variable and (usually) evaluates to <code>TRUE</code>.
 </p>
 </div>
 <p>You can select on multiple criteria by separating them with commas.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="dplyr.html#cb249-1"></a>amoral &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(</span>
-<span id="cb249-2"><a href="dplyr.html#cb249-2"></a>  moral1 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, </span>
-<span id="cb249-3"><a href="dplyr.html#cb249-3"></a>  moral2 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,</span>
-<span id="cb249-4"><a href="dplyr.html#cb249-4"></a>  moral3 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, </span>
-<span id="cb249-5"><a href="dplyr.html#cb249-5"></a>  moral4 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,</span>
-<span id="cb249-6"><a href="dplyr.html#cb249-6"></a>  moral5 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,</span>
-<span id="cb249-7"><a href="dplyr.html#cb249-7"></a>  moral6 <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,</span>
-<span id="cb249-8"><a href="dplyr.html#cb249-8"></a>  moral7 <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span>
-<span id="cb249-9"><a href="dplyr.html#cb249-9"></a>)</span></code></pre></div>
-<p>You can use the symbols <code>&amp;</code>, <code>|</code>, and <code>!</code> to mean “and”, “or”, and “not”. You can also use other operators to make equations.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dplyr.html#cb250-1"></a><span class="co"># everyone who chose either 0 or 7 for question moral1</span></span>
-<span id="cb250-2"><a href="dplyr.html#cb250-2"></a>moral_extremes &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb250-3"><a href="dplyr.html#cb250-3"></a><span class="st">  </span><span class="kw">filter</span>(moral1 <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>moral1 <span class="op">==</span><span class="st"> </span><span class="dv">7</span>)</span>
-<span id="cb250-4"><a href="dplyr.html#cb250-4"></a></span>
-<span id="cb250-5"><a href="dplyr.html#cb250-5"></a><span class="co"># everyone who chose the same answer for all moral questions</span></span>
-<span id="cb250-6"><a href="dplyr.html#cb250-6"></a>moral_consistent &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb250-7"><a href="dplyr.html#cb250-7"></a><span class="st">  </span><span class="kw">filter</span>(</span>
-<span id="cb250-8"><a href="dplyr.html#cb250-8"></a>    moral2 <span class="op">==</span><span class="st"> </span>moral1 <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb250-9"><a href="dplyr.html#cb250-9"></a><span class="st">    </span>moral3 <span class="op">==</span><span class="st"> </span>moral1 <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb250-10"><a href="dplyr.html#cb250-10"></a><span class="st">    </span>moral4 <span class="op">==</span><span class="st"> </span>moral1 <span class="op">&amp;</span></span>
-<span id="cb250-11"><a href="dplyr.html#cb250-11"></a><span class="st">    </span>moral5 <span class="op">==</span><span class="st"> </span>moral1 <span class="op">&amp;</span></span>
-<span id="cb250-12"><a href="dplyr.html#cb250-12"></a><span class="st">    </span>moral6 <span class="op">==</span><span class="st"> </span>moral1 <span class="op">&amp;</span></span>
-<span id="cb250-13"><a href="dplyr.html#cb250-13"></a><span class="st">    </span>moral7 <span class="op">==</span><span class="st"> </span>moral1</span>
-<span id="cb250-14"><a href="dplyr.html#cb250-14"></a>  )</span>
-<span id="cb250-15"><a href="dplyr.html#cb250-15"></a></span>
-<span id="cb250-16"><a href="dplyr.html#cb250-16"></a><span class="co"># everyone who did not answer 7 for all 7 moral questions</span></span>
-<span id="cb250-17"><a href="dplyr.html#cb250-17"></a>moral_no_ceiling &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb250-18"><a href="dplyr.html#cb250-18"></a><span class="st">  </span><span class="kw">filter</span>(moral1<span class="op">+</span>moral2<span class="op">+</span>moral3<span class="op">+</span>moral4<span class="op">+</span>moral5<span class="op">+</span>moral6<span class="op">+</span>moral7 <span class="op">!=</span><span class="st"> </span><span class="dv">7</span><span class="op">*</span><span class="dv">7</span>)</span></code></pre></div>
-<div id="match-operator" class="section level4">
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="dplyr.html#cb239-1" aria-hidden="true" tabindex="-1"></a>amoral <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> <span class="fu">filter</span>(</span>
+<span id="cb239-2"><a href="dplyr.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  moral1 <span class="sc">==</span> <span class="dv">0</span>, </span>
+<span id="cb239-3"><a href="dplyr.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  moral2 <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb239-4"><a href="dplyr.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  moral3 <span class="sc">==</span> <span class="dv">0</span>, </span>
+<span id="cb239-5"><a href="dplyr.html#cb239-5" aria-hidden="true" tabindex="-1"></a>  moral4 <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb239-6"><a href="dplyr.html#cb239-6" aria-hidden="true" tabindex="-1"></a>  moral5 <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb239-7"><a href="dplyr.html#cb239-7" aria-hidden="true" tabindex="-1"></a>  moral6 <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb239-8"><a href="dplyr.html#cb239-8" aria-hidden="true" tabindex="-1"></a>  moral7 <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb239-9"><a href="dplyr.html#cb239-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>You can use the symbols <code>&amp;</code>, <code>|</code>, and <code>!</code> to mean “and,” “or,” and “not.” You can also use other operators to make equations.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="dplyr.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># everyone who chose either 0 or 7 for question moral1</span></span>
+<span id="cb240-2"><a href="dplyr.html#cb240-2" aria-hidden="true" tabindex="-1"></a>moral_extremes <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> </span>
+<span id="cb240-3"><a href="dplyr.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(moral1 <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> moral1 <span class="sc">==</span> <span class="dv">7</span>)</span>
+<span id="cb240-4"><a href="dplyr.html#cb240-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-5"><a href="dplyr.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="co"># everyone who chose the same answer for all moral questions</span></span>
+<span id="cb240-6"><a href="dplyr.html#cb240-6" aria-hidden="true" tabindex="-1"></a>moral_consistent <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span> </span>
+<span id="cb240-7"><a href="dplyr.html#cb240-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb240-8"><a href="dplyr.html#cb240-8" aria-hidden="true" tabindex="-1"></a>    moral2 <span class="sc">==</span> moral1 <span class="sc">&amp;</span> </span>
+<span id="cb240-9"><a href="dplyr.html#cb240-9" aria-hidden="true" tabindex="-1"></a>    moral3 <span class="sc">==</span> moral1 <span class="sc">&amp;</span> </span>
+<span id="cb240-10"><a href="dplyr.html#cb240-10" aria-hidden="true" tabindex="-1"></a>    moral4 <span class="sc">==</span> moral1 <span class="sc">&amp;</span></span>
+<span id="cb240-11"><a href="dplyr.html#cb240-11" aria-hidden="true" tabindex="-1"></a>    moral5 <span class="sc">==</span> moral1 <span class="sc">&amp;</span></span>
+<span id="cb240-12"><a href="dplyr.html#cb240-12" aria-hidden="true" tabindex="-1"></a>    moral6 <span class="sc">==</span> moral1 <span class="sc">&amp;</span></span>
+<span id="cb240-13"><a href="dplyr.html#cb240-13" aria-hidden="true" tabindex="-1"></a>    moral7 <span class="sc">==</span> moral1</span>
+<span id="cb240-14"><a href="dplyr.html#cb240-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb240-15"><a href="dplyr.html#cb240-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-16"><a href="dplyr.html#cb240-16" aria-hidden="true" tabindex="-1"></a><span class="co"># everyone who did not answer 7 for all 7 moral questions</span></span>
+<span id="cb240-17"><a href="dplyr.html#cb240-17" aria-hidden="true" tabindex="-1"></a>moral_no_ceiling <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb240-18"><a href="dplyr.html#cb240-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(moral1<span class="sc">+</span>moral2<span class="sc">+</span>moral3<span class="sc">+</span>moral4<span class="sc">+</span>moral5<span class="sc">+</span>moral6<span class="sc">+</span>moral7 <span class="sc">!=</span> <span class="dv">7</span><span class="sc">*</span><span class="dv">7</span>)</span></code></pre></div>
+<div id="match-operator" class="section level4" number="5.4.2.1">
 <h4><span class="header-section-number">5.4.2.1</span> Match operator (%in%)</h4>
 <p>Sometimes you need to exclude some participant IDs for reasons that can’t be described in code. The match operator (<code>%in%</code>) is useful here for testing if a column value is in a list. Surround the equation with parentheses and put <code>!</code> in front to test that a value is not in the list.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dplyr.html#cb251-1"></a>no_researchers &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb251-2"><a href="dplyr.html#cb251-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(user_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="dplyr.html#cb241-1" aria-hidden="true" tabindex="-1"></a>no_researchers <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb241-2"><a href="dplyr.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(user_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</span></code></pre></div>
 </div>
-<div id="dates" class="section level4">
+<div id="dates" class="section level4" number="5.4.2.2">
 <h4><span class="header-section-number">5.4.2.2</span> Dates</h4>
 <p>You can use the <code>lubridate</code> package to work with dates. For example, you can use the <code>year()</code> function to return just the year from the <code>date</code> column and then select only data collected in 2010.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dplyr.html#cb252-1"></a>disgust2010 &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb252-2"><a href="dplyr.html#cb252-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">year</span>(date) <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dplyr.html#cb242-1" aria-hidden="true" tabindex="-1"></a>disgust2010 <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb242-2"><a href="dplyr.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2010</span>)</span></code></pre></div>
 <table style="width:100%;">
 <caption><span id="tab:dates-year">Table 5.1: </span>Rows 1-6 from <code>disgust2010</code></caption>
 <colgroup>
@@ -905,18 +1082,18 @@ Remember to use <code>==</code> and not <code>=</code> to check if two things ar
 </tbody>
 </table>
 <p>Or select data from at least 5 years ago. You can use the <code>range</code> function to check the minimum and maximum dates in the resulting dataset.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dplyr.html#cb253-1"></a>disgust_5ago &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb253-2"><a href="dplyr.html#cb253-2"></a><span class="st">  </span><span class="kw">filter</span>(date <span class="op">&lt;</span><span class="st"> </span><span class="kw">today</span>() <span class="op">-</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">5</span>))</span>
-<span id="cb253-3"><a href="dplyr.html#cb253-3"></a></span>
-<span id="cb253-4"><a href="dplyr.html#cb253-4"></a><span class="kw">range</span>(disgust_5ago<span class="op">$</span>date)</span></code></pre></div>
-<pre><code>## [1] &quot;2008-07-10&quot; &quot;2015-11-13&quot;</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="dplyr.html#cb243-1" aria-hidden="true" tabindex="-1"></a>disgust_5ago <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb243-2"><a href="dplyr.html#cb243-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&lt;</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">dyears</span>(<span class="dv">5</span>))</span>
+<span id="cb243-3"><a href="dplyr.html#cb243-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb243-4"><a href="dplyr.html#cb243-4" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(disgust_5ago<span class="sc">$</span>date)</span></code></pre></div>
+<pre><code>## [1] &quot;2008-07-10&quot; &quot;2016-08-04&quot;</code></pre>
 </div>
 </div>
-<div id="arrange" class="section level3">
+<div id="arrange" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> arrange()</h3>
 <p>Sort your dataset using <code>arrange()</code>. You will find yourself needing to sort data in R much less than you do in Excel, since you don’t need to have rows next to each other in order to, for example, calculate group means. But <code>arrange()</code> can be useful when preparing data from display in tables.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dplyr.html#cb255-1"></a>disgust_order &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb255-2"><a href="dplyr.html#cb255-2"></a><span class="st">  </span><span class="kw">arrange</span>(date, moral1)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="dplyr.html#cb245-1" aria-hidden="true" tabindex="-1"></a>disgust_order <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb245-2"><a href="dplyr.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date, moral1)</span></code></pre></div>
 <table style="width:100%;">
 <caption><span id="tab:arrange">Table 5.2: </span>Rows 1-6 from <code>disgust_order</code></caption>
 <colgroup>
@@ -1133,8 +1310,8 @@ Remember to use <code>==</code> and not <code>=</code> to check if two things ar
 </tbody>
 </table>
 <p>Reverse the order using <code>desc()</code></p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dplyr.html#cb256-1"></a>disgust_order_desc &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb256-2"><a href="dplyr.html#cb256-2"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(date))</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dplyr.html#cb246-1" aria-hidden="true" tabindex="-1"></a>disgust_order_desc <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb246-2"><a href="dplyr.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(date))</span></code></pre></div>
 <table style="width:100%;">
 <caption><span id="tab:arrange-desc">Table 5.3: </span>Rows 1-6 from <code>disgust_order_desc</code></caption>
 <colgroup>
@@ -1351,18 +1528,18 @@ Remember to use <code>==</code> and not <code>=</code> to check if two things ar
 </tbody>
 </table>
 </div>
-<div id="mutate" class="section level3">
+<div id="mutate" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> mutate()</h3>
 <p>Add new columns. This is one of the most useful functions in the tidyverse.</p>
 <p>Refer to other columns by their names (unquoted). You can add more than one column in the same mutate function, just separate the columns with a comma. Once you make a new column, you can use it in further column definitions e.g., <code>total</code> below).</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dplyr.html#cb257-1"></a>disgust_total &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb257-2"><a href="dplyr.html#cb257-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb257-3"><a href="dplyr.html#cb257-3"></a>    <span class="dt">pathogen =</span> pathogen1 <span class="op">+</span><span class="st"> </span>pathogen2 <span class="op">+</span><span class="st"> </span>pathogen3 <span class="op">+</span><span class="st"> </span>pathogen4 <span class="op">+</span><span class="st"> </span>pathogen5 <span class="op">+</span><span class="st"> </span>pathogen6 <span class="op">+</span><span class="st"> </span>pathogen7,</span>
-<span id="cb257-4"><a href="dplyr.html#cb257-4"></a>    <span class="dt">moral =</span> moral1 <span class="op">+</span><span class="st"> </span>moral2 <span class="op">+</span><span class="st"> </span>moral3 <span class="op">+</span><span class="st"> </span>moral4 <span class="op">+</span><span class="st"> </span>moral5 <span class="op">+</span><span class="st"> </span>moral6 <span class="op">+</span><span class="st"> </span>moral7,</span>
-<span id="cb257-5"><a href="dplyr.html#cb257-5"></a>    <span class="dt">sexual =</span> sexual1 <span class="op">+</span><span class="st"> </span>sexual2 <span class="op">+</span><span class="st"> </span>sexual3 <span class="op">+</span><span class="st"> </span>sexual4 <span class="op">+</span><span class="st"> </span>sexual5 <span class="op">+</span><span class="st"> </span>sexual6 <span class="op">+</span><span class="st"> </span>sexual7,</span>
-<span id="cb257-6"><a href="dplyr.html#cb257-6"></a>    <span class="dt">total =</span> pathogen <span class="op">+</span><span class="st"> </span>moral <span class="op">+</span><span class="st"> </span>sexual,</span>
-<span id="cb257-7"><a href="dplyr.html#cb257-7"></a>    <span class="dt">user_id =</span> <span class="kw">paste0</span>(<span class="st">&quot;U&quot;</span>, user_id)</span>
-<span id="cb257-8"><a href="dplyr.html#cb257-8"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="dplyr.html#cb247-1" aria-hidden="true" tabindex="-1"></a>disgust_total <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb247-2"><a href="dplyr.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb247-3"><a href="dplyr.html#cb247-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pathogen =</span> pathogen1 <span class="sc">+</span> pathogen2 <span class="sc">+</span> pathogen3 <span class="sc">+</span> pathogen4 <span class="sc">+</span> pathogen5 <span class="sc">+</span> pathogen6 <span class="sc">+</span> pathogen7,</span>
+<span id="cb247-4"><a href="dplyr.html#cb247-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">moral =</span> moral1 <span class="sc">+</span> moral2 <span class="sc">+</span> moral3 <span class="sc">+</span> moral4 <span class="sc">+</span> moral5 <span class="sc">+</span> moral6 <span class="sc">+</span> moral7,</span>
+<span id="cb247-5"><a href="dplyr.html#cb247-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sexual =</span> sexual1 <span class="sc">+</span> sexual2 <span class="sc">+</span> sexual3 <span class="sc">+</span> sexual4 <span class="sc">+</span> sexual5 <span class="sc">+</span> sexual6 <span class="sc">+</span> sexual7,</span>
+<span id="cb247-6"><a href="dplyr.html#cb247-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> pathogen <span class="sc">+</span> moral <span class="sc">+</span> sexual,</span>
+<span id="cb247-7"><a href="dplyr.html#cb247-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">user_id =</span> <span class="fu">paste0</span>(<span class="st">&quot;U&quot;</span>, user_id)</span>
+<span id="cb247-8"><a href="dplyr.html#cb247-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <table>
 <caption><span id="tab:mutate">Table 5.4: </span>Rows 1-6 from <code>disgust_total</code></caption>
 <colgroup>
@@ -1616,20 +1793,20 @@ You can overwrite a column by giving a new column the same name as the old colum
 </p>
 </div>
 </div>
-<div id="summarise" class="section level3">
+<div id="summarise" class="section level3" number="5.4.5">
 <h3><span class="header-section-number">5.4.5</span> summarise()</h3>
 <p>Create summary statistics for the dataset. Check the <a href="https://www.rstudio.org/links/data_wrangling_cheat_sheet">Data Wrangling Cheat Sheet</a> or the <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf">Data Transformation Cheat Sheet</a> for various summary functions. Some common ones are: <code>mean()</code>, <code>sd()</code>, <code>n()</code>, <code>sum()</code>, and <code>quantile()</code>.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dplyr.html#cb258-1"></a>disgust_summary&lt;-<span class="st"> </span>disgust_total <span class="op">%&gt;%</span></span>
-<span id="cb258-2"><a href="dplyr.html#cb258-2"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
-<span id="cb258-3"><a href="dplyr.html#cb258-3"></a>    <span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb258-4"><a href="dplyr.html#cb258-4"></a>    <span class="dt">q25 =</span> <span class="kw">quantile</span>(total, <span class="fl">.25</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb258-5"><a href="dplyr.html#cb258-5"></a>    <span class="dt">q50 =</span> <span class="kw">quantile</span>(total, <span class="fl">.50</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb258-6"><a href="dplyr.html#cb258-6"></a>    <span class="dt">q75 =</span> <span class="kw">quantile</span>(total, <span class="fl">.75</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb258-7"><a href="dplyr.html#cb258-7"></a>    <span class="dt">avg_total =</span> <span class="kw">mean</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb258-8"><a href="dplyr.html#cb258-8"></a>    <span class="dt">sd_total  =</span> <span class="kw">sd</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb258-9"><a href="dplyr.html#cb258-9"></a>    <span class="dt">min_total =</span> <span class="kw">min</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb258-10"><a href="dplyr.html#cb258-10"></a>    <span class="dt">max_total =</span> <span class="kw">max</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb258-11"><a href="dplyr.html#cb258-11"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dplyr.html#cb248-1" aria-hidden="true" tabindex="-1"></a>disgust_summary<span class="ot">&lt;-</span> disgust_total <span class="sc">%&gt;%</span></span>
+<span id="cb248-2"><a href="dplyr.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb248-3"><a href="dplyr.html#cb248-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb248-4"><a href="dplyr.html#cb248-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">q25 =</span> <span class="fu">quantile</span>(total, .<span class="dv">25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb248-5"><a href="dplyr.html#cb248-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">q50 =</span> <span class="fu">quantile</span>(total, .<span class="dv">50</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb248-6"><a href="dplyr.html#cb248-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">q75 =</span> <span class="fu">quantile</span>(total, .<span class="dv">75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb248-7"><a href="dplyr.html#cb248-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_total =</span> <span class="fu">mean</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb248-8"><a href="dplyr.html#cb248-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_total  =</span> <span class="fu">sd</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb248-9"><a href="dplyr.html#cb248-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_total =</span> <span class="fu">min</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb248-10"><a href="dplyr.html#cb248-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_total =</span> <span class="fu">max</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb248-11"><a href="dplyr.html#cb248-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <table>
 <caption><span id="tab:summarise">Table 5.5: </span>All rows from <code>disgust_summary</code></caption>
 <thead>
@@ -1658,22 +1835,22 @@ You can overwrite a column by giving a new column the same name as the old colum
 </tbody>
 </table>
 </div>
-<div id="group_by" class="section level3">
+<div id="group_by" class="section level3" number="5.4.6">
 <h3><span class="header-section-number">5.4.6</span> group_by()</h3>
 <p>Create subsets of the data. You can use this to create summaries,
 like the mean value for all of your experimental groups.</p>
 <p>Here, we’ll use <code>mutate</code> to create a new column called <code>year</code>, group by <code>year</code>, and calculate the average scores.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dplyr.html#cb259-1"></a>disgust_groups &lt;-<span class="st"> </span>disgust_total <span class="op">%&gt;%</span></span>
-<span id="cb259-2"><a href="dplyr.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb259-3"><a href="dplyr.html#cb259-3"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb259-4"><a href="dplyr.html#cb259-4"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
-<span id="cb259-5"><a href="dplyr.html#cb259-5"></a>    <span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb259-6"><a href="dplyr.html#cb259-6"></a>    <span class="dt">avg_total =</span> <span class="kw">mean</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb259-7"><a href="dplyr.html#cb259-7"></a>    <span class="dt">sd_total  =</span> <span class="kw">sd</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb259-8"><a href="dplyr.html#cb259-8"></a>    <span class="dt">min_total =</span> <span class="kw">min</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb259-9"><a href="dplyr.html#cb259-9"></a>    <span class="dt">max_total =</span> <span class="kw">max</span>(total, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb259-10"><a href="dplyr.html#cb259-10"></a>    <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
-<span id="cb259-11"><a href="dplyr.html#cb259-11"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="dplyr.html#cb249-1" aria-hidden="true" tabindex="-1"></a>disgust_groups <span class="ot">&lt;-</span> disgust_total <span class="sc">%&gt;%</span></span>
+<span id="cb249-2"><a href="dplyr.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb249-3"><a href="dplyr.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb249-4"><a href="dplyr.html#cb249-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb249-5"><a href="dplyr.html#cb249-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb249-6"><a href="dplyr.html#cb249-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_total =</span> <span class="fu">mean</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb249-7"><a href="dplyr.html#cb249-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_total  =</span> <span class="fu">sd</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb249-8"><a href="dplyr.html#cb249-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_total =</span> <span class="fu">min</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb249-9"><a href="dplyr.html#cb249-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_total =</span> <span class="fu">max</span>(total, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb249-10"><a href="dplyr.html#cb249-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb249-11"><a href="dplyr.html#cb249-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <table>
 <caption><span id="tab:group-by">Table 5.6: </span>All rows from <code>disgust_groups</code></caption>
 <thead>
@@ -1771,19 +1948,19 @@ like the mean value for all of your experimental groups.</p>
 </table>
 <div class="warning">
 <p>
-If you don’t add <code>.groups = “drop”</code> at the end of the <code>summarise()</code> function, you will get the following message: “<code>summarise()</code> ungrouping output (override with <code>.groups</code> argument)”. This just reminds you that the groups are still in effect and any further functions will also be grouped.
+If you don’t add <code>.groups = “drop”</code> at the end of the <code>summarise()</code> function, you will get the following message: “<code>summarise()</code> ungrouping output (override with <code>.groups</code> argument).” This just reminds you that the groups are still in effect and any further functions will also be grouped.
 </p>
 <p>
 Older versions of dplyr didn’t do this, so older code will generate this warning if you run it with newer version of dplyr. Older code might <code>ungroup()</code> after <code>summarise()</code> to indicate that groupings should be dropped. The default behaviour is usually correct, so you don’t need to worry, but it’s best to explicitly set <code>.groups</code> in a <code>summarise()</code> function after <code>group_by()</code> if you want to “keep” or “drop” the groupings.
 </p>
 </div>
 <p>You can use <code>filter</code> after <code>group_by</code>. The following example returns the lowest total score from each year (i.e., the row where the <code>rank()</code> of the value in the column <code>total</code> is equivalent to <code>1</code>).</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dplyr.html#cb260-1"></a>disgust_lowest &lt;-<span class="st"> </span>disgust_total <span class="op">%&gt;%</span></span>
-<span id="cb260-2"><a href="dplyr.html#cb260-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(date)) <span class="op">%&gt;%</span></span>
-<span id="cb260-3"><a href="dplyr.html#cb260-3"></a><span class="st">  </span><span class="kw">select</span>(user_id, year, total) <span class="op">%&gt;%</span></span>
-<span id="cb260-4"><a href="dplyr.html#cb260-4"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb260-5"><a href="dplyr.html#cb260-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">rank</span>(total) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb260-6"><a href="dplyr.html#cb260-6"></a><span class="st">  </span><span class="kw">arrange</span>(year)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dplyr.html#cb250-1" aria-hidden="true" tabindex="-1"></a>disgust_lowest <span class="ot">&lt;-</span> disgust_total <span class="sc">%&gt;%</span></span>
+<span id="cb250-2"><a href="dplyr.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb250-3"><a href="dplyr.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(user_id, year, total) <span class="sc">%&gt;%</span></span>
+<span id="cb250-4"><a href="dplyr.html#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb250-5"><a href="dplyr.html#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">rank</span>(total) <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb250-6"><a href="dplyr.html#cb250-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span></code></pre></div>
 <table>
 <caption><span id="tab:group-by-filter">Table 5.7: </span>All rows from <code>disgust_lowest</code></caption>
 <thead>
@@ -1832,11 +2009,11 @@ Older versions of dplyr didn’t do this, so older code will generate this warni
 </tbody>
 </table>
 <p>You can also use <code>mutate</code> after <code>group_by</code>. The following example calculates subject-mean-centered scores by grouping the scores by <code>user_id</code> and then subtracting the group-specific mean from each score. <span class="text-warning">Note the use of <code>gather</code> to tidy the data into a long format first.</span></p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dplyr.html#cb261-1"></a>disgust_smc &lt;-<span class="st"> </span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb261-2"><a href="dplyr.html#cb261-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, moral1<span class="op">:</span>pathogen7) <span class="op">%&gt;%</span></span>
-<span id="cb261-3"><a href="dplyr.html#cb261-3"></a><span class="st">  </span><span class="kw">group_by</span>(user_id) <span class="op">%&gt;%</span></span>
-<span id="cb261-4"><a href="dplyr.html#cb261-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">score_smc =</span> score <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb261-5"><a href="dplyr.html#cb261-5"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dplyr.html#cb251-1" aria-hidden="true" tabindex="-1"></a>disgust_smc <span class="ot">&lt;-</span> disgust <span class="sc">%&gt;%</span></span>
+<span id="cb251-2"><a href="dplyr.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, moral1<span class="sc">:</span>pathogen7) <span class="sc">%&gt;%</span></span>
+<span id="cb251-3"><a href="dplyr.html#cb251-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(user_id) <span class="sc">%&gt;%</span></span>
+<span id="cb251-4"><a href="dplyr.html#cb251-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">score_smc =</span> score <span class="sc">-</span> <span class="fu">mean</span>(score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb251-5"><a href="dplyr.html#cb251-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <div class="warning">
 <p>
 Use <code>ungroup()</code> as soon as you are done with grouped functions, otherwise the data table will still be grouped when you use it in the future.
@@ -1906,15 +2083,15 @@ Use <code>ungroup()</code> as soon as you are done with grouped functions, other
 </tbody>
 </table>
 </div>
-<div id="all-together" class="section level3">
+<div id="all-together" class="section level3" number="5.4.7">
 <h3><span class="header-section-number">5.4.7</span> All Together</h3>
 <p>A lot of what we did above would be easier if the data were tidy, so let’s do that first. Then we can use <code>group_by</code> to calculate the domain scores.</p>
 <p>After that, we can spread out the 3 domains, calculate the total score, remove any rows with a missing (<code>NA</code>) total, and calculate mean values by year.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dplyr.html#cb262-1"></a>disgust_tidy &lt;-<span class="st"> </span>dataskills<span class="op">::</span>disgust <span class="op">%&gt;%</span></span>
-<span id="cb262-2"><a href="dplyr.html#cb262-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, moral1<span class="op">:</span>pathogen7) <span class="op">%&gt;%</span></span>
-<span id="cb262-3"><a href="dplyr.html#cb262-3"></a><span class="st">  </span><span class="kw">separate</span>(question, <span class="kw">c</span>(<span class="st">&quot;domain&quot;</span>,<span class="st">&quot;q_num&quot;</span>), <span class="dt">sep =</span> <span class="dv">-1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb262-4"><a href="dplyr.html#cb262-4"></a><span class="st">  </span><span class="kw">group_by</span>(id, user_id, date, domain) <span class="op">%&gt;%</span></span>
-<span id="cb262-5"><a href="dplyr.html#cb262-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">score =</span> <span class="kw">mean</span>(score), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dplyr.html#cb252-1" aria-hidden="true" tabindex="-1"></a>disgust_tidy <span class="ot">&lt;-</span> dataskills<span class="sc">::</span>disgust <span class="sc">%&gt;%</span></span>
+<span id="cb252-2"><a href="dplyr.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;score&quot;</span>, moral1<span class="sc">:</span>pathogen7) <span class="sc">%&gt;%</span></span>
+<span id="cb252-3"><a href="dplyr.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(question, <span class="fu">c</span>(<span class="st">&quot;domain&quot;</span>,<span class="st">&quot;q_num&quot;</span>), <span class="at">sep =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb252-4"><a href="dplyr.html#cb252-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id, user_id, date, domain) <span class="sc">%&gt;%</span></span>
+<span id="cb252-5"><a href="dplyr.html#cb252-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> <span class="fu">mean</span>(score), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:all-tidy">Table 5.9: </span>Rows 1-6 from <code>disgust_tidy</code></caption>
 <thead>
@@ -1971,14 +2148,14 @@ Use <code>ungroup()</code> as soon as you are done with grouped functions, other
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dplyr.html#cb263-1"></a>disgust_scored &lt;-<span class="st"> </span>disgust_tidy <span class="op">%&gt;%</span></span>
-<span id="cb263-2"><a href="dplyr.html#cb263-2"></a><span class="st">  </span><span class="kw">spread</span>(domain, score) <span class="op">%&gt;%</span></span>
-<span id="cb263-3"><a href="dplyr.html#cb263-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb263-4"><a href="dplyr.html#cb263-4"></a>    <span class="dt">total =</span> moral <span class="op">+</span><span class="st"> </span>sexual <span class="op">+</span><span class="st"> </span>pathogen,</span>
-<span id="cb263-5"><a href="dplyr.html#cb263-5"></a>    <span class="dt">year =</span> <span class="kw">year</span>(date)</span>
-<span id="cb263-6"><a href="dplyr.html#cb263-6"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb263-7"><a href="dplyr.html#cb263-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(total)) <span class="op">%&gt;%</span></span>
-<span id="cb263-8"><a href="dplyr.html#cb263-8"></a><span class="st">  </span><span class="kw">arrange</span>(user_id) </span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dplyr.html#cb253-1" aria-hidden="true" tabindex="-1"></a>disgust_scored <span class="ot">&lt;-</span> disgust_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="dplyr.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(domain, score) <span class="sc">%&gt;%</span></span>
+<span id="cb253-3"><a href="dplyr.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb253-4"><a href="dplyr.html#cb253-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> moral <span class="sc">+</span> sexual <span class="sc">+</span> pathogen,</span>
+<span id="cb253-5"><a href="dplyr.html#cb253-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">year</span>(date)</span>
+<span id="cb253-6"><a href="dplyr.html#cb253-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb253-7"><a href="dplyr.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(total)) <span class="sc">%&gt;%</span></span>
+<span id="cb253-8"><a href="dplyr.html#cb253-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(user_id) </span></code></pre></div>
 <table>
 <caption><span id="tab:all-scored">Table 5.10: </span>Rows 1-6 from <code>disgust_scored</code></caption>
 <thead>
@@ -2056,17 +2233,17 @@ Use <code>ungroup()</code> as soon as you are done with grouped functions, other
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dplyr.html#cb264-1"></a>disgust_summarised &lt;-<span class="st"> </span>disgust_scored <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="dplyr.html#cb264-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb264-3"><a href="dplyr.html#cb264-3"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
-<span id="cb264-4"><a href="dplyr.html#cb264-4"></a>    <span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb264-5"><a href="dplyr.html#cb264-5"></a>    <span class="dt">avg_pathogen =</span> <span class="kw">mean</span>(pathogen),</span>
-<span id="cb264-6"><a href="dplyr.html#cb264-6"></a>    <span class="dt">avg_moral =</span> <span class="kw">mean</span>(moral),</span>
-<span id="cb264-7"><a href="dplyr.html#cb264-7"></a>    <span class="dt">avg_sexual =</span> <span class="kw">mean</span>(sexual),</span>
-<span id="cb264-8"><a href="dplyr.html#cb264-8"></a>    <span class="dt">first_user =</span> <span class="kw">first</span>(user_id),</span>
-<span id="cb264-9"><a href="dplyr.html#cb264-9"></a>    <span class="dt">last_user =</span> <span class="kw">last</span>(user_id),</span>
-<span id="cb264-10"><a href="dplyr.html#cb264-10"></a>    <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
-<span id="cb264-11"><a href="dplyr.html#cb264-11"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dplyr.html#cb254-1" aria-hidden="true" tabindex="-1"></a>disgust_summarised <span class="ot">&lt;-</span> disgust_scored <span class="sc">%&gt;%</span></span>
+<span id="cb254-2"><a href="dplyr.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb254-3"><a href="dplyr.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb254-4"><a href="dplyr.html#cb254-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb254-5"><a href="dplyr.html#cb254-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pathogen =</span> <span class="fu">mean</span>(pathogen),</span>
+<span id="cb254-6"><a href="dplyr.html#cb254-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_moral =</span> <span class="fu">mean</span>(moral),</span>
+<span id="cb254-7"><a href="dplyr.html#cb254-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_sexual =</span> <span class="fu">mean</span>(sexual),</span>
+<span id="cb254-8"><a href="dplyr.html#cb254-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_user =</span> <span class="fu">first</span>(user_id),</span>
+<span id="cb254-9"><a href="dplyr.html#cb254-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_user =</span> <span class="fu">last</span>(user_id),</span>
+<span id="cb254-10"><a href="dplyr.html#cb254-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb254-11"><a href="dplyr.html#cb254-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <table>
 <caption><span id="tab:all-summarised">Table 5.11: </span>Rows 1-6 from <code>disgust_summarised</code></caption>
 <thead>
@@ -2175,22 +2352,22 @@ Use <code>ungroup()</code> as soon as you are done with grouped functions, other
 </table>
 </div>
 </div>
-<div id="additional-dplyr-one-table-verbs" class="section level2">
+<div id="additional-dplyr-one-table-verbs" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Additional dplyr one-table verbs</h2>
 <p>Use the code examples below and the help pages to figure out what the following one-table verbs do. Most have pretty self-explanatory names.</p>
-<div id="rename" class="section level3">
+<div id="rename" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> rename()</h3>
 <p>You can rename columns with <code>rename()</code>. Set the argument name to the new name, and the value to the old name. You need to put a name in quotes or backticks if it doesn’t follow the rules for a good variable name (contains only letter, numbers, underscores, and full stops; and doesn’t start with a number).</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dplyr.html#cb265-1"></a>sw &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span></span>
-<span id="cb265-2"><a href="dplyr.html#cb265-2"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">Name =</span> name,</span>
-<span id="cb265-3"><a href="dplyr.html#cb265-3"></a>         <span class="dt">Height =</span> height,</span>
-<span id="cb265-4"><a href="dplyr.html#cb265-4"></a>         <span class="dt">Mass =</span> mass,</span>
-<span id="cb265-5"><a href="dplyr.html#cb265-5"></a>         <span class="st">`</span><span class="dt">Hair Colour</span><span class="st">`</span> =<span class="st"> </span>hair_color,</span>
-<span id="cb265-6"><a href="dplyr.html#cb265-6"></a>         <span class="st">`</span><span class="dt">Skin Colour</span><span class="st">`</span> =<span class="st"> </span>skin_color,</span>
-<span id="cb265-7"><a href="dplyr.html#cb265-7"></a>         <span class="st">`</span><span class="dt">Eye Colour</span><span class="st">`</span> =<span class="st"> </span>eye_color,</span>
-<span id="cb265-8"><a href="dplyr.html#cb265-8"></a>         <span class="st">`</span><span class="dt">Birth Year</span><span class="st">`</span> =<span class="st"> </span>birth_year)</span>
-<span id="cb265-9"><a href="dplyr.html#cb265-9"></a></span>
-<span id="cb265-10"><a href="dplyr.html#cb265-10"></a><span class="kw">names</span>(sw)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dplyr.html#cb255-1" aria-hidden="true" tabindex="-1"></a>sw <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb255-2"><a href="dplyr.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Name =</span> name,</span>
+<span id="cb255-3"><a href="dplyr.html#cb255-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Height =</span> height,</span>
+<span id="cb255-4"><a href="dplyr.html#cb255-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Mass =</span> mass,</span>
+<span id="cb255-5"><a href="dplyr.html#cb255-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Hair Colour</span><span class="st">`</span> <span class="ot">=</span> hair_color,</span>
+<span id="cb255-6"><a href="dplyr.html#cb255-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Skin Colour</span><span class="st">`</span> <span class="ot">=</span> skin_color,</span>
+<span id="cb255-7"><a href="dplyr.html#cb255-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Eye Colour</span><span class="st">`</span> <span class="ot">=</span> eye_color,</span>
+<span id="cb255-8"><a href="dplyr.html#cb255-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Birth Year</span><span class="st">`</span> <span class="ot">=</span> birth_year)</span>
+<span id="cb255-9"><a href="dplyr.html#cb255-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-10"><a href="dplyr.html#cb255-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sw)</span></code></pre></div>
 <pre><code>##  [1] &quot;Name&quot;        &quot;Height&quot;      &quot;Mass&quot;        &quot;Hair Colour&quot; &quot;Skin Colour&quot;
 ##  [6] &quot;Eye Colour&quot;  &quot;Birth Year&quot;  &quot;sex&quot;         &quot;gender&quot;      &quot;homeworld&quot;  
 ## [11] &quot;species&quot;     &quot;films&quot;       &quot;vehicles&quot;    &quot;starships&quot;</code></pre>
@@ -2200,88 +2377,252 @@ Almost everyone gets confused at some point with <code>rename()</code> and tries
 </p>
 </div>
 </div>
-<div id="distinct" class="section level3">
+<div id="distinct" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> distinct()</h3>
 <p>Get rid of exactly duplicate rows with <code>distinct()</code>. This can be helpful if, for example, you are merging data from multiple computers and some of the data got copied from one computer to another, creating duplicate rows.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dplyr.html#cb267-1"></a><span class="co"># create a data table with duplicated values</span></span>
-<span id="cb267-2"><a href="dplyr.html#cb267-2"></a>dupes &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb267-3"><a href="dplyr.html#cb267-3"></a>  <span class="dt">id =</span> <span class="kw">c</span>( <span class="dv">1</span>,   <span class="dv">2</span>,   <span class="dv">1</span>,   <span class="dv">2</span>,   <span class="dv">1</span>,   <span class="dv">2</span>),</span>
-<span id="cb267-4"><a href="dplyr.html#cb267-4"></a>  <span class="dt">dv =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</span>
-<span id="cb267-5"><a href="dplyr.html#cb267-5"></a>)</span>
-<span id="cb267-6"><a href="dplyr.html#cb267-6"></a></span>
-<span id="cb267-7"><a href="dplyr.html#cb267-7"></a><span class="kw">distinct</span>(dupes)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 2
-##      id dv   
-##   &lt;dbl&gt; &lt;chr&gt;
-## 1     1 A    
-## 2     2 B    
-## 3     1 C    
-## 4     2 D</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dplyr.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data table with duplicated values</span></span>
+<span id="cb257-2"><a href="dplyr.html#cb257-2" aria-hidden="true" tabindex="-1"></a>dupes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb257-3"><a href="dplyr.html#cb257-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>( <span class="dv">1</span>,   <span class="dv">2</span>,   <span class="dv">1</span>,   <span class="dv">2</span>,   <span class="dv">1</span>,   <span class="dv">2</span>),</span>
+<span id="cb257-4"><a href="dplyr.html#cb257-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dv =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb257-5"><a href="dplyr.html#cb257-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb257-6"><a href="dplyr.html#cb257-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-7"><a href="dplyr.html#cb257-7" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(dupes)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">dv</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">A</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">B</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">C</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">D</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="count" class="section level3">
+</div>
+<div id="count" class="section level3" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> count()</h3>
 <p>The function <code>count()</code> is a quick shortcut for the common combination of <code>group_by()</code> and <code>summarise()</code> used to count the number of rows per group.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="dplyr.html#cb269-1"></a>starwars <span class="op">%&gt;%</span></span>
-<span id="cb269-2"><a href="dplyr.html#cb269-2"></a><span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span></span>
-<span id="cb269-3"><a href="dplyr.html#cb269-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 2
-##   sex                n
-##   &lt;chr&gt;          &lt;int&gt;
-## 1 female            16
-## 2 hermaphroditic     1
-## 3 male              60
-## 4 none               6
-## 5 &lt;NA&gt;               4</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="dplyr.html#cb271-1"></a><span class="kw">count</span>(starwars, sex)</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 2
-##   sex                n
-##   &lt;chr&gt;          &lt;int&gt;
-## 1 female            16
-## 2 hermaphroditic     1
-## 3 male              60
-## 4 none               6
-## 5 &lt;NA&gt;               4</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dplyr.html#cb258-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb258-2"><a href="dplyr.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb258-3"><a href="dplyr.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">sex</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">female</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">hermaphroditic</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">male</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="left">none</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="slice" class="section level3">
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dplyr.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(starwars, sex)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">sex</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">female</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">hermaphroditic</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">male</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="left">none</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="slice" class="section level3" number="5.5.4">
 <h3><span class="header-section-number">5.5.4</span> slice()</h3>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dplyr.html#cb273-1"></a><span class="kw">slice</span>(starwars, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 14
-##   name  height  mass hair_color skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Luke…    172    77 blond      fair       blue              19 male  mascu…
-## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow           112 none  mascu…
-## 3 R2-D2     96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
-## 4 Obi-…    182    77 auburn, w… fair       blue-gray         57 male  mascu…
-## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dplyr.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(starwars, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div>
+<div class="kable-table">
+<table>
+<colgroup>
+<col width="3%" />
+<col width="1%" />
+<col width="1%" />
+<col width="3%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="2%" />
+<col width="2%" />
+<col width="1%" />
+<col width="37%" />
+<col width="10%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">height</th>
+<th align="right">mass</th>
+<th align="left">hair_color</th>
+<th align="left">skin_color</th>
+<th align="left">eye_color</th>
+<th align="right">birth_year</th>
+<th align="left">sex</th>
+<th align="left">gender</th>
+<th align="left">homeworld</th>
+<th align="left">species</th>
+<th align="left">films</th>
+<th align="left">vehicles</th>
+<th align="left">starships</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Luke Skywalker</td>
+<td align="right">172</td>
+<td align="right">77</td>
+<td align="left">blond</td>
+<td align="left">fair</td>
+<td align="left">blue</td>
+<td align="right">19</td>
+<td align="left">male</td>
+<td align="left">masculine</td>
+<td align="left">Tatooine</td>
+<td align="left">Human</td>
+<td align="left">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
+<td align="left">Snowspeeder , Imperial Speeder Bike</td>
+<td align="left">X-wing , Imperial shuttle</td>
+</tr>
+<tr class="even">
+<td align="left">C-3PO</td>
+<td align="right">167</td>
+<td align="right">75</td>
+<td align="left">NA</td>
+<td align="left">gold</td>
+<td align="left">yellow</td>
+<td align="right">112</td>
+<td align="left">none</td>
+<td align="left">masculine</td>
+<td align="left">Tatooine</td>
+<td align="left">Droid</td>
+<td align="left">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">R2-D2</td>
+<td align="right">96</td>
+<td align="right">32</td>
+<td align="left">NA</td>
+<td align="left">white, blue</td>
+<td align="left">red</td>
+<td align="right">33</td>
+<td align="left">none</td>
+<td align="left">masculine</td>
+<td align="left">Naboo</td>
+<td align="left">Droid</td>
+<td align="left">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Obi-Wan Kenobi</td>
+<td align="right">182</td>
+<td align="right">77</td>
+<td align="left">auburn, white</td>
+<td align="left">fair</td>
+<td align="left">blue-gray</td>
+<td align="right">57</td>
+<td align="left">male</td>
+<td align="left">masculine</td>
+<td align="left">Stewjon</td>
+<td align="left">Human</td>
+<td align="left">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope</td>
+<td align="left">Tribubble bongo</td>
+<td align="left">Jedi starfighter , Trade Federation cruiser, Naboo star skiff , Jedi Interceptor , Belbullab-22 starfighter</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="pull" class="section level3">
+</div>
+<div id="pull" class="section level3" number="5.5.5">
 <h3><span class="header-section-number">5.5.5</span> pull()</h3>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dplyr.html#cb275-1"></a>starwars <span class="op">%&gt;%</span></span>
-<span id="cb275-2"><a href="dplyr.html#cb275-2"></a><span class="st">  </span><span class="kw">filter</span>(species <span class="op">==</span><span class="st"> &quot;Droid&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb275-3"><a href="dplyr.html#cb275-3"></a><span class="st">  </span><span class="kw">pull</span>(name)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dplyr.html#cb261-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb261-2"><a href="dplyr.html#cb261-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Droid&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb261-3"><a href="dplyr.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(name)</span></code></pre></div>
 <pre><code>## [1] &quot;C-3PO&quot;  &quot;R2-D2&quot;  &quot;R5-D4&quot;  &quot;IG-88&quot;  &quot;R4-P17&quot; &quot;BB8&quot;</code></pre>
 </div>
 </div>
-<div id="window" class="section level2">
+<div id="window" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Window functions</h2>
 <p>Window functions use the order of rows to calculate values. You can use them to do things that require ranking or ordering, like choose the top scores in each class, or accessing the previous and next rows, like calculating cumulative sums or means.</p>
 <p>The <a href="https://dplyr.tidyverse.org/articles/window-functions.html">dplyr window functions vignette</a> has very good detailed explanations of these functions, but we’ve described a few of the most useful ones below.</p>
-<div id="ranking-functions" class="section level3">
+<div id="ranking-functions" class="section level3" number="5.6.1">
 <h3><span class="header-section-number">5.6.1</span> Ranking functions</h3>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="dplyr.html#cb277-1"></a>grades &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb277-2"><a href="dplyr.html#cb277-2"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
-<span id="cb277-3"><a href="dplyr.html#cb277-3"></a>  <span class="st">&quot;Data Skills&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">20</span>), </span>
-<span id="cb277-4"><a href="dplyr.html#cb277-4"></a>  <span class="st">&quot;Statistics&quot;</span>  =<span class="st"> </span><span class="kw">c</span>(<span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">18</span>, <span class="dv">19</span>)</span>
-<span id="cb277-5"><a href="dplyr.html#cb277-5"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb277-6"><a href="dplyr.html#cb277-6"></a><span class="st">  </span><span class="kw">gather</span>(class, grade, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
-<span id="cb277-7"><a href="dplyr.html#cb277-7"></a><span class="st">  </span><span class="kw">group_by</span>(class) <span class="op">%&gt;%</span></span>
-<span id="cb277-8"><a href="dplyr.html#cb277-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">row_number =</span> <span class="kw">row_number</span>(),</span>
-<span id="cb277-9"><a href="dplyr.html#cb277-9"></a>         <span class="dt">rank       =</span> <span class="kw">rank</span>(grade),</span>
-<span id="cb277-10"><a href="dplyr.html#cb277-10"></a>         <span class="dt">min_rank   =</span> <span class="kw">min_rank</span>(grade),</span>
-<span id="cb277-11"><a href="dplyr.html#cb277-11"></a>         <span class="dt">dense_rank =</span> <span class="kw">dense_rank</span>(grade),</span>
-<span id="cb277-12"><a href="dplyr.html#cb277-12"></a>         <span class="dt">quartile   =</span> <span class="kw">ntile</span>(grade, <span class="dv">4</span>),</span>
-<span id="cb277-13"><a href="dplyr.html#cb277-13"></a>         <span class="dt">percentile =</span> <span class="kw">ntile</span>(grade, <span class="dv">100</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dplyr.html#cb263-1" aria-hidden="true" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb263-2"><a href="dplyr.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb263-3"><a href="dplyr.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Data Skills&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">20</span>), </span>
+<span id="cb263-4"><a href="dplyr.html#cb263-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Statistics&quot;</span>  <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">18</span>, <span class="dv">19</span>)</span>
+<span id="cb263-5"><a href="dplyr.html#cb263-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb263-6"><a href="dplyr.html#cb263-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(class, grade, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb263-7"><a href="dplyr.html#cb263-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
+<span id="cb263-8"><a href="dplyr.html#cb263-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">row_number =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb263-9"><a href="dplyr.html#cb263-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">rank       =</span> <span class="fu">rank</span>(grade),</span>
+<span id="cb263-10"><a href="dplyr.html#cb263-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">min_rank   =</span> <span class="fu">min_rank</span>(grade),</span>
+<span id="cb263-11"><a href="dplyr.html#cb263-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">dense_rank =</span> <span class="fu">dense_rank</span>(grade),</span>
+<span id="cb263-12"><a href="dplyr.html#cb263-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">quartile   =</span> <span class="fu">ntile</span>(grade, <span class="dv">4</span>),</span>
+<span id="cb263-13"><a href="dplyr.html#cb263-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">percentile =</span> <span class="fu">ntile</span>(grade, <span class="dv">100</span>))</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-7">Table 5.12: </span>All rows from <code>grades</code></caption>
 <thead>
@@ -2436,12 +2777,12 @@ What does the second argument in <code>ntile()</code> do?
 </ul>
 </div>
 <p>You can use window functions to group your data into quantiles.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="dplyr.html#cb278-1"></a>sw_mass &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span></span>
-<span id="cb278-2"><a href="dplyr.html#cb278-2"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">tertile =</span> <span class="kw">ntile</span>(mass, <span class="dv">3</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb278-3"><a href="dplyr.html#cb278-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">min =</span> <span class="kw">min</span>(mass),</span>
-<span id="cb278-4"><a href="dplyr.html#cb278-4"></a>            <span class="dt">max =</span> <span class="kw">max</span>(mass),</span>
-<span id="cb278-5"><a href="dplyr.html#cb278-5"></a>            <span class="dt">mean =</span> <span class="kw">mean</span>(mass),</span>
-<span id="cb278-6"><a href="dplyr.html#cb278-6"></a>            <span class="dt">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dplyr.html#cb264-1" aria-hidden="true" tabindex="-1"></a>sw_mass <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb264-2"><a href="dplyr.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">tertile =</span> <span class="fu">ntile</span>(mass, <span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb264-3"><a href="dplyr.html#cb264-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(mass),</span>
+<span id="cb264-4"><a href="dplyr.html#cb264-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(mass),</span>
+<span id="cb264-5"><a href="dplyr.html#cb264-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(mass),</span>
+<span id="cb264-6"><a href="dplyr.html#cb264-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-9">Table 5.13: </span>All rows from <code>sw_mass</code></caption>
 <thead>
@@ -2485,13 +2826,13 @@ Why is there a row of <code>NA</code> values? How would you get rid of them?
 </p>
 </div>
 </div>
-<div id="offset-functions" class="section level3">
+<div id="offset-functions" class="section level3" number="5.6.2">
 <h3><span class="header-section-number">5.6.2</span> Offset functions</h3>
 <p>The function <code>lag()</code> gives a previous row’s value. It defaults to 1 row back, but you can change that with the <code>n</code> argument. The function <code>lead()</code> gives values ahead of the current row.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="dplyr.html#cb279-1"></a>lag_lead &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>) <span class="op">%&gt;%</span></span>
-<span id="cb279-2"><a href="dplyr.html#cb279-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lag =</span> <span class="kw">lag</span>(x),</span>
-<span id="cb279-3"><a href="dplyr.html#cb279-3"></a>         <span class="dt">lag2 =</span> <span class="kw">lag</span>(x, <span class="dt">n =</span> <span class="dv">2</span>),</span>
-<span id="cb279-4"><a href="dplyr.html#cb279-4"></a>         <span class="dt">lead =</span> <span class="kw">lead</span>(x, <span class="dt">default =</span> <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dplyr.html#cb265-1" aria-hidden="true" tabindex="-1"></a>lag_lead <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb265-2"><a href="dplyr.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lag =</span> <span class="fu">lag</span>(x),</span>
+<span id="cb265-3"><a href="dplyr.html#cb265-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">lag2 =</span> <span class="fu">lag</span>(x, <span class="at">n =</span> <span class="dv">2</span>),</span>
+<span id="cb265-4"><a href="dplyr.html#cb265-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">lead =</span> <span class="fu">lead</span>(x, <span class="at">default =</span> <span class="dv">0</span>))</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-11">Table 5.14: </span>All rows from <code>lag_lead</code></caption>
 <thead>
@@ -2542,17 +2883,17 @@ Why is there a row of <code>NA</code> values? How would you get rid of them?
 </tbody>
 </table>
 <p>You can use offset functions to calculate change between trials or where a value changes. Use the <code>order_by</code> argument to specify the order of the rows. Alternatively, you can use <code>arrange()</code> before the offset functions.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dplyr.html#cb280-1"></a>trials &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb280-2"><a href="dplyr.html#cb280-2"></a>  <span class="dt">trial =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">10</span>),</span>
-<span id="cb280-3"><a href="dplyr.html#cb280-3"></a>  <span class="dt">cond =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;exp&quot;</span>, <span class="st">&quot;ctrl&quot;</span>), <span class="dv">10</span>, T),</span>
-<span id="cb280-4"><a href="dplyr.html#cb280-4"></a>  <span class="dt">score =</span> <span class="kw">rpois</span>(<span class="dv">10</span>, <span class="dv">4</span>)</span>
-<span id="cb280-5"><a href="dplyr.html#cb280-5"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb280-6"><a href="dplyr.html#cb280-6"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb280-7"><a href="dplyr.html#cb280-7"></a>    <span class="dt">score_change =</span> score <span class="op">-</span><span class="st"> </span><span class="kw">lag</span>(score, <span class="dt">order_by =</span> trial),</span>
-<span id="cb280-8"><a href="dplyr.html#cb280-8"></a>    <span class="dt">change_cond =</span> cond <span class="op">!=</span><span class="st"> </span><span class="kw">lag</span>(cond, <span class="dt">order_by =</span> trial, </span>
-<span id="cb280-9"><a href="dplyr.html#cb280-9"></a>                              <span class="dt">default =</span> <span class="st">&quot;no condition&quot;</span>)</span>
-<span id="cb280-10"><a href="dplyr.html#cb280-10"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb280-11"><a href="dplyr.html#cb280-11"></a><span class="st">  </span><span class="kw">arrange</span>(trial)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dplyr.html#cb266-1" aria-hidden="true" tabindex="-1"></a>trials <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb266-2"><a href="dplyr.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">trial =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb266-3"><a href="dplyr.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cond =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;exp&quot;</span>, <span class="st">&quot;ctrl&quot;</span>), <span class="dv">10</span>, T),</span>
+<span id="cb266-4"><a href="dplyr.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">rpois</span>(<span class="dv">10</span>, <span class="dv">4</span>)</span>
+<span id="cb266-5"><a href="dplyr.html#cb266-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb266-6"><a href="dplyr.html#cb266-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb266-7"><a href="dplyr.html#cb266-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">score_change =</span> score <span class="sc">-</span> <span class="fu">lag</span>(score, <span class="at">order_by =</span> trial),</span>
+<span id="cb266-8"><a href="dplyr.html#cb266-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">change_cond =</span> cond <span class="sc">!=</span> <span class="fu">lag</span>(cond, <span class="at">order_by =</span> trial, </span>
+<span id="cb266-9"><a href="dplyr.html#cb266-9" aria-hidden="true" tabindex="-1"></a>                              <span class="at">default =</span> <span class="st">&quot;no condition&quot;</span>)</span>
+<span id="cb266-10"><a href="dplyr.html#cb266-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb266-11"><a href="dplyr.html#cb266-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(trial)</span></code></pre></div>
 <table>
 <caption><span id="tab:offset-adv">Table 5.15: </span>All rows from <code>trials</code></caption>
 <thead>
@@ -2654,20 +2995,20 @@ Can you think of circumstances in your own data where you might need to use <cod
 </ul>
 </div>
 </div>
-<div id="cumulative-aggregates" class="section level3">
+<div id="cumulative-aggregates" class="section level3" number="5.6.3">
 <h3><span class="header-section-number">5.6.3</span> Cumulative aggregates</h3>
 <p><code>cumsum()</code>, <code>cummin()</code>, and <code>cummax()</code> are base R functions for calculating cumulative means, minimums, and maximums. The dplyr package introduces <code>cumany()</code> and <code>cumall()</code>, which return <code>TRUE</code> if any or all of the previous values meet their criteria.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="dplyr.html#cb281-1"></a>cumulative &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
-<span id="cb281-2"><a href="dplyr.html#cb281-2"></a>  <span class="dt">time =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
-<span id="cb281-3"><a href="dplyr.html#cb281-3"></a>  <span class="dt">obs =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb281-4"><a href="dplyr.html#cb281-4"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb281-5"><a href="dplyr.html#cb281-5"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb281-6"><a href="dplyr.html#cb281-6"></a>    <span class="dt">cumsum =</span> <span class="kw">cumsum</span>(obs),</span>
-<span id="cb281-7"><a href="dplyr.html#cb281-7"></a>    <span class="dt">cummin =</span> <span class="kw">cummin</span>(obs),</span>
-<span id="cb281-8"><a href="dplyr.html#cb281-8"></a>    <span class="dt">cummax =</span> <span class="kw">cummax</span>(obs),</span>
-<span id="cb281-9"><a href="dplyr.html#cb281-9"></a>    <span class="dt">cumany =</span> <span class="kw">cumany</span>(obs <span class="op">==</span><span class="st"> </span><span class="dv">3</span>),</span>
-<span id="cb281-10"><a href="dplyr.html#cb281-10"></a>    <span class="dt">cumall =</span> <span class="kw">cumall</span>(obs <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>)</span>
-<span id="cb281-11"><a href="dplyr.html#cb281-11"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dplyr.html#cb267-1" aria-hidden="true" tabindex="-1"></a>cumulative <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb267-2"><a href="dplyr.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb267-3"><a href="dplyr.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">obs =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb267-4"><a href="dplyr.html#cb267-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb267-5"><a href="dplyr.html#cb267-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb267-6"><a href="dplyr.html#cb267-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumsum =</span> <span class="fu">cumsum</span>(obs),</span>
+<span id="cb267-7"><a href="dplyr.html#cb267-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cummin =</span> <span class="fu">cummin</span>(obs),</span>
+<span id="cb267-8"><a href="dplyr.html#cb267-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cummax =</span> <span class="fu">cummax</span>(obs),</span>
+<span id="cb267-9"><a href="dplyr.html#cb267-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumany =</span> <span class="fu">cumany</span>(obs <span class="sc">==</span> <span class="dv">3</span>),</span>
+<span id="cb267-10"><a href="dplyr.html#cb267-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">cumall =</span> <span class="fu">cumall</span>(obs <span class="sc">&lt;</span> <span class="dv">4</span>)</span>
+<span id="cb267-11"><a href="dplyr.html#cb267-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-13">Table 5.16: </span>All rows from <code>cumulative</code></caption>
 <thead>
@@ -2789,7 +3130,7 @@ Can you think of circumstances in your own data where you might need to use <cod
 </div>
 </div>
 </div>
-<div id="glossary5" class="section level2">
+<div id="glossary5" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Glossary</h2>
 <table>
 <colgroup>
@@ -2810,14 +3151,14 @@ Can you think of circumstances in your own data where you might need to use <cod
 </tbody>
 </table>
 </div>
-<div id="exercises5" class="section level2">
+<div id="exercises5" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> Exercises</h2>
 <p>Download the <a href="exercises/05_dplyr_exercise.Rmd">exercises</a>. See the <a href="exercises/05_dplyr_answers.Rmd">answers</a> only after you’ve attempted all the questions.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dplyr.html#cb282-1"></a><span class="co"># run this to access the exercise</span></span>
-<span id="cb282-2"><a href="dplyr.html#cb282-2"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">5</span>)</span>
-<span id="cb282-3"><a href="dplyr.html#cb282-3"></a></span>
-<span id="cb282-4"><a href="dplyr.html#cb282-4"></a><span class="co"># run this to access the answers</span></span>
-<span id="cb282-5"><a href="dplyr.html#cb282-5"></a>dataskills<span class="op">::</span><span class="kw">exercise</span>(<span class="dv">5</span>, <span class="dt">answers =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="dplyr.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to access the exercise</span></span>
+<span id="cb268-2"><a href="dplyr.html#cb268-2" aria-hidden="true" tabindex="-1"></a>dataskills<span class="sc">::</span><span class="fu">exercise</span>(<span class="dv">5</span>)</span>
+<span id="cb268-3"><a href="dplyr.html#cb268-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb268-4"><a href="dplyr.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to access the answers</span></span>
+<span id="cb268-5"><a href="dplyr.html#cb268-5" aria-hidden="true" tabindex="-1"></a>dataskills<span class="sc">::</span><span class="fu">exercise</span>(<span class="dv">5</span>, <span class="at">answers =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -2955,6 +3296,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
 "google": false
 },
